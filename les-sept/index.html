@@ -163,7 +163,7 @@ nav {
 #conteudo { padding:0; }
 .conteudo-split { display:grid; grid-template-columns:1fr 1fr; min-height:680px; }
 .conteudo-foto {
-  background:url('imgs/foto5.jpg') center/cover no-repeat;
+  background:url('imgs/chef-gabriel.jpg') center top/cover no-repeat;
   position:relative;
 }
 .conteudo-foto-overlay {
@@ -327,16 +327,72 @@ footer .fr a { color:var(--gold); text-decoration:none; }
 @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
 
 @media(max-width:900px){
-  nav{padding:0 24px;}
-  #hero .hero-content,#diagnostico,#proposta,#investimento,#porque,#proximos,#closing .closing-content,footer{padding-left:24px;padding-right:24px;}
-  .conteudo-texto{padding:60px 24px;}
-  .diag-header,.invest-layout,.conteudo-split{grid-template-columns:1fr;}
-  .diag-grid,.pilares,.porque-grid{grid-template-columns:1fr 1fr;}
-  .passos{grid-template-columns:1fr 1fr;}
-  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
-  .g-item.tall{grid-row:span 1;}
-  #galeria2{height:200px;}
-  footer{flex-direction:column;gap:16px;text-align:center;}
+  /* NAV */
+  nav { padding:0 20px; }
+  .nav-right { display:none; }
+
+  /* SEÇÕES — padding lateral */
+  #diagnostico,#proposta,#investimento,#porque,#proximos { padding-left:24px; padding-right:24px; }
+  #closing .closing-content { padding:0 24px; }
+  footer { padding:28px 24px; flex-direction:column; gap:16px; text-align:center; }
+
+  /* HERO */
+  .hero-content { padding:0 24px 60px; }
+  .hero-content h1 { font-size:clamp(34px,9vw,60px); }
+  .hero-content p { font-size:14px; max-width:100%; }
+  .hero-eyebrow { font-size:9px; letter-spacing:2px; flex-wrap:wrap; }
+  .hero-stats { flex-wrap:wrap; }
+  .hero-stat { flex:0 0 50%; padding:20px 0 0 0 !important; border-left:none !important; }
+  .hero-stat:nth-child(even) { padding-left:20px !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
+  .hero-stat .v { font-size:32px; }
+
+  /* DIAGNÓSTICO */
+  .diag-header { grid-template-columns:1fr; gap:28px; }
+  .diag-grid { grid-template-columns:1fr 1fr; }
+
+  /* PILARES — 1 coluna no mobile */
+  .pilares { grid-template-columns:1fr; }
+
+  /* GALERIA */
+  .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+  .g-item.tall { grid-row:span 1; }
+  .g-item { height:200px; }
+  .gallery-bar { padding:14px 24px; flex-direction:column; gap:4px; text-align:center; }
+  #galeria2 { height:auto; flex-direction:column; }
+  #galeria2 > div { height:200px; }
+
+  /* CONTEÚDO SPLIT */
+  .conteudo-split { grid-template-columns:1fr; }
+  .conteudo-foto { min-height:300px; }
+  .conteudo-foto-overlay { background:linear-gradient(to bottom,transparent 50%,var(--dark-2)); }
+  .conteudo-texto { padding:56px 24px; }
+
+  /* INVESTIMENTO */
+  .invest-layout { grid-template-columns:1fr; gap:40px; }
+  .invest-table th:nth-child(2),.invest-table td:nth-child(2) { display:none; }
+  .pacote-box { padding:32px 24px; }
+  .pacote-price .por { font-size:44px; }
+
+  /* POR QUÊ */
+  .porque-grid { grid-template-columns:1fr 1fr; }
+
+  /* PRÓXIMOS PASSOS */
+  .passos { grid-template-columns:1fr 1fr; }
+  .passo { border-right:none; border-bottom:1px solid var(--border); }
+  .passo:last-child { border:none; }
+}
+
+@media(max-width:540px){
+  /* 1 coluna para tudo no celular pequeno */
+  .diag-grid,.porque-grid { grid-template-columns:1fr; }
+  .passos { grid-template-columns:1fr; }
+  .gallery-grid { grid-template-columns:1fr; }
+  .g-item { height:220px; }
+  .hero-stat { flex:0 0 50%; }
+  .pilar { padding:32px 22px; }
+  .section-title { font-size:clamp(28px,8.5vw,44px); }
+  .invest-table .i-price { font-size:22px; }
+  .closing-content h2 { font-size:clamp(28px,7vw,44px); }
 }
 </style>
 </head>
@@ -345,7 +401,7 @@ footer .fr a { color:var(--gold); text-decoration:none; }
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="imgs/k2ia-logo.png" alt="K2IA">
+    <img src="../K2IA/Logo K2IA.png" alt="K2IA">
     <span>K2IA</span>
   </div>
   <div class="nav-right">Proposta Estratégica · Les Sept · 2026</div>
@@ -484,7 +540,7 @@ footer .fr a { color:var(--gold); text-decoration:none; }
       <div class="pilar">
         <span class="pilar-ghost">03</span>
         <span class="p-num">03 / 03</span>
-        <h3>Conteúdo<br>"Pai & Filho"</h3>
+        <h3>Conteúdo<br>"Legado ao Fogo"</h3>
         <span class="p-tag">Piloto sem compromisso</span>
         <p>A voz da marca vem de dentro. Leno e Gabi são show men natos com 30 anos de histórias para contar. Nenhuma agência faz isso por vocês.</p>
         <ul>
@@ -578,7 +634,7 @@ footer .fr a { color:var(--gold); text-decoration:none; }
             </tr>
             <tr>
               <td>
-                <div class="i-name">Conteúdo · Piloto "Pai & Filho"</div>
+                <div class="i-name">Conteúdo · Piloto "Legado ao Fogo"</div>
                 <div class="i-desc">Gravação, edição, 1 vídeo longo + 4–6 cortes</div>
                 <span class="i-type">Único</span>
               </td>
@@ -605,7 +661,7 @@ footer .fr a { color:var(--gold); text-decoration:none; }
         <ul class="pacote-includes">
           <li>Tráfego Meta e Google: gestão completa</li>
           <li>Implementação de CRM com treinamento</li>
-          <li>Piloto "Pai e Filho": conceito, gravação e edição</li>
+          <li>Piloto "Legado ao Fogo": conceito, gravação e edição</li>
           <li>Prioridade de atendimento e suporte direto</li>
         </ul>
         <div class="pacote-economy">
@@ -709,7 +765,7 @@ footer .fr a { color:var(--gold); text-decoration:none; }
 <!-- FOOTER -->
 <footer>
   <div class="fl">
-    <img src="imgs/k2ia-logo.png" alt="K2IA">
+    <img src="../K2IA/Logo K2IA.png" alt="K2IA">
     <div>
       <div class="fb">K2IA</div>
       <div class="fs">Inteligência & Estratégia Digital</div>
