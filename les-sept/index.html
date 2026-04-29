@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta K2IA × Les Sept</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --cyan: #00C8FF;
+  --dark: #080C12;
+  --dark-2: #0D1320;
+  --dark-3: #131B2A;
+  --dark-4: #1A2438;
+  --text: #E8E4DC;
+  --text-muted: #8A8A7A;
+  --border: rgba(201,168,76,0.2);
+}
+
+html { scroll-behavior:smooth; }
+body { background:var(--dark); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 60px; height:64px;
+  background:rgba(8,12,18,0.96); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { display:flex; align-items:center; gap:12px; }
+.nav-logo img { width:34px; height:34px; border-radius:7px; }
+.nav-logo span { font-weight:600; font-size:13px; letter-spacing:2px; color:var(--cyan); }
+.nav-right { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+
+/* UTILITÁRIOS */
+.tag {
+  display:inline-block; font-size:11px; font-weight:500;
+  letter-spacing:3px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px;
+}
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,4vw,58px); font-weight:300; line-height:1.1; color:var(--text);
+}
+.section-title em { color:var(--gold); font-style:italic; }
+.divider { width:48px; height:1px; background:var(--gold); margin:20px 0; }
+
+/* ════════════════════════════════
+   HERO
+════════════════════════════════ */
+#hero {
+  height:100vh; position:relative; display:flex;
+  align-items:flex-end; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:url('imgs/foto4.jpg') center/cover no-repeat;
+  filter:brightness(0.35);
+}
+.hero-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(8,12,18,1) 0%, rgba(8,12,18,0.3) 55%, transparent 100%);
+}
+.hero-content {
+  position:relative; z-index:2; padding:0 60px 80px; max-width:860px;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:12px;
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold-light); margin-bottom:28px;
+}
+.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--gold-light); }
+.hero-content h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,6.5vw,88px); font-weight:300; line-height:1.05; color:#fff; margin-bottom:24px;
+}
+.hero-content h1 em { color:var(--gold-light); font-style:italic; }
+.hero-content p { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.9; max-width:500px; margin-bottom:44px; }
+.hero-stats {
+  display:flex; gap:0; border-top:1px solid rgba(255,255,255,0.1); padding-top:36px;
+}
+.hero-stat { flex:1; padding-right:32px; }
+.hero-stat+.hero-stat { padding-left:32px; border-left:1px solid rgba(255,255,255,0.1); }
+.hero-stat .v {
+  font-family:'Cormorant Garamond',serif; font-size:42px;
+  color:var(--gold-light); line-height:1;
+}
+.hero-stat .l { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:6px; }
+
+/* ════════════════════════════════
+   DIAGNÓSTICO
+════════════════════════════════ */
+#diagnostico { background:var(--dark-2); padding:100px 60px; }
+.diag-header {
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-bottom:60px;
+}
+.diag-header p { font-size:15px; line-height:1.9; color:var(--text-muted); }
+.diag-header blockquote {
+  font-family:'Cormorant Garamond',serif; font-size:24px; font-style:italic;
+  color:var(--gold-light); border-left:2px solid var(--gold); padding-left:24px; line-height:1.6;
+}
+.diag-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
+.diag-card { background:var(--dark-3); padding:32px 26px; }
+.diag-card .d-icon { font-size:18px; margin-bottom:14px; }
+.diag-card h4 { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.diag-card p { font-size:13px; line-height:1.8; color:var(--text-muted); }
+
+/* ════════════════════════════════
+   GALERIA FOTOS
+════════════════════════════════ */
+#galeria { padding:0; }
+.gallery-grid {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:3px;
+}
+.g-item { background-size:cover; background-position:center; overflow:hidden; }
+.g-item.tall { grid-row:span 2; }
+.gallery-bar {
+  background:var(--dark); padding:16px 60px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--border);
+}
+.gallery-bar p { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
+.gallery-bar span { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--gold); }
+
+/* ════════════════════════════════
+   PROPOSTA — 3 PILARES
+════════════════════════════════ */
+#proposta { padding:100px 60px; background:var(--dark); }
+.pilares { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:48px; }
+.pilar { background:var(--dark-3); padding:44px 36px; position:relative; overflow:hidden; }
+.pilar-ghost {
+  position:absolute; top:16px; right:20px;
+  font-family:'Cormorant Garamond',serif; font-size:80px; font-weight:300;
+  color:rgba(201,168,76,0.06); line-height:1;
+}
+.pilar .p-num { font-size:11px; letter-spacing:3px; color:var(--text-muted); margin-bottom:20px; display:block; }
+.pilar h3 { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px; line-height:1.2; }
+.pilar .p-tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:20px; display:block; }
+.pilar p { font-size:13px; line-height:1.8; color:var(--text-muted); margin-bottom:20px; }
+.pilar ul { list-style:none; }
+.pilar ul li {
+  font-size:13px; color:var(--text-muted); padding:8px 0;
+  border-bottom:1px solid rgba(201,168,76,0.08);
+  padding-left:14px; position:relative; line-height:1.5;
+}
+.pilar ul li:last-child { border:none; }
+.pilar ul li::before { content:'·'; position:absolute; left:0; color:var(--gold); font-size:18px; top:5px; }
+.pilar-price { margin-top:28px; padding-top:20px; border-top:1px solid var(--border); }
+.pilar-price .amount { font-family:'Cormorant Garamond',serif; font-size:40px; color:var(--gold); line-height:1; }
+.pilar-price .freq { font-size:12px; color:var(--text-muted); margin-top:4px; display:block; }
+
+/* ════════════════════════════════
+   FOTO DESTAQUE + CONTEÚDO
+════════════════════════════════ */
+#conteudo { padding:0; }
+.conteudo-split { display:grid; grid-template-columns:1fr 1fr; min-height:680px; }
+.conteudo-foto {
+  background:url('imgs/foto5.jpg') center/cover no-repeat;
+  position:relative;
+}
+.conteudo-foto-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to right, transparent 60%, var(--dark-2));
+}
+.conteudo-texto {
+  background:var(--dark-2); padding:80px 60px; display:flex; flex-direction:column; justify-content:center;
+}
+.piloto-box {
+  margin-top:36px; padding:28px 32px;
+  border:1px solid rgba(201,168,76,0.35); background:rgba(201,168,76,0.04);
+}
+.piloto-box .pt-badge {
+  font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px; display:block;
+}
+.piloto-box h4 { font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--text); margin-bottom:10px; }
+.piloto-box p { font-size:13px; color:var(--text-muted); line-height:1.8; margin-bottom:20px; }
+.piloto-deliverables { list-style:none; margin-bottom:24px; }
+.piloto-deliverables li {
+  font-size:13px; color:var(--text-muted); padding:6px 0;
+  display:flex; gap:10px; align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.piloto-deliverables li:last-child { border:none; }
+.piloto-deliverables li::before { content:'✓'; color:var(--gold); font-size:12px; flex-shrink:0; }
+.piloto-price .big { font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); line-height:1; }
+.piloto-price .sub { font-size:12px; color:var(--text-muted); margin-top:6px; }
+
+/* ════════════════════════════════
+   INVESTIMENTO + ANCORAGEM
+════════════════════════════════ */
+#investimento { padding:100px 60px; background:var(--dark-3); }
+.invest-layout { display:grid; grid-template-columns:3fr 2fr; gap:60px; align-items:start; margin-top:48px; }
+
+.invest-table { width:100%; border-collapse:collapse; }
+.invest-table thead tr { border-bottom:1px solid var(--border); }
+.invest-table th { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); font-weight:400; padding:0 0 14px; text-align:left; }
+.invest-table th:last-child { text-align:right; }
+.invest-table td { padding:22px 0; border-bottom:1px solid rgba(201,168,76,0.07); vertical-align:middle; }
+.invest-table tr:last-child td { border:none; }
+.invest-table .i-name { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--text); }
+.invest-table .i-desc { font-size:12px; color:var(--text-muted); margin-top:3px; }
+.invest-table .i-type { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-top:5px; display:block; }
+.invest-table .i-price { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--text-muted); text-align:right; }
+.invest-total-row { display:flex; justify-content:space-between; align-items:center; padding:20px 0; border-top:1px solid rgba(255,255,255,0.06); }
+.invest-total-row .tl { font-size:12px; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; }
+.invest-total-row .tv { font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--text-muted); text-decoration:line-through; opacity:0.5; }
+
+/* PACOTE DESTAQUE */
+.pacote-box {
+  background:var(--dark-4); border:1px solid var(--gold);
+  padding:40px 36px; position:relative;
+}
+.pacote-badge {
+  position:absolute; top:-1px; right:32px;
+  background:var(--gold); color:var(--dark); font-size:10px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; padding:5px 12px;
+}
+.pacote-box h3 {
+  font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--text);
+  margin-bottom:6px; margin-top:16px;
+}
+.pacote-box .pb-sub { font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-bottom:24px; display:block; }
+.pacote-includes { list-style:none; margin-bottom:28px; }
+.pacote-includes li {
+  font-size:13px; color:var(--text-muted); padding:8px 0;
+  border-bottom:1px solid rgba(201,168,76,0.1);
+  display:flex; gap:10px; align-items:center;
+}
+.pacote-includes li:last-child { border:none; }
+.pacote-includes li::before { content:'✓'; color:var(--gold); flex-shrink:0; font-size:12px; }
+.pacote-economy {
+  background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2);
+  padding:12px 16px; margin-bottom:24px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.pacote-economy .eco-label { font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gold); }
+.pacote-economy .eco-val { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold-light); }
+.pacote-price .de {
+  font-size:13px; color:var(--text-muted); text-decoration:line-through; display:block; margin-bottom:4px;
+}
+.pacote-price .por { font-family:'Cormorant Garamond',serif; font-size:56px; color:var(--gold-light); line-height:1; }
+.pacote-price .mes { font-size:12px; color:var(--text-muted); margin-top:6px; display:block; }
+
+/* ════════════════════════════════
+   GALERIA SEGUNDA
+════════════════════════════════ */
+#galeria2 { padding:0; display:flex; height:320px; gap:3px; }
+#galeria2 > div { flex:1; background-size:cover; background-position:center; }
+
+/* ════════════════════════════════
+   POR QUE K2IA
+════════════════════════════════ */
+#porque { padding:100px 60px; background:var(--dark-2); }
+.porque-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:48px; }
+.porque-card { background:var(--dark-3); padding:40px 36px; }
+.porque-card .pk-n {
+  font-family:'Cormorant Garamond',serif; font-size:56px; font-weight:300;
+  color:rgba(201,168,76,0.08); line-height:1; margin-bottom:14px;
+}
+.porque-card h4 { font-size:14px; font-weight:500; color:var(--text); margin-bottom:12px; line-height:1.4; }
+.porque-card p { font-size:13px; color:var(--text-muted); line-height:1.8; }
+.porque-card p strong { color:var(--text); font-weight:500; }
+
+/* ════════════════════════════════
+   PRÓXIMOS PASSOS
+════════════════════════════════ */
+#proximos { padding:100px 60px; background:var(--dark); }
+.passos { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid var(--border); margin-top:48px; }
+.passo { padding:36px 28px; border-right:1px solid var(--border); }
+.passo:last-child { border:none; }
+.passo .ps-n { font-family:'Cormorant Garamond',serif; font-size:48px; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; }
+.passo h4 { font-size:13px; font-weight:500; color:var(--text); margin-bottom:10px; line-height:1.4; }
+.passo p { font-size:12px; color:var(--text-muted); line-height:1.7; }
+
+/* ════════════════════════════════
+   CLOSING
+════════════════════════════════ */
+#closing {
+  position:relative; height:520px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+}
+.closing-bg {
+  position:absolute; inset:0;
+  background:url('imgs/foto3.jpg') center/cover no-repeat;
+  filter:brightness(0.2);
+}
+.closing-overlay { position:absolute; inset:0; background:rgba(8,12,18,0.65); }
+.closing-content { position:relative; z-index:2; max-width:660px; padding:0 40px; }
+.closing-content .ct { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold-light); margin-bottom:28px; display:block; }
+.closing-content h2 {
+  font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,56px);
+  color:#fff; font-weight:300; line-height:1.2; margin-bottom:20px;
+}
+.closing-content h2 em { color:var(--gold-light); font-style:italic; }
+.closing-content p { font-size:14px; color:rgba(255,255,255,0.4); line-height:1.8; }
+
+/* FOOTER */
+footer {
+  background:var(--dark); padding:28px 60px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--border);
+}
+footer .fl { display:flex; align-items:center; gap:12px; }
+footer img { width:30px; height:30px; border-radius:6px; }
+footer .fb { font-size:12px; font-weight:600; letter-spacing:2px; color:var(--cyan); }
+footer .fs { font-size:10px; color:var(--text-muted); margin-top:2px; }
+footer .fr { font-size:11px; color:var(--text-muted); text-align:right; line-height:1.8; }
+footer .fr a { color:var(--gold); text-decoration:none; }
+
+/* SCROLL DOT */
+.scroll-hint {
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  opacity:0.35; animation:bob 2s ease-in-out infinite;
+}
+.scroll-hint span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
+.scroll-hint::after { content:'↓'; color:var(--gold); font-size:14px; }
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  #hero .hero-content,#diagnostico,#proposta,#investimento,#porque,#proximos,#closing .closing-content,footer{padding-left:24px;padding-right:24px;}
+  .conteudo-texto{padding:60px 24px;}
+  .diag-header,.invest-layout,.conteudo-split{grid-template-columns:1fr;}
+  .diag-grid,.pilares,.porque-grid{grid-template-columns:1fr 1fr;}
+  .passos{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .g-item.tall{grid-row:span 1;}
+  #galeria2{height:200px;}
+  footer{flex-direction:column;gap:16px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="imgs/k2ia-logo.png" alt="K2IA">
+    <span>K2IA</span>
+  </div>
+  <div class="nav-right">Proposta Estratégica · Les Sept · 2026</div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Proposta Estratégica Exclusiva · 2026</div>
+    <h1>30 anos de história.<br><em>O mundo precisa<br>saber disso.</em></h1>
+    <p>Uma estratégia construída a partir da realidade da Les Sept. Tráfego, CRM e conteúdo integrados para que o reconhecimento finalmente chegue ao nível da entrega.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="v">30</div>
+        <div class="l">anos de operação</div>
+      </div>
+      <div class="hero-stat">
+        <div class="v">30k</div>
+        <div class="l">pessoas em 1 evento</div>
+      </div>
+      <div class="hero-stat">
+        <div class="v">👑</div>
+        <div class="l">serviram o Rei da Noruega</div>
+      </div>
+      <div class="hero-stat">
+        <div class="v">20+</div>
+        <div class="l">anos de alguns clientes</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>scroll</span></div>
+</section>
+
+<!-- ════ DIAGNÓSTICO ════ -->
+<section id="diagnostico">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="tag">O que identificamos</span>
+    <div class="diag-header">
+      <div>
+        <h2 class="section-title">Vocês têm um dos maiores <em>ativos ocultos</em> do mercado.</h2>
+        <div class="divider"></div>
+      </div>
+      <div>
+        <p style="margin-bottom:28px;">Família Senna, WebSummit, o Rei da Noruega, Congresso de Psiquiatria, cook show suspenso a 80 metros de altura. São 30 anos de casos extraordinários que vivem na memória de quem esteve lá e quase não aparecem para o mercado.</p>
+        <blockquote>"O problema não é o trabalho. É a visibilidade."</blockquote>
+      </div>
+    </div>
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="d-icon">📱</div>
+        <h4>Instagram</h4>
+        <p>~6 mil seguidores orgânicos, abaixo do real potencial. Conteúdo bom quando aparece, mas sem consistência. Jéssica faz milagres sem tempo nem estrutura.</p>
+      </div>
+      <div class="diag-card">
+        <div class="d-icon">📋</div>
+        <h4>Atendimento</h4>
+        <p>O time comercial recebe os leads todos pelo mesmo número, sem filtro ou direcionamento. Sem CRM, sem funil. Funciona hoje, mas não vai escalar quando o volume chegar.</p>
+      </div>
+      <div class="diag-card">
+        <div class="d-icon">🏢</div>
+        <h4>Agências anteriores</h4>
+        <p>Já investiram várias vezes. Resultado sempre abaixo. Conteúdo genérico, sem entender a essência. Os caras chegavam, ficavam esperando, e iam embora.</p>
+      </div>
+      <div class="diag-card">
+        <div class="d-icon">📁</div>
+        <h4>Material parado</h4>
+        <p>Servidor cheio de fotos e vídeos nunca aproveitados. Mais do que isso: há histórias incríveis que nunca foram contadas. Leno e Gabriel são show men natos. Isso é ouro esperando ser extraído.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GALERIA 1 ════ -->
+<div id="galeria">
+  <div class="gallery-grid">
+    <div class="g-item tall" style="background-image:url('imgs/foto1.jpg')"></div>
+    <div class="g-item" style="background-image:url('imgs/foto2.jpg')"></div>
+    <div class="g-item" style="background-image:url('imgs/foto6.jpg')"></div>
+    <div class="g-item" style="background-image:url('imgs/foto7.jpg')"></div>
+    <div class="g-item" style="background-image:url('imgs/foto8.jpg')"></div>
+  </div>
+  <div class="gallery-bar">
+    <p>Portfólio · Les Sept Catering Personnalité</p>
+    <span>Gastronomia de alto padrão há 30 anos</span>
+  </div>
+</div>
+
+<!-- ════ 3 PILARES ════ -->
+<section id="proposta">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="tag">Nossa proposta</span>
+    <h2 class="section-title">Três pilares.<br><em>Um objetivo.</em></h2>
+    <div class="pilares">
+
+      <div class="pilar">
+        <span class="pilar-ghost">01</span>
+        <span class="p-num">01 / 03</span>
+        <h3>Tráfego Pago<br>Meta & Google</h3>
+        <span class="p-tag">Gestão mensal</span>
+        <p>Levar o trabalho da Les Sept para quem ainda não conhece, usando material que já existe sem custo extra de produção no início.</p>
+        <ul>
+          <li>Campanhas por nicho: formatura, corporativo e casamento</li>
+          <li>Google Ads: defesa de marca e busca ativa</li>
+          <li>Remarketing com histórias para quem visitou o site</li>
+          <li>Relatórios quinzenais com reunião de acompanhamento</li>
+          <li>Segmentação por região e perfil de cliente</li>
+          <li>Verba de mídia recomendada: mínimo R$ 5.000/mês</li>
+        </ul>
+        <div class="pilar-price">
+          <div class="amount">R$ 3.500</div>
+          <span class="freq">por mês · verba de mídia separada</span>
+        </div>
+      </div>
+
+      <div class="pilar">
+        <span class="pilar-ghost">02</span>
+        <span class="p-num">02 / 03</span>
+        <h3>Implementação<br>de CRM</h3>
+        <span class="p-tag">Setup único</span>
+        <p>Organizar a casa antes que o volume chegue. Quando o tráfego funcionar, a operação precisa estar pronta para receber sem travar.</p>
+        <ul>
+          <li>Plataforma R$ 800 a cada 7 meses centraliza Instagram e WhatsApp</li>
+          <li>Funil configurado por nicho com qualificação automática</li>
+          <li>Leads direcionados ao comercial correto por segmento</li>
+          <li>Time comercial recebe os leads já filtrados e categorizados</li>
+          <li>Treinamento da equipe incluído</li>
+        </ul>
+        <div class="pilar-price">
+          <div class="amount">R$ 2.000</div>
+          <span class="freq">implementação única</span>
+        </div>
+      </div>
+
+      <div class="pilar">
+        <span class="pilar-ghost">03</span>
+        <span class="p-num">03 / 03</span>
+        <h3>Conteúdo<br>"Pai & Filho"</h3>
+        <span class="p-tag">Piloto sem compromisso</span>
+        <p>A voz da marca vem de dentro. Leno e Gabi são show men natos com 30 anos de histórias para contar. Nenhuma agência faz isso por vocês.</p>
+        <ul>
+          <li>Conceito, roteiro e direção criativa completos</li>
+          <li>Dois formatos: correria real do dia a dia OU conversa descontraída meia luz</li>
+          <li>1 gravação gera vídeo longo + múltiplos cortes, cada um uma mini história</li>
+          <li>Você vê o resultado antes de qualquer contrato mensal</li>
+          <li>Referência: Chef's Table e a autenticidade que só vem de dentro</li>
+        </ul>
+        <div class="pilar-price">
+          <div class="amount">R$ 5.000</div>
+          <span class="freq">piloto único · sem mensalidade obrigatória</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTEÚDO DETALHE ════ -->
+<div id="conteudo">
+  <div class="conteudo-split">
+    <div class="conteudo-foto">
+      <div class="conteudo-foto-overlay"></div>
+    </div>
+    <div class="conteudo-texto">
+      <span class="tag">Pilar 03 · Conteúdo</span>
+      <h2 class="section-title" style="font-size:38px;">Antes de assinar,<br><em>você vê.</em></h2>
+      <div class="divider"></div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.9;margin-bottom:0;">
+        O maior ativo da Les Sept não está no servidor de fotos. Está na memória do Leno e do Gabriel. Os dois falam muito bem, têm carisma natural e histórias que ninguém nunca ouviu. Isso é o diferencial que nenhuma agência cria do zero.
+      </p>
+      <div class="piloto-box">
+        <span class="pt-badge">Piloto · Sem compromisso</span>
+        <h4>Dois formatos. Você escolhe.</h4>
+        <p style="margin-bottom:16px;"><strong style="color:var(--gold);">Opção A · Correria real</strong> — câmera discreta no dia a dia da operação. A energia da cozinha, a pressão, os bastidores. Autêntico e cinematográfico.</p>
+        <p style="margin-bottom:20px;"><strong style="color:var(--gold);">Opção B · Conversa descontraída</strong> — meia luz, Leno e Gabi numa mesa, vinho, contando uma história que marcou. Elegante, intimista, poderoso.</p>
+        <p>1 encontro de 2 a 3h. Conceito, roteiro, direção e edição inclusos. Cada corte é uma mini história independente.</p>
+        <ul class="piloto-deliverables">
+          <li>1 vídeo longo (YouTube / feed)</li>
+          <li>8 a 12 cortes para Reels e Stories, cada um uma mini história</li>
+          <li>Conceito e roteiro direcionado</li>
+          <li>Edição finalizada, pronta para publicar</li>
+        </ul>
+        <div class="piloto-price">
+          <div class="big">R$ 5.000</div>
+          <div class="sub">piloto único · sem mensalidade obrigatória · você vê e decide</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ INVESTIMENTO + ANCORAGEM ════ -->
+<section id="investimento">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="tag">Investimento</span>
+    <h2 class="section-title">Transparente.<br><em>Sem surpresas.</em></h2>
+
+    <div class="invest-layout">
+
+      <!-- TABELA INDIVIDUAL -->
+      <div>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px;line-height:1.8;">Valores individuais por serviço, ou feche o pacote completo e economize.</p>
+        <table class="invest-table">
+          <thead>
+            <tr>
+              <th>Serviço</th>
+              <th>Tipo</th>
+              <th style="text-align:right">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="i-name">Tráfego Pago · Meta & Google</div>
+                <div class="i-desc">Gestão completa, segmentação por nicho, relatórios</div>
+                <span class="i-type">Mensal</span>
+              </td>
+              <td></td>
+              <td><div class="i-price">R$ 3.500</div></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="i-name">Implementação de CRM</div>
+                <div class="i-desc">Setup, funil, integração de canais e treinamento</div>
+                <span class="i-type">Único</span>
+              </td>
+              <td></td>
+              <td><div class="i-price">R$ 2.000</div></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="i-name">Conteúdo · Piloto "Pai & Filho"</div>
+                <div class="i-desc">Gravação, edição, 1 vídeo longo + 4–6 cortes</div>
+                <span class="i-type">Único</span>
+              </td>
+              <td></td>
+              <td><div class="i-price">R$ 5.000</div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="invest-total-row">
+          <div class="tl">Total avulso</div>
+          <div class="tv">R$ 10.500</div>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:16px;line-height:1.7;">
+          * Verba de mídia não incluída. Fica 100% sob controle da Les Sept, direto nas plataformas.<br>
+          Recomendamos mínimo de R$ 5.000/mês para resultados consistentes.
+        </p>
+      </div>
+
+      <!-- PACOTE COM DESCONTO -->
+      <div class="pacote-box">
+        <span class="pacote-badge">Recomendado</span>
+        <h3>Pacote Completo</h3>
+        <span class="pb-sub">Tráfego + CRM + Piloto</span>
+        <ul class="pacote-includes">
+          <li>Tráfego Meta e Google: gestão completa</li>
+          <li>Implementação de CRM com treinamento</li>
+          <li>Piloto "Pai e Filho": conceito, gravação e edição</li>
+          <li>Prioridade de atendimento e suporte direto</li>
+        </ul>
+        <div class="pacote-economy">
+          <span class="eco-label">Você economiza</span>
+          <span class="eco-val">R$ 1.500</span>
+        </div>
+        <div class="pacote-price">
+          <span class="de">De R$ 10.500</span>
+          <div class="por">R$ 9.000</div>
+          <span class="mes">pagamento único no mês 1 · a partir do mês 2: R$ 3.500/mês</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ GALERIA 2 ════ -->
+<div id="galeria2">
+  <div style="background-image:url('imgs/foto9.jpg')"></div>
+  <div style="background-image:url('imgs/foto10.jpg')"></div>
+  <div style="background-image:url('imgs/foto3.jpg');background-position:top center;"></div>
+</div>
+
+<!-- ════ POR QUE K2IA ════ -->
+<section id="porque">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="tag">Por que a K2IA</span>
+    <h2 class="section-title">Não somos mais<br><em>uma agência.</em></h2>
+    <div class="porque-grid">
+      <div class="porque-card">
+        <div class="pk-n">01</div>
+        <h4>Saímos apaixonados pela história de vocês</h4>
+        <p>O entusiasmo do Gabriel ao contar cada detalhe foi contagiante. <strong>Família Senna, Rei da Noruega, cook show a 80m de altura</strong> — saímos da reunião com a certeza de que existe algo enorme aqui esperando para ser mostrado.</p>
+      </div>
+      <div class="porque-card">
+        <div class="pk-n">02</div>
+        <h4>Resultado antes do contrato</h4>
+        <p>Não pedimos confiança cega. <strong>Fazemos o piloto, você vê como fica</strong>, e aí decide se quer continuar. O risco fica no mínimo e o resultado fala por si.</p>
+      </div>
+      <div class="porque-card">
+        <div class="pk-n">03</div>
+        <h4>Tráfego com propósito, não volume</h4>
+        <p>Tráfego sozinho não resolve. <strong>Só amplifica o que já existe.</strong> Por isso integramos tráfego, CRM e conteúdo. Cada lead qualificado, cada real com retorno mensurável.</p>
+      </div>
+      <div class="porque-card">
+        <div class="pk-n">04</div>
+        <h4>A voz da marca fica com vocês</h4>
+        <p>Nenhuma agência vai contar a história da Les Sept melhor do que o <strong>Leno e o Gabi.</strong> Nosso papel é estruturar e garantir que isso aconteça, não substituir a essência de vocês.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRÓXIMOS PASSOS ════ -->
+<section id="proximos">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="tag">Próximos passos</span>
+    <h2 class="section-title">Como <em>começamos</em>?</h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="ps-n">01</div>
+        <h4>Proposta aprovada</h4>
+        <p>Vanessa confirma o escopo e valores. Contrato simples, sem burocracia.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">02</div>
+        <h4>Setup do CRM</h4>
+        <p>Configuramos a ferramenta e integramos todos os canais em uma semana.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">03</div>
+        <h4>Curadoria de material</h4>
+        <p>Gabi nos passa o acervo. Mapeamos o que vai para o ar primeiro.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">04</div>
+        <h4>Tráfego no ar</h4>
+        <p>Primeiras campanhas ativas por nicho. Google + Meta segmentados.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">05</div>
+        <h4>Piloto gravado</h4>
+        <p>Leno + Gabi + câmera + história. Você vê e decide o próximo capítulo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CLOSING ════ -->
+<div id="closing">
+  <div class="closing-bg"></div>
+  <div class="closing-overlay"></div>
+  <div class="closing-content">
+    <span class="ct">K2IA × Les Sept · 2026</span>
+    <h2>Vocês já ganharam o mundo.<br>Agora é hora de<br><em>serem reconhecidos por isso.</em></h2>
+    <p>Quem serve o Rei da Noruega, a Família Senna e as maiores empresas do país merece ser o top one na mente do mercado. A gente coloca isso no lugar.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">
+    <img src="imgs/k2ia-logo.png" alt="K2IA">
+    <div>
+      <div class="fb">K2IA</div>
+      <div class="fs">Inteligência & Estratégia Digital</div>
+    </div>
+  </div>
+  <div class="fr">
+    <a href="mailto:klaus@k2ace.com">klaus@k2ace.com</a><br>
+    Proposta válida por 15 dias · Confidencial · 2026
+  </div>
+</footer>
+
+</body>
+</html>
