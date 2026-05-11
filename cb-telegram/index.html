@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CB Telegram — Capas Projeto IA</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1a0803;
+      color: #ffd200;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 32px 24px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffd200;
+    }
+    p.sub {
+      font-size: 0.85rem;
+      color: #a07820;
+      margin-bottom: 32px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #3f1006;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(255,210,0,0.2); }
+    .card img { width: 100%; display: block; border-radius: 16px; }
+    .card .info {
+      padding: 10px 12px 12px;
+    }
+    .card .name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ffd200;
+      margin-bottom: 4px;
+    }
+    .card .slug {
+      font-size: 0.72rem;
+      color: #a07820;
+      word-break: break-all;
+    }
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: #ffd200; color: #1a0803;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600;
+      opacity: 0; transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<h1>🦜 CB Telegram — Capas Projeto IA</h1>
+<p class="sub">Clique em qualquer capa para copiar a URL direta.</p>
+
+<div class="grid" id="grid"></div>
+<div id="toast">URL copiada!</div>
+
+<script>
+  const BASE = "https://k2ace.github.io/deck/cb-telegram/";
+
+  const capas = [
+    { slug: "BSB_Aguas_Claras",  label: "BSB Aguas Claras" },
+    { slug: "BSB_Iguatemi",      label: "BSB Iguatemi" },
+    { slug: "BSB_Lago_Sul",      label: "BSB Lago Sul" },
+    { slug: "BSB_PKS",           label: "BSB PKS" },
+    { slug: "Corp_MKT",          label: "Corp MKT" },
+    { slug: "Corp_TI",           label: "Corp TI" },
+    { slug: "FZA_Americana",     label: "FZA Americana" },
+    { slug: "FZA_Dom_Pastel",    label: "FZA Dom Pastel" },
+    { slug: "FZA_Iguatemi",      label: "FZA Iguatemi" },
+    { slug: "FZA_Meireles",      label: "FZA Meireles" },
+    { slug: "FZA_Sul",           label: "FZA Sul" },
+    { slug: "MG_Anchieta",       label: "MG Anchieta" },
+    { slug: "MG_Del_Rey",        label: "MG Del Rey" },
+    { slug: "MG_Minas",          label: "MG Minas" },
+    { slug: "MS_Campo_Grande",   label: "MS Campo Grande" },
+    { slug: "PA_Belem",          label: "PA Belem" },
+    { slug: "PE_Recife",         label: "PE Recife" },
+    { slug: "PR_Curitiba",       label: "PR Curitiba" },
+    { slug: "RJ_Norte_Shopping", label: "RJ Norte Shopping" },
+    { slug: "RS_POA",            label: "RS POA" },
+    { slug: "SC_Floripa",        label: "SC Floripa" },
+    { slug: "SP_Analia",         label: "SP Analia" },
+    { slug: "SP_Anhembi",        label: "SP Anhembi" },
+    { slug: "SP_Bourbon",        label: "SP Bourbon" },
+    { slug: "SP_Campinas",       label: "SP Campinas" },
+    { slug: "SP_Eldorado",       label: "SP Eldorado" },
+    { slug: "SP_JK",             label: "SP JK" },
+    { slug: "SP_Jundiai",        label: "SP Jundiai" },
+    { slug: "SP_Osasco",         label: "SP Osasco" },
+    { slug: "SP_Paulista",       label: "SP Paulista" },
+    { slug: "SP_Plaza_Sul",      label: "SP Plaza Sul" },
+    { slug: "SP_SJC",            label: "SP SJC" },
+    { slug: "SP_Sorocaba",       label: "SP Sorocaba" },
+    { slug: "SP_Tiete_Plaza",    label: "SP Tiete Plaza" },
+    { slug: "SSA_Pituba",        label: "SSA Pituba" },
+  ];
+
+  const grid = document.getElementById("grid");
+  const toast = document.getElementById("toast");
+
+  capas.forEach(({ slug, label }) => {
+    const url = BASE + slug + ".jpg";
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${slug}.jpg" alt="${label}" loading="lazy">
+      <div class="info">
+        <div class="name">${label}</div>
+        <div class="slug">${slug}</div>
+      </div>
+    `;
+    card.addEventListener("click", () => {
+      navigator.clipboard.writeText(url).then(() => {
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      });
+    });
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
