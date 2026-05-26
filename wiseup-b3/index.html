@@ -33,13 +33,26 @@
     font-feature-settings:'ss01','cv11';
   }
 
-  .deck{position:relative;width:100vw;height:100vh;}
+  .deck{
+    position:fixed;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    background:#000;overflow:hidden;
+  }
+  /* Fixed 16:9 stage @ 1920x1080 — scaled via JS to fit any monitor */
+  .stage{
+    position:relative;
+    width:1920px;height:1080px;
+    transform-origin:center center;
+    background:var(--bg);
+    overflow:hidden;
+  }
 
   .slide{
     position:absolute;inset:0;
     display:none;flex-direction:column;
     padding:0;
     opacity:0;
+    overflow:hidden;
     transition:opacity .55s cubic-bezier(.2,.8,.2,1);
   }
   .slide.active{display:flex;opacity:1;}
@@ -93,14 +106,14 @@
 
   /* TYPOGRAPHY */
   h1.display{
-    font-size:clamp(56px,8vw,128px);
+    font-size:128px;
     font-weight:600;line-height:.95;letter-spacing:-.045em;
   }
   h1.display .serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.01em;}
   h1.display .grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
 
   h2.title{
-    font-size:clamp(40px,5vw,72px);
+    font-size:72px;
     font-weight:600;line-height:1.02;letter-spacing:-.035em;margin-bottom:12px;
   }
   h2.title .serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;}
@@ -149,7 +162,7 @@
 
   /* ==================== SLIDE 2: ABOUT ME ==================== */
   .about-layout{
-    display:grid;grid-template-columns:1fr 1.05fr;height:100vh;
+    display:grid;grid-template-columns:1fr 1.05fr;height:100%;
   }
   .about-photo{
     position:relative;overflow:hidden;
@@ -316,7 +329,7 @@
 
   /* ==================== SLIDE 6: IDENTITY ==================== */
   .s6-layout{
-    display:grid;grid-template-columns:1fr 1.1fr;height:100vh;
+    display:grid;grid-template-columns:1fr 1.1fr;height:100%;
   }
   .s6-photo{
     position:relative;overflow:hidden;
@@ -354,7 +367,7 @@
   }
   .concl .hero-content{justify-content:center;align-items:center;text-align:center;padding:80px 100px;}
   .concl .q{
-    font-size:clamp(40px,4.5vw,72px);font-weight:500;
+    font-size:72px;font-weight:500;
     line-height:1.05;letter-spacing:-.03em;margin:32px 0 48px;
   }
   .concl .q em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
@@ -401,7 +414,7 @@
   .ty .hero-content{padding:80px;}
   .ty-top{flex:1;display:flex;flex-direction:column;justify-content:center;}
   .ty-big{
-    font-size:clamp(96px,13vw,220px);font-weight:600;
+    font-size:220px;font-weight:600;
     line-height:.9;letter-spacing:-.06em;margin:32px 0;
   }
   .ty-big .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
@@ -460,7 +473,7 @@
 
   @media print{
     .controls,.progress,.grain{display:none;}
-    .slide{display:flex!important;opacity:1!important;page-break-after:always;position:relative;height:100vh;}
+    .slide{display:flex!important;opacity:1!important;page-break-after:always;position:relative;height:100%;}
   }
 </style>
 </head>
@@ -470,6 +483,7 @@
 <div class="progress"><div class="bar" id="bar"></div></div>
 
 <div class="deck">
+<div class="stage" id="stage">
 
 <!-- SLIDE 1: COVER -->
 <section class="slide cover active">
@@ -733,6 +747,7 @@
 </section>
 
 </div>
+</div>
 
 <div class="controls">
   <button id="prev" title="Previous (←)">‹</button>
@@ -742,6 +757,17 @@
 </div>
 
 <script>
+  // Auto-scale stage to fit any monitor while preserving 16:9 design
+  const stage = document.getElementById('stage');
+  function fit(){
+    const sx = window.innerWidth / 1920;
+    const sy = window.innerHeight / 1080;
+    const s = Math.min(sx, sy);
+    stage.style.transform = `scale(${s})`;
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
   document.getElementById('total').textContent = String(total).padStart(2,'0');
