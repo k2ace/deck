@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta K2ACE × Grupo Geração</title>
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" type="image/svg+xml" href="imgs/favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --teal: #19c7b0;
+  --teal-light: #5fe3d0;
+  --teal-deep: #11a392;
+  --cyan: #35d0e8;
+  --dark: #0b0b0c;
+  --dark-2: #0f0f10;
+  --dark-3: #161617;
+  --dark-4: #1f1f21;
+  --text: #f5f5f5;
+  --text-muted: #9a9a9a;
+  --border: rgba(25,199,176,0.20);
+  --line: rgba(255,255,255,0.06);
+}
+
+html { scroll-behavior:smooth; }
+body { background:var(--dark); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 60px; height:64px;
+  background:rgba(11,11,12,0.94); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { display:flex; align-items:center; gap:11px; }
+.nav-logo .g-mark {
+  width:34px; height:34px; border-radius:8px; background:#0d0d0d;
+  border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk'; font-weight:700; font-style:italic; font-size:20px; color:var(--teal);
+}
+.nav-logo .wm { font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:var(--text); }
+.nav-logo .wm b { color:var(--teal); }
+.nav-right { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+
+/* UTILITÁRIOS */
+.tag {
+  display:inline-block; font-size:11px; font-weight:600;
+  letter-spacing:3px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px;
+}
+.section-title {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(34px,4vw,54px); font-weight:600; line-height:1.08; color:var(--text); letter-spacing:-0.5px;
+}
+.section-title em { color:var(--teal); font-style:normal; }
+.divider { width:48px; height:2px; background:var(--teal); margin:20px 0; }
+
+/* ════ HERO ════ */
+#hero {
+  min-height:100vh; position:relative; display:flex; align-items:center; overflow:hidden;
+  background:
+    radial-gradient(1100px 600px at 78% 42%, rgba(25,199,176,0.14), transparent 60%),
+    radial-gradient(800px 500px at 12% 12%, rgba(53,208,232,0.07), transparent 60%),
+    var(--dark);
+  padding:120px 60px 60px;
+}
+.hero-grid { position:absolute; inset:0; opacity:0.5;
+  background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px; mask-image:radial-gradient(circle at 70% 45%, black, transparent 72%); }
+.hero-inner { position:relative; z-index:2; max-width:1180px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center; }
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:12px;
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--teal-light); margin-bottom:26px;
+}
+.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--teal-light); }
+.hero-copy h1 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(38px,5.2vw,68px); font-weight:600; line-height:1.04; color:#fff; margin-bottom:22px; letter-spacing:-1px;
+}
+.hero-copy h1 em { color:var(--teal); font-style:normal; }
+.hero-copy p { font-size:15px; color:#b9b9b9; line-height:1.85; max-width:500px; margin-bottom:38px; }
+.hero-stats { display:flex; gap:0; border-top:1px solid var(--line); padding-top:30px; }
+.hero-stat { flex:1; padding-right:24px; }
+.hero-stat+.hero-stat { padding-left:24px; border-left:1px solid var(--line); }
+.hero-stat .v { font-family:'Space Grotesk'; font-size:36px; font-weight:600; color:var(--teal-light); line-height:1; }
+.hero-stat .l { font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.4; }
+
+.hero-visual { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.hero-car-stage { position:relative; width:100%; }
+.hero-car-stage img { width:100%; max-width:560px; filter:drop-shadow(0 40px 50px rgba(0,0,0,0.6)); display:block; margin:0 auto; }
+.hero-track { position:absolute; left:2%; right:2%; bottom:8%; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(25,199,176,0.5) 40%, var(--teal)); }
+.hero-flag { position:absolute; right:0; bottom:calc(8% - 10px); font-size:12px; color:var(--teal); letter-spacing:2px; }
+.hero-brands { margin-top:22px; display:flex; align-items:center; justify-content:center; gap:26px; flex-wrap:wrap;
+  border-top:1px solid var(--line); padding-top:20px; width:100%; }
+.hero-brands img { height:20px; filter:brightness(0) invert(1); opacity:0.55; transition:opacity .2s; }
+.hero-brands img.tall { height:26px; }
+.hero-brands img:hover { opacity:0.9; }
+
+/* ════ SOB MEDIDA ════ */
+#medida { background:var(--dark-2); padding:100px 60px; }
+.medida-wrap { max-width:1100px; margin:0 auto; }
+.medida-header { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; margin-bottom:56px; }
+.medida-header p { font-size:15px; line-height:1.9; color:var(--text-muted); }
+.medida-header blockquote {
+  font-family:'Space Grotesk'; font-size:22px; font-weight:500;
+  color:var(--teal-light); border-left:2px solid var(--teal); padding-left:22px; line-height:1.5;
+}
+.medida-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
+.medida-card { background:var(--dark-3); padding:30px 24px; }
+.medida-card .mc-ico { width:34px; height:34px; margin-bottom:16px; color:var(--teal); }
+.medida-card h4 { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); margin-bottom:11px; }
+.medida-card p { font-size:12.5px; line-height:1.75; color:var(--text-muted); }
+
+/* ════ MÓDULOS ════ */
+#modulos { padding:100px 60px; background:var(--dark); }
+.mod-wrap { max-width:1100px; margin:0 auto; }
+.mod-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:48px; }
+.mod { background:var(--dark-3); padding:38px 30px; position:relative; overflow:hidden; }
+.mod-ghost { position:absolute; top:14px; right:18px; font-family:'Space Grotesk'; font-size:70px; font-weight:700; color:rgba(25,199,176,0.06); line-height:1; }
+.mod .m-num { font-size:11px; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; display:block; }
+.mod h3 { font-family:'Space Grotesk'; font-size:21px; font-weight:600; color:var(--text); margin-bottom:8px; line-height:1.2; }
+.mod .m-tag { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px; display:block; }
+.mod p { font-size:12.5px; line-height:1.75; color:var(--text-muted); }
+.mod ul { list-style:none; margin-top:14px; }
+.mod ul li { font-size:12.5px; color:var(--text-muted); padding:7px 0 7px 15px; position:relative; line-height:1.5; border-bottom:1px solid rgba(255,255,255,0.04); }
+.mod ul li:last-child { border:none; }
+.mod ul li::before { content:''; position:absolute; left:0; top:13px; width:5px; height:5px; border-radius:50%; background:var(--teal); }
+
+/* ════ IA DESTAQUE ════ */
+#ia { padding:0; }
+.ia-split { display:grid; grid-template-columns:1fr 1fr; min-height:600px; }
+.ia-visual {
+  background:
+    radial-gradient(600px 400px at 60% 40%, rgba(25,199,176,0.18), transparent 65%),
+    var(--dark-3);
+  position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:60px;
+}
+.ia-orb { position:relative; width:280px; height:280px; }
+.ia-ring { position:absolute; inset:0; border:1px solid var(--border); border-radius:50%; }
+.ia-ring:nth-child(2){ inset:34px; border-color:rgba(25,199,176,0.28); }
+.ia-ring:nth-child(3){ inset:72px; border-color:rgba(25,199,176,0.42); }
+.ia-core { position:absolute; inset:104px; border-radius:50%;
+  background:radial-gradient(circle, var(--teal-light), var(--teal-deep));
+  box-shadow:0 0 60px rgba(25,199,176,0.6); display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk'; font-weight:700; font-style:italic; font-size:30px; color:#04211d; }
+.ia-chip { position:absolute; background:var(--dark-4); border:1px solid var(--border); border-radius:9px;
+  padding:8px 12px; font-size:11px; color:var(--text); white-space:nowrap; box-shadow:0 8px 24px rgba(0,0,0,0.5); }
+.ia-chip b { color:var(--teal-light); font-weight:600; }
+.ia-chip.c1 { top:-6px; left:-30px; }
+.ia-chip.c2 { top:40%; right:-56px; }
+.ia-chip.c3 { bottom:-4px; left:-16px; }
+.ia-text { background:var(--dark-2); padding:80px 60px; display:flex; flex-direction:column; justify-content:center; }
+.ia-text .tag { color:var(--teal-light); }
+.ia-text h2 { font-family:'Space Grotesk'; font-size:clamp(30px,3.4vw,42px); font-weight:600; line-height:1.1; letter-spacing:-0.5px; margin-bottom:0; }
+.ia-text h2 em { color:var(--teal); font-style:normal; }
+.ia-text .ia-lead { font-size:14.5px; color:var(--text-muted); line-height:1.9; margin:22px 0 8px; }
+.ia-feats { list-style:none; margin-top:26px; }
+.ia-feats li { display:flex; gap:14px; align-items:flex-start; padding:15px 0; border-bottom:1px solid var(--line); }
+.ia-feats li:last-child { border:none; }
+.ia-feats .fi { width:22px; height:22px; flex-shrink:0; color:var(--teal); margin-top:1px; }
+.ia-feats h5 { font-size:13.5px; font-weight:600; color:var(--text); margin-bottom:3px; }
+.ia-feats p { font-size:12.5px; color:var(--text-muted); line-height:1.65; }
+
+/* ════ FAIXA VEÍCULOS ════ */
+#veiculos-band { display:flex; height:180px; gap:1px; background:var(--border); }
+#veiculos-band .vb { flex:1; background:var(--dark-3); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+#veiculos-band .vb img { max-height:120px; max-width:80%; filter:drop-shadow(0 14px 18px rgba(0,0,0,0.5)); }
+#veiculos-band .vb span { position:absolute; bottom:12px; left:14px; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); }
+
+/* ════ COMPARATIVO ════ */
+#comparativo { padding:100px 60px; background:var(--dark-2); }
+.comp-wrap { max-width:1000px; margin:0 auto; }
+.comp-table { width:100%; border-collapse:collapse; margin-top:44px; }
+.comp-table th { padding:0 0 18px; text-align:left; vertical-align:bottom; }
+.comp-table th.col-feat { width:44%; }
+.comp-table th .h-lbl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+.comp-table th.col-pic .h-name { font-family:'Space Grotesk'; font-size:20px; font-weight:500; color:var(--text-muted); }
+.comp-table th.col-ger { border-bottom:2px solid var(--teal); }
+.comp-table th.col-ger .h-name { font-family:'Space Grotesk'; font-size:20px; font-weight:600; color:var(--teal); }
+.comp-table th.col-pic, .comp-table th.col-ger { text-align:center; width:28%; }
+.comp-table td { padding:17px 0; border-bottom:1px solid var(--line); font-size:13.5px; vertical-align:middle; }
+.comp-table td.feat { color:var(--text); font-weight:500; }
+.comp-table td.feat small { display:block; color:var(--text-muted); font-weight:400; font-size:11.5px; margin-top:2px; }
+.comp-table td.cell { text-align:center; color:var(--text-muted); font-size:12.5px; }
+.comp-table td.cell.ger { color:var(--teal-light); }
+.comp-table .chk { color:var(--teal); font-weight:700; }
+.comp-table .dash { color:#5a5a5a; }
+.comp-note { font-size:11.5px; color:var(--text-muted); margin-top:18px; line-height:1.7; }
+
+/* ════ INVESTIMENTO ════ */
+#investimento { padding:100px 60px; background:var(--dark); }
+.inv-wrap { max-width:1100px; margin:0 auto; }
+.inv-layout { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:48px; }
+.inv-anchor .ai-row { display:flex; justify-content:space-between; align-items:baseline; padding:18px 0; border-bottom:1px solid var(--line); }
+.inv-anchor .ai-row .k { font-size:13.5px; color:var(--text-muted); }
+.inv-anchor .ai-row .k b { color:var(--text); font-weight:500; }
+.inv-anchor .ai-row .val { font-family:'Space Grotesk'; font-size:22px; color:var(--text-muted); }
+.inv-anchor .ai-row.strike .val { text-decoration:line-through; opacity:0.55; }
+.inv-anchor .ai-lead { font-size:13.5px; color:var(--text-muted); line-height:1.85; margin-bottom:26px; }
+.inv-anchor .ai-perloja { margin-top:24px; padding:16px 20px; background:rgba(25,199,176,0.06); border:1px solid var(--border); border-radius:10px;
+  display:flex; justify-content:space-between; align-items:center; }
+.inv-anchor .ai-perloja .pl-k { font-size:12px; color:var(--text-muted); }
+.inv-anchor .ai-perloja .pl-k b { color:var(--teal-light); }
+.inv-anchor .ai-perloja .pl-v { font-family:'Space Grotesk'; font-size:16px; color:var(--teal-light); }
+
+.pack {
+  background:linear-gradient(180deg, var(--dark-4), var(--dark-3));
+  border:1px solid var(--teal); border-radius:16px; padding:44px 40px; position:relative;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+}
+.pack-badge { position:absolute; top:-12px; left:40px; background:var(--teal); color:#04211d;
+  font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:6px 14px; border-radius:6px; }
+.pack h3 { font-family:'Space Grotesk'; font-size:22px; font-weight:600; color:var(--text); margin:14px 0 4px; }
+.pack .pk-sub { font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-bottom:26px; display:block; }
+.pack .pk-de { font-size:13px; color:var(--text-muted); margin-bottom:4px; }
+.pack .pk-de s { opacity:0.7; }
+.pack .pk-por { display:flex; align-items:flex-end; gap:8px; }
+.pack .pk-por .num { font-family:'Space Grotesk'; font-size:60px; font-weight:700; color:var(--teal-light); line-height:0.9; letter-spacing:-1px; }
+.pack .pk-por .per { font-size:13px; color:var(--text-muted); padding-bottom:8px; }
+.pack .pk-fix { font-size:12px; color:var(--text-muted); margin-top:10px; }
+.pack ul { list-style:none; margin:26px 0 0; }
+.pack ul li { font-size:12.5px; color:var(--text-muted); padding:9px 0; display:flex; gap:10px; align-items:center; border-bottom:1px solid var(--line); }
+.pack ul li:last-child { border:none; }
+.pack ul li .ck { color:var(--teal); flex-shrink:0; font-size:13px; }
+
+/* ════ POR QUE K2ACE ════ */
+#porque { padding:100px 60px; background:var(--dark-2); }
+.pq-wrap { max-width:1100px; margin:0 auto; }
+.pq-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:48px; }
+.pq-card { background:var(--dark-3); padding:38px 34px; }
+.pq-card .pq-n { font-family:'Space Grotesk'; font-size:48px; font-weight:700; color:rgba(25,199,176,0.10); line-height:1; margin-bottom:14px; }
+.pq-card h4 { font-size:15px; font-weight:600; color:var(--text); margin-bottom:11px; line-height:1.4; }
+.pq-card p { font-size:13px; color:var(--text-muted); line-height:1.8; }
+.pq-card p strong { color:var(--text); font-weight:500; }
+
+/* ════ PRÓXIMOS PASSOS ════ */
+#passos { padding:100px 60px; background:var(--dark); }
+.ps-wrap { max-width:1100px; margin:0 auto; }
+.passos { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:48px; }
+.passo { padding:34px 26px; border-right:1px solid var(--border); }
+.passo:last-child { border:none; }
+.passo .ps-n { font-family:'Space Grotesk'; font-size:40px; font-weight:700; color:rgba(25,199,176,0.14); line-height:1; margin-bottom:14px; }
+.passo h4 { font-size:13.5px; font-weight:600; color:var(--text); margin-bottom:9px; line-height:1.4; }
+.passo p { font-size:12px; color:var(--text-muted); line-height:1.7; }
+
+/* ════ CLOSING ════ */
+#closing { position:relative; padding:120px 40px; text-align:center; overflow:hidden;
+  background:radial-gradient(900px 500px at 50% 30%, rgba(25,199,176,0.16), transparent 60%), var(--dark); }
+.closing-inner { position:relative; z-index:2; max-width:720px; margin:0 auto; }
+.closing-inner .ct { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--teal-light); margin-bottom:26px; display:block; }
+.closing-inner h2 { font-family:'Space Grotesk'; font-size:clamp(30px,4.4vw,52px); font-weight:600; color:#fff; line-height:1.12; margin-bottom:20px; letter-spacing:-0.5px; }
+.closing-inner h2 em { color:var(--teal); font-style:normal; }
+.closing-inner p { font-size:14px; color:var(--text-muted); line-height:1.85; margin-bottom:36px; }
+.cta-btn { display:inline-block; padding:17px 42px; background:var(--teal); color:#04211d;
+  font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none;
+  border-radius:10px; transition:transform .15s, box-shadow .15s; box-shadow:0 12px 30px rgba(25,199,176,0.3); }
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 18px 40px rgba(25,199,176,0.45); }
+
+/* FOOTER */
+footer { background:var(--dark); padding:28px 60px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); }
+footer .fl { display:flex; align-items:center; gap:12px; }
+footer .g-mark { width:30px; height:30px; border-radius:7px; background:#0d0d0d; border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-style:italic; font-size:17px; color:var(--teal); }
+footer .fb { font-family:'Space Grotesk'; font-size:13px; font-weight:600; letter-spacing:1px; color:var(--text); }
+footer .fs { font-size:10px; color:var(--text-muted); margin-top:2px; }
+footer .fr { font-size:11px; color:var(--text-muted); text-align:right; line-height:1.8; }
+footer .fr a { color:var(--teal); text-decoration:none; }
+
+/* SCROLL HINT */
+.scroll-hint { position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:7px; opacity:0.4; animation:bob 2s ease-in-out infinite; z-index:3; }
+.scroll-hint span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
+.scroll-hint::after { content:'↓'; color:var(--teal); font-size:14px; }
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+@media(max-width:900px){
+  nav { padding:0 20px; } .nav-right { display:none; }
+  #medida,#modulos,#comparativo,#investimento,#porque,#passos { padding-left:24px; padding-right:24px; }
+  #hero { padding:100px 24px 50px; }
+  .hero-inner { grid-template-columns:1fr; gap:44px; }
+  .hero-copy h1 { font-size:clamp(34px,9vw,54px); }
+  .hero-stat .v { font-size:28px; }
+  .medida-header { grid-template-columns:1fr; gap:24px; }
+  .medida-grid { grid-template-columns:1fr 1fr; }
+  .mod-grid { grid-template-columns:1fr; }
+  .ia-split { grid-template-columns:1fr; } .ia-visual { min-height:380px; padding:50px; } .ia-text { padding:56px 24px; }
+  .ia-chip.c2 { right:-20px; } .ia-chip.c1 { left:-10px; }
+  #veiculos-band { height:auto; flex-wrap:wrap; } #veiculos-band .vb { flex:0 0 calc(50% - 1px); height:150px; }
+  .inv-layout { grid-template-columns:1fr; gap:40px; }
+  .pq-grid { grid-template-columns:1fr; }
+  .passos { grid-template-columns:1fr 1fr; }
+  .passo:nth-child(2){ border-right:none; } .passo:nth-child(1),.passo:nth-child(2){ border-bottom:1px solid var(--border); }
+  footer { padding:26px 24px; flex-direction:column; gap:16px; text-align:center; }
+  .comp-table td.feat small { display:none; }
+}
+@media(max-width:540px){
+  .medida-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-wrap:wrap; } .hero-stat { flex:0 0 100%; padding:14px 0 !important; border-left:none !important; border-top:1px solid var(--line); }
+  .hero-brands { gap:18px; }
+  .section-title { font-size:clamp(28px,8vw,40px); }
+  .passos { grid-template-columns:1fr; } .passo { border-right:none; border-bottom:1px solid var(--border); }
+  .pack .pk-por .num { font-size:48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="g-mark">G</div>
+    <span class="wm">K2<b>ACE</b></span>
+  </div>
+  <div class="nav-right">Proposta · Grupo Geração · 2026</div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Proposta Exclusiva · 2026</div>
+      <h1>O sistema de vendas<br>desenhado <em>sob medida</em><br>para o Grupo Geração.</h1>
+      <p>Não é uma ferramenta genérica adaptada. É uma plataforma construída a partir do dia a dia da rede — do marketing ao fechamento do relatório, com inteligência artificial acoplada para gerir os leads e dizer a hora certa de agir.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="v">17</div><div class="l">lojas na rede</div></div>
+        <div class="hero-stat"><div class="v">4</div><div class="l">marcas · carro & moto</div></div>
+        <div class="hero-stat"><div class="v">IA</div><div class="l">gestão de leads acoplada</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-car-stage">
+        <img src="imgs/hb20_platinum.png" alt="Veículo em corrida rumo à meta">
+        <div class="hero-track"></div>
+        <div class="hero-flag">META ▪</div>
+      </div>
+      <div class="hero-brands">
+        <img src="imgs/logo_hyundai.svg" alt="Hyundai" class="tall">
+        <img src="imgs/logo_chery.svg" alt="Chery">
+        <img src="imgs/logo_omoda.svg" alt="Omoda">
+        <img src="imgs/logo_yamaha.svg" alt="Yamaha" class="tall">
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>scroll</span></div>
+</section>
+
+<!-- ════ SOB MEDIDA ════ -->
+<section id="medida">
+  <div class="medida-wrap">
+    <span class="tag">Por que este sistema é diferente</span>
+    <div class="medida-header">
+      <div>
+        <h2 class="section-title">Ele nasceu <em>de dentro</em> da operação de vocês.</h2>
+        <div class="divider"></div>
+      </div>
+      <div>
+        <p style="margin-bottom:24px;">Ferramentas de mercado são as mesmas para uma loja de roupa, uma clínica e uma concessionária. Funcionam no básico, mas não conhecem o jeito Geração de vender: o evento, o telão, a corrida entre lojas, a moto que vira o "carro" nas unidades Yamaha, a governança de uma rede com 4 marcas.</p>
+        <blockquote>"O sistema se molda à rede — não a rede ao sistema."</blockquote>
+      </div>
+    </div>
+    <div class="medida-grid">
+      <div class="medida-card">
+        <svg class="mc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
+        <h4>Marketing</h4>
+        <p>Origem de cada cliente (rádio, TV, convite) medida por evento. O marketing enfim sabe o que traz gente pra loja.</p>
+      </div>
+      <div class="medida-card">
+        <svg class="mc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14l-1 8H6L5 3z"/><path d="M4 3l-.5-2"/><circle cx="9" cy="20" r="1.5"/><circle cx="16" cy="20" r="1.5"/></svg>
+        <h4>Acompanhamento</h4>
+        <p>A venda entra, o gestor dá o aceite e o carro acelera no telão ao vivo. Desempenho visível pra loja inteira, em tempo real.</p>
+      </div>
+      <div class="medida-card">
+        <svg class="mc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <h4>Fechamento</h4>
+        <p>Relatório do evento pronto sem planilha: conversão, funil, comparativo hora a hora com eventos passados.</p>
+      </div>
+      <div class="medida-card">
+        <svg class="mc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h4>Governança</h4>
+        <p>Cada papel enxerga o que deve: vendedor vê sua loja, gestor aprova o time, diretor compara a rede. Segurança por loja.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ MÓDULOS ════ -->
+<section id="modulos">
+  <div class="mod-wrap">
+    <span class="tag">O que o sistema entrega</span>
+    <h2 class="section-title">Uma plataforma.<br><em>A operação inteira.</em></h2>
+    <div class="mod-grid">
+
+      <div class="mod">
+        <span class="mod-ghost">01</span>
+        <span class="m-num">01 / 06</span>
+        <h3>Telão gamificado ao vivo</h3>
+        <span class="m-tag">Evento de vendas</span>
+        <p>A loja foca num dia de vendas e vê tudo numa corrida rumo à meta.</p>
+        <ul>
+          <li>Cada vendedor é um carro (modelo + cor que escolheu)</li>
+          <li>Venda aprovada = nitro, confete e buzina ao vivo</li>
+          <li>Corrida entre lojas para o diretor e o gerente</li>
+          <li>Moto no lugar do carro nas unidades Yamaha</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <span class="mod-ghost">02</span>
+        <span class="m-num">02 / 06</span>
+        <h3>Gestão de leads com IA</h3>
+        <span class="m-tag">Inteligência acoplada</span>
+        <p>A IA lê a base e diz a hora certa de falar e qual oportunidade puxar.</p>
+        <ul>
+          <li>Quando reabordar cada lead, sem depender de memória</li>
+          <li>Oportunidades priorizadas por chance de fechar</li>
+          <li>Sugestão de discurso e resumo da ligação</li>
+          <li>Insights que o vendedor não teria tempo de garimpar</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <span class="mod-ghost">03</span>
+        <span class="m-num">03 / 06</span>
+        <h3>Prospecção & convite</h3>
+        <span class="m-tag">Ponta a ponta</span>
+        <p>Do primeiro contato ao convite com QR, tudo num fluxo só.</p>
+        <ul>
+          <li>Ligar → segmentar (confirmou / dúvida / depois / sem interesse)</li>
+          <li>Convite por WhatsApp com QR Code do cliente</li>
+          <li>Crédito de prospecção separado do crédito da venda</li>
+          <li>Auto-explicativo: zero treinamento, zero manual</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <span class="mod-ghost">04</span>
+        <span class="m-num">04 / 06</span>
+        <h3>Recepção & CRM de chegada</h3>
+        <span class="m-tag">Chão da loja</span>
+        <p>O cliente chega, a recepção lê o QR e o vendedor é avisado na hora.</p>
+        <ul>
+          <li>Check-in por leitura de QR na recepção</li>
+          <li>Kanban do vendedor: chegou → em atendimento → vendido</li>
+          <li>Notificação de chegada em tempo real</li>
+          <li>Nenhum cliente “perdido” na porta</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <span class="mod-ghost">05</span>
+        <span class="m-num">05 / 06</span>
+        <h3>Relatórios de fechamento</h3>
+        <span class="m-tag">Sem planilha</span>
+        <p>Todo evento fecha sozinho, com o comparativo que o gestor precisa.</p>
+        <ul>
+          <li>Conversão, funil e ritmo hora a hora</li>
+          <li>Comparativo entre eventos no mesmo ponto do dia</li>
+          <li>Clientes por mídia de origem (rádio / TV / convite)</li>
+          <li>Quadro por loja: meta, convites, visitas, vendas</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <span class="mod-ghost">06</span>
+        <span class="m-num">06 / 06</span>
+        <h3>Governança da rede</h3>
+        <span class="m-tag">Multi-marca · multi-loja</span>
+        <p>Uma rede de 17 lojas e 4 marcas organizada por papéis e permissões.</p>
+        <ul>
+          <li>Papéis: vendedor · gestor · recepção · diretor</li>
+          <li>Cada um enxerga só o que lhe cabe (segurança por loja)</li>
+          <li>Gerente define as metas da própria loja por evento</li>
+          <li>Diretor acompanha o consolidado da rede</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ IA DESTAQUE ════ -->
+<div id="ia">
+  <div class="ia-split">
+    <div class="ia-visual">
+      <div class="ia-orb">
+        <div class="ia-ring"></div>
+        <div class="ia-ring"></div>
+        <div class="ia-ring"></div>
+        <div class="ia-core">IA</div>
+        <div class="ia-chip c1">Ligar de novo para <b>João</b> — hoje</div>
+        <div class="ia-chip c2"><b>Oportunidade</b> quente na Ilha</div>
+        <div class="ia-chip c3">Cliente pronto para <b>troca</b></div>
+      </div>
+    </div>
+    <div class="ia-text">
+      <span class="tag">O diferencial</span>
+      <h2>Uma gestão de leads<br><em>fora de série.</em></h2>
+      <p class="ia-lead">O que trava a maioria das operações não é falta de leads — é não saber com quem falar primeiro. O Geração tem inteligência artificial acoplada que trabalha a base o tempo todo, para transformar contatos parados em vendas.</p>
+      <ul class="ia-feats">
+        <li>
+          <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><h5>Sabe quando falar</h5><p>Aponta o momento certo de reabordar cada lead, sem depender da memória do vendedor.</p></div>
+        </li>
+        <li>
+          <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          <div><h5>Traz a oportunidade certa</h5><p>Prioriza quem tem mais chance de comprar agora e o que oferecer, loja por loja.</p></div>
+        </li>
+        <li>
+          <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a6 6 0 0 0-4 10.5V16h8v-2.5A6 6 0 0 0 12 3z"/><path d="M9 20h6M10 22h4"/></svg>
+          <div><h5>Gera insight, não relatório morto</h5><p>Resumo de ligação, sugestão de discurso e leituras da base que ninguém teria tempo de garimpar.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FAIXA VEÍCULOS ════ -->
+<div id="veiculos-band">
+  <div class="vb"><img src="imgs/hb20_platinum.png" alt="Hyundai"><span>Hyundai</span></div>
+  <div class="vb"><img src="imgs/jaecoo_j7.png" alt="Jaecoo"><span>Chery · Omoda Jaecoo</span></div>
+  <div class="vb"><img src="imgs/omoda_7.png" alt="Omoda"><span>Omoda</span></div>
+  <div class="vb"><img src="imgs/yamaha_aerox.png" alt="Yamaha"><span>Yamaha · moto</span></div>
+</div>
+
+<!-- ════ COMPARATIVO ════ -->
+<section id="comparativo">
+  <div class="comp-wrap">
+    <span class="tag">Comparativo</span>
+    <h2 class="section-title">O que muda ao sair<br>de uma ferramenta <em>padrão.</em></h2>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="col-feat"><span class="h-lbl">Recurso</span></th>
+          <th class="col-pic"><span class="h-lbl">Ferramenta padrão</span><br><span class="h-name">Picmo</span></th>
+          <th class="col-ger"><span class="h-lbl">Sob medida</span><br><span class="h-name">Geração</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feat">Feito para a rede Geração<small>Fluxo, marcas e regras da operação</small></td>
+          <td class="cell"><span class="dash">Genérico</span></td>
+          <td class="cell ger"><span class="chk">✓</span> Exclusivo</td>
+        </tr>
+        <tr>
+          <td class="feat">Telão gamificado ao vivo<small>Corrida rumo à meta, em tempo real</small></td>
+          <td class="cell"><span class="dash">—</span></td>
+          <td class="cell ger"><span class="chk">✓</span> Nativo</td>
+        </tr>
+        <tr>
+          <td class="feat">IA de gestão de leads<small>Quando falar e qual oportunidade puxar</small></td>
+          <td class="cell"><span class="dash">—</span></td>
+          <td class="cell ger"><span class="chk">✓</span> Acoplada</td>
+        </tr>
+        <tr>
+          <td class="feat">Recepção com QR + check-in<small>Kanban de chegada para o vendedor</small></td>
+          <td class="cell"><span class="dash">—</span></td>
+          <td class="cell ger"><span class="chk">✓</span></td>
+        </tr>
+        <tr>
+          <td class="feat">Relatório de fechamento por evento<small>Comparativo hora a hora, funil, mídia</small></td>
+          <td class="cell"><span class="dash">Básico</span></td>
+          <td class="cell ger"><span class="chk">✓</span> Completo</td>
+        </tr>
+        <tr>
+          <td class="feat">Multi-marca · carro e moto<small>4 marcas na mesma rede</small></td>
+          <td class="cell"><span class="dash">—</span></td>
+          <td class="cell ger"><span class="chk">✓</span></td>
+        </tr>
+        <tr>
+          <td class="feat">Evolui com a rede<small>Ajustes e novos módulos sob demanda</small></td>
+          <td class="cell"><span class="dash">Fixo</span></td>
+          <td class="cell ger"><span class="chk">✓</span> Contínuo</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="comp-note">Comparativo em nível de capacidade: o Picmo é a base de referência da rede hoje — uma ferramenta padrão, igual para qualquer segmento. O Geração foi construído especificamente para a operação do Grupo Geração.</p>
+  </div>
+</section>
+
+<!-- ════ INVESTIMENTO ════ -->
+<section id="investimento">
+  <div class="inv-wrap">
+    <span class="tag">Investimento</span>
+    <h2 class="section-title">O mesmo valor de hoje.<br><em>Um sistema em outro nível.</em></h2>
+    <div class="inv-layout">
+
+      <div class="inv-anchor">
+        <p class="ai-lead">Na régua de mercado, sistemas assim são cobrados <b style="color:var(--text)">por loja</b>. O Picmo pratica R$ 500 por loja — para as 17 lojas da rede, isso seria R$ 8.500 por mês. Hoje o Grupo Geração paga R$ 3.000 por uma ferramenta padrão.</p>
+        <div class="ai-row strike">
+          <div class="k">Régua de mercado · <b>R$ 500 / loja</b> × 17</div>
+          <div class="val">R$ 8.500<span style="font-size:12px;color:var(--text-muted)">/mês</span></div>
+        </div>
+        <div class="ai-row">
+          <div class="k">Picmo hoje · <b>ferramenta padrão</b></div>
+          <div class="val">R$ 3.000<span style="font-size:12px;color:var(--text-muted)">/mês</span></div>
+        </div>
+        <div class="ai-perloja">
+          <div class="pl-k">Custo por loja no Geração · <b>67% abaixo da régua</b></div>
+          <div class="pl-v">≈ R$ 176 / loja</div>
+        </div>
+      </div>
+
+      <div class="pack">
+        <span class="pack-badge">Condição exclusiva Grupo Geração</span>
+        <h3>Geração · Plataforma completa</h3>
+        <span class="pk-sub">Todos os módulos · suporte · evolução contínua</span>
+        <div class="pk-de">de <s>R$ 8.500/mês</s> na régua por loja</div>
+        <div class="pk-por">
+          <span class="num">R$ 3.000</span>
+          <span class="per">/ mês</span>
+        </div>
+        <div class="pk-fix">Valor fixo em 2026 · sem custo de implantação · sem taxa por usuário</div>
+        <ul>
+          <li><span class="ck">✓</span> Telão gamificado + corrida entre lojas</li>
+          <li><span class="ck">✓</span> Gestão de leads com IA acoplada</li>
+          <li><span class="ck">✓</span> Recepção com QR, check-in e CRM de chegada</li>
+          <li><span class="ck">✓</span> Relatórios de fechamento e comparativo entre eventos</li>
+          <li><span class="ck">✓</span> Governança por papel para as 17 lojas / 4 marcas</li>
+          <li><span class="ck">✓</span> Evolução contínua e suporte direto</li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="comp-note" style="max-width:700px;">Condição de parceria, exclusiva do Grupo Geração — por serem a rede para quem o sistema foi desenhado. Para novos clientes do mercado automotivo, o valor segue a régua por loja.</p>
+  </div>
+</section>
+
+<!-- ════ POR QUE K2ACE ════ -->
+<section id="porque">
+  <div class="pq-wrap">
+    <span class="tag">Por que a K2ACE</span>
+    <h2 class="section-title">Quem constrói<br><em>o sistema de vocês.</em></h2>
+    <div class="pq-grid">
+      <div class="pq-card">
+        <div class="pq-n">01</div>
+        <h4>Software próprio, não revenda</h4>
+        <p>A K2ACE <strong>desenvolve a plataforma</strong>. Quando a rede precisa de um ajuste, ele é feito na fonte — não depende do roadmap de terceiros.</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-n">02</div>
+        <h4>Já está no ar, rodando</h4>
+        <p>Não é promessa de PowerPoint. O sistema <strong>já opera nas lojas da rede</strong>, com telão, recepção, vendas e aprovação de gestor funcionando.</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-n">03</div>
+        <h4>Inteligência artificial de verdade</h4>
+        <p>IA acoplada à operação para <strong>gerir leads e gerar insight</strong> — o mesmo tipo de tecnologia que a K2ACE entrega para outras redes.</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-n">04</div>
+        <h4>Auto-explicativo por princípio</h4>
+        <p>Se uma tela precisa de manual, está errada. <strong>Zero curso, zero treinamento</strong>: o vendedor abre e entende. A adoção acontece sozinha.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRÓXIMOS PASSOS ════ -->
+<section id="passos">
+  <div class="ps-wrap">
+    <span class="tag">Próximos passos</span>
+    <h2 class="section-title">Como <em>começamos.</em></h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="ps-n">01</div>
+        <h4>Aprovação</h4>
+        <p>A direção confirma o escopo e a condição. Contrato simples, sem burocracia.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">02</div>
+        <h4>Ativação da rede</h4>
+        <p>Lojas, gerentes e vendedores ativos no sistema — a base já está criada.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">03</div>
+        <h4>Primeiro evento</h4>
+        <p>Um evento de vendas com telão ao vivo, recepção e IA rodando ponta a ponta.</p>
+      </div>
+      <div class="passo">
+        <div class="ps-n">04</div>
+        <h4>Rede toda no ritmo</h4>
+        <p>Expansão para as 17 lojas, com relatório de fechamento a cada evento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CLOSING ════ -->
+<div id="closing">
+  <div class="closing-inner">
+    <span class="ct">K2ACE × Grupo Geração · 2026</span>
+    <h2>Pelo mesmo valor de hoje,<br>a rede ganha um sistema<br><em>feito só para ela.</em></h2>
+    <p>Vocês já investem em tecnologia de vendas. A proposta é simples: manter o investimento e trocar uma ferramenta padrão por uma plataforma desenhada para o jeito Geração de vender — com IA cuidando dos leads e o telão puxando o time.</p>
+    <a href="https://wa.me/5521980529617?text=Klaus%2C%20vamos%20em%20frente%20com%20a%20proposta%20do%20Gera%C3%A7%C3%A3o!" class="cta-btn" target="_blank">Quero seguir com a proposta</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">
+    <div class="g-mark">G</div>
+    <div>
+      <div class="fb">K2ACE</div>
+      <div class="fs">Tecnologia & Inteligência de Vendas</div>
+    </div>
+  </div>
+  <div class="fr">
+    <a href="mailto:klaus@k2ace.com">klaus@k2ace.com</a><br>
+    Proposta válida por 15 dias · Confidencial · 2026
+  </div>
+</footer>
+
+</body>
+</html>
