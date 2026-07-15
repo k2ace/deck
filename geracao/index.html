@@ -325,14 +325,18 @@ footer .fr a { color:var(--teal); text-decoration:none; }
 
 @media(max-width:900px){
   nav { padding:0 20px; } .nav-right { display:none; }
-  #medida,#modulos,#comparativo,#investimento,#porque,#passos { padding-left:24px; padding-right:24px; }
+  #medida,#modulos,#comparativo,#investimento,#porque,#passos,#intel { padding-left:24px; padding-right:24px; }
+  .hero-copy, .hero-visual, .mod, .medida-card, .seg-card, .intel-segs, .intel-panel, .pq-card, .ia-text, .comp-wrap { min-width:0; }
   #hero { padding:100px 24px 50px; }
   .hero-inner { grid-template-columns:1fr; gap:44px; }
-  .hero-copy h1 { font-size:clamp(34px,9vw,54px); }
+  .hero-copy h1 { font-size:clamp(28px,7.4vw,54px); }
+  .hero-copy p { font-size:14px; max-width:100%; }
   .hero-stat .v { font-size:28px; }
   .medida-header { grid-template-columns:1fr; gap:24px; }
   .medida-grid { grid-template-columns:1fr 1fr; }
   .mod-grid { grid-template-columns:1fr; }
+  .intel-grid { grid-template-columns:1fr; gap:22px; }
+  .ip-head { padding:16px; } .ip-row { padding:14px 16px; gap:10px; }
   .ia-split { grid-template-columns:1fr; } .ia-visual { min-height:380px; padding:50px; } .ia-text { padding:56px 24px; }
   .ia-chip.c2 { right:-20px; } .ia-chip.c1 { left:-10px; }
   #uso { padding-left:24px; padding-right:24px; } .uso-wrap { grid-template-columns:1fr; gap:36px; }
@@ -348,7 +352,10 @@ footer .fr a { color:var(--teal); text-decoration:none; }
   .medida-grid { grid-template-columns:1fr; }
   .hero-stats { flex-wrap:wrap; } .hero-stat { flex:0 0 100%; padding:14px 0 !important; border-left:none !important; border-top:1px solid var(--line); }
   .hero-brands { gap:18px; }
-  .section-title { font-size:clamp(28px,8vw,40px); }
+  .section-title { font-size:clamp(26px,7.6vw,40px); }
+  .intel-segs { grid-template-columns:1fr 1fr; } .seg-card { padding:20px 14px; } .seg-card .sc-v { font-size:28px; }
+  .ip-sig { display:none; } .ip-t { font-size:13px; }
+  .comp-table th.col-pic .h-name, .comp-table th.col-ger .h-name { font-size:16px; } .comp-table td.feat { font-size:12.5px; }
   .passos { grid-template-columns:1fr; } .passo { border-right:none; border-bottom:1px solid var(--border); }
   .pack .pk-por .num { font-size:48px; }
 }
