@@ -552,10 +552,10 @@ footer .fr a { color:var(--teal); text-decoration:none; }
 
 <!-- ════ FAIXA BANDEIRAS ════ -->
 <div id="bandeiras-band">
-  <div class="bb"><img src="../geracao/imgs/logo_hyundai.svg" alt="Hyundai"><span class="cnt">5 lojas</span></div>
-  <div class="bb"><img src="../geracao/imgs/logo_chery.svg" alt="Chery"><span class="cnt">4 lojas</span></div>
-  <div class="bb"><img src="../geracao/imgs/logo_yamaha.svg" alt="Yamaha"><span class="cnt">8 lojas</span></div>
-  <div class="bb"><img src="../geracao/imgs/logo_omoda.svg" alt="Omoda"><span class="cnt">2 lojas</span></div>
+  <div class="bb"><span class="txt">Hyundai</span><span class="cnt">5 lojas</span></div>
+  <div class="bb"><span class="txt">Chery</span><span class="cnt">4 lojas</span></div>
+  <div class="bb"><span class="txt">Yamaha</span><span class="cnt">8 lojas</span></div>
+  <div class="bb"><span class="txt">Omoda</span><span class="cnt">2 lojas</span></div>
   <div class="bb"><span class="txt">CF Moto</span><span class="cnt">2 lojas</span></div>
   <div class="bb"><span class="txt">Seminovos</span><span class="cnt">2 lojas</span></div>
   <div class="bb"><span class="txt">MMM</span><span class="cnt">1 loja</span></div>
@@ -565,32 +565,43 @@ footer .fr a { color:var(--teal); text-decoration:none; }
 <section id="investimento">
   <div class="inv-wrap">
     <span class="tag">Investimento</span>
-    <h2 class="section-title">Escala de rede,<br><em>preço de rede.</em></h2>
+    <h2 class="section-title">Começa em <em>uma loja.</em><br>Fecha a <em>rede toda.</em></h2>
 
     <div class="inv-cards">
-      <!-- Implementação -->
+      <!-- Passo 1: ancoragem por loja -->
       <div class="inv-card">
-        <div class="ic-kick">Investimento único · implantação</div>
-        <h3>Implementação</h3>
-        <div class="ic-sub">Pagamento único. O motor é configurado uma vez e replicado nas 24 lojas.</div>
-        <div class="li-row"><div class="k">Arquitetura &amp; motor replicável<small>Funil, automações e template das contas</small></div><div class="v">R$ 12.000</div></div>
-        <div class="li-row"><div class="k">Implantação por loja × 24<small>Conta, funil, usuários, migração e WhatsApp oficial</small></div><div class="v">R$ 43.200<small>R$ 1.800 × 24</small></div></div>
-        <div class="li-row"><div class="k">Treinamento × 7 bandeiras<small>Vendedores e gerentes, turma por bandeira</small></div><div class="v">R$ 7.000<small>R$ 1.000 × 7</small></div></div>
-        <div class="li-row total"><div class="k">Total da implementação</div><div class="v">R$ 62.200</div></div>
-        <div class="ic-perloja"><div class="pl-k">Por loja, tudo incluído · <b>vs. R$ 3.000 avulso</b></div><div class="pl-v">≈ R$ 2.600</div></div>
+        <div class="ic-kick" style="color:#e0a06b;">Referência · loja avulsa</div>
+        <h3>Implantar uma loja</h3>
+        <div class="ic-sub">O que um implementador cobra pra montar um único Kommo do zero: conta, funil, automação, WhatsApp oficial e treinamento.</div>
+        <div class="li-row total" style="border-top:none;margin-top:4px;padding-top:0;"><div class="k">Uma loja · avulsa</div><div class="v" style="color:var(--text);">R$ 3.000</div></div>
+        <div class="ic-perloja"><div class="pl-k">As 24 lojas, nessa mesma régua</div><div class="pl-v" style="text-decoration:line-through;opacity:0.6;">R$ 72.000</div></div>
+        <div class="ic-note">Loja a loja, no avulso, seriam R$ 72.000 — e a ida e vinda de montar 24 vezes do zero.</div>
       </div>
 
-      <!-- Mensalidade -->
+      <!-- Passo 2: pacote com desconto -->
       <div class="inv-card pack">
-        <div class="ic-kick" style="color:var(--teal-light)">Recorrente · mensal</div>
-        <h3>Mensalidade</h3>
-        <div class="ic-sub">A licença é do Kommo e vai <b style="color:var(--text)">repassada sem margem</b>. O valor da K2ACE é a sustentação.</div>
-        <div class="li-row repasse"><div class="k">Licença Kommo · plano Advanced<small>140 usuários × US$ 25 · repasse puro, sem margem</small></div><div class="v">R$ 19.950<small>US$ 3.500 · repasse</small></div></div>
-        <div class="li-row"><div class="k">Sustentação &amp; suporte K2ACE<small>Operação das 24 contas, ajustes e suporte ao time</small></div><div class="v">R$ 8.000<small>≈ R$ 333 / loja</small></div></div>
-        <div class="li-row"><div class="k">WhatsApp oficial (Meta)<small>Recebidas grátis · templates a partir de R$ 0,04</small></div><div class="v">uso<small>variável · repasse</small></div></div>
-        <div class="li-row total"><div class="k">Total recorrente</div><div class="v">≈ R$ 27.950</div></div>
-        <div class="ic-perloja"><div class="pl-k">Por loja / mês · <b>tudo incluído (fora uso WhatsApp)</b></div><div class="pl-v">≈ R$ 1.165</div></div>
+        <span class="fmt-badge">Pacote rede · condição Geração</span>
+        <div class="ic-kick" style="color:var(--teal-light);margin-top:6px;">Investimento único · 24 lojas</div>
+        <h3>A rede toda, num pacote</h3>
+        <div class="ic-sub">de <s style="opacity:0.7;">R$ 72.000</s> na régua avulsa — o motor é montado uma vez e replicado.</div>
+        <div class="li-row"><div class="k">Arquitetura &amp; motor replicável</div><div class="v">R$ 12.000</div></div>
+        <div class="li-row"><div class="k">Implantação das 24 lojas</div><div class="v">R$ 43.200</div></div>
+        <div class="li-row"><div class="k">Treinamento · 7 bandeiras</div><div class="v">R$ 7.000</div></div>
+        <div class="li-row total"><div class="k">Total do pacote</div><div class="v">R$ 62.200</div></div>
+        <div class="ic-perloja"><div class="pl-k">Economia de <b>R$ 9.800</b> · por loja ≈ R$ 2.600</div><div class="pl-v">−14%</div></div>
       </div>
+    </div>
+
+    <!-- Mensalidade -->
+    <div class="inv-card" style="margin-top:24px;">
+      <div class="ic-kick" style="color:var(--teal-light)">Recorrente · mensal</div>
+      <h3>Licença &amp; operação</h3>
+      <div class="ic-sub">A licença do Kommo é por vendedor. A K2ACE cuida da operação e do suporte da rede toda.</div>
+      <div class="li-row"><div class="k">Licença Kommo · plano Advanced<small>120 vendedores × R$ 150 / mês · pagamento semestral</small></div><div class="v">R$ 18.000<small>por mês</small></div></div>
+      <div class="li-row"><div class="k">Sustentação &amp; suporte K2ACE<small>Operação das 24 contas, ajustes e suporte ao time</small></div><div class="v">R$ 8.000<small>≈ R$ 333 / loja</small></div></div>
+      <div class="li-row"><div class="k">WhatsApp oficial (Meta)<small>Recebidas grátis · templates a partir de R$ 0,04</small></div><div class="v">uso<small>variável</small></div></div>
+      <div class="li-row total"><div class="k">Total recorrente</div><div class="v">≈ R$ 26.000</div></div>
+      <div class="ic-perloja" style="background:rgba(25,199,176,0.10);"><div class="pl-k">Plano semestral · <b>pague 6 meses, use 7</b> — o 7º por nossa conta</div><div class="pl-v">+1 mês</div></div>
     </div>
 
     <div class="fmt-grid">
@@ -601,23 +612,23 @@ footer .fr a { color:var(--teal); text-decoration:none; }
         <div class="f-price"><span class="num">R$ 62.200</span><span class="per">uma vez</span></div>
         <div class="f-desc">+ mensalidade a partir do go-live de cada loja</div>
         <div class="f-line"><span>Implementação (à vista ou 3×)</span><span>R$ 62.200</span></div>
-        <div class="f-line"><span>Licença Kommo (repasse)</span><span>R$ 19.950/mês</span></div>
+        <div class="f-line"><span>Licença Kommo · 120 vendedores</span><span>R$ 18.000/mês</span></div>
         <div class="f-line"><span>Sustentação K2ACE</span><span>R$ 8.000/mês</span></div>
-        <p class="f-foot">Menor custo total. Ideal se a rede quer resolver a entrada de uma vez.</p>
+        <p class="f-foot">Menor custo total. Licença no plano semestral: pague 6, use 7.</p>
       </div>
       <div class="fmt">
         <div class="f-kick" style="margin-top:0">Sem entrada · pacote 12 meses</div>
         <h4>Diluído</h4>
-        <div class="f-price"><span class="num">R$ 33.150</span><span class="per">/ mês · 12 meses</span></div>
+        <div class="f-price"><span class="num">R$ 31.200</span><span class="per">/ mês · 12 meses</span></div>
         <div class="f-desc">implementação diluída no contrato, sem desembolso inicial</div>
         <div class="f-line"><span>Implementação diluída (12×)</span><span>R$ 5.200/mês</span></div>
-        <div class="f-line"><span>Licença Kommo (repasse)</span><span>R$ 19.950/mês</span></div>
+        <div class="f-line"><span>Licença Kommo · 120 vendedores</span><span>R$ 18.000/mês</span></div>
         <div class="f-line"><span>Sustentação K2ACE</span><span>R$ 8.000/mês</span></div>
-        <p class="f-foot">Após 12 meses cai para ≈ R$ 27.950/mês. Facilita o começo.</p>
+        <p class="f-foot">Após 12 meses cai para ≈ R$ 26.000/mês. Facilita o começo.</p>
       </div>
     </div>
 
-    <p class="inv-foot-note">A licença por usuário é a maior linha da operação e é cobrada pelo próprio Kommo — por isso entra como repasse transparente, sem margem da K2ACE. O uso de WhatsApp (Meta) é repassado conforme o volume de mensagens ativas; as recebidas do cliente são gratuitas. Licença convertida a US$ 1 = R$ 5,70 e com desconto do plano anual do Kommo.</p>
+    <p class="inv-foot-note">A licença do Kommo é por vendedor, no plano Advanced, com pagamento semestral: a cada 6 meses pagos, o 7º entra por nossa conta. O uso de WhatsApp (Meta) varia com o volume de mensagens ativas — as recebidas do cliente são sempre gratuitas.</p>
   </div>
 </section>
 
@@ -644,8 +655,8 @@ footer .fr a { color:var(--teal); text-decoration:none; }
       </div>
       <div class="pq-card">
         <div class="pq-n">04</div>
-        <h4>Licença sem margem escondida</h4>
-        <p>A licença do Kommo é <strong>repassada pelo custo</strong>. A K2ACE ganha na implantação e na sustentação, com a conta aberta. Sem surpresa, sem markup travestido de mensalidade.</p>
+        <h4>Preço de rede, não de varejo</h4>
+        <p>Uma loja avulsa custaria R$ 3.000 só de implantação. No pacote, cada loja sai por <strong>≈ R$ 2.600</strong> — e a licença ainda vem no plano semestral com <strong>um mês de bônus</strong>. A escala trabalha a favor do grupo.</p>
       </div>
     </div>
   </div>
