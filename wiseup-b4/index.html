@@ -382,22 +382,24 @@
   /* ==================== SLIDE: TRAININGS / STUDENTS ==================== */
   .train .hero-img{
     background-image:url('palco.jpg');
-    background-position:center right;
+    background-position:32% 38%;
   }
+  /* Light on top so the audience is visible; dark band at the bottom for the text */
   .train .hero-overlay{
     background:
-      linear-gradient(90deg,rgba(8,8,10,.92) 0%,rgba(8,8,10,.72) 32%,rgba(8,8,10,.30) 60%,transparent 100%),
-      linear-gradient(180deg,rgba(8,8,10,.45) 0%,rgba(8,8,10,.55) 55%,rgba(8,8,10,.92) 100%);
+      linear-gradient(180deg,rgba(8,8,10,.32) 0%,rgba(8,8,10,.05) 26%,rgba(8,8,10,.10) 46%,rgba(8,8,10,.62) 74%,rgba(8,8,10,.96) 100%);
   }
-  .train .hero-content{justify-content:center;padding:0 100px;}
-  .train-stat{display:flex;align-items:baseline;gap:32px;margin-top:52px;flex-wrap:wrap;}
+  .train .hero-content{justify-content:space-between;padding:60px 90px;}
+  .train-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:56px;}
+  .train-bottom .txt{max-width:900px;}
+  .train-stat{display:flex;flex-direction:column;align-items:flex-end;text-align:right;flex-shrink:0;}
   .train-stat .big{
-    font-family:'Instrument Serif',serif;font-size:200px;line-height:.85;
+    font-family:'Instrument Serif',serif;font-size:150px;line-height:.82;
     font-weight:400;letter-spacing:-.03em;
     background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  .train-stat .lbl{font-size:28px;color:var(--text-dim);max-width:360px;line-height:1.25;font-weight:500;}
-  .train-stat .lbl b{color:var(--text);font-weight:600;}
+  .train-stat .lbl{font-size:22px;color:var(--text);max-width:300px;line-height:1.25;font-weight:500;margin-top:8px;}
+  .train-stat .lbl b{color:var(--text);font-weight:700;}
 
   /* ==================== SLIDE 8: THANK YOU ==================== */
   .ty .hero-img{
@@ -619,11 +621,15 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="reveal"><div class="meta"><span class="dot"></span>We Also Teach</div></div>
-    <h2 class="title reveal" style="margin-top:24px;max-width:1100px;">We teach what we <span class="serif">know.</span></h2>
-    <p class="lede reveal" style="margin-top:10px;">We give trainings and immersions on data, Power BI, and AI for business.</p>
-    <div class="train-stat reveal">
-      <span class="big">+20,000</span>
-      <span class="lbl"><b>students</b> have already learned with us.</span>
+    <div class="train-bottom">
+      <div class="txt reveal">
+        <h2 class="title" style="max-width:900px;">We teach what we <span class="serif">know.</span></h2>
+        <p class="lede" style="margin-top:10px;">Trainings and immersions on data, Power BI, and AI for business.</p>
+      </div>
+      <div class="train-stat reveal">
+        <span class="big">+20,000</span>
+        <span class="lbl"><b>students</b> have already learned with us.</span>
+      </div>
     </div>
   </div>
   <div class="nav" style="color:rgba(255,255,255,.5);"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">05 / 09</span></div>
