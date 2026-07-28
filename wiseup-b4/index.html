@@ -718,12 +718,14 @@
 </div>
 
 <script>
-  // Auto-scale stage to fit any monitor while preserving 16:9 design
+  // Fill the whole screen on any monitor/tablet — no black bars, no distortion.
+  // Keeps the type size of the 1920x1080 design; the stage grows in the axis the
+  // screen has extra room, and the flexible layouts absorb it.
   const stage = document.getElementById('stage');
   function fit(){
-    const sx = window.innerWidth / 1920;
-    const sy = window.innerHeight / 1080;
-    const s = Math.min(sx, sy);
+    const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.width  = (window.innerWidth  / s) + 'px';
+    stage.style.height = (window.innerHeight / s) + 'px';
     stage.style.transform = `scale(${s})`;
   }
   fit();
