@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Conselho">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1C19'/%3E%3Ccircle cx='16' cy='17' r='9' fill='none' stroke='%23356647' stroke-width='2.6'/%3E%3Cpath d='M16 11.5V17l3.6 2.4' stroke='%23fff' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1C19'/%3E%3Crect x='6' y='7' width='3' height='18' fill='%23356647'/%3E%3Crect x='13' y='7' width='13' height='2.4' fill='%23fff'/%3E%3Crect x='13' y='15' width='13' height='2.4' fill='%23fff' opacity='.7'/%3E%3Crect x='13' y='22.6' width='8' height='2.4' fill='%23fff' opacity='.45'/%3E%3C/svg%3E">
 <title>Mesa de Conselho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,10 +45,6 @@ body[data-adv="u"]{--sig:var(--violet)}
 
 .shell{max-width:33rem;margin:0 auto;padding:0 1.2rem}
 
-/* trilho do tempo, à esquerda absoluta */
-#rail{position:fixed;left:0;top:0;bottom:0;width:3px;background:transparent;z-index:40;pointer-events:none}
-#rail i{display:block;width:100%;height:0;background:var(--sig);transition:height 1s linear}
-body.warn #rail i{background:var(--alert)}
 
 /* topo */
 .top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
@@ -63,7 +59,7 @@ body.warn #rail i{background:var(--alert)}
 main{padding-top:1.5rem}
 .screen{animation:in .17s cubic-bezier(.2,.7,.3,1)}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.screen{animation:none}#rail i{transition:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}}
 
 h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.72rem;line-height:1.1;
    letter-spacing:-.01em;margin:0 0 .4rem;text-wrap:balance}
@@ -133,22 +129,21 @@ ol.steps::marker{color:var(--sig);font-weight:600}
 .seat.mine ol{color:var(--ink)}
 
 
-/* HERO: o cronometro é a peça principal */
-.hero{background:var(--ink);color:var(--paper);margin:0 -1.2rem;padding:1.5rem 1.2rem 1.4rem;
-      display:block;width:calc(100%% + 2.4rem);text-align:left;border:0;font:inherit;cursor:pointer}
-.hero:active{opacity:.9}
+/* HERO: a abertura */
+.hero{background:var(--ink);color:var(--paper);margin:0 -1.2rem;padding:1.5rem 1.2rem 1.5rem;
+      width:calc(100% + 2.4rem)}
 .hero .top-line{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
 .hero .name{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.5rem;letter-spacing:-.01em;line-height:1.1}
 .hero .state{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
-.hero .face{font-size:3.6rem;font-weight:700;letter-spacing:-.045em;line-height:1;
-            font-variant-numeric:tabular-nums;margin-top:.7rem;display:block}
-.hero .beatnow{font-size:.95rem;font-weight:600;opacity:.85;margin-top:.35rem;display:block}
-.hero.on .face{color:var(--sig)}
-.hero.warn .face{color:var(--alert)}
-.hero .sub{font-size:.9rem;opacity:.62;margin-top:.9rem;display:block;max-width:26rem;line-height:1.4}
+.hero .sub{font-size:.9rem;opacity:.6;margin-top:.35rem;display:block;max-width:26rem;line-height:1.4}
+.hero .open{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.45;
+            margin:1.1rem 0 0;padding-left:.95rem;border-left:2px solid var(--sig)}
+.hero .ticks{display:flex;gap:.9rem;margin-top:1.2rem;flex-wrap:wrap}
+.hero .ticks span{font-size:.76rem;font-weight:600;opacity:.55;letter-spacing:.02em}
+.hero .ticks span b{font-weight:700;opacity:1;color:var(--sig);margin-right:.28rem}
 
 /* cartoes de pergunta */
-.qcard{display:block;width:100%%;text-align:left;background:var(--panel);border:0;
+.qcard{display:block;width:100%;text-align:left;background:var(--panel);border:0;
        border-top:3px solid var(--sig);padding:1.1rem 1.15rem 1.2rem;margin:0 0 .7rem;
        font:inherit;color:var(--ink);cursor:pointer}
 .qcard:active{background:var(--sunk)}
@@ -186,16 +181,10 @@ ol.steps::marker{color:var(--sig);font-weight:600}
 .bottom button[disabled]{color:var(--hair);cursor:default}
 .bottom .crumb{flex:1;min-width:0;color:var(--faint);font-size:.78rem;text-align:center;
                overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.02rem;letter-spacing:-.01em;
-       border:1px solid var(--hair);padding:.34rem .6rem;color:var(--muted);min-width:4.6rem;text-align:center}
-#clock.on{color:var(--sig);border-color:var(--sig)}
-#clock.warn{color:var(--alert);border-color:var(--alert)}
 .bottom button:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
 </style>
 </head>
 <body>
-
-<div id="rail"><i></i></div>
 
 <header class="top">
   <div class="shell" role="tablist" aria-label="Aconselhado">
@@ -209,8 +198,8 @@ ol.steps::marker{color:var(--sig);font-weight:600}
 <nav class="bottom">
   <div class="shell">
     <button id="back" disabled>&larr; Voltar</button>
-    <span class="crumb" id="crumb">Início</span>
-    <button id="clock" title="Toque para começar seus 10 minutos. Segure para zerar.">10:00</button>
+    <span class="crumb" id="crumb"></span>
+    <button id="home">Início</button>
   </div>
 </nav>
 
@@ -485,64 +474,21 @@ var REF = {"n": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Arquiteta
 
 var adv='n', stack=[], view=document.getElementById('view'),
     back=document.getElementById('back'), crumb=document.getElementById('crumb'),
-    clockEl=document.getElementById('clock'), rail=document.querySelector('#rail i');
-
-var TOTAL=600, t0=null, paused=0, tick=null;
+    homeBtn=document.getElementById('home');
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function d(){return DATA[adv]}
-function elapsed(){ return t0===null ? paused : paused + (Date.now()-t0)/1000; }
-
-function beatIndex(){
-  var e=elapsed(); if(t0===null && paused===0) return -1;
-  if(e<60) return 0; if(e<240) return 1; if(e<480) return 2; return 3;
-}
-function paintClock(){
-  var e=Math.min(elapsed(),TOTAL*2), left=Math.max(0,TOTAL-e);
-  var m=Math.floor(left/60), s=Math.floor(left%60);
-  var txt=(left<=0?'-':'')+m+':'+(s<10?'0':'')+s;
-  clockEl.textContent=txt;
-  [].forEach.call(document.querySelectorAll('.clockface'),function(el){el.textContent=txt});
-  var hero=document.getElementById('hero');
-  if(hero){
-    hero.classList.toggle('on', t0!==null && e<540);
-    hero.classList.toggle('warn', e>=540);
-    var st=document.getElementById('hstate'), hb=document.getElementById('hbeat');
-    if(st) st.textContent = t0!==null ? 'correndo' : (paused>0 ? 'pausado' : 'toque para começar');
-    var bi=beatIndex();
-    if(hb) hb.textContent = bi<0 ? 'seus 10 minutos começam aqui' : d().plano[bi][1]+' · '+d().plano[bi][0]+' min';
-  }
-  clockEl.classList.toggle('on', t0!==null && e<540);
-  clockEl.classList.toggle('warn', e>=540);
-  document.body.classList.toggle('warn', e>=540);
-  rail.style.height=Math.min(100,(e/TOTAL)*100)+'%';
-  var b=beatIndex();
-  [].forEach.call(document.querySelectorAll('.beat'),function(el,i){el.classList.toggle('now',i===b)});
-}
-function startPause(){
-  if(t0===null){ t0=Date.now(); tick=setInterval(paintClock,1000); }
-  else { paused+=(Date.now()-t0)/1000; t0=null; clearInterval(tick); }
-  paintClock();
-}
-function resetClock(){ t0=null; paused=0; clearInterval(tick); paintClock(); }
-var held=null;
-clockEl.addEventListener('pointerdown',function(){ held=setTimeout(function(){held='done';resetClock()},600) });
-clockEl.addEventListener('pointerup',function(){ if(held==='done'){held=null;return} clearTimeout(held); held=null; startPause(); });
-clockEl.addEventListener('pointerleave',function(){ clearTimeout(held); });
 
 function render(){
   var s=stack.length?stack[stack.length-1]:{t:'home'};
   document.body.dataset.adv=adv;
   view.innerHTML='<div class="screen">'+SCREEN[s.t](s)+'</div>';
   back.disabled=stack.length===0;
-  crumb.textContent=s.crumb||'Início';
+  crumb.textContent=stack.length?(s.crumb||''):'';
   window.scrollTo({top:0,behavior:'instant'});
-  var hb=document.getElementById('hero');
-  if(hb) hb.addEventListener('click', startPause);
   [].forEach.call(view.querySelectorAll('[data-nav]'),function(el){
     el.addEventListener('click',function(){ push(JSON.parse(el.dataset.nav)) });
   });
-  paintClock();
 }
 function push(s){stack.push(s);render()}
 function pop(){stack.pop();render()}
@@ -557,12 +503,13 @@ function row(kicker,label,sub,nav){
 var SCREEN={
   home:function(){
     var x=d(),h='';
-    h+='<button class="hero" id="hero">'+
+    h+='<div class="hero">'+
        '<span class="top-line"><span class="name">'+esc(x.nome)+'</span>'+
-       '<span class="state" id="hstate">toque para começar</span></span>'+
-       '<span class="face clockface">10:00</span>'+
-       '<span class="beatnow" id="hbeat">'+esc(x.plano[0][1])+' &middot; '+esc(x.plano[0][2].slice(0,0))+'seus 10 minutos começam aqui</span>'+
-       '<span class="sub">'+esc(x.sub)+'</span></button>';
+       '<span class="state">'+esc(x.hora)+' &middot; 10 minutos</span></span>'+
+       '<span class="sub">'+esc(x.sub)+'</span>'+
+       '<p class="open">'+esc(x.plano[0][2])+'</p>'+
+       '<span class="ticks">'+x.plano.map(function(b){return '<span><b>'+b[0]+'</b>'+esc(b[1])+'</span>'}).join('')+'</span>'+
+       '</div>';
     h+='<div class="sect"><h3>O que veio como resposta? Entre pela pergunta</h3><div style="margin-top:.9rem">';
     x.perguntas.forEach(function(q,i){
       h+='<button class="qcard" data-nav=\''+JSON.stringify({t:'q',i:i,crumb:q.tag})+'\'>'+
@@ -647,10 +594,11 @@ var SCREEN={
       t.setAttribute('aria-selected',String(t.dataset.go===adv));
     });
     try{localStorage.setItem('clubm',adv)}catch(e){}
-    resetClock(); home();
+    home();
   });
 });
 back.addEventListener('click',pop);
+homeBtn.addEventListener('click',home);
 try{ if(localStorage.getItem('clubm')==='u'){document.querySelector('.who[data-go=u]').click()} }catch(e){}
 render();
 </script>
