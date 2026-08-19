@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#E8E9E5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1211" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Conselho">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E6146'/%3E%3Cpath d='M9 22V10h3.2l3.8 7 3.8-7H23v12h-2.7v-7.4L16.9 21h-1.8l-3.4-6.4V22z' fill='%23fff'/%3E%3C/svg%3E">
+<title>Mesa de Conselho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<style>
+:root{
+  --paper:#E8E9E5; --panel:#F6F6F4; --sunk:#DEDFDA;
+  --ink:#16181A; --muted:#5C6167; --faint:#8B908C; --hair:#CFD1CC;
+  --pine:#1E6146; --indigo:#2B4C86; --flag:#8A5A12;
+  --shadow:0 1px 0 rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1211; --panel:#171A19; --sunk:#1E2220;
+  --ink:#E8EAE7; --muted:#979C99; --faint:#6B716D; --hair:#292E2C;
+  --pine:#6FBF97; --indigo:#84ABE9; --flag:#D6A44E;
+  --shadow:none;
+}}
+:root[data-theme="dark"]{
+  --paper:#0F1211; --panel:#171A19; --sunk:#1E2220;
+  --ink:#E8EAE7; --muted:#979C99; --faint:#6B716D; --hair:#292E2C;
+  --pine:#6FBF97; --indigo:#84ABE9; --flag:#D6A44E;
+  --shadow:none;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  font-size:16.5px; line-height:1.5;
+  padding-bottom:calc(4.2rem + env(safe-area-inset-bottom));
+}
+[data-adv="n"]{--sig:var(--pine)} [data-adv="u"]{--sig:var(--indigo)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.66rem;
+      letter-spacing:.13em;text-transform:uppercase;font-weight:600}
+.said{font-family:"IBM Plex Serif",Georgia,serif;font-style:italic}
+
+.shell{max-width:32rem;margin:0 auto;padding:0 1.15rem}
+
+/* topo */
+.top{border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:20;background:var(--paper)}
+.top .shell{display:flex;gap:0;padding-top:.5rem}
+.tab{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:.55rem .2rem .5rem;
+     font:inherit;color:var(--faint);cursor:pointer;text-align:left;display:block}
+.tab .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;font-weight:600}
+.tab .v{display:block;font-weight:600;font-size:1rem;line-height:1.2;margin-top:.1rem}
+.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--sig)}
+.tab:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+
+/* telas */
+main{padding-top:1.4rem}
+.screen{animation:in .16s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}}
+
+.kicker{color:var(--sig);display:block;margin-bottom:.55rem}
+h1{font-size:1.42rem;line-height:1.16;letter-spacing:-.021em;font-weight:700;margin:0 0 .35rem;text-wrap:balance}
+h2{font-size:1.16rem;line-height:1.3;letter-spacing:-.014em;font-weight:600;margin:0 0 .9rem;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 1.8rem;font-size:.97rem}
+.sect{margin:2.1rem 0 0}
+.sect > .mono{color:var(--faint);display:block;padding-bottom:.5rem;border-bottom:1px solid var(--hair)}
+
+/* linhas tocáveis */
+.row{display:flex;gap:.85rem;align-items:baseline;width:100%;text-align:left;
+     background:none;border:0;border-bottom:1px solid var(--hair);
+     padding:.95rem 0;font:inherit;color:var(--ink);cursor:pointer}
+.row:active{background:var(--sunk)}
+.row:focus-visible{outline:2px solid var(--sig);outline-offset:-2px}
+.row .n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--sig);
+        flex:none;width:1.5rem;padding-top:.15rem}
+.row .b{flex:1;min-width:0}
+.row .b em{font-style:normal;display:block;color:var(--faint);font-size:.78rem;
+           letter-spacing:.02em;margin-top:.2rem}
+.row .b .said{color:var(--ink)}
+.row .go{flex:none;color:var(--faint);font-size:1.05rem;line-height:1;align-self:center}
+
+/* plano 10 min */
+.beat{display:flex;gap:.85rem;padding:.8rem 0;border-bottom:1px solid var(--hair)}
+.beat .t{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--sig);flex:none;width:2.6rem;padding-top:.2rem}
+.beat b{display:block;margin-bottom:.1rem}
+.beat p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* bloco de fala */
+.speak{border-left:2px solid var(--sig);padding:.15rem 0 .15rem 1rem;margin:0 0 1.4rem}
+.speak p{margin:0;font-size:1.08rem;line-height:1.48}
+.why{color:var(--muted);font-size:.95rem;margin:0 0 1.5rem}
+.why b{color:var(--ink);font-weight:600}
+.react{margin-top:1.4rem}
+.react > .mono{color:var(--faint);display:block;margin-bottom:.5rem}
+.react dl{margin:0}
+.react dt{font-weight:600;font-size:.95rem;margin-top:.9rem}
+.react dd{margin:.3rem 0 0;padding-left:.9rem;border-left:1px solid var(--hair);color:var(--muted);font-size:.95rem}
+.react dd .said{color:var(--ink);font-style:italic}
+
+/* destino */
+.dest{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--hair);
+      border-left:3px solid var(--sig);padding:.95rem 1rem;font:inherit;color:var(--ink);cursor:pointer;
+      box-shadow:var(--shadow)}
+.dest .mono{color:var(--sig);display:block;margin-bottom:.25rem}
+.dest strong{display:block;font-size:1.05rem;font-weight:600}
+.dest span.p{display:block;color:var(--muted);font-size:.88rem;margin-top:.15rem}
+ol.steps{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.6rem}
+ol.steps::marker{color:var(--sig)}
+.crit{margin:1.5rem 0 0;padding:.9rem 1rem;background:var(--panel);border:1px solid var(--hair)}
+.crit .mono{color:var(--faint);display:block;margin-bottom:.3rem}
+.crit p{margin:0}
+.ask{border-top:2px solid var(--sig);margin-top:2.2rem;padding-top:1rem}
+.ask .mono{color:var(--sig);display:block;margin-bottom:.5rem}
+.ask p{margin:0;font-size:1.06rem}
+
+/* referência */
+.brief h3{font-size:.66rem;text-transform:uppercase;letter-spacing:.13em;font-weight:600;
+          color:var(--faint);font-family:"IBM Plex Mono",monospace;margin:1.6rem 0 .45rem}
+.brief h3:first-child{margin-top:0}
+.brief p{margin:0}
+.brief ul{margin:0;padding-left:1.05rem;display:flex;flex-direction:column;gap:.45rem}
+.seat{padding:1.2rem 0;border-bottom:1px solid var(--hair)}
+.seat h3{margin:0 0 .6rem;font-size:.95rem;color:var(--sig);font-weight:600}
+.seat ol{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.6rem;font-size:.95rem;color:var(--muted)}
+.seat p.none{margin:0;color:var(--faint);font-size:.92rem}
+.seat.mine ol{color:var(--ink)}
+
+/* barra inferior */
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);
+        border-top:1px solid var(--hair);padding-bottom:env(safe-area-inset-bottom)}
+.bottom .shell{display:flex;align-items:center;gap:.7rem;height:3.5rem}
+.bottom button{background:none;border:0;font:inherit;color:var(--ink);cursor:pointer;
+               font-weight:600;font-size:.95rem;padding:.5rem 0}
+.bottom button[disabled]{color:var(--faint);cursor:default}
+.bottom .crumb{flex:1;min-width:0;color:var(--faint);font-family:"IBM Plex Mono",monospace;
+               font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;
+               overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bottom button:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="shell" role="tablist" aria-label="Aconselhado">
+    <button class="tab" role="tab" data-go="n" aria-selected="true"><span class="k">09h00</span><span class="v">Naindry</span></button>
+    <button class="tab" role="tab" data-go="u" aria-selected="false"><span class="k">10h30</span><span class="v">Leandro</span></button>
+  </div>
+</header>
+
+<main class="shell" id="view" data-adv="n"></main>
+
+<nav class="bottom">
+  <div class="shell">
+    <button id="back" disabled>&larr; Voltar</button>
+    <span class="crumb" id="crumb">Início</span>
+    <button id="home">Início</button>
+  </div>
+</nav>
+
+<script>
+const DATA = {
+n: {
+  nome: "Naindry", hora: "9h", cor: "moss",
+  sub: "Arquitetura de natureza. Quer virar ecossistema sem recriar a dependência dela.",
+  plano: [
+    ["0–1", "Enquadra", "“Vou ficar num ponto só, que é da minha cadeira: o estado dos seus ativos de marca e de dado. Tudo que os outros propuseram aqui depende disso funcionar.”"],
+    ["1–4", "Devolve pelo número da 2", "Ela já é a plataforma que quer construir. Só que roda no celular dela, sem registro e de graça."],
+    ["4–8", "Aponta o destino", "Um ou dois destinos, nunca os quatro. O que a resposta dela pedir."],
+    ["8–10", "Pede uma coisa só", "O pedido de 30 dias. Se o tempo apertar, corta o resto e mantém isso."]
+  ],
+  pedido: "“Registrar todo pedido de indicação num lugar só, por 30 dias. Não muda nada na sua rotina, e em três meses você chega com o número que responde a pergunta principal que trouxe hoje. Sem esse dado, qualquer modelo que a gente desenhar aqui é palpite.”",
+  destinos: {
+    d1: { nome: "Tirar a rede do celular", prazo: "30 dias",
+      passos: ["Uma base única da empresa, num CRM simples. A ferramenta é a parte fácil e a última.",
+               "Importar contatos de WhatsApp, e-mail e Instagram.",
+               "Classificar em seis grupos: marca, fabricante, fornecedor, profissional, investidor, cliente.",
+               "Um responsável que não é ela, com quatro horas por semana."],
+      criterio: "Se ela sumir 60 dias, alguém consegue ativar a rede." },
+    d2: { nome: "Registrar toda indicação", prazo: "90 dias, custo zero",
+      passos: ["Seis campos numa planilha: data, quem pediu, o que precisava, quem foi indicado, fechou ou não, quanto.",
+               "Nada de sistema. Planilha e disciplina.",
+               "Revisar o acumulado uma vez por mês."],
+      criterio: "Em 90 dias ela sabe quanto vale a indicação dela — que é a resposta da pergunta do Adilson, com número em vez de intuição." },
+    d3: { nome: "Cobrar de cinco parceiros", prazo: "90 dias",
+      passos: ["Cinco parceiros com quem ela já tem intimidade. Cinco conversas, não cinquenta.",
+               "Testar uma contrapartida real: selo, listagem, indicação qualificada, acesso à base.",
+               "Condição de fundador para os cinco primeiros e ajuste pela reação.",
+               "Versão manual da plataforma: uma página com o critério, um formulário, conexão feita na mão."],
+      criterio: "Se em 90 dias houver gente pagando, aí sim vale construir software — e ela vai construir sabendo o que ele precisa fazer." },
+    d4: { nome: "Catalogar o acervo e ir por formação", prazo: "rota alternativa",
+      passos: ["Vale quando o volume de conexões for baixo demais para sustentar plataforma.",
+               "Catalogar antes de produzir: acervo, critérios de projeto, método.",
+               "Formação e produto se apoiam nesse acervo, não em ela gravar tudo do zero."],
+      criterio: "O ativo aqui deixa de ser a rede e passa a ser a autoridade e o conhecimento." }
+  },
+  perguntas: [
+    { tag: "o ativo",
+      texto: "Se um concorrente comprasse sua empresa amanhã e você não fosse junto no pacote, o que ele estaria comprando exatamente?",
+      respostas: [
+        { r: "“Levaria a equipe e os projetos. Os contatos estão comigo, no WhatsApp e no Instagram.”",
+          nota: "o mais provável",
+          diz: "“Então hoje o maior ativo da empresa não é da empresa, é seu. E isso limita tudo o que a gente discutiu aqui: não dá para delegar, não dá para trazer sócio, não dá para vender, e não dá para construir ecossistema em cima de uma agenda de celular.”",
+          porque: "Ela abriu o material dizendo que a rede vale mais que o escritório. Acabou de admitir que essa rede não pertence à empresa. É a contradição que sustenta os seus dez minutos.",
+          dest: "d1",
+          reacoes: [["“Mas eu conheço todo mundo, isso não se transfere.”", "“Conhecimento que mora numa cabeça não vira patrimônio nem sucessão. O que a gente quer registrar não é a relação, é o mapa dela.”"],
+                    ["“Não tenho tempo pra isso.”", "“E não é pra ser você. É alguém do time, quatro horas por semana. Se depender de você, já nasce com o problema que a gente está tentando resolver.”"]] },
+        { r: "“Tenho uma planilha, mas está desatualizada.”",
+          diz: "“Então o problema já não é criar, é manter. E manter é sempre problema de dono, não de ferramenta. Quem é o dono dessa planilha hoje?”",
+          porque: "Se a resposta for ninguém, o próximo passo é nomear alguém e definir a rotina, não escolher sistema. Você economiza dinheiro dela na frente da mesa.",
+          dest: "d1",
+          reacoes: [["“Ninguém, é todo mundo um pouco.”", "“Todo mundo é ninguém. Um nome, quatro horas por semana, e a base para de morrer.”"]] },
+        { r: "“Tenho 40 mil seguidores, minha audiência é grande.”",
+          diz: "“Audiência em rede social é terreno alugado. Se a conta cair amanhã, some, e você não tem como avisar ninguém. Quantos desses viraram contato que você aciona direto, sem depender de algoritmo?”",
+          porque: "Separa alcance de ativo. Alcance é emprestado; base é patrimônio. O ecossistema precisa da segunda coisa.",
+          dest: "d1",
+          reacoes: [["“Mas o Instagram funciona muito bem pra mim.”", "“Funciona pra atrair. Não funciona pra convocar. Ecossistema depende de convocar, e isso pede base própria.”"]] },
+        { r: "“Já uso um CRM.”",
+          diz: "“Ótimo, então a gente pula o diagnóstico. Qual foi a última vez que essa base foi acionada de propósito, qual foi a taxa de resposta, e quem opera isso no dia a dia?”",
+          porque: "CRM sem uso é planilha cara. Se ninguém aciona, o assunto vira rotina de ativação, uma comunicação por mês para cada grupo, com responsável e meta.",
+          dest: "d1",
+          reacoes: [["“A gente usa só pros clientes de projeto.”", "“Então metade do ecossistema está fora da base: fabricante, fornecedor, investidor e aluno. São eles que vão pagar a conta depois.”"]] },
+        { r: "“Minha equipe conhece todo mundo, não depende só de mim.”",
+          diz: "“Isso é bom e é frágil ao mesmo tempo. Conhecimento que mora nas pessoas sai pela porta junto com elas. Se três pessoas do time saíssem hoje, o que ficaria registrado?”",
+          porque: "Mesmo destino, outro argumento: risco de perda em vez de dependência da fundadora. Funciona melhor com quem se incomoda de ouvir que tudo depende dela.",
+          dest: "d1", reacoes: [] },
+        { r: "Ela trava, não sabe responder.",
+          diz: "“Vou facilitar. Pensa só nos fornecedores e fabricantes com quem você já trabalhou. Chuta: são 50, 200, 500? E onde essa lista está hoje?”",
+          porque: "Quebrar a pergunta grande em uma categoria só destrava quase sempre. Depois de um número, os outros vêm sozinhos.",
+          dest: "d1", reacoes: [] }
+      ] },
+    { tag: "a demanda",
+      texto: "Você fala que a rede e a autoridade valem mais que o próprio escritório. Nos últimos 12 meses, quanto de negócio isso gerou pros outros, indicando e conectando de graça? E quanto gerou pra você?",
+      respostas: [
+        { r: "“Muito. Deve dar umas 15 por mês. Nunca cobrei e nem sei se fecharam.”",
+          nota: "o mais provável",
+          diz: "“São cerca de 180 conexões por ano passando pela sua mão. Você já é a plataforma de conexão que quer construir. Ela só não tem registro, não tem contrapartida e não tem receita. O problema é que a plataforma é você, funciona no seu celular e trabalha de graça.”",
+          porque: "É o momento mais forte da sua participação inteira. Não é opinião: é a conta dela, dita em voz alta. Deixe o silêncio depois do número.",
+          dest: "d2",
+          reacoes: [["“Nunca tinha pensado assim.”", "“Então o próximo passo é o mais barato que existe: registrar. Sem inventar nada, só anotar o que já acontece.”"],
+                    ["“Mas isso é relacionamento, não é negócio.”", "“Relacionamento é o insumo. Negócio é o que acontece com ele. Hoje o negócio acontece, só que na conta dos outros.”"]] },
+        { r: "“Não sei quantas, nunca contei.”",
+          diz: "“Vamos estimar juntos agora. Numa semana comum, quantas pessoas te pedem indicação? Três? Então são mais de 150 por ano. Se metade fecha, e o ticket de uma obra é o que você falou, quanto de negócio passou pela sua mão?”",
+          porque: "Faça a conta na mesa, com ela. O número calculado por ela vale mais que qualquer argumento seu.",
+          dest: "d2", reacoes: [] },
+        { r: "“Acho que cobrar por indicação pega mal.”",
+          diz: "“Existe um mercado inteiro que já resolveu isso. Em casamentos, algumas cerimonialistas cobram percentual do fornecedor e outras se recusam. Quem cobra está vendendo indicação. Quem recusa está vendendo isenção, e cobra mais caro pelo próprio trabalho porque a curadoria é o produto. Você precisa escolher qual das duas você é, e isso é posicionamento, não dinheiro.”",
+          porque: "Transforma objeção moral em decisão de posicionamento — que é a sua cadeira. A saída que junta as duas é homologação transparente.",
+          dest: "d3",
+          reacoes: [["“Prefiro não cobrar, é generosidade.”", "“Não estou sugerindo cobrar de quem pede ajuda. Estou sugerindo que quem lucra com a sua indicação participe do custo de manter isso. A generosidade continua com as pessoas; a conta vai para as empresas.”"]] },
+        { r: "“Já tentei cobrar e não deu certo.”",
+          diz: "“O que exatamente você ofereceu em troca?”",
+          porque: "Quase sempre o problema foi contrapartida vaga, não preço alto. Ninguém paga por um selo; paga por demanda qualificada.",
+          dest: "d3", reacoes: [] },
+        { r: "“São poucas, umas duas por mês.”",
+          diz: "“Então eu mudo minha recomendação aqui na mesa. Se o volume é esse, plataforma de conexão não é a prioridade e construir isso agora seria queimar tempo. Seu ativo mais forte passa a ser a autoridade e o acervo.”",
+          porque: "Mudar de opinião publicamente com base no dado dela é o que separa conselheiro de vendedor. Ganha a mesa inteira, inclusive o Renato.",
+          dest: "d4", reacoes: [] },
+        { r: "“Já cobro de alguns.”",
+          diz: "“Então existe prova de que o mercado paga. Quantos, quanto, e por que os outros ainda não pagam?”",
+          porque: "Deixa de ser validação e vira escala: padronizar o que hoje é caso a caso, com critério, preço e contrapartida iguais para todos.",
+          dest: "d3", reacoes: [] }
+      ] },
+    { tag: "a plataforma",
+      texto: "Nessa plataforma de conexão que você quer construir, tem alguma parte que já poderia rodar amanhã sem software nenhum, só com processo e uma pessoa cuidando?",
+      respostas: [
+        { r: "“Imagino uma plataforma onde a pessoa entra e encontra profissionais homologados, fornecedores, cursos, tudo integrado.”",
+          nota: "o mais provável",
+          diz: "“Isso é um projeto de dezoito meses e algumas centenas de milhares de reais. É exatamente o tipo de coisa que recria a operação complexa e dependente de você que você disse que quer evitar. E o pior: você só descobre se as pessoas pagam depois de gastar tudo isso.”",
+          porque: "Ela pediu ao conselho para não recriar complexidade. Você está mostrando que a ideia favorita dela é justamente onde a complexidade voltaria.",
+          dest: "d3",
+          reacoes: [["“Mas todo mundo tem plataforma hoje.”", "“Plataforma é a consequência de um processo que já funciona. Quando é o começo, vira custo com esperança.”"]] },
+        { r: "“Já tenho alguém desenvolvendo.”",
+          diz: "“Quanto já foi investido e quantos usuários pagantes existem hoje?”",
+          porque: "Se a resposta for zero pagantes, o conselho não é parar, é cortar escopo: entregar a menor parte que já pode ser cobrada, no ar em 30 dias.",
+          dest: "d3", reacoes: [] },
+        { r: "“Mas sem sistema não escala.”",
+          diz: "“Concordo. Sistema escala processo que existe. Automatizar processo que ninguém validou é multiplicar erro mais rápido, e mais caro.”",
+          porque: "Repita a ordem — processo, depois dado, software por último. É a frase que ela vai lembrar depois.",
+          dest: "d2", reacoes: [] },
+        { r: "“Qual ferramenta eu uso?”",
+          diz: "“Essa é a escolha mais fácil e a última. Decidir ferramenta antes de saber o que ela faz é o erro clássico, e é caro. Com 90 dias de operação manual registrada, a ferramenta se escolhe quase sozinha.”",
+          porque: "Recusar a pergunta te posiciona como quem já viu o filme, e não como fornecedor tentando emplacar solução.",
+          dest: "d2", reacoes: [] },
+        { r: "“Quero começar pela formação, pelo curso.”",
+          diz: "“Faz sentido, e fatura mais rápido. Mas curso se apoia em acervo e método organizados. O que você tem hoje catalogado que sustentaria uma turma sem você gravar tudo do zero?”",
+          porque: "Conecta com o acervo, que é a matéria-prima de tudo, e te dá uma segunda direção concreta: catalogar antes de produzir.",
+          dest: "d4", reacoes: [] },
+        { r: "“Quero fazer tudo junto, tudo se conecta.”",
+          diz: "“Tudo se conecta na visão, mas não na execução. Você já disse que sofre com dispersão. Se escolher três frentes agora, a chance é grande de nenhuma sair do lugar. Qual delas já tem alguém disposto a pagar hoje?”",
+          porque: "Devolve o critério de escolha — demanda comprovada — sem invadir a cadeira de Estratégia, que vai falar de priorização.",
+          dest: "d2", reacoes: [] }
+      ] }
+  ]
+},
+u: {
+  nome: "Leandro", hora: "10h30", cor: "steel",
+  sub: "United Labs. R$ 1 mi/mês hoje, quer R$ 10 mi em um ano, via nutracêuticos e enxofre.",
+  plano: [
+    ["0–1", "Enquadra", "“Dos quatro desafios que vocês trouxeram, três já foram bem cobertos aqui. Vou num ponto que não apareceu no material em nenhum momento: de onde vêm os compradores.”"],
+    ["1–4", "Devolve pelo número da 2", "A aquisição deles é uma pessoa, não um sistema. Cresce na velocidade em que se contrata e treina vendedor."],
+    ["4–8", "Aponta o destino", "Um ou dois destinos, nunca os quatro. O que a resposta dele pedir."],
+    ["8–10", "Pede uma coisa só", "A conta de clientes, antes de comprar estoque. Se o tempo apertar, corta o resto e mantém isso."]
+  ],
+  pedido: "“Meu pedido é de planilha, não de investimento: quebrar os nove milhões adicionais em número de clientes e contratos por linha, e nomear os compradores-alvo das frentes novas. Se ao fazer essa conta o número por mês for maior do que o time consegue atender, vocês descobrem agora, e não depois de ter comprado estoque.”",
+  destinos: {
+    d1: { nome: "Traduzir a meta em clientes", prazo: "1 semana, custo de planilha",
+      passos: ["Quebrar os nove milhões adicionais em número de clientes e contratos, por linha de produto.",
+               "Separar o que vem de cliente novo, do que vem de recompra e do que vem de ticket maior.",
+               "Comparar com a capacidade real de atendimento do time atual."],
+      criterio: "Ou a meta vira operável, ou eles descobrem agora que não cabe — antes de comprometer capital." },
+    d2: { nome: "Nomear os compradores", prazo: "30 dias",
+      passos: ["Em enxofre e insumo industrial o universo é finito: escrever a lista de quem compra esse volume no Brasil.",
+               "Para cada um: quem decide, de quem compra hoje, quem atende.",
+               "Definir o dono da abertura de mercado novo, separado de quem atende carteira."],
+      criterio: "Deixa de ser “gerar demanda” e vira plano de acesso, um a um. Sem campanha, sem funil." },
+    d3: { nome: "Carteira vira patrimônio", prazo: "60 dias",
+      passos: ["Registro mínimo por cliente: o que compra, com que frequência, o que parou de comprar, margem por item.",
+               "Uma regra simples: pedido só entra depois de o contato estar registrado.",
+               "Relatório semanal de queda de recompra, que chega no vendedor antes de ele ligar.",
+               "Um responsável pela base que não é vendedor."],
+      criterio: "Um vendedor novo assume uma carteira e sabe o que perguntar sem ninguém contar a história pra ele." },
+    d4: { nome: "Eixo de defesa além do preço", prazo: "antes de comprar estoque",
+      passos: ["Escolher: fornecimento garantido, documentação regulatória, rastreabilidade, prazo, estoque local ou exclusividade de fabricante.",
+               "Transformar o eixo em prova. Em insumo, prova é documento e histórico, não é discurso.",
+               "Testar com cinco compradores antes do contêiner."],
+      criterio: "A importação direta vira margem e previsibilidade de entrega, e não desconto." }
+  },
+  perguntas: [
+    { tag: "o ativo",
+      texto: "Se os seus dois melhores vendedores saíssem amanhã, o que a United ainda saberia sobre os clientes deles?",
+      respostas: [
+        { r: "“O relacionamento tá muito no WhatsApp deles. Aqui fica o histórico de pedido no sistema.”",
+          nota: "o mais provável",
+          diz: "“Então a carteira não é patrimônio da empresa, é do vendedor, e ela anda com as pernas dele. Isso já é risco hoje com doze pessoas. Vocês vão contratar para crescer dez vezes, e cada contratação multiplica esse risco.”",
+          porque: "E tem consequência direta no desafio número um deles: não se transforma tirador de pedido em consultor com treinamento. Consultor é quem chega sabendo o que o cliente parou de comprar. Isso é informação, não é postura.",
+          dest: "d3",
+          reacoes: [["“Mas meu time é fiel, estão comigo há anos.”", "“Fidelidade não é o ponto. Se um deles adoecer por dois meses, quem assume e com base em quê?”"],
+                    ["“Isso vai burocratizar a venda.”", "“Só se o sistema cobrar sem devolver nada. Se ele devolver quem sumiu e o que oferecer, o vendedor passa a usar por interesse próprio.”"]] },
+        { r: "“Temos ERP, está tudo lançado lá.”",
+          diz: "“ERP registra transação, não relacionamento. Ele te diz o que foi faturado. Ele te diz quem parou de comprar nos últimos noventa dias?”",
+          porque: "Quase sempre a resposta é não, ou é sim e ninguém olha. A direção não é trocar sistema, é criar um relatório e uma rotina em cima do que já existe.",
+          dest: "d3", reacoes: [] },
+        { r: "“Temos CRM, mas o pessoal não usa direito.”",
+          diz: "“CRM que ninguém usa é planilha cara. E o motivo costuma ser o mesmo: o vendedor sente que alimenta o sistema para o chefe olhar, e não recebe nada de volta. O que o seu CRM devolve para ele hoje?”",
+          porque: "Inverte a lógica. O sistema entrega antes de cobrar — lista de quem sumiu, o que oferecer, margem por item. Adoção vira consequência, não campanha interna.",
+          dest: "d3", reacoes: [] },
+        { r: "“O cliente é fiel à empresa, não ao vendedor.”",
+          diz: "“Espero que sim, e dá para testar: dos clientes que o seu melhor vendedor atende, quantos já compravam antes de ele entrar?”",
+          porque: "Se a maioria chegou com ele, a fidelidade é dele. Se já compravam antes, o risco é outro: dependência de poucos clientes grandes. Os dois caminhos rendem.",
+          dest: "d3", reacoes: [] },
+        { r: "“Já aconteceu, já perdi vendedor e cliente junto.”",
+          diz: "“Então o custo já foi medido na prática. Quanto de faturamento anual foi embora naquela vez?”",
+          porque: "Melhor cenário possível. Um número real de perda passada convence mais que qualquer argumento de risco futuro, e encerra a objeção de burocracia.",
+          dest: "d3", reacoes: [] },
+        { r: "Ele se sai bem, está tudo registrado.",
+          diz: "“Melhor do que eu esperava. Então a pergunta sobe: esse dado gera ação? Quem recebe um alerta quando um cliente cai trinta por cento na recompra, e em quanto tempo alguém liga?”",
+          porque: "A diferença entre ter dado e operar por dado. A direção vira rotina de leitura, o que é recomendação mais avançada e te mantém útil.",
+          dest: "d3", reacoes: [] }
+      ] },
+    { tag: "o motor",
+      texto: "Vocês faturam 1 milhão por mês e querem chegar a 10. Isso só pode vir de três lugares: mais clientes, os mesmos comprando mais vezes, ou ticket maior. Qual o peso de cada um? E se boa parte for cliente novo, por onde eles vão saber que a United existe?",
+      respostas: [
+        { r: "“Vem dos produtos novos. Cliente novo chega por indicação e pelo relacionamento dos vendedores. Marketing a gente não faz.”",
+          nota: "o mais provável",
+          diz: "“Então a aquisição de vocês é uma pessoa, não um sistema. Aquisição por pessoa cresce na velocidade em que se contrata e treina pessoa. Para crescer dez vezes assim, seriam quase dez vezes mais vendedores, e o plano é justamente manter a operação enxuta. Esses dois objetivos não cabem no mesmo ano.”",
+          porque: "É o furo central do plano deles, e ninguém mais na mesa vai apontar. Se ele não dividir os três caminhos, divida na mesa: “dos nove milhões, quanto é cliente novo?”",
+          dest: "d1",
+          reacoes: [["“A gente vai crescer com os clientes que já tem.”", "“Então vamos olhar: os clientes atuais somados comprariam dez vezes mais? Se não, a diferença é cliente novo, e ela precisa de caminho.”"],
+                    ["“Indicação sempre funcionou pra gente.”", "“Funcionou pra um milhão. Indicação não escala por decisão sua — ela depende dos outros lembrarem de você.”"]] },
+        { r: "“Vem de poucos contratos grandes de enxofre.”",
+          diz: "“Então muda tudo, e para melhor. Se nove milhões vêm de oito ou dez contratos, vocês não têm um problema de marketing, têm um problema de lista. Quantas empresas no Brasil compram esse volume, e vocês conseguem nomeá-las?”",
+          porque: "Muda completamente a recomendação: nada de funil, nada de campanha. Mapeamento nominal e plano de acesso. Se ele não souber o tamanho do universo, esse é o trabalho da semana.",
+          dest: "d2",
+          reacoes: [["“Não sei quantas empresas são.”", "“Esse é o primeiro trabalho, e é de uma semana. Não dá para planejar nove milhões sem saber quantos compradores existem.”"]] },
+        { r: "“Vamos contratar mais vendedores.”",
+          diz: "“Quanto tempo um vendedor novo leva hoje para dar resultado, do primeiro dia até a primeira venda relevante?”",
+          porque: "Multiplique na frente dele. Se são seis meses e ele precisa de dez, a conta não cabe em doze meses — e ele acabou de ver isso sozinho, o que é melhor do que você afirmar.",
+          dest: "d1", reacoes: [] },
+        { r: "“Nosso mercado não é de marketing.”",
+          diz: "“Concordo que não é anúncio. Insumo não se vende por campanha. Mas alguém precisa ser dono de fazer o comprador certo saber que vocês existem, seja por feira, associação, conteúdo técnico ou prospecção. Hoje isso é responsabilidade de quem?”",
+          porque: "Concordar com a premissa antes de discordar da conclusão desarma. Tira do falso debate sobre digital e coloca em função e dono.",
+          dest: "d2", reacoes: [] },
+        { r: "“Já temos um plano de marketing digital.”",
+          diz: "“Qual é o ciclo de venda de vocês, do primeiro contato até o primeiro pedido? Se for longo, anúncio gera cadastro e não gera pedido, e o time vai concluir que marketing não funciona quando na verdade faltou o meio do caminho.”",
+          porque: "Em ciclo longo o que sustenta é acompanhamento, não volume de contato. Volta ao registro e à rotina, por outro caminho.",
+          dest: "d3", reacoes: [] },
+        { r: "Ele não tem o número na mão.",
+          diz: "“Vamos fazer junto agora. Quantos clientes ativos vocês têm hoje? Qual o pedido médio? Então, para dez vezes, são quantos clientes ou quantas vezes o pedido médio?”",
+          porque: "Momento mais forte da sua participação. A conta feita em voz alta por ele vale mais que qualquer argumento seu. Deixe o silêncio depois do número.",
+          dest: "d1", reacoes: [] }
+      ] },
+    { tag: "a defesa",
+      texto: "A importação direta melhora a margem, isso tá claro. Agora, se semana que vem um concorrente igualar seu preço no nutracêutico, por que o cliente continua comprando de vocês?",
+      respostas: [
+        { r: "“Nossa vantagem é a importação direta, chegamos com preço melhor.”",
+          nota: "o mais provável",
+          diz: "“A porta que deixou vocês entrarem em nutracêutico não fecha atrás de vocês. Suplemento tem barreira regulatória baixa e fabricação terceirizada resolvida, então entra muita gente. Se a vantagem é chegar mais barato, ela tem prazo de validade, e o prazo é o tempo que o concorrente leva para importar direto também.”",
+          porque: "O risco concreto: financiar compra, frete, desembaraço e estoque — o capital de giro que o Adilson levantou — para ocupar uma posição que se copia. E preço é o único motivo de compra que o cliente troca sem culpa.",
+          dest: "d4",
+          reacoes: [["“Mas nossa margem permite segurar preço baixo.”", "“Margem permite aguentar a briga. Não impede a briga. A pergunta é o que faz o cliente não abrir cotação com o concorrente.”"],
+                    ["“A concorrência tem vantagem tributária, precisamos competir.”", "“Competir sim, mas o preço equaliza a conversa; ele não fecha a venda. Precisa de um segundo motivo.”"]] },
+        { r: "“Qualidade e atendimento.”",
+          diz: "“Todo concorrente diz exatamente essa frase. O que muda o jogo é o que você entrega que o outro não entrega. Qual documento, qual prazo, qual garantia?”",
+          porque: "Força a tradução de adjetivo em prova. Se ele não conseguir traduzir, a vantagem ainda não existe — e essa é a conclusão a levar da mesa.",
+          dest: "d4", reacoes: [] },
+        { r: "“Temos exclusividade com um fabricante.”",
+          diz: "“Esse é o ativo mais forte que apareceu até agora. É contrato ou é combinado? Por quanto tempo, e para qual território?”",
+          porque: "Se for contrato firme, é isso que deve ocupar o centro da comunicação, não o preço. Se for verbal, a prioridade é formalizar — e aí a Priscila entra melhor que você.",
+          dest: "d4", reacoes: [] },
+        { r: "“Regulatório, laudo, rastreabilidade.”",
+          diz: "“É o eixo mais defensável que existe nesse mercado, porque tira o comprador do risco pessoal. Isso está comunicado ou está só acontecendo dentro da operação?”",
+          porque: "Quase sempre existe e ninguém conta. Direção barata e rápida: transformar o que já é feito em material de venda, com documento na mão do vendedor.",
+          dest: "d4", reacoes: [] },
+        { r: "“Vamos lançar marca própria de suplemento.”",
+          diz: "“Aí é outro negócio, não é extensão desse. Insumo se vende para comprador técnico com prova. Marca se vende para consumidor com verba de mídia contínua e prateleira. Isso está dentro da conta de capital apresentada aqui?”",
+          porque: "Conecta direto com a pergunta do Adilson sobre capital por linha. Se a resposta for não, você acabou de encontrar o maior furo do plano.",
+          dest: "d4", reacoes: [] },
+        { r: "“Ainda não definimos como vamos entrar.”",
+          diz: "“Então essa é a decisão mais urgente da lista, porque ela define preço, perfil de vendedor e quanto capital fica parado. Comprar estoque antes de decidir isso é o caminho mais caro.”",
+          porque: "Sequência é a sua contribuição mais valiosa: decidir posicionamento antes de comprometer capital. Não precisa decidir na mesa, precisa decidir antes da compra.",
+          dest: "d4", reacoes: [] }
+      ] }
+  ]
+}
+};
+
+
+var REF = {"n": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Arquiteta especializada em projetos integrados à natureza, cabanas e empreendimentos de hospitalidade. O escritório ganhou escala na pandemia e passou a atender Brasil e exterior. O crescimento foi mais rápido que a estrutura administrativa, financeira e operacional, gerando operação muito dependente da fundadora.</p>\n<h3>O ativo real</h3>\n<p>Maior que o próprio escritório: rede de relacionamentos, conhecimento de mercado, conexão com marcas, fabricantes, fornecedores, investidores e profissionais, e autoridade consolidada no segmento.</p>\n<h3>Principais desafios</h3>\n<ul>\n<li><b>Desordem operacional:</b> crescimento sem estrutura proporcional, dependência da fundadora.</li>\n<li><b>Sobrecarga e dispersão:</b> arquitetura, construção, produtos, parcerias, conteúdo, educação e novas oportunidades ao mesmo tempo.</li>\n<li><b>Falta de clareza do modelo central:</b> muitas frentes com potencial, sem definição de quais são o ecossistema principal.</li>\n<li><b>Dependência da fundadora:</b> oportunidades, decisões, criação, relacionamento e posicionamento passam por ela.</li>\n<li><b>Dificuldade de selecionar oportunidades:</b> interessantes isoladamente, mas nem todas constroem o longo prazo.</li>\n</ul>\n<h3>Sonho grande</h3>\n<p>Ecossistema de referência em arquitetura de natureza, hospitalidade e construção industrializada, conectando marcas, profissionais, fabricantes, fornecedores, investidores, conhecimento e negócios. Uma plataforma de conexão com rede homologada, podendo ter educação, metodologia própria, mentorias, capacitação, parcerias e produtos. O escritório vira atelier autoral, exclusivo e seletivo, fonte de autoridade e posicionamento, sem crescer em volume.</p>\n<h3>Pergunta principal ao conselho</h3>\n<p>Como transformar esse ecossistema em modelo sólido, rentável e escalável, aproveitando autoridade, rede e oportunidades já existentes, sem criar de novo uma operação complexa e dependente dela?</p>\n<h3>Pontos que ela quer discutir</h3>\n<ul>\n<li>Qual o modelo central de geração de receita.</li>\n<li>Como transformar a rede em ativo real de negócio.</li>\n<li>Quais frentes priorizar primeiro.</li>\n<li>Como estruturar sem criar muitas operações paralelas.</li>\n<li>Qual o papel do escritório na nova estrutura.</li>\n<li>Como criar receita recorrente sem perder o posicionamento premium.</li>\n<li>Como transformar autoridade pessoal em marca e plataforma que cresçam além dela.</li>\n</ul>\n</div>", "seats": "<div class=\"seat\"><h3>Finanças · Adilson</h3><ol><li>Motor de crescimento: se daqui a três anos esse ecossistema estiver funcionando muito bem, de onde virão 70% do lucro e da geração de caixa: projetos de arquitetura, educação, produtos, construção, parcerias e comissões, rede de fornecedores ou outro modelo?</li><li>Recursos: entre todas as oportunidades que estão surgindo, se você tivesse apenas R$ 100 mil e 100 horas suas, onde colocaria para gerar o maior valor econômico nos próximos três anos, e o que deixaria de fazer?</li><li>Monetização dos ativos: qual ativo que você já possui hoje (marca, metodologia, audiência, fornecedores, fabricantes, profissionais, conhecimento, geração de negócios) continuaria produzindo receita mesmo se você reduzisse sua participação operacional em 50%?</li></ol></div><div class=\"seat\"><h3>Processos · Suelen</h3><ol><li>Estrutura atual: quais frentes do negócio já funcionam de forma estruturada e quais ainda dependem de você para acontecer?</li><li>Capacidade de virar operação: quais novas frentes você já tentou colocar em prática nos últimos anos e o que aconteceu com elas depois da ideia inicial?</li><li>Gargalos: qual é a principal área que você gostaria que deixasse de depender de você?</li><li>Metodologia própria: o seu jeito de trabalhar e decidir está documentado em alguma metodologia que possa ser ensinada e replicada pela equipe?</li></ol></div><div class=\"seat\"><h3>Jurídico · Priscila</h3><ol><li>Responsabilidade da rede: ao homologar um fabricante ou fornecedor e ele falhar com o cliente final, quem o cliente vai procurar, o fornecedor ou a sua marca? E até onde você está disposta a responder por isso?</li><li>Seleção de parceiros: a escolha passa por algum critério ou é experiência e confiança? Você analisa os sócios e as estruturas ligadas a esses fornecedores (processos criminais, trabalhistas, consumidor, outras sociedades)?</li><li>Receita recorrente: a ideia é um produto ou serviço remunerado mensalmente? Se sim, o que você conseguiria entregar de forma contínua que continuaria acontecendo num mês em que você estivesse totalmente fora? Se não, o que você entende por recorrência e escala?</li><li>Conexão com investidores: você imagina apresentar oportunidades e ser remunerada pela conexão, ou apenas aproximar as pessoas e sair da relação?</li></ol></div><div class=\"seat\"><h3>Vendas · Ricardo</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat mine\"><h3>Marketing e Tecnologia · você</h3><ol><li>Se um concorrente comprasse sua empresa amanhã e você não fosse junto no pacote, o que ele estaria comprando exatamente?</li><li>Você fala que a rede e a autoridade valem mais que o próprio escritório. Nos últimos 12 meses, quanto de negócio isso gerou pros outros, indicando e conectando de graça? E quanto gerou pra você?</li><li>Nessa plataforma de conexão que você quer construir, tem alguma parte que já poderia rodar amanhã sem software nenhum, só com processo e uma pessoa cuidando?</li></ol></div>"}, "u": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Fundada em 2014 em Belo Horizonte. Depois de atuar no setor acadêmico e enfrentar crises, pivotou para a indústria farmacêutica e superou dificuldades financeiras em 2020 trabalhando no fuso europeu. Em 2023 abriu a United America nos EUA para importar direto e eliminar intermediários.</p>\n<h3>Estado atual</h3>\n<p>Cerca de R$ 1 milhão por mês, 12 colaboradores. Atua em farma e expande para nutracêuticos e enxofre, buscando importação direta para eliminar intermediários, ganhar competitividade frente à concorrência tributária e melhorar margem, mantendo a operação enxuta.</p>\n<h3>Sonho grande</h3>\n<p>R$ 10 milhões de faturamento por mês no próximo ano, através da penetração nos mercados de nutracêuticos e enxofre.</p>\n<h3>Principais desafios</h3>\n<ul>\n<li><b>Equipe comercial:</b> evoluir o time de “tiradores de pedido” para consultores ativos e engajados.</li>\n<li><b>Precificação e margem:</b> reduzir a dependência de intermediários financeiros e logísticos.</li>\n<li><b>Tributação:</b> entender a complexidade fiscal, sobretudo na transição para suplementos.</li>\n<li><b>Previsibilidade:</b> validar viabilidade operacional e financeira nos novos mercados, sem histórico de importação direta.</li>\n</ul>\n</div>", "seats": "<div class=\"seat\"><h3>Finanças · Adilson</h3><ol><li>Para sair de R$ 1 milhão para R$ 10 milhões por mês, quanto capital de giro adicional a empresa precisará colocar na operação antes de receber dos clientes, considerando compra, importação, estoque em trânsito, desembaraço, tributos, estoque local e prazo de recebimento?</li><li>Dos R$ 9 milhões mensais de receita adicional, quanto virá de cada linha ou família de produto, e qual margem de contribuição, ciclo de caixa e capital empregado cada frente deverá gerar?</li></ol></div><div class=\"seat\"><h3>Processos · Suelen</h3><ol><li>Equipe comercial: como está estruturado hoje o processo comercial? Quais etapas estão padronizadas e quais dependem da atuação de cada vendedor?</li><li>Equipe comercial: como um vendedor identifica uma oportunidade além da demanda inicial do cliente? Existe processo definido para investigar necessidades, apresentar soluções e desenvolver novas oportunidades?</li><li>Intermediários: em quais etapas de compra, importação e comercialização vocês dependem de intermediários, e qual função cada um desempenha?</li><li>Intermediários: dessas etapas, quais a empresa já teria condições de assumir internamente e quais exigiriam mudanças na operação?</li></ol></div><div class=\"seat\"><h3>Jurídico · Priscila</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat\"><h3>Vendas · Ricardo</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat mine\"><h3>Marketing e Tecnologia · você</h3><ol><li>Se os seus dois melhores vendedores saíssem amanhã, o que a United ainda saberia sobre os clientes deles?</li><li>Vocês faturam 1 milhão por mês e querem chegar a 10. Isso só pode vir de três lugares: mais clientes, os mesmos clientes comprando mais vezes, ou ticket maior. Qual o peso de cada um nesse plano? E se boa parte for cliente novo, por onde eles vão ficar sabendo que a United existe?</li><li>A importação direta melhora a margem, isso tá claro. Agora, se semana que vem um concorrente igualar seu preço no nutracêutico, por que o cliente continua comprando de vocês?</li></ol></div>"}};
+
+var adv = 'n', stack = [];
+var view = document.getElementById('view');
+var back = document.getElementById('back');
+var crumb = document.getElementById('crumb');
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function d(){ return DATA[adv]; }
+
+function render(){
+  var s = stack.length ? stack[stack.length-1] : {t:'home'};
+  view.dataset.adv = adv;
+  view.innerHTML = '<div class="screen">' + SCREEN[s.t](s) + '</div>';
+  back.disabled = stack.length === 0;
+  crumb.textContent = s.crumb || 'Início';
+  window.scrollTo({top:0, behavior:'instant'});
+  [].forEach.call(view.querySelectorAll('[data-nav]'), function(el){
+    el.addEventListener('click', function(){ push(JSON.parse(el.dataset.nav)); });
+  });
+}
+function push(s){ stack.push(s); render(); }
+function pop(){ stack.pop(); render(); }
+function home(){ stack = []; render(); }
+
+var SCREEN = {
+  home: function(){
+    var x = d(), h = '';
+    h += '<h1>' + esc(x.nome) + '</h1><p class="lede">' + esc(x.sub) + '</p>';
+    h += '<div class="sect"><span class="mono">Seus 10 minutos</span>';
+    x.plano.forEach(function(b){
+      h += '<div class="beat"><span class="t">' + b[0] + '</span><div><b>' + esc(b[1]) + '</b><p>' + esc(b[2]) + '</p></div></div>';
+    });
+    h += '</div>';
+    h += '<div class="sect"><span class="mono">Comece por uma pergunta</span>';
+    x.perguntas.forEach(function(q,i){
+      h += rowBtn(i+1, esc(q.texto), q.tag, {t:'q', i:i, crumb:'Pergunta ' + (i+1)});
+    });
+    h += '</div>';
+    h += '<div class="sect"><span class="mono">Para onde tudo converge</span>';
+    Object.keys(x.destinos).forEach(function(k,i){
+      var dd = x.destinos[k];
+      h += rowBtn(i+1, esc(dd.nome), dd.prazo, {t:'d', k:k, crumb:'Destino'});
+    });
+    h += rowBtn('!', 'O pedido final', 'o que não pode faltar', {t:'ask', crumb:'Pedido final'});
+    h += '</div>';
+    h += '<div class="sect"><span class="mono">Consulta</span>';
+    h += rowBtn('', 'Briefing que eles mandaram', '', {t:'brief', crumb:'Briefing'});
+    h += rowBtn('', 'Perguntas de todas as cadeiras', '', {t:'seats', crumb:'Cadeiras'});
+    h += '</div>';
+    return h;
+  },
+  q: function(s){
+    var q = d().perguntas[s.i], h = '';
+    h += '<span class="mono kicker">Pergunta ' + (s.i+1) + ' &middot; ' + esc(q.tag) + '</span>';
+    h += '<h2>' + esc(q.texto) + '</h2>';
+    h += '<div class="sect"><span class="mono">O que ela respondeu?</span>';
+    q.respostas.forEach(function(r,j){
+      h += rowBtn('', '<span class="said">' + esc(r.r) + '</span>', r.nota || '', {t:'r', i:s.i, j:j, crumb:'Pergunta ' + (s.i+1) + ' / resposta'});
+    });
+    h += '</div>';
+    return h;
+  },
+  r: function(s){
+    var q = d().perguntas[s.i], r = q.respostas[s.j], x = d(), h = '';
+    h += '<span class="mono kicker">Ela respondeu</span>';
+    h += '<h2 class="said">' + esc(r.r) + '</h2>';
+    h += '<div class="sect" style="margin-top:1.6rem"><span class="mono">Você diz</span></div>';
+    h += '<div class="speak" style="margin-top:1rem"><p class="said">' + esc(r.diz) + '</p></div>';
+    h += '<p class="why">' + esc(r.porque) + '</p>';
+    var dd = x.destinos[r.dest];
+    h += '<button class="dest" data-nav=\'' + JSON.stringify({t:'d', k:r.dest, crumb:'Destino'}) + '\'>';
+    h += '<span class="mono">Isso leva para</span><strong>' + esc(dd.nome) + '</strong><span class="p">' + esc(dd.prazo) + ' &nbsp;&rarr;</span></button>';
+    if (r.reacoes && r.reacoes.length){
+      h += '<div class="react"><span class="mono">Se ela reagir assim</span><dl>';
+      r.reacoes.forEach(function(p){
+        h += '<dt class="said">' + esc(p[0]) + '</dt><dd class="said">' + esc(p[1]) + '</dd>';
+      });
+      h += '</dl></div>';
+    }
+    return h;
+  },
+  d: function(s){
+    var dd = d().destinos[s.k], h = '';
+    h += '<span class="mono kicker">Destino &middot; ' + esc(dd.prazo) + '</span>';
+    h += '<h1>' + esc(dd.nome) + '</h1>';
+    h += '<div class="sect"><span class="mono">O que ela faz</span><ol class="steps" style="margin-top:1rem">';
+    dd.passos.forEach(function(p){ h += '<li>' + esc(p) + '</li>'; });
+    h += '</ol></div>';
+    h += '<div class="crit"><span class="mono">Critério de sucesso</span><p>' + esc(dd.criterio) + '</p></div>';
+    h += '<div class="ask"><span class="mono">E fecha com o pedido</span><p class="said">' + esc(d().pedido) + '</p></div>';
+    return h;
+  },
+  ask: function(){
+    return '<span class="mono kicker">8 a 10 minutos</span><h1>O pedido final</h1>' +
+      '<div class="speak" style="margin-top:1.4rem"><p class="said">' + esc(d().pedido) + '</p></div>' +
+      '<p class="why">É a única coisa que não pode ficar de fora. Se o tempo apertar, corte recomendação e mantenha o pedido: um passo barato, reversível, com prazo.</p>';
+  },
+  brief: function(){ return '<h1>Briefing</h1><div class="brief" style="margin-top:1.4rem">' + REF[adv].brief + '</div>'; },
+  seats: function(){ return '<h1>As outras cadeiras</h1><div style="margin-top:1.2rem">' + REF[adv].seats + '</div>'; }
+};
+
+function rowBtn(n, label, sub, nav){
+  return '<button class="row" data-nav=\'' + JSON.stringify(nav) + '\'>' +
+    (n === '' ? '' : '<span class="n">' + n + '</span>') +
+    '<span class="b">' + label + (sub ? '<em>' + esc(sub) + '</em>' : '') + '</span>' +
+    '<span class="go">&rsaquo;</span></button>';
+}
+
+[].forEach.call(document.querySelectorAll('.tab'), function(b){
+  b.addEventListener('click', function(){
+    adv = b.dataset.go;
+    [].forEach.call(document.querySelectorAll('.tab'), function(t){
+      t.setAttribute('aria-selected', String(t.dataset.go === adv));
+    });
+    document.querySelector('.top').dataset.adv = adv;
+    try { localStorage.setItem('clubm', adv); } catch(e){}
+    home();
+  });
+});
+back.addEventListener('click', pop);
+document.getElementById('home').addEventListener('click', home);
+try {
+  var sv = localStorage.getItem('clubm');
+  if (sv === 'u') { document.querySelector('.tab[data-go=u]').click(); }
+} catch(e){}
+render();
+</script>
+
+</body>
+</html>
