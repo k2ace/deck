@@ -5,161 +5,167 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#E8E9E5" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1211" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#E4E5DF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Conselho">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E6146'/%3E%3Cpath d='M9 22V10h3.2l3.8 7 3.8-7H23v12h-2.7v-7.4L16.9 21h-1.8l-3.4-6.4V22z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23356647'/%3E%3Crect x='4' y='6' width='3' height='20' fill='%23fff'/%3E%3Crect x='11' y='6' width='17' height='2.6' fill='%23fff'/%3E%3Crect x='11' y='14.7' width='17' height='2.6' fill='%23fff' opacity='.75'/%3E%3Crect x='11' y='23.4' width='10' height='2.6' fill='%23fff' opacity='.5'/%3E%3C/svg%3E">
 <title>Mesa de Conselho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap">
 <style>
 :root{
-  --paper:#E8E9E5; --panel:#F6F6F4; --sunk:#DEDFDA;
-  --ink:#16181A; --muted:#5C6167; --faint:#8B908C; --hair:#CFD1CC;
-  --pine:#1E6146; --indigo:#2B4C86; --flag:#8A5A12;
-  --shadow:0 1px 0 rgba(0,0,0,.04);
+  --paper:#E4E5DF; --panel:#F1F2ED; --sunk:#D6D8D0;
+  --ink:#1A1C19; --muted:#5B615A; --faint:#8C918A; --hair:#C9CBC3;
+  --moss:#356647; --violet:#453C80; --alert:#A8600F;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0F1211; --panel:#171A19; --sunk:#1E2220;
-  --ink:#E8EAE7; --muted:#979C99; --faint:#6B716D; --hair:#292E2C;
-  --pine:#6FBF97; --indigo:#84ABE9; --flag:#D6A44E;
-  --shadow:none;
+  --paper:#121412; --panel:#1B1E1B; --sunk:#232722;
+  --ink:#E7E9E4; --muted:#979C94; --faint:#6C716A; --hair:#282C27;
+  --moss:#7FBF95; --violet:#A79BEB; --alert:#DEA85A;
 }}
 :root[data-theme="dark"]{
-  --paper:#0F1211; --panel:#171A19; --sunk:#1E2220;
-  --ink:#E8EAE7; --muted:#979C99; --faint:#6B716D; --hair:#292E2C;
-  --pine:#6FBF97; --indigo:#84ABE9; --flag:#D6A44E;
-  --shadow:none;
+  --paper:#121412; --panel:#1B1E1B; --sunk:#232722;
+  --ink:#E7E9E4; --muted:#979C94; --faint:#6C716A; --hair:#282C27;
+  --moss:#7FBF95; --violet:#A79BEB; --alert:#DEA85A;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{
   background:var(--paper); color:var(--ink);
-  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  font-size:16.5px; line-height:1.5;
-  padding-bottom:calc(4.2rem + env(safe-area-inset-bottom));
+  font-family:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  font-size:16.5px; line-height:1.5; font-synthesis:none;
+  padding-bottom:calc(4.6rem + env(safe-area-inset-bottom));
 }
-[data-adv="n"]{--sig:var(--pine)} [data-adv="u"]{--sig:var(--indigo)}
-.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.66rem;
-      letter-spacing:.13em;text-transform:uppercase;font-weight:600}
-.said{font-family:"IBM Plex Serif",Georgia,serif;font-style:italic}
+body[data-adv="n"]{--sig:var(--moss)}
+body[data-adv="u"]{--sig:var(--violet)}
+.voice{font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:400;letter-spacing:0}
+.tag{font-size:.74rem;font-weight:600;letter-spacing:.04em;color:var(--faint)}
 
-.shell{max-width:32rem;margin:0 auto;padding:0 1.15rem}
+.shell{max-width:33rem;margin:0 auto;padding:0 1.2rem}
+
+/* trilho do tempo, à esquerda absoluta */
+#rail{position:fixed;left:0;top:0;bottom:0;width:3px;background:transparent;z-index:40;pointer-events:none}
+#rail i{display:block;width:100%;height:0;background:var(--sig);transition:height 1s linear}
+body.warn #rail i{background:var(--alert)}
 
 /* topo */
-.top{border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:20;background:var(--paper)}
-.top .shell{display:flex;gap:0;padding-top:.5rem}
-.tab{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:.55rem .2rem .5rem;
-     font:inherit;color:var(--faint);cursor:pointer;text-align:left;display:block}
-.tab .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.13em;font-weight:600}
-.tab .v{display:block;font-weight:600;font-size:1rem;line-height:1.2;margin-top:.1rem}
-.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--sig)}
-.tab:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
+.top .shell{display:flex;align-items:stretch;gap:1.4rem;padding-top:.45rem}
+.who{background:none;border:0;padding:.5rem 0 .55rem;font:inherit;color:var(--faint);
+     cursor:pointer;text-align:left;border-bottom:2px solid transparent;margin-bottom:-1px}
+.who .h{display:block;font-size:.72rem;font-weight:500;letter-spacing:.02em}
+.who .m{display:block;font-weight:700;font-size:1.02rem;line-height:1.15;letter-spacing:-.01em}
+.who[aria-selected=true]{color:var(--ink);border-bottom-color:var(--sig)}
+.who:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
 
-/* telas */
-main{padding-top:1.4rem}
-.screen{animation:in .16s ease-out}
-@keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.screen{animation:none}}
+main{padding-top:1.5rem}
+.screen{animation:in .17s cubic-bezier(.2,.7,.3,1)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}#rail i{transition:none}}
 
-.kicker{color:var(--sig);display:block;margin-bottom:.55rem}
-h1{font-size:1.42rem;line-height:1.16;letter-spacing:-.021em;font-weight:700;margin:0 0 .35rem;text-wrap:balance}
-h2{font-size:1.16rem;line-height:1.3;letter-spacing:-.014em;font-weight:600;margin:0 0 .9rem;text-wrap:balance}
-.lede{color:var(--muted);margin:0 0 1.8rem;font-size:.97rem}
-.sect{margin:2.1rem 0 0}
-.sect > .mono{color:var(--faint);display:block;padding-bottom:.5rem;border-bottom:1px solid var(--hair)}
+h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.72rem;line-height:1.1;
+   letter-spacing:-.01em;margin:0 0 .4rem;text-wrap:balance}
+h2{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:1.32rem;line-height:1.26;
+   margin:0 0 1rem;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 2rem;font-size:.96rem;max-width:30rem}
+.eyebrow{display:block;font-size:.74rem;font-weight:600;letter-spacing:.03em;color:var(--sig);margin-bottom:.5rem}
+.sect{margin-top:2.3rem}
+.sect > h3{font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--faint);
+           margin:0 0 .2rem;padding-bottom:.55rem;border-bottom:1px solid var(--hair)}
 
-/* linhas tocáveis */
-.row{display:flex;gap:.85rem;align-items:baseline;width:100%;text-align:left;
-     background:none;border:0;border-bottom:1px solid var(--hair);
-     padding:.95rem 0;font:inherit;color:var(--ink);cursor:pointer}
+/* linhas */
+.row{display:flex;gap:.9rem;align-items:flex-start;width:100%;text-align:left;background:none;
+     border:0;border-bottom:1px solid var(--hair);padding:1rem 0;font:inherit;color:var(--ink);cursor:pointer}
 .row:active{background:var(--sunk)}
 .row:focus-visible{outline:2px solid var(--sig);outline-offset:-2px}
-.row .n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--sig);
-        flex:none;width:1.5rem;padding-top:.15rem}
 .row .b{flex:1;min-width:0}
-.row .b em{font-style:normal;display:block;color:var(--faint);font-size:.78rem;
-           letter-spacing:.02em;margin-top:.2rem}
-.row .b .said{color:var(--ink)}
-.row .go{flex:none;color:var(--faint);font-size:1.05rem;line-height:1;align-self:center}
+.row .b .k{display:block;font-size:.74rem;font-weight:600;color:var(--sig);margin-bottom:.28rem;letter-spacing:.02em}
+.row .b .s{display:block;color:var(--faint);font-size:.82rem;margin-top:.28rem}
+.row .go{flex:none;color:var(--hair);align-self:center;font-size:1.3rem;line-height:1}
+.row:active .go{color:var(--sig)}
 
-/* plano 10 min */
-.beat{display:flex;gap:.85rem;padding:.8rem 0;border-bottom:1px solid var(--hair)}
-.beat .t{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--sig);flex:none;width:2.6rem;padding-top:.2rem}
-.beat b{display:block;margin-bottom:.1rem}
-.beat p{margin:0;color:var(--muted);font-size:.95rem}
+/* batidas do tempo */
+.beat{display:flex;gap:.95rem;padding:.85rem 0;border-bottom:1px solid var(--hair);position:relative}
+.beat .t{flex:none;width:3.1rem;font-size:.78rem;font-weight:600;color:var(--faint);
+         font-variant-numeric:tabular-nums;padding-top:.16rem}
+.beat b{display:block;font-weight:600;margin-bottom:.12rem}
+.beat p{margin:0;color:var(--muted);font-size:.93rem}
+.beat.now{background:var(--panel);box-shadow:-1.2rem 0 0 var(--panel),1.2rem 0 0 var(--panel)}
+.beat.now .t{color:var(--sig)}
 
-/* bloco de fala */
-.speak{border-left:2px solid var(--sig);padding:.15rem 0 .15rem 1rem;margin:0 0 1.4rem}
-.speak p{margin:0;font-size:1.08rem;line-height:1.48}
-.why{color:var(--muted);font-size:.95rem;margin:0 0 1.5rem}
-.why b{color:var(--ink);font-weight:600}
-.react{margin-top:1.4rem}
-.react > .mono{color:var(--faint);display:block;margin-bottom:.5rem}
+/* fala */
+.speak{border-left:2px solid var(--sig);padding-left:1.05rem;margin:.9rem 0 1.5rem}
+.speak p{margin:0;font-size:1.16rem;line-height:1.45}
+.why{color:var(--muted);font-size:.95rem;margin:0 0 1.6rem;max-width:30rem}
+.react{margin-top:1.7rem;border-top:1px solid var(--hair);padding-top:1.1rem}
+.react h3{font-size:.8rem;font-weight:600;color:var(--faint);margin:0 0 .8rem;letter-spacing:.02em}
 .react dl{margin:0}
-.react dt{font-weight:600;font-size:.95rem;margin-top:.9rem}
-.react dd{margin:.3rem 0 0;padding-left:.9rem;border-left:1px solid var(--hair);color:var(--muted);font-size:.95rem}
-.react dd .said{color:var(--ink);font-style:italic}
+.react dt{font-size:1rem;margin-top:1.1rem}
+.react dd{margin:.35rem 0 0;padding-left:1rem;border-left:1px solid var(--hair);color:var(--muted);font-size:.98rem}
 
 /* destino */
-.dest{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--hair);
-      border-left:3px solid var(--sig);padding:.95rem 1rem;font:inherit;color:var(--ink);cursor:pointer;
-      box-shadow:var(--shadow)}
-.dest .mono{color:var(--sig);display:block;margin-bottom:.25rem}
-.dest strong{display:block;font-size:1.05rem;font-weight:600}
-.dest span.p{display:block;color:var(--muted);font-size:.88rem;margin-top:.15rem}
-ol.steps{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.6rem}
-ol.steps::marker{color:var(--sig)}
-.crit{margin:1.5rem 0 0;padding:.9rem 1rem;background:var(--panel);border:1px solid var(--hair)}
-.crit .mono{color:var(--faint);display:block;margin-bottom:.3rem}
+.dest{display:block;width:100%;text-align:left;background:var(--panel);border:0;border-left:3px solid var(--sig);
+      padding:1rem 1.1rem;font:inherit;color:var(--ink);cursor:pointer}
+.dest:active{background:var(--sunk)}
+.dest .k{display:block;font-size:.74rem;font-weight:600;color:var(--sig);letter-spacing:.03em;margin-bottom:.3rem}
+.dest strong{display:block;font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.2rem;letter-spacing:-.005em}
+.dest .p{display:block;color:var(--muted);font-size:.88rem;margin-top:.25rem}
+ol.steps{margin:1.1rem 0 0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.65rem}
+ol.steps::marker{color:var(--sig);font-weight:600}
+.crit{margin-top:1.7rem;border-top:1px solid var(--hair);padding-top:1.1rem}
+.crit h3{font-size:.8rem;font-weight:600;color:var(--faint);margin:0 0 .35rem}
 .crit p{margin:0}
-.ask{border-top:2px solid var(--sig);margin-top:2.2rem;padding-top:1rem}
-.ask .mono{color:var(--sig);display:block;margin-bottom:.5rem}
-.ask p{margin:0;font-size:1.06rem}
+.ask{margin-top:2.2rem;border-top:2px solid var(--sig);padding-top:1.1rem}
+.ask h3{font-size:.8rem;font-weight:600;color:var(--sig);margin:0 0 .6rem}
+.ask p{margin:0;font-size:1.1rem;line-height:1.45}
 
 /* referência */
-.brief h3{font-size:.66rem;text-transform:uppercase;letter-spacing:.13em;font-weight:600;
-          color:var(--faint);font-family:"IBM Plex Mono",monospace;margin:1.6rem 0 .45rem}
+.brief h3{font-size:.78rem;font-weight:700;letter-spacing:.03em;color:var(--sig);margin:1.7rem 0 .45rem}
 .brief h3:first-child{margin-top:0}
 .brief p{margin:0}
-.brief ul{margin:0;padding-left:1.05rem;display:flex;flex-direction:column;gap:.45rem}
-.seat{padding:1.2rem 0;border-bottom:1px solid var(--hair)}
-.seat h3{margin:0 0 .6rem;font-size:.95rem;color:var(--sig);font-weight:600}
-.seat ol{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.6rem;font-size:.95rem;color:var(--muted)}
+.brief ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem}
+.seat{padding:1.3rem 0;border-bottom:1px solid var(--hair)}
+.seat h3{margin:0 0 .65rem;font-size:.95rem;color:var(--sig);font-weight:700}
+.seat ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.65rem;font-size:.95rem;color:var(--muted)}
 .seat p.none{margin:0;color:var(--faint);font-size:.92rem}
 .seat.mine ol{color:var(--ink)}
 
 /* barra inferior */
 .bottom{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);
         border-top:1px solid var(--hair);padding-bottom:env(safe-area-inset-bottom)}
-.bottom .shell{display:flex;align-items:center;gap:.7rem;height:3.5rem}
-.bottom button{background:none;border:0;font:inherit;color:var(--ink);cursor:pointer;
-               font-weight:600;font-size:.95rem;padding:.5rem 0}
-.bottom button[disabled]{color:var(--faint);cursor:default}
-.bottom .crumb{flex:1;min-width:0;color:var(--faint);font-family:"IBM Plex Mono",monospace;
-               font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;
+.bottom .shell{display:flex;align-items:center;gap:.9rem;height:3.9rem}
+.bottom button{background:none;border:0;font:inherit;color:var(--ink);cursor:pointer;font-weight:600;
+               font-size:.95rem;padding:.55rem 0}
+.bottom button[disabled]{color:var(--hair);cursor:default}
+.bottom .crumb{flex:1;min-width:0;color:var(--faint);font-size:.78rem;text-align:center;
                overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.02rem;letter-spacing:-.01em;
+       border:1px solid var(--hair);padding:.34rem .6rem;color:var(--muted);min-width:4.6rem;text-align:center}
+#clock.on{color:var(--sig);border-color:var(--sig)}
+#clock.warn{color:var(--alert);border-color:var(--alert)}
 .bottom button:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
 </style>
 </head>
 <body>
 
+<div id="rail"><i></i></div>
+
 <header class="top">
   <div class="shell" role="tablist" aria-label="Aconselhado">
-    <button class="tab" role="tab" data-go="n" aria-selected="true"><span class="k">09h00</span><span class="v">Naindry</span></button>
-    <button class="tab" role="tab" data-go="u" aria-selected="false"><span class="k">10h30</span><span class="v">Leandro</span></button>
+    <button class="who" role="tab" data-go="n" aria-selected="true"><span class="h">9h · arquitetura</span><span class="m">Naindry</span></button>
+    <button class="who" role="tab" data-go="u" aria-selected="false"><span class="h">10h30 · farma</span><span class="m">Leandro</span></button>
   </div>
 </header>
 
-<main class="shell" id="view" data-adv="n"></main>
+<main class="shell" id="view"></main>
 
 <nav class="bottom">
   <div class="shell">
     <button id="back" disabled>&larr; Voltar</button>
     <span class="crumb" id="crumb">Início</span>
-    <button id="home">Início</button>
+    <button id="clock" title="Toque para começar seus 10 minutos. Segure para zerar.">10:00</button>
   </div>
 </nav>
 
@@ -430,133 +436,153 @@ u: {
 }
 };
 
-
 var REF = {"n": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Arquiteta especializada em projetos integrados à natureza, cabanas e empreendimentos de hospitalidade. O escritório ganhou escala na pandemia e passou a atender Brasil e exterior. O crescimento foi mais rápido que a estrutura administrativa, financeira e operacional, gerando operação muito dependente da fundadora.</p>\n<h3>O ativo real</h3>\n<p>Maior que o próprio escritório: rede de relacionamentos, conhecimento de mercado, conexão com marcas, fabricantes, fornecedores, investidores e profissionais, e autoridade consolidada no segmento.</p>\n<h3>Principais desafios</h3>\n<ul>\n<li><b>Desordem operacional:</b> crescimento sem estrutura proporcional, dependência da fundadora.</li>\n<li><b>Sobrecarga e dispersão:</b> arquitetura, construção, produtos, parcerias, conteúdo, educação e novas oportunidades ao mesmo tempo.</li>\n<li><b>Falta de clareza do modelo central:</b> muitas frentes com potencial, sem definição de quais são o ecossistema principal.</li>\n<li><b>Dependência da fundadora:</b> oportunidades, decisões, criação, relacionamento e posicionamento passam por ela.</li>\n<li><b>Dificuldade de selecionar oportunidades:</b> interessantes isoladamente, mas nem todas constroem o longo prazo.</li>\n</ul>\n<h3>Sonho grande</h3>\n<p>Ecossistema de referência em arquitetura de natureza, hospitalidade e construção industrializada, conectando marcas, profissionais, fabricantes, fornecedores, investidores, conhecimento e negócios. Uma plataforma de conexão com rede homologada, podendo ter educação, metodologia própria, mentorias, capacitação, parcerias e produtos. O escritório vira atelier autoral, exclusivo e seletivo, fonte de autoridade e posicionamento, sem crescer em volume.</p>\n<h3>Pergunta principal ao conselho</h3>\n<p>Como transformar esse ecossistema em modelo sólido, rentável e escalável, aproveitando autoridade, rede e oportunidades já existentes, sem criar de novo uma operação complexa e dependente dela?</p>\n<h3>Pontos que ela quer discutir</h3>\n<ul>\n<li>Qual o modelo central de geração de receita.</li>\n<li>Como transformar a rede em ativo real de negócio.</li>\n<li>Quais frentes priorizar primeiro.</li>\n<li>Como estruturar sem criar muitas operações paralelas.</li>\n<li>Qual o papel do escritório na nova estrutura.</li>\n<li>Como criar receita recorrente sem perder o posicionamento premium.</li>\n<li>Como transformar autoridade pessoal em marca e plataforma que cresçam além dela.</li>\n</ul>\n</div>", "seats": "<div class=\"seat\"><h3>Finanças · Adilson</h3><ol><li>Motor de crescimento: se daqui a três anos esse ecossistema estiver funcionando muito bem, de onde virão 70% do lucro e da geração de caixa: projetos de arquitetura, educação, produtos, construção, parcerias e comissões, rede de fornecedores ou outro modelo?</li><li>Recursos: entre todas as oportunidades que estão surgindo, se você tivesse apenas R$ 100 mil e 100 horas suas, onde colocaria para gerar o maior valor econômico nos próximos três anos, e o que deixaria de fazer?</li><li>Monetização dos ativos: qual ativo que você já possui hoje (marca, metodologia, audiência, fornecedores, fabricantes, profissionais, conhecimento, geração de negócios) continuaria produzindo receita mesmo se você reduzisse sua participação operacional em 50%?</li></ol></div><div class=\"seat\"><h3>Processos · Suelen</h3><ol><li>Estrutura atual: quais frentes do negócio já funcionam de forma estruturada e quais ainda dependem de você para acontecer?</li><li>Capacidade de virar operação: quais novas frentes você já tentou colocar em prática nos últimos anos e o que aconteceu com elas depois da ideia inicial?</li><li>Gargalos: qual é a principal área que você gostaria que deixasse de depender de você?</li><li>Metodologia própria: o seu jeito de trabalhar e decidir está documentado em alguma metodologia que possa ser ensinada e replicada pela equipe?</li></ol></div><div class=\"seat\"><h3>Jurídico · Priscila</h3><ol><li>Responsabilidade da rede: ao homologar um fabricante ou fornecedor e ele falhar com o cliente final, quem o cliente vai procurar, o fornecedor ou a sua marca? E até onde você está disposta a responder por isso?</li><li>Seleção de parceiros: a escolha passa por algum critério ou é experiência e confiança? Você analisa os sócios e as estruturas ligadas a esses fornecedores (processos criminais, trabalhistas, consumidor, outras sociedades)?</li><li>Receita recorrente: a ideia é um produto ou serviço remunerado mensalmente? Se sim, o que você conseguiria entregar de forma contínua que continuaria acontecendo num mês em que você estivesse totalmente fora? Se não, o que você entende por recorrência e escala?</li><li>Conexão com investidores: você imagina apresentar oportunidades e ser remunerada pela conexão, ou apenas aproximar as pessoas e sair da relação?</li></ol></div><div class=\"seat\"><h3>Vendas · Ricardo</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat mine\"><h3>Marketing e Tecnologia · você</h3><ol><li>Se um concorrente comprasse sua empresa amanhã e você não fosse junto no pacote, o que ele estaria comprando exatamente?</li><li>Você fala que a rede e a autoridade valem mais que o próprio escritório. Nos últimos 12 meses, quanto de negócio isso gerou pros outros, indicando e conectando de graça? E quanto gerou pra você?</li><li>Nessa plataforma de conexão que você quer construir, tem alguma parte que já poderia rodar amanhã sem software nenhum, só com processo e uma pessoa cuidando?</li></ol></div>"}, "u": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Fundada em 2014 em Belo Horizonte. Depois de atuar no setor acadêmico e enfrentar crises, pivotou para a indústria farmacêutica e superou dificuldades financeiras em 2020 trabalhando no fuso europeu. Em 2023 abriu a United America nos EUA para importar direto e eliminar intermediários.</p>\n<h3>Estado atual</h3>\n<p>Cerca de R$ 1 milhão por mês, 12 colaboradores. Atua em farma e expande para nutracêuticos e enxofre, buscando importação direta para eliminar intermediários, ganhar competitividade frente à concorrência tributária e melhorar margem, mantendo a operação enxuta.</p>\n<h3>Sonho grande</h3>\n<p>R$ 10 milhões de faturamento por mês no próximo ano, através da penetração nos mercados de nutracêuticos e enxofre.</p>\n<h3>Principais desafios</h3>\n<ul>\n<li><b>Equipe comercial:</b> evoluir o time de “tiradores de pedido” para consultores ativos e engajados.</li>\n<li><b>Precificação e margem:</b> reduzir a dependência de intermediários financeiros e logísticos.</li>\n<li><b>Tributação:</b> entender a complexidade fiscal, sobretudo na transição para suplementos.</li>\n<li><b>Previsibilidade:</b> validar viabilidade operacional e financeira nos novos mercados, sem histórico de importação direta.</li>\n</ul>\n</div>", "seats": "<div class=\"seat\"><h3>Finanças · Adilson</h3><ol><li>Para sair de R$ 1 milhão para R$ 10 milhões por mês, quanto capital de giro adicional a empresa precisará colocar na operação antes de receber dos clientes, considerando compra, importação, estoque em trânsito, desembaraço, tributos, estoque local e prazo de recebimento?</li><li>Dos R$ 9 milhões mensais de receita adicional, quanto virá de cada linha ou família de produto, e qual margem de contribuição, ciclo de caixa e capital empregado cada frente deverá gerar?</li></ol></div><div class=\"seat\"><h3>Processos · Suelen</h3><ol><li>Equipe comercial: como está estruturado hoje o processo comercial? Quais etapas estão padronizadas e quais dependem da atuação de cada vendedor?</li><li>Equipe comercial: como um vendedor identifica uma oportunidade além da demanda inicial do cliente? Existe processo definido para investigar necessidades, apresentar soluções e desenvolver novas oportunidades?</li><li>Intermediários: em quais etapas de compra, importação e comercialização vocês dependem de intermediários, e qual função cada um desempenha?</li><li>Intermediários: dessas etapas, quais a empresa já teria condições de assumir internamente e quais exigiriam mudanças na operação?</li></ol></div><div class=\"seat\"><h3>Jurídico · Priscila</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat\"><h3>Vendas · Ricardo</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat mine\"><h3>Marketing e Tecnologia · você</h3><ol><li>Se os seus dois melhores vendedores saíssem amanhã, o que a United ainda saberia sobre os clientes deles?</li><li>Vocês faturam 1 milhão por mês e querem chegar a 10. Isso só pode vir de três lugares: mais clientes, os mesmos clientes comprando mais vezes, ou ticket maior. Qual o peso de cada um nesse plano? E se boa parte for cliente novo, por onde eles vão ficar sabendo que a United existe?</li><li>A importação direta melhora a margem, isso tá claro. Agora, se semana que vem um concorrente igualar seu preço no nutracêutico, por que o cliente continua comprando de vocês?</li></ol></div>"}};
 
-var adv = 'n', stack = [];
-var view = document.getElementById('view');
-var back = document.getElementById('back');
-var crumb = document.getElementById('crumb');
+var adv='n', stack=[], view=document.getElementById('view'),
+    back=document.getElementById('back'), crumb=document.getElementById('crumb'),
+    clockEl=document.getElementById('clock'), rail=document.querySelector('#rail i');
 
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
-function d(){ return DATA[adv]; }
+var TOTAL=600, t0=null, paused=0, tick=null;
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function d(){return DATA[adv]}
+function elapsed(){ return t0===null ? paused : paused + (Date.now()-t0)/1000; }
+
+function beatIndex(){
+  var e=elapsed(); if(t0===null && paused===0) return -1;
+  if(e<60) return 0; if(e<240) return 1; if(e<480) return 2; return 3;
+}
+function paintClock(){
+  var e=Math.min(elapsed(),TOTAL*2), left=Math.max(0,TOTAL-e);
+  var m=Math.floor(left/60), s=Math.floor(left%60);
+  clockEl.textContent=(left<=0?'-':'')+m+':'+(s<10?'0':'')+s;
+  clockEl.classList.toggle('on', t0!==null && e<540);
+  clockEl.classList.toggle('warn', e>=540);
+  document.body.classList.toggle('warn', e>=540);
+  rail.style.height=Math.min(100,(e/TOTAL)*100)+'%';
+  var b=beatIndex();
+  [].forEach.call(document.querySelectorAll('.beat'),function(el,i){el.classList.toggle('now',i===b)});
+}
+function startPause(){
+  if(t0===null){ t0=Date.now(); tick=setInterval(paintClock,1000); }
+  else { paused+=(Date.now()-t0)/1000; t0=null; clearInterval(tick); }
+  paintClock();
+}
+function resetClock(){ t0=null; paused=0; clearInterval(tick); paintClock(); }
+var held=null;
+clockEl.addEventListener('pointerdown',function(){ held=setTimeout(function(){held='done';resetClock()},600) });
+clockEl.addEventListener('pointerup',function(){ if(held==='done'){held=null;return} clearTimeout(held); held=null; startPause(); });
+clockEl.addEventListener('pointerleave',function(){ clearTimeout(held); });
 
 function render(){
-  var s = stack.length ? stack[stack.length-1] : {t:'home'};
-  view.dataset.adv = adv;
-  view.innerHTML = '<div class="screen">' + SCREEN[s.t](s) + '</div>';
-  back.disabled = stack.length === 0;
-  crumb.textContent = s.crumb || 'Início';
-  window.scrollTo({top:0, behavior:'instant'});
-  [].forEach.call(view.querySelectorAll('[data-nav]'), function(el){
-    el.addEventListener('click', function(){ push(JSON.parse(el.dataset.nav)); });
+  var s=stack.length?stack[stack.length-1]:{t:'home'};
+  document.body.dataset.adv=adv;
+  view.innerHTML='<div class="screen">'+SCREEN[s.t](s)+'</div>';
+  back.disabled=stack.length===0;
+  crumb.textContent=s.crumb||'Início';
+  window.scrollTo({top:0,behavior:'instant'});
+  [].forEach.call(view.querySelectorAll('[data-nav]'),function(el){
+    el.addEventListener('click',function(){ push(JSON.parse(el.dataset.nav)) });
   });
+  paintClock();
 }
-function push(s){ stack.push(s); render(); }
-function pop(){ stack.pop(); render(); }
-function home(){ stack = []; render(); }
+function push(s){stack.push(s);render()}
+function pop(){stack.pop();render()}
+function home(){stack=[];render()}
 
-var SCREEN = {
-  home: function(){
-    var x = d(), h = '';
-    h += '<h1>' + esc(x.nome) + '</h1><p class="lede">' + esc(x.sub) + '</p>';
-    h += '<div class="sect"><span class="mono">Seus 10 minutos</span>';
+function row(kicker,label,sub,nav){
+  return '<button class="row" data-nav=\''+JSON.stringify(nav)+'\'><span class="b">'+
+    (kicker?'<span class="k">'+esc(kicker)+'</span>':'')+label+
+    (sub?'<span class="s">'+esc(sub)+'</span>':'')+'</span><span class="go">&rsaquo;</span></button>';
+}
+
+var SCREEN={
+  home:function(){
+    var x=d(),h='';
+    h+='<h1>'+esc(x.nome)+'</h1><p class="lede">'+esc(x.sub)+'</p>';
+    h+='<div class="sect"><h3>Como gastar os 10 minutos</h3>';
     x.plano.forEach(function(b){
-      h += '<div class="beat"><span class="t">' + b[0] + '</span><div><b>' + esc(b[1]) + '</b><p>' + esc(b[2]) + '</p></div></div>';
+      h+='<div class="beat"><span class="t">'+b[0]+'</span><div><b>'+esc(b[1])+'</b><p>'+esc(b[2])+'</p></div></div>';
     });
-    h += '</div>';
-    h += '<div class="sect"><span class="mono">Comece por uma pergunta</span>';
-    x.perguntas.forEach(function(q,i){
-      h += rowBtn(i+1, esc(q.texto), q.tag, {t:'q', i:i, crumb:'Pergunta ' + (i+1)});
+    h+='</div>';
+    h+='<div class="sect"><h3>Ele respondeu o quê? Comece pela pergunta</h3>';
+    x.perguntas.forEach(function(q,i){ h+=row(q.tag,esc(q.texto),'',{t:'q',i:i,crumb:q.tag}) });
+    h+='</div>';
+    h+='<div class="sect"><h3>Para onde toda conversa converge</h3>';
+    Object.keys(x.destinos).forEach(function(k){
+      var dd=x.destinos[k];
+      h+=row('',esc(dd.nome),dd.prazo,{t:'d',k:k,crumb:dd.nome});
     });
-    h += '</div>';
-    h += '<div class="sect"><span class="mono">Para onde tudo converge</span>';
-    Object.keys(x.destinos).forEach(function(k,i){
-      var dd = x.destinos[k];
-      h += rowBtn(i+1, esc(dd.nome), dd.prazo, {t:'d', k:k, crumb:'Destino'});
-    });
-    h += rowBtn('!', 'O pedido final', 'o que não pode faltar', {t:'ask', crumb:'Pedido final'});
-    h += '</div>';
-    h += '<div class="sect"><span class="mono">Consulta</span>';
-    h += rowBtn('', 'Briefing que eles mandaram', '', {t:'brief', crumb:'Briefing'});
-    h += rowBtn('', 'Perguntas de todas as cadeiras', '', {t:'seats', crumb:'Cadeiras'});
-    h += '</div>';
+    h+=row('','O pedido final','o que não pode faltar dos 8 aos 10',{t:'ask',crumb:'Pedido final'});
+    h+='</div>';
+    h+='<div class="sect"><h3>Consulta</h3>';
+    h+=row('','Briefing que eles mandaram','',{t:'brief',crumb:'Briefing'});
+    h+=row('','Perguntas de todas as cadeiras','',{t:'seats',crumb:'Cadeiras'});
+    h+='</div>';
     return h;
   },
-  q: function(s){
-    var q = d().perguntas[s.i], h = '';
-    h += '<span class="mono kicker">Pergunta ' + (s.i+1) + ' &middot; ' + esc(q.tag) + '</span>';
-    h += '<h2>' + esc(q.texto) + '</h2>';
-    h += '<div class="sect"><span class="mono">O que ela respondeu?</span>';
+  q:function(s){
+    var q=d().perguntas[s.i],h='';
+    h+='<span class="eyebrow">Sua pergunta sobre '+esc(q.tag)+'</span>';
+    h+='<h2>'+esc(q.texto)+'</h2>';
+    h+='<div class="sect"><h3>O que veio como resposta</h3>';
     q.respostas.forEach(function(r,j){
-      h += rowBtn('', '<span class="said">' + esc(r.r) + '</span>', r.nota || '', {t:'r', i:s.i, j:j, crumb:'Pergunta ' + (s.i+1) + ' / resposta'});
+      h+=row('','<span class="voice">'+esc(r.r)+'</span>',r.nota||'',{t:'r',i:s.i,j:j,crumb:q.tag});
     });
-    h += '</div>';
+    h+='</div>';
     return h;
   },
-  r: function(s){
-    var q = d().perguntas[s.i], r = q.respostas[s.j], x = d(), h = '';
-    h += '<span class="mono kicker">Ela respondeu</span>';
-    h += '<h2 class="said">' + esc(r.r) + '</h2>';
-    h += '<div class="sect" style="margin-top:1.6rem"><span class="mono">Você diz</span></div>';
-    h += '<div class="speak" style="margin-top:1rem"><p class="said">' + esc(r.diz) + '</p></div>';
-    h += '<p class="why">' + esc(r.porque) + '</p>';
-    var dd = x.destinos[r.dest];
-    h += '<button class="dest" data-nav=\'' + JSON.stringify({t:'d', k:r.dest, crumb:'Destino'}) + '\'>';
-    h += '<span class="mono">Isso leva para</span><strong>' + esc(dd.nome) + '</strong><span class="p">' + esc(dd.prazo) + ' &nbsp;&rarr;</span></button>';
-    if (r.reacoes && r.reacoes.length){
-      h += '<div class="react"><span class="mono">Se ela reagir assim</span><dl>';
+  r:function(s){
+    var q=d().perguntas[s.i],r=q.respostas[s.j],x=d(),h='';
+    h+='<span class="eyebrow">Respondeu</span>';
+    h+='<h2 class="voice">'+esc(r.r)+'</h2>';
+    h+='<div class="sect"><h3>Você diz</h3></div>';
+    h+='<div class="speak"><p class="voice">'+esc(r.diz)+'</p></div>';
+    h+='<p class="why">'+esc(r.porque)+'</p>';
+    var dd=x.destinos[r.dest];
+    h+='<button class="dest" data-nav=\''+JSON.stringify({t:'d',k:r.dest,crumb:dd.nome})+'\'>'+
+       '<span class="k">Isso leva para</span><strong>'+esc(dd.nome)+'</strong>'+
+       '<span class="p">'+esc(dd.prazo)+' &nbsp;&rarr;</span></button>';
+    if(r.reacoes&&r.reacoes.length){
+      h+='<div class="react"><h3>Se reagir assim</h3><dl>';
       r.reacoes.forEach(function(p){
-        h += '<dt class="said">' + esc(p[0]) + '</dt><dd class="said">' + esc(p[1]) + '</dd>';
+        h+='<dt class="voice">'+esc(p[0])+'</dt><dd class="voice">'+esc(p[1])+'</dd>';
       });
-      h += '</dl></div>';
+      h+='</dl></div>';
     }
     return h;
   },
-  d: function(s){
-    var dd = d().destinos[s.k], h = '';
-    h += '<span class="mono kicker">Destino &middot; ' + esc(dd.prazo) + '</span>';
-    h += '<h1>' + esc(dd.nome) + '</h1>';
-    h += '<div class="sect"><span class="mono">O que ela faz</span><ol class="steps" style="margin-top:1rem">';
-    dd.passos.forEach(function(p){ h += '<li>' + esc(p) + '</li>'; });
-    h += '</ol></div>';
-    h += '<div class="crit"><span class="mono">Critério de sucesso</span><p>' + esc(dd.criterio) + '</p></div>';
-    h += '<div class="ask"><span class="mono">E fecha com o pedido</span><p class="said">' + esc(d().pedido) + '</p></div>';
+  d:function(s){
+    var dd=d().destinos[s.k],h='';
+    h+='<span class="eyebrow">Destino &middot; '+esc(dd.prazo)+'</span><h1>'+esc(dd.nome)+'</h1>';
+    h+='<ol class="steps">';
+    dd.passos.forEach(function(p){h+='<li>'+esc(p)+'</li>'});
+    h+='</ol>';
+    h+='<div class="crit"><h3>Critério de sucesso</h3><p>'+esc(dd.criterio)+'</p></div>';
+    h+='<div class="ask"><h3>E fecha com o pedido</h3><p class="voice">'+esc(d().pedido)+'</p></div>';
     return h;
   },
-  ask: function(){
-    return '<span class="mono kicker">8 a 10 minutos</span><h1>O pedido final</h1>' +
-      '<div class="speak" style="margin-top:1.4rem"><p class="said">' + esc(d().pedido) + '</p></div>' +
-      '<p class="why">É a única coisa que não pode ficar de fora. Se o tempo apertar, corte recomendação e mantenha o pedido: um passo barato, reversível, com prazo.</p>';
+  ask:function(){
+    return '<span class="eyebrow">Dos 8 aos 10 minutos</span><h1>O pedido final</h1>'+
+      '<div class="speak" style="margin-top:1.3rem"><p class="voice">'+esc(d().pedido)+'</p></div>'+
+      '<p class="why">É a única coisa que não pode ficar de fora. Se o tempo apertar, corte recomendação e mantenha o pedido: um passo barato, reversível e com prazo.</p>';
   },
-  brief: function(){ return '<h1>Briefing</h1><div class="brief" style="margin-top:1.4rem">' + REF[adv].brief + '</div>'; },
-  seats: function(){ return '<h1>As outras cadeiras</h1><div style="margin-top:1.2rem">' + REF[adv].seats + '</div>'; }
+  brief:function(){return '<h1>Briefing</h1><div class="brief" style="margin-top:1.5rem">'+REF[adv].brief+'</div>'},
+  seats:function(){return '<h1>As outras cadeiras</h1><div style="margin-top:1.3rem">'+REF[adv].seats+'</div>'}
 };
 
-function rowBtn(n, label, sub, nav){
-  return '<button class="row" data-nav=\'' + JSON.stringify(nav) + '\'>' +
-    (n === '' ? '' : '<span class="n">' + n + '</span>') +
-    '<span class="b">' + label + (sub ? '<em>' + esc(sub) + '</em>' : '') + '</span>' +
-    '<span class="go">&rsaquo;</span></button>';
-}
-
-[].forEach.call(document.querySelectorAll('.tab'), function(b){
-  b.addEventListener('click', function(){
-    adv = b.dataset.go;
-    [].forEach.call(document.querySelectorAll('.tab'), function(t){
-      t.setAttribute('aria-selected', String(t.dataset.go === adv));
+[].forEach.call(document.querySelectorAll('.who'),function(b){
+  b.addEventListener('click',function(){
+    adv=b.dataset.go;
+    [].forEach.call(document.querySelectorAll('.who'),function(t){
+      t.setAttribute('aria-selected',String(t.dataset.go===adv));
     });
-    document.querySelector('.top').dataset.adv = adv;
-    try { localStorage.setItem('clubm', adv); } catch(e){}
-    home();
+    try{localStorage.setItem('clubm',adv)}catch(e){}
+    resetClock(); home();
   });
 });
-back.addEventListener('click', pop);
-document.getElementById('home').addEventListener('click', home);
-try {
-  var sv = localStorage.getItem('clubm');
-  if (sv === 'u') { document.querySelector('.tab[data-go=u]').click(); }
-} catch(e){}
+back.addEventListener('click',pop);
+try{ if(localStorage.getItem('clubm')==='u'){document.querySelector('.who[data-go=u]').click()} }catch(e){}
 render();
 </script>
 
