@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#E4E5DF" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1A1C19">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Conselho">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23356647'/%3E%3Crect x='4' y='6' width='3' height='20' fill='%23fff'/%3E%3Crect x='11' y='6' width='17' height='2.6' fill='%23fff'/%3E%3Crect x='11' y='14.7' width='17' height='2.6' fill='%23fff' opacity='.75'/%3E%3Crect x='11' y='23.4' width='10' height='2.6' fill='%23fff' opacity='.5'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1C19'/%3E%3Ccircle cx='16' cy='17' r='9' fill='none' stroke='%23356647' stroke-width='2.6'/%3E%3Cpath d='M16 11.5V17l3.6 2.4' stroke='%23fff' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>Mesa de Conselho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,6 +131,51 @@ ol.steps::marker{color:var(--sig);font-weight:600}
 .seat ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.65rem;font-size:.95rem;color:var(--muted)}
 .seat p.none{margin:0;color:var(--faint);font-size:.92rem}
 .seat.mine ol{color:var(--ink)}
+
+
+/* HERO: o cronometro é a peça principal */
+.hero{background:var(--ink);color:var(--paper);margin:0 -1.2rem;padding:1.5rem 1.2rem 1.4rem;
+      display:block;width:calc(100%% + 2.4rem);text-align:left;border:0;font:inherit;cursor:pointer}
+.hero:active{opacity:.9}
+.hero .top-line{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.hero .name{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.5rem;letter-spacing:-.01em;line-height:1.1}
+.hero .state{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+.hero .face{font-size:3.6rem;font-weight:700;letter-spacing:-.045em;line-height:1;
+            font-variant-numeric:tabular-nums;margin-top:.7rem;display:block}
+.hero .beatnow{font-size:.95rem;font-weight:600;opacity:.85;margin-top:.35rem;display:block}
+.hero.on .face{color:var(--sig)}
+.hero.warn .face{color:var(--alert)}
+.hero .sub{font-size:.9rem;opacity:.62;margin-top:.9rem;display:block;max-width:26rem;line-height:1.4}
+
+/* cartoes de pergunta */
+.qcard{display:block;width:100%%;text-align:left;background:var(--panel);border:0;
+       border-top:3px solid var(--sig);padding:1.1rem 1.15rem 1.2rem;margin:0 0 .7rem;
+       font:inherit;color:var(--ink);cursor:pointer}
+.qcard:active{background:var(--sunk)}
+.qcard:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
+.qcard .lbl{display:flex;justify-content:space-between;align-items:center;
+            font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+            color:var(--sig);margin-bottom:.55rem}
+.qcard .lbl span:last-child{color:var(--hair);font-size:1.2rem;letter-spacing:0}
+.qcard p{margin:0;font-family:Newsreader,Georgia,serif;font-size:1.14rem;line-height:1.34}
+
+/* faixa de destinos */
+.chips{display:flex;gap:.5rem;overflow-x:auto;padding:.15rem .15rem .5rem;margin:0 -1.2rem;
+       padding-left:1.2rem;padding-right:1.2rem;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;background:none;border:1px solid var(--hair);border-left:3px solid var(--sig);
+      padding:.6rem .8rem;font:inherit;color:var(--ink);cursor:pointer;text-align:left;max-width:12rem}
+.chip:active{background:var(--sunk)}
+.chip b{display:block;font-weight:600;font-size:.92rem;line-height:1.25}
+.chip span{display:block;color:var(--faint);font-size:.76rem;margin-top:.18rem}
+.chip.key{border-color:var(--sig);background:var(--sig);color:var(--paper)}
+.chip.key span{color:var(--paper);opacity:.75}
+
+/* rodape de consulta */
+.look{display:flex;gap:1.4rem;padding:.2rem 0 0;flex-wrap:wrap}
+.look button{background:none;border:0;padding:.5rem 0;font:inherit;font-size:.92rem;font-weight:600;
+             color:var(--muted);cursor:pointer;border-bottom:1px solid var(--hair)}
+.look button:active{color:var(--ink)}
 
 /* barra inferior */
 .bottom{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);
@@ -455,7 +500,18 @@ function beatIndex(){
 function paintClock(){
   var e=Math.min(elapsed(),TOTAL*2), left=Math.max(0,TOTAL-e);
   var m=Math.floor(left/60), s=Math.floor(left%60);
-  clockEl.textContent=(left<=0?'-':'')+m+':'+(s<10?'0':'')+s;
+  var txt=(left<=0?'-':'')+m+':'+(s<10?'0':'')+s;
+  clockEl.textContent=txt;
+  [].forEach.call(document.querySelectorAll('.clockface'),function(el){el.textContent=txt});
+  var hero=document.getElementById('hero');
+  if(hero){
+    hero.classList.toggle('on', t0!==null && e<540);
+    hero.classList.toggle('warn', e>=540);
+    var st=document.getElementById('hstate'), hb=document.getElementById('hbeat');
+    if(st) st.textContent = t0!==null ? 'correndo' : (paused>0 ? 'pausado' : 'toque para começar');
+    var bi=beatIndex();
+    if(hb) hb.textContent = bi<0 ? 'seus 10 minutos começam aqui' : d().plano[bi][1]+' · '+d().plano[bi][0]+' min';
+  }
   clockEl.classList.toggle('on', t0!==null && e<540);
   clockEl.classList.toggle('warn', e>=540);
   document.body.classList.toggle('warn', e>=540);
@@ -481,6 +537,8 @@ function render(){
   back.disabled=stack.length===0;
   crumb.textContent=s.crumb||'Início';
   window.scrollTo({top:0,behavior:'instant'});
+  var hb=document.getElementById('hero');
+  if(hb) hb.addEventListener('click', startPause);
   [].forEach.call(view.querySelectorAll('[data-nav]'),function(el){
     el.addEventListener('click',function(){ push(JSON.parse(el.dataset.nav)) });
   });
@@ -499,26 +557,37 @@ function row(kicker,label,sub,nav){
 var SCREEN={
   home:function(){
     var x=d(),h='';
-    h+='<h1>'+esc(x.nome)+'</h1><p class="lede">'+esc(x.sub)+'</p>';
+    h+='<button class="hero" id="hero">'+
+       '<span class="top-line"><span class="name">'+esc(x.nome)+'</span>'+
+       '<span class="state" id="hstate">toque para começar</span></span>'+
+       '<span class="face clockface">10:00</span>'+
+       '<span class="beatnow" id="hbeat">'+esc(x.plano[0][1])+' &middot; '+esc(x.plano[0][2].slice(0,0))+'seus 10 minutos começam aqui</span>'+
+       '<span class="sub">'+esc(x.sub)+'</span></button>';
+    h+='<div class="sect"><h3>O que veio como resposta? Entre pela pergunta</h3><div style="margin-top:.9rem">';
+    x.perguntas.forEach(function(q,i){
+      h+='<button class="qcard" data-nav=\''+JSON.stringify({t:'q',i:i,crumb:q.tag})+'\'>'+
+         '<span class="lbl"><span>'+esc(q.tag)+'</span><span>&rsaquo;</span></span>'+
+         '<p>'+esc(q.texto)+'</p></button>';
+    });
+    h+='</div></div>';
+    h+='<div class="sect"><h3>Para onde toda conversa converge</h3><div class="chips" style="margin-top:.9rem">';
+    Object.keys(x.destinos).forEach(function(k){
+      var dd=x.destinos[k];
+      h+='<button class="chip" data-nav=\''+JSON.stringify({t:'d',k:k,crumb:dd.nome})+'\'>'+
+         '<b>'+esc(dd.nome)+'</b><span>'+esc(dd.prazo)+'</span></button>';
+    });
+    h+='<button class="chip key" data-nav=\''+JSON.stringify({t:'ask',crumb:'Pedido final'})+'\'>'+
+       '<b>O pedido final</b><span>dos 8 aos 10</span></button>';
+    h+='</div></div>';
     h+='<div class="sect"><h3>Como gastar os 10 minutos</h3>';
     x.plano.forEach(function(b){
       h+='<div class="beat"><span class="t">'+b[0]+'</span><div><b>'+esc(b[1])+'</b><p>'+esc(b[2])+'</p></div></div>';
     });
     h+='</div>';
-    h+='<div class="sect"><h3>Ele respondeu o quê? Comece pela pergunta</h3>';
-    x.perguntas.forEach(function(q,i){ h+=row(q.tag,esc(q.texto),'',{t:'q',i:i,crumb:q.tag}) });
-    h+='</div>';
-    h+='<div class="sect"><h3>Para onde toda conversa converge</h3>';
-    Object.keys(x.destinos).forEach(function(k){
-      var dd=x.destinos[k];
-      h+=row('',esc(dd.nome),dd.prazo,{t:'d',k:k,crumb:dd.nome});
-    });
-    h+=row('','O pedido final','o que não pode faltar dos 8 aos 10',{t:'ask',crumb:'Pedido final'});
-    h+='</div>';
-    h+='<div class="sect"><h3>Consulta</h3>';
-    h+=row('','Briefing que eles mandaram','',{t:'brief',crumb:'Briefing'});
-    h+=row('','Perguntas de todas as cadeiras','',{t:'seats',crumb:'Cadeiras'});
-    h+='</div>';
+    h+='<div class="sect"><h3>Consulta</h3><div class="look">';
+    h+='<button data-nav=\''+JSON.stringify({t:'brief',crumb:'Briefing'})+'\'>Briefing que eles mandaram</button>';
+    h+='<button data-nav=\''+JSON.stringify({t:'seats',crumb:'Cadeiras'})+'\'>Perguntas de todas as cadeiras</button>';
+    h+='</div></div>';
     return h;
   },
   q:function(s){
