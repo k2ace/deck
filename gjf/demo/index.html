@@ -229,15 +229,36 @@
   /* client mobile */
   .client{display:none;min-height:100%;padding:clamp(24px,5vw,56px);background:radial-gradient(120% 80% at 82% 6%, var(--gold-soft), transparent 55%);}
   .client.on{display:block;}
-  .client-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:clamp(30px,5vw,66px);align-items:center;}
-  .client-copy{max-width:430px;}
-  .client-copy .kick{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
-  .client-copy h2{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,3.2vw,2.3rem);letter-spacing:-.02em;margin:0 0 14px;line-height:1.12;}
-  .client-copy p{color:var(--muted);font-size:.98rem;line-height:1.55;margin:0 0 20px;}
-  .client-copy ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
-  .client-copy li{display:flex;gap:11px;align-items:flex-start;font-size:.93rem;color:var(--ink);line-height:1.4;}
-  .client-copy li b{color:var(--gold);flex:0 0 auto;font-weight:700;}
-  @media(max-width:820px){.client-inner{grid-template-columns:1fr;justify-items:center;}.client-copy{max-width:520px;text-align:center;}.client-copy li{text-align:left;}}
+  .client-inner{max-width:1020px;margin:0 auto;}
+  .client-head{max-width:680px;margin:0 auto 26px;text-align:center;}
+  .client-head .kick{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+  .client-head h2{font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.02em;margin:0 0 10px;line-height:1.12;}
+  .client-head p{color:var(--muted);font-size:.96rem;line-height:1.55;margin:0;}
+  .browser{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;}
+  .br-bar{display:flex;align-items:center;gap:7px;padding:11px 15px;background:var(--line-2);border-bottom:1px solid var(--line);}
+  .br-bar i{width:10px;height:10px;border-radius:50%;background:var(--muted-2);opacity:.5;}
+  .br-bar .url{margin-left:12px;font-size:.72rem;color:var(--muted);background:var(--card);border-radius:6px;padding:4px 12px;}
+  .br-body{padding:clamp(16px,2.5vw,26px);}
+  .br-h{font-family:var(--display);font-size:1.2rem;font-weight:500;margin:0 0 2px;}
+  .br-sub{color:var(--muted);font-size:.82rem;margin:0 0 18px;}
+  .br-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+  .br-tile{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
+  .br-tile span{font-size:.72rem;color:var(--muted);}
+  .br-tile b{display:block;font-family:var(--display);font-size:1.25rem;margin-top:3px;}
+  .br-cols{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;}
+  .br-sec h4{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2);font-weight:700;margin:0 0 10px;}
+  .cfat{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line-2);cursor:pointer;}
+  .cfat:last-child{border-bottom:none;}
+  .cfat .co{font-weight:700;font-size:.86rem;}
+  .cfat .mt{font-size:.72rem;color:var(--muted);margin-top:1px;}
+  .cfat .vv{font-family:var(--display);font-size:.95rem;white-space:nowrap;}
+  .cfat .dl{border:0;background:var(--line-2);color:var(--ink);border-radius:8px;padding:6px 12px;font-size:.74rem;font-weight:700;flex:0 0 auto;}
+  .cchart{display:flex;align-items:flex-end;gap:7px;height:96px;padding:8px;background:var(--bg);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;}
+  .cchart i{flex:1;background:linear-gradient(180deg,#33456a,#1c2942);border-radius:4px 4px 0 0;}
+  .cchart i.hot{background:linear-gradient(180deg,#d0a34f,#b07d22);}
+  .cinsight{background:var(--gold-soft);border-radius:12px;padding:12px 14px;font-size:.84rem;line-height:1.45;color:var(--ink);}
+  .cinsight b{color:var(--gold);}
+  @media(max-width:760px){.br-tiles{grid-template-columns:1fr 1fr;}.br-cols{grid-template-columns:1fr;}}
   .phone{width:min(390px,100%);background:var(--card);border-radius:30px;border:1px solid var(--line);box-shadow:var(--shadow-lg);overflow:hidden;}
   .phone__top{background:var(--brand);color:#fff;padding:26px 22px 20px;}
   .phone__top .g{font-size:.74rem;opacity:.7;}
@@ -304,7 +325,7 @@
       <p class="sub">Setembro de 2026. O robô já buscou as faturas do mês. Aqui está o resumo.</p>
       <div class="kpis">
         <div class="kpi"><div class="lab">Custo de telefonia no mês</div><div class="val tnum">R$ 184.720</div><div class="delta down">▼ 6,2% vs agosto</div></div>
-        <div class="kpi"><div class="lab">Economia gerada no ano</div><div class="val tnum">R$ 71.480</div><div class="delta up">▲ meta superada</div></div>
+        <div class="kpi"><div class="lab">CNPJs em gestão</div><div class="val tnum">43</div><div class="delta up">carteira completa</div></div>
         <div class="kpi"><div class="lab">Linhas ativas</div><div class="val tnum">1.284</div><div class="delta flat">18 sem uso</div></div>
         <div class="kpi"><div class="lab">Faturas capturadas</div><div class="val tnum">126 / 128</div><div class="delta up">98% automático</div></div>
       </div>
@@ -395,35 +416,39 @@
   <div class="clientwrap">
     <div class="client on">
       <div class="client-inner">
-      <div class="client-copy">
-        <div class="kick">Portal do cliente</div>
-        <h2>O seu cliente enxerga tudo, na palma da mão.</h2>
-        <p>Sem ligar para pedir a fatura. Ele entra, vê as contas do mês já organizadas, baixa em um toque e ainda enxerga onde dá para economizar.</p>
-        <ul>
-          <li><b>✓</b><span>Faturas do mês, prontas e por operadora</span></li>
-          <li><b>✓</b><span>Visualiza e baixa sem depender de você</span></li>
-          <li><b>✓</b><span>Abre chamado e acompanha pelo celular</span></li>
-          <li><b>✓</b><span>Enxerga a economia que a gestão trouxe</span></li>
-        </ul>
-      </div>
-      <div class="phone">
-        <div class="phone__top">
-          <div class="g">Portal do cliente</div>
-          <div class="n">Grupo Andrade Veículos</div>
-          <div style="display:flex;gap:10px;margin-top:16px">
-            <div style="flex:1;background:rgba(255,255,255,.12);border-radius:12px;padding:11px 13px"><div style="font-size:.66rem;opacity:.7">Total do mês</div><div class="tnum" style="font-family:var(--display);font-size:1.1rem;margin-top:2px">R$ 6.936,45</div></div>
-            <div style="flex:1;background:rgba(255,255,255,.12);border-radius:12px;padding:11px 13px"><div style="font-size:.66rem;opacity:.7">Economia do mês</div><div class="tnum" style="font-family:var(--display);font-size:1.1rem;margin-top:2px;color:#7fe0c4">R$ 1.240</div></div>
+        <div class="client-head">
+          <div class="kick">Portal do cliente · no computador</div>
+          <h2>A empresa acessa e encontra tudo sozinha.</h2>
+          <p>Todas as faturas do mês e dos meses anteriores, fáceis de achar, com gráfico do custo e um insight de como está a conta. É o que resolve o cliente que abre chamado porque a fatura não apareceu.</p>
+        </div>
+        <div class="browser">
+          <div class="br-bar"><i></i><i></i><i></i><span class="url">portal.gjf.com.br · Grupo Andrade Veículos</span></div>
+          <div class="br-body">
+            <div class="br-h">Grupo Andrade Veículos</div>
+            <div class="br-sub">Faturas e relatórios · setembro de 2026</div>
+            <div class="br-tiles">
+              <div class="br-tile"><span>Custo do mês</span><b>R$ 6.936,45</b></div>
+              <div class="br-tile"><span>Faturas disponíveis</span><b>8 de 8</b></div>
+              <div class="br-tile"><span>Linhas ativas</span><b>42</b></div>
+            </div>
+            <div class="br-cols">
+              <div class="br-sec">
+                <h4>Faturas de setembro · clique para ver</h4>
+                <div class="cfat" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Vivo Empresas',vc:'10/10',v:'R$ 4.218,90',s:'g',t:'Capturada'})"><div><div class="co">Vivo Empresas</div><div class="mt">Vence 10/10 · móvel</div></div><span class="vv">R$ 4.218,90</span><button class="dl" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div>
+                <div class="cfat" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Claro',vc:'12/10',v:'R$ 1.905,40',s:'g',t:'Capturada'})"><div><div class="co">Claro</div><div class="mt">Vence 12/10 · fixo e internet</div></div><span class="vv">R$ 1.905,40</span><button class="dl" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div>
+                <div class="cfat" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Embratel',vc:'15/10',v:'R$ 812,15',s:'g',t:'Capturada'})"><div><div class="co">Embratel</div><div class="mt">Vence 15/10 · link dedicado</div></div><span class="vv">R$ 812,15</span><button class="dl" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div>
+                <div class="cfat" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Tim',vc:'08/10',v:'R$ 640,20',s:'g',t:'Capturada'})"><div><div class="co">Tim</div><div class="mt">Vence 08/10 · móvel</div></div><span class="vv">R$ 640,20</span><button class="dl" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div>
+                <div class="cfat" onclick="toast('Abrindo o histórico de faturas')"><div><div class="co" style="color:var(--gold)">Ver todas as 8 faturas e o histórico</div><div class="mt">meses anteriores inclusos</div></div><span class="vv"></span></div>
+              </div>
+              <div class="br-sec">
+                <h4>Custo por operadora</h4>
+                <div class="cchart"><i class="hot" style="height:88%"></i><i style="height:40%"></i><i style="height:20%"></i><i style="height:16%"></i></div>
+                <div class="cinsight"><b>✦ Insight:</b> a Vivo concentra 61% da sua conta. Vale revisar o plano e as linhas sem uso nessa operadora.</div>
+                <button class="btn ghost" style="width:100%;justify-content:center;margin-top:12px" onclick="toast('Chamado aberto')">Abrir um chamado</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="phone__body">
-          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:.8rem;color:var(--muted);font-weight:700;">Suas faturas de setembro</span><span style="font-size:.72rem;color:var(--muted-2)">Toque para ver detalhes</span></div>
-          <div class="cbill" style="cursor:pointer" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Vivo Empresas',vc:'10/10',v:'R$ 4.218,90',s:'g',t:'Capturada'})"><div class="r1"><span class="op">Vivo Empresas</span><span class="vl tnum">R$ 4.218,90</span></div><div class="r2"><span>Vence 10/10 · 42 linhas · móvel</span><button class="cbtn" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div></div>
-          <div class="cbill" style="cursor:pointer" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Claro',vc:'12/10',v:'R$ 1.905,40',s:'g',t:'Capturada'})"><div class="r1"><span class="op">Claro</span><span class="vl tnum">R$ 1.905,40</span></div><div class="r2"><span>Vence 12/10 · fixo e internet</span><button class="cbtn" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div></div>
-          <div class="cbill" style="cursor:pointer" onclick="openFatura({e:'Grupo Andrade Veículos',o:'Embratel',vc:'15/10',v:'R$ 812,15',s:'g',t:'Capturada'})"><div class="r1"><span class="op">Embratel</span><span class="vl tnum">R$ 812,15</span></div><div class="r2"><span>Vence 15/10 · link dedicado</span><button class="cbtn" onclick="event.stopPropagation();toast('Fatura baixada')">Baixar</button></div></div>
-          <button class="btn" style="justify-content:center;margin-top:4px;" onclick="toast('Chamado aberto')">Abrir um chamado</button>
-          <button class="btn ghost" style="justify-content:center;" onclick="toast('Consumo detalhado aberto')">Ver consumo detalhado</button>
-        </div>
-      </div>
       </div>
     </div>
   </div>
