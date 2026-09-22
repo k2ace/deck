@@ -2,17 +2,16 @@ name = "deck-track"
 main = "worker.js"
 compatibility_date = "2026-09-01"
 
-# Rota do endpoint. Ajustar a zona/host conforme a conta k2ace na Cloudflare.
-# Ex.: deck-track.k2ia.app/* apontando para este Worker.
-# routes = [ { pattern = "deck-track.k2ia.app/*", zone_name = "k2ia.app" } ]
-
-# Historico opcional dos toques. Criar com:
+# Historico das aberturas. Criar o namespace com:
 #   wrangler kv namespace create DECK_HITS
 # e colar o id devolvido aqui embaixo.
 # [[kv_namespaces]]
 # binding = "DECK_HITS"
 # id = "COLAR_O_ID_AQUI"
 
-# Avisos no Telegram (secrets, nao ficam no arquivo). Definir com:
-#   wrangler secret put TG_TOKEN
-#   wrangler secret put TG_CHAT
+# Rota em dominio proprio. O beacon (track.js) aponta para deck-track.k2ia.app/hit
+# routes = [ { pattern = "deck-track.k2ia.app/*", zone_name = "k2ia.app" } ]
+
+# LIST_TOKEN protege a leitura em /list. E um secret, nao vai no arquivo. Definir com:
+#   wrangler secret put LIST_TOKEN
+# Valor combinado no DEPLOY.md

@@ -312,6 +312,44 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .seg button[aria-pressed="true"]{background:var(--marca);border-color:var(--marca);color:var(--marca-ink);font-weight:500}
 .rotulo{font-size:.75rem;letter-spacing:.03em;color:var(--ink-2);margin:1.75rem 0 .625rem}
 .rotulo:first-child{margin-top:0}
+/* formas de pagamento: marcáveis em conjunto, não uma excluindo a outra */
+.modos{display:grid;gap:.625rem;margin-bottom:.5rem}
+@media(min-width:44rem){.modos{grid-template-columns:repeat(3,1fr)}}
+.modo{
+  display:flex;gap:.75rem;align-items:flex-start;text-align:left;padding:1rem;
+  border-radius:var(--r);background:var(--card);border:1px solid var(--line-soft);
+  box-shadow:var(--sombra);will-change:transform;transition:border-color .2s ease;
+}
+.modo[aria-pressed="true"]{border-color:var(--marca)}
+.modo .marca-box{
+  width:1.375rem;height:1.375rem;border-radius:.4375rem;flex:0 0 auto;margin-top:.0625rem;
+  border:1.5px solid var(--line);display:grid;place-items:center;color:var(--marca-ink);
+  transition:background-color .18s ease,border-color .18s ease;
+}
+.modo[aria-pressed="true"] .marca-box{background:var(--marca);border-color:var(--marca)}
+.modo .marca-box svg{width:.75rem;height:.75rem;opacity:0;transition:opacity .15s ease}
+.modo[aria-pressed="true"] .marca-box svg{opacity:1}
+.modo .mt{display:block;font-size:.9375rem;font-weight:600;letter-spacing:-.008em;line-height:1.25}
+.modo .ms{display:block;font-size:.75rem;color:var(--ink-3);margin-top:.1875rem;line-height:1.35}
+
+.livre{margin-top:1rem}
+.linha-livre{display:grid;grid-template-columns:1fr 8rem 2.25rem;gap:.5rem;margin-bottom:.5rem;align-items:center}
+.linha-livre .input{padding:.625rem .75rem}
+.linha-livre .tirar{width:2.25rem;height:2.25rem;border-radius:.5rem;color:var(--ink-3);
+  font-size:1.25rem;line-height:1;border:1px solid var(--line-soft)}
+.livre-rodape{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.75rem}
+.add-linha{font-size:.875rem;color:var(--marca);font-weight:600}
+.saldo{font-size:.8125rem;color:var(--alerta);font-variant-numeric:tabular-nums}
+.saldo.ok{color:#2f9e5e}
+.saldo.passou{color:#d6453a}
+.plano-bloco{margin-top:1.75rem}
+.plano-bloco table.plan{margin-top:.25rem}
+
+.doc .formapg{font-size:.8125rem;font-weight:700;letter-spacing:-.005em;color:#005389;margin:1rem 0 .1875rem}
+.doc .formapg:first-of-type{margin-top:.25rem}
+.doc .maq .nm em{display:block;font-style:normal;font-weight:400;font-size:.8125rem;color:#61707c;margin-top:.125rem}
+.card .fam,.item .fam{font-size:.75rem;color:var(--ink-3);letter-spacing:.01em}
+.card .nome b,.item .h3 b{font-weight:700}
 table.plan{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.875rem}
 table.plan th{text-align:left;font-weight:600;color:var(--ink-3);font-size:.6875rem;
   letter-spacing:.1em;text-transform:uppercase;padding-bottom:.5rem}
@@ -465,16 +503,11 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
     <div class="cabeca">
       <p class="contador"><span>Etapa 3 de 4</span><i><b></b><b></b><b></b><b></b></i></p>
       <h2 class="display" style="margin-top:.5rem">Como ele<br>vai pagar?</h2>
-      <p class="tiny">Entrada mais parcelas nos marcos da fábrica. Qualquer combinação recalcula na hora, sem depender de condição cadastrada antes.</p>
+      <p class="tiny">Pode marcar mais de uma forma na mesma proposta, como vocês já fazem na planilha. E quando a negociação sai do padrão, dá para escrever parcela por parcela.</p>
     </div>
-    <div class="seg" id="modos"></div>
-    <div id="blocoDireto">
-      <p class="rotulo">Entrada</p>
-      <div class="seg" id="entradas"></div>
-      <p class="rotulo">Parcelas após a entrada</p>
-      <div class="seg" id="parcelas"></div>
-    </div>
-    <table class="plan" id="tabPlan"></table>
+    <div id="modos" class="modos"></div>
+    <div id="detalhe"></div>
+    <div id="planos"></div>
   </section>
 
   <section class="panel" data-panel="3">
@@ -750,7 +783,8 @@ function montar(D){
   const E = D.empresa;
   const estado = {
     etapa: 0, cliente: {}, itens: [],
-    modo: 'direto', entrada: D.entradaPadrao, parcelas: D.parcelasPadrao,
+    modos: new Set(['direto']), livre: false, custom: [],
+    entrada: D.entradaPadrao, parcelas: D.parcelasPadrao,
     somar: true, familia: 'Extrusora',
     ref: String(new Date().getFullYear()) + '-' + String(Math.floor(Math.random() * 900) + 100)
   };
@@ -971,9 +1005,10 @@ function montar(D){
             ? `<img src="${p.img}" alt="${esc(p.nome)}" loading="lazy" decoding="async">${p.giro ? '<span class="giro360">360°</span>' : ''}`
             : '<span class="semfoto">render em produção</span>'}</span>
           <span class="txt">
-            <span class="nome">${esc(p.nome)}</span>
+            <span class="fam">${esc(p.familia)}</span>
+            <span class="nome">${esc(p.linha)} <b>${esc(p.modelo)}</b></span>
             <span class="price num">${multi ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</span>
-            <span class="meta">${multi ? p.variantes.length + ' configurações de bobinadeira' : 'configuração única'}${p.finame && p.finame !== '...' ? ' · FINAME ' + p.finame : ''}</span>
+            <span class="meta">${multi ? p.variantes.length + ' configurações de bobinadeira' : 'configuração única'}</span>
           </span>
         </button>`;
       }).join('');
@@ -1060,8 +1095,9 @@ function montar(D){
           : `<div class="palco"><img class="ativo" src="${p.img}" alt="${esc(p.nome)}" loading="lazy" draggable="false"></div>`) : ''}
         <header>
           <div>
-            <p class="h3">${esc(p.nome)}</p>
-            <p class="tiny" style="margin-top:.125rem">${p.familia} · NCM ${p.ncm || '—'}${p.finame && p.finame !== '...' ? ' · FINAME ' + p.finame : ''}</p>
+            <p class="fam">${esc(p.familia)}</p>
+            <p class="h3" style="margin-top:.125rem">${esc(p.linha)} <b style="font-weight:700">${esc(p.modelo)}</b></p>
+            <p class="tiny" style="margin-top:.25rem">NCM ${p.ncm || '—'}${p.finame && p.finame !== '...' ? ', FINAME ' + p.finame : ''}</p>
           </div>
           <button class="linkish" data-rm="${idx}">remover</button>
         </header>
@@ -1139,43 +1175,145 @@ function montar(D){
     }
   });
 
-  /* ---------- pagamento ---------- */
+  /* ---------- pagamento ----------
+     Mais de uma forma pode conviver na mesma proposta, e a forma direta aceita
+     uma composição escrita à mão, do tipo "50 mil na primeira, 45 na segunda e
+     o resto em três cheques", que é como a negociação acontece de verdade. */
   const MODOS = [
-    {id: 'direto', nome: 'Direto com a Cristofolini'},
-    {id: 'banco', nome: 'Financiamento com o banco'},
-    {id: 'avista', nome: 'À vista'}
+    {id: 'direto', nome: 'Direto com a Cristofolini', sub: 'Entrada mais parcelas nos marcos da fábrica'},
+    {id: 'banco',  nome: 'Financiamento com o banco', sub: 'Entrada de 20% e o saldo liberado pelo agente'},
+    {id: 'avista', nome: 'À vista',                   sub: 'Pagamento único contra pedido'}
   ];
+
   function desenhaPagamento(){
-    el('#modos').innerHTML = MODOS.map(m => `<button data-modo="${m.id}" aria-pressed="${m.id === estado.modo}">${m.nome}</button>`).join('');
-    el('#entradas').innerHTML = [.1, .15, .2, .25, .3].map(f =>
-      `<button data-ent="${f}" aria-pressed="${Math.abs(f - estado.entrada) < .001}">${Math.round(f * 100)}%</button>`).join('');
-    el('#parcelas').innerHTML = D.marcos.map((_, i) =>
-      `<button data-par="${i + 1}" aria-pressed="${i + 1 === estado.parcelas}">${i + 1}×</button>`).join('');
-    el('#blocoDireto').hidden = estado.modo !== 'direto';
-    desenhaPlano();
-    tatil(el('#modos'), 'button', .95);
-    tatil(el('#entradas'), 'button', .93);
-    tatil(el('#parcelas'), 'button', .9);
+    el('#modos').innerHTML = MODOS.map(m => `
+      <button class="modo" data-modo="${m.id}" aria-pressed="${estado.modos.has(m.id)}">
+        <span class="marca-box" aria-hidden="true">
+          <svg viewBox="0 0 12 12"><path d="M2 6.2 4.7 9 10 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span><span class="mt">${m.nome}</span><span class="ms">${m.sub}</span></span>
+      </button>`).join('');
+
+    const temDireto = estado.modos.has('direto');
+    el('#detalhe').innerHTML = !temDireto ? '' : `
+      <div class="grupo" style="border-top:0">
+        <div class="tit"><b>Como a parte direta é dividida</b></div>
+        <div class="seg" style="margin-top:.5rem">
+          <button data-livre="0" aria-pressed="${!estado.livre}">Parcelas iguais</button>
+          <button data-livre="1" aria-pressed="${estado.livre}">Escrever parcela por parcela</button>
+        </div>
+      </div>
+      ${estado.livre ? editorLivre() : `
+        <p class="rotulo">Entrada</p>
+        <div class="seg" id="entradas">${[.1,.15,.2,.25,.3].map(f =>
+          `<button data-ent="${f}" aria-pressed="${Math.abs(f - estado.entrada) < .001}">${Math.round(f*100)}%</button>`).join('')}</div>
+        <p class="rotulo">Parcelas após a entrada</p>
+        <div class="seg" id="parcelas">${D.marcos.map((_, i) =>
+          `<button data-par="${i+1}" aria-pressed="${i+1 === estado.parcelas}">${i+1}×</button>`).join('')}</div>`}`;
+
+    desenhaPlanos();
+    tatil(el('#modos'), '.modo', .985);
+    tatil(el('#detalhe'), 'button', .94);
+    tatil(el('#detalhe'), '.stepper button', .85);
   }
-  function planoDe(t){
+
+  function editorLivre(){
+    if (!estado.custom.length) estado.custom = [{marco: 'Entrada', valor: 0}];
+    const alvo = total();
+    const soma = estado.custom.reduce((s, l) => s + (+l.valor || 0), 0);
+    const resto = alvo - soma;
+    const opcoes = ['Entrada', ...D.marcos, 'Cheque', 'Na entrega'];
+    return `<div class="livre">
+      ${estado.custom.map((l, i) => `<div class="linha-livre">
+        <select class="input" data-lm="${i}">${opcoes.map(o =>
+          `<option${o === l.marco ? ' selected' : ''}>${o}</option>`).join('')}</select>
+        <input class="input num" data-lv="${i}" inputmode="numeric" value="${l.valor ? brl(l.valor).replace('R$ ','') : ''}" placeholder="0">
+        <button class="tirar" data-lx="${i}" aria-label="Remover parcela">×</button>
+      </div>`).join('')}
+      <div class="livre-rodape">
+        <button class="add-linha" data-ladd="1">Adicionar parcela</button>
+        <span class="saldo ${Math.abs(resto) < 1 ? 'ok' : (resto < 0 ? 'passou' : '')}">
+          ${Math.abs(resto) < 1 ? 'Fecha com o total' : (resto > 0 ? 'Falta distribuir ' + brl(resto) : 'Passou ' + brl(-resto))}
+        </span>
+      </div>
+    </div>`;
+  }
+
+  function planoDe(modo, t){
     if (!t) return [];
-    if (estado.modo === 'avista') return [{marco: 'Pagamento único, à vista', valor: t}];
-    if (estado.modo === 'banco') return [
+    if (modo === 'avista') return [{marco: 'Pagamento único, contra pedido', valor: t}];
+    if (modo === 'banco') return [
       {marco: 'Entrada de 20%', valor: t * .2},
-      {marco: 'Entrega, via financiamento bancário', valor: t * .8}];
+      {marco: 'Entrega, liberado pelo agente financeiro', valor: t * .8}];
+    if (estado.livre) return estado.custom.filter(l => +l.valor > 0).map(l => ({marco: l.marco, valor: +l.valor}));
     const ent = t * estado.entrada, resto = (t - ent) / estado.parcelas;
     return [{marco: 'Entrada', valor: ent}, ...D.marcos.slice(0, estado.parcelas).map(m => ({marco: m, valor: resto}))];
   }
-  function desenhaPlano(){
-    const l = planoDe(total());
-    el('#tabPlan').innerHTML = l.length
-      ? `<thead><tr><th>Marco</th><th style="text-align:right">Valor</th></tr></thead><tbody>${
-          l.map(x => `<tr><td>${esc(x.marco)}</td><td class="num">${brl(x.valor)}</td></tr>`).join('')}</tbody>`
-      : '<tbody><tr><td class="tiny">Escolha ao menos um equipamento na etapa anterior.</td></tr></tbody>';
+
+  const modosAtivos = () => MODOS.filter(m => estado.modos.has(m.id));
+
+  function desenhaPlanos(){
+    const t = total();
+    if (!t){ el('#planos').innerHTML = '<p class="tiny" style="margin-top:2rem">Escolha ao menos um equipamento na etapa anterior.</p>'; return; }
+    el('#planos').innerHTML = modosAtivos().map(m => {
+      const l = planoDe(m.id, t);
+      if (!l.length) return '';
+      return `<div class="plano-bloco">
+        <p class="rotulo" style="margin-bottom:.375rem">${m.nome}</p>
+        <table class="plan"><tbody>${l.map(x =>
+          `<tr><td>${esc(x.marco)}</td><td class="num">${brl(x.valor)}</td></tr>`).join('')}</tbody></table>
+      </div>`;
+    }).join('');
   }
-  el('#modos').addEventListener('click', (e) => { const b = e.target.closest('[data-modo]'); if (b){ estado.modo = b.dataset.modo; desenhaPagamento(); } });
-  el('#entradas').addEventListener('click', (e) => { const b = e.target.closest('[data-ent]'); if (b){ estado.entrada = +b.dataset.ent; desenhaPagamento(); } });
-  el('#parcelas').addEventListener('click', (e) => { const b = e.target.closest('[data-par]'); if (b){ estado.parcelas = +b.dataset.par; desenhaPagamento(); } });
+
+  el('#modos').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-modo]');
+    if (!b) return;
+    const id = b.dataset.modo;
+    if (estado.modos.has(id)){
+      if (estado.modos.size > 1) estado.modos.delete(id);   // ao menos uma forma fica
+    } else estado.modos.add(id);
+    desenhaPagamento();
+  });
+
+  el('#detalhe').addEventListener('click', (e) => {
+    const lv = e.target.closest('[data-livre]');
+    if (lv){ estado.livre = lv.dataset.livre === '1'; desenhaPagamento(); return; }
+    const en = e.target.closest('[data-ent]');
+    if (en){ estado.entrada = +en.dataset.ent; desenhaPagamento(); return; }
+    const pa = e.target.closest('[data-par]');
+    if (pa){ estado.parcelas = +pa.dataset.par; desenhaPagamento(); return; }
+    const add = e.target.closest('[data-ladd]');
+    if (add){
+      const usados = estado.custom.length;
+      estado.custom.push({marco: D.marcos[Math.min(usados - 1, D.marcos.length - 1)] || 'Entrega', valor: 0});
+      desenhaPagamento(); return;
+    }
+    const x = e.target.closest('[data-lx]');
+    if (x){ estado.custom.splice(+x.dataset.lx, 1); desenhaPagamento(); }
+  });
+
+  el('#detalhe').addEventListener('change', (e) => {
+    const m = e.target.closest('[data-lm]');
+    if (m){ estado.custom[+m.dataset.lm].marco = m.value; desenhaPlanos(); }
+  });
+
+  el('#detalhe').addEventListener('input', (e) => {
+    const v = e.target.closest('[data-lv]');
+    if (!v) return;
+    const n = Number(v.value.replace(/\D/g, ''));
+    estado.custom[+v.dataset.lv].valor = n;
+    v.value = n ? n.toLocaleString('pt-BR') : '';
+    v.setSelectionRange(v.value.length, v.value.length);
+    const saldo = el('#detalhe .saldo');
+    if (saldo){
+      const resto = total() - estado.custom.reduce((s, l) => s + (+l.valor || 0), 0);
+      saldo.className = 'saldo ' + (Math.abs(resto) < 1 ? 'ok' : (resto < 0 ? 'passou' : ''));
+      saldo.textContent = Math.abs(resto) < 1 ? 'Fecha com o total'
+        : (resto > 0 ? 'Falta distribuir ' + brl(resto) : 'Passou ' + brl(-resto));
+    }
+    desenhaPlanos();
+  });
 
   /* ---------- documento ---------- */
   function desenhaDoc(){
@@ -1184,19 +1322,20 @@ function montar(D){
     tatil(el('#modoDoc'), 'button', .95);
     const alvo = el('#docs');
     if (!estado.itens.length){ alvo.className = 'cmp'; alvo.innerHTML = '<p class="empty">Nenhum equipamento configurado ainda.</p>'; return; }
+    const blocos = (t) => modosAtivos().map(m => ({nome: m.nome, linhas: planoDe(m.id, t)})).filter(b => b.linhas.length);
     if (estado.somar){
       alvo.className = 'cmp';
-      alvo.innerHTML = docHTML(estado.itens, planoDe(total()), '');
+      alvo.innerHTML = docHTML(estado.itens, blocos(total()), '');
     } else {
       alvo.className = 'cmp n' + estado.itens.length;
-      alvo.innerHTML = estado.itens.map((it, i) => docHTML([it], planoDe(subtotal(it)), 'Opção ' + (i + 1))).join('');
+      alvo.innerHTML = estado.itens.map((it, i) => docHTML([it], blocos(subtotal(it)), 'Opção ' + (i + 1))).join('');
     }
   }
   el('#modoDoc').addEventListener('click', (e) => {
     const b = e.target.closest('[data-som]'); if (b){ estado.somar = b.dataset.som === '1'; desenhaDoc(); }
   });
 
-  function docHTML(lista, linhas, rotulo){
+  function docHTML(lista, blocos, rotulo){
     const c = estado.cliente;
     const soma = lista.reduce((s, it) => s + subtotal(it), 0);
     const hoje = new Date().toLocaleDateString('pt-BR');
@@ -1232,7 +1371,7 @@ function montar(D){
           return `<div class="maq">
             ${p.img ? `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}
             <div class="ln">
-              <span class="nm">${esc(p.nome)}${p.variantes.length > 1 ? ' · ' + esc(v.label) : ''}</span>
+              <span class="nm">${esc(p.linha)} ${esc(p.modelo)}${p.variantes.length > 1 ? '<br><em>' + esc(v.label) + '</em>' : ''}</span>
               <span class="vl num">${brl(subtotal(it))}</span>
             </div>
             <ul>${v.desc.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
@@ -1248,7 +1387,10 @@ function montar(D){
         ${orcar.length ? `<p class="cond" style="margin-top:.5rem">Itens a orçar, fora do valor acima: ${orcar.map(esc).join(', ')}.</p>` : ''}
 
         <h4>Condições de pagamento</h4>
-        <table><tbody>${linhas.map(l => `<tr><td>${esc(l.marco)}</td><td class="num">${brl(l.valor)}</td></tr>`).join('')}</tbody></table>
+        ${blocos.map(b => `
+          <p class="formapg">${esc(b.nome)}</p>
+          <table><tbody>${b.linhas.map(l =>
+            `<tr><td>${esc(l.marco)}</td><td class="num">${brl(l.valor)}</td></tr>`).join('')}</tbody></table>`).join('')}
 
         <h4>Condições gerais</h4>
         <ul class="cond">${D.condicoes.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
