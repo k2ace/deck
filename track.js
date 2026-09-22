@@ -4,7 +4,7 @@
    Sem cookie, sem dado digitado. Falha em silêncio se algo der errado. */
 (function () {
   try {
-    var EP = "https://deck-track.k2ia.app/hit"; // endpoint do Worker (trocar quando publicar)
+    var EP = "https://deck-track.k2ia.workers.dev/hit"; // endpoint do Worker Deck Radar
     var q = new URLSearchParams(location.search);
     var pr = new URLSearchParams();
     pr.set("p", location.pathname);

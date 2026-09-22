@@ -1,17 +1,13 @@
 name = "deck-track"
 main = "worker.js"
 compatibility_date = "2026-09-01"
+workers_dev = true
 
-# Historico das aberturas. Criar o namespace com:
-#   wrangler kv namespace create DECK_HITS
-# e colar o id devolvido aqui embaixo.
-# [[kv_namespaces]]
-# binding = "DECK_HITS"
-# id = "COLAR_O_ID_AQUI"
+account_id = "0d24fa910a904e0ebc749d7417719d8c"
 
-# Rota em dominio proprio. O beacon (track.js) aponta para deck-track.k2ia.app/hit
-# routes = [ { pattern = "deck-track.k2ia.app/*", zone_name = "k2ia.app" } ]
+[[kv_namespaces]]
+binding = "DECK_HITS"
+id = "f06e664d56aa4ff89a0fbb937f881860"
 
-# LIST_TOKEN protege a leitura em /list. E um secret, nao vai no arquivo. Definir com:
-#   wrangler secret put LIST_TOKEN
-# Valor combinado no DEPLOY.md
+# LIST_TOKEN protege a leitura em /list. E um secret, definido por:
+#   wrangler secret put LIST_TOKEN   (valor: deckradar-7q3m9x2k)
