@@ -338,6 +338,31 @@ footer .fr a { color:var(--mag); text-decoration:none; }
   .qa-a { border-left:none; border-top:1px solid var(--border); }
   .tbl { min-width:620px; }
 }
+
+/* ════ INTEGRAÇÃO CRM ════ */
+#crm { padding:100px 60px; background:var(--dark); border-top:1px solid var(--border); }
+.crm-wrap { max-width:1100px; margin:0 auto; }
+.crm-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:48px; }
+.crm-flow { font-family:'Space Grotesk'; font-size:14.5px; color:var(--mag-light); margin-top:30px; letter-spacing:0.3px; line-height:1.9; }
+.kx { position:relative; border-radius:16px; background:#0e0d0f; border:1px solid var(--border); box-shadow:0 40px 70px rgba(0,0,0,0.6); overflow:hidden; }
+.kx-head { padding:15px 17px; background:var(--dark-4); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:11px; }
+.kx-head .av { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--mag-light),var(--mag-deep)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:12px; color:#2b0619; }
+.kx-head .n { font-size:13px; font-weight:600; color:#fff; }
+.kx-head .s { font-size:10px; color:var(--text-muted); margin-top:2px; }
+.kx-tabs { display:flex; gap:0; border-bottom:1px solid var(--line); background:var(--dark-2); }
+.kx-tabs span { font-size:10.5px; letter-spacing:0.6px; color:var(--text-muted); padding:11px 15px; border-bottom:2px solid transparent; }
+.kx-tabs span.on { color:var(--mag-light); border-bottom-color:var(--mag); font-weight:600; }
+.kx-body { padding:14px 15px 16px; }
+.kx-item { padding:11px 12px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; background:var(--dark-2); }
+.kx-item .t { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+.kx-item .t .d { font-size:11.5px; color:var(--text); font-weight:500; line-height:1.4; }
+.kx-item .t .p { font-family:'Space Grotesk'; font-size:12.5px; color:var(--mag-light); white-space:nowrap; }
+.kx-item .m { font-size:9.5px; color:var(--text-muted); margin-top:6px; }
+.kx-btn { margin-top:4px; text-align:center; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#2b0619; background:var(--mag); border-radius:8px; padding:10px; font-weight:700; }
+@media(max-width:900px){
+  #crm { padding-left:24px; padding-right:24px; }
+  .crm-grid { grid-template-columns:1fr; gap:38px; }
+}
 </style>
 </head>
 <body>
@@ -521,8 +546,47 @@ footer .fr a { color:var(--mag); text-decoration:none; }
           <li>Base de clientes compartilhada por toda a equipe</li>
           <li>Filtro por cliente, por vendedor, por tipo e por período</li>
           <li>Reabrir um orçamento antigo e refazer em cima dele</li>
-          <li>A base pronta para virar número de conversão junto do CRM</li>
+          <li>O histórico de cada cliente aparecendo dentro do cartão do lead no CRM</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ INTEGRAÇÃO COM O CRM ════ -->
+<section id="crm">
+  <div class="crm-wrap">
+    <span class="tag">Integração</span>
+    <h2 class="section-title">O orçamento nasce aqui e <em>aparece sozinho no CRM.</em></h2>
+    <div class="divider"></div>
+    <div class="crm-grid">
+      <div>
+        <p style="font-size:15px;line-height:1.9;color:var(--text-muted);">Os dois sistemas conversam. Quando o vendedor calcula e copia o orçamento, ele fica gravado no cliente. No Kommo, dentro do cartão do lead, aparece uma aba Imprimix com o histórico daquele cliente. Ninguém copia nada de um lado para o outro, e ninguém precisa lembrar de registrar.</p>
+        <ul class="plain-list" style="margin-top:26px;">
+          <li>Todos os orçamentos daquele cliente, do mais recente para o mais antigo</li>
+          <li>Produto, quantidade, valor, quem fez e quando</li>
+          <li>O texto exato que foi enviado no WhatsApp, para consultar ou reenviar</li>
+          <li>Atalho para abrir a calculadora já com o cliente selecionado</li>
+        </ul>
+        <p class="crm-flow">Vendedor orça no sistema.&nbsp; O orçamento grava no cliente.&nbsp; O cartão do lead no Kommo mostra tudo.</p>
+      </div>
+      <div class="kx">
+        <div class="kx-head">
+          <div class="av">CR</div>
+          <div><div class="n">Carla Ribeiro</div><div class="s">Eventos · WhatsApp · lead em negociação</div></div>
+        </div>
+        <div class="kx-tabs"><span>Conversa</span><span>Tarefas</span><span class="on">Imprimix</span></div>
+        <div class="kx-body">
+          <div class="kx-item">
+            <div class="t"><span class="d">23 un. Credencial PVC 4/4<br>23 un. Cordão 20 mm</span><span class="p">R$ 514,51</span></div>
+            <div class="m">Jessyka · hoje, 10:26 · texto enviado no WhatsApp</div>
+          </div>
+          <div class="kx-item">
+            <div class="t"><span class="d">300 un. Pulseira Iron Band 15 mm</span><span class="p">R$ 438,00</span></div>
+            <div class="m">Augusto · 12 de setembro · texto enviado no WhatsApp</div>
+          </div>
+          <div class="kx-btn">Novo orçamento para a Carla</div>
+        </div>
       </div>
     </div>
   </div>
@@ -685,7 +749,7 @@ footer .fr a { color:var(--mag); text-decoration:none; }
           <li>Amostra virtual com link para o cliente aprovar, com registro de quem aprovou</li>
           <li>Criação de arte a partir da logomarca do cliente, em cima do gabarito</li>
           <li>Conferência do arquivo do cliente, avisando RGB, resolução baixa e falta de sangria</li>
-          <li>Ligação do orçamento com o CRM, para medir quanto do que sai vira pedido</li>
+          <li>Artes geradas também no cartão do lead, com o PDF para baixar de novo</li>
         </ul>
       </div>
     </div>
