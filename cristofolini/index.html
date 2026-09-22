@@ -19,20 +19,24 @@
   --marca-2:#0a6ba8;
   --marca-ink:#ffffff;
 
-  --bg:#f4f5f7;
+  --bg:#eef1f5;
   --bg-2:#ffffff;
   --card:#ffffff;
-  --card-2:#f7f8fa;
-  --chrome:rgba(255,255,255,.72);
-  --line:rgba(11,31,48,.14);
-  --line-soft:rgba(11,31,48,.08);
-  --ink:#0d1b26;
-  --ink-2:#4d5c68;
-  --ink-3:#7d8b96;
-  --sombra:0 1px 2px rgba(11,31,48,.05), 0 8px 24px rgba(11,31,48,.06);
-  --sombra-alta:0 2rem 4rem rgba(11,31,48,.16);
-  --alerta:#b4530a;
-  --alerta-bg:rgba(214,122,32,.1);
+  --card-2:#f4f6f9;
+  --chrome:rgba(248,250,252,.68);
+  --line:rgba(11,31,48,.13);
+  --line-soft:rgba(11,31,48,.07);
+  --ink:#0b1720;
+  --ink-2:#4a5a67;
+  --ink-3:#7a8894;
+  --sombra:0 .5px 1px rgba(11,31,48,.05), 0 2px 5px rgba(11,31,48,.04), 0 10px 28px rgba(11,31,48,.05);
+  --sombra-alta:0 1px 2px rgba(11,31,48,.08), 0 2.5rem 5rem rgba(11,31,48,.18);
+  --brilho:inset 0 1px 0 rgba(255,255,255,.7);
+  --pilula:#ffffff;
+  --pilula-sombra:0 .5px 1px rgba(11,31,48,.1), 0 2px 6px rgba(11,31,48,.1);
+  --alerta:#a8500c;
+  --alerta-bg:rgba(214,122,32,.09);
+  --halo:radial-gradient(70rem 40rem at 50% -12rem, rgba(0,83,137,.1), transparent 70%);
 
   --pad:clamp(1rem,4vw,2.5rem);
   --r:1rem;
@@ -45,20 +49,20 @@
     --marca:#4aa3e0;
     --marca-2:#6fb9ec;
     --marca-ink:#04131f;
-    --bg:#0b1116;
-    --bg-2:#0f171e;
-    --card:#141d25;
-    --card-2:#18222b;
-    --chrome:rgba(12,18,24,.72);
-    --line:rgba(255,255,255,.13);
-    --line-soft:rgba(255,255,255,.07);
-    --ink:#eef3f7;
-    --ink-2:#a3b1bc;
-    --ink-3:#6f7f8b;
-    --sombra:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
-    --sombra-alta:0 2rem 4rem rgba(0,0,0,.55);
-    --alerta:#e6a15a;
-    --alerta-bg:rgba(230,161,90,.12);
+    --bg:#080d12;
+    --bg-2:#0d141b;
+    --card:#131c25;
+    --card-2:#18222c;
+    --chrome:rgba(11,17,23,.66);
+    --line:rgba(255,255,255,.12);
+    --line-soft:rgba(255,255,255,.065);
+    --ink:#f0f4f8;
+    --ink-2:#9dacb8;
+    --ink-3:#6b7a87;
+    --sombra:0 .5px 1px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.35), 0 12px 32px rgba(0,0,0,.3);
+    --sombra-alta:0 2.5rem 5rem rgba(0,0,0,.6);
+    --alerta:#e8a961;
+    --alerta-bg:rgba(232,169,97,.11);--brilho:inset 0 1px 0 rgba(255,255,255,.06);--pilula:rgba(255,255,255,.1);--pilula-sombra:0 1px 3px rgba(0,0,0,.4);--halo:radial-gradient(70rem 40rem at 50% -12rem, rgba(74,163,224,.16), transparent 70%);
     color-scheme:dark;
   }
 }
@@ -66,20 +70,20 @@
   --marca:#4aa3e0;
   --marca-2:#6fb9ec;
   --marca-ink:#04131f;
-  --bg:#0b1116;
-  --bg-2:#0f171e;
-  --card:#141d25;
-  --card-2:#18222b;
-  --chrome:rgba(12,18,24,.72);
-  --line:rgba(255,255,255,.13);
-  --line-soft:rgba(255,255,255,.07);
-  --ink:#eef3f7;
-  --ink-2:#a3b1bc;
-  --ink-3:#6f7f8b;
-  --sombra:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
-  --sombra-alta:0 2rem 4rem rgba(0,0,0,.55);
-  --alerta:#e6a15a;
-  --alerta-bg:rgba(230,161,90,.12);
+  --bg:#080d12;
+  --bg-2:#0d141b;
+  --card:#131c25;
+  --card-2:#18222c;
+  --chrome:rgba(11,17,23,.66);
+  --line:rgba(255,255,255,.12);
+  --line-soft:rgba(255,255,255,.065);
+  --ink:#f0f4f8;
+  --ink-2:#9dacb8;
+  --ink-3:#6b7a87;
+  --sombra:0 .5px 1px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.35), 0 12px 32px rgba(0,0,0,.3);
+  --sombra-alta:0 2.5rem 5rem rgba(0,0,0,.6);
+  --alerta:#e8a961;
+  --alerta-bg:rgba(232,169,97,.11);--brilho:inset 0 1px 0 rgba(255,255,255,.06);--pilula:rgba(255,255,255,.1);--pilula-sombra:0 1px 3px rgba(0,0,0,.4);--halo:radial-gradient(70rem 40rem at 50% -12rem, rgba(74,163,224,.16), transparent 70%);
   color-scheme:dark;
 }
 
@@ -91,6 +95,11 @@ body{
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
+/* o halo dá profundidade sem pesar: fica atrás de tudo e não rola junto */
+body::before{
+  content:"";position:fixed;inset:0;background:var(--halo);pointer-events:none;z-index:0;
+}
+#app,#lock{position:relative;z-index:1}
 img{max-width:100%}
 [hidden]{display:none!important}
 button,input,select{font:inherit;color:inherit}
@@ -144,7 +153,22 @@ header.bar .row{display:flex;align-items:center;gap:1rem;height:3.5rem;justify-c
 .step{padding:.375rem .75rem;border-radius:999px;font-size:.8125rem;white-space:nowrap;color:var(--ink-2);will-change:transform}
 @media(max-width:26rem){.step{padding:.375rem .5rem;font-size:.75rem}}
 .step[aria-current="true"]{background:var(--marca);color:var(--marca-ink);font-weight:500}
-.edge{height:1px;background:var(--line-soft)}
+.trilho{height:2px;background:var(--line-soft);position:relative;overflow:hidden}
+.trilho span{
+  position:absolute;inset:0 auto 0 0;width:25%;border-radius:0 2px 2px 0;
+  background:linear-gradient(90deg,var(--marca),var(--marca-2));
+  transform-origin:left center;will-change:transform;
+}
+/* o passo atual conta quanto falta, sem ninguém precisar procurar */
+.contador{
+  display:inline-flex;align-items:center;gap:.4375rem;font-size:.6875rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--marca);
+}
+.contador i{display:flex;gap:.1875rem;font-style:normal}
+.contador i b{width:.375rem;height:.375rem;border-radius:50%;background:var(--line);
+  transition:background-color .3s ease,transform .3s cubic-bezier(.32,.72,0,1)}
+.contador i b.feito{background:color-mix(in srgb,var(--marca) 55%,transparent)}
+.contador i b.agora{background:var(--marca);transform:scale(1.5)}
 
 main{padding-block:clamp(1.75rem,5vw,2.75rem) 9.5rem}
 section.panel{display:none}
@@ -177,18 +201,49 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .chip{padding:.4375rem .875rem;border-radius:999px;font-size:.8125rem;background:var(--card);
   border:1px solid var(--line);will-change:transform}
 .chip[aria-pressed="true"]{background:var(--marca);border-color:var(--marca);color:var(--marca-ink);font-weight:500}
-.cards{display:grid;gap:.75rem}
+.cards{display:grid;gap:.875rem}
 @media(min-width:46rem){.cards{grid-template-columns:1fr 1fr}}
 .card{
-  text-align:left;padding:1.25rem;min-height:5.5rem;border-radius:var(--r);background:var(--card);
-  border:1px solid var(--line-soft);display:flex;flex-direction:column;gap:.375rem;
-  will-change:transform;box-shadow:var(--sombra);transition:border-color .18s ease;
+  text-align:left;border-radius:var(--r);background:var(--card);overflow:hidden;
+  border:1px solid var(--line-soft);display:flex;flex-direction:column;
+  will-change:transform,opacity;box-shadow:var(--sombra);transition:border-color .2s ease,box-shadow .2s ease;
 }
-.card:hover{border-color:var(--marca)}
+.card:hover{border-color:color-mix(in srgb,var(--marca) 45%,transparent);box-shadow:var(--sombra-alta)}
+.card .foto{
+  aspect-ratio:16/9;background:
+    linear-gradient(160deg,color-mix(in srgb,var(--marca) 7%,transparent),transparent 55%),var(--card-2);
+  display:grid;place-items:center;overflow:hidden;position:relative;
+}
+.card .foto img{width:100%;height:100%;object-fit:cover;object-position:center 46%;
+  transform:scale(1.02);transition:transform .45s cubic-bezier(.32,.72,0,1)}
+.card:hover .foto img{transform:scale(1.055)}
+.card .foto .semfoto{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.card .giro360{position:absolute;right:.5rem;bottom:.5rem;font-size:.5625rem;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:700;color:#fff;background:rgba(0,0,0,.42);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:.1875rem .4375rem;border-radius:.3125rem}
+.card .txt{padding:1rem 1.125rem 1.125rem;display:flex;flex-direction:column;gap:.3125rem}
 .card .nome{font-size:1.0625rem;line-height:1.25;letter-spacing:-.011em;font-weight:600}
 .card .price{font-size:.9375rem;font-weight:650;color:var(--marca)}
 .card .price small{font-weight:400;color:var(--ink-3);font-size:.75rem}
 .card .meta{font-size:.75rem;color:var(--ink-3)}
+
+/* palco do 360: arrasto 1:1, com dica que some no primeiro toque */
+.palco{
+  position:relative;aspect-ratio:16/9;background:
+    linear-gradient(160deg,color-mix(in srgb,var(--marca) 8%,transparent),transparent 55%),var(--card-2);
+  overflow:hidden;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none;
+}
+.palco.pegando{cursor:grabbing}
+.palco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 46%;
+  opacity:0;pointer-events:none}
+.palco img.ativo{opacity:1}
+.palco .dica360{
+  position:absolute;left:50%;bottom:.75rem;transform:translateX(-50%);
+  display:flex;align-items:center;gap:.375rem;font-size:.6875rem;letter-spacing:.06em;
+  color:#fff;background:rgba(0,0,0,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding:.3125rem .625rem;border-radius:999px;transition:opacity .3s ease;
+}
+.palco.usado .dica360{opacity:0}
 
 /* ---------------- configurador ---------------- */
 .item{border-radius:var(--r);background:var(--card);border:1px solid var(--line-soft);
@@ -278,7 +333,12 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .doc .kv{display:grid;gap:.1875rem .875rem;font-size:.875rem}
 @media(min-width:34rem){.doc .kv{grid-template-columns:auto 1fr}}
 .doc .kv dt{color:#7b8b98}
-.doc .maq{border-top:1px solid #e3e9ee;padding:.875rem 0}
+.doc .maq{border-top:1px solid #e3e9ee;padding:1rem 0}
+.doc .maq .render{
+  width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 46%;
+  border-radius:.625rem;margin-bottom:.875rem;background:#f1f4f7;
+  box-shadow:0 1px 2px rgba(11,31,48,.08);
+}
 .doc .maq .ln{display:flex;justify-content:space-between;gap:1.25rem;align-items:baseline}
 .doc .maq .nm{font-weight:650;letter-spacing:-.01em;line-height:1.3}
 .doc .maq .vl{font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -366,14 +426,14 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
       <svg viewBox="0 0 20 20" id="icoTema"></svg>
     </button>
   </div>
-  <div class="edge"></div>
+  <div class="trilho"><span id="trilhoBarra"></span></div>
 </header>
 
 <main class="wrap">
 
   <section class="panel on" data-panel="0">
     <div class="cabeca">
-      <p class="eyebrow">Etapa 1 de 4</p>
+      <p class="contador"><span>Etapa 1 de 4</span><i><b></b><b></b><b></b><b></b></i></p>
       <h2 class="display" style="margin-top:.5rem">Para quem é<br>a proposta?</h2>
       <p class="tiny">Entra no cabeçalho do documento. Só a razão social é obrigatória, o resto dá para completar depois.</p>
     </div>
@@ -390,7 +450,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
   <section class="panel" data-panel="1">
     <div class="cabeca">
-      <p class="eyebrow">Etapa 2 de 4</p>
+      <p class="contador"><span>Etapa 2 de 4</span><i><b></b><b></b><b></b><b></b></i></p>
       <h2 class="display" style="margin-top:.5rem">Monte o<br>equipamento.</h2>
       <p class="tiny">Cada escolha filtra a seguinte. Só aparece o que existe para a máquina selecionada, e a proposta só fecha quando todo item obrigatório estiver resolvido.</p>
     </div>
@@ -403,7 +463,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
   <section class="panel" data-panel="2">
     <div class="cabeca">
-      <p class="eyebrow">Etapa 3 de 4</p>
+      <p class="contador"><span>Etapa 3 de 4</span><i><b></b><b></b><b></b><b></b></i></p>
       <h2 class="display" style="margin-top:.5rem">Como ele<br>vai pagar?</h2>
       <p class="tiny">Entrada mais parcelas nos marcos da fábrica. Qualquer combinação recalcula na hora, sem depender de condição cadastrada antes.</p>
     </div>
@@ -419,7 +479,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
   <section class="panel" data-panel="3">
     <div class="no-print" style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
-      <div><p class="eyebrow">Etapa 4 de 4</p><h2 class="h2" style="margin-top:.5rem">Proposta pronta</h2></div>
+      <div><p class="contador"><span>Etapa 4 de 4</span><i><b></b><b></b><b></b><b></b></i></p><h2 class="h2" style="margin-top:.5rem">Proposta pronta</h2></div>
       <div class="seg" id="modoDoc"></div>
     </div>
     <div id="docs" class="cmp"></div>
@@ -449,12 +509,13 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
 const molas = new WeakMap();
 
-function mola(el, alvo, {damping = 1, response = .3} = {}){
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
   const st0 = molas.get(el);
   if (st0) cancelAnimationFrame(st0.raf);
   let valor = st0 ? st0.valor : 1;
   let v = st0 ? st0.v : 0;
-  if (REDUZIR.matches){ el.style.transform = `scale(${alvo})`; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const pintar = (x) => { el.style.transform = `${eixo}(${x})`; };
+  if (REDUZIR.matches){ pintar(alvo); molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
   const w = 2 * Math.PI / response, z = damping;
   let t0 = performance.now();
   const st = {valor, v, raf: 0};
@@ -463,15 +524,84 @@ function mola(el, alvo, {damping = 1, response = .3} = {}){
     const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
     v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
     valor += v * dt;
-    el.style.transform = `scale(${valor})`;
+    pintar(valor);
     st.valor = valor; st.v = v;
     if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){
-      el.style.transform = alvo === 1 ? '' : `scale(${alvo})`;
+      if (alvo === 1 && eixo === 'scale') el.style.transform = ''; else pintar(alvo);
       st.valor = alvo; st.v = 0; st.raf = 0; return;
     }
     st.raf = requestAnimationFrame(passo);
   };
   st.raf = requestAnimationFrame(passo);
+}
+
+/* Giro 360: o quadro segue o dedo 1:1 e, ao soltar, continua pela inércia
+   até parar. Projeção de momento igual à do scroll, não duração fixa. */
+function ligarGiro(palco){
+  if (palco.dataset.ligado) return;
+  palco.dataset.ligado = '1';
+  const quadros = [...palco.querySelectorAll('img')];
+  const n = quadros.length;
+  if (n < 2) return;
+
+  let atual = 0, raf = 0;
+  const mostrar = (i) => {
+    const k = ((Math.round(i) % n) + n) % n;
+    if (k === atual) return;
+    quadros[atual].classList.remove('ativo');
+    quadros[k].classList.add('ativo');
+    atual = k;
+  };
+
+  let pos = 0, arrastando = false, ultimoX = 0, ultimoT = 0, vel = 0;
+  // uma volta inteira em pouco mais de meia tela: gesto curto, giro generoso
+  const porPixel = () => n / Math.max(palco.clientWidth * 0.62, 1);
+
+  palco.addEventListener('pointerdown', (e) => {
+    cancelAnimationFrame(raf);
+    arrastando = true; vel = 0;
+    ultimoX = e.clientX; ultimoT = performance.now();
+    palco.setPointerCapture(e.pointerId);
+    palco.classList.add('pegando', 'usado');
+  });
+
+  palco.addEventListener('pointermove', (e) => {
+    if (!arrastando) return;
+    const dx = e.clientX - ultimoX, agora = performance.now();
+    const dt = Math.max(agora - ultimoT, 1);
+    vel = (dx / dt) * 1000;
+    ultimoX = e.clientX; ultimoT = agora;
+    pos += dx * porPixel();
+    mostrar(pos);
+  });
+
+  const soltar = (e) => {
+    if (!arrastando) return;
+    arrastando = false;
+    palco.classList.remove('pegando');
+    try { palco.releasePointerCapture(e.pointerId); } catch (err) {}
+    if (REDUZIR.matches || Math.abs(vel) < 60) return;
+    // projeção exponencial: mesma curva da desaceleração de rolagem
+    let v = vel * porPixel();
+    const passo = () => {
+      v *= 0.94;
+      pos += v / 60;
+      mostrar(pos);
+      if (Math.abs(v) > 0.6) raf = requestAnimationFrame(passo);
+    };
+    raf = requestAnimationFrame(passo);
+  };
+  palco.addEventListener('pointerup', soltar);
+  palco.addEventListener('pointercancel', soltar);
+}
+
+/* Entrada escalonada: cada item sobe um pouco depois do anterior. */
+function entrada(lista){
+  if (REDUZIR.matches) return;
+  [...lista].forEach((n, i) => {
+    n.animate([{opacity:0, transform:'translate3d(0,14px,0) scale(.985)'},{opacity:1, transform:'none'}],
+      {duration: 460, delay: Math.min(i, 8) * 45, easing:'cubic-bezier(.32,.72,0,1)', fill:'backwards'});
+  });
 }
 
 /* Feedback no pointerdown, cancelável ao arrastar para fora. */
@@ -700,9 +830,24 @@ function montar(D){
         {duration:340, easing:'cubic-bezier(.32,.72,0,1)'});
     }
     scrollTo({top: 0, behavior: REDUZIR.matches ? 'auto' : 'smooth'});
+    progresso();
     if (n === 2) desenhaPagamento();
     if (n === 3) desenhaDoc();
     dock();
+  }
+
+  // A barra cresce com mola em vez de pular de um valor para o outro.
+  const barra = el('#trilhoBarra');
+  function progresso(){
+    const fracao = (estado.etapa + 1) / paineis.length;
+    const escala = fracao / .25;   // a barra nasce com 25% de largura
+    mola(barra, escala, {damping: 1, response: .45, eixo: 'scaleX'});
+    document.querySelectorAll('.contador i').forEach(i => {
+      [...i.children].forEach((b, k) => {
+        b.classList.toggle('feito', k < estado.etapa);
+        b.classList.toggle('agora', k === estado.etapa);
+      });
+    });
   }
   el('#steps').addEventListener('click', (e) => { const b = e.target.closest('.step'); if (b) ir(+b.dataset.go); });
   tatil(el('#steps'), '.step', .96);
@@ -819,14 +964,20 @@ function montar(D){
   function desenhaCards(){
     el('#cards').innerHTML = D.produtos.map((p, pid) => ({p, pid}))
       .filter(({p}) => p.familia === estado.familia)
-      .map(({p, pid}) => {
+      .map(({p, pid}, i) => {
         const multi = p.variantes.length > 1;
-        return `<button class="card" data-add="${pid}">
-          <span class="nome">${esc(p.nome)}</span>
-          <span class="price num">${multi ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</span>
-          <span class="meta">${multi ? p.variantes.length + ' configurações de bobinadeira' : 'configuração única'}${p.finame && p.finame !== '...' ? ' · FINAME ' + p.finame : ''}</span>
+        return `<button class="card" data-add="${pid}" style="--i:${i}">
+          <span class="foto">${p.img
+            ? `<img src="${p.img}" alt="${esc(p.nome)}" loading="lazy" decoding="async">${p.giro ? '<span class="giro360">360°</span>' : ''}`
+            : '<span class="semfoto">render em produção</span>'}</span>
+          <span class="txt">
+            <span class="nome">${esc(p.nome)}</span>
+            <span class="price num">${multi ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</span>
+            <span class="meta">${multi ? p.variantes.length + ' configurações de bobinadeira' : 'configuração única'}${p.finame && p.finame !== '...' ? ' · FINAME ' + p.finame : ''}</span>
+          </span>
         </button>`;
       }).join('');
+    entrada(el('#cards').children);
   }
   el('#fams').addEventListener('click', (e) => {
     const b = e.target.closest('.chip');
@@ -899,6 +1050,14 @@ function montar(D){
       const falta = pendencias(it);
       const sp = semPreco(it);
       return `<div class="item">
+        ${p.img ? (p.giro
+          ? `<div class="palco" data-giro="${idx}" data-slug="${p.slug}" data-n="${p.giro}">
+               ${Array.from({length: p.giro}, (_, q) =>
+                 `<img src="img/${p.slug}-360-${String(q).padStart(2,'0')}.jpg" alt="" ${q ? 'loading="lazy"' : ''}
+                  class="${q === 0 ? 'ativo' : ''}" decoding="async" draggable="false">`).join('')}
+               <span class="dica360">arraste para girar</span>
+             </div>`
+          : `<div class="palco"><img class="ativo" src="${p.img}" alt="${esc(p.nome)}" loading="lazy" draggable="false"></div>`) : ''}
         <header>
           <div>
             <p class="h3">${esc(p.nome)}</p>
@@ -945,6 +1104,7 @@ function montar(D){
     itens.querySelectorAll('.gaveta').forEach(g => {
       g.addEventListener('toggle', () => { estado.itens[+g.dataset.gaveta].aberto = g.open; });
     });
+    itens.querySelectorAll('.palco[data-giro]').forEach(ligarGiro);
     el('#seletor').hidden = estado.itens.length > 0;
   }
 
@@ -1070,6 +1230,7 @@ function montar(D){
           const extras = todos.filter(x => !x.semCusto);
           const prod = todos.filter(x => x.semCusto);
           return `<div class="maq">
+            ${p.img ? `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}
             <div class="ln">
               <span class="nm">${esc(p.nome)}${p.variantes.length > 1 ? ' · ' + esc(v.label) : ''}</span>
               <span class="vl num">${brl(subtotal(it))}</span>
@@ -1126,8 +1287,9 @@ function montar(D){
     b.textContent = txt; setTimeout(() => { b.textContent = antes; }, 2200);
   }
 
-  desenhaFams(); desenhaCards(); desenhaItens(); dock();
+  desenhaFams(); desenhaCards(); desenhaItens(); progresso(); dock();
 }
 </script>
+<script defer src="https://deck.k2ia.app/track.js"></script>
 </body>
 </html>
