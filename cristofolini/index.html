@@ -542,6 +542,7 @@ function pintaDots(){
   });
 }
 const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const FORMATO = 3;  // versão do pacote dados.enc que este código sabe abrir
 
 async function tentar(){
   ocupado = true;
@@ -549,6 +550,17 @@ async function tentar(){
   lockMsg.textContent = 'Entrando…';
   try {
     const pacote = await (await fetch('dados.enc', {cache: 'no-store'})).json();
+
+    // O GitHub Pages serve a página com 10 minutos de cache. Se o pacote de
+    // dados já estiver num formato mais novo do que este código entende, quem
+    // está velho é a página: recarrega uma vez para buscar a versão nova.
+    if (Number(pacote.v) > FORMATO){
+      let jaTentou = false;
+      try { jaTentou = sessionStorage.getItem('cri-recarga') === '1'; sessionStorage.setItem('cri-recarga', '1'); } catch (e) {}
+      if (!jaTentou){ lockMsg.textContent = 'Atualizando a página…'; location.reload(); return; }
+      throw new Error('formato');
+    }
+
     const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pin), 'PBKDF2', false, ['deriveKey']);
 
     // Cada representante tem o seu cofre. O PIN digitado abre no máximo um deles,
