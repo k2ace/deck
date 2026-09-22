@@ -363,6 +363,27 @@ footer .fr a { color:var(--mag); text-decoration:none; }
   #crm { padding-left:24px; padding-right:24px; }
   .crm-grid { grid-template-columns:1fr; gap:38px; }
 }
+
+/* ════ ANTES E DEPOIS ════ */
+.ba { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:36px; }
+.ba .bc { background:var(--dark-3); padding:30px 28px; }
+.ba .bc.now { background:linear-gradient(180deg, rgba(255,61,158,0.07), var(--dark-3)); }
+.ba .bl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; }
+.ba .bc.now .bl { color:var(--mag-light); }
+.ba .bh { font-family:'Space Grotesk'; font-size:19px; font-weight:600; color:var(--text); margin-bottom:20px; letter-spacing:-0.01em; }
+.ba ol { list-style:none; counter-reset:st; }
+.ba ol li { counter-increment:st; position:relative; padding:11px 0 11px 34px; font-size:13px; color:var(--text-muted); line-height:1.6; border-bottom:1px solid var(--line); }
+.ba ol li:last-child { border-bottom:none; }
+.ba ol li::before { content:counter(st); position:absolute; left:0; top:10px; width:22px; height:22px; border-radius:6px; background:var(--dark-2); border:1px solid var(--line); font-family:'Space Grotesk'; font-size:10.5px; font-weight:600; color:var(--text-muted); display:flex; align-items:center; justify-content:center; }
+.ba .bc.now ol li::before { background:rgba(255,61,158,0.12); border-color:var(--border); color:var(--mag-light); }
+.proof { margin-top:26px; padding:20px 24px; border:1px solid var(--border); border-radius:12px; background:var(--dark-3); font-size:13px; color:var(--text-muted); line-height:1.8; }
+.proof b { color:var(--text); font-weight:600; }
+.proof .pk { display:block; font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; }
+.sub-h { display:flex; align-items:baseline; gap:14px; margin-top:64px; padding-bottom:4px; }
+.sub-h .sn { font-family:'Space Grotesk'; font-size:12px; font-weight:700; color:var(--mag); letter-spacing:2px; }
+.sub-h .st { font-family:'Space Grotesk'; font-size:clamp(20px,2.4vw,27px); font-weight:600; color:var(--text); letter-spacing:-0.01em; line-height:1.2; }
+.sub-h + p { font-size:14px; line-height:1.85; color:var(--text-muted); max-width:720px; margin-top:8px; }
+@media(max-width:900px){ .ba { grid-template-columns:1fr; } .sub-h { flex-direction:column; gap:6px; margin-top:48px; } }
 </style>
 </head>
 <body>
@@ -385,7 +406,7 @@ footer .fr a { color:var(--mag); text-decoration:none; }
       <h1>O orçamento e a arte que tomavam o dia, agora em <em>minutos.</em></h1>
       <p>Este é o sistema que a gente construiu junto nas últimas semanas, já no ar em imprimix.k2ia.app. A tabela de preços da Imprimix está inteira dentro dele, a equipe já entra com login próprio, e ele foi conferido contra um orçamento real que vocês tinham feito na mão. Não é proposta de algo a construir: é o valor de algo que já está funcionando.</p>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="v">R$ 514,51</div><div class="l">o sistema, contra os R$ 514 da conta à mão</div></div>
+        <div class="hero-stat"><div class="v">3 escolhas</div><div class="l">do pedido do cliente ao orçamento pronto</div></div>
         <div class="hero-stat"><div class="v">62</div><div class="l">palestrantes num lote só, em minutos</div></div>
         <div class="hero-stat"><div class="v">20</div><div class="l">abas da tabela de preços, dentro do sistema</div></div>
       </div>
@@ -452,18 +473,75 @@ footer .fr a { color:var(--mag); text-decoration:none; }
 <section id="prova">
   <div class="prova-wrap">
     <span class="tag">O que já foi testado</span>
-    <h2 class="section-title">Não é promessa de tela. Já rodou com o <em>material de vocês.</em></h2>
+    <h2 class="section-title">Fim da planilha de 20 abas. E da <em>arte feita uma por uma.</em></h2>
     <div class="divider"></div>
-    <p style="font-size:15px;line-height:1.9;color:var(--text-muted);max-width:760px;">A gente combinou que o valor viria depois de validar contra orçamento real. Foi o que aconteceu. Todos os resultados abaixo saíram de arquivo e de caso da própria Imprimix, com a sua equipe conferindo.</p>
+    <p style="font-size:15px;line-height:1.9;color:var(--text-muted);max-width:760px;">São as duas frentes onde a Imprimix mais perde tempo hoje, e as duas já foram testadas com arquivo e com caso da própria loja, com a equipe de vocês conferindo o resultado.</p>
 
-    <div class="match">
-      <div class="mc"><div class="ml">O sistema calculou</div><div class="mv">R$ 514,51</div></div>
-      <div class="eq">=</div>
-      <div class="mc"><div class="ml">A conta de vocês, à mão</div><div class="mv">R$ 514,00</div></div>
+    <div class="sub-h"><span class="sn">01</span><span class="st">O orçamento</span></div>
+    <p>Hoje o preço certo existe, mas mora numa planilha de 20 abas que sete pessoas consultam na correria.</p>
+
+    <div class="ba">
+      <div class="bc">
+        <div class="bl">Como é hoje</div>
+        <div class="bh">À mão, na planilha</div>
+        <ol>
+          <li>Abrir a planilha e achar a aba do produto</li>
+          <li>Localizar a faixa de quantidade certa</li>
+          <li>Calcular o aproveitamento da folha, quando o produto pede</li>
+          <li>Somar os itens e digitar o texto do orçamento</li>
+          <li>Conferir, porque errou para menos queima margem</li>
+        </ol>
+      </div>
+      <div class="bc now">
+        <div class="bl">Como fica</div>
+        <div class="bh">Três escolhas e copiar</div>
+        <ol>
+          <li>Escolher o produto</li>
+          <li>Escolher a variação</li>
+          <li>Informar a quantidade</li>
+          <li>Copiar o texto já pronto para o WhatsApp</li>
+        </ol>
+      </div>
     </div>
-    <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:14px;">23 credenciais em PVC 4/4 mais 23 cordões de 20 mm com dois mosquetões. Mesma tabela, mesma lógica, sem digitar nada.</p>
 
-    <div class="inv-cards">
+    <div class="proof">
+      <span class="pk">A conta foi conferida</span>
+      No teste feito com um orçamento real de vocês, 23 credenciais em PVC 4/4 mais 23 cordões de 20 mm com dois mosquetões, <b>o sistema chegou ao mesmo valor que a Imprimix tinha calculado à mão</b>. Mesma tabela, mesma lógica, mesmo resultado. O que muda é que ninguém precisou abrir planilha nem digitar.
+    </div>
+
+
+    <div class="sub-h"><span class="sn">02</span><span class="st">A arte em lote</span></div>
+    <p>É onde o ganho é maior. Crachá, credencial, ingresso e pulseira com nome, foto e numeração eram montados um a um no programa de arte.</p>
+
+    <div class="ba">
+      <div class="bc">
+        <div class="bl">Como é hoje</div>
+        <div class="bh">Peça por peça, no programa</div>
+        <ol>
+          <li>Abrir a arte modelo e duplicar para cada pessoa</li>
+          <li>Trocar nome, cargo e numeração em cada uma</li>
+          <li>Encaixar a foto de cada um no vão, por baixo do logo</li>
+          <li>Conferir se nome comprido não vazou da caixa</li>
+          <li>Repetir tudo isso pelo número de pessoas do evento</li>
+        </ol>
+      </div>
+      <div class="bc now">
+        <div class="bl">Como fica</div>
+        <div class="bh">Um arquivo, o lote inteiro</div>
+        <ol>
+          <li>Subir a arte modelo e a planilha do cliente</li>
+          <li>Ligar cada campo à coluna correspondente</li>
+          <li>Baixar o PDF do lote inteiro, em CMYK e já montado na folha</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="proof">
+      <span class="pk">Rodou com o material da casa</span>
+      <b>62 palestrantes num lote só:</b> o sistema achou a caixa de texto na própria arte, encolheu os nomes compridos para caberem e centralizou sozinho. Nas credenciais do Uberaba, reconheceu as cinco versões, encaixou a foto de cada pessoa no vão e manteve o logo por cima. E o gabarito IronBand foi impresso pela produção de vocês com cor, medida e sangria certas, sem nenhum ajuste manual do arte finalista.
+    </div>
+
+    <div class="inv-cards" style="margin-top:56px;">
       <div class="inv-card">
         <div class="ic-kick">Na calculadora</div>
         <h3>A conta bateu</h3>
@@ -681,47 +759,6 @@ footer .fr a { color:var(--mag); text-decoration:none; }
         <div class="ic-note">Esta mensalidade é apenas do sistema de orçamento e artes. O contrato do CRM com a inteligência artificial no atendimento continua exatamente como está, sem nenhuma alteração de valor.</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ════ QUADRO COMPLETO ════ -->
-<section id="quadro">
-  <div class="mq-wrap">
-    <span class="tag">Transparência</span>
-    <h2 class="section-title">Tudo que a Imprimix tem com a K2IA, <em>num quadro só.</em></h2>
-    <div class="divider"></div>
-    <p style="font-size:15px;line-height:1.9;color:var(--text-muted);max-width:760px;">São três contratações diferentes, feitas em momentos diferentes. Abaixo está o quadro inteiro, para não restar dúvida sobre o que é o quê.</p>
-
-    <div class="wrapx">
-      <table class="tbl">
-        <thead>
-          <tr><th>O que é</th><th class="r">Uma vez</th><th class="r">Todo mês</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="n">CRM Kommo e IA no atendimento<small>contratado em 20 de agosto de 2026</small></td>
-            <td class="r v">R$ 3.500<span class="pago">contratado</span></td>
-            <td class="r v">R$ 1.500</td>
-          </tr>
-          <tr>
-            <td class="n">Sistema de orçamento e artes<small>esta proposta, já no ar em imprimix.k2ia.app</small></td>
-            <td class="r v">R$ 5.900</td>
-            <td class="r v">R$ 590</td>
-          </tr>
-          <tr>
-            <td class="n">Licença do Kommo<small>paga direto à plataforma, sem margem da K2IA</small></td>
-            <td class="r v" style="color:var(--text-muted);font-size:12px;">nenhum</td>
-            <td class="r v">US$ 30<small>por usuário</small></td>
-          </tr>
-          <tr class="tot">
-            <td class="n">Com a K2IA</td>
-            <td class="r v">R$ 5.900</td>
-            <td class="r v">R$ 2.090</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="ic-note" style="margin-top:22px;max-width:760px;">A cobrança da licença do Kommo é semestral e feita pela própria plataforma. A K2IA intermedia a compra como parceiro oficial, o que rende mais acessos e mais tempo de uso pelo mesmo valor do que contratar direto.</div>
   </div>
 </section>
 
