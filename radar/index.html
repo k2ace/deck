@@ -106,6 +106,16 @@
     try{ return new URL(h.ref).hostname; }catch(e){ return h.ref; }
   }
 
+  // Tudo que entra nesta tabela veio de fora: caminho da página, parâmetro do
+  // link, Referer, User-Agent e os cabeçalhos de geolocalização. Sem escapar,
+  // quem chama o beacon escreve HTML dentro do painel.
+  function esc(v){
+    return String(v == null ? "" : v).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function num(v){ var n = Number(v); return isFinite(n) ? n : 0; }
+
   function render(hits){
     var humans = hits.filter(function(h){ return !isBot(h); });
     var pages = {};
@@ -120,23 +130,25 @@
     $("#rows").innerHTML = hits.map(function(h){
       var bot = isBot(h);
       var loc = [h.city, h.regionCode || h.region].filter(Boolean).join(", ") || (h.loc||"?");
-      var maps = (h.lat && h.lon) ? '<a href="https://www.google.com/maps?q='+h.lat+','+h.lon+'" target="_blank" rel="noopener">mapa</a>' : "";
+      var coord = num(h.lat) + "," + num(h.lon);
+      var maps = (num(h.lat) && num(h.lon))
+        ? '<a href="https://www.google.com/maps?q='+encodeURIComponent(coord)+'" target="_blank" rel="noopener">mapa</a>' : "";
       return '<tr class="'+(bot?'bot':'')+'">'+
-        '<td class="muted" style="white-space:nowrap">'+fmtWhen(h.ts)+'</td>'+
-        '<td class="pg">'+(h.page||"?")+'</td>'+
-        '<td>'+(h.dest?'<span class="who">'+h.dest+'</span>':'<span class="muted">—</span>')+'</td>'+
-        '<td>'+loc+(maps?' · '+maps:'')+'</td>'+
-        '<td class="muted">'+(h.postal||"—")+'</td>'+
-        '<td class="muted">'+(h.isp||"—")+'</td>'+
-        '<td>'+(h.device||"?")+'</td>'+
-        '<td class="muted">'+origem(h)+'</td>'+
+        '<td class="muted" style="white-space:nowrap">'+esc(fmtWhen(h.ts))+'</td>'+
+        '<td class="pg">'+esc(h.page||"?")+'</td>'+
+        '<td>'+(h.dest?'<span class="who">'+esc(h.dest)+'</span>':'<span class="muted">—</span>')+'</td>'+
+        '<td>'+esc(loc)+(maps?' · '+maps:'')+'</td>'+
+        '<td class="muted">'+esc(h.postal||"—")+'</td>'+
+        '<td class="muted">'+esc(h.isp||"—")+'</td>'+
+        '<td>'+esc(h.device||"?")+'</td>'+
+        '<td class="muted">'+esc(origem(h))+'</td>'+
         '<td><span class="pill '+(bot?'bot':'hum')+'">'+(bot?'robô?':'pessoa')+'</span></td>'+
       '</tr>';
     }).join("") || '<tr><td colspan="9" class="muted" style="text-align:center;padding:26px">Nenhuma abertura ainda.</td></tr>';
 
     $("#foot").textContent = "Cidade e operadora vêm do IP, aproximados. No celular a cidade pode cair no hub da operadora. Bairro o IP não entrega. Para saber a pessoa exata, mande o link com ?u=nome no fim.";
   }
-  function stat(k,v){ return '<div class="stat"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+  function stat(k,v){ return '<div class="stat"><div class="k">'+esc(k)+'</div><div class="v">'+esc(v)+'</div></div>'; }
 
   function load(){
     var t = getTok();
