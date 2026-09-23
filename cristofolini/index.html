@@ -550,11 +550,33 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .doc .kv{display:grid;gap:.1875rem .875rem;font-size:.875rem}
 @media(min-width:34rem){.doc .kv{grid-template-columns:auto 1fr}}
 .doc .kv dt{color:#5c6b77}
-.doc .maq{border-top:1px solid #e3e9ee;padding:1rem 0}
+/* bloco do equipamento: nome, render, apresentação, ficha e valor */
+.doc .maq{border-top:1px solid #e3e9ee;padding:1.25rem 0 1rem}
+.doc .maq-topo{margin-bottom:.75rem}
+.doc .maq-fam{display:block;font-size:.75rem;color:#7b8b98}
+.doc .maq h5{font-family:Archivo,Inter,sans-serif;font-size:1.375rem;font-weight:700;
+  letter-spacing:-.022em;line-height:1.15;margin-top:.0625rem}
+.doc .maq-var{font-size:.875rem;color:#41505c;margin-top:.1875rem}
+.doc .maq-frase{font-size:.9375rem;line-height:1.5;color:#2b3a45;margin:.875rem 0 0;max-width:34rem}
+.doc .maq-ficha{margin-top:1rem;border-top:1px solid #eef2f5;padding-top:.75rem}
+.doc .maq-ficha h6{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#7b8b98;font-weight:700;margin-bottom:.4375rem}
+.doc .maq-ficha ul{margin:0 0 0 .9375rem;font-size:.8125rem;color:#41505c;line-height:1.65}
+@media(min-width:44rem){.doc .maq-ficha ul{columns:2;column-gap:2.25rem}
+  .doc .maq-ficha li{break-inside:avoid}}
+.doc .inclusos{margin-top:.875rem;font-size:.8125rem;color:#13202b;
+  display:flex;flex-wrap:wrap;gap:.3125rem .5rem;align-items:baseline}
+.doc .inclusos b{width:100%;font-weight:700;font-size:.6875rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#7b8b98;margin-bottom:.125rem}
+.doc .inclusos span{border:1px solid #dbe3e9;border-radius:.3125rem;padding:.1875rem .4375rem}
+.doc .inclusos.montagem span{color:#5c6b77}
+.doc .maq-valor{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  margin-top:1rem;padding-top:.625rem;border-top:1px solid #eef2f5}
+.doc .maq-valor span{font-size:.8125rem;color:#5c6b77}
+.doc .maq-valor b{font-family:Archivo,Inter,sans-serif;font-size:1.125rem;letter-spacing:-.018em}
 .doc .maq .render{
-  width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 46%;
-  border-radius:.625rem;margin-bottom:.875rem;background:#f1f4f7;
-  box-shadow:0 1px 2px rgba(11,31,48,.08);
+  width:100%;aspect-ratio:16/9;object-fit:contain;background:#f4f7f9;
+  border-radius:.625rem;margin:.25rem 0 0;padding:.5rem;
 }
 .doc .maq .ln{display:flex;justify-content:space-between;gap:1.25rem;align-items:baseline}
 .doc .maq .nm{font-weight:650;letter-spacing:-.01em;line-height:1.3}
@@ -634,22 +656,52 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   :root{--line:rgba(11,31,48,.42);--line-soft:rgba(11,31,48,.24);--ink-2:#2b3945;--ink-3:#46545f}
   :root[data-theme="dark"],:root:not([data-theme="light"]){--line:rgba(255,255,255,.48)}
 }
-@page{size:A4;margin:10mm}
+/* Margem zero na folha: a arte institucional sangra de ponta a ponta, como
+   no PDF que eles já emitem, e o navegador deixa de imprimir o próprio
+   cabeçalho e rodapé, que é o que aparecia com data e endereço. O respiro
+   do texto passa a ser padding nosso, medido em milímetros. */
+@page{size:A4;margin:0}
 @media print{
   body{background:#fff;padding:0}
   header.bar,.dock,.no-print{display:none!important}
   main{padding:0}.wrap{max-width:none;padding:0}
   .doc{box-shadow:none;border-radius:0}
   .cmp{display:block}.doc+.doc{break-before:page}
-  /* a arte é A4 inteira: limitar a altura impede que sobre uma tira na
-     folha seguinte, que era o que gerava as páginas em branco */
+
   .doc .abertura img{
-    display:block;width:100%;height:auto;max-height:265mm;object-fit:contain;
-    break-after:page;break-inside:avoid;
+    display:block;width:210mm;height:297mm;object-fit:cover;
+    break-after:page;break-inside:avoid;margin:0;
   }
   .doc .abertura img:last-child{break-after:auto}
-  .doc .topo{break-before:page}
+
+  .doc .topo{break-before:page;padding:14mm 16mm 10mm}
+  .doc .body{padding:10mm 16mm 16mm}
   .doc .maq{break-inside:avoid}
+  /* bloco do equipamento: nome, render, apresentação, ficha e valor */
+.doc .maq{border-top:1px solid #e3e9ee;padding:1.25rem 0 1rem}
+.doc .maq-topo{margin-bottom:.75rem}
+.doc .maq-fam{display:block;font-size:.75rem;color:#7b8b98}
+.doc .maq h5{font-family:Archivo,Inter,sans-serif;font-size:1.375rem;font-weight:700;
+  letter-spacing:-.022em;line-height:1.15;margin-top:.0625rem}
+.doc .maq-var{font-size:.875rem;color:#41505c;margin-top:.1875rem}
+.doc .maq-frase{font-size:.9375rem;line-height:1.5;color:#2b3a45;margin:.875rem 0 0;max-width:34rem}
+.doc .maq-ficha{margin-top:1rem;border-top:1px solid #eef2f5;padding-top:.75rem}
+.doc .maq-ficha h6{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#7b8b98;font-weight:700;margin-bottom:.4375rem}
+.doc .maq-ficha ul{margin:0 0 0 .9375rem;font-size:.8125rem;color:#41505c;line-height:1.65}
+@media(min-width:44rem){.doc .maq-ficha ul{columns:2;column-gap:2.25rem}
+  .doc .maq-ficha li{break-inside:avoid}}
+.doc .inclusos{margin-top:.875rem;font-size:.8125rem;color:#13202b;
+  display:flex;flex-wrap:wrap;gap:.3125rem .5rem;align-items:baseline}
+.doc .inclusos b{width:100%;font-weight:700;font-size:.6875rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#7b8b98;margin-bottom:.125rem}
+.doc .inclusos span{border:1px solid #dbe3e9;border-radius:.3125rem;padding:.1875rem .4375rem}
+.doc .inclusos.montagem span{color:#5c6b77}
+.doc .maq-valor{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  margin-top:1rem;padding-top:.625rem;border-top:1px solid #eef2f5}
+.doc .maq-valor span{font-size:.8125rem;color:#5c6b77}
+.doc .maq-valor b{font-family:Archivo,Inter,sans-serif;font-size:1.125rem;letter-spacing:-.018em}
+.doc .maq .render{break-inside:avoid}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
@@ -2096,18 +2148,31 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
           const todos = escolhidos(it);
           const extras = todos.filter(x => !x.semCusto);
           const prod = todos.filter(x => x.semCusto);
+          // a primeira linha da descrição é a frase de apresentação; o resto é
+          // ficha técnica e merece um bloco próprio, em duas colunas
+          const apresenta = v.desc[0] || '';
+          const ficha = v.desc.slice(1);
           return `<div class="maq">
-            ${p.img ? `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}
-            <div class="ln">
-              <span class="nm">${(it.un || 1) > 1 ? (it.un + ' × ') : ''}${esc(p.linha)} ${esc(p.modelo)}${p.variantes.length > 1 ? '<br><em>' + esc(v.label) + '</em>' : ''}${(it.un || 1) > 1 ? `<br><em>Valor unitário ${brl(unitario(it))}</em>` : ''}</span>
-              <span class="vl num">${brl(subtotal(it))}</span>
+            <div class="maq-topo">
+              <span class="maq-fam">${esc(p.familia)}</span>
+              <h5>${(it.un || 1) > 1 ? (it.un + ' × ') : ''}${esc(p.linha)} ${esc(p.modelo)}</h5>
+              ${p.variantes.length > 1 ? `<p class="maq-var">${esc(v.label)}</p>` : ''}
             </div>
-            <ul>${v.desc.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
-            ${extras.length ? `<div class="inclusos"><b>Acessórios inclusos:</b>${
-              extras.map(x => `${x.qtd > 1 ? x.qtd + ' ' : '1 '}${esc(x.nome)}`).join(' · ')}</div>` : ''}
-            ${prod.length ? `<div class="inclusos" style="color:#61707c"><b>Montagem:</b>${
-              prod.map(x => esc(x.nome)).join(' · ')}</div>` : ''}
-            ${v.notas?.length ? `<p class="cond" style="margin-top:.5rem">${v.notas.map(esc).join('<br>')}</p>` : ''}
+            ${p.img ? `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}
+            ${apresenta ? `<p class="maq-frase">${esc(apresenta)}</p>` : ''}
+            <div class="maq-ficha">
+              <h6>Ficha técnica</h6>
+              <ul>${ficha.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
+            </div>
+            ${extras.length ? `<div class="inclusos"><b>Acessórios inclusos</b>${
+              extras.map(x => `<span>${x.qtd > 1 ? x.qtd + ' ' : '1 '}${esc(x.nome)}</span>`).join('')}</div>` : ''}
+            ${prod.length ? `<div class="inclusos montagem"><b>Montagem</b>${
+              prod.map(x => `<span>${esc(x.nome)}</span>`).join('')}</div>` : ''}
+            ${v.notas?.length ? `<p class="cond" style="margin-top:.625rem">${v.notas.map(esc).join('<br>')}</p>` : ''}
+            <div class="maq-valor">
+              <span>${(it.un || 1) > 1 ? `${it.un} unidades, ${brl(unitario(it))} cada` : 'Valor do equipamento'}</span>
+              <b class="num">${brl(subtotal(it))}</b>
+            </div>
           </div>`;
         }).join('')}
 
