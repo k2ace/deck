@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Deck Radar</title>
+<style>
+  :root{
+    --bg:#0c0b0d; --panel:#141317; --panel-2:#1b1a1f; --line:rgba(255,255,255,0.08);
+    --text:#f2f1f4; --muted:#9c98a0; --mag:#ff3d9e; --cyan:#3bd6f0; --good:#35d9a6; --warn:#e0a06b;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1100px;margin:0 auto;padding:26px 20px 60px;}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:6px;flex-wrap:wrap;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;font-size:1.15rem;}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--mag);box-shadow:0 0 0 4px rgba(255,61,158,.18);}
+  .sp{flex:1;}
+  .btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:9px 15px;font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:background .15s;}
+  .btn:hover{background:var(--panel-2);}
+  .btn.primary{background:var(--mag);border-color:var(--mag);color:#2b0619;}
+  .sub{color:var(--muted);font-size:.9rem;margin-bottom:22px;}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 16px;}
+  .stat .k{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .stat .v{font-size:1.5rem;font-weight:800;margin-top:5px;letter-spacing:-.02em;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .tbl{width:100%;border-collapse:collapse;font-size:.86rem;}
+  .tbl th{text-align:left;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  .tbl td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr.bot{opacity:.5;}
+  .pg{font-weight:700;color:var(--cyan);}
+  .who{color:var(--mag);font-weight:700;}
+  .muted{color:var(--muted);}
+  .pill{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--muted);}
+  .pill.hum{background:rgba(53,217,166,.14);color:var(--good);}
+  .pill.bot{background:rgba(224,160,107,.14);color:var(--warn);}
+  a{color:var(--cyan);}
+  .gate{max-width:440px;margin:60px auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;}
+  .gate h2{font-size:1.1rem;margin-bottom:8px;}
+  .gate p{color:var(--muted);font-size:.9rem;margin-bottom:16px;line-height:1.5;}
+  .gate input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font:inherit;margin-bottom:12px;}
+  .msg{color:var(--warn);font-size:.85rem;margin-top:10px;min-height:1.2em;}
+  .wrapover{overflow-x:auto;}
+  @media(max-width:720px){ .stats{grid-template-columns:1fr 1fr;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="dot"></span>Deck Radar</div>
+    <span class="sp"></span>
+    <button class="btn" id="reload">Atualizar</button>
+    <button class="btn" id="forget">Trocar token</button>
+  </header>
+  <div class="sub">Quem abriu as propostas do deck, com local, aparelho e origem.</div>
+
+  <div id="gate" class="gate" hidden>
+    <h2>Entrar no radar</h2>
+    <p>Cole o token de leitura uma vez. Ele fica guardado só neste navegador.</p>
+    <input id="tok" type="password" placeholder="token" autocomplete="off">
+    <button class="btn primary" id="enter" style="width:100%">Ver aberturas</button>
+    <div class="msg" id="gmsg"></div>
+  </div>
+
+  <div id="dash" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="card wrapover">
+      <table class="tbl">
+        <thead><tr>
+          <th>Quando</th><th>Página</th><th>Quem</th><th>Local</th><th>CEP</th><th>Operadora</th><th>Aparelho</th><th>Origem</th><th></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="sub" style="margin-top:14px" id="foot"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var EP = "https://deck-track.k2ia.workers.dev/list";
+  var KEY = "deckradar_token";
+  var $ = function(s){ return document.querySelector(s); };
+  function getTok(){ try{ return localStorage.getItem(KEY) || ""; }catch(e){ return ""; } }
+  function setTok(t){ try{ localStorage.setItem(KEY, t); }catch(e){} }
+
+  function fmtWhen(ts){
+    try{
+      var d = new Date(ts);
+      return d.toLocaleString("pt-BR", { timeZone:"America/Sao_Paulo", day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" });
+    }catch(e){ return ts; }
+  }
+  function isBot(h){
+    var ua = (h.ua||"").toLowerCase();
+    var ref = (h.ref||"").toLowerCase();
+    return ua.indexOf("headless")>=0 || ua.indexOf("bot")>=0 || ref.indexOf("localhost")>=0 || (h.ua==="" && h.screen==="");
+  }
+  function origem(h){
+    if(!h.ref) return "direto";
+    if(h.ref.indexOf("deck.k2ia.app")>=0) return "home do deck";
+    if(h.ref.indexOf("localhost")>=0) return "localhost";
+    try{ return new URL(h.ref).hostname; }catch(e){ return h.ref; }
+  }
+
+  function render(hits){
+    var humans = hits.filter(function(h){ return !isBot(h); });
+    var pages = {};
+    humans.forEach(function(h){ pages[h.page]=(pages[h.page]||0)+1; });
+    var last = hits.length ? fmtWhen(hits[0].ts) : "sem registro";
+    $("#stats").innerHTML =
+      stat("Aberturas humanas", humans.length) +
+      stat("Total de toques", hits.length) +
+      stat("Páginas abertas", Object.keys(pages).length) +
+      stat("Última", last);
+
+    $("#rows").innerHTML = hits.map(function(h){
+      var bot = isBot(h);
+      var loc = [h.city, h.regionCode || h.region].filter(Boolean).join(", ") || (h.loc||"?");
+      var maps = (h.lat && h.lon) ? '<a href="https://www.google.com/maps?q='+h.lat+','+h.lon+'" target="_blank" rel="noopener">mapa</a>' : "";
+      return '<tr class="'+(bot?'bot':'')+'">'+
+        '<td class="muted" style="white-space:nowrap">'+fmtWhen(h.ts)+'</td>'+
+        '<td class="pg">'+(h.page||"?")+'</td>'+
+        '<td>'+(h.dest?'<span class="who">'+h.dest+'</span>':'<span class="muted">—</span>')+'</td>'+
+        '<td>'+loc+(maps?' · '+maps:'')+'</td>'+
+        '<td class="muted">'+(h.postal||"—")+'</td>'+
+        '<td class="muted">'+(h.isp||"—")+'</td>'+
+        '<td>'+(h.device||"?")+'</td>'+
+        '<td class="muted">'+origem(h)+'</td>'+
+        '<td><span class="pill '+(bot?'bot':'hum')+'">'+(bot?'robô?':'pessoa')+'</span></td>'+
+      '</tr>';
+    }).join("") || '<tr><td colspan="9" class="muted" style="text-align:center;padding:26px">Nenhuma abertura ainda.</td></tr>';
+
+    $("#foot").textContent = "Cidade e operadora vêm do IP, aproximados. No celular a cidade pode cair no hub da operadora. Bairro o IP não entrega. Para saber a pessoa exata, mande o link com ?u=nome no fim.";
+  }
+  function stat(k,v){ return '<div class="stat"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+
+  function load(){
+    var t = getTok();
+    if(!t){ show("gate"); return; }
+    fetch(EP + "?token=" + encodeURIComponent(t))
+      .then(function(r){ if(r.status===401){ throw new Error("token inválido"); } return r.json(); })
+      .then(function(data){ show("dash"); render(data || []); })
+      .catch(function(e){ $("#gmsg").textContent = "Não deu para entrar: " + e.message; show("gate"); });
+  }
+  function show(which){
+    $("#gate").hidden = which!=="gate";
+    $("#dash").hidden = which!=="dash";
+  }
+
+  $("#enter").addEventListener("click", function(){
+    var t = $("#tok").value.trim();
+    if(!t){ return; }
+    setTok(t); $("#gmsg").textContent=""; load();
+  });
+  $("#tok").addEventListener("keydown", function(e){ if(e.key==="Enter"){ $("#enter").click(); } });
+  $("#reload").addEventListener("click", load);
+  $("#forget").addEventListener("click", function(){ try{ localStorage.removeItem(KEY); }catch(e){} $("#tok").value=""; show("gate"); });
+
+  load();
+})();
+</script>
+</body>
+</html>
