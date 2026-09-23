@@ -523,6 +523,9 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
 /* ---------------- documento ---------------- */
 .doc{background:#fff;color:#13202b;border-radius:var(--r);overflow:hidden;box-shadow:var(--sombra-alta)}
+/* as duas páginas de apresentação que o sistema deles já emite */
+.doc .abertura img{display:block;width:100%;height:auto}
+@media print{.doc .abertura img{page-break-after:always;break-after:page}}
 .doc .topo{background:#005389;color:#fff;padding:1.5rem clamp(1.25rem,4vw,2.25rem)}
 .doc .topo .nome{font-size:1.5rem}
 .doc .topo .sub{font-size:.6875rem;letter-spacing:.06em;opacity:.8;margin-top:.25rem;line-height:1.5}
@@ -715,7 +718,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   <section class="panel" data-panel="3">
     <div class="no-print" style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
       <div><div class="trem" data-etapa="3"></div><h2 class="h2" style="margin-top:.5rem">Proposta pronta</h2></div>
-      <div class="seg" id="modoDoc"></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <div class="seg" id="modoInst"></div>
+        <div class="seg" id="modoDoc"></div>
+      </div>
     </div>
     <div id="docs" class="cmp"></div>
   </section>
@@ -1012,7 +1018,7 @@ function montar(D){
     etapa: 0, cliente: {}, itens: [],
     modos: new Set(['direto']), livre: false, custom: [],
     entrada: D.entradaPadrao, parcelas: 4, abreParc: false,
-    somar: true, familia: 'Extrusora',
+    somar: true, institucional: true, familia: 'Extrusora',
     ref: String(new Date().getFullYear()) + '-' + String(Math.floor(Math.random() * 900) + 100)
   };
   const familias = [...new Set(D.produtos.map(p => p.familia))];
@@ -1718,6 +1724,9 @@ function montar(D){
   function desenhaDoc(){
     el('#modoDoc').innerHTML = `<button data-som="1" aria-pressed="${estado.somar}">Proposta somada</button>
       <button data-som="0" aria-pressed="${!estado.somar}">Comparar lado a lado</button>`;
+    el('#modoInst').innerHTML = `<button data-inst="1" aria-pressed="${estado.institucional}">Com apresentação</button>
+      <button data-inst="0" aria-pressed="${!estado.institucional}">Só a proposta</button>`;
+    tatil(el('#modoInst'), 'button', .95);
     tatil(el('#modoDoc'), 'button', .95);
     const alvo = el('#docs');
     if (!estado.itens.length){ alvo.className = 'cmp'; alvo.innerHTML = '<p class="empty">Nenhum equipamento configurado ainda.</p>'; return; }
@@ -1733,6 +1742,10 @@ function montar(D){
   el('#modoDoc').addEventListener('click', (e) => {
     const b = e.target.closest('[data-som]'); if (b){ estado.somar = b.dataset.som === '1'; desenhaDoc(); }
   });
+  el('#modoInst').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-inst]');
+    if (b){ estado.institucional = b.dataset.inst === '1'; desenhaDoc(); }
+  });
 
   // "30DDL" é a fala da fábrica. Quem recebe a proposta lê em português.
   const porExtenso = (m) => {
@@ -1746,6 +1759,10 @@ function montar(D){
     const hoje = new Date().toLocaleDateString('pt-BR');
     const orcar = lista.flatMap(semPreco);
     return `<article class="doc">
+      ${estado.institucional ? `<div class="abertura">
+        <img src="img/institucional-1.jpg" alt="Apresentação da Cristofolini Máquinas" loading="lazy">
+        <img src="img/institucional-2.jpg" alt="Linha de produtos e diferenciais" loading="lazy">
+      </div>` : ''}
       <div class="topo">
         <img class="nome" src="img/logo-branco.png" alt="Cristofolini">
         <div class="topo-linha">
