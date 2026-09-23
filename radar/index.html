@@ -45,7 +45,11 @@
   .gate input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font:inherit;margin-bottom:12px;}
   .msg{color:var(--warn);font-size:.85rem;margin-top:10px;min-height:1.2em;}
   .wrapover{overflow-x:auto;}
-  @media(max-width:720px){ .stats{grid-template-columns:1fr 1fr;} }
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+  .filters input,.filters select{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px;font:inherit;font-size:.86rem;}
+  .filters input{flex:1;min-width:190px;}
+  .filters select{cursor:pointer;}
+  @media(max-width:720px){ .stats{grid-template-columns:1fr 1fr;} .filters input{min-width:120px;} }
 </style>
 </head>
 <body>
@@ -67,6 +71,21 @@
   </div>
 
   <div id="dash" hidden>
+    <div class="filters">
+      <input id="f-q" type="search" placeholder="Buscar cidade, operadora, quem, página...">
+      <select id="f-page"><option value="">Todas as páginas</option></select>
+      <select id="f-type">
+        <option value="">Pessoas e robôs</option>
+        <option value="human">Só pessoas</option>
+        <option value="bot">Só robôs</option>
+      </select>
+      <select id="f-period">
+        <option value="">Todo o período</option>
+        <option value="today">Hoje</option>
+        <option value="7d">Últimos 7 dias</option>
+      </select>
+      <button class="btn" id="f-clear">Limpar</button>
+    </div>
     <div class="stats" id="stats"></div>
     <div class="card wrapover">
       <table class="tbl">
@@ -85,6 +104,7 @@
   var EP = "https://deck-track.k2ia.workers.dev/list";
   var KEY = "deckradar_token";
   var $ = function(s){ return document.querySelector(s); };
+  var ALL = [];
   function getTok(){ try{ return localStorage.getItem(KEY) || ""; }catch(e){ return ""; } }
   function setTok(t){ try{ localStorage.setItem(KEY, t); }catch(e){} }
 
@@ -150,12 +170,42 @@
   }
   function stat(k,v){ return '<div class="stat"><div class="k">'+esc(k)+'</div><div class="v">'+esc(v)+'</div></div>'; }
 
+  function populatePages(){
+    var sel = $("#f-page"); var cur = sel.value;
+    var set = {}; ALL.forEach(function(h){ if(h.page) set[h.page]=1; });
+    var opts = Object.keys(set).sort();
+    sel.innerHTML = '<option value="">Todas as páginas</option>' + opts.map(function(p){ return '<option value="'+esc(p)+'">'+esc(p)+'</option>'; }).join("");
+    sel.value = cur;
+  }
+  function applyFilters(){
+    var q = ($("#f-q").value||"").toLowerCase().trim();
+    var pg = $("#f-page").value, ty = $("#f-type").value, pe = $("#f-period").value;
+    var now = Date.now();
+    var mid = new Date(); mid.setHours(0,0,0,0); var startToday = mid.getTime();
+    var out = ALL.filter(function(h){
+      if(pg && h.page!==pg) return false;
+      if(ty==="human" && isBot(h)) return false;
+      if(ty==="bot" && !isBot(h)) return false;
+      if(pe){
+        var t = Date.parse(h.ts);
+        if(pe==="today" && !(t>=startToday)) return false;
+        if(pe==="7d" && !(t>= now - 7*86400000)) return false;
+      }
+      if(q){
+        var hay = [h.page,h.dest,h.city,h.region,h.isp,h.postal,h.ref,h.device,h.loc].join(" ").toLowerCase();
+        if(hay.indexOf(q)<0) return false;
+      }
+      return true;
+    });
+    render(out);
+  }
+
   function load(){
     var t = getTok();
     if(!t){ show("gate"); return; }
     fetch(EP + "?token=" + encodeURIComponent(t))
       .then(function(r){ if(r.status===401){ throw new Error("token inválido"); } return r.json(); })
-      .then(function(data){ show("dash"); render(data || []); })
+      .then(function(data){ ALL = data || []; show("dash"); populatePages(); applyFilters(); })
       .catch(function(e){ $("#gmsg").textContent = "Não deu para entrar: " + e.message; show("gate"); });
   }
   function show(which){
@@ -171,6 +221,11 @@
   $("#tok").addEventListener("keydown", function(e){ if(e.key==="Enter"){ $("#enter").click(); } });
   $("#reload").addEventListener("click", load);
   $("#forget").addEventListener("click", function(){ try{ localStorage.removeItem(KEY); }catch(e){} $("#tok").value=""; show("gate"); });
+  ["f-q","f-page","f-type","f-period"].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener("input", applyFilters); el.addEventListener("change", applyFilters);
+  });
+  $("#f-clear").addEventListener("click", function(){ $("#f-q").value=""; $("#f-page").value=""; $("#f-type").value=""; $("#f-period").value=""; applyFilters(); });
 
   load();
 })();
