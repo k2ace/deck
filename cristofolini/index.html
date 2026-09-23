@@ -497,6 +497,16 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
   .linha-livre input{grid-area:valor}
   .linha-livre .tirar{grid-area:tirar;justify-self:end}
 }
+/* endereço: CEP curto, logradouro largo, número e UF estreitos */
+.grid.end{grid-template-columns:repeat(2,1fr);gap:.875rem}
+@media(min-width:40rem){
+  .grid.end{grid-template-columns:8rem 1fr 6rem}
+  .grid.end .rua{grid-column:2/4}
+  .grid.end .nr{grid-column:auto}
+}
+.un-bloco{display:inline-flex;align-items:center;gap:.625rem}
+#perfilCliente{margin-top:1.5rem;border-top:1px solid var(--line-soft)}
+#perfilCliente .grid{padding-bottom:1rem}
 .livre{margin-top:1rem}
 .linha-livre{display:grid;grid-template-columns:1fr 1fr 8rem 2.25rem;gap:.5rem;margin-bottom:.5rem;align-items:center}
 .linha-livre .input{padding:.625rem .75rem}
@@ -554,6 +564,8 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   .doc .maq li{break-inside:avoid}}
 .doc .maq .inclusos{margin-top:.625rem;font-size:.8125rem;color:#13202b}
 .doc .maq .inclusos b{font-weight:600;display:block;margin-bottom:.1875rem}
+.doc .linha-desc{display:flex;justify-content:space-between;gap:1rem;font-size:.875rem;
+  color:#41505c;padding:.3125rem 0}
 .doc .total{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
   border-top:2px solid #005389;margin-top:1rem;padding-top:1rem;color:#005389}
 .doc .total span:first-child{font-size:.9375rem;font-weight:600;color:#4a5a67}
@@ -681,13 +693,35 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
       <p class="tiny">Entra no cabeçalho do documento. Só a razão social é obrigatória, o resto dá para completar depois.</p>
     </div>
     <div class="grid two">
-      <label class="field"><span>Razão social</span><input class="input" id="cl-nome" data-mask="nome" autocomplete="off" placeholder="Plastibraz Embalagens"></label>
       <label class="field"><span>CNPJ ou CPF</span><input class="input" id="cl-cnpj" data-mask="doc" inputmode="numeric" autocomplete="off" placeholder="00.000.000/0001-00"><em class="dica" data-para="cl-cnpj"></em></label>
+      <label class="field"><span>Razão social</span><input class="input" id="cl-nome" data-mask="nome" autocomplete="off" placeholder="Plastibraz Embalagens"></label>
       <label class="field"><span>Contato</span><input class="input" id="cl-contato" data-mask="nome" autocomplete="off" placeholder="Marcelo Rocha"></label>
       <label class="field"><span>Telefone</span><input class="input" id="cl-tel" data-mask="fone" inputmode="tel" autocomplete="off" placeholder="(47) 99812-4455"><em class="dica" data-para="cl-tel"></em></label>
       <label class="field"><span>E-mail</span><input class="input" id="cl-email" data-mask="email" inputmode="email" autocomplete="off" placeholder="compras@empresa.com.br"><em class="dica" data-para="cl-email"></em></label>
-      <label class="field"><span>Cidade / UF</span><input class="input" id="cl-local" data-mask="nome" autocomplete="off" placeholder="Joinville/SC"></label>
     </div>
+
+    <p class="rotulo">Endereço</p>
+    <div class="grid end">
+      <label class="field cep"><span>CEP</span><input class="input" id="cl-cep" data-mask="cep" inputmode="numeric" autocomplete="off" placeholder="88160-560"><em class="dica" data-para="cl-cep"></em></label>
+      <label class="field rua"><span>Logradouro</span><input class="input" id="cl-rua" data-mask="nome" autocomplete="off"></label>
+      <label class="field nr"><span>Número</span><input class="input" id="cl-num" autocomplete="off"></label>
+      <label class="field"><span>Bairro</span><input class="input" id="cl-bairro" data-mask="nome" autocomplete="off"></label>
+      <label class="field"><span>Cidade</span><input class="input" id="cl-cidade" data-mask="nome" autocomplete="off"></label>
+      <label class="field uf"><span>UF</span><input class="input" id="cl-uf" maxlength="2" autocomplete="off"></label>
+    </div>
+
+    <details class="gaveta" id="perfilCliente">
+      <summary>Perfil do cliente<span class="conta zero" id="perfilConta">0</span><span class="seta"></span></summary>
+      <p class="nota" style="margin:0 0 .75rem">Fica registrado junto da proposta e não sai no documento do cliente.</p>
+      <div class="grid two">
+        <label class="field"><span>Produto que ele fabrica</span><input class="input" id="cl-produto" autocomplete="off" placeholder="Saco de lixo, sacola, filme técnico"></label>
+        <label class="field"><span>Toneladas por mês</span><input class="input num" id="cl-ton" inputmode="numeric" autocomplete="off" placeholder="40"></label>
+        <label class="field"><span>Porte</span><select class="input" id="cl-porte"><option value="">Não informado</option><option>Pequeno</option><option>Médio</option><option>Grande</option></select></label>
+        <label class="field"><span>Relação</span><select class="input" id="cl-relacao"><option value="">Não informado</option><option>Cliente novo</option><option>Já é cliente</option></select></label>
+        <label class="field"><span>Como chegou até nós</span><select class="input" id="cl-origem"><option value="">Não informado</option><option>Feira</option><option>Indicação</option><option>Site</option><option>Visita do representante</option><option>Marketing</option><option>Cliente antigo</option></select></label>
+        <label class="field"><span>Última visita</span><input class="input" id="cl-visita" type="date"></label>
+      </div>
+    </details>
     <div class="emissor" id="emissor"></div>
   </section>
 
@@ -709,6 +743,12 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
       <div class="trem" data-etapa="2"></div>
       <h2 class="display" style="margin-top:.5rem">Condições<br>de pagamento</h2>
       <p class="tiny">Pode marcar mais de uma forma na mesma proposta, como vocês já fazem na planilha. E quando a negociação sai do padrão, dá para escrever parcela por parcela.</p>
+    </div>
+    <div class="grid two" style="margin-bottom:1.5rem">
+      <label class="field"><span>Desconto concedido</span>
+        <input class="input num" id="pg-desc" inputmode="numeric" placeholder="0"></label>
+      <label class="field"><span>Prazo de entrega</span>
+        <select class="input" id="pg-prazo"></select></label>
     </div>
     <div id="modos" class="modos"></div>
     <div id="detalhe"></div>
@@ -1012,14 +1052,27 @@ const brl = (n) => 'R$ ' + Math.round(n).toLocaleString('pt-BR');
 const el = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+// Numeração sequencial por ano. Sem servidor, o contador vive neste aparelho;
+// quando entrar o back-end, vira o número oficial do sistema.
+function proximaRef(){
+  const ano = new Date().getFullYear();
+  let n = 1;
+  try {
+    const salvo = JSON.parse(localStorage.getItem('cri-ref') || '{}');
+    n = (salvo.ano === ano ? salvo.n : 0) + 1;
+    localStorage.setItem('cri-ref', JSON.stringify({ano, n}));
+  } catch (e) {}
+  return String(n).padStart(4, '0') + '-' + ano;
+}
+
 function montar(D){
   const E = D.empresa;
   const estado = {
     etapa: 0, cliente: {}, itens: [],
     modos: new Set(['direto']), livre: false, custom: [],
     entrada: D.entradaPadrao, parcelas: 4, abreParc: false,
-    somar: true, institucional: true, familia: 'Extrusora',
-    ref: String(new Date().getFullYear()) + '-' + String(Math.floor(Math.random() * 900) + 100)
+    somar: true, institucional: true, desconto: 0, prazo: 'A combinar', perfil: {}, familia: 'Extrusora',
+    ref: proximaRef()
   };
   const familias = [...new Set(D.produtos.map(p => p.familia))];
 
@@ -1072,13 +1125,15 @@ function montar(D){
     return saida;
   }
 
-  function subtotal(it){
+  const unitario = (it) => {
     const p = D.produtos[it.pid];
     let v = p.variantes[it.vi].valor;
     for (const x of escolhidos(it)) v += (x.valor || 0) * x.qtd;
     return v;
-  }
-  const total = () => estado.itens.reduce((s, it) => s + subtotal(it), 0);
+  };
+  const subtotal = (it) => unitario(it) * (it.un || 1);
+  const bruto = () => estado.itens.reduce((s, it) => s + subtotal(it), 0);
+  const total = () => Math.max(0, bruto() - (estado.desconto || 0));
 
   const semPreco = (it) => escolhidos(it).filter(x => x.valor === null).map(x => x.nome);
 
@@ -1197,6 +1252,8 @@ function montar(D){
     if (d.length <= 11) return d.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     return d.replace(/(\d{2})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1/$2').replace(/(\d{4})(\d{1,2})$/, '$1-$2');
   }
+  const mascaraCep = (v) => digitos(v).slice(0, 8).replace(/(\d{5})(\d{1,3})$/, '$1-$2');
+
   function mascaraFone(v){
     const d = digitos(v).slice(0, 11);
     if (d.length <= 10) return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d{1,4})$/, '$1-$2');
@@ -1241,7 +1298,10 @@ function montar(D){
     return d.length === 10 ? (+d[2] >= 2 && +d[2] <= 8) : d[2] === '9';
   }
 
-  const CAMPOS = {nome:'cl-nome', cnpj:'cl-cnpj', contato:'cl-contato', tel:'cl-tel', email:'cl-email', local:'cl-local'};
+  const CAMPOS = {cnpj:'cl-cnpj', nome:'cl-nome', contato:'cl-contato', tel:'cl-tel', email:'cl-email',
+                  cep:'cl-cep', rua:'cl-rua', num:'cl-num', bairro:'cl-bairro', cidade:'cl-cidade', uf:'cl-uf'};
+  const PERFIL = {produto:'cl-produto', ton:'cl-ton', porte:'cl-porte', relacao:'cl-relacao',
+                  origem:'cl-origem', visita:'cl-visita'};
   for (const [chave, id] of Object.entries(CAMPOS)){
     const inp = document.getElementById(id);
     const dica = document.querySelector(`.dica[data-para="${id}"]`);
@@ -1250,6 +1310,7 @@ function montar(D){
     const trata = (aoSair) => {
       const antes = inp.value, fim = inp.selectionStart === antes.length;
       if (tipo === 'doc') inp.value = mascaraDoc(antes);
+      else if (tipo === 'cep') inp.value = mascaraCep(antes);
       else if (tipo === 'fone') inp.value = mascaraFone(antes);
       else if (tipo === 'nome') inp.value = capitalizar(antes);
       else if (tipo === 'email' && aoSair) inp.value = antes.trim().toLowerCase();
@@ -1262,11 +1323,17 @@ function montar(D){
       if (!inp.value.trim()){ /* vazio não reclama */ }
       else if (tipo === 'doc'){
         if (d.length === 11){ ok = cpfValido(d); msg = ok ? 'CPF válido' : 'CPF inválido'; }
-        else if (d.length === 14){ ok = cnpjValido(d); msg = ok ? 'CNPJ válido' : 'CNPJ inválido'; }
+        else if (d.length === 14){
+          ok = cnpjValido(d); msg = ok ? 'CNPJ válido' : 'CNPJ inválido';
+          if (ok) buscaCnpj(d);
+        }
         else if (aoSair) msg = 'Faltam dígitos';
       } else if (tipo === 'fone'){
         if (d.length >= 10){ ok = foneValido(d); msg = ok ? 'Telefone válido' : 'Telefone inválido'; }
         else if (aoSair) msg = 'Faltam dígitos';
+      } else if (tipo === 'cep'){
+        if (d.length === 8){ ok = true; buscaCep(d); }
+        else if (aoSair && d.length) msg = 'CEP incompleto';
       } else if (tipo === 'email' && (aoSair || inp.value.includes('@'))){
         ok = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(inp.value.trim());
         msg = ok ? '' : 'E-mail inválido';
@@ -1279,6 +1346,73 @@ function montar(D){
 
     inp.addEventListener('input', () => trata(false));
     inp.addEventListener('blur', () => trata(true));
+  }
+
+  for (const [chave, id] of Object.entries(PERFIL)){
+    const campo = document.getElementById(id);
+    campo.addEventListener('input', () => { estado.perfil[chave] = campo.value.trim(); contaPerfil(); });
+    campo.addEventListener('change', () => { estado.perfil[chave] = campo.value.trim(); contaPerfil(); });
+  }
+  function contaPerfil(){
+    const n = Object.values(estado.perfil).filter(Boolean).length;
+    const alvo = el('#perfilConta');
+    alvo.textContent = n;
+    alvo.classList.toggle('zero', !n);
+  }
+
+  /* ---------- preenchimento automático ----------
+     O CEP completa o endereço e o CNPJ traz razão social e endereço inteiros.
+     Falha de rede não atrapalha: o campo continua editável na mão. */
+  const põe = (id, v) => {
+    const c = document.getElementById(id);
+    if (!v || (c.value && c.value.trim())) return;
+    c.value = v;
+    c.dispatchEvent(new Event('input'));
+  };
+
+  let ultimoCep = '';
+  async function buscaCep(d){
+    if (d === ultimoCep) return;
+    ultimoCep = d;
+    const dica = document.querySelector('.dica[data-para="cl-cep"]');
+    dica.textContent = 'Buscando…'; dica.classList.remove('ok');
+    try {
+      const r = await fetch(`https://brasilapi.com.br/api/cep/v2/${d}`);
+      if (!r.ok) throw new Error('cep');
+      const j = await r.json();
+      põe('cl-rua', j.street); põe('cl-bairro', j.neighborhood);
+      põe('cl-cidade', j.city); põe('cl-uf', j.state);
+      dica.textContent = 'Endereço preenchido'; dica.classList.add('ok');
+      if (!document.getElementById('cl-num').value) document.getElementById('cl-num').focus();
+    } catch (e){
+      dica.textContent = 'CEP não encontrado, preencha na mão';
+      dica.classList.remove('ok');
+    }
+  }
+
+  let ultimoCnpj = '';
+  async function buscaCnpj(d){
+    if (d === ultimoCnpj) return;
+    ultimoCnpj = d;
+    const dica = document.querySelector('.dica[data-para="cl-cnpj"]');
+    const antes = dica.textContent;
+    dica.textContent = 'Buscando na Receita…';
+    try {
+      const r = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${d}`);
+      if (!r.ok) throw new Error('cnpj');
+      const j = await r.json();
+      põe('cl-nome', j.razao_social);
+      põe('cl-rua', [j.descricao_tipo_de_logradouro, j.logradouro].filter(Boolean).join(' '));
+      põe('cl-num', j.numero);
+      põe('cl-bairro', j.bairro);
+      põe('cl-cidade', j.municipio);
+      põe('cl-uf', j.uf);
+      if (j.cep) põe('cl-cep', mascaraCep(String(j.cep)));
+      if (j.dddTelefone1 || j.ddd_telefone_1) põe('cl-tel', mascaraFone(String(j.dddTelefone1 || j.ddd_telefone_1)));
+      dica.textContent = 'Dados da Receita preenchidos'; dica.classList.add('ok');
+    } catch (e){
+      dica.textContent = antes;
+    }
   }
 
   /* ---------- catálogo ---------- */
@@ -1341,7 +1475,7 @@ function montar(D){
     if (!b) return;
     if (estado.itens.length >= 3){ aviso('A proposta comporta até 3 equipamentos.'); return; }
     const pid = +b.dataset.add;
-    const it = {pid, vi: 0, esc: {}, qtd: {}, aberto: false};
+    const it = {pid, vi: 0, esc: {}, qtd: {}, un: 1, aberto: false};
     // Nasce com a configuração mais comum já marcada. O representante ajusta o
     // que for diferente em vez de responder tudo do zero.
     for (const g of gruposDe(D.produtos[pid])){
@@ -1442,6 +1576,14 @@ function montar(D){
           : `<button class="palco palco-toque" data-ampliar="${it.pid}"><img class="ativo" src="${p.img}" alt="${esc(p.nome)}" loading="lazy" draggable="false"><span class="dica360">toque para ampliar</span></button>`) : ''}
         <div class="item-meta">
           <span class="tiny">NCM ${p.ncm || '—'}${p.finame && p.finame !== '...' ? ', FINAME ' + p.finame : ''}</span>
+          <span class="un-bloco">
+            <span class="tiny">Quantidade</span>
+            <span class="stepper">
+              <button data-un="${idx}:-1" ${(it.un || 1) > 1 ? '' : 'disabled'} aria-label="Menos uma unidade">−</button>
+              <span class="n">${it.un || 1}</span>
+              <button data-un="${idx}:1" aria-label="Mais uma unidade">+</button>
+            </span>
+          </span>
           <button class="linkish" data-rm="${idx}">remover</button>
         </div>
         ${corpoHTML(it, idx)}
@@ -1552,6 +1694,13 @@ function montar(D){
       desenhaItens(); dock(); return;
     }
 
+    const un = e.target.closest('[data-un]');
+    if (un){
+      const [i, d] = un.dataset.un.split(':').map(Number);
+      const it = estado.itens[i];
+      it.un = Math.max(1, (it.un || 1) + d);
+      desenhaItens(); dock(); return;
+    }
     const q = e.target.closest('[data-q]');
     if (q){
       const [i, xid, d] = q.dataset.q.split(':');
@@ -1605,6 +1754,20 @@ function montar(D){
             `<button data-par="${i+1}" aria-pressed="${i+1 === estado.parcelas}">${i+1}×<em>${brl((total() * (1 - estado.entrada)) / (i+1))}</em></button>`).join('')}</div>` : ''}
         </div>`}`;
 
+    const pz = el('#pg-prazo');
+    if (pz && !pz.dataset.pronto){
+      pz.dataset.pronto = '1';
+      pz.innerHTML = (D.prazos || ['A combinar']).map(x =>
+        `<option${x === estado.prazo ? ' selected' : ''}>${x}</option>`).join('');
+      pz.addEventListener('change', () => { estado.prazo = pz.value; });
+      const dsc = el('#pg-desc');
+      dsc.addEventListener('input', () => {
+        const n = Number(dsc.value.replace(/\D/g, ''));
+        estado.desconto = n;
+        dsc.value = n ? n.toLocaleString('pt-BR') : '';
+        desenhaPlanos(); dock();
+      });
+    }
     desenhaPlanos();
     tatil(el('#modos'), '.modo', .985);
     tatil(el('#detalhe'), 'button', .94);
@@ -1755,7 +1918,10 @@ function montar(D){
 
   function docHTML(lista, blocos, rotulo){
     const c = estado.cliente;
-    const soma = lista.reduce((s, it) => s + subtotal(it), 0);
+    let soma = lista.reduce((s, it) => s + subtotal(it), 0);
+    // o desconto só entra na proposta somada; no comparativo cada opção é bruta
+    const desc = (lista.length === estado.itens.length) ? Math.min(estado.desconto || 0, soma) : 0;
+    soma -= desc;
     const hoje = new Date().toLocaleDateString('pt-BR');
     const orcar = lista.flatMap(semPreco);
     return `<article class="doc">
@@ -1776,11 +1942,12 @@ function montar(D){
         <h4>Cliente</h4>
         <dl class="kv">
           <dt>Razão social</dt><dd>${esc(c.nome || '—')}</dd>
-          <dt>CNPJ</dt><dd>${esc(c.cnpj || '—')}</dd>
-          <dt>Contato</dt><dd>${esc(c.contato || '—')}${c.tel ? ' · ' + esc(c.tel) : ''}</dd>
+          <dt>CNPJ ou CPF</dt><dd>${esc(c.cnpj || '—')}</dd>
+          <dt>Endereço</dt><dd>${esc([[c.rua, c.num].filter(Boolean).join(', '), c.bairro].filter(Boolean).join(', ') || '—')}</dd>
+          <dt>Cidade</dt><dd>${esc([[c.cidade, c.uf].filter(Boolean).join('/'), c.cep && 'CEP ' + c.cep].filter(Boolean).join(', ') || '—')}</dd>
+          <dt>Contato</dt><dd>${esc(c.contato || '—')}${c.tel ? ', ' + esc(c.tel) : ''}</dd>
           <dt>E-mail</dt><dd>${esc(c.email || '—')}</dd>
-          <dt>Local</dt><dd>${esc(c.local || '—')}</dd>
-          <dt>Vendedor</dt><dd>${esc(c.vend || '—')}${c.vendtel ? ' · ' + esc(c.vendtel) : ''}</dd>
+          <dt>Vendedor</dt><dd>${esc(c.vend || '—')}${c.vendtel ? ', ' + esc(c.vendtel) : ''}</dd>
         </dl>
 
         <h4>Equipamentos</h4>
@@ -1793,7 +1960,7 @@ function montar(D){
           return `<div class="maq">
             ${p.img ? `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}
             <div class="ln">
-              <span class="nm">${esc(p.linha)} ${esc(p.modelo)}${p.variantes.length > 1 ? '<br><em>' + esc(v.label) + '</em>' : ''}</span>
+              <span class="nm">${(it.un || 1) > 1 ? (it.un + ' × ') : ''}${esc(p.linha)} ${esc(p.modelo)}${p.variantes.length > 1 ? '<br><em>' + esc(v.label) + '</em>' : ''}${(it.un || 1) > 1 ? `<br><em>Valor unitário ${brl(unitario(it))}</em>` : ''}</span>
               <span class="vl num">${brl(subtotal(it))}</span>
             </div>
             <ul>${v.desc.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
@@ -1805,7 +1972,10 @@ function montar(D){
           </div>`;
         }).join('')}
 
-        <div class="total"><span>Valor total</span><span class="num">${brl(soma)}</span></div>
+        ${desc ? `<div class="linha-desc"><span>Subtotal</span><span class="num">${brl(soma + desc)}</span></div>
+        <div class="linha-desc"><span>Desconto concedido</span><span class="num">− ${brl(desc)}</span></div>` : ''}
+        <div class="total"><span>Investimento total</span><span class="num">${brl(soma)}</span></div>
+        <p class="cond" style="margin-top:.5rem">Prazo de entrega: ${esc(estado.prazo)}.</p>
         ${orcar.length ? `<p class="cond" style="margin-top:.625rem">A orçar, fora do valor acima: ${orcar.map(esc).join(', ')}.</p>` : ''}
 
         <h4>Condições de pagamento</h4>
