@@ -657,6 +657,46 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .cmp{display:grid;gap:1.25rem}
 @media(min-width:52rem){.cmp.n2{grid-template-columns:1fr 1fr}.cmp.n3{grid-template-columns:repeat(3,1fr)}}
 
+/* Modo apresentação: a tela que o representante vira para o cliente. Tudo
+   numa rolagem só, com menu no topo, como o aplicativo de iPad da feira. */
+.vitrine{position:fixed;inset:0;z-index:80;background:#06121c;color:#eef3f7;
+  display:flex;flex-direction:column;overflow:hidden}
+.vit-bar{
+  display:flex;align-items:center;gap:1.25rem;flex:0 0 auto;
+  padding:calc(env(safe-area-inset-top,0px) + .75rem) var(--pad) .75rem;
+  background:rgba(6,18,28,.72);backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.vit-logo{height:1.125rem;width:auto;flex:0 0 auto}
+.vit-menu{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;flex:1}
+.vit-menu::-webkit-scrollbar{display:none}
+.vit-menu button{padding:.4375rem .875rem;border-radius:999px;font-size:.875rem;
+  color:rgba(238,243,247,.72);white-space:nowrap;will-change:transform}
+.vit-menu button:hover{color:#fff;background:rgba(255,255,255,.08)}
+.vit-x{width:2.25rem;height:2.25rem;border-radius:50%;display:grid;place-items:center;
+  color:#fff;background:rgba(255,255,255,.1);flex:0 0 auto}
+.vit-x svg{width:1rem;height:1rem}
+.vit-corpo{flex:1;overflow-y:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.vit-maq{
+  display:grid;gap:1.5rem;align-items:center;
+  padding:clamp(2rem,6vh,4rem) var(--pad);
+  border-bottom:1px solid rgba(255,255,255,.07);max-width:78rem;margin:0 auto;
+}
+@media(min-width:56rem){.vit-maq{grid-template-columns:1.35fr 1fr;gap:3rem}}
+.vit-foto{border-radius:1.25rem;overflow:hidden;background:
+  radial-gradient(70% 70% at 50% 40%, #12384f, #061620 75%);aspect-ratio:16/9}
+.vit-foto img,.vit-foto video{width:100%;height:100%;object-fit:contain;display:block}
+.vit-txt .rotfam{color:rgba(238,243,247,.55)}
+.vit-txt h3{font-family:Archivo,Inter,sans-serif;font-size:clamp(1.6rem,3.5vw,2.25rem);
+  font-weight:600;letter-spacing:-.026em;line-height:1.08;margin:.25rem 0 1rem}
+.vit-txt h3 b{font-weight:700}
+.vit-txt ul{margin:0 0 1.5rem 1rem;font-size:.9375rem;line-height:1.7;color:rgba(238,243,247,.78)}
+.vit-txt .btn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
+  box-shadow:none}
+.linha-fam{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:space-between}
+.btn.vitrine{padding:.625rem 1rem;font-size:.875rem;margin-bottom:1.5rem}
+@media (prefers-reduced-motion:reduce){.vit-corpo{scroll-behavior:auto}}
 /* ---------- visualizador em tela cheia ---------- */
 .visor{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:var(--pad)}
 .visor-fundo{position:absolute;inset:0;background:rgba(6,14,20,.62);
@@ -797,6 +837,17 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   </div>
 </div>
 
+<div class="vitrine" id="vitrine" hidden>
+  <header class="vit-bar">
+    <img class="vit-logo" src="img/logo-branco.png" alt="Cristofolini">
+    <nav class="vit-menu" id="vitMenu"></nav>
+    <button class="vit-x" id="vitFechar" aria-label="Sair da apresentação">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+    </button>
+  </header>
+  <main class="vit-corpo" id="vitCorpo"></main>
+</div>
+
 <div class="visor" id="visor" hidden>
   <div class="visor-fundo" data-fechar="1"></div>
   <div class="visor-caixa" id="visorCaixa">
@@ -890,7 +941,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div id="itens"></div>
     <div id="seletor">
-      <div class="fam" id="fams"></div>
+      <div class="linha-fam">
+        <div class="fam" id="fams"></div>
+        <button class="btn sec vitrine" id="btnVitrine">Modo apresentação</button>
+      </div>
       <div class="cards" id="cards"></div>
     </div>
   </section>
@@ -2432,6 +2486,65 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
   tatil(visor, '.ponto', .8);
   addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharVisor(); });
   tatil(visor, '.visor-x', .88);
+
+  /* ---------- modo apresentação ----------
+     O Dyogo montou um aplicativo de iPad para a feira com todas as máquinas
+     numa tela só e um menu no topo, sem ficar indo e voltando. Isto é aquilo,
+     com o giro e a foto de fábrica que a gente já tem. */
+  const vitrine = el('#vitrine');
+
+  function abrirVitrine(){
+    el('#vitMenu').innerHTML = familias.map(f =>
+      `<button data-vf="${f}">${f}s</button>`).join('');
+    el('#vitCorpo').innerHTML = D.produtos.map((p, pid) => !p.img ? '' : `
+      <section class="vit-maq" id="vit-${pid}" data-fam="${p.familia}">
+        <div class="vit-foto">
+          ${p.video ? `<video src="${p.video}" muted loop playsinline preload="none" poster="${p.img}"></video>`
+                    : `<img src="${p.img}" alt="${esc(p.nome)}" loading="lazy">`}
+        </div>
+        <div class="vit-txt">
+          <span class="rotfam">${esc(p.familia)}</span>
+          <h3>${esc(p.linha)} <b>${esc(p.modelo)}</b></h3>
+          <ul>${p.variantes[0].desc.slice(1, 7).map(d => `<li>${esc(d)}</li>`).join('')}</ul>
+          <button class="btn sec" data-ampliar="${pid}">Ver de perto</button>
+        </div>
+      </section>`).join('');
+    vitrine.hidden = false;
+    document.body.style.overflow = 'hidden';
+    // o vídeo só roda quando a máquina entra na tela, para não pesar
+    const olho = new IntersectionObserver((itens) => {
+      for (const it of itens){
+        const v = it.target.querySelector('video');
+        if (!v) continue;
+        if (it.isIntersecting) v.play().catch(() => {}); else v.pause();
+      }
+    }, {threshold: .35});
+    el('#vitCorpo').querySelectorAll('.vit-maq').forEach(x => olho.observe(x));
+    if (!REDUZIR.matches) vitrine.animate([{opacity:0},{opacity:1}], {duration: 320, easing:'ease-out'});
+  }
+
+  function fecharVitrine(){
+    vitrine.hidden = true;
+    document.body.style.overflow = '';
+    el('#vitCorpo').innerHTML = '';
+  }
+
+  el('#btnVitrine').addEventListener('click', abrirVitrine);
+  el('#vitFechar').addEventListener('click', fecharVitrine);
+  vitrine.addEventListener('click', (e) => {
+    const f = e.target.closest('[data-vf]');
+    if (f){
+      const alvo = el('#vitCorpo').querySelector(`.vit-maq[data-fam="${f.dataset.vf}"]`);
+      alvo?.scrollIntoView({behavior: REDUZIR.matches ? 'auto' : 'smooth', block: 'start'});
+      return;
+    }
+    const amp = e.target.closest('[data-ampliar]');
+    if (amp) ampliar(+amp.dataset.ampliar, amp);
+  });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !vitrine.hidden && visor.hidden) fecharVitrine(); });
+  tatil(vitrine, '.vit-menu button', .94);
+  tatil(vitrine, '.vit-txt .btn', .96);
+  tatil(el('#seletor'), '.vitrine', .97);
 
   desenhaFams(); desenhaCards(); desenhaItens(); progresso(); dock();
 }
