@@ -635,6 +635,21 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .doc table{width:100%;border-collapse:collapse;font-size:.875rem}
 .doc table td{padding:.4375rem 0;border-top:1px solid #e3e9ee}
 .doc table td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+/* Condições comerciais: o arquivo separado que hoje o representante esquece
+   de mandar junto passa a viver dentro da própria proposta. */
+.doc .cc{display:grid;gap:.5rem .875rem;font-size:.8125rem;line-height:1.55;max-width:38rem}
+@media(min-width:34rem){.doc .cc{grid-template-columns:9.5rem 1fr}}
+.doc .cc dt{color:#5c6b77;font-weight:600}
+.doc .cc dd{color:#2b3a45}
+/* Campo de assinatura, como no documento que eles emitem hoje */
+.doc .assina{display:flex;gap:2rem;flex-wrap:wrap;margin-top:2.5rem}
+.doc .assina > div{flex:1 1 13rem;min-width:11rem}
+.doc .assina .linha{display:block;border-top:1px solid #9aa8b3;margin-bottom:.375rem}
+.doc .assina em{display:block;font-style:normal;font-size:.75rem;color:#5c6b77}
+.doc .assina b{display:block;font-size:.8125rem;font-weight:600;margin-top:.0625rem;min-height:1rem}
+.doc .assina .data-ass{flex:0 1 8rem}
+.doc .assina .data-ass .linha{margin-top:1.5rem;margin-bottom:.375rem}
+@media print{.doc .assina{break-inside:avoid}}
 .doc .cond{font-size:.75rem;color:#55646f;line-height:1.65;max-width:34rem}
 .doc .cond li{margin-bottom:.1875rem;margin-left:1rem}
 .doc .foot{border-top:1px solid #e3e9ee;margin-top:2rem;padding-top:1rem;font-size:.75rem;
@@ -649,6 +664,24 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .visor-caixa{position:relative;width:min(58rem,100%);border-radius:1.25rem;overflow:hidden;
   background:var(--card);box-shadow:var(--sombra-alta);will-change:transform,opacity}
 .visor-caixa .palco{aspect-ratio:16/10;cursor:grab}
+.visor-cena{position:relative}
+.visor-seta{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:2.5rem;height:2.5rem;border-radius:50%;display:grid;place-items:center;
+  background:rgba(6,20,30,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:#fff;will-change:transform;transition:opacity .2s ease;
+}
+.visor-seta.ant{left:.625rem}
+.visor-seta.prox{right:.625rem}
+.visor-seta::before{content:"";width:.5rem;height:.5rem;border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor}
+.visor-seta.ant::before{transform:rotate(135deg) translate(-2px,-2px)}
+.visor-seta.prox::before{transform:rotate(-45deg) translate(-2px,-2px)}
+.visor-seta[disabled]{opacity:0;pointer-events:none}
+.visor-pontos{display:flex;gap:.375rem;justify-content:center;padding:.75rem 1rem 0;flex-wrap:wrap}
+.ponto{width:.4375rem;height:.4375rem;border-radius:50%;background:var(--line);will-change:transform;
+  transition:background-color .25s ease,transform .25s ease}
+.ponto.on{background:var(--marca);transform:scale(1.35)}
 .visor-x{position:absolute;top:.75rem;right:.75rem;z-index:2;width:2.25rem;height:2.25rem;
   border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(6,20,30,.45);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);will-change:transform}
@@ -770,7 +803,12 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
     <button class="visor-x" data-fechar="1" aria-label="Fechar">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
     </button>
-    <div id="visorPalco"></div>
+    <div class="visor-cena">
+      <button class="visor-seta ant" id="visorAnt" aria-label="Imagem anterior"></button>
+      <div id="visorPalco"></div>
+      <button class="visor-seta prox" id="visorProx" aria-label="Próxima imagem"></button>
+    </div>
+    <div class="visor-pontos" id="visorPontos"></div>
     <p class="visor-nome" id="visorNome"></p>
   </div>
 </div>
@@ -2254,8 +2292,15 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
           <table><tbody>${b.linhas.map(l =>
             `<tr><td>${esc(porExtenso(l.marco))}${l.forma ? ', ' + esc(l.forma.toLowerCase()) : ''}</td><td class="num">${brl(l.valor)}</td></tr>`).join('')}</tbody></table>`).join('')}
 
-        <h4>Condições gerais</h4>
-        <ul class="cond">${D.condicoes.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+        <h4>Condições comerciais</h4>
+        <dl class="cc">${(D.condicoesComerciais || []).map(([t, v]) =>
+          `<dt>${esc(t)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+
+        <div class="assina">
+          <div><span class="linha"></span><em>Cristofolini Máquinas Ltda</em><b>${esc(estado.cliente.vend || '')}</b></div>
+          <div><span class="linha"></span><em>${esc(estado.cliente.nome || 'Cliente')}</em><b>${esc(estado.cliente.contato || '')}</b></div>
+          <div class="data-ass"><em>Data</em><span class="linha"></span></div>
+        </div>
 
         <div class="foot">
           <span>${esc(E.site)}<br>${esc(E.email)}</span>
@@ -2297,20 +2342,56 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
   const visor = el('#visor'), visorCaixa = el('#visorCaixa');
   let origem = null;
 
+  // A galeria anda para o lado: primeiro o giro, depois a máquina na fábrica,
+  // depois o estande da feira. Tudo material que eles já produziram.
+  function cenas(p){
+    const lista = [];
+    if (p.giro) lista.push({tipo: 'giro', rotulo: 'Giro 360', dica: 'arraste para girar'});
+    else if (p.img) lista.push({tipo: 'foto', src: p.img, rotulo: 'Render'});
+    if (p.amb) lista.push({tipo: 'foto', src: p.amb, rotulo: 'Na fábrica'});
+    for (const f of (D.feira || [])) lista.push({tipo: 'foto', src: f, rotulo: 'Feira'});
+    return lista;
+  }
+
+  let visorCenas = [], visorI = 0, visorP = null;
+
+  function pintaCena(p, i){
+    const c = visorCenas[i];
+    el('#visorPalco').innerHTML = c.tipo === 'giro'
+      ? `<div class="palco" data-giro="v" data-n="${p.giro}">
+           ${Array.from({length: p.giro}, (_, q) =>
+             `<img src="img/${p.slug}-360-${String(q).padStart(2,'0')}.jpg" alt="" class="${q === 0 ? 'ativo' : ''}" draggable="false">`).join('')}
+           <span class="dica360">${esc(c.dica)}</span>
+         </div>`
+      : `<div class="palco"><img class="ativo" src="${c.src}" alt="${esc(c.rotulo)}" draggable="false"></div>`;
+    el('#visorPalco').querySelectorAll('.palco[data-giro]').forEach(ligarGiro);
+    el('#visorNome').innerHTML =
+      `${esc(p.linha)} ${esc(p.modelo)}<span>${esc(c.rotulo)}${c.dica ? ', ' + esc(c.dica) : ''}</span>`;
+    el('#visorPontos').innerHTML = visorCenas.map((_, k) =>
+      `<button class="ponto${k === i ? ' on' : ''}" data-cena="${k}" aria-label="Imagem ${k + 1}"></button>`).join('');
+    el('#visorAnt').disabled = i === 0;
+    el('#visorProx').disabled = i === visorCenas.length - 1;
+  }
+
+  function andaCena(d){
+    const alvo = Math.min(Math.max(visorI + d, 0), visorCenas.length - 1);
+    if (alvo === visorI) return;
+    visorI = alvo;
+    pintaCena(visorP, visorI);
+    if (!REDUZIR.matches) el('#visorPalco').animate(
+      [{opacity: 0, transform: `translate3d(${d > 0 ? 18 : -18}px,0,0)`}, {opacity: 1, transform: 'none'}],
+      {duration: 320, easing: 'cubic-bezier(.32,.72,0,1)'});
+  }
+
   function ampliar(pid, deOnde){
     const p = D.produtos[pid];
     if (!p.img) return;
     origem = deOnde;
-    el('#visorPalco').innerHTML = p.giro
-      ? `<div class="palco" data-giro="v" data-n="${p.giro}">
-           ${Array.from({length: p.giro}, (_, q) =>
-             `<img src="img/${p.slug}-360-${String(q).padStart(2,'0')}.jpg" alt="" class="${q === 0 ? 'ativo' : ''}" draggable="false">`).join('')}
-           <span class="dica360">arraste para girar, toque para ampliar</span>
-         </div>`
-      : `<div class="palco"><img class="ativo" src="${p.img}" alt="${esc(p.nome)}" draggable="false"></div>`;
-    el('#visorNome').innerHTML = `${esc(p.linha)} ${esc(p.modelo)}<span>${esc(p.familia)}${p.giro ? ', arraste para girar' : ''}</span>`;
+    visorP = p;
+    visorCenas = cenas(p);
+    visorI = 0;
+    pintaCena(p, 0);
     visor.hidden = false;
-    el('#visorPalco').querySelectorAll('.palco[data-giro]').forEach(ligarGiro);
 
     // nasce de onde foi tocado, e é por ali que volta
     if (!REDUZIR.matches && deOnde){
@@ -2335,7 +2416,20 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
       };
   }
 
-  visor.addEventListener('click', (e) => { if (e.target.closest('[data-fechar]')) fecharVisor(); });
+  visor.addEventListener('click', (e) => {
+    if (e.target.closest('[data-fechar]')) { fecharVisor(); return; }
+    if (e.target.closest('#visorAnt')) { andaCena(-1); return; }
+    if (e.target.closest('#visorProx')) { andaCena(1); return; }
+    const pt = e.target.closest('[data-cena]');
+    if (pt) andaCena(+pt.dataset.cena - visorI);
+  });
+  addEventListener('keydown', (e) => {
+    if (visor.hidden) return;
+    if (e.key === 'ArrowRight') andaCena(1);
+    if (e.key === 'ArrowLeft') andaCena(-1);
+  });
+  tatil(visor, '.visor-seta', .9);
+  tatil(visor, '.ponto', .8);
   addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharVisor(); });
   tatil(visor, '.visor-x', .88);
 
