@@ -415,6 +415,23 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .linkish{color:var(--ink-3);font-size:.8125rem;text-decoration:underline;text-underline-offset:3px}
 .add-mais{width:100%;padding:1rem;border-radius:var(--r);border:1px dashed var(--line);
   color:var(--ink-2);font-size:.9375rem;will-change:transform;margin-bottom:1.5rem}
+/* No computador a máquina fica parada ao lado enquanto se configura, para o
+   representante mostrar ao cliente sem perder a peça de vista. Em tela
+   estreita volta a empilhar, que é como o dedo espera. */
+@media(min-width:62rem){
+  .item[data-aberto="1"] .item-aberto{
+    display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);
+    align-items:start;gap:0;
+  }
+  .item[data-aberto="1"] .palco{
+    position:sticky;top:5rem;aspect-ratio:4/3;border-radius:0 0 0 var(--r);
+    border-right:1px solid var(--line-soft);
+  }
+  .item[data-aberto="1"] .item-meta{padding-top:1rem}
+  .item[data-aberto="1"] .corpo{padding-top:0}
+  .item[data-aberto="1"] .item-meta,
+  .item[data-aberto="1"] .corpo{grid-column:2}
+}
 .gaveta{border-top:1px solid var(--line-soft);margin-top:.25rem}
 .gaveta > summary{
   list-style:none;cursor:pointer;padding:1rem 0;display:flex;align-items:center;gap:.625rem;
@@ -533,7 +550,30 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
 /* ---------------- documento ---------------- */
 .doc{background:#fff;color:#13202b;border-radius:var(--r);overflow:hidden;box-shadow:var(--sombra-alta)}
-/* as duas páginas de apresentação que o sistema deles já emite */
+/* Capa do cliente: a máquina dele ocupando a folha, sobre o azul da marca */
+.doc .capa{
+  position:relative;background:#00375c;color:#fff;aspect-ratio:210/297;
+  display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+}
+.doc .capa-arte{position:absolute;inset:0 0 34% 0;display:grid;place-items:center;
+  background:radial-gradient(70% 60% at 50% 38%, #0a4f7d, #00304f 70%)}
+.doc .capa-arte img{width:88%;height:100%;object-fit:contain;filter:drop-shadow(0 2rem 3rem rgba(0,0,0,.35))}
+.doc .capa-txt{position:relative;padding:clamp(1.5rem,4vw,2.5rem);
+  background:linear-gradient(180deg,rgba(0,55,92,0) 0%, #00375c 14%)}
+.doc .capa-logo{height:1.5rem;width:auto;display:block;margin-bottom:1.75rem}
+.doc .capa-et{font-size:.75rem;letter-spacing:.06em;opacity:.75}
+.doc .capa-cliente{font-family:Archivo,Inter,sans-serif;font-size:clamp(1.75rem,4.5vw,2.5rem);
+  font-weight:700;letter-spacing:-.028em;line-height:1.08;margin-top:.375rem}
+.doc .capa-maq{font-size:.9375rem;opacity:.82;margin-top:.5rem}
+.doc .capa-rodape{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.75rem;
+  padding-top:1rem;border-top:1px solid rgba(255,255,255,.22)}
+.doc .capa-rodape em{display:block;font-style:normal;font-size:.6875rem;letter-spacing:.08em;
+  text-transform:uppercase;opacity:.65;margin-bottom:.1875rem}
+.doc .capa-rodape b{font-family:Archivo,Inter,sans-serif;font-size:1.125rem;letter-spacing:-.018em}
+@media print{
+  .doc .capa{width:210mm;height:297mm;aspect-ratio:auto;break-after:page}
+}
+/* as páginas de apresentação que o sistema deles já emite */
 .doc .abertura img{display:block;width:100%;height:auto}
 @media print{.doc .abertura img{page-break-after:always;break-after:page}}
 .doc .topo{background:#005389;color:#fff;padding:1.5rem clamp(1.25rem,4vw,2.25rem)}
@@ -1212,7 +1252,7 @@ function montar(D){
     etapa: 0, cliente: {}, itens: [],
     modos: new Set(['direto']), livre: false, custom: [],
     entrada: D.entradaPadrao, parcelas: 4, abreParc: false,
-    somar: true, institucional: true, desconto: 0, prazo: 'A combinar', perfil: {}, familia: 'Extrusora',
+    somar: true, institucional: true, capa: true, desconto: 0, prazo: 'A combinar', perfil: {}, familia: 'Extrusora',
     ref: proximaRef()
   };
   const familias = [...new Set(D.produtos.map(p => p.familia))];
@@ -2030,7 +2070,8 @@ function montar(D){
   function desenhaDoc(){
     el('#modoDoc').innerHTML = `<button data-som="1" aria-pressed="${estado.somar}">Proposta somada</button>
       <button data-som="0" aria-pressed="${!estado.somar}">Comparar lado a lado</button>`;
-    el('#modoInst').innerHTML = `<button data-inst="1" aria-pressed="${estado.institucional}">Com apresentação</button>
+    el('#modoInst').innerHTML = `<button data-capa="1" aria-pressed="${estado.capa}">Capa do cliente</button>
+      <button data-inst="1" aria-pressed="${estado.institucional}">Com apresentação</button>
       <button data-inst="0" aria-pressed="${!estado.institucional}">Só a proposta</button>`;
     tatil(el('#modoInst'), 'button', .95);
     tatil(el('#modoDoc'), 'button', .95);
@@ -2097,6 +2138,8 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
   });
 
   el('#modoInst').addEventListener('click', (e) => {
+    const cp = e.target.closest('[data-capa]');
+    if (cp){ estado.capa = !estado.capa; desenhaDoc(); return; }
     const b = e.target.closest('[data-inst]');
     if (b){ estado.institucional = b.dataset.inst === '1'; desenhaDoc(); }
   });
@@ -2107,6 +2150,28 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
     return d ? `${d[1]} dias após a entrega` : m;
   };
 
+  // Capa feita para aquele cliente: a máquina que ele escolheu ocupando a folha,
+  // o nome da empresa dele e o investimento. É o primeiro contato com a peça.
+  function capaHTML(lista, soma, hoje, rotulo){
+    const c = estado.cliente;
+    const principal = lista.reduce((a, b) => subtotal(b) >= subtotal(a) ? b : a, lista[0]);
+    const p = principal ? D.produtos[principal.pid] : null;
+    return `<div class="capa">
+      <div class="capa-arte">${p?.img ? `<img src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}</div>
+      <div class="capa-txt">
+        <img class="capa-logo" src="img/logo-branco.png" alt="Cristofolini">
+        <p class="capa-et">Proposta comercial${rotulo ? ', ' + esc(rotulo) : ''}</p>
+        <h3 class="capa-cliente">${esc(c.nome || 'Cliente')}</h3>
+        ${p ? `<p class="capa-maq">${esc(p.linha)} ${esc(p.modelo)}${lista.length > 1 ? ` e mais ${lista.length - 1} equipamento${lista.length > 2 ? 's' : ''}` : ''}</p>` : ''}
+        <div class="capa-rodape">
+          <span><em>Investimento</em><b class="num">${brl(soma)}</b></span>
+          <span><em>Referência</em><b>${esc(estado.ref)}</b></span>
+          <span><em>Data</em><b>${hoje}</b></span>
+        </div>
+      </div>
+    </div>`;
+  }
+
   function docHTML(lista, blocos, rotulo){
     const c = estado.cliente;
     let soma = lista.reduce((s, it) => s + subtotal(it), 0);
@@ -2116,8 +2181,9 @@ ${U.nome}${U.fone ? ' · ' + U.fone : ''}`;
     const hoje = new Date().toLocaleDateString('pt-BR');
     const orcar = lista.flatMap(semPreco);
     return `<article class="doc">
+      ${estado.capa ? capaHTML(lista, soma, hoje, rotulo) : ''}
       ${estado.institucional ? `<div class="abertura">
-        <img src="img/institucional-0.jpg" alt="Capa da proposta Cristofolini" loading="lazy">
+        ${estado.capa ? '' : '<img src="img/institucional-0.jpg" alt="Capa da proposta Cristofolini" loading="lazy">'}
         <img src="img/institucional-1.jpg" alt="Apresentação da Cristofolini Máquinas" loading="lazy">
         <img src="img/institucional-2.jpg" alt="Linha de produtos e diferenciais" loading="lazy">
       </div>` : ''}
