@@ -105,7 +105,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .rolo{position:relative}
 .rolo .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000}
 .rolo canvas{position:absolute;inset:0;width:100%;height:100%}
-.percurso{height:1750vh}
+.percurso{height:1350vh}
 .percurso .palco{background:#000 url(../media/percurso/001.jpg) center/cover}
 .rolo .veu{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(7,25,42,.55) 0%,rgba(7,25,42,.08) 28%,rgba(7,25,42,.15) 50%,rgba(7,25,42,.9) 100%)}
@@ -130,7 +130,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha);overflow:hidden}
 .onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
 @media (max-width:760px){
-  .percurso{height:1400vh}
+  .percurso{height:1100vh}
   .rolo .veu{background:linear-gradient(180deg,rgba(7,25,42,.6) 0%,rgba(7,25,42,.1) 25%,rgba(7,25,42,.25) 45%,rgba(7,25,42,.94) 80%)}
   .onde{left:var(--pad);right:auto}
   .onde .barra{width:4rem}
@@ -393,7 +393,7 @@ html.carregando{overflow:hidden}
 
 <main>
 <!-- 1. Percurso -->
-<section class="percurso rolo" id="inicio" aria-label="Do grão de resina ao produto pronto, e da fachada até a máquina">
+<section class="percurso rolo" id="inicio" aria-label="Do produto pronto até a máquina que faz">
   <div class="palco">
     <canvas id="telaPercurso" aria-hidden="true"></canvas>
     <div class="veu" id="veu"></div>
@@ -405,7 +405,7 @@ html.carregando{overflow:hidden}
         <span class="l"><span>Fazer a diferença.</span></span>
       </h1>
       <div class="base">
-        <p>Extrusoras, picotadeiras e impressoras para a indústria de embalagens plásticas flexíveis. Role a página: do grão de resina ao produto pronto, e depois para dentro da fábrica.</p>
+        <p>Extrusoras, picotadeiras e impressoras para a indústria de embalagens plásticas flexíveis. Role a página e entre na fábrica que faz isso.</p>
         <div class="acoes">
           <button class="btn btn-vidro" id="abreFilme" type="button">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>
@@ -417,51 +417,35 @@ html.carregando{overflow:hidden}
     </div>
     <span class="rolar" id="rolar" aria-hidden="true"></span>
     <div class="cenas">
-      <div class="cena" data-de="8" data-ate="24">
+      <div class="cena" data-de="10" data-ate="56">
         <p class="eyebrow">01 · O que sai daqui</p>
-        <h2 class="display">Tudo começa no <b>grão de resina.</b></h2>
-        <p>PEAD ou PEBD entrando no funil da extrusora. Daqui até o produto pronto, tudo passa por máquina Cristofolini.</p>
-      </div>
-      <div class="cena" data-de="32" data-ate="44">
-        <h2 class="display">Extrusão: filme homogêneo, <b>alinhado e resistente.</b></h2>
-        <p>O balão sobe da extrusora com anel de ar, torre giratória e alinhador eletrônico. Planicidade de filme desde o primeiro metro.</p>
-      </div>
-      <div class="cena" data-de="54" data-ate="66">
-        <h2 class="display">Bobinas de até <b>1.200 mm.</b></h2>
-        <p>Largura útil do bobinador nas extrusoras MC-50 e MC-55. Até três bobinas de 400 mm ao mesmo tempo.</p>
-      </div>
-      <div class="cena" data-de="76" data-ate="82">
-        <h2 class="display">Picote e solda até <b>220 m/min.</b></h2>
-        <p>Nas picotadeiras MC-02 e MC-32 a troca é totalmente automática: o operador só retira as bobinas.</p>
-      </div>
-      <div class="cena" data-de="92" data-ate="150">
         <h2 class="display">Na mão do seu cliente. <b>Pronta para vender.</b></h2>
         <p>O rolo de sacos picotados sai da máquina do jeito que vai para a gôndola. É isso que a sua fábrica entrega.</p>
       </div>
-      <div class="cena" data-de="198" data-ate="219">
+      <div class="cena" data-de="104" data-ate="125">
         <p class="eyebrow">02 · Quem somos</p>
         <h2 class="display">Produzir <b>máquinas de excelência</b> é só o ponto de partida.</h2>
         <p>Trabalhamos também para entregar serviços que garantam desempenho, confiança e resultados ao longo do tempo.</p>
       </div>
-      <div class="cena" data-de="233" data-ate="265">
+      <div class="cena" data-de="139" data-ate="171">
         <p class="eyebrow">03 · No chão de fábrica</p>
         <h2 class="display">Projeto próprio. <b>Usinagem própria.</b></h2>
         <p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p>
       </div>
-      <div class="cena" data-de="279" data-ate="301">
+      <div class="cena" data-de="185" data-ate="207">
         <h2 class="display">Sem cópias. <b>Sem atalhos.</b></h2>
         <p>Desde 1997 desenvolvemos as nossas próprias máquinas, pensadas para a eficiência de quem produz.</p>
       </div>
-      <div class="cena" data-de="311" data-ate="323">
+      <div class="cena" data-de="217" data-ate="229">
         <h2 class="display">Montada aqui. <b>Produzindo em 3 dias.</b></h2>
         <p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p>
       </div>
-      <div class="cena" data-de="345" data-ate="999">
+      <div class="cena" data-de="251" data-ate="999">
         <h2 class="display">Feita para produzir <b>sem parar.</b></h2>
         <p>O máximo de produtividade com o mínimo de manutenção. O que muitos chamam de qualidade, nós chamamos de eficiência.</p>
       </div>
     </div>
-    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Resina</span><span class="barra"><i id="ondeBarra"></i></span></div>
+    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Produto final</span><span class="barra"><i id="ondeBarra"></i></span></div>
   </div>
 </section>
 
@@ -1019,10 +1003,10 @@ const giro = (() => {
 })();
 
 /* ---------- Percurso ---------- */
-// o topo abre no produto (grão até o rolo pronto), funde na fachada e entra na fábrica
-const CENAS = [[0,'Resina'],[29,'Extrusão'],[45,'Bobina'],[70,'Picote'],[84,'Produto final'],[161,'Fachada'],[196,'Recepção'],[224,'Usinagem'],[255,'Solda'],[274,'Torno'],[290,'Usinagem'],[309,'Montagem'],[329,'Galpão']];
+// o topo abre no rolo de sacos sendo bobinado, vai para a mão, funde na fachada e entra na fábrica
+const CENAS = [[0,'Produto final'],[67,'Fachada'],[102,'Recepção'],[130,'Usinagem'],[161,'Solda'],[180,'Torno'],[196,'Usinagem'],[215,'Montagem'],[235,'Galpão']];
 const QUADROS = [
-  ...[...Array(157)].map((_, i) => `bobina/${String(i + 1).padStart(3, '0')}`),
+  ...[...Array(63)].map((_, i) => `bobina/${String(i + 95).padStart(3, '0')}`),
   ...[...Array(8)].map((_, i) => `transicao/${String(i + 1).padStart(3, '0')}`),
   ...[...Array(213)].map((_, i) => `percurso/${String(i + 1).padStart(3, '0')}`)
 ];
@@ -1100,8 +1084,8 @@ function movimento(){
   });
   /* Percurso: a rolagem é a câmera. Segura a fachada parada no começo,
      depois cada quadro acompanha o dedo, para frente e para trás. */
-  const PARADO = .03;   // abertura parada no grão nos primeiros 3% (meia tela de rolagem)
-  const FUSAO = .94;    // últimos 6%: o galpão dissolve no estúdio do giro
+  const PARADO = .04;   // abertura parada no rolo nos primeiros 4% (meia tela de rolagem)
+  const FUSAO = .92;    // últimos 8%: o galpão dissolve no estúdio do giro
   const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
   // frases em janelas de quadros e indicador de etapa, iguais nos dois filmes
   const ligaCenas = (sec, etapas) => {
@@ -1130,16 +1114,16 @@ function movimento(){
       const f = p < PARADO ? 0 : Math.min(1, (p - PARADO) / (FUSAO - PARADO)) * (percurso.N - 1);
       const q = Math.max(0, (p - FUSAO) / (1 - FUSAO));
       // o primeiro quadro do giro precisa estar pronto antes da fusão
-      if (!giroPedido && p > .6){ giroPedido = true; giro.seq.carrega([0, 9]); }
+      if (!giroPedido && p > .5){ giroPedido = true; giro.seq.carrega([0, 9]); }
       percurso.set(f, q);
       veu.style.opacity = 1 - q;
       // título some nos primeiros quadros, subindo como quem entra
-      const h = Math.min(1, p / .035);
+      const h = Math.min(1, p / .045);
       heroC.style.opacity = 1 - h;
       heroC.style.transform = `translateY(${-h * 12}vh)`;
       heroC.style.pointerEvents = h > .6 ? 'none' : '';
       rolar.style.opacity = 1 - Math.min(1, p / .02);
-      cenasPercurso(f, p, q, Math.min(1, Math.max(0, (p - .03) / .02)));
+      cenasPercurso(f, p, q, Math.min(1, Math.max(0, (p - .04) / .02)));
     }});
 
 
