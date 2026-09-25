@@ -41,6 +41,7 @@
   --alerta:#8a6410;
   --alerta-bg:rgba(242,183,5,.13);
   --ouro:#B8912F;
+  --zap:#1f9e48;
   --ouro-2:#D8B451;
   --halo:radial-gradient(70rem 40rem at 50% -12rem, rgba(0,83,137,.1), transparent 70%);
 
@@ -67,7 +68,7 @@
     --ink-3:#6b7a87;
     --sombra:0 .5px 1px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.35), 0 12px 32px rgba(0,0,0,.3);
     --sombra-alta:0 2.5rem 5rem rgba(0,0,0,.6);
-    --erro:#ef7566;--alerta:#e8c05a;--ouro:#D9B44A;--ouro-2:#F0D27E;
+    --erro:#ef7566;--alerta:#e8c05a;--ouro:#D9B44A;--ouro-2:#F0D27E;--zap:#63dd92;--zap:#63dd92;
     --alerta-bg:rgba(232,169,97,.11);--brilho:inset 0 1px 0 rgba(255,255,255,.06);--pilula:rgba(255,255,255,.1);--pilula-sombra:0 1px 3px rgba(0,0,0,.4);--halo:radial-gradient(70rem 40rem at 50% -12rem, rgba(74,163,224,.16), transparent 70%);
     color-scheme:dark;
   }
@@ -149,6 +150,8 @@ header.bar{
   background:var(--chrome);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
 }
 header.bar .row{display:flex;align-items:center;gap:1rem;height:3.5rem;justify-content:space-between}
+/* sem o menu de etapas, a marca fica sozinha à esquerda e o resto à direita */
+#barraApp .vit-abre{margin-left:auto}
 .logo{display:flex;align-items:center;flex:0 0 auto}
 .logo img{height:1.125rem;width:auto;display:block}
 :root[data-theme="dark"] .logo img{filter:brightness(0) invert(1)}
@@ -166,12 +169,8 @@ header.bar .row{display:flex;align-items:center;gap:1rem;height:3.5rem;justify-c
   border:1px solid var(--line-soft);background:var(--card);will-change:transform;flex:0 0 auto;
 }
 .tema svg{width:1rem;height:1rem;fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-linecap:round}
-.steps{display:flex;gap:.125rem;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:flex-end}
-.steps::-webkit-scrollbar{display:none}
-.step{padding:.375rem .75rem;border-radius:999px;font-size:.8125rem;white-space:nowrap;color:var(--ink-2);will-change:transform}
-/* no celular quem navega é o trem de engrenagens, então a barra fica só com a marca */
-@media(max-width:44rem){.steps{display:none}}
-.step[aria-current="true"]{color:var(--marca);font-weight:600;box-shadow:inset 0 0 0 1.5px var(--marca)}
+/* quem navega entre etapas é o trem de engrenagens, dentro da própria tela:
+   repetir isso na barra de cima era dizer a mesma coisa duas vezes */
 .trilho{height:2px;background:var(--line-soft);position:relative;overflow:hidden}
 .trilho span{
   position:absolute;inset:0 auto 0 0;width:25%;border-radius:0 2px 2px 0;
@@ -319,9 +318,18 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
   box-shadow:var(--sombra);margin-bottom:1rem;overflow:hidden}
 /* item escolhido: uma linha de carrinho que abre quando for configurar */
 .item-cab{
-  display:grid;grid-template-columns:3.5rem 1fr auto .75rem;gap:.875rem;align-items:center;
-  width:100%;padding:.875rem 1rem;text-align:left;will-change:transform;
+  position:relative;display:grid;grid-template-columns:3.5rem 1fr auto .75rem 1.75rem;
+  gap:.875rem;align-items:center;width:100%;padding:.875rem 1rem;text-align:left;
 }
+/* a linha inteira abre o item; o x fica por cima, com alvo próprio */
+.item-toca{position:absolute;inset:0;border:0;background:none;padding:0}
+.item-x{position:relative;z-index:1;width:1.75rem;height:1.75rem;border-radius:50%;
+  display:grid;place-items:center;color:var(--ink-3);opacity:.45;justify-self:end;
+  transition:opacity .2s ease,color .2s ease,background-color .2s ease}
+.item-x svg{width:.75rem;height:.75rem}
+.item:hover .item-x,.item-x:focus-visible{opacity:1}
+.item-x:hover{color:var(--erro);background:color-mix(in srgb,var(--erro) 14%,transparent)}
+@media(hover:none){.item-x{opacity:.7}}
 .item-cab .mini{width:3.5rem;height:3.5rem;border-radius:.625rem;object-fit:contain;
   background:var(--card-2);padding:.1875rem;display:block}
 .item-id{min-width:0}
@@ -339,9 +347,9 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .item-meta{display:flex;justify-content:space-between;align-items:center;gap:1rem;
   padding:.75rem 1.25rem 0}
 @media(max-width:26rem){
-  .item-cab{grid-template-columns:3rem 1fr .75rem;row-gap:.5rem}
+  .item-cab{grid-template-columns:3rem 1fr .75rem 1.75rem;row-gap:.5rem}
   .item-cab .mini{width:3rem;height:3rem}
-  .item-vl{grid-column:1/4;text-align:left;display:flex;align-items:baseline;gap:.5rem}
+  .item-vl{grid-column:1/5;text-align:left;display:flex;align-items:baseline;gap:.5rem}
   .item-vl em{margin-top:0}
 }
 .item .corpo{padding:.5rem 1.25rem 1.25rem}
@@ -465,15 +473,20 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
   box-shadow:var(--pilula-sombra),var(--brilho);
 }
 .rotulo{font-size:.75rem;letter-spacing:.03em;color:var(--ink-2);margin:1.75rem 0 .625rem}
+.trem .rotulo .onde{color:var(--marca);font-weight:600}
 .rotulo:first-child{margin-top:0}
 /* Escolha: um botão que mostra o que está selecionado e abre a lista.
    É o mesmo desenho para forma de pagamento, entrada e parcelas. */
 /* No computador as escolhas ficam à esquerda e o plano de pagamento ao lado,
    para a pessoa ver o efeito de cada escolha sem rolar. No celular empilha. */
-.pag-grid{display:grid;gap:1.5rem}
+.pag-grid{display:grid;gap:2rem}
+.pag-abre{margin-bottom:1.75rem}
+/* a coluna da direita é o resultado da esquerda: as duas começam na mesma
+   linha, com o mesmo rótulo pequeno em cima, senão a tela fica torta */
+.pag-plano .rotulo{margin-bottom:.4375rem}
 @media(min-width:62rem){
-  .pag-grid{grid-template-columns:minmax(0,24rem) minmax(0,1fr);gap:3rem;align-items:start}
-  .pag-plano{position:sticky;top:5.5rem}
+  .pag-grid{grid-template-columns:minmax(0,26rem) minmax(0,1fr);gap:3.5rem;align-items:start}
+  .pag-plano{position:sticky;top:5.5rem;max-width:30rem}
   .pag-plano table.plan{margin-top:0}
   .pag-plano .plano-bloco:first-child{margin-top:0}
 }
@@ -522,13 +535,6 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .livre-cab{display:grid;grid-template-columns:1fr 1fr 8rem 2.25rem;gap:.5rem;
   font-size:.75rem;color:var(--ink-3);margin-bottom:.375rem;padding-inline:.25rem}
 .forma{font-size:.75rem;color:var(--ink-3)}
-@media(max-width:34rem){
-  .livre-cab{display:none}
-  .linha-livre{grid-template-columns:1fr 1fr;grid-template-areas:"marco forma" "valor tirar"}
-  .linha-livre select[data-lm]{grid-area:marco}
-  .linha-livre select[data-lf]{grid-area:forma}
-  .linha-livre input{grid-area:valor}
-  .linha-livre .tirar{grid-area:tirar;justify-self:end}
 }
 .plano-bloco{margin-top:1.75rem}
 .plano-bloco table.plan{margin-top:.25rem}
@@ -542,8 +548,24 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .saldo{font-size:.8125rem;color:var(--alerta);font-variant-numeric:tabular-nums}
 .saldo.ok{color:#2f9e5e}
 .saldo.passou{color:#d6453a}
-.plano-bloco{margin-top:1.75rem}
-.plano-bloco table.plan{margin-top:.25rem}
+/* no celular cada parcela vira um cartãozinho: quando, como e quanto, um
+   embaixo do outro. Em duas colunas os seletores cortavam o texto no meio. */
+.n-parcela{display:none}
+@media(max-width:34rem){
+  .livre-cab{display:none}
+  .linha-livre{
+    grid-template-columns:minmax(0,7rem) minmax(0,1fr);
+    grid-template-areas:"n tirar" "marco marco" "forma valor";
+    gap:.5rem;padding:.75rem .875rem .875rem;margin-bottom:.625rem;
+    border:1px solid var(--line-soft);border-radius:.875rem;background:var(--card-2);
+  }
+  .n-parcela{display:block;grid-area:n;align-self:center;
+    font-size:.75rem;letter-spacing:.03em;color:var(--ink-3)}
+  .linha-livre select[data-lm]{grid-area:marco}
+  .linha-livre select[data-lf]{grid-area:forma}
+  .linha-livre input{grid-area:valor}
+  .linha-livre .tirar{grid-area:tirar;justify-self:end}
+}
 
 .doc .formapg{font-size:.8125rem;font-weight:700;letter-spacing:-.005em;color:#005389;margin:1rem 0 .1875rem}
 .doc .formapg:first-of-type{margin-top:.25rem}
@@ -616,10 +638,12 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   letter-spacing:-.022em;line-height:1.15;margin-top:.0625rem}
 .doc .maq-var{font-size:.875rem;color:#41505c;margin-top:.1875rem}
 .doc .maq-frase{font-size:.9375rem;line-height:1.5;color:#2b3a45;margin:.875rem 0 0;max-width:34rem}
-.doc .dest{margin:1.125rem 0 0;gap:1rem 1.5rem;grid-template-columns:repeat(auto-fit,minmax(6.5rem,1fr))}
+.doc .dest{margin:1.125rem 0 0;gap:1.125rem 1.5rem;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr))}
 .doc .dest-i{border-top-color:#e3e9ee}
 .doc .dest-i b{color:#13202b;font-size:1.5rem}
 .doc .dest-i span{color:#7b8b98}
+.doc .dest-i em{color:#41505c}
+.doc .dest-ico{color:#005389}
 .doc .maq-ficha{margin-top:1rem;border-top:1px solid #eef2f5;padding-top:.75rem}
 .doc .maq-ficha h6{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
   color:#7b8b98;font-weight:700;margin-bottom:.4375rem}
@@ -737,13 +761,18 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));
   gap:1.125rem 1.75rem;margin:0 0 1.5rem}
 .dest-i{border-top:1px solid var(--line);padding-top:.6875rem;break-inside:avoid}
+.dest-ico{display:block;width:1.25rem;height:1.25rem;margin-bottom:.5rem;color:var(--marca);opacity:.9}
 .dest-i b{display:block;font-family:Archivo,Inter,sans-serif;font-weight:700;
   font-size:clamp(1.5rem,2.4vw,1.875rem);letter-spacing:-.03em;line-height:1}
 .dest-i b i{font-style:normal;font-size:.5em;font-weight:600;letter-spacing:-.01em;margin-left:.0625rem}
 .dest-i span{display:block;font-size:.75rem;line-height:1.35;color:var(--ink-3);margin-top:.4375rem}
+.dest-i em{display:block;font-style:normal;font-size:.75rem;line-height:1.35;margin-top:.25rem;
+  color:var(--ink-2);font-weight:600}
 .vit-txt .dest-i{border-top-color:rgba(255,255,255,.18)}
 .vit-txt .dest-i b{color:#fff}
 .vit-txt .dest-i span{color:rgba(238,243,247,.55)}
+.vit-txt .dest-i em{color:rgba(238,243,247,.82)}
+.vit-txt .dest-ico{color:#6fb4e8}
 .vit-txt .btn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
   box-shadow:none}
 /* Tela inicial: a fábrica deles ocupando a tela, duas portas e o que vem depois. */
@@ -753,6 +782,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   display:flex;align-items:flex-end;min-height:clamp(17rem,42vh,26rem);
   padding-block:clamp(3rem,9vw,5.5rem) clamp(4.5rem,9vw,6.5rem);
 }
+.ini-hero > .wrap{width:100%}
 .ini-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .ini-veu{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(100deg,rgba(6,18,28,.93) 0%,rgba(6,18,28,.86) 48%,rgba(6,18,28,.42) 100%),
@@ -796,7 +826,9 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 @media(max-width:34rem){.vit-abre span{display:none}
 .vit-abre{padding:.4375rem;border-radius:50%;width:2.125rem;height:2.125rem;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.vit-corpo{scroll-behavior:auto}}
-.barra-doc{display:flex;gap:.75rem;align-items:flex-start;flex-wrap:wrap}
+/* seletor, WhatsApp e link: mesma altura e mesma linha, senão a barra vira degrau */
+.barra-doc{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.barra-doc .btn,.barra-doc .escolha-btn{height:2.875rem}
 .barra-doc .escolha{margin-bottom:0;min-width:15rem;max-width:22rem;flex:1 1 15rem}
 .barra-doc .escolha-btn{padding:.6875rem .875rem}
 .barra-doc .escolha-val{font-weight:500;font-size:.875rem}
@@ -878,10 +910,17 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   transition:box-shadow .2s ease,filter .2s ease;
 }
 .btn:hover{filter:brightness(1.05)}
-.btn.zap{background:linear-gradient(180deg,#2fbf5c,#1f9e48);
-  box-shadow:0 1px 2px rgba(31,158,72,.45),0 8px 20px rgba(31,158,72,.28),inset 0 1px 0 rgba(255,255,255,.22);
+/* o verde é contorno, não bloco: o botão avisa qual é sem gritar */
+.btn.zap{background:transparent;color:var(--zap);font-weight:600;
+  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--zap) 55%,transparent);
   display:inline-flex;align-items:center;gap:.5rem}
+.btn.zap:hover{filter:none;box-shadow:inset 0 0 0 1.5px var(--zap)}
 .btn.zap svg{width:1.125rem;height:1.125rem}
+/* botão só de ícone, para o que se explica pelo símbolo */
+.btn.ico{width:2.875rem;height:2.875rem;padding:0;display:grid;place-items:center}
+.btn.ico svg{width:1.1875rem;height:1.1875rem}
+.btn.ico.feito{color:var(--zap);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--zap) 55%,transparent);
+  border-color:transparent}
 .btn.sec{background:var(--card);color:var(--ink);border:1px solid var(--line-soft);
   font-weight:500;box-shadow:var(--sombra)}
 .btn.sec:hover{filter:none;border-color:var(--line)}
@@ -994,12 +1033,6 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 <header class="bar" id="barraApp">
   <div class="wrap row">
     <button class="logo" id="btnHome" title="Voltar ao início"><img src="img/logo-azul.png" alt="Cristofolini"></button>
-    <nav class="steps" id="steps">
-      <button class="step" data-go="0" aria-current="true">Cliente</button>
-      <button class="step" data-go="1">Equipamentos</button>
-      <button class="step" data-go="2">Pagamento</button>
-      <button class="step" data-go="3">Proposta</button>
-    </nav>
     <button class="vit-abre" id="btnVitrine" title="Mostrar as máquinas ao cliente">
       <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.2" y="3.6" width="15.6" height="10.4" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 16.6h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       <span>Apresentar</span>
@@ -1120,14 +1153,14 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
       <h2 class="display" style="margin-top:.5rem">Condições<br>de pagamento</h2>
       <p class="tiny">Pode marcar mais de uma forma na mesma proposta, como vocês já fazem na planilha. E quando a negociação sai do padrão, dá para escrever parcela por parcela.</p>
     </div>
-    <div class="grid two" style="margin-bottom:2rem;max-width:44rem">
-      <label class="field"><span>Desconto concedido</span>
-        <input class="input num" id="pg-desc" inputmode="numeric" placeholder="0"></label>
-      <label class="field"><span>Prazo de entrega</span>
-        <select class="input" id="pg-prazo"></select></label>
-    </div>
     <div class="pag-grid">
       <div class="pag-col">
+        <div class="grid two pag-abre">
+          <label class="field"><span>Desconto concedido</span>
+            <input class="input num" id="pg-desc" inputmode="numeric" placeholder="0"></label>
+          <label class="field"><span>Prazo de entrega</span>
+            <select class="input" id="pg-prazo"></select></label>
+        </div>
         <div id="modos" class="modos"></div>
         <div id="detalhe"></div>
       </div>
@@ -1144,7 +1177,9 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.6 7.6c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.5l.8 1.9c.1.3 0 .5-.1.7l-.5.6c-.2.2-.3.4-.1.7.5.9 1.4 1.8 2.4 2.3.3.2.5.1.7-.1l.5-.6c.2-.2.4-.3.7-.2l1.9.9c.4.2.5.4.5.6v.7c0 .3-.1.6-.5.8-.4.3-1 .5-1.6.5-2 0-4.2-1.4-5.5-2.7C8 12.4 7 10.6 7 9.2c0-.6.2-1.1.5-1.5Z" fill="currentColor" stroke="none"/></svg>
           Enviar no WhatsApp
         </button>
-        <button class="btn sec" id="btnCopiar">Copiar link</button>
+        <button class="btn sec ico" id="btnCopiar" title="Copiar o link da proposta" aria-label="Copiar o link da proposta">
+          <svg id="icoCopiar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></svg>
+        </button>
       </div>
     </div>
     <div id="docs" class="cmp"></div>
@@ -1240,10 +1275,14 @@ function ligarGiro(palco){
   palco.addEventListener('pointermove', (e) => {
     if (!tocando) return;
     if (!girando){
-      if (Math.abs(e.clientX - x0) < LIMIAR) return;   // histerese
+      const total = e.clientX - x0;
+      if (Math.abs(total) < LIMIAR) return;   // histerese
       girando = true;
       palco.classList.add('pegando', 'usado');
-      ultimoX = e.clientX; ultimoT = performance.now();
+      // o gesto pode chegar num salto só, e nesse caso descartar o evento que
+      // venceu a histerese era perder o arrasto inteiro. Conta a partir do
+      // limiar e segue no mesmo evento, sem pular a imagem.
+      ultimoX = x0 + Math.sign(total) * LIMIAR;
     }
     const agora = performance.now();
     const dx = e.clientX - ultimoX, dt = Math.max(agora - ultimoT, 1);
@@ -1625,14 +1664,12 @@ function montar(D){
 
   /* ---------- navegação ---------- */
   const paineis = [...document.querySelectorAll('.panel')];
-  const passos = [...document.querySelectorAll('.step')];
 
   function ir(n){
     if (n === estado.etapa) return;
     const indo = n > estado.etapa;
     estado.etapa = n;
     paineis.forEach((p, i) => p.classList.toggle('on', i === n));
-    passos.forEach((s, i) => s.setAttribute('aria-current', String(i === n)));
     if (!REDUZIR.matches){
       paineis[n].animate([{opacity:0, transform:`translate3d(0,${indo ? 12 : -12}px,0)`},{opacity:1, transform:'none'}],
         {duration:340, easing:'cubic-bezier(.32,.72,0,1)'});
@@ -1699,11 +1736,9 @@ function montar(D){
         g.style.transformOrigin = '50% 50%';
       });
       t.querySelector('.rotulo').innerHTML =
-        `Etapa <b>${estado.etapa + 1}</b> de ${paineis.length}, ${NOMES[estado.etapa].toLowerCase()}`;
+        `Etapa <b>${estado.etapa + 1}</b> de ${paineis.length}, <b class="onde">${NOMES[estado.etapa].toLowerCase()}</b>`;
     });
   }
-  el('#steps').addEventListener('click', (e) => { const b = e.target.closest('.step'); if (b) ir(+b.dataset.go); });
-  tatil(el('#steps'), '.step', .96);
   el('#btnNext').addEventListener('click', () => {
     // com item em aberto, em vez de travar o botão, leva até onde falta
     if (estado.etapa === 1 && todasPendencias().length){
@@ -1989,6 +2024,7 @@ function montar(D){
 
   /* ---------- configurador ---------- */
   const itens = el('#itens');
+  tatil(itens, '.item-x', .86);
 
   function grupoHTML(g, it, idx){
     const p = D.produtos[it.pid];
@@ -2051,7 +2087,9 @@ function montar(D){
       const falta = pendencias(it);
       const sp = semPreco(it);
       return `<div class="item" data-aberto="${it.aberto ? '1' : '0'}">
-        <button class="item-cab" data-abrir="${idx}" aria-expanded="${!!it.aberto}">
+        <div class="item-cab">
+          <button class="item-toca" data-abrir="${idx}" aria-expanded="${!!it.aberto}"
+            aria-label="Abrir ou fechar a configuração de ${esc(p.linha)} ${esc(p.modelo)}"></button>
           ${p.img ? `<img class="mini" src="${p.img}" alt="" loading="lazy">` : '<span class="mini"></span>'}
           <span class="item-id">
             <span class="rotfam">${esc(p.familia)}</span>
@@ -2063,7 +2101,11 @@ function montar(D){
             ${falta.length ? `<em class="pendente-tag">${falta.length} a definir</em>` : '<em>configurado</em>'}
           </span>
           <span class="chev"></span>
-        </button>
+          <button class="item-x" data-rm="${idx}" title="Tirar da proposta"
+            aria-label="Tirar ${esc(p.linha)} ${esc(p.modelo)} da proposta">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+          </button>
+        </div>
         <div class="item-aberto"${it.aberto ? '' : ' hidden'}>
         ${p.img ? (p.giro
           ? `<div class="palco" data-giro="${idx}" data-slug="${p.slug}" data-n="${p.giro}" data-pid-ampliar="${it.pid}">
@@ -2174,7 +2216,12 @@ function montar(D){
       return;
     }
     const rm = e.target.closest('[data-rm]');
-    if (rm){ estado.itens.splice(+rm.dataset.rm, 1); desenhaItens(); dock(); return; }
+    if (rm){
+      const i = +rm.dataset.rm, p = D.produtos[estado.itens[i].pid];
+      estado.itens.splice(i, 1); desenhaItens(); dock();
+      aviso(`${p.linha} ${p.modelo} saiu da proposta`);
+      return;
+    }
     if (e.target.closest('#maisUm')){ el('#seletor').hidden = false; el('#seletor').scrollIntoView({behavior: REDUZIR.matches ? 'auto' : 'smooth', block: 'start'}); return; }
 
     const vr = e.target.closest('[data-var]');
@@ -2226,11 +2273,12 @@ function montar(D){
     return `<div class="livre">
       <div class="livre-cab"><span>Quando</span><span>Como</span><span>Quanto</span><span></span></div>
       ${estado.custom.map((l, i) => `<div class="linha-livre">
+        <span class="n-parcela">Parcela ${i + 1}</span>
         <select class="input" data-lm="${i}" aria-label="Marco da parcela ${i + 1}">${opcoes.map(o =>
           `<option${o === l.marco ? ' selected' : ''}>${o}</option>`).join('')}</select>
         <select class="input" data-lf="${i}" aria-label="Forma de pagamento da parcela ${i + 1}">${FORMAS.map(o =>
           `<option${o === (l.forma || 'Depósito') ? ' selected' : ''}>${o}</option>`).join('')}</select>
-        <input class="input num" data-lv="${i}" inputmode="numeric" value="${l.valor ? brl(l.valor).replace('R$ ','') : ''}" placeholder="0" aria-label="Valor da parcela ${i + 1}">
+        <input class="input num" data-lv="${i}" inputmode="numeric" value="${l.valor ? brl(l.valor).replace('R$ ','') : ''}" placeholder="R$ 0" aria-label="Valor da parcela ${i + 1}">
         <button class="tirar" data-lx="${i}" aria-label="Remover parcela ${i + 1}">×</button>
       </div>`).join('')}
       <div class="livre-rodape">
@@ -2396,7 +2444,7 @@ function montar(D){
       const l = planoDe(m.id, t);
       if (!l.length) return '';
       return `<div class="plano-bloco">
-        <p class="rotulo" style="margin-bottom:.375rem">${m.nome}</p>
+        <p class="rotulo">${m.nome}</p>
         <table class="plan"><tbody>${l.map(x =>
           `<tr><td>${esc(x.marco)}${x.forma ? ` <span class="forma">${esc(x.forma)}</span>` : ''}</td><td class="num">${brl(x.valor)}</td></tr>`).join('')}</tbody></table>
       </div>`;
@@ -2536,16 +2584,22 @@ function montar(D){
     return {url, fone, pin, curto: ref !== longo};
   }
 
+  // o botão do link é só o símbolo: copiou, vira um certo por um instante
+  const ICO_LINK = '<path d="M9.8 13.6a3.6 3.6 0 0 0 5.4.4l2.6-2.6a3.6 3.6 0 0 0-5.1-5.1l-1.5 1.5"/><path d="M13.6 9.8a3.6 3.6 0 0 0-5.4-.4l-2.6 2.6a3.6 3.6 0 0 0 5.1 5.1l1.5-1.5"/>';
+  const ICO_FEITO = '<path d="M5 12.6 9.8 17.4 19 7.6"/>';
+  el('#icoCopiar').innerHTML = ICO_LINK;
+
   el('#btnCopiar').addEventListener('click', async () => {
-    const b = el('#btnCopiar');
-    const antes = b.textContent;
-    b.disabled = true; b.textContent = 'Gerando…';
+    const b = el('#btnCopiar'), ico = el('#icoCopiar');
+    b.disabled = true; b.style.opacity = '.6';
     const r = await montaLink();
-    b.disabled = false;
-    if (r.erro){ b.textContent = antes; aviso(r.erro); return; }
-    try { await navigator.clipboard.writeText(r.url); b.textContent = 'Link copiado'; }
-    catch (e) { b.textContent = r.url; }
-    setTimeout(() => { b.textContent = antes; }, 2600);
+    b.disabled = false; b.style.opacity = '';
+    if (r.erro){ aviso(r.erro); return; }
+    try { await navigator.clipboard.writeText(r.url); } catch (e) { aviso('Não deu para copiar: ' + r.url); return; }
+    ico.innerHTML = ICO_FEITO; b.classList.add('feito');
+    b.setAttribute('aria-label', 'Link copiado');
+    setTimeout(() => { ico.innerHTML = ICO_LINK; b.classList.remove('feito');
+      b.setAttribute('aria-label', 'Copiar o link da proposta'); }, 2600);
   });
 
   el('#btnZap').addEventListener('click', async () => {
@@ -2618,38 +2672,93 @@ ${U.nome}`;
      grandezas que decidem a compra saem da lista e viram número grande, do
      jeito que a Apple faz na página do produto: valor primeiro, explicação
      depois. O resto continua existindo, em ficha, para quem quiser conferir. */
+  const ICO = {
+    producao: '<circle cx="17.2" cy="12" r="4.2"/><circle cx="17.2" cy="12" r="1.1"/><path d="M2.6 8.4h8M2.6 12h5M2.6 15.6h8" stroke-linecap="round"/>',
+    largura:  '<path d="M4 6.5v11M20 6.5v11M4.6 12h14.8" stroke-linecap="round"/><path d="M7.2 9.4 4.6 12l2.6 2.6M16.8 9.4 19.4 12l-2.6 2.6" stroke-linecap="round" stroke-linejoin="round"/>',
+    potencia: '<path d="M13.2 2.6 5.8 13.4h4.9L10.8 21.4 18.2 10.2h-4.9z" stroke-linejoin="round"/>',
+    motor:    '<rect x="3" y="7.6" width="11.4" height="8.8" rx="1.6"/><path d="M14.4 12h4.2M18.6 9.6v4.8M6.6 7.6V5.6h4.6v2" stroke-linecap="round"/>',
+    rosca:    '<rect x="2.6" y="8.4" width="18.8" height="7.2" rx="3.6"/><path d="m6.2 8.4 3 7.2M10.2 8.4l3 7.2M14.2 8.4l3 7.2" stroke-linecap="round"/>',
+    calor:    '<path d="M10 14.6V5.2a2 2 0 0 1 4 0v9.4a4 4 0 1 1-4 0z" stroke-linejoin="round"/><path d="M12 9.4v5.4" stroke-linecap="round"/>',
+    saco:     '<path d="M6.4 8h11.2l1.1 12.4H5.3z" stroke-linejoin="round"/><path d="M9.4 8V5.6a2.6 2.6 0 0 1 5.2 0V8" stroke-linecap="round"/>',
+    cores:    '<circle cx="9.4" cy="9.8" r="4.4"/><circle cx="14.6" cy="9.8" r="4.4"/><circle cx="12" cy="14.4" r="4.4"/>',
+    tensao:   '<path d="M8.4 3.2v4.4M15.6 3.2v4.4M12 17.6v3.2" stroke-linecap="round"/><path d="M5.6 7.6h12.8v3.2a6.4 6.4 0 0 1-12.8 0z" stroke-linejoin="round"/>',
+  };
+
+  /* ---------- números que o cliente lê de longe ----------
+     A ficha vem do Excel deles como 22 linhas de mesmo peso, e ninguém lê 22
+     linhas na frente do cliente. Cada grandeza que decide a compra sai da
+     lista, ganha ícone e vira número grande com a explicação embaixo. Onde dá
+     para traduzir em algo palpável, traduz: 35 kg/h também é quase 300 kg num
+     turno. O resto continua em ficha, para quem quiser conferir. */
+  const NUM_BR = new Intl.NumberFormat('pt-BR');
+
   const GRANDEZAS = [
-    {re: /^capacidade de produ[çc][ãa]o/i,   rot: 'de produção'},
-    {re: /^largura m[áa]xima do filme/i,     rot: 'de largura do filme'},
-    {re: /^comprimento m[áa]x/i,             rot: 'de comprimento do saco'},
-    {re: /^largura desbobinador/i,           rot: 'de largura no desbobinador'},
-    {re: /^impress[ãa]o de cores/i,          rot: 'de impressão'},
-    {re: /^pot[êe]ncia instalada/i,          rot: 'de potência instalada'},
+    {ico: 'producao', re: /^capacidade de produ[çc][ãa]o/i, chave: true, rot(v){
+      return /kg\/h/i.test(v.uni) ? 'de filme por hora' : (/m\/min/i.test(v.uni) ? 'de velocidade' : 'de produção'); },
+     extra(v){ const n = parseFloat(String(v.num).replace('.','').replace(',','.'));
+      return /kg\/h/i.test(v.uni) && n ? `cerca de ${NUM_BR.format(Math.round(n * 8))} kg num turno de 8 h` : ''; }},
+    {ico: 'largura', re: /^largura m[áa]xima do filme/i, chave: true, rot: () => 'de largura máxima do filme'},
+    {ico: 'saco',    re: /^comprimento m[áa]x/i,          chave: true, rot: () => 'de comprimento do saco'},
+    {ico: 'largura', re: /^largura desbobinador/i,        chave: true, rot: () => 'de largura no desbobinador'},
+    {ico: 'cores',   re: /^impress[ãa]o de cores/i,       chave: true, rot: () => 'cores de impressão'},
+    {ico: 'potencia',re: /^pot[êe]ncia instalada/i,       chave: true, rot: () => 'de potência instalada'},
+    {ico: 'motor',   re: /motoredutor de\s*([\d.,]+)\s*cv(.*)$/i,
+     pega: m => ({num: m[1], uni: 'cv'}),
+     rot: (v, m) => /2 conjuntos/i.test(m[2] || '') ? 'de motor em cada conjunto' : 'de motor, com mancal axial'},
+    {ico: 'rosca',   re: /conjuntos? de extrus[ãa]o de\s*[øØ]?\s*([\d.,]+)\s*mm(?:\s*L\/D\s*1:(\d+))?/i,
+     pega: m => ({num: m[1], uni: 'mm'}),
+     rot: (v, m) => m[2] ? `de rosca, L/D 1:${m[2]}` : 'de rosca'},
+    {ico: 'calor',   re: /canh[ãa]o com\s*(\d+)\s*zonas de aquecimento(?:\s*e mais\s*(\d+)\s*zonas no cabe[çc]ote)?/i,
+     pega: m => ({num: String(+m[1] + (+m[2] || 0)), uni: ''}),
+     rot: (v, m) => m[2] ? `zonas de aquecimento, ${m[1]} no canhão e ${m[2]} no cabeçote` : 'zonas de aquecimento'},
+    {ico: 'tensao',  re: /tens[ãa]o de rede de\s*([\d.,]+)\s*v\b(.*)$/i,
+     pega: m => ({num: m[1], uni: 'V'}),
+     rot: (v, m) => /monof[áa]sico/i.test(m[2] || '') ? 'de rede, trifásico ou monofásico' : 'de rede, trifásico'},
   ];
 
   function grandezas(desc){
-    const achados = [], resto = [];
+    const achados = [], resto = [], usados = new Set();
     for (const linha of desc){
       const corte = linha.indexOf(':');
       const chave = corte > 0 ? linha.slice(0, corte).trim() : '';
-      const g = chave && GRANDEZAS.find(x => x.re.test(chave));
-      if (!g){ resto.push(linha); continue; }
-      let valor = linha.slice(corte + 1).trim();
-      // "Largura Máxima do Filme (mm): 400" traz a unidade na chave
-      const uni = (chave.match(/\(([^)]+)\)/) || [])[1];
-      if (uni && !/[a-zA-Z]/.test(valor)) valor = `${valor}${uni}`;
-      const par = valor.match(/^([\d.,]+)\s*(.*)$/);
-      achados.push({num: par ? par[1] : valor, uni: par ? par[2] : '', rot: g.rot, ordem: GRANDEZAS.indexOf(g)});
+      let entrou = false;
+      for (let k = 0; k < GRANDEZAS.length; k++){
+        const g = GRANDEZAS[k];
+        if (usados.has(k)) continue;
+        const alvo = g.chave ? chave : linha;
+        const m = alvo && alvo.match(g.re);
+        if (!m) continue;
+        let v;
+        if (g.chave){
+          let valor = linha.slice(corte + 1).trim();
+          // "Largura Máxima do Filme (mm): 400" traz a unidade entre parênteses
+          const uni = (chave.match(/\(([^)]+)\)/) || [])[1];
+          if (uni && !/[a-zA-Z]/.test(valor)) valor = `${valor}${uni}`;
+          const par = valor.match(/^([\d.,]+)\s*(.*)$/);
+          v = {num: par ? par[1] : valor, uni: par ? par[2] : ''};
+        } else {
+          v = g.pega(m);
+        }
+        v.ico = g.ico;
+        v.rot = g.rot(v, m);
+        v.extra = g.extra ? g.extra(v) : '';
+        v.ordem = k;
+        achados.push(v); usados.add(k); entrou = true;
+        break;
+      }
+      if (!entrou) resto.push(linha);
     }
     achados.sort((a, b) => a.ordem - b.ordem);
-    return {achados: achados.slice(0, 4), resto};
+    return {achados: achados.slice(0, 6), resto};
   }
 
   function grandezasHTML(achados){
     if (!achados.length) return '';
     return `<div class="dest">${achados.map(g => `<div class="dest-i">
+      <svg class="dest-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${ICO[g.ico] || ''}</svg>
       <b class="num">${esc(g.num)}${g.uni ? `<i>${esc(g.uni)}</i>` : ''}</b>
-      <span>${esc(g.rot)}</span></div>`).join('')}</div>`;
+      <span>${esc(g.rot)}</span>
+      ${g.extra ? `<em>${esc(g.extra)}</em>` : ''}</div>`).join('')}</div>`;
   }
 
   function miniaturas(p){
@@ -3029,7 +3138,6 @@ ${U.nome}`;
     inicio.hidden = false;
     el('#fluxo').hidden = true;
     document.querySelector('.dock').hidden = true;
-    el('#steps').hidden = true;
     el('#trilho').hidden = true;
     el('#btnVitrine').hidden = true;
     estado.abre = null;
@@ -3041,7 +3149,6 @@ ${U.nome}`;
     inicio.hidden = true;
     el('#fluxo').hidden = false;
     document.querySelector('.dock').hidden = false;
-    el('#steps').hidden = false;
     el('#trilho').hidden = false;
     el('#btnVitrine').hidden = false;
   }
