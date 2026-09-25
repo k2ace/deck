@@ -422,25 +422,25 @@ html.carregando{overflow:hidden}
         <h2 class="display">Na mão do seu cliente. <b>Pronta para vender.</b></h2>
         <p>O rolo de sacos picotados sai da máquina do jeito que vai para a gôndola. É isso que a sua fábrica entrega.</p>
       </div>
-      <div class="cena" data-de="104" data-ate="125">
+      <div class="cena" data-de="117" data-ate="134">
         <p class="eyebrow">02 · Quem somos</p>
         <h2 class="display">Produzir <b>máquinas de excelência</b> é só o ponto de partida.</h2>
         <p>Trabalhamos também para entregar serviços que garantam desempenho, confiança e resultados ao longo do tempo.</p>
       </div>
-      <div class="cena" data-de="139" data-ate="171">
+      <div class="cena" data-de="144" data-ate="176">
         <p class="eyebrow">03 · No chão de fábrica</p>
         <h2 class="display">Projeto próprio. <b>Usinagem própria.</b></h2>
         <p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p>
       </div>
-      <div class="cena" data-de="185" data-ate="207">
+      <div class="cena" data-de="190" data-ate="212">
         <h2 class="display">Sem cópias. <b>Sem atalhos.</b></h2>
         <p>Desde 1997 desenvolvemos as nossas próprias máquinas, pensadas para a eficiência de quem produz.</p>
       </div>
-      <div class="cena" data-de="217" data-ate="229">
+      <div class="cena" data-de="222" data-ate="234">
         <h2 class="display">Montada aqui. <b>Produzindo em 3 dias.</b></h2>
         <p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p>
       </div>
-      <div class="cena" data-de="251" data-ate="999">
+      <div class="cena" data-de="256" data-ate="999">
         <h2 class="display">Feita para produzir <b>sem parar.</b></h2>
         <p>O máximo de produtividade com o mínimo de manutenção. O que muitos chamam de qualidade, nós chamamos de eficiência.</p>
       </div>
@@ -1004,15 +1004,17 @@ const giro = (() => {
 
 /* ---------- Percurso ---------- */
 // o topo abre no rolo de sacos sendo bobinado, vai para a mão, funde na fachada e entra na fábrica
-const CENAS = [[0,'Produto final'],[67,'Fachada'],[102,'Recepção'],[130,'Usinagem'],[161,'Solda'],[180,'Torno'],[196,'Usinagem'],[215,'Montagem'],[235,'Galpão']];
+const CENAS = [[0,'Produto final'],[67,'Fachada'],[107,'Recepção'],[135,'Usinagem'],[166,'Solda'],[185,'Torno'],[201,'Usinagem'],[220,'Montagem'],[240,'Galpão']];
 const QUADROS = [
   ...[...Array(63)].map((_, i) => `bobina/${String(i + 95).padStart(3, '0')}`),
   // do rolo para o sol, e o drone desce do sol até a fábrica
   ...[...Array(8)].map((_, i) => `transicao2/${String(i + 1).padStart(3, '0')}`),
   ...[...Array(31)].map((_, i) => `percurso/${String(31 - i).padStart(3, '0')}`),
-  ...[...Array(5)].map((_, i) => `fusao/a${String(i + 1).padStart(3, '0')}`),
+  // a câmera acelera para a porta e atravessa: a recepção aparece por dentro
+  ...[...Array(10)].map((_, i) => `entrada/a${String(i + 1).padStart(3, '0')}`),
+  ...[...Array(8)].map((_, i) => `entrada/b${String(i + 1).padStart(3, '0')}`),
   // recepção, usinagem, solda, torno, montagem
-  ...[...Array(127)].map((_, i) => `percurso/${String(i + 37).padStart(3, '0')}`),
+  ...[...Array(119)].map((_, i) => `percurso/${String(i + 45).padStart(3, '0')}`),
   // e a câmera entra no galpão até a extrusora
   ...[...Array(5)].map((_, i) => `fusao/b${String(i + 1).padStart(3, '0')}`),
   ...[...Array(45)].map((_, i) => `percurso/${String(213 - i).padStart(3, '0')}`)
