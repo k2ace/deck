@@ -222,6 +222,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .valor-f2 strong{display:block;margin-top:.5rem;font:800 clamp(1.6rem,2.6vw,2.1rem)/1 Montserrat,sans-serif;letter-spacing:-.04em;color:var(--marca)}
 .valor-f2 span{display:block;margin-top:.35rem;font-size:.78rem;color:var(--tinta-2)}
 @media (max-width:960px){.planos{grid-template-columns:1fr}.fase2-preco{grid-template-columns:1fr 1fr}.fase2-preco > div:first-child{grid-column:1/-1}}
+.separado{display:grid;gap:.45rem;margin:0 0 1.25rem;padding:1rem 1.1rem;border-radius:1rem;box-shadow:inset 0 0 0 1px var(--linha-escura)}
+.separado div{display:flex;justify-content:space-between;gap:1rem;font-size:.9rem;color:var(--tinta-2)}
+.separado div b{font-weight:600;color:var(--tinta);white-space:nowrap}
+.separado .soma{padding-top:.5rem;border-top:1px solid var(--linha-escura)}
+.separado .soma b{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--tinta-2)}
+.separado .eco{color:var(--marca);font-weight:700}
+.separado .eco b{color:var(--marca)}
+.mensal-sep{margin:.2rem 0 0;color:var(--tinta-2);font-size:.85rem}
+.fase3{box-shadow:inset 0 0 0 1.5px var(--linha-escura);background:transparent}
 @media (max-width:560px){.formas{grid-template-columns:1fr}}
 
 /* ---------- 6. Escopo ---------- */
@@ -415,7 +424,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     </div>
     <div class="ponte sobe">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-      <p><b>Conversa com o que vocês já usam.</b> O desenho da fase 2 começa por entender o fluxo com o ERP da Cristofolini, para o pedido fechado não precisar ser digitado duas vezes.</p>
+      <p><b>Conversa com o Useall.</b> Na fase 2, o CRM já lê a carteira de clientes e o histórico de pedidos direto do sistema de vocês. Na fase 3, com a liberação da Useall, a proposta aceita entra como pedido sem ser digitada duas vezes.</p>
     </div>
   </div>
 </section>
@@ -428,7 +437,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <p class="eyebrow">04 · <b>Investimento</b></p>
       <h2 class="display">Uma fase já desenhada. <b>Outra construída junto.</b></h2>
     </div>
-    <p>Os protótipos da fase 1 já mostram o caminho, então o trabalho parte de algo que vocês viram e aprovaram. A fase 2 começa quando vocês quiserem, com escopo fechado antes.</p>
+    <p>Os protótipos da fase 1 já mostram o caminho, então o trabalho parte de algo que vocês viram e aprovaram. As fases 2 e 3 começam quando vocês quiserem, com escopo fechado antes.</p>
   </div>
 
   <div class="planos">
@@ -441,10 +450,16 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Gerador com a tabela e as condições atuais</b><span>catálogo, opcionais, preços e formas de pagamento conferidos</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Treinamento do time comercial</b><span>PIN de cada consultor e acompanhamento das primeiras propostas</span></div></li>
       </ul>
+      <div class="separado num">
+        <div><span>Site institucional</span><b>R$ 8.900</b></div>
+        <div><span>Gerador de propostas</span><b>R$ 6.900</b></div>
+        <div class="soma"><span>Separados</span><b>R$ 15.800</b></div>
+        <div class="eco"><span>No pacote, vocês economizam</span><b>R$ 2.900</b></div>
+      </div>
       <div class="formas">
-        <div class="forma vista"><small>À vista</small><strong class="num">R$ 13.900</strong><span>pagamento único</span></div>
-        <div class="forma"><small>Em 3×</small><strong class="num">R$ 4.634</strong><span>sem acréscimo, total de R$ 13.900</span></div>
-        <div class="forma"><small>Em 6×</small><strong class="num">R$ 2.433</strong><span>total de R$ 14.598</span></div>
+        <div class="forma vista"><small>Pacote à vista</small><strong class="num">R$ 12.900</strong><span>pagamento único</span></div>
+        <div class="forma"><small>Em 3×</small><strong class="num">R$ 4.300</strong><span>sem acréscimo, total de R$ 12.900</span></div>
+        <div class="forma"><small>Em 6×</small><strong class="num">R$ 2.258</strong><span>total de R$ 13.548</span></div>
       </div>
     </article>
 
@@ -457,7 +472,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Máquinas, preços e fichas atualizados</b><span>lançamento, tabela nova e opcional novo, sem custo extra</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Suporte ao time</b><span>consultor novo, dúvida do dia a dia e ajuste do que já existe</span></div></li>
       </ul>
-      <div class="mensal"><strong class="num">R$ 790</strong><span>/mês</span></div>
+      <div class="mensal"><strong class="num">R$ 390</strong><span>/mês, site e gerador</span></div>
+      <p class="mensal-sep num">Separados seriam R$ 190 do site e R$ 290 do gerador.</p>
       <p class="nota">Começa a contar quando a versão final entra no ar. Recurso novo, que muda o que o sistema faz, é orçado à parte e só entra com o seu sim.</p>
     </article>
   </div>
@@ -465,11 +481,21 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   <div class="fase2-preco sobe">
     <div>
       <span class="fase-selo" style="background:rgba(24,87,144,.08)">Fase 2 · Referência</span>
-      <h3>CRM comercial <b>sobre o gerador</b></h3>
-      <p>Propostas, clientes, funil, tarefas, agenda e rota, relatórios. Valores de referência, confirmados no início da fase com o escopo fechado.</p>
+      <h3>CRM comercial <b>lendo o Useall</b></h3>
+      <p>Propostas, clientes, funil, tarefas, agenda e rota, relatórios. A carteira de clientes e o histórico de pedidos vêm direto do Useall, sem digitar de novo. Valores confirmados no início da fase, com o escopo fechado.</p>
     </div>
-    <div class="valor-f2"><small>Implantação</small><strong class="num">R$ 9.900</strong><span>à vista ou parcelado</span></div>
-    <div class="valor-f2"><small>Mensalidade</small><strong class="num">R$ 1.490</strong><span>substitui os R$ 790 e cobre tudo</span></div>
+    <div class="valor-f2"><small>Implantação</small><strong class="num">R$ 11.900</strong><span>à vista ou parcelado</span></div>
+    <div class="valor-f2"><small>Mensalidade</small><strong class="num">R$ 1.490</strong><span>substitui os R$ 390 e cobre site, gerador e CRM</span></div>
+  </div>
+
+  <div class="fase2-preco fase3 sobe">
+    <div>
+      <span class="fase-selo" style="background:rgba(24,87,144,.08)">Fase 3 · Referência</span>
+      <h3>Pedido direto <b>no Useall</b></h3>
+      <p>Proposta aceita vira pedido dentro do Useall, sem ninguém digitar duas vezes. Depende de a Useall liberar o acesso de gravação, então o valor é fechado quando ela responder.</p>
+    </div>
+    <div class="valor-f2"><small>Implantação, a partir de</small><strong class="num">R$ 6.900</strong><span>fechado após a resposta da Useall</span></div>
+    <div class="valor-f2"><small>Mensalidade</small><strong class="num">+ R$ 290</strong><span>monitoramento da integração</span></div>
   </div>
 </section>
 
@@ -497,8 +523,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <h3>Fase nova</h3>
       <p>Orçado à parte, e só com o seu sim</p>
       <ul>
-        <li>O CRM comercial da fase 2</li>
-        <li>Integração com o ERP ou com outro sistema da Cristofolini</li>
+        <li>O CRM comercial da fase 2, com a leitura do Useall</li>
+        <li>O pedido gravado no Useall, na fase 3</li>
         <li>Versão do site em outro idioma para a América do Sul</li>
         <li>Qualquer recurso novo que mude o que o site ou o gerador fazem hoje</li>
       </ul>
