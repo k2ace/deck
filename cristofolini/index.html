@@ -616,6 +616,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   letter-spacing:-.022em;line-height:1.15;margin-top:.0625rem}
 .doc .maq-var{font-size:.875rem;color:#41505c;margin-top:.1875rem}
 .doc .maq-frase{font-size:.9375rem;line-height:1.5;color:#2b3a45;margin:.875rem 0 0;max-width:34rem}
+.doc .dest{margin:1.125rem 0 0;gap:1rem 1.5rem;grid-template-columns:repeat(auto-fit,minmax(6.5rem,1fr))}
+.doc .dest-i{border-top-color:#e3e9ee}
+.doc .dest-i b{color:#13202b;font-size:1.5rem}
+.doc .dest-i span{color:#7b8b98}
 .doc .maq-ficha{margin-top:1rem;border-top:1px solid #eef2f5;padding-top:.75rem}
 .doc .maq-ficha h6{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
   color:#7b8b98;font-weight:700;margin-bottom:.4375rem}
@@ -727,19 +731,40 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .vit-txt h3{font-family:Archivo,Inter,sans-serif;font-size:clamp(1.6rem,3.5vw,2.25rem);
   font-weight:600;letter-spacing:-.026em;line-height:1.08;margin:.25rem 0 1rem}
 .vit-txt h3 b{font-weight:700}
-.vit-txt ul{margin:0 0 1.5rem 1rem;font-size:.9375rem;line-height:1.7;color:rgba(238,243,247,.78)}
+.vit-lead{font-size:.9375rem;line-height:1.5;color:rgba(238,243,247,.66);margin:0 0 1.5rem;max-width:34rem}
+.vit-txt ul{margin:0 0 1.5rem 1rem;font-size:.875rem;line-height:1.7;color:rgba(238,243,247,.6)}
+/* grandezas em destaque: número grande primeiro, explicação depois */
+.dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));
+  gap:1.125rem 1.75rem;margin:0 0 1.5rem}
+.dest-i{border-top:1px solid var(--line);padding-top:.6875rem;break-inside:avoid}
+.dest-i b{display:block;font-family:Archivo,Inter,sans-serif;font-weight:700;
+  font-size:clamp(1.5rem,2.4vw,1.875rem);letter-spacing:-.03em;line-height:1}
+.dest-i b i{font-style:normal;font-size:.5em;font-weight:600;letter-spacing:-.01em;margin-left:.0625rem}
+.dest-i span{display:block;font-size:.75rem;line-height:1.35;color:var(--ink-3);margin-top:.4375rem}
+.vit-txt .dest-i{border-top-color:rgba(255,255,255,.18)}
+.vit-txt .dest-i b{color:#fff}
+.vit-txt .dest-i span{color:rgba(238,243,247,.55)}
 .vit-txt .btn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
   box-shadow:none}
-/* Tela inicial: duas portas e o mapa do que vem depois. */
-.inicio{padding-block:clamp(2.5rem,7vw,4.5rem) 6rem}
-.ini-saud{font-size:.9375rem;color:var(--ink-3)}
-.inicio .display{margin:.5rem 0 2.5rem}
-.ini-cartas{display:grid;gap:1rem;margin-bottom:3.5rem}
+/* Tela inicial: a fábrica deles ocupando a tela, duas portas e o que vem depois. */
+.inicio{padding-bottom:6rem}
+.ini-hero{
+  position:relative;isolation:isolate;overflow:hidden;background:#0a1620;
+  display:flex;align-items:flex-end;min-height:clamp(17rem,42vh,26rem);
+  padding-block:clamp(3rem,9vw,5.5rem) clamp(4.5rem,9vw,6.5rem);
+}
+.ini-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.ini-veu{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(100deg,rgba(6,18,28,.93) 0%,rgba(6,18,28,.86) 48%,rgba(6,18,28,.42) 100%),
+  linear-gradient(0deg,rgba(6,18,28,.6),rgba(6,18,28,0) 58%)}
+.ini-saud{font-size:.9375rem;color:rgba(255,255,255,.6)}
+.inicio .display{margin:.4375rem 0 0;color:#fff;max-width:18ch}
+.ini-cartas{display:grid;gap:1rem;margin:-3.5rem 0 4rem;position:relative;z-index:1}
 @media(min-width:48rem){.ini-cartas{grid-template-columns:1fr 1fr}}
 .carta{
   display:flex;gap:1.125rem;align-items:flex-start;text-align:left;padding:1.5rem;
   border-radius:1.25rem;background:var(--card);border:1px solid var(--line-soft);
-  box-shadow:var(--sombra);will-change:transform;transition:border-color .2s ease,box-shadow .2s ease;
+  box-shadow:var(--sombra-alta);will-change:transform;transition:border-color .2s ease,box-shadow .2s ease;
 }
 .carta:hover{border-color:var(--marca);box-shadow:var(--sombra-alta)}
 .carta.destaque{box-shadow:var(--sombra),inset 0 0 0 1px var(--marca)}
@@ -750,9 +775,12 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   font-weight:700;letter-spacing:-.018em}
 .carta-txt em{display:block;font-style:normal;font-size:.875rem;color:var(--ink-2);
   line-height:1.5;margin-top:.3125rem;max-width:26rem}
-.ini-rot{font-size:.75rem;letter-spacing:.06em;color:var(--ink-3);margin-bottom:.875rem}
+.ini-fase{border-top:1px solid var(--line-soft);padding-top:1.75rem}
+.ini-rot{font-family:Archivo,Inter,sans-serif;font-size:1.0625rem;font-weight:700;
+  letter-spacing:-.014em}
+.ini-sub{font-size:.875rem;color:var(--ink-3);margin:.25rem 0 1.25rem;max-width:42rem}
 .ini-futuro{display:grid;gap:.75rem}
-@media(min-width:44rem){.ini-futuro{grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}}
+@media(min-width:44rem){.ini-futuro{grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr))}}
 .ini-futuro span{display:block;padding:.875rem 1rem;border-radius:.875rem;
   border:1px dashed var(--line);opacity:.72}
 .ini-futuro b{display:block;font-size:.9375rem;font-weight:600}
@@ -766,35 +794,6 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 }
 .vit-abre svg{width:1.0625rem;height:1.0625rem}
 @media(max-width:34rem){.vit-abre span{display:none}
-  /* Tela inicial: duas portas e o mapa do que vem depois. */
-.inicio{padding-block:clamp(2.5rem,7vw,4.5rem) 6rem}
-.ini-saud{font-size:.9375rem;color:var(--ink-3)}
-.inicio .display{margin:.5rem 0 2.5rem}
-.ini-cartas{display:grid;gap:1rem;margin-bottom:3.5rem}
-@media(min-width:48rem){.ini-cartas{grid-template-columns:1fr 1fr}}
-.carta{
-  display:flex;gap:1.125rem;align-items:flex-start;text-align:left;padding:1.5rem;
-  border-radius:1.25rem;background:var(--card);border:1px solid var(--line-soft);
-  box-shadow:var(--sombra);will-change:transform;transition:border-color .2s ease,box-shadow .2s ease;
-}
-.carta:hover{border-color:var(--marca);box-shadow:var(--sombra-alta)}
-.carta.destaque{box-shadow:var(--sombra),inset 0 0 0 1px var(--marca)}
-.carta-ico{width:2.75rem;height:2.75rem;border-radius:.875rem;flex:0 0 auto;display:grid;place-items:center;
-  color:var(--marca);background:color-mix(in srgb,var(--marca) 10%,transparent)}
-.carta-ico svg{width:1.375rem;height:1.375rem}
-.carta-txt b{display:block;font-family:Archivo,Inter,sans-serif;font-size:1.1875rem;
-  font-weight:700;letter-spacing:-.018em}
-.carta-txt em{display:block;font-style:normal;font-size:.875rem;color:var(--ink-2);
-  line-height:1.5;margin-top:.3125rem;max-width:26rem}
-.ini-rot{font-size:.75rem;letter-spacing:.06em;color:var(--ink-3);margin-bottom:.875rem}
-.ini-futuro{display:grid;gap:.75rem}
-@media(min-width:44rem){.ini-futuro{grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}}
-.ini-futuro span{display:block;padding:.875rem 1rem;border-radius:.875rem;
-  border:1px dashed var(--line);opacity:.72}
-.ini-futuro b{display:block;font-size:.9375rem;font-weight:600}
-.ini-futuro em{display:block;font-style:normal;font-size:.75rem;color:var(--ink-3);
-  margin-top:.1875rem;line-height:1.45}
-.logo{border:0;padding:0;cursor:pointer;will-change:transform}
 .vit-abre{padding:.4375rem;border-radius:50%;width:2.125rem;height:2.125rem;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.vit-corpo{scroll-behavior:auto}}
 .barra-doc{display:flex;gap:.75rem;align-items:flex-start;flex-wrap:wrap}
@@ -803,25 +802,32 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .barra-doc .escolha-val{font-weight:500;font-size:.875rem}
 .barra-doc .btn.zap{flex:0 0 auto}
 .vit-acoes{display:flex;gap:.625rem;flex-wrap:wrap}
-.vit-acoes .btn.feito{background:linear-gradient(180deg,#2fbf5c,#1f9e48);color:#fff}
+/* confirmação é contorno, não bloco de cor: o olho do cliente fica na máquina */
+.vit-acoes .btn.feito{background:transparent;color:#63dd92;
+  box-shadow:inset 0 0 0 1.5px rgba(99,221,146,.6);border-color:transparent}
 .vit-preco{font-family:Archivo,Inter,sans-serif;font-size:1.25rem;font-weight:700;
   letter-spacing:-.02em;margin-top:1rem;color:#fff}
 .vit-preco small{font-weight:400;font-size:.8125rem;color:rgba(238,243,247,.6)}
 .vit-olho{
-  display:inline-flex;align-items:center;gap:.4375rem;flex:0 0 auto;
-  padding:.375rem .6875rem .375rem .5625rem;border-radius:999px;font-size:.8125rem;
-  color:rgba(238,243,247,.8);background:rgba(255,255,255,.08);will-change:transform;
+  display:grid;place-items:center;flex:0 0 auto;width:2.25rem;height:2.25rem;
+  border-radius:50%;color:rgba(238,243,247,.8);background:rgba(255,255,255,.08);
+  will-change:transform;
 }
-.vit-olho svg{width:1.125rem;height:1.125rem}
+.vit-olho svg{width:1.1875rem;height:1.1875rem}
 .vit-olho[aria-pressed="true"]{color:#fff;background:rgba(255,255,255,.16)}
-@media(max-width:34rem){.vit-olho span{display:none}.vit-olho{padding:.4375rem}}
 /* preço fechado: some da vitrine sem deixar buraco no lugar */
 .vitrine.sem-preco .vit-preco{visibility:hidden}
+/* a contagem não é só um numerinho: é a porta para ver o que já entrou */
 .vit-cont{
-  flex:0 0 auto;min-width:1.5rem;height:1.5rem;padding:0 .4375rem;border-radius:999px;
-  background:var(--marca);color:#fff;font-size:.8125rem;font-weight:700;
-  display:grid;place-items:center;
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:.4375rem;height:2.25rem;
+  padding:0 .75rem 0 .375rem;border-radius:999px;background:rgba(255,255,255,.1);
+  color:#fff;font-size:.8125rem;will-change:transform;
 }
+.vit-cont b{
+  width:1.5rem;height:1.5rem;border-radius:50%;background:var(--marca);
+  display:grid;place-items:center;font-size:.8125rem;font-weight:700;
+}
+@media(max-width:34rem){.vit-cont span{display:none}.vit-cont{padding:0 .375rem}}
 /* ---------- visualizador em tela cheia ---------- */
 .visor{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:var(--pad)}
 .visor-fundo{position:absolute;inset:0;background:rgba(6,14,20,.62);
@@ -915,30 +921,6 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   .doc .topo{break-before:page;padding:14mm 16mm 10mm}
   .doc .body{padding:10mm 16mm 16mm}
   .doc .maq{break-inside:avoid}
-  /* bloco do equipamento: nome, render, apresentação, ficha e valor */
-.doc .maq{border-top:1px solid #e3e9ee;padding:1.25rem 0 1rem}
-.doc .maq-topo{margin-bottom:.75rem}
-.doc .maq-fam{display:block;font-size:.75rem;color:#7b8b98}
-.doc .maq h5{font-family:Archivo,Inter,sans-serif;font-size:1.375rem;font-weight:700;
-  letter-spacing:-.022em;line-height:1.15;margin-top:.0625rem}
-.doc .maq-var{font-size:.875rem;color:#41505c;margin-top:.1875rem}
-.doc .maq-frase{font-size:.9375rem;line-height:1.5;color:#2b3a45;margin:.875rem 0 0;max-width:34rem}
-.doc .maq-ficha{margin-top:1rem;border-top:1px solid #eef2f5;padding-top:.75rem}
-.doc .maq-ficha h6{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
-  color:#7b8b98;font-weight:700;margin-bottom:.4375rem}
-.doc .maq-ficha ul{margin:0 0 0 .9375rem;font-size:.8125rem;color:#41505c;line-height:1.65}
-@media(min-width:44rem){.doc .maq-ficha ul{columns:2;column-gap:2.25rem}
-  .doc .maq-ficha li{break-inside:avoid}}
-.doc .inclusos{margin-top:.875rem;font-size:.8125rem;color:#13202b;
-  display:flex;flex-wrap:wrap;gap:.3125rem .5rem;align-items:baseline}
-.doc .inclusos b{width:100%;font-weight:700;font-size:.6875rem;letter-spacing:.1em;
-  text-transform:uppercase;color:#7b8b98;margin-bottom:.125rem}
-.doc .inclusos span{border:1px solid #dbe3e9;border-radius:.3125rem;padding:.1875rem .4375rem}
-.doc .inclusos.montagem span{color:#5c6b77}
-.doc .maq-valor{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  margin-top:1rem;padding-top:.625rem;border-top:1px solid #eef2f5}
-.doc .maq-valor span{font-size:.8125rem;color:#5c6b77}
-.doc .maq-valor b{font-family:Archivo,Inter,sans-serif;font-size:1.125rem;letter-spacing:-.018em}
 .doc .maq .render{break-inside:avoid}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
@@ -968,9 +950,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
     <nav class="vit-menu" id="vitMenu"></nav>
     <button class="vit-olho" id="vitOlho" aria-pressed="false" title="Mostrar ou esconder os preços">
       <svg viewBox="0 0 22 22" id="icoOlho" aria-hidden="true"></svg>
-      <span id="rotuloOlho">Preços</span>
     </button>
-    <span class="vit-cont" id="vitContagem" hidden>0</span>
+    <button class="vit-cont" id="vitContagem" hidden title="Ver o que já entrou na proposta">
+      <b>0</b><span>na proposta</span>
+    </button>
     <button class="vit-x" id="vitFechar" aria-label="Sair da apresentação">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
     </button>
@@ -997,7 +980,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 <div id="visitante" hidden>
   <header class="bar">
     <div class="wrap row">
-      <button class="logo" id="btnInicio" title="Voltar ao início"><img src="img/logo-azul.png" alt="Cristofolini"></button>
+      <span class="logo"><img src="img/logo-azul.png" alt="Cristofolini"></span>
       <button class="btn" id="btnImprimir">Imprimir ou salvar em PDF</button>
     </div>
   </header>
@@ -1006,48 +989,11 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
 <div id="app" hidden>
 
-<section class="inicio" id="inicio">
-  <div class="wrap">
-    <p class="ini-saud" id="iniSaud"></p>
-    <h2 class="display">O que você vai<br>fazer agora?</h2>
-
-    <div class="ini-cartas">
-      <button class="carta" data-ini="portfolio">
-        <span class="carta-ico">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="4.2" width="18.8" height="12.6" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.6 20h6.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </span>
-        <span class="carta-txt">
-          <b>Portfólio</b>
-          <em>As quinze máquinas para mostrar ao cliente, com vídeo e giro 360. O preço só aparece quando você quiser.</em>
-        </span>
-      </button>
-
-      <button class="carta destaque" data-ini="proposta">
-        <span class="carta-ico">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.8h8.4L19 7.4V21H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 2.8V8h5M9 13h7M9 16.6h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </span>
-        <span class="carta-txt">
-          <b>Nova proposta</b>
-          <em>Monta a máquina, fecha o pagamento e manda para o cliente em PDF ou por link.</em>
-        </span>
-      </button>
-    </div>
-
-    <p class="ini-rot">Em construção</p>
-    <div class="ini-futuro">
-      <span><b>Clientes</b><em>Carteira, perfil e histórico de cada um</em></span>
-      <span><b>Funil</b><em>Proposta emitida, em negociação, fechada e perdida</em></span>
-      <span><b>Tarefas</b><em>O que fazer com cada cliente e quando</em></span>
-      <span><b>Agenda e rota</b><em>A semana do consultor e o caminho da visita</em></span>
-      <span><b>Relatórios</b><em>Propostas por máquina, por consultor e por período</em></span>
-    </div>
-  </div>
-</section>
 
 
-<header class="bar">
+<header class="bar" id="barraApp">
   <div class="wrap row">
-    <span class="logo"><img src="img/logo-azul.png" alt="Cristofolini"></span>
+    <button class="logo" id="btnHome" title="Voltar ao início"><img src="img/logo-azul.png" alt="Cristofolini"></button>
     <nav class="steps" id="steps">
       <button class="step" data-go="0" aria-current="true">Cliente</button>
       <button class="step" data-go="1">Equipamentos</button>
@@ -1062,10 +1008,59 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
       <svg viewBox="0 0 20 20" id="icoTema"></svg>
     </button>
   </div>
-  <div class="trilho"><span id="trilhoBarra"></span></div>
+  <div class="trilho" id="trilho"><span id="trilhoBarra"></span></div>
 </header>
 
-<main class="wrap">
+<section class="inicio" id="inicio">
+  <div class="ini-hero">
+    <img class="ini-foto" src="img/MC-35-amb.jpg" alt="" aria-hidden="true" fetchpriority="high">
+    <div class="ini-veu"></div>
+    <div class="wrap">
+      <p class="ini-saud" id="iniSaud"></p>
+      <h2 class="display">O que você vai<br>fazer agora?</h2>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ini-cartas">
+      <button class="carta" data-ini="portfolio">
+        <span class="carta-ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="4.2" width="18.8" height="12.6" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.6 20h6.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="carta-txt">
+          <b>Portfólio</b>
+          <em>As quinze máquinas com vídeo e giro de 360°. O preço só aparece quando você quiser.</em>
+        </span>
+      </button>
+
+      <button class="carta destaque" data-ini="proposta">
+        <span class="carta-ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.8h8.4L19 7.4V21H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 2.8V8h5M9 13h7M9 16.6h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="carta-txt">
+          <b>Nova proposta</b>
+          <em>Monta a máquina, fecha o pagamento e manda em PDF ou por link.</em>
+        </span>
+      </button>
+    </div>
+
+    <div class="ini-fase">
+      <p class="ini-rot">Fase 2: o CRM comercial</p>
+      <p class="ini-sub">Em construção. A proposta é a porta de entrada. Depois dela, a mesma
+        ferramenta passa a cuidar do cliente do primeiro contato ao pedido.</p>
+      <div class="ini-futuro">
+        <span><b>Todas as propostas</b><em>O histórico do que já saiu, para reabrir e reenviar</em></span>
+        <span><b>Clientes</b><em>Carteira, perfil e histórico de cada um</em></span>
+        <span><b>Funil</b><em>Proposta emitida, em negociação, fechada e perdida</em></span>
+        <span><b>Tarefas</b><em>O que fazer com cada cliente e quando</em></span>
+        <span><b>Agenda e rota</b><em>A semana do consultor e o caminho da visita</em></span>
+        <span><b>Relatórios</b><em>Propostas por máquina, por consultor e por período</em></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="fluxo">
 
   <section class="panel on" data-panel="0">
     <div class="cabeca">
@@ -2617,6 +2612,46 @@ ${U.nome}`;
 
   // Quem abre a proposta pelo link vê mais ângulos da máquina, não só um.
   // Sai só na tela: no papel fica a foto de frente.
+  /* ---------- números que o cliente lê de longe ----------
+     A ficha técnica vem do Excel deles como uma lista de 22 linhas em que tudo
+     tem o mesmo peso. Ninguém lê 22 linhas na frente do cliente. Aqui as
+     grandezas que decidem a compra saem da lista e viram número grande, do
+     jeito que a Apple faz na página do produto: valor primeiro, explicação
+     depois. O resto continua existindo, em ficha, para quem quiser conferir. */
+  const GRANDEZAS = [
+    {re: /^capacidade de produ[çc][ãa]o/i,   rot: 'de produção'},
+    {re: /^largura m[áa]xima do filme/i,     rot: 'de largura do filme'},
+    {re: /^comprimento m[áa]x/i,             rot: 'de comprimento do saco'},
+    {re: /^largura desbobinador/i,           rot: 'de largura no desbobinador'},
+    {re: /^impress[ãa]o de cores/i,          rot: 'de impressão'},
+    {re: /^pot[êe]ncia instalada/i,          rot: 'de potência instalada'},
+  ];
+
+  function grandezas(desc){
+    const achados = [], resto = [];
+    for (const linha of desc){
+      const corte = linha.indexOf(':');
+      const chave = corte > 0 ? linha.slice(0, corte).trim() : '';
+      const g = chave && GRANDEZAS.find(x => x.re.test(chave));
+      if (!g){ resto.push(linha); continue; }
+      let valor = linha.slice(corte + 1).trim();
+      // "Largura Máxima do Filme (mm): 400" traz a unidade na chave
+      const uni = (chave.match(/\(([^)]+)\)/) || [])[1];
+      if (uni && !/[a-zA-Z]/.test(valor)) valor = `${valor}${uni}`;
+      const par = valor.match(/^([\d.,]+)\s*(.*)$/);
+      achados.push({num: par ? par[1] : valor, uni: par ? par[2] : '', rot: g.rot, ordem: GRANDEZAS.indexOf(g)});
+    }
+    achados.sort((a, b) => a.ordem - b.ordem);
+    return {achados: achados.slice(0, 4), resto};
+  }
+
+  function grandezasHTML(achados){
+    if (!achados.length) return '';
+    return `<div class="dest">${achados.map(g => `<div class="dest-i">
+      <b class="num">${esc(g.num)}${g.uni ? `<i>${esc(g.uni)}</i>` : ''}</b>
+      <span>${esc(g.rot)}</span></div>`).join('')}</div>`;
+  }
+
   function miniaturas(p){
     const tiras = [{src: p.img, rot: 'Vídeo', video: true}];
     if (p.amb) tiras.push({src: p.amb, rot: 'Na fábrica'});
@@ -2673,7 +2708,8 @@ ${U.nome}`;
           // a primeira linha da descrição é a frase de apresentação; o resto é
           // ficha técnica e merece um bloco próprio, em duas colunas
           const apresenta = v.desc[0] || '';
-          const ficha = v.desc.slice(1);
+          const g = grandezas(v.desc.slice(1));
+          const ficha = g.resto;
           return `<div class="maq">
             <div class="maq-topo">
               <span class="maq-fam">${esc(p.familia)}</span>
@@ -2689,6 +2725,7 @@ ${U.nome}`;
                  <img class="render papel" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">`
               : `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">`) : ''}
             ${apresenta ? `<p class="maq-frase">${esc(apresenta)}</p>` : ''}
+            ${grandezasHTML(g.achados)}
             <div class="maq-ficha">
               <h6>Ficha técnica</h6>
               <ul>${ficha.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
@@ -2901,7 +2938,10 @@ ${U.nome}`;
         <div class="vit-txt">
           <span class="rotfam">${esc(p.familia)}</span>
           <h3>${esc(p.linha)} <b>${esc(p.modelo)}</b></h3>
-          <ul>${p.variantes[0].desc.slice(1, 7).map(d => `<li>${esc(d)}</li>`).join('')}</ul>
+          ${(() => { const g = grandezas(p.variantes[0].desc.slice(1));
+            return `${p.variantes[0].desc[0] ? `<p class="vit-lead">${esc(p.variantes[0].desc[0])}</p>` : ''}
+              ${grandezasHTML(g.achados)}
+              <ul>${g.resto.slice(0, 3).map(d => `<li>${esc(d)}</li>`).join('')}</ul>`; })()}
           <div class="vit-acoes">
             <button class="btn" data-vadd="${pid}">Adicionar à proposta</button>
             <button class="btn sec" data-ampliar="${pid}">${p.giro ? 'Girar em 360°' : 'Ver fotos'}</button>
@@ -2909,8 +2949,7 @@ ${U.nome}`;
           <p class="vit-preco num">${p.variantes.length > 1 ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</p>
         </div>
       </section>`).join('');
-    el('#vitContagem').textContent = estado.itens.length;
-    el('#vitContagem').hidden = !estado.itens.length;
+    pintaContagem();
     estado.mostraPreco = false;   // toda apresentação começa com o preço fechado
     pintaOlho();
     vitrine.hidden = false;
@@ -2932,6 +2971,20 @@ ${U.nome}`;
     document.body.style.overflow = '';
     el('#vitCorpo').innerHTML = '';
   }
+
+  /* A contagem é o caminho de volta: sai da apresentação e cai direto na lista
+     de equipamentos, que é onde o que foi escolhido aparece configurável. */
+  function pintaContagem(){
+    const n = estado.itens.length;
+    el('#vitContagem').querySelector('b').textContent = n;
+    el('#vitContagem').hidden = !n;
+  }
+
+  el('#vitContagem').addEventListener('click', () => {
+    fecharVitrine();
+    mostrarFluxo();
+    ir(1); progresso(); dock();
+  });
 
   el('#btnVitrine').addEventListener('click', abrirVitrine);
   el('#vitFechar').addEventListener('click', fecharVitrine);
@@ -2955,14 +3008,17 @@ ${U.nome}`;
     adicionar(pid);
     botao.textContent = 'Adicionado à proposta';
     botao.classList.add('feito');
-    el('#vitContagem').textContent = estado.itens.length;
-    el('#vitContagem').hidden = false;
+    pintaContagem();
+    // a contagem pulsa para o olho ir até ela e entender onde o item foi parar
+    if (!REDUZIR.matches) el('#vitContagem').animate(
+      [{transform:'scale(1)'},{transform:'scale(1.16)'},{transform:'scale(1)'}],
+      {duration: 420, easing:'cubic-bezier(.32,.72,0,1)'});
     setTimeout(() => { botao.textContent = 'Adicionar mais um'; botao.classList.remove('feito'); }, 2200);
   }
   addEventListener('keydown', (e) => { if (e.key === 'Escape' && !vitrine.hidden && visor.hidden) fecharVitrine(); });
   tatil(vitrine, '.vit-menu button', .94);
   tatil(vitrine, '.vit-acoes .btn', .96);
-  tatil(document.querySelector('header.bar'), '.vit-abre', .95);
+  tatil(el('#vitContagem').parentElement, '.vit-cont', .94);
 
   /* ---------- tela inicial ----------
      O gerador de proposta é a primeira frente, não o produto inteiro. A tela
@@ -2971,9 +3027,10 @@ ${U.nome}`;
 
   function mostrarInicio(){
     inicio.hidden = false;
-    document.querySelector('main.wrap').hidden = true;
+    el('#fluxo').hidden = true;
     document.querySelector('.dock').hidden = true;
-    document.querySelector('.steps').hidden = true;
+    el('#steps').hidden = true;
+    el('#trilho').hidden = true;
     el('#btnVitrine').hidden = true;
     estado.abre = null;
     if (!REDUZIR.matches) inicio.animate([{opacity:0, transform:'translate3d(0,10px,0)'},{opacity:1, transform:'none'}],
@@ -2982,9 +3039,10 @@ ${U.nome}`;
 
   function mostrarFluxo(){
     inicio.hidden = true;
-    document.querySelector('main.wrap').hidden = false;
+    el('#fluxo').hidden = false;
     document.querySelector('.dock').hidden = false;
-    document.querySelector('.steps').hidden = false;
+    el('#steps').hidden = false;
+    el('#trilho').hidden = false;
     el('#btnVitrine').hidden = false;
   }
 
@@ -2996,9 +3054,10 @@ ${U.nome}`;
     mostrarFluxo();
     ir(0); progresso(); dock();
   });
-  el('#btnInicio').addEventListener('click', mostrarInicio);
+  el('#btnHome').addEventListener('click', mostrarInicio);
   tatil(inicio, '.carta', .985);
-  tatil(document.querySelector('header.bar'), '.logo', .96);
+  tatil(el('#barraApp'), '.logo', .96);
+  tatil(el('#barraApp'), '.vit-abre', .95);
 
   desenhaFams(); desenhaCards(); desenhaItens(); progresso(); dock();
   mostrarInicio();
