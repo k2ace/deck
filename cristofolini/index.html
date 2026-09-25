@@ -353,36 +353,43 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .grupo .req::before{content:"·";margin-right:.375rem}
 .grupo .nota{font-size:.8125rem;color:var(--ink-3);line-height:1.45;margin-bottom:.75rem}
 .opcoes{display:flex;gap:.5rem;flex-wrap:wrap}
-/* Escolhida não vira um bloco de tinta: ganha anel, leve tingimento e um
-   visto. O azul fica reservado para a marca do visto e para a borda. */
+/* Escolhida não vira bloco de tinta nem anel grosso: um fio na cor da marca,
+   um leve tingimento e um ponto pequeno. O preço muda de cor, não de peso. */
 .opt{
-  position:relative;min-height:3rem;padding:.625rem 1rem .625rem .8125rem;border-radius:.875rem;
+  position:relative;min-height:2.75rem;padding:.5rem .9375rem .5rem .75rem;border-radius:.75rem;
   font-size:.9375rem;letter-spacing:-.006em;background:var(--card);
-  border:1px solid var(--line-soft);box-shadow:var(--sombra);will-change:transform;
-  display:inline-flex;align-items:center;gap:.625rem;text-align:left;
+  border:1px solid var(--line-soft);will-change:transform;
+  display:inline-flex;align-items:center;gap:.5625rem;text-align:left;
   transition:border-color .2s ease,background-color .2s ease;
 }
 .opt::before{
-  content:"";width:1.125rem;height:1.125rem;border-radius:50%;flex:0 0 auto;
-  border:1.5px solid var(--line);
-  transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease;
+  content:"";width:1rem;height:1rem;border-radius:50%;flex:0 0 auto;
+  border:1.25px solid var(--line);
+  transition:border-color .2s ease,box-shadow .2s ease;
 }
 .opt[aria-pressed="true"]{
-  border-color:var(--marca);box-shadow:var(--sombra),inset 0 0 0 1px var(--marca);
+  border-color:var(--marca);
+  background:color-mix(in srgb,var(--marca) 6%,var(--card));
   font-weight:600;
 }
 .opt[aria-pressed="true"]::before{
-  border-color:var(--marca);border-width:5px;
+  border-color:var(--marca);
+  box-shadow:inset 0 0 0 3px var(--card), inset 0 0 0 9px var(--marca);
 }
-.opt .vl{font-size:.8125rem;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap;margin-left:auto;padding-left:.5rem}
+.opt .vl{font-size:.8125rem;color:var(--ink-3);font-variant-numeric:tabular-nums;
+  white-space:nowrap;margin-left:.1875rem}
 .opt[aria-pressed="true"] .vl{color:var(--marca)}
 .opt[disabled]{opacity:.38;cursor:not-allowed}
+.unica-info{display:flex;align-items:center;gap:.5rem;font-size:.9375rem;color:var(--ink-2)}
+.unica-info .vl{font-size:.8125rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .linha-qtd{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.375rem .75rem;padding:.625rem 0}
 .linha-qtd .nm{font-size:.9375rem;line-height:1.3;grid-column:1}
 .linha-qtd .vl{font-size:.8125rem;color:var(--ink-2);font-variant-numeric:tabular-nums;grid-column:1;grid-row:2}
 .linha-qtd .stepper{grid-column:2;grid-row:1/3;justify-self:end}
 @media(min-width:34rem){
-  .linha-qtd{grid-template-columns:1fr auto auto}
+  .unica-info{display:flex;align-items:center;gap:.5rem;font-size:.9375rem;color:var(--ink-2)}
+.unica-info .vl{font-size:.8125rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.linha-qtd{grid-template-columns:1fr auto auto}
   .linha-qtd .vl{grid-column:2;grid-row:1;white-space:nowrap}
   .linha-qtd .stepper{grid-column:3;grid-row:1}
 }
@@ -461,6 +468,16 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 .rotulo:first-child{margin-top:0}
 /* Escolha: um botão que mostra o que está selecionado e abre a lista.
    É o mesmo desenho para forma de pagamento, entrada e parcelas. */
+/* No computador as escolhas ficam à esquerda e o plano de pagamento ao lado,
+   para a pessoa ver o efeito de cada escolha sem rolar. No celular empilha. */
+.pag-grid{display:grid;gap:1.5rem}
+@media(min-width:62rem){
+  .pag-grid{grid-template-columns:minmax(0,24rem) minmax(0,1fr);gap:3rem;align-items:start}
+  .pag-plano{position:sticky;top:5.5rem}
+  .pag-plano table.plan{margin-top:0}
+  .pag-plano .plano-bloco:first-child{margin-top:0}
+}
+.pag-col .escolha{max-width:none}
 .escolha{position:relative;margin-bottom:1.25rem;max-width:26rem}
 .escolha-rot{display:block;font-size:.75rem;letter-spacing:.03em;color:var(--ink-2);margin-bottom:.4375rem}
 .escolha-btn{
@@ -566,9 +583,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .doc .capa-maq{font-size:.9375rem;color:#41505c;margin-top:.4375rem}
 .doc .capa-rodape{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:1.5rem;
   padding-top:1rem;border-top:1px solid #e3e9ee}
+.doc .capa-ref{font-size:.75rem;color:#7b8b98;margin-top:.875rem}
 .doc .capa-rodape em{display:block;font-style:normal;font-size:.6875rem;letter-spacing:.08em;
   text-transform:uppercase;color:#7b8b98;margin-bottom:.1875rem}
-.doc .capa-rodape b{font-family:Archivo,Inter,sans-serif;font-size:1.125rem;letter-spacing:-.018em}
+.doc .capa-rodape b{font-family:Archivo,Inter,sans-serif;font-size:1.5rem;letter-spacing:-.024em}
 .doc .capa-rodape .num{color:#005389}
 @media print{
   .doc .capa{width:210mm;height:297mm;aspect-ratio:auto;break-after:page}
@@ -580,9 +598,8 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .doc .topo{background:#005389;color:#fff;padding:1.5rem clamp(1.25rem,4vw,2.25rem)}
 .doc .topo .nome{font-size:1.5rem}
 .doc .topo .sub{font-size:.6875rem;letter-spacing:.06em;opacity:.8;margin-top:.25rem;line-height:1.5}
-.doc .topo-linha{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;align-items:flex-start}
-.doc .topo .ref{font-size:.75rem;line-height:1.6;opacity:.85;text-align:right;flex:0 0 auto}
-@media(max-width:34rem){.doc .topo .ref{text-align:left}}
+.doc .topo .ref{font-size:.75rem;line-height:1.5;opacity:.7;margin-top:.75rem;
+  padding-top:.625rem;border-top:1px solid rgba(255,255,255,.18)}
 .doc .body{padding:1.5rem clamp(1.25rem,4vw,2.25rem) 2rem}
 .doc h4{font-family:Archivo,Inter,sans-serif;font-size:.9375rem;letter-spacing:-.01em;
   color:#13202b;margin:2rem 0 .75rem;font-weight:700;padding-top:.625rem;
@@ -619,10 +636,23 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   width:100%;aspect-ratio:16/9;object-fit:contain;background:#f4f7f9;
   border-radius:.625rem;margin:.25rem 0 0;padding:.5rem;display:block;
 }
+.doc .midia{position:relative;width:100%;aspect-ratio:16/9;background:#f4f7f9;
+  border-radius:.625rem;overflow:hidden;margin:.25rem 0 0}
+.doc .midia .render{width:100%;height:100%;object-fit:contain;padding:.5rem;margin:0;border-radius:0}
+.doc .miniaturas{display:flex;gap:.4375rem;margin-top:.5rem;flex-wrap:wrap}
+.doc .miniaturas button{
+  width:4.25rem;aspect-ratio:16/10;border-radius:.4375rem;overflow:hidden;
+  border:1.5px solid #e3e9ee;background:#f4f7f9;padding:0;
+  transition:border-color .2s ease,transform .2s ease;
+}
+.doc .miniaturas button.on{border-color:#005389}
+.doc .miniaturas button:hover{transform:translateY(-1px)}
+.doc .miniaturas img{width:100%;height:100%;object-fit:contain}
+@media print{.doc .miniaturas,.doc .midia{display:none}}
 /* Na tela a máquina se mexe; no papel entra a foto parada. */
 .doc .maq .papel{display:none}
 @media print{
-  .doc .maq .tela{display:none}
+  .doc .maq .tela{display:none!important}
   .doc .maq .papel{display:block}
 }
 .doc .maq .ln{display:flex;justify-content:space-between;gap:1.25rem;align-items:baseline}
@@ -700,6 +730,35 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .vit-txt ul{margin:0 0 1.5rem 1rem;font-size:.9375rem;line-height:1.7;color:rgba(238,243,247,.78)}
 .vit-txt .btn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
   box-shadow:none}
+/* Tela inicial: duas portas e o mapa do que vem depois. */
+.inicio{padding-block:clamp(2.5rem,7vw,4.5rem) 6rem}
+.ini-saud{font-size:.9375rem;color:var(--ink-3)}
+.inicio .display{margin:.5rem 0 2.5rem}
+.ini-cartas{display:grid;gap:1rem;margin-bottom:3.5rem}
+@media(min-width:48rem){.ini-cartas{grid-template-columns:1fr 1fr}}
+.carta{
+  display:flex;gap:1.125rem;align-items:flex-start;text-align:left;padding:1.5rem;
+  border-radius:1.25rem;background:var(--card);border:1px solid var(--line-soft);
+  box-shadow:var(--sombra);will-change:transform;transition:border-color .2s ease,box-shadow .2s ease;
+}
+.carta:hover{border-color:var(--marca);box-shadow:var(--sombra-alta)}
+.carta.destaque{box-shadow:var(--sombra),inset 0 0 0 1px var(--marca)}
+.carta-ico{width:2.75rem;height:2.75rem;border-radius:.875rem;flex:0 0 auto;display:grid;place-items:center;
+  color:var(--marca);background:color-mix(in srgb,var(--marca) 10%,transparent)}
+.carta-ico svg{width:1.375rem;height:1.375rem}
+.carta-txt b{display:block;font-family:Archivo,Inter,sans-serif;font-size:1.1875rem;
+  font-weight:700;letter-spacing:-.018em}
+.carta-txt em{display:block;font-style:normal;font-size:.875rem;color:var(--ink-2);
+  line-height:1.5;margin-top:.3125rem;max-width:26rem}
+.ini-rot{font-size:.75rem;letter-spacing:.06em;color:var(--ink-3);margin-bottom:.875rem}
+.ini-futuro{display:grid;gap:.75rem}
+@media(min-width:44rem){.ini-futuro{grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}}
+.ini-futuro span{display:block;padding:.875rem 1rem;border-radius:.875rem;
+  border:1px dashed var(--line);opacity:.72}
+.ini-futuro b{display:block;font-size:.9375rem;font-weight:600}
+.ini-futuro em{display:block;font-style:normal;font-size:.75rem;color:var(--ink-3);
+  margin-top:.1875rem;line-height:1.45}
+.logo{border:0;padding:0;cursor:pointer;will-change:transform}
 .vit-abre{
   display:inline-flex;align-items:center;gap:.4375rem;flex:0 0 auto;
   padding:.4375rem .75rem .4375rem .625rem;border-radius:.625rem;font-size:.8125rem;font-weight:600;
@@ -707,7 +766,36 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 }
 .vit-abre svg{width:1.0625rem;height:1.0625rem}
 @media(max-width:34rem){.vit-abre span{display:none}
-  .vit-abre{padding:.4375rem;border-radius:50%;width:2.125rem;height:2.125rem;justify-content:center}}
+  /* Tela inicial: duas portas e o mapa do que vem depois. */
+.inicio{padding-block:clamp(2.5rem,7vw,4.5rem) 6rem}
+.ini-saud{font-size:.9375rem;color:var(--ink-3)}
+.inicio .display{margin:.5rem 0 2.5rem}
+.ini-cartas{display:grid;gap:1rem;margin-bottom:3.5rem}
+@media(min-width:48rem){.ini-cartas{grid-template-columns:1fr 1fr}}
+.carta{
+  display:flex;gap:1.125rem;align-items:flex-start;text-align:left;padding:1.5rem;
+  border-radius:1.25rem;background:var(--card);border:1px solid var(--line-soft);
+  box-shadow:var(--sombra);will-change:transform;transition:border-color .2s ease,box-shadow .2s ease;
+}
+.carta:hover{border-color:var(--marca);box-shadow:var(--sombra-alta)}
+.carta.destaque{box-shadow:var(--sombra),inset 0 0 0 1px var(--marca)}
+.carta-ico{width:2.75rem;height:2.75rem;border-radius:.875rem;flex:0 0 auto;display:grid;place-items:center;
+  color:var(--marca);background:color-mix(in srgb,var(--marca) 10%,transparent)}
+.carta-ico svg{width:1.375rem;height:1.375rem}
+.carta-txt b{display:block;font-family:Archivo,Inter,sans-serif;font-size:1.1875rem;
+  font-weight:700;letter-spacing:-.018em}
+.carta-txt em{display:block;font-style:normal;font-size:.875rem;color:var(--ink-2);
+  line-height:1.5;margin-top:.3125rem;max-width:26rem}
+.ini-rot{font-size:.75rem;letter-spacing:.06em;color:var(--ink-3);margin-bottom:.875rem}
+.ini-futuro{display:grid;gap:.75rem}
+@media(min-width:44rem){.ini-futuro{grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}}
+.ini-futuro span{display:block;padding:.875rem 1rem;border-radius:.875rem;
+  border:1px dashed var(--line);opacity:.72}
+.ini-futuro b{display:block;font-size:.9375rem;font-weight:600}
+.ini-futuro em{display:block;font-style:normal;font-size:.75rem;color:var(--ink-3);
+  margin-top:.1875rem;line-height:1.45}
+.logo{border:0;padding:0;cursor:pointer;will-change:transform}
+.vit-abre{padding:.4375rem;border-radius:50%;width:2.125rem;height:2.125rem;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.vit-corpo{scroll-behavior:auto}}
 .barra-doc{display:flex;gap:.75rem;align-items:flex-start;flex-wrap:wrap}
 .barra-doc .escolha{margin-bottom:0;min-width:15rem;max-width:22rem;flex:1 1 15rem}
@@ -719,6 +807,16 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .vit-preco{font-family:Archivo,Inter,sans-serif;font-size:1.25rem;font-weight:700;
   letter-spacing:-.02em;margin-top:1rem;color:#fff}
 .vit-preco small{font-weight:400;font-size:.8125rem;color:rgba(238,243,247,.6)}
+.vit-olho{
+  display:inline-flex;align-items:center;gap:.4375rem;flex:0 0 auto;
+  padding:.375rem .6875rem .375rem .5625rem;border-radius:999px;font-size:.8125rem;
+  color:rgba(238,243,247,.8);background:rgba(255,255,255,.08);will-change:transform;
+}
+.vit-olho svg{width:1.125rem;height:1.125rem}
+.vit-olho[aria-pressed="true"]{color:#fff;background:rgba(255,255,255,.16)}
+@media(max-width:34rem){.vit-olho span{display:none}.vit-olho{padding:.4375rem}}
+/* preço fechado: some da vitrine sem deixar buraco no lugar */
+.vitrine.sem-preco .vit-preco{visibility:hidden}
 .vit-cont{
   flex:0 0 auto;min-width:1.5rem;height:1.5rem;padding:0 .4375rem;border-radius:999px;
   background:var(--marca);color:#fff;font-size:.8125rem;font-weight:700;
@@ -868,6 +966,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   <header class="vit-bar">
     <img class="vit-logo" src="img/logo-branco.png" alt="Cristofolini">
     <nav class="vit-menu" id="vitMenu"></nav>
+    <button class="vit-olho" id="vitOlho" aria-pressed="false" title="Mostrar ou esconder os preços">
+      <svg viewBox="0 0 22 22" id="icoOlho" aria-hidden="true"></svg>
+      <span id="rotuloOlho">Preços</span>
+    </button>
     <span class="vit-cont" id="vitContagem" hidden>0</span>
     <button class="vit-x" id="vitFechar" aria-label="Sair da apresentação">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
@@ -895,7 +997,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 <div id="visitante" hidden>
   <header class="bar">
     <div class="wrap row">
-      <span class="logo"><img src="img/logo-azul.png" alt="Cristofolini"></span>
+      <button class="logo" id="btnInicio" title="Voltar ao início"><img src="img/logo-azul.png" alt="Cristofolini"></button>
       <button class="btn" id="btnImprimir">Imprimir ou salvar em PDF</button>
     </div>
   </header>
@@ -903,6 +1005,45 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 </div>
 
 <div id="app" hidden>
+
+<section class="inicio" id="inicio">
+  <div class="wrap">
+    <p class="ini-saud" id="iniSaud"></p>
+    <h2 class="display">O que você vai<br>fazer agora?</h2>
+
+    <div class="ini-cartas">
+      <button class="carta" data-ini="portfolio">
+        <span class="carta-ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="4.2" width="18.8" height="12.6" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.6 20h6.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="carta-txt">
+          <b>Portfólio</b>
+          <em>As quinze máquinas para mostrar ao cliente, com vídeo e giro 360. O preço só aparece quando você quiser.</em>
+        </span>
+      </button>
+
+      <button class="carta destaque" data-ini="proposta">
+        <span class="carta-ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.8h8.4L19 7.4V21H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 2.8V8h5M9 13h7M9 16.6h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="carta-txt">
+          <b>Nova proposta</b>
+          <em>Monta a máquina, fecha o pagamento e manda para o cliente em PDF ou por link.</em>
+        </span>
+      </button>
+    </div>
+
+    <p class="ini-rot">Em construção</p>
+    <div class="ini-futuro">
+      <span><b>Clientes</b><em>Carteira, perfil e histórico de cada um</em></span>
+      <span><b>Funil</b><em>Proposta emitida, em negociação, fechada e perdida</em></span>
+      <span><b>Tarefas</b><em>O que fazer com cada cliente e quando</em></span>
+      <span><b>Agenda e rota</b><em>A semana do consultor e o caminho da visita</em></span>
+      <span><b>Relatórios</b><em>Propostas por máquina, por consultor e por período</em></span>
+    </div>
+  </div>
+</section>
+
 
 <header class="bar">
   <div class="wrap row">
@@ -984,15 +1125,19 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
       <h2 class="display" style="margin-top:.5rem">Condições<br>de pagamento</h2>
       <p class="tiny">Pode marcar mais de uma forma na mesma proposta, como vocês já fazem na planilha. E quando a negociação sai do padrão, dá para escrever parcela por parcela.</p>
     </div>
-    <div class="grid two" style="margin-bottom:1.5rem">
+    <div class="grid two" style="margin-bottom:2rem;max-width:44rem">
       <label class="field"><span>Desconto concedido</span>
         <input class="input num" id="pg-desc" inputmode="numeric" placeholder="0"></label>
       <label class="field"><span>Prazo de entrega</span>
         <select class="input" id="pg-prazo"></select></label>
     </div>
-    <div id="modos" class="modos"></div>
-    <div id="detalhe"></div>
-    <div id="planos"></div>
+    <div class="pag-grid">
+      <div class="pag-col">
+        <div id="modos" class="modos"></div>
+        <div id="detalhe"></div>
+      </div>
+      <aside class="pag-plano"><div id="planos"></div></aside>
+    </div>
   </section>
 
   <section class="panel" data-panel="3">
@@ -1004,6 +1149,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.6 7.6c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.5l.8 1.9c.1.3 0 .5-.1.7l-.5.6c-.2.2-.3.4-.1.7.5.9 1.4 1.8 2.4 2.3.3.2.5.1.7-.1l.5-.6c.2-.2.4-.3.7-.2l1.9.9c.4.2.5.4.5.6v.7c0 .3-.1.6-.5.8-.4.3-1 .5-1.6.5-2 0-4.2-1.4-5.5-2.7C8 12.4 7 10.6 7 9.2c0-.6.2-1.1.5-1.5Z" fill="currentColor" stroke="none"/></svg>
           Enviar no WhatsApp
         </button>
+        <button class="btn sec" id="btnCopiar">Copiar link</button>
       </div>
     </div>
     <div id="docs" class="cmp"></div>
@@ -1348,6 +1494,25 @@ async function abrirLink(){
 
 // O cliente que abre pelo link vê a máquina se mexendo, não uma foto parada.
 // Cada vídeo só roda quando entra na tela, para não pesar no celular dele.
+// Troca de ângulo nas miniaturas, tanto na pré-visualização quanto no link.
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-troca]');
+  if (!b) return;
+  const maq = b.closest('.maq');
+  const caixa = maq?.querySelector('[data-midia]');
+  if (!caixa) return;
+  const video = caixa.querySelector('video');
+  const foto = caixa.querySelector('img.trocada');
+  const alvo = b.dataset.troca;
+  maq.querySelectorAll('[data-troca]').forEach(x => x.classList.toggle('on', x === b));
+  if (alvo === 'video'){
+    foto.hidden = true; video.hidden = false; video.play().catch(() => {});
+  } else {
+    video.pause(); video.hidden = true;
+    foto.src = alvo; foto.hidden = false;
+  }
+});
+
 function animaRenders(raiz){
   const videos = raiz.querySelectorAll('video.render');
   if (!videos.length) return;
@@ -1397,7 +1562,7 @@ function montar(D){
     etapa: 0, cliente: {}, itens: [],
     modos: new Set(['direto']), livre: false, custom: [],
     entrada: D.entradaPadrao, parcelas: 4, abreParc: false,
-    somar: true, institucional: true, capa: true, desconto: 0, prazo: 'A combinar', perfil: {}, familia: 'Extrusora',
+    somar: true, institucional: true, capa: true, mostraPreco: false, desconto: 0, prazo: 'A combinar', perfil: {}, familia: 'Extrusora',
     ref: proximaRef()
   };
   const familias = [...new Set(D.produtos.map(p => p.familia))];
@@ -1839,6 +2004,12 @@ function montar(D){
       ${g.nota ? `<p class="nota">${esc(g.nota)}</p>` : ''}`;
 
     if (g.tipo === 'unica'){
+      if (disp.length === 1){
+        const x = disp[0];
+        return `<div class="grupo" data-g="${g.id}">${cab}
+          <p class="unica-info">${esc(x.nome)}${x.valor ? `<span class="vl num">+ ${brl(x.valor)}</span>` : (x.valor === null ? '<span class="semvalor">a orçar</span>' : '')}</p>
+        </div>`;
+      }
       return `<div class="grupo${pendente ? ' falta' : ''}" data-g="${g.id}">${cab}<div class="opcoes">${disp.map(x =>
         `<button class="opt" data-esc="${idx}:${g.id}:${x.id}" aria-pressed="${it.esc[g.id] === x.id}">
           <span>${esc(x.nome)}</span>${x.valor ? `<span class="vl">+ ${brl(x.valor)}</span>` : (x.valor === null ? '<span class="semvalor">sem preço</span>' : '')}
@@ -2100,7 +2271,7 @@ function montar(D){
     {id: 'banco',  nome: 'Financiamento com o banco', sub: 'Entrada de 20% e o saldo liberado pelo agente'},
     {id: 'avista', nome: 'À vista',                   sub: 'Pagamento único contra pedido'}
   ];
-  const ENTRADAS = [.1, .15, .2, .25, .3];
+  const ENTRADAS = [.1, .15, .2, .25, .3, .35, .4, .45, .5];
 
   function desenhaPagamento(){
     const t = total();
@@ -2370,6 +2541,18 @@ function montar(D){
     return {url, fone, pin, curto: ref !== longo};
   }
 
+  el('#btnCopiar').addEventListener('click', async () => {
+    const b = el('#btnCopiar');
+    const antes = b.textContent;
+    b.disabled = true; b.textContent = 'Gerando…';
+    const r = await montaLink();
+    b.disabled = false;
+    if (r.erro){ b.textContent = antes; aviso(r.erro); return; }
+    try { await navigator.clipboard.writeText(r.url); b.textContent = 'Link copiado'; }
+    catch (e) { b.textContent = r.url; }
+    setTimeout(() => { b.textContent = antes; }, 2600);
+  });
+
   el('#btnZap').addEventListener('click', async () => {
     const b = el('#btnZap');
     const antes = b.textContent;
@@ -2426,11 +2609,25 @@ ${U.nome}`;
         ${p ? `<p class="capa-maq">${esc(p.linha)} ${esc(p.modelo)}${lista.length > 1 ? `, e mais ${lista.length - 1} equipamento${lista.length > 2 ? 's' : ''}` : ''}</p>` : ''}
         <div class="capa-rodape">
           <span><em>Investimento</em><b class="num">${brl(soma)}</b></span>
-          <span><em>Referência</em><b>${esc(estado.ref)}</b></span>
-          <span><em>Data</em><b>${hoje}</b></span>
         </div>
+        <p class="capa-ref">Proposta ${esc(estado.ref)}, emitida em ${hoje}</p>
       </div>
     </div>`;
+  }
+
+  // Quem abre a proposta pelo link vê mais ângulos da máquina, não só um.
+  // Sai só na tela: no papel fica a foto de frente.
+  function miniaturas(p){
+    const tiras = [{src: p.img, rot: 'Vídeo', video: true}];
+    if (p.amb) tiras.push({src: p.amb, rot: 'Na fábrica'});
+    if (p.giro) for (const q of [4, 9, 13]) {
+      tiras.push({src: `img/${p.slug}-360-${String(q).padStart(2,'0')}.jpg`, rot: 'Outro ângulo'});
+    }
+    if (tiras.length < 2) return '';
+    return `<div class="miniaturas tela">${tiras.map((t, i) =>
+      `<button data-troca="${t.video ? 'video' : t.src}" aria-label="${esc(t.rot)}" class="${i === 0 ? 'on' : ''}">
+        <img src="${t.src}" alt="" loading="lazy">
+      </button>`).join('')}</div>`;
   }
 
   function docHTML(lista, blocos, rotulo){
@@ -2450,10 +2647,8 @@ ${U.nome}`;
       ${estado.capa ? capaHTML(lista, soma, hoje, rotulo) : ''}
       <div class="topo">
         <img class="nome" src="img/logo-branco.png" alt="Cristofolini">
-        <div class="topo-linha">
-          <p class="sub">${esc(E.razao)}<br>CNPJ ${esc(E.cnpj)}, Inscrição Estadual ${esc(E.ie)}<br>${esc(E.endereco)}, ${esc(E.bairro)}<br>Telefone ${esc(E.fone)}</p>
-          <p class="ref">Proposta comercial${rotulo ? ', ' + esc(rotulo) : ''}<br>Nossa referência ${esc(estado.ref)}<br>${hoje}</p>
-        </div>
+        <p class="sub">${esc(E.razao)}<br>CNPJ ${esc(E.cnpj)}, Inscrição Estadual ${esc(E.ie)}<br>${esc(E.endereco)}, ${esc(E.bairro)}<br>Telefone ${esc(E.fone)}</p>
+        <p class="ref">Proposta comercial ${esc(estado.ref)}${rotulo ? ', ' + esc(rotulo) : ''}, ${hoje}</p>
       </div>
 
       <div class="body">
@@ -2486,7 +2681,11 @@ ${U.nome}`;
               ${p.variantes.length > 1 ? `<p class="maq-var">${esc(v.label)}</p>` : ''}
             </div>
             ${p.img ? (p.video
-              ? `<video class="render tela" src="${p.video}" poster="${p.img}" muted loop playsinline preload="none"></video>
+              ? `<div class="midia tela" data-midia>
+                   <video class="render" src="${p.video}" poster="${p.img}" muted loop playsinline preload="none"></video>
+                   <img class="render trocada" alt="" hidden>
+                 </div>
+                 ${miniaturas(p)}
                  <img class="render papel" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">`
               : `<img class="render" src="${p.img}" alt="${esc(p.nome)}" loading="lazy">`) : ''}
             ${apresenta ? `<p class="maq-frase">${esc(apresenta)}</p>` : ''}
@@ -2673,6 +2872,23 @@ ${U.nome}`;
      com o giro e a foto de fábrica que a gente já tem. */
   const vitrine = el('#vitrine');
 
+  /* O preço começa escondido: na frente do cliente, quem decide a hora de
+     mostrar é o consultor. O olho fica na barra, como em app de banco. */
+  const OLHO_ABERTO = '<path d="M1.8 11S4.9 5 11 5s9.2 6 9.2 6-3.1 6-9.2 6-9.2-6-9.2-6Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="11" cy="11" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/>';
+  const OLHO_FECHADO = '<path d="M1.8 11S4.9 5 11 5c2 0 3.7.6 5.1 1.5M20.2 11s-1.3 2.5-3.8 4.2M11 17c-6.1 0-9.2-6-9.2-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M3.5 3.5l15 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>';
+
+  function pintaOlho(){
+    el('#icoOlho').innerHTML = estado.mostraPreco ? OLHO_ABERTO : OLHO_FECHADO;
+    el('#vitOlho').setAttribute('aria-pressed', String(estado.mostraPreco));
+    vitrine.classList.toggle('sem-preco', !estado.mostraPreco);
+  }
+
+  el('#vitOlho').addEventListener('click', () => {
+    estado.mostraPreco = !estado.mostraPreco;
+    pintaOlho();
+  });
+  tatil(el('#vitOlho').parentElement, '.vit-olho', .95);
+
   function abrirVitrine(){
     el('#vitMenu').innerHTML = familias.map(f =>
       `<button data-vf="${f}">${f}s</button>`).join('');
@@ -2688,13 +2904,15 @@ ${U.nome}`;
           <ul>${p.variantes[0].desc.slice(1, 7).map(d => `<li>${esc(d)}</li>`).join('')}</ul>
           <div class="vit-acoes">
             <button class="btn" data-vadd="${pid}">Adicionar à proposta</button>
-            <button class="btn sec" data-ampliar="${pid}">Ver de perto</button>
+            <button class="btn sec" data-ampliar="${pid}">${p.giro ? 'Girar em 360°' : 'Ver fotos'}</button>
           </div>
           <p class="vit-preco num">${p.variantes.length > 1 ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</p>
         </div>
       </section>`).join('');
     el('#vitContagem').textContent = estado.itens.length;
     el('#vitContagem').hidden = !estado.itens.length;
+    estado.mostraPreco = false;   // toda apresentação começa com o preço fechado
+    pintaOlho();
     vitrine.hidden = false;
     document.body.style.overflow = 'hidden';
     // o vídeo só roda quando a máquina entra na tela, para não pesar
@@ -2746,7 +2964,44 @@ ${U.nome}`;
   tatil(vitrine, '.vit-acoes .btn', .96);
   tatil(document.querySelector('header.bar'), '.vit-abre', .95);
 
+  /* ---------- tela inicial ----------
+     O gerador de proposta é a primeira frente, não o produto inteiro. A tela
+     de entrada já mostra isso: duas portas abertas e o que vem depois. */
+  const inicio = el('#inicio');
+
+  function mostrarInicio(){
+    inicio.hidden = false;
+    document.querySelector('main.wrap').hidden = true;
+    document.querySelector('.dock').hidden = true;
+    document.querySelector('.steps').hidden = true;
+    el('#btnVitrine').hidden = true;
+    estado.abre = null;
+    if (!REDUZIR.matches) inicio.animate([{opacity:0, transform:'translate3d(0,10px,0)'},{opacity:1, transform:'none'}],
+      {duration: 420, easing:'cubic-bezier(.32,.72,0,1)'});
+  }
+
+  function mostrarFluxo(){
+    inicio.hidden = true;
+    document.querySelector('main.wrap').hidden = false;
+    document.querySelector('.dock').hidden = false;
+    document.querySelector('.steps').hidden = false;
+    el('#btnVitrine').hidden = false;
+  }
+
+  el('#iniSaud').textContent = `Olá, ${U.nome.split(' ')[0]}`;
+  inicio.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-ini]');
+    if (!b) return;
+    if (b.dataset.ini === 'portfolio'){ abrirVitrine(); return; }
+    mostrarFluxo();
+    ir(0); progresso(); dock();
+  });
+  el('#btnInicio').addEventListener('click', mostrarInicio);
+  tatil(inicio, '.carta', .985);
+  tatil(document.querySelector('header.bar'), '.logo', .96);
+
   desenhaFams(); desenhaCards(); desenhaItens(); progresso(); dock();
+  mostrarInicio();
 }
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
