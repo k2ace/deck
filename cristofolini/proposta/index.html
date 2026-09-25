@@ -108,6 +108,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .abertura .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(../site/media/bobina/095.jpg) center/cover}
 .abertura canvas{position:absolute;inset:0;width:100%;height:100%}
 .abertura .veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,25,42,.6) 0%,rgba(7,25,42,.12) 30%,rgba(7,25,42,.3) 55%,rgba(7,25,42,.93) 100%)}
+@media (max-aspect-ratio: 1/1.15){.abertura .veu{background:linear-gradient(180deg,rgba(7,25,42,.45) 0%,rgba(7,25,42,0) 14%,rgba(7,25,42,0) 52%,rgba(7,25,42,.7) 70%,rgba(7,25,42,.92) 100%)}}
 .abertura .bloco{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(2.5rem,9vh,5.5rem);max-width:60rem;will-change:transform,opacity}
 .abertura .bloco + .bloco{opacity:0}
 .abertura h1{font-size:clamp(2.6rem,min(7.4vw,11.5svh),7.25rem);margin-top:1.25rem;text-shadow:0 2px 40px rgba(0,0,0,.25)}
@@ -626,9 +627,41 @@ const cobre = (im, alpha = 1) => {
   ctx.globalAlpha = alpha; ctx.drawImage(im, (tam.w - dw) / 2, (tam.h - dh) / 2, dw, dh); ctx.globalAlpha = 1;
 };
 const perto = (i) => { if (imgs[i]) return imgs[i]; for (let d = 1; d < imgs.length; d++){ if (imgs[i - d]) return imgs[i - d]; if (imgs[i + d]) return imgs[i + d]; } return null; };
+// celular em pé: faixa larga no alto com bordas suaves e a mesma cena desfocada
+// no fundo, em vez de cortar a imagem horizontal na tela inteira
+const miniF = document.createElement('canvas'), miniC = miniF.getContext('2d');
+const faixa = document.createElement('canvas'), faixaC = faixa.getContext('2d');
+const cobreEm = (c, im, w, h, alpha = 1) => {
+  if (!im) return;
+  const s = Math.max(w / im.naturalWidth, h / im.naturalHeight);
+  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+  c.globalAlpha = alpha; c.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh); c.globalAlpha = 1;
+};
+const emPe = (a, t) => {
+  const w = tam.w, h = tam.h, dpr = canvas.width / w;
+  miniF.width = 36; miniF.height = Math.round(36 * h / w);
+  cobreEm(miniC, perto(a), miniF.width, miniF.height);
+  if (t > .01 && imgs[a + 1]) cobreEm(miniC, imgs[a + 1], miniF.width, miniF.height, t);
+  ctx.drawImage(miniF, 0, 0, w, h);
+  ctx.fillStyle = 'rgba(7,25,42,.5)'; ctx.fillRect(0, 0, w, h);
+  const fh = h * .5, fw = fh * 16 / 9, fy = h * .1, dx = (w - fw) / 2;
+  faixa.width = Math.round(w * dpr); faixa.height = Math.round(fh * dpr);
+  faixaC.setTransform(dpr, 0, 0, dpr, 0, 0);
+  faixaC.globalCompositeOperation = 'source-over';
+  const pinta = (im, al) => { if (!im) return; faixaC.globalAlpha = al; faixaC.drawImage(im, dx, 0, fw, fh); faixaC.globalAlpha = 1; };
+  pinta(perto(a), 1);
+  if (t > .01 && imgs[a + 1]) pinta(imgs[a + 1], t);
+  faixaC.globalCompositeOperation = 'destination-in';
+  const g = faixaC.createLinearGradient(0, 0, 0, fh);
+  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(.16, '#000'); g.addColorStop(.84, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  faixaC.fillStyle = g; faixaC.fillRect(0, 0, w, fh);
+  faixaC.globalCompositeOperation = 'source-over';
+  ctx.drawImage(faixa, 0, fy, w, fh);
+};
 const desenha = () => {
   const a = Math.floor(f), t = f - a;
   ctx.clearRect(0, 0, tam.w, tam.h);
+  if (tam.h > tam.w * 1.15) { emPe(a, t); return; }
   cobre(perto(a));
   if (t > .01 && imgs[a + 1]) cobre(imgs[a + 1], t);
 };

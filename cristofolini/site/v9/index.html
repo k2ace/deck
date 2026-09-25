@@ -106,7 +106,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .rolo .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000}
 .rolo canvas{position:absolute;inset:0;width:100%;height:100%}
 .percurso{height:1350vh}
-.percurso .palco{background:#000 url(../media/percurso/001.jpg) center/cover}
+.percurso .palco{background:#000 url(../media/bobina/095.jpg) center/cover}
 .rolo .veu{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(7,25,42,.55) 0%,rgba(7,25,42,.08) 28%,rgba(7,25,42,.15) 50%,rgba(7,25,42,.9) 100%)}
 .percurso .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.75rem;will-change:transform,opacity}
@@ -131,7 +131,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
 @media (max-width:760px){
   .percurso{height:1100vh}
-  .rolo .veu{background:linear-gradient(180deg,rgba(7,25,42,.6) 0%,rgba(7,25,42,.1) 25%,rgba(7,25,42,.25) 45%,rgba(7,25,42,.94) 80%)}
+  .rolo .veu{background:linear-gradient(180deg,rgba(7,25,42,.45) 0%,rgba(7,25,42,0) 14%,rgba(7,25,42,0) 52%,rgba(7,25,42,.7) 70%,rgba(7,25,42,.92) 100%)}
   .onde{left:var(--pad);right:auto}
   .onde .barra{width:4rem}
 }
@@ -981,9 +981,9 @@ const giro = (() => {
     }
     const retrato = tam.h > tam.w;
     // paisagem cobre a tela; retrato encaixa a máquina na largura e funde as bordas no estúdio
-    const s = retrato ? tam.w / (im.naturalWidth * .62) : Math.max(tam.w / im.naturalWidth, tam.h / im.naturalHeight) * 1.02;
+    const s = retrato ? tam.w / (im.naturalWidth * .66) : Math.max(tam.w / im.naturalWidth, tam.h / im.naturalHeight) * 1.02;
     const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-    const x = (tam.w - dw) / 2, y = retrato ? tam.h * .47 - dh / 2 : (tam.h - dh) / 2;
+    const x = (tam.w - dw) / 2, y = retrato ? tam.h * .4 - dh / 2 : (tam.h - dh) / 2;
     ctx.drawImage(im, x, y, dw, dh);
     if (t > .01 && seq.imgs[b]) { ctx.globalAlpha = alpha * t; ctx.drawImage(seq.imgs[b], x, y, dw, dh); ctx.globalAlpha = alpha; }
     if (retrato){
@@ -1029,12 +1029,47 @@ function filmeRolagem(canvas, pasta, TOTAL, fim){
   // ordem de carga: primeiro um a cada 8, depois preenche; a rolagem nunca fica sem quadro
   const ordem = []; [8, 4, 2, 1].forEach(passo => { for (let i = 0; i < N; i += passo) ordem.push(i); });
   let tam = mede(), f = 0, fusao = 0, ultimoFoco = 0;
+  // celular em pé: a cena horizontal não cabe cortada na tela inteira (sobraria
+  // um quarto da imagem, ampliado). Ela vira uma faixa larga no alto, com bordas
+  // suaves, e a mesma cena desfocada preenche o fundo, como nos stories.
+  const miniF = document.createElement('canvas'), miniC = miniF.getContext('2d');
+  const faixa = document.createElement('canvas'), faixaC = faixa.getContext('2d');
+  const emPe = () => tam.h > tam.w * 1.15;
+  const quadroEmPe = (a, t, zoom) => {
+    const w = tam.w, h = tam.h, dpr = canvas.width / w;
+    // fundo: a cena num canvas minúsculo, esticado, já sai desfocada e leve
+    miniF.width = 36; miniF.height = Math.round(36 * h / w);
+    miniC.clearRect(0, 0, miniF.width, miniF.height);
+    desenhaCover(miniC, seq.perto(a), miniF.width, miniF.height);
+    if (t > .01 && seq.imgs[a + 1]) desenhaCover(miniC, seq.imgs[a + 1], miniF.width, miniF.height, 1, t);
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(miniF, 0, 0, w, h);
+    ctx.fillStyle = 'rgba(7,25,42,.5)'; ctx.fillRect(0, 0, w, h);
+    // faixa: a cena com mais de metade da largura visível, bordas em degradê
+    const fh = h * .5 * zoom, fw = fh * 16 / 9, fy = h * .1 - (fh - h * .5) / 2;
+    faixa.width = Math.round(w * dpr); faixa.height = Math.round(fh * dpr);
+    faixaC.setTransform(dpr, 0, 0, dpr, 0, 0);
+    faixaC.globalCompositeOperation = 'source-over'; faixaC.globalAlpha = 1;
+    const dx = (w - fw) / 2;
+    const pinta = (im, al) => { if (!im) return; faixaC.globalAlpha = al; faixaC.drawImage(im, dx, 0, fw, fh); faixaC.globalAlpha = 1; };
+    pinta(seq.perto(a), 1);
+    if (t > .01 && seq.imgs[a + 1]) pinta(seq.imgs[a + 1], t);
+    faixaC.globalCompositeOperation = 'destination-in';
+    const g = faixaC.createLinearGradient(0, 0, 0, fh);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(.16, '#000'); g.addColorStop(.84, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    faixaC.fillStyle = g; faixaC.fillRect(0, 0, w, fh);
+    faixaC.globalCompositeOperation = 'source-over';
+    ctx.drawImage(faixa, 0, fy, w, fh);
+  };
   const desenha = () => {
     const a = Math.floor(f), t = f - a;
     ctx.clearRect(0, 0, tam.w, tam.h);
     const zoom = fim ? 1 + fusao * .14 : 1;
-    desenhaCover(ctx, seq.perto(a), tam.w, tam.h, zoom);
-    if (t > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t);
+    if (emPe()) quadroEmPe(a, t, zoom);
+    else {
+      desenhaCover(ctx, seq.perto(a), tam.w, tam.h, zoom);
+      if (t > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t);
+    }
     if (fim && fusao > 0) fim(ctx, tam, fusao);
   };
   seq.onload = (i) => { if (Math.abs(i - f) < 3 || i === 0 || i === N - 1) desenha(); };
