@@ -1,6 +1,7 @@
 /* Deck Radar — Worker da Cloudflare para o rastreio de abertura dos decks.
    Rotas:
      GET /hit    grava uma abertura no KV (chamada pelo beacon track.js)
+                 ?q=nome  marca quem destravou (o PIN em si nunca chega aqui)
      GET /list?token=XXX   devolve as ultimas aberturas em JSON (para o Claude consultar)
      POST /p     guarda uma proposta ja cifrada e devolve um codigo curto
      GET /p/CODIGO   devolve a proposta cifrada daquele codigo
@@ -36,6 +37,7 @@ export default {
         tz: cf.timezone || "",
         isp: cf.asOrganization || "",
         colo: cf.colo || "",
+        quem: url.searchParams.get("q") || "",   // consultor que destravou com o PIN dele
         device: /Mobi|Android|iPhone|iPad/i.test(ua) ? "celular" : "computador",
         screen: url.searchParams.get("s") || "",
         ref: url.searchParams.get("r") || req.headers.get("referer") || "",

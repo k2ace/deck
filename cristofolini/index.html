@@ -1450,6 +1450,19 @@ async function descomprime(bytes, z){
   const w = ds.writable.getWriter(); w.write(bytes); w.close();
   return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
 }
+// Registro de entrada: o mesmo sinal de abertura do track.js, agora dizendo
+// qual consultor destravou. Falha em silêncio, como o beacon.
+function marcaEntrada(nome){
+  try {
+    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
+      + '&q=' + encodeURIComponent(nome)          // campo próprio, quando o Worker novo subir
+      + '&u=' + encodeURIComponent('consultor: ' + nome)   // campo que o Worker já grava hoje
+      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
+    if (navigator.sendBeacon) navigator.sendBeacon(u);
+    else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
+  } catch (e) {}
+}
+
 async function chaveDoPin(pin, salt, iter){
   const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pin), 'PBKDF2', false, ['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations: iter, hash:'SHA-256'},
@@ -1513,6 +1526,9 @@ async function tentar(){
     const claro = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(pacote.nonce)}, mestra, b64(pacote.dados));
     const D = JSON.parse(new TextDecoder().decode(claro));
     D.usuario = quem;
+    // Deixa registrado quem entrou. Vai só o nome do cofre que abriu:
+    // o PIN não sai do navegador nem aqui.
+    marcaEntrada(quem && quem.nome ? quem.nome : 'consultor');
     abrir(D);
   } catch (err){
     ocupado = false; pin = ''; pintaDots();
