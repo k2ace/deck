@@ -459,50 +459,49 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
 }
 .rotulo{font-size:.75rem;letter-spacing:.03em;color:var(--ink-2);margin:1.75rem 0 .625rem}
 .rotulo:first-child{margin-top:0}
-/* formas de pagamento: marcáveis em conjunto, não uma excluindo a outra */
-.modos{display:grid;gap:.625rem;margin-bottom:.5rem}
-@media(min-width:44rem){.modos{grid-template-columns:repeat(3,1fr)}}
-.modo{
-  display:flex;gap:.75rem;align-items:flex-start;text-align:left;padding:1rem;
-  border-radius:var(--r);background:var(--card);border:1px solid var(--line-soft);
-  box-shadow:var(--sombra);will-change:transform;transition:border-color .2s ease;
+/* Escolha: um botão que mostra o que está selecionado e abre a lista.
+   É o mesmo desenho para forma de pagamento, entrada e parcelas. */
+.escolha{position:relative;margin-bottom:1.25rem;max-width:26rem}
+.escolha-rot{display:block;font-size:.75rem;letter-spacing:.03em;color:var(--ink-2);margin-bottom:.4375rem}
+.escolha-btn{
+  display:flex;align-items:center;gap:.75rem;width:100%;padding:.8125rem 1rem;
+  border-radius:.875rem;background:var(--card);border:1px solid var(--line-soft);
+  box-shadow:var(--sombra);font-size:.9375rem;text-align:left;will-change:transform;
+  transition:border-color .2s ease;
 }
-.modo[aria-pressed="true"]{border-color:var(--marca);box-shadow:var(--sombra),inset 0 0 0 1px var(--marca)}
-.modo .marca-box{
-  width:1.375rem;height:1.375rem;border-radius:.4375rem;flex:0 0 auto;margin-top:.0625rem;
-  border:1.5px solid var(--line);display:grid;place-items:center;color:var(--ink-3);
-  transition:border-color .2s ease,color .2s ease;
-}
-.modo[aria-pressed="true"] .marca-box{border-color:var(--marca);color:var(--marca)}
-.modo .marca-box svg{width:.8125rem;height:.8125rem;opacity:0;transform:scale(.7);transition:opacity .18s ease,transform .25s cubic-bezier(.32,.72,0,1)}
-.modo[aria-pressed="true"] .marca-box svg{opacity:1;transform:scale(1)}
-.modo .mt{display:block;font-size:.9375rem;font-weight:600;letter-spacing:-.008em;line-height:1.25}
-.modo .ms{display:block;font-size:.75rem;color:var(--ink-3);margin-top:.1875rem;line-height:1.35}
-
-/* escolha de parcelas: um botão que abre a lista, em vez de dez pastilhas */
-.escolhe-num{position:relative;display:inline-block}
-.num-btn{
-  display:inline-flex;align-items:center;gap:.625rem;padding:.75rem 1rem;border-radius:.875rem;
-  background:var(--card);border:1px solid var(--line-soft);box-shadow:var(--sombra);
-  font-size:.9375rem;will-change:transform;
-}
-.num-btn b{font-size:1.0625rem}
-.num-btn span{color:var(--ink-2)}
-.num-btn .seta{width:.4375rem;height:.4375rem;border-right:1.8px solid var(--ink-3);
-  border-bottom:1.8px solid var(--ink-3);transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s ease}
-.num-btn[aria-expanded="true"] .seta{transform:rotate(-135deg) translate(-3px,-3px)}
-.num-lista{
-  position:absolute;z-index:20;top:calc(100% + .5rem);left:0;min-width:13rem;max-height:17rem;overflow-y:auto;
+.escolha.aberta .escolha-btn{border-color:var(--marca)}
+.escolha-val{flex:1;font-weight:600;letter-spacing:-.008em}
+.escolha-val small{font-weight:400;color:var(--ink-3);font-size:.8125rem;margin-left:.375rem}
+.escolha-btn .seta{width:.4375rem;height:.4375rem;border-right:1.8px solid var(--ink-3);
+  border-bottom:1.8px solid var(--ink-3);transform:rotate(45deg) translate(-2px,-2px);
+  transition:transform .25s cubic-bezier(.32,.72,0,1);flex:0 0 auto}
+.escolha.aberta .seta{transform:rotate(-135deg) translate(-3px,-3px)}
+.escolha-lista{
+  position:absolute;z-index:30;top:calc(100% + .5rem);left:0;right:0;max-height:19rem;overflow-y:auto;
   padding:.375rem;border-radius:1rem;background:var(--card);border:1px solid var(--line-soft);
   box-shadow:var(--sombra-alta);display:grid;gap:.125rem;
 }
-.num-lista button{
-  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  padding:.625rem .75rem;border-radius:.625rem;font-size:.9375rem;text-align:left;will-change:transform;
+.escolha-lista button{
+  display:flex;align-items:center;gap:.75rem;padding:.6875rem .75rem;border-radius:.75rem;
+  text-align:left;will-change:transform;transition:background-color .15s ease;
 }
-.num-lista button em{font-style:normal;font-size:.8125rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.num-lista button[aria-pressed="true"]{box-shadow:inset 0 0 0 1.5px var(--marca);color:var(--marca);font-weight:600}
-.num-lista button[aria-pressed="true"] em{color:var(--marca)}
+.escolha-lista button:hover{background:var(--card-2)}
+.escolha-lista .marca-box{
+  width:1.125rem;height:1.125rem;border-radius:50%;flex:0 0 auto;
+  border:1.5px solid var(--line);display:grid;place-items:center;color:var(--marca);
+  transition:border-color .18s ease;
+}
+.escolha-lista .marca-box svg{width:.75rem;height:.75rem;opacity:0;transition:opacity .15s ease}
+.escolha-lista button[aria-pressed="true"] .marca-box{border-color:var(--marca);border-width:5px}
+.escolha-lista button[aria-pressed="true"] .marca-box svg{opacity:1}
+.escolha-lista button[aria-pressed="true"] .marca-box:has(svg){border-width:1.5px}
+.escolha-lista .et{flex:1;min-width:0}
+.escolha-lista .et b{display:block;font-size:.9375rem;font-weight:500;letter-spacing:-.006em}
+.escolha-lista button[aria-pressed="true"] .et b{font-weight:600;color:var(--marca)}
+.escolha-lista .et em{display:block;font-style:normal;font-size:.75rem;color:var(--ink-3);margin-top:.0625rem;line-height:1.35}
+.escolha-lista .vl{font-size:.8125rem;color:var(--ink-3);white-space:nowrap}
+.escolha-lista button[aria-pressed="true"] .vl{color:var(--marca)}
+
 .livre-cab{display:grid;grid-template-columns:1fr 1fr 8rem 2.25rem;gap:.5rem;
   font-size:.75rem;color:var(--ink-3);margin-bottom:.375rem;padding-inline:.25rem}
 .forma{font-size:.75rem;color:var(--ink-3)}
@@ -514,16 +513,8 @@ label.field span{display:block;font-size:.75rem;letter-spacing:.03em;color:var(-
   .linha-livre input{grid-area:valor}
   .linha-livre .tirar{grid-area:tirar;justify-self:end}
 }
-/* endereço: CEP curto, logradouro largo, número e UF estreitos */
-.grid.end{grid-template-columns:repeat(2,1fr);gap:.875rem}
-@media(min-width:40rem){
-  .grid.end{grid-template-columns:8rem 1fr 6rem}
-  .grid.end .rua{grid-column:2/4}
-  .grid.end .nr{grid-column:auto}
-}
-.un-bloco{display:inline-flex;align-items:center;gap:.625rem}
-#perfilCliente{margin-top:1.5rem;border-top:1px solid var(--line-soft)}
-#perfilCliente .grid{padding-bottom:1rem}
+.plano-bloco{margin-top:1.75rem}
+.plano-bloco table.plan{margin-top:.25rem}
 .livre{margin-top:1rem}
 .linha-livre{display:grid;grid-template-columns:1fr 1fr 8rem 2.25rem;gap:.5rem;margin-bottom:.5rem;align-items:center}
 .linha-livre .input{padding:.625rem .75rem}
@@ -550,29 +541,39 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
 /* ---------------- documento ---------------- */
 .doc{background:#fff;color:#13202b;border-radius:var(--r);overflow:hidden;box-shadow:var(--sombra-alta)}
-/* Capa do cliente: a máquina dele ocupando a folha, sobre o azul da marca */
+/* Capa do cliente. Os renders vêm com fundo claro próprio, então a folha é
+   clara: a máquina se funde ao papel em vez de virar um retângulo colado.
+   O azul fica no tipo e na faixa de fechamento. */
 .doc .capa{
-  position:relative;background:#00375c;color:#fff;aspect-ratio:210/297;
-  display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+  position:relative;background:#fff;color:#13202b;aspect-ratio:210/297;
+  display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;
 }
-.doc .capa-arte{position:absolute;inset:0 0 34% 0;display:grid;place-items:center;
-  background:radial-gradient(70% 60% at 50% 38%, #0a4f7d, #00304f 70%)}
-.doc .capa-arte img{width:88%;height:100%;object-fit:contain;filter:drop-shadow(0 2rem 3rem rgba(0,0,0,.35))}
-.doc .capa-txt{position:relative;padding:clamp(1.5rem,4vw,2.5rem);
-  background:linear-gradient(180deg,rgba(0,55,92,0) 0%, #00375c 14%)}
-.doc .capa-logo{height:1.5rem;width:auto;display:block;margin-bottom:1.75rem}
-.doc .capa-et{font-size:.75rem;letter-spacing:.06em;opacity:.75}
-.doc .capa-cliente{font-family:Archivo,Inter,sans-serif;font-size:clamp(1.75rem,4.5vw,2.5rem);
-  font-weight:700;letter-spacing:-.028em;line-height:1.08;margin-top:.375rem}
-.doc .capa-maq{font-size:.9375rem;opacity:.82;margin-top:.5rem}
-.doc .capa-rodape{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.75rem;
-  padding-top:1rem;border-top:1px solid rgba(255,255,255,.22)}
+.doc .capa-topo{padding:clamp(1.5rem,4vw,2.25rem) clamp(1.5rem,4vw,2.25rem) 0}
+.doc .capa-logo{height:1.625rem;width:auto;display:block}
+.doc .capa-et{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
+  color:#7b8b98;font-weight:600;margin-top:.875rem}
+.doc .capa-arte{
+  min-height:0;display:grid;place-items:center;
+  background:linear-gradient(180deg,#fff 0%,#f2f6f9 100%);
+}
+.doc .capa-arte img{width:100%;height:100%;object-fit:contain}
+.doc .capa-txt{
+  padding:clamp(1.5rem,4vw,2.25rem);border-top:3px solid #005389;background:#fff;
+}
+.doc .capa-para{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#7b8b98;font-weight:600}
+.doc .capa-cliente{font-family:Archivo,Inter,sans-serif;font-size:clamp(1.6rem,4vw,2.25rem);
+  font-weight:700;letter-spacing:-.028em;line-height:1.1;margin-top:.3125rem;color:#005389}
+.doc .capa-maq{font-size:.9375rem;color:#41505c;margin-top:.4375rem}
+.doc .capa-rodape{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:1.5rem;
+  padding-top:1rem;border-top:1px solid #e3e9ee}
 .doc .capa-rodape em{display:block;font-style:normal;font-size:.6875rem;letter-spacing:.08em;
-  text-transform:uppercase;opacity:.65;margin-bottom:.1875rem}
+  text-transform:uppercase;color:#7b8b98;margin-bottom:.1875rem}
 .doc .capa-rodape b{font-family:Archivo,Inter,sans-serif;font-size:1.125rem;letter-spacing:-.018em}
+.doc .capa-rodape .num{color:#005389}
 @media print{
   .doc .capa{width:210mm;height:297mm;aspect-ratio:auto;break-after:page}
 }
+
 /* as páginas de apresentação que o sistema deles já emite */
 .doc .abertura img{display:block;width:100%;height:auto}
 @media print{.doc .abertura img{page-break-after:always;break-after:page}}
@@ -648,13 +649,12 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .doc .cc dt{color:#5c6b77;font-weight:600}
 .doc .cc dd{color:#2b3a45}
 /* Campo de assinatura, como no documento que eles emitem hoje */
-.doc .assina{display:flex;gap:2rem;flex-wrap:wrap;margin-top:2.5rem}
-.doc .assina > div{flex:1 1 13rem;min-width:11rem}
-.doc .assina .linha{display:block;border-top:1px solid #9aa8b3;margin-bottom:.375rem}
-.doc .assina em{display:block;font-style:normal;font-size:.75rem;color:#5c6b77}
-.doc .assina b{display:block;font-size:.8125rem;font-weight:600;margin-top:.0625rem;min-height:1rem}
-.doc .assina .data-ass{flex:0 1 8rem}
-.doc .assina .data-ass .linha{margin-top:1.5rem;margin-bottom:.375rem}
+.doc .assina{display:grid;gap:1.5rem 3rem;margin-top:3.5rem;max-width:34rem}
+@media(min-width:34rem){.doc .assina{grid-template-columns:1fr 1fr}}
+.doc .assina .linha{display:block;border-top:1px solid #13202b;margin-bottom:.4375rem}
+.doc .assina b{display:block;font-size:.875rem;font-weight:600;min-height:1.1rem;letter-spacing:-.006em}
+.doc .assina em{display:block;font-style:normal;font-size:.75rem;color:#5c6b77;margin-top:.0625rem}
+.doc .assina-data{font-size:.8125rem;color:#5c6b77;margin-top:1.75rem}
 @media print{.doc .assina{break-inside:avoid}}
 .doc .cond{font-size:.75rem;color:#55646f;line-height:1.65;max-width:34rem}
 .doc .cond li{margin-bottom:.1875rem;margin-left:1rem}
@@ -709,6 +709,11 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 @media(max-width:34rem){.vit-abre span{display:none}
   .vit-abre{padding:.4375rem;border-radius:50%;width:2.125rem;height:2.125rem;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.vit-corpo{scroll-behavior:auto}}
+.barra-doc{display:flex;gap:.75rem;align-items:flex-start;flex-wrap:wrap}
+.barra-doc .escolha{margin-bottom:0;min-width:15rem;max-width:22rem;flex:1 1 15rem}
+.barra-doc .escolha-btn{padding:.6875rem .875rem}
+.barra-doc .escolha-val{font-weight:500;font-size:.875rem}
+.barra-doc .btn.zap{flex:0 0 auto}
 .vit-acoes{display:flex;gap:.625rem;flex-wrap:wrap}
 .vit-acoes .btn.feito{background:linear-gradient(180deg,#2fbf5c,#1f9e48);color:#fff}
 .vit-preco{font-family:Archivo,Inter,sans-serif;font-size:1.25rem;font-weight:700;
@@ -993,9 +998,8 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   <section class="panel" data-panel="3">
     <div class="no-print" style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
       <div><div class="trem" data-etapa="3"></div><h2 class="h2" style="margin-top:.5rem">Proposta pronta</h2></div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
-        <div class="seg" id="modoInst"></div>
-        <div class="seg" id="modoDoc"></div>
+      <div class="barra-doc">
+        <div id="modoInst"></div>
         <button class="btn zap" id="btnZap">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.6 7.6c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.5l.8 1.9c.1.3 0 .5-.1.7l-.5.6c-.2.2-.3.4-.1.7.5.9 1.4 1.8 2.4 2.3.3.2.5.1.7-.1l.5-.6c.2-.2.4-.3.7-.2l1.9.9c.4.2.5.4.5.6v.7c0 .3-.1.6-.5.8-.4.3-1 .5-1.6.5-2 0-4.2-1.4-5.5-2.7C8 12.4 7 10.6 7 9.2c0-.6.2-1.1.5-1.5Z" fill="currentColor" stroke="none"/></svg>
           Enviar no WhatsApp
@@ -2034,64 +2038,6 @@ function montar(D){
      Mais de uma forma pode conviver na mesma proposta, e a forma direta aceita
      uma composição escrita à mão, do tipo "50 mil na primeira, 45 na segunda e
      o resto em três cheques", que é como a negociação acontece de verdade. */
-  const MODOS = [
-    {id: 'direto', nome: 'Direto com a Cristofolini', sub: 'Entrada mais parcelas nos marcos da fábrica'},
-    {id: 'banco',  nome: 'Financiamento com o banco', sub: 'Entrada de 20% e o saldo liberado pelo agente'},
-    {id: 'avista', nome: 'À vista',                   sub: 'Pagamento único contra pedido'}
-  ];
-
-  function desenhaPagamento(){
-    el('#modos').innerHTML = MODOS.map(m => `
-      <button class="modo" data-modo="${m.id}" aria-pressed="${estado.modos.has(m.id)}">
-        <span class="marca-box" aria-hidden="true">
-          <svg viewBox="0 0 12 12"><path d="M2 6.2 4.7 9 10 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span><span class="mt">${m.nome}</span><span class="ms">${m.sub}</span></span>
-      </button>`).join('');
-
-    const temDireto = estado.modos.has('direto');
-    el('#detalhe').innerHTML = !temDireto ? '' : `
-      <div class="grupo" style="border-top:0">
-        <div class="tit"><b>Como a parte direta é dividida</b></div>
-        <div class="seg" style="margin-top:.5rem">
-          <button data-livre="0" aria-pressed="${!estado.livre}">Parcelas iguais</button>
-          <button data-livre="1" aria-pressed="${estado.livre}">Escrever parcela por parcela</button>
-        </div>
-      </div>
-      ${estado.livre ? editorLivre() : `
-        <p class="rotulo">Entrada</p>
-        <div class="seg" id="entradas">${[.1,.15,.2,.25,.3].map(f =>
-          `<button data-ent="${f}" aria-pressed="${Math.abs(f - estado.entrada) < .001}">${Math.round(f*100)}%</button>`).join('')}</div>
-        <p class="rotulo">Parcelas após a entrada</p>
-        <div class="escolhe-num">
-          <button class="num-btn" id="abreParcelas" aria-expanded="${!!estado.abreParc}">
-            <b class="num">${estado.parcelas}×</b>
-            <span>de ${brl((total() * (1 - estado.entrada)) / estado.parcelas)}</span>
-            <span class="seta"></span>
-          </button>
-          ${estado.abreParc ? `<div class="num-lista">${D.marcos.map((_, i) =>
-            `<button data-par="${i+1}" aria-pressed="${i+1 === estado.parcelas}">${i+1}×<em>${brl((total() * (1 - estado.entrada)) / (i+1))}</em></button>`).join('')}</div>` : ''}
-        </div>`}`;
-
-    const pz = el('#pg-prazo');
-    if (pz && !pz.dataset.pronto){
-      pz.dataset.pronto = '1';
-      pz.innerHTML = (D.prazos || ['A combinar']).map(x =>
-        `<option${x === estado.prazo ? ' selected' : ''}>${x}</option>`).join('');
-      pz.addEventListener('change', () => { estado.prazo = pz.value; });
-      const dsc = el('#pg-desc');
-      dsc.addEventListener('input', () => {
-        const n = Number(dsc.value.replace(/\D/g, ''));
-        estado.desconto = n;
-        dsc.value = n ? n.toLocaleString('pt-BR') : '';
-        desenhaPlanos(); dock();
-      });
-    }
-    desenhaPlanos();
-    tatil(el('#modos'), '.modo', .985);
-    tatil(el('#detalhe'), 'button', .94);
-    tatil(el('#detalhe'), '.stepper button', .85);
-  }
 
   const FORMAS = ['Depósito', 'PIX', 'Boleto', 'Cartão', 'Cheque', 'Financiamento'];
 
@@ -2119,6 +2065,139 @@ function montar(D){
       </div>
     </div>`;
   }
+
+  /* Um só padrão para escolher qualquer coisa: um botão que mostra o que está
+     escolhido e abre a lista por baixo. Vale para a forma de pagamento, que
+     aceita mais de uma, e para entrada e parcelas, que aceitam uma. */
+  function escolha({id, rotulo, valor, aberto, itens, multi}){
+    return `<div class="escolha${aberto ? ' aberta' : ''}">
+      <span class="escolha-rot">${esc(rotulo)}</span>
+      <button class="escolha-btn" data-abre="${id}" aria-expanded="${!!aberto}">
+        <span class="escolha-val">${valor}</span>
+        <span class="seta"></span>
+      </button>
+      ${aberto ? `<div class="escolha-lista" role="listbox">${itens.map(it => `
+        <button data-esco="${id}:${it.id}" aria-pressed="${it.on}" ${it.off ? 'disabled' : ''}>
+          <span class="marca-box">${multi ? `<svg viewBox="0 0 12 12"><path d="M2 6.2 4.7 9 10 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ''}</span>
+          <span class="et"><b>${esc(it.nome)}</b>${it.sub ? `<em>${esc(it.sub)}</em>` : ''}</span>
+          ${it.vl ? `<span class="vl num">${it.vl}</span>` : ''}
+        </button>`).join('')}</div>` : ''}
+    </div>`;
+  }
+
+  const MODOS = [
+    {id: 'direto', nome: 'Direto com a Cristofolini', sub: 'Entrada mais parcelas nos marcos da fábrica'},
+    {id: 'banco',  nome: 'Financiamento com o banco', sub: 'Entrada de 20% e o saldo liberado pelo agente'},
+    {id: 'avista', nome: 'À vista',                   sub: 'Pagamento único contra pedido'}
+  ];
+  const ENTRADAS = [.1, .15, .2, .25, .3];
+
+  function desenhaPagamento(){
+    const t = total();
+    const escolhidas = MODOS.filter(m => estado.modos.has(m.id));
+    const resumoModos = escolhidas.length === 1
+      ? escolhidas[0].nome
+      : `${escolhidas[0].nome} <small>e mais ${escolhidas.length - 1}</small>`;
+
+    el('#modos').innerHTML = escolha({
+      id: 'forma', rotulo: 'Forma de pagamento', valor: resumoModos, multi: true,
+      aberto: estado.abre === 'forma',
+      itens: MODOS.map(m => ({id: m.id, nome: m.nome, sub: m.sub, on: estado.modos.has(m.id)}))
+    });
+
+    const temDireto = estado.modos.has('direto');
+    el('#detalhe').innerHTML = !temDireto ? '' : `
+      ${escolha({
+        id: 'divide', rotulo: 'Como a parte direta é dividida',
+        valor: estado.livre ? 'Parcela por parcela' : 'Parcelas iguais',
+        aberto: estado.abre === 'divide',
+        itens: [
+          {id: 'iguais', nome: 'Parcelas iguais', sub: 'Entrada e parcelas do mesmo valor', on: !estado.livre},
+          {id: 'livre', nome: 'Parcela por parcela', sub: 'Escrever cada valor e cada forma', on: estado.livre}
+        ]
+      })}
+      ${estado.livre ? editorLivre() : `
+        ${escolha({
+          id: 'entrada', rotulo: 'Entrada',
+          valor: `${Math.round(estado.entrada * 100)}% <small>${t ? brl(t * estado.entrada) : ''}</small>`,
+          aberto: estado.abre === 'entrada',
+          itens: ENTRADAS.map(f => ({id: String(f), nome: `${Math.round(f * 100)}%`,
+            on: Math.abs(f - estado.entrada) < .001, vl: t ? brl(t * f) : ''}))
+        })}
+        ${escolha({
+          id: 'parcelas', rotulo: 'Parcelas após a entrada',
+          valor: `${estado.parcelas}× <small>${t ? brl((t * (1 - estado.entrada)) / estado.parcelas) : ''}</small>`,
+          aberto: estado.abre === 'parcelas',
+          itens: D.marcos.map((_, i) => ({id: String(i + 1), nome: `${i + 1}×`,
+            on: i + 1 === estado.parcelas, vl: t ? brl((t * (1 - estado.entrada)) / (i + 1)) : ''}))
+        })}`}`;
+
+    ligarDescontoEPrazo();
+    desenhaPlanos();
+    tatil(el('#modos'), 'button', .97);
+    tatil(el('#detalhe'), 'button', .97);
+  }
+
+  // Desconto e prazo vivem fora das escolhas, então são ligados uma vez só.
+  function ligarDescontoEPrazo(){
+    const pz = el('#pg-prazo');
+    if (!pz || pz.dataset.pronto) return;
+    pz.dataset.pronto = '1';
+    pz.innerHTML = (D.prazos || ['A combinar']).map(x =>
+      `<option${x === estado.prazo ? ' selected' : ''}>${x}</option>`).join('');
+    pz.addEventListener('change', () => { estado.prazo = pz.value; });
+
+    const dsc = el('#pg-desc');
+    dsc.addEventListener('input', () => {
+      const n = Number(dsc.value.replace(/\D/g, ''));
+      estado.desconto = n;
+      dsc.value = n ? n.toLocaleString('pt-BR') : '';
+      desenhaPlanos(); dock();
+    });
+  }
+
+  function aoEscolher(id, valor){
+    if (id === 'forma'){
+      if (estado.modos.has(valor)){ if (estado.modos.size > 1) estado.modos.delete(valor); }
+      else estado.modos.add(valor);
+      return true;   // multi: a lista continua aberta
+    }
+    if (id === 'divide') estado.livre = valor === 'livre';
+    if (id === 'entrada') estado.entrada = Number(valor);
+    if (id === 'parcelas') estado.parcelas = Number(valor);
+    return false;
+  }
+
+  for (const alvo of ['#modos', '#detalhe']){
+    el(alvo).addEventListener('click', (e) => {
+      const abre = e.target.closest('[data-abre]');
+      if (abre){
+        estado.abre = estado.abre === abre.dataset.abre ? null : abre.dataset.abre;
+        desenhaPagamento(); return;
+      }
+      const esc_ = e.target.closest('[data-esco]');
+      if (esc_){
+        const [id, valor] = esc_.dataset.esco.split(':');
+        if (!aoEscolher(id, valor)) estado.abre = null;
+        desenhaPagamento(); return;
+      }
+      const add = e.target.closest('[data-ladd]');
+      if (add){
+        const usados = estado.custom.length;
+        const ultima = estado.custom[usados - 1];
+        estado.custom.push({marco: D.marcos[Math.min(usados - 1, D.marcos.length - 1)] || 'Entrega',
+                            valor: 0, forma: ultima?.forma || 'Depósito'});
+        desenhaPagamento(); return;
+      }
+      const x = e.target.closest('[data-lx]');
+      if (x){ estado.custom.splice(+x.dataset.lx, 1); desenhaPagamento(); }
+    });
+  }
+
+  // fecha a lista ao tocar fora dela
+  document.addEventListener('pointerdown', (e) => {
+    if (estado.abre && !e.target.closest('.escolha')){ estado.abre = null; desenhaPagamento(); }
+  }, true);
 
   function planoDe(modo, t){
     if (!t) return [];
@@ -2204,13 +2283,21 @@ function montar(D){
 
   /* ---------- documento ---------- */
   function desenhaDoc(){
-    el('#modoDoc').innerHTML = `<button data-som="1" aria-pressed="${estado.somar}">Proposta somada</button>
-      <button data-som="0" aria-pressed="${!estado.somar}">Comparar lado a lado</button>`;
-    el('#modoInst').innerHTML = `<button data-capa="1" aria-pressed="${estado.capa}">Capa do cliente</button>
-      <button data-inst="1" aria-pressed="${estado.institucional}">Com apresentação</button>
-      <button data-inst="0" aria-pressed="${!estado.institucional}">Só a proposta</button>`;
-    tatil(el('#modoInst'), 'button', .95);
-    tatil(el('#modoDoc'), 'button', .95);
+    const partes = [];
+    if (estado.capa) partes.push('capa');
+    if (estado.institucional) partes.push('apresentação');
+    partes.push(estado.somar ? 'somada' : 'comparativo');
+    el('#modoInst').innerHTML = escolha({
+      id: 'doc', rotulo: '', valor: `Com ${partes.join(', ')}`, multi: true,
+      aberto: estado.abre === 'doc',
+      itens: [
+        {id: 'capa', nome: 'Capa do cliente', sub: 'Primeira folha com o nome dele e a máquina', on: estado.capa},
+        {id: 'inst', nome: 'Apresentação institucional', sub: 'As duas folhas da Cristofolini', on: estado.institucional},
+        {id: 'somar', nome: 'Proposta somada', sub: 'Um valor total para tudo', on: estado.somar},
+        {id: 'comparar', nome: 'Comparar lado a lado', sub: 'Uma proposta por equipamento', on: !estado.somar}
+      ]
+    });
+    tatil(el('#modoInst'), 'button', .97);
     const alvo = el('#docs');
     if (!estado.itens.length){ alvo.className = 'cmp'; alvo.innerHTML = '<p class="empty">Nenhum equipamento configurado ainda.</p>'; return; }
     const blocos = (t) => modosAtivos().map(m => ({nome: m.nome, linhas: planoDe(m.id, t)})).filter(b => b.linhas.length);
@@ -2224,8 +2311,19 @@ function montar(D){
       animaRenders(alvo);
     }
   }
-  el('#modoDoc').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-som]'); if (b){ estado.somar = b.dataset.som === '1'; desenhaDoc(); }
+  el('#modoInst').addEventListener('click', (e) => {
+    if (e.target.closest('[data-abre]')){
+      estado.abre = estado.abre === 'doc' ? null : 'doc';
+      desenhaDoc(); return;
+    }
+    const it = e.target.closest('[data-esco]');
+    if (!it) return;
+    const valor = it.dataset.esco.split(':')[1];
+    if (valor === 'capa') estado.capa = !estado.capa;
+    if (valor === 'inst') estado.institucional = !estado.institucional;
+    if (valor === 'somar') estado.somar = true;
+    if (valor === 'comparar') estado.somar = false;
+    desenhaDoc();
   });
   /* ---------- envio pelo WhatsApp ----------
      O navegador não anexa arquivo no WhatsApp, então em vez de PDF vai um
@@ -2293,12 +2391,15 @@ ${U.nome}`;
     const principal = lista.reduce((a, b) => subtotal(b) >= subtotal(a) ? b : a, lista[0]);
     const p = principal ? D.produtos[principal.pid] : null;
     return `<div class="capa">
+      <div class="capa-topo">
+        <img class="capa-logo" src="img/logo-azul.png" alt="Cristofolini">
+        <p class="capa-et">Proposta comercial${rotulo ? ', ' + esc(rotulo) : ''}</p>
+      </div>
       <div class="capa-arte">${p?.img ? `<img src="${p.img}" alt="${esc(p.nome)}" loading="lazy">` : ''}</div>
       <div class="capa-txt">
-        <img class="capa-logo" src="img/logo-branco.png" alt="Cristofolini">
-        <p class="capa-et">Proposta comercial${rotulo ? ', ' + esc(rotulo) : ''}</p>
+        <p class="capa-para">Preparada para</p>
         <h3 class="capa-cliente">${esc(c.nome || 'Cliente')}</h3>
-        ${p ? `<p class="capa-maq">${esc(p.linha)} ${esc(p.modelo)}${lista.length > 1 ? ` e mais ${lista.length - 1} equipamento${lista.length > 2 ? 's' : ''}` : ''}</p>` : ''}
+        ${p ? `<p class="capa-maq">${esc(p.linha)} ${esc(p.modelo)}${lista.length > 1 ? `, e mais ${lista.length - 1} equipamento${lista.length > 2 ? 's' : ''}` : ''}</p>` : ''}
         <div class="capa-rodape">
           <span><em>Investimento</em><b class="num">${brl(soma)}</b></span>
           <span><em>Referência</em><b>${esc(estado.ref)}</b></span>
@@ -2398,10 +2499,18 @@ ${U.nome}`;
           `<dt>${esc(t)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
 
         <div class="assina">
-          <div><span class="linha"></span><em>Cristofolini Máquinas Ltda, consultor</em><b>${esc(estado.cliente.vend || '')}</b></div>
-          <div><span class="linha"></span><em>${esc(estado.cliente.nome || 'Cliente')}</em><b>${esc(estado.cliente.contato || '')}</b></div>
-          <div class="data-ass"><em>Data</em><span class="linha"></span></div>
+          <div>
+            <span class="linha"></span>
+            <b>${esc(estado.cliente.vend || '')}</b>
+            <em>Cristofolini Máquinas Ltda</em>
+          </div>
+          <div>
+            <span class="linha"></span>
+            <b>${esc(estado.cliente.contato || '')}</b>
+            <em>${esc(estado.cliente.nome || 'Cliente')}</em>
+          </div>
         </div>
+        <p class="assina-data">Biguaçu, ${hoje}</p>
 
         <div class="foot">
           <span>${esc(E.site)}<br>${esc(E.email)}</span>
