@@ -605,8 +605,8 @@ addEventListener('scroll', () => {
    =========================================================== */
 const QUADROS = [
   ...[...Array(63)].map((_, i) => `bobina/${String(i + 95).padStart(3, '0')}`),
-  ...[...Array(8)].map((_, i) => `transicao/${String(i + 1).padStart(3, '0')}`),
-  ...[...Array(24)].map((_, i) => `percurso/${String(i + 1).padStart(3, '0')}`)
+  ...[...Array(8)].map((_, i) => `transicao2/${String(i + 1).padStart(3, '0')}`),
+  ...[...Array(24)].map((_, i) => `percurso/${String(31 - i).padStart(3, '0')}`)
 ];
 const PASSO = LEVE ? 2 : 1;
 const urls = QUADROS.filter((_, i) => i % PASSO === 0).map(q => `../site/media/${q}.jpg`);

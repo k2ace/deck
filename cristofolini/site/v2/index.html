@@ -1007,8 +1007,15 @@ const giro = (() => {
 const CENAS = [[0,'Produto final'],[67,'Fachada'],[102,'Recepção'],[130,'Usinagem'],[161,'Solda'],[180,'Torno'],[196,'Usinagem'],[215,'Montagem'],[235,'Galpão']];
 const QUADROS = [
   ...[...Array(63)].map((_, i) => `bobina/${String(i + 95).padStart(3, '0')}`),
-  ...[...Array(8)].map((_, i) => `transicao/${String(i + 1).padStart(3, '0')}`),
-  ...[...Array(213)].map((_, i) => `percurso/${String(i + 1).padStart(3, '0')}`)
+  // do rolo para o sol, e o drone desce do sol até a fábrica
+  ...[...Array(8)].map((_, i) => `transicao2/${String(i + 1).padStart(3, '0')}`),
+  ...[...Array(31)].map((_, i) => `percurso/${String(31 - i).padStart(3, '0')}`),
+  ...[...Array(5)].map((_, i) => `fusao/a${String(i + 1).padStart(3, '0')}`),
+  // recepção, usinagem, solda, torno, montagem
+  ...[...Array(127)].map((_, i) => `percurso/${String(i + 37).padStart(3, '0')}`),
+  // e a câmera entra no galpão até a extrusora
+  ...[...Array(5)].map((_, i) => `fusao/b${String(i + 1).padStart(3, '0')}`),
+  ...[...Array(45)].map((_, i) => `percurso/${String(213 - i).padStart(3, '0')}`)
 ];
 // celular ou economia de dados: metade dos quadros (fundidos dois a dois), metade do peso
 const LEVE = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData);
