@@ -2451,10 +2451,18 @@ function montar(D){
     });
   }
 
-  // fecha a lista ao tocar fora dela
+  // fecha a lista ao tocar fora dela ou no Esc; redesenha a tela dona da lista
+  // (a do documento mora na etapa 4, as outras no pagamento)
+  function fechaEscolha(){
+    const era = estado.abre;
+    if (!era) return;
+    estado.abre = null;
+    if (era === 'doc') desenhaDoc(); else desenhaPagamento();
+  }
   document.addEventListener('pointerdown', (e) => {
-    if (estado.abre && !e.target.closest('.escolha')){ estado.abre = null; desenhaPagamento(); }
+    if (estado.abre && !e.target.closest('.escolha')) fechaEscolha();
   }, true);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fechaEscolha(); });
 
   function planoDe(modo, t){
     if (!t) return [];
@@ -2580,6 +2588,8 @@ function montar(D){
     if (valor === 'inst') estado.institucional = !estado.institucional;
     if (valor === 'somar') estado.somar = true;
     if (valor === 'comparar') estado.somar = false;
+    // somada ou lado a lado é uma escolha só: escolheu, a lista fecha
+    if (valor === 'somar' || valor === 'comparar') estado.abre = null;
     desenhaDoc();
   });
   /* ---------- envio pelo WhatsApp ----------
