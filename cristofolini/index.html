@@ -548,10 +548,10 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   position:relative;background:#fff;color:#13202b;aspect-ratio:210/297;
   display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;
 }
-.doc .capa-topo{padding:clamp(1.5rem,4vw,2.25rem) clamp(1.5rem,4vw,2.25rem) 0}
+.doc .capa-topo{padding:clamp(1.25rem,3.2vw,1.75rem) clamp(1.5rem,4vw,2.25rem) .75rem}
 .doc .capa-logo{height:1.625rem;width:auto;display:block}
 .doc .capa-et{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
-  color:#7b8b98;font-weight:600;margin-top:.875rem}
+  color:#7b8b98;font-weight:600;margin-top:.625rem}
 .doc .capa-arte{
   min-height:0;display:grid;place-items:center;
   background:linear-gradient(180deg,#fff 0%,#f2f6f9 100%);
@@ -812,7 +812,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
     display:block;width:210mm;height:297mm;object-fit:cover;
     break-after:page;break-inside:avoid;margin:0;
   }
-  .doc .abertura img:last-child{break-after:auto}
+  .doc .abertura img:last-child{break-after:page}
 
   .doc .topo{break-before:page;padding:14mm 16mm 10mm}
   .doc .body{padding:10mm 16mm 16mm}
@@ -1243,6 +1243,7 @@ async function chaveDoPin(pin, salt, iter){
     base, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
 }
 const ITER_CLIENTE = 200000;
+const GUARDA = 'https://deck-track.k2ia.workers.dev/p';
 const FORMATO = 3;  // versão do pacote dados.enc que este código sabe abrir
 
 // Um link de proposta chega com #p=. Nesse caso o PIN é o do cliente, não o
@@ -1303,7 +1304,9 @@ async function tentar(){
   } catch (err){
     ocupado = false; pin = ''; pintaDots();
     lockMsg.classList.add('err');
-    lockMsg.textContent = 'Esses não são os 4 últimos dígitos do seu telefone.';
+    lockMsg.textContent = /não encontrada/.test(err?.message || '')
+      ? 'Esta proposta não está mais disponível. Peça um link novo.'
+      : 'Esses não são os 4 últimos dígitos do seu telefone.';
     if (!REDUZIR.matches){
       document.querySelector('#lock .inner').animate(
         [{transform:'translateX(0)'},{transform:'translateX(-9px)'},{transform:'translateX(8px)'},
@@ -1315,7 +1318,14 @@ async function tentar(){
 
 /* ---------- proposta recebida por link ---------- */
 async function abrirLink(){
-  const bruto = deB64url(LINK);
+  // o fragmento pode ser o pacote inteiro ou só o código guardado no Worker
+  let dados = LINK;
+  if (/^[A-Z0-9]{4,12}$/.test(LINK)){
+    const r = await fetch(`https://deck-track.k2ia.workers.dev/p/${LINK}`, {cache: 'no-store'});
+    if (!r.ok) throw new Error('proposta não encontrada');
+    dados = (await r.text()).trim();
+  }
+  const bruto = deB64url(dados);
   // cabeçalho: 1 byte de versão, 1 de compressão, 16 de sal, 12 de nonce
   const z = bruto[1];
   const salt = bruto.slice(2, 18), nonce = bruto.slice(18, 30), corpo = bruto.slice(30);
@@ -2342,8 +2352,22 @@ function montar(D){
     const pacote = new Uint8Array(2 + 16 + 12 + cifrado.length);
     pacote[0] = 1; pacote[1] = z;
     pacote.set(salt, 2); pacote.set(nonce, 18); pacote.set(cifrado, 30);
-    const url = location.origin + location.pathname + '#p=' + paraB64url(pacote);
-    return {url, fone, pin};
+    const longo = paraB64url(pacote);
+
+    // O pacote inteiro no endereço passa de 2.500 caracteres. Guardado no
+    // Worker, o link cabe numa linha. O que sobe já está cifrado: lá só
+    // existem bytes opacos, sem preço, sem nome e sem valor.
+    let ref = longo;
+    try {
+      const r = await fetch(GUARDA, {method: 'POST', body: longo});
+      if (r.ok){
+        const {codigo} = await r.json();
+        if (codigo) ref = codigo;
+      }
+    } catch (e) { /* sem rede: segue com o pacote no próprio endereço */ }
+
+    const url = location.origin + location.pathname + '#p=' + ref;
+    return {url, fone, pin, curto: ref !== longo};
   }
 
   el('#btnZap').addEventListener('click', async () => {
@@ -2418,12 +2442,12 @@ ${U.nome}`;
     const hoje = new Date().toLocaleDateString('pt-BR');
     const orcar = lista.flatMap(semPreco);
     return `<article class="doc">
-      ${estado.capa ? capaHTML(lista, soma, hoje, rotulo) : ''}
       ${estado.institucional ? `<div class="abertura">
-        ${estado.capa ? '' : '<img src="img/institucional-0.jpg" alt="Capa da proposta Cristofolini" loading="lazy">'}
+        <img src="img/institucional-0.jpg" alt="Capa da proposta Cristofolini" loading="lazy">
         <img src="img/institucional-1.jpg" alt="Apresentação da Cristofolini Máquinas" loading="lazy">
         <img src="img/institucional-2.jpg" alt="Linha de produtos e diferenciais" loading="lazy">
       </div>` : ''}
+      ${estado.capa ? capaHTML(lista, soma, hoje, rotulo) : ''}
       <div class="topo">
         <img class="nome" src="img/logo-branco.png" alt="Cristofolini">
         <div class="topo-linha">
