@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hyundai Geração</title>
+<meta name="description" content="Concessionária Hyundai em Santa Catarina. Cinco lojas: Florianópolis, São José, Rio do Sul, Lages e Brusque. Modelos 0 km, seminovos, serviços, peças e financiamento.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#001E50">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23001e50'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="media/percurso/001.jpg">
+<link rel="preload" as="font" type="font/ttf" href="media/fonts/HyundaiSansHead-Bold.ttf" crossorigin>
+<link rel="preload" as="font" type="font/otf" href="media/fonts/HyundaiSansText-Regular.otf" crossorigin>
+<style>
+/* ===========================================================
+   Tokens. Identidade do site da Hyundai Geração: Hyundai Sans
+   (Head para títulos, Text para corpo), marinho #001E50, azul
+   #0A2D82, verde do WhatsApp #3CA21D e o papel quente #F6F3F2.
+   =========================================================== */
+@font-face{font-family:"Hyundai Sans Head";font-weight:400;font-display:swap;src:url(media/fonts/HyundaiSansHead.otf) format("opentype")}
+@font-face{font-family:"Hyundai Sans Head";font-weight:500;font-display:swap;src:url(media/fonts/HyundaiSansHeadOffice-Medium.ttf) format("truetype")}
+@font-face{font-family:"Hyundai Sans Head";font-weight:700;font-display:swap;src:url(media/fonts/HyundaiSansHead-Bold.ttf) format("truetype")}
+@font-face{font-family:"Hyundai Sans Text";font-weight:400;font-display:swap;src:url(media/fonts/HyundaiSansText-Regular.otf) format("opentype")}
+@font-face{font-family:"Hyundai Sans Text";font-weight:700;font-display:swap;src:url(media/fonts/HyundaiSansText-Bold.otf) format("opentype")}
+:root{
+  --marca:#0A2D82;
+  --marca-2:#1240a8;
+  --noite:#001E50;
+  --noite-2:#04255e;
+  --noite-3:#0a2f6e;
+  --zap:#3CA21D;
+  --papel:#F6F3F2;
+  --degrade:linear-gradient(180deg,#0A2D82 0%,#001E50 100%);
+  --estudio-cima:#dfe3e8;
+  --estudio-baixo:#f6f3f2;
+  --tinta:#0b1220;
+  --tinta-2:#4a5566;
+  --claro:#f4f6fa;
+  --claro-2:rgba(244,246,250,.7);
+  --claro-3:rgba(244,246,250,.62);
+  --linha:rgba(255,255,255,.14);
+  --chrome:rgba(0,30,80,.6);
+  --pad:clamp(1rem,5vw,4rem);
+  --r:1.25rem;
+  --mola:cubic-bezier(.22,1,.36,1);
+  --head:"Hyundai Sans Head",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:"Hyundai Sans Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--claro-2:rgba(244,246,250,.9);--claro-3:rgba(244,246,250,.76);--linha:rgba(255,255,255,.42);--tinta-2:#1f2a38}
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--noite);color:var(--claro);
+  font:400 1rem/1.6 var(--text);letter-spacing:0;
+  -webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:.5rem}
+
+.display{font-family:var(--head);font-weight:400;letter-spacing:-.03em;line-height:1;margin:0}
+.display b,.it{font-weight:700;font-style:normal}
+.eyebrow{font:700 .72rem/1.2 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--claro-3);margin:0}
+.eyebrow b{color:#fff;font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- Barra do topo: material translúcido, conteúdo passa por baixo ---------- */
+.topo{position:fixed;inset:0 0 auto;z-index:50;padding:max(.75rem,env(safe-area-inset-top)) var(--pad) .75rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  transition:transform .5s var(--mola),background-color .4s ease}
+.topo::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s ease;
+  background:var(--chrome);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+  -webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
+.topo.solido::before{opacity:1}
+.topo.escondido{transform:translateY(-110%)}
+.topo .logo img{height:1.5rem;width:auto}
+.topo nav{display:flex;align-items:center;gap:.25rem}
+.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 var(--text);color:var(--claro-2);
+  transition:color .2s ease,background-color .2s ease}
+.topo nav a:hover{color:var(--claro);background:rgba(255,255,255,.08)}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.25rem;border-radius:99rem;
+  font:700 .9375rem/1 var(--text);letter-spacing:-.005em;white-space:nowrap;
+  transition:transform .35s var(--mola),background-color .2s ease,box-shadow .2s ease;will-change:transform}
+.btn:active,.btn.pressionado{transform:scale(.96);transition-duration:.08s}
+.btn-marca{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.btn-marca:hover{background:var(--marca-2)}
+.btn-zap{background:var(--zap);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-zap:hover{background:#45b425}
+.btn-vidro{background:rgba(255,255,255,.12);color:var(--claro);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.btn-vidro:hover{background:rgba(255,255,255,.2)}
+.btn svg{width:1.05em;height:1.05em;flex:none}
+.topo .btn{padding:.6rem 1rem;font-size:.875rem}
+.so-estreito{display:none}
+@media (max-width:760px){
+  .topo nav a:not(.btn){display:none}
+  .topo nav a.fica{display:inline-block;padding:.5rem .55rem}
+  .so-largo{display:none}.so-estreito{display:inline}
+  .topo .logo img{height:1.25rem}
+}
+@media (max-width:360px){.topo nav a.fica{display:none}}
+
+/* ---------- 1. Percurso: da estrada até a Hyundai, preso à rolagem ----------
+   A página abre parada na estrada e cada rolada leva a câmera adiante:
+   o detalhe da grade, o mirante, a cidade e a chegada na Hyundai. */
+.percurso{position:relative;height:900vh}
+.percurso .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(media/percurso/001.jpg) center/cover}
+.percurso canvas{position:absolute;inset:0;width:100%;height:100%}
+.percurso .veu{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(0,30,80,.5) 0%,rgba(0,30,80,.06) 28%,rgba(0,30,80,.12) 50%,rgba(0,30,80,.9) 100%)}
+.percurso .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.75rem;will-change:transform,opacity}
+.percurso h1{font-size:clamp(2.8rem,min(8.5vw,13svh),8.5rem)}
+.percurso h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
+.percurso h1 .l span{display:block}
+.percurso h1 .l:nth-child(2) span{font-weight:700}
+.percurso .base{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem}
+.percurso .base p{margin:0;max-width:30rem;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.125rem);line-height:1.55}
+.percurso .acoes{display:flex;gap:.75rem;flex-wrap:wrap}
+.rolar{position:absolute;left:50%;bottom:1rem;translate:-50% 0;width:1px;height:2.5rem;background:var(--linha);overflow:hidden}
+.rolar::after{content:"";position:absolute;inset:0;background:var(--claro);animation:rolar 2.4s var(--mola) infinite}
+@keyframes rolar{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+.percurso .cenas{pointer-events:none}
+.cena{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(4.5rem,12vh,7rem);max-width:46rem;opacity:0;will-change:transform,opacity;
+  text-shadow:0 1px 2px rgba(0,20,50,.4),0 .5rem 2rem rgba(0,20,50,.4)}
+.cena .eyebrow{margin-bottom:1rem}
+.cena h2{font-size:clamp(2.1rem,5.4vw,5rem)}
+.cena p{margin:1rem 0 0;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:34rem}
+.onde{position:absolute;right:var(--pad);bottom:clamp(1.25rem,4vh,2rem);display:flex;align-items:center;gap:.75rem;opacity:0;
+  font:700 .72rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--claro-2)}
+.onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha);overflow:hidden}
+.onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
+@media (max-width:760px){
+  .percurso{height:760vh}
+  .percurso .veu{background:linear-gradient(180deg,rgba(0,30,80,.55) 0%,rgba(0,30,80,.1) 25%,rgba(0,30,80,.25) 45%,rgba(0,30,80,.94) 80%)}
+  .onde{left:var(--pad);right:auto}
+  .onde .barra{width:4rem}
+}
+
+/* ---------- 2. O Creta em cores ----------
+   A seção começa uma tela antes do fim do percurso e fica invisível até prender.
+   Quem mostra o carro nessa tela é o percurso, já fundido no estúdio, com a
+   mesma imagem: a troca de um palco pelo outro não aparece. Cada rolada
+   troca a cor (são as seis cores reais do catálogo, sem fingir giro). */
+.giro{position:relative;height:420vh;color:var(--tinta);margin-top:-100svh}
+.giro .palco{position:sticky;top:0;height:100svh;overflow:hidden;
+  background:linear-gradient(180deg,var(--estudio-cima),var(--estudio-baixo))}
+.giro.espera .palco{visibility:hidden}
+.giro canvas{position:absolute;inset:0;width:100%;height:100%}
+.giro .cabeca{position:absolute;top:clamp(5rem,12vh,7.5rem);left:var(--pad);right:var(--pad);
+  display:flex;justify-content:space-between;align-items:start;gap:1rem}
+.giro .cabeca .eyebrow{color:rgba(11,18,32,.72)}
+.giro .cabeca .eyebrow b{color:var(--marca)}
+.giro h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.6rem;color:var(--noite)}
+.giro h2 small{display:block;font-size:.42em;letter-spacing:-.02em;color:var(--marca);font-weight:500;margin-bottom:.2em}
+.giro .cor{display:flex;flex-direction:column;align-items:end;gap:.5rem;text-align:right;flex:none}
+.giro .cor i{width:2.25rem;height:2.25rem;border-radius:50%;background:var(--c,#245079);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12),0 .25rem 1rem rgba(0,20,50,.18);transition:background-color .35s ease}
+.giro .cor span{font:700 .72rem/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:rgba(11,18,32,.6);max-width:8rem}
+.giro .fichas{position:absolute;left:var(--pad);bottom:clamp(1.5rem,6vh,4rem);width:min(24rem,calc(100% - 2*var(--pad)));height:9.5rem}
+.giro .ficha{position:absolute;inset:auto 0 0;opacity:0;transform:translateY(1rem)}
+.giro .ficha .valor{font:700 clamp(3.25rem,7vw,6rem)/.9 var(--head);letter-spacing:-.04em;color:var(--noite)}
+.giro .ficha .valor small{font-size:.36em;letter-spacing:-.01em;margin-left:.2em;color:var(--marca)}
+.giro .ficha p{margin:.55rem 0 0;color:var(--tinta-2);font-size:.975rem;line-height:1.45}
+.giro .trilho{position:absolute;right:var(--pad);bottom:clamp(1.5rem,6vh,4rem);display:flex;gap:.4rem}
+.giro .trilho i{width:1.75rem;height:.2rem;border-radius:1rem;background:rgba(11,18,32,.16);overflow:hidden;position:relative}
+.giro .trilho i::after{content:"";position:absolute;inset:0;background:var(--marca);transform-origin:left;transform:scaleX(var(--p,0))}
+@media (max-width:760px){
+  .giro .cor span{display:none}
+  .giro .cor i{width:1.75rem;height:1.75rem}
+}
+
+/* ---------- 3. Diferenciais: trilho horizontal ---------- */
+.diferenciais{position:relative;background:var(--noite)}
+.diferenciais .fixo{background:var(--degrade)}
+.diferenciais .fixo{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,4vh,3rem)}
+.diferenciais header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
+.diferenciais header h2{font-size:clamp(2.25rem,5.4vw,5rem);max-width:13ch}
+.diferenciais header p{margin:0;max-width:26rem;color:var(--claro-2)}
+.trilho-h{display:flex;gap:clamp(.75rem,1.6vw,1.25rem);padding:0 var(--pad);will-change:transform;width:max-content}
+.card-dif{position:relative;flex:none;width:clamp(17rem,30vw,25rem);aspect-ratio:490/700;border-radius:var(--r);overflow:hidden;background:var(--noite-3);isolation:isolate;color:var(--claro)}
+.card-dif img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.12);will-change:transform}
+.card-dif::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,30,80,0) 35%,rgba(0,30,80,.94))}
+.card-dif .txt{position:absolute;inset:auto 0 0;padding:clamp(1.1rem,2vw,1.6rem)}
+.card-dif .n{font:700 .75rem/1 var(--text);letter-spacing:.12em;color:rgba(244,246,250,.6)}
+.card-dif h3{font:700 clamp(1.4rem,2vw,1.8rem)/1.05 var(--head);letter-spacing:-.025em;margin:.6rem 0 .55rem}
+.card-dif p{margin:0;color:var(--claro-2);font-size:.9rem;line-height:1.5}
+.card-dif .ir{position:absolute;top:1rem;right:1rem;width:2.5rem;height:2.5rem;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .35s var(--mola),background-color .2s ease}
+.card-dif .ir svg{width:1rem;height:1rem}
+.card-dif:hover .ir{background:rgba(255,255,255,.26)}
+@media (max-height:600px){
+  .diferenciais .fixo{gap:1rem}
+  .diferenciais header p{display:none}
+  .diferenciais header h2{font-size:clamp(1.75rem,4.5vh,3rem)}
+  .card-dif{width:clamp(12rem,42svh,25rem)}
+  .card-dif h3{font-size:1.15rem}
+  .card-dif p{font-size:.8rem}
+}
+
+/* ---------- 4. Números ---------- */
+.numeros-fundo{background:var(--papel);color:var(--tinta)}
+.numeros{padding:clamp(6rem,16vh,10rem) var(--pad) clamp(3rem,8vh,5rem);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem);max-width:90rem;margin:0 auto}
+.numeros .n{font:700 clamp(3.5rem,8.5vw,8.5rem)/.85 var(--head);letter-spacing:-.05em;color:var(--marca)}
+.numeros .n sup{font-size:.4em;color:var(--marca);vertical-align:top;margin-left:.04em}
+.numeros p{margin:.9rem 0 0;color:var(--tinta-2);max-width:14rem;line-height:1.45}
+@media (max-width:760px){.numeros{grid-template-columns:1fr 1fr;row-gap:3rem}}
+
+/* ---------- 5. Linha de modelos ---------- */
+.linha{padding:clamp(5rem,12vh,8rem) 0 clamp(5rem,12vh,8rem);background:var(--papel);color:var(--tinta);border-top:1px solid rgba(0,30,80,.09)}
+.linha header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;max-width:90rem;margin:0 auto 2rem}
+.linha header .eyebrow{color:rgba(11,18,32,.55)}
+.linha header .eyebrow b{color:var(--marca)}
+.linha h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.7rem;color:var(--noite)}
+.abas{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:.3rem;border-radius:99rem;background:rgba(0,30,80,.07);position:relative;
+  scroll-padding:.3rem;-webkit-overflow-scrolling:touch}
+.abas::-webkit-scrollbar{display:none}
+.abas.corta{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent);mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent)}
+.abas.corta.fim{-webkit-mask:none;mask:none}
+.abas button{position:relative;z-index:1;padding:.65rem 1.1rem;border-radius:99rem;font:700 .9rem/1 var(--text);color:var(--tinta-2);transition:color .25s ease;white-space:nowrap}
+.abas button[aria-selected="true"]{color:var(--noite)}
+.abas button:focus-visible{outline-color:var(--marca);outline-offset:-2px}
+.abas .pilula{position:absolute;top:.3rem;bottom:.3rem;left:0;border-radius:99rem;background:#fff;
+  box-shadow:0 .5px 1px rgba(0,30,80,.1),0 2px 6px rgba(0,30,80,.1);transition:transform .45s var(--mola),width .45s var(--mola)}
+@media (max-width:480px){.abas button{padding:.6rem .75rem;font-size:.8rem}}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,21rem),1fr));gap:1rem;padding:0 var(--pad);max-width:90rem;margin:0 auto}
+.maq{position:relative;border-radius:var(--r);background:#fff;overflow:hidden;
+  box-shadow:0 .5px 1px rgba(0,30,80,.05),0 2px 5px rgba(0,30,80,.04),0 10px 28px rgba(0,30,80,.05);
+  transition:transform .45s var(--mola),box-shadow .3s ease}
+.maq.some{display:none}
+.maq .vista{position:relative;aspect-ratio:1110/640;background:linear-gradient(180deg,var(--estudio-cima),#fff);
+  touch-action:pan-y;cursor:grab;overflow:hidden;user-select:none;-webkit-user-select:none}
+.maq .vista:focus-visible{outline:2px solid var(--marca);outline-offset:-2px;border-radius:0}
+.maq .vista.agarrado{cursor:grabbing}
+.maq .vista canvas,.maq .vista img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:6% 4% 2%}
+.maq .vista canvas{padding:0}
+.maq .vista.uma{cursor:default}
+.maq .dica{position:absolute;left:.75rem;bottom:.75rem;display:flex;align-items:center;gap:.4rem;padding:.4rem .65rem;border-radius:99rem;
+  font:700 .72rem/1 var(--text);color:var(--tinta);background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .3s ease}
+.maq .dica svg{width:.95rem;height:.95rem}
+.maq.girou .dica,.maq .vista.uma .dica{opacity:0}
+.maq .cores{position:absolute;right:.75rem;bottom:.75rem;display:flex;gap:.35rem}
+.maq .cores button{width:1.1rem;height:1.1rem;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px transparent;transition:transform .3s var(--mola),box-shadow .2s ease}
+.maq .cores button[aria-current="true"]{transform:scale(1.25);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px var(--marca)}
+.maq .corpo{padding:1.1rem 1.2rem 1.25rem}
+.maq .fam{font:700 .72rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--marca)}
+.maq h3{font:700 1.6rem/1 var(--head);letter-spacing:-.03em;margin:.45rem 0 .4rem;color:var(--noite)}
+.maq .tag{margin:0;color:var(--tinta-2);font-size:.9rem;line-height:1.45;min-height:2.6em}
+.maq .nomecor{margin:.5rem 0 0;font:700 .72rem/1.3 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2)}
+.maq dl{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0 0;padding-top:1rem;border-top:1px solid rgba(0,30,80,.09)}
+.maq dt{font-size:.72rem;color:var(--tinta-2);line-height:1.3;order:2}
+.maq dd{margin:0;font:700 1.25rem/1 var(--head);letter-spacing:-.03em;color:var(--noite)}
+.maq dd small{font:700 .7rem/1 var(--text);letter-spacing:0;color:var(--tinta-2);margin-left:.15em}
+.maq dl div{display:flex;flex-direction:column;gap:.3rem}
+.maq .acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+.maq .ver{display:inline-flex;align-items:center;gap:.35rem;font:700 .875rem/1 var(--text);color:var(--marca)}
+.maq .ver:hover{text-decoration:underline;text-underline-offset:.2em}
+
+/* ---------- 6. Lojas: foto fixa, texto passa ---------- */
+.lojas{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);padding:0 var(--pad);max-width:90rem;margin:0 auto}
+.lojas .fotos{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+.lojas .moldura{position:relative;width:100%;aspect-ratio:4/5;max-height:78svh;border-radius:var(--r);overflow:hidden;background:var(--noite-3)}
+.lojas .moldura img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);
+  transition:opacity .9s ease,transform 1.6s var(--mola)}
+.lojas .moldura img.on{opacity:1;transform:scale(1)}
+.lojas .cidade-fixa{position:absolute;left:1.25rem;bottom:1rem;font:700 clamp(2.25rem,4.5vw,4.25rem)/1 var(--head);letter-spacing:-.04em;
+  color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+.lojas .passos{padding:30svh 0 20svh}
+.lojas .passo{min-height:70svh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s ease}
+.lojas .passo.on{opacity:1}
+.lojas .passo .eyebrow{margin-bottom:1rem}
+.lojas .passo h3{font:700 clamp(2rem,3.6vw,3.25rem)/1 var(--head);letter-spacing:-.035em;margin:0 0 1rem}
+.lojas .passo p{margin:0 0 .9rem;color:var(--claro-2);font-size:1.0625rem;max-width:32rem}
+.lojas .passo .horario{display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem;margin:1rem 0 1.25rem;font-size:.95rem;color:var(--claro-2);max-width:26rem}
+.lojas .passo .horario b{color:var(--claro);font-weight:700}
+.lojas .passo .acoes{display:flex;gap:.6rem;flex-wrap:wrap}
+.lojas .passo img.mobile{display:none}
+.lojas-intro{padding:clamp(6rem,16vh,10rem) var(--pad) 0;max-width:90rem;margin:0 auto}
+.lojas-intro h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:13ch}
+@media (max-width:860px){
+  .lojas{grid-template-columns:1fr}
+  .lojas .fotos{display:none}
+  .lojas .passos{padding:3rem 0 2rem}
+  .lojas .passo{min-height:auto;opacity:1;padding:2rem 0}
+  .lojas .passo img.mobile{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);margin-bottom:1.5rem}
+}
+
+/* ---------- 7. Propósito ---------- */
+.proposito{padding:clamp(8rem,24vh,16rem) var(--pad);text-align:center;overflow:hidden}
+.proposito blockquote{margin:0 auto;max-width:18ch;font:400 clamp(2.5rem,7.5vw,7.5rem)/.95 var(--head);letter-spacing:-.04em}
+.proposito blockquote span{font-weight:700}
+.proposito p{margin:2.5rem auto 0;max-width:36rem;color:var(--claro-2);font-size:1.125rem}
+
+/* ---------- 8. Contato ---------- */
+.contato{position:relative;min-height:100svh;display:flex;align-items:end;overflow:hidden;isolation:isolate}
+.contato video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.contato::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,30,80,.3),rgba(0,30,80,.55) 40%,rgba(0,30,80,.94))}
+.contato .dentro{width:100%;padding:clamp(6rem,14vh,9rem) var(--pad) clamp(2rem,6vh,4rem);max-width:90rem;margin:0 auto}
+.contato h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:14ch}
+.contato h2 span{font-weight:700}
+.contato .sub{margin:1.25rem 0 2.5rem;color:var(--claro-2);max-width:32rem;font-size:1.125rem}
+.areas{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.area{display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between;padding:1.1rem 1.1rem 1rem;border-radius:1rem;min-height:8.5rem;
+  background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  transition:transform .4s var(--mola),background-color .2s ease}
+.area:hover{background:rgba(255,255,255,.14)}
+.area:active,.area.pressionado{transform:scale(.97);transition-duration:.08s}
+.area svg{width:1.4rem;height:1.4rem;color:#fff}
+.area.zap svg{color:#5ee04a}
+.area b{display:block;font:700 1.15rem/1.1 var(--head);letter-spacing:-.02em}
+.area small{display:block;margin-top:.3rem;color:var(--claro-3);font-size:.8rem}
+.area.destaque{background:var(--zap);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.area.destaque small{color:rgba(255,255,255,.78)}
+.area.destaque svg{color:#fff}
+@media (max-width:960px){.areas{grid-template-columns:1fr 1fr}.area.destaque{grid-column:1/-1}}
+.rodape{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));
+  border-top:1px solid var(--linha);color:var(--claro-3);font-size:.85rem;max-width:90rem;margin:0 auto}
+.rodape .redes{display:flex;gap:1.25rem}
+.rodape a:hover{color:var(--claro)}
+.rodape img{height:1.1rem;width:auto;opacity:.85}
+
+/* ---------- Filme: sai do botão e volta para ele ---------- */
+dialog.filme{padding:0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;
+  place-items:center;pointer-events:none;opacity:0}
+dialog.filme[open]{display:grid;pointer-events:auto}
+dialog.filme::backdrop{background:rgba(0,10,30,.84);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+dialog.filme .tela{width:min(92vw,calc(82svh*16/9));aspect-ratio:16/9;border-radius:1rem;overflow:hidden;background:#000;
+  box-shadow:0 2.5rem 6rem rgba(0,0,0,.6)}
+dialog.filme video{width:100%;height:100%}
+dialog.filme .fechar{position:fixed;top:max(1rem,env(safe-area-inset-top));right:1rem;width:2.75rem;height:2.75rem;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+dialog.filme .fechar svg{width:1.1rem;height:1.1rem}
+
+/* ---------- Carregamento: logotipo com brilho, sai assim que a abertura está pronta ---------- */
+.entrada{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--degrade)}
+.entrada .mono{width:min(18rem,64vw);aspect-ratio:439/50;
+  background:linear-gradient(100deg,rgba(244,246,250,.3) 30%,#fff 50%,rgba(244,246,250,.3) 70%) 0 0/250% 100%;
+  -webkit-mask:url(media/logo-branco.png) center/contain no-repeat;mask:url(media/logo-branco.png) center/contain no-repeat;
+  animation:brilho 1.6s linear infinite}
+.entrada .barra{position:absolute;left:50%;bottom:18%;width:7rem;height:2px;translate:-50% 0;border-radius:2px;background:var(--linha);overflow:hidden}
+.entrada .barra i{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(var(--p,0));transition:transform .3s var(--mola)}
+@keyframes brilho{to{background-position:-150% 0}}
+html.carregando{overflow:hidden}
+
+/* ---------- Faixa corrida ---------- */
+.faixa{overflow:hidden;border-block:1px solid var(--linha);padding:1.1rem 0;margin-bottom:clamp(2rem,5vh,3rem);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.faixa div{display:flex;width:max-content;animation:corre 38s linear infinite}
+.faixa:hover div{animation-play-state:paused}
+.faixa span{font:700 clamp(.8rem,1.2vw,.95rem)/1 var(--text);letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;padding-right:1.5rem;color:var(--claro-2)}
+.faixa span b{color:#8fb0ff;font-weight:700}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* ---------- Transparência e movimento reduzidos ---------- */
+@media (prefers-reduced-transparency: reduce){
+  .topo::before{background:var(--noite);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .btn-vidro,.area,.maq .dica,.card-dif .ir,dialog.filme .fechar{background:var(--noite-3);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .maq .dica{background:#fff}
+  .area.destaque{background:var(--zap)}
+}
+@media (prefers-reduced-motion: reduce){
+  .rolar::after,.faixa div,.entrada .mono{animation:none}
+  .entrada{display:none}
+  .percurso,.giro{height:auto}
+  .giro{margin-top:0}
+  .percurso .palco,.giro .palco{position:relative}
+  .giro .ficha{opacity:1;transform:none}
+  .percurso .cenas{padding:3rem var(--pad) 1rem;display:grid;gap:3rem}
+  .cena{position:relative;inset:auto;opacity:1}
+  .onde{display:none}
+  .giro .palco{height:70svh}
+  .giro .fichas{position:relative;left:auto;bottom:auto;height:auto;padding:2rem var(--pad);width:auto;display:grid;gap:1.25rem;background:var(--estudio-baixo)}
+  .giro .ficha{position:relative}
+  .giro .trilho{display:none}
+  .diferenciais .fixo{position:relative;height:auto;padding:6rem 0}
+  .trilho-h{overflow-x:auto;width:auto;scroll-snap-type:x mandatory}
+  .card-dif{scroll-snap-align:start}
+  .lojas .moldura img{transition:opacity .3s ease;transform:none}
+  .btn,.area,.maq,.abas .pilula,.maq .cores button{transition-duration:0s!important}
+}
+</style>
+</head>
+<body>
+<div class="entrada" id="entrada" aria-hidden="true"><span class="mono"></span><span class="barra"><i id="barraEntrada"></i></span></div>
+<script>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("carregando");setTimeout(function(){document.documentElement.classList.remove("carregando");var e=document.getElementById("entrada");e&&e.remove()},5000)</script>
+
+<header class="topo" id="topo">
+  <a class="logo" href="#inicio" aria-label="Hyundai Geração, início"><img src="media/logo-branco.png" alt="Hyundai Geração" width="439" height="50"></a>
+  <nav aria-label="Principal">
+    <a href="#creta">Novo Creta</a>
+    <a href="#linha" class="fica">Modelos</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#lojas" class="fica">Lojas</a>
+    <a class="btn btn-zap" href="https://wa.me/5548988187424?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Hyundai%20Gera%C3%A7%C3%A3o%20e%20quero%20falar%20com%20vendas." target="_blank" rel="noopener"><span class="so-largo">Falar com vendas</span><span class="so-estreito">WhatsApp</span></a>
+  </nav>
+</header>
+
+<main>
+<!-- 1. Percurso -->
+<section class="percurso" id="inicio" aria-label="Da estrada até a Hyundai">
+  <div class="palco">
+    <canvas id="telaPercurso" aria-hidden="true"></canvas>
+    <div class="veu" id="veu"></div>
+    <div class="conteudo" id="heroConteudo">
+      <p class="eyebrow"><b>Hyundai Geração</b> · Concessionária Hyundai · Santa Catarina</p>
+      <h1 class="display" id="heroTitulo">
+        <span class="l"><span>Sua Hyundai</span></span>
+        <span class="l"><span>em Santa Catarina.</span></span>
+      </h1>
+      <div class="base">
+        <p>Cinco lojas, oito modelos 0 km, seminovos, oficina e peças originais. Role a página e venha até a Hyundai.</p>
+        <div class="acoes">
+          <button class="btn btn-vidro" id="abreFilme" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>
+            Assistir ao filme
+          </button>
+          <a class="btn btn-marca" href="#linha">Conhecer os modelos</a>
+        </div>
+      </div>
+    </div>
+    <span class="rolar" id="rolar" aria-hidden="true"></span>
+    <div class="cenas">
+      <div class="cena" data-de="42" data-ate="58">
+        <p class="eyebrow">01 · Novo Creta</p>
+        <h2 class="display">Impressionante <b>em cada detalhe.</b></h2>
+        <p>Grade frontal quadriculada, rodas de liga leve diamantadas e lanternas redesenhadas. Um SUV que te coloca no comando.</p>
+      </div>
+      <div class="cena" data-de="70" data-ate="100">
+        <p class="eyebrow">02 · Nova geração</p>
+        <h2 class="display">O que você <b>nunca sentiu antes.</b></h2>
+        <p>Motor 1.6 Turbo GDI Flex com 176 cv, câmbio de dupla embreagem de 7 velocidades e teto solar panorâmico.</p>
+      </div>
+      <div class="cena" data-de="108" data-ate="140">
+        <p class="eyebrow">03 · Onde estamos</p>
+        <h2 class="display">Cinco lojas. <b>Uma Geração.</b></h2>
+        <p>Florianópolis, São José, Rio do Sul, Lages e Brusque. Vendas, oficina, peças e seminovos perto de você.</p>
+      </div>
+      <div class="cena" data-de="150" data-ate="999">
+        <h2 class="display">Chegou. <b>Hyundai Geração.</b></h2>
+        <p>Test drive, financiamento, consórcio e 5 anos de garantia. Tudo que a Hyundai oferece, com quem conhece Santa Catarina.</p>
+      </div>
+    </div>
+    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Estrada</span><span class="barra"><i id="ondeBarra"></i></span></div>
+  </div>
+</section>
+
+<!-- 2. O Creta em cores -->
+<section class="giro" id="creta" aria-label="Novo Creta nas seis cores do catálogo">
+  <div class="palco">
+    <canvas id="telaGiro" role="img" aria-label="Novo Hyundai Creta mudando de cor"></canvas>
+    <div class="cabeca">
+      <div>
+        <p class="eyebrow">04 · <b>Em destaque</b></p>
+        <h2 class="display"><small>Novo Hyundai</small><b>CRETA</b></h2>
+      </div>
+      <div class="cor" aria-hidden="true"><i id="corBola"></i><span id="corNome">Azul Sapphire</span></div>
+    </div>
+    <div class="fichas" id="fichas">
+      <div class="ficha"><div class="valor num">176<small>cv</small></div><p>Motor Gamma 1.6 Turbo GDI Flex. Potência máxima a 5.500 rpm.</p></div>
+      <div class="ficha"><div class="valor num">27<small>kgfm</small></div><p>Torque máximo já a 1.600 rpm: resposta imediata na cidade e na estrada.</p></div>
+      <div class="ficha"><div class="valor num">7<small>marchas</small></div><p>Transmissão automatizada de dupla embreagem, com aletas Smartshift no volante.</p></div>
+      <div class="ficha"><div class="valor num">4<small>versões</small></div><p>Comfort 1.0T, Limited 1.0T, Platinum 1.0T e Ultimate 1.6T.</p></div>
+      <div class="ficha"><div class="valor num">6<small>cores</small></div><p>Azul Sapphire, Branco Atlas, Cinza Silk, Prata Brisk, Prata Sand e Preto Onix.</p></div>
+      <div class="ficha"><div class="valor num">5<small>anos</small></div><p>Garantia Hyundai. Cobertura particular sem limite de quilometragem.</p></div>
+    </div>
+    <div class="trilho" id="trilhoGiro" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- 3. Diferenciais -->
+<section class="diferenciais" id="servicos" aria-label="Serviços e diferenciais">
+  <div class="fixo">
+    <header>
+      <div>
+        <p class="eyebrow" style="margin-bottom:1rem">05 · Serviços</p>
+        <h2 class="display">Muito além <span class="it">do carro novo.</span></h2>
+      </div>
+      <p>Oficina, peças originais, seminovos, financiamento, consórcio e seguro. Tudo dentro da mesma casa, em qualquer uma das cinco lojas.</p>
+    </header>
+    <div class="trilho-h" id="trilhoH"></div>
+  </div>
+</section>
+
+<!-- 4. Números -->
+<div class="numeros-fundo"><section class="numeros" aria-label="Nossos números">
+  <div><div class="n num"><span data-conta="5">5</span></div><p>lojas em Santa Catarina, do litoral à serra</p></div>
+  <div><div class="n num"><span data-conta="8">8</span></div><p>modelos 0 km, de hatch a SUV de sete lugares e elétrico</p></div>
+  <div><div class="n num"><span data-conta="5">5</span></div><p>anos de garantia Hyundai, sem limite de quilometragem no uso particular</p></div>
+  <div><div class="n num"><span data-conta="8">8</span></div><p>anos de garantia na bateria do IONIQ 5</p></div>
+</section></div>
+
+<!-- 5. Linha -->
+<section class="linha" id="linha" aria-label="Linha de modelos">
+  <header>
+    <div>
+      <p class="eyebrow">06 · <b>Linha completa</b></p>
+      <h2 class="display">Oito modelos.<br>Arraste e <span class="it">escolha a cor.</span></h2>
+    </div>
+    <div class="abas" role="tablist" aria-label="Categoria" id="abas">
+      <span class="pilula" aria-hidden="true"></span>
+      <button role="tab" aria-selected="true" data-fam="todas">Todos</button>
+      <button role="tab" aria-selected="false" data-fam="SUV">SUV</button>
+      <button role="tab" aria-selected="false" data-fam="Hatch">Hatch</button>
+      <button role="tab" aria-selected="false" data-fam="Sedan">Sedan</button>
+      <button role="tab" aria-selected="false" data-fam="Elétrico">Elétrico</button>
+      <button role="tab" aria-selected="false" data-fam="Híbrido">Híbrido</button>
+    </div>
+  </header>
+  <div class="grade" id="grade"></div>
+</section>
+
+<!-- 6. Lojas -->
+<div class="lojas-intro" id="lojas">
+  <p class="eyebrow" style="margin-bottom:1rem">07 · Onde estamos</p>
+  <h2 class="display">Venha nos fazer <span class="it">uma visita.</span></h2>
+</div>
+<section class="lojas" aria-label="Nossas lojas">
+  <div class="fotos" aria-hidden="true">
+    <div class="moldura" id="moldura">
+      <img src="media/lojas/floripa.jpg" alt="" class="on">
+      <img src="media/lojas/saojose.jpg" alt="">
+      <img src="media/lojas/riodosul.jpg" alt="">
+      <img src="media/lojas/lages.jpg" alt="">
+      <img src="media/lojas/brusque.jpg" alt="">
+      <span class="cidade-fixa" id="cidadeFixa">Florianópolis</span>
+    </div>
+  </div>
+  <div class="passos" id="passos"></div>
+</section>
+
+<!-- 7. Propósito -->
+<section class="proposito" aria-label="Propósito">
+  <blockquote id="citacao">Somos mais do que <span>uma concessionária.</span></blockquote>
+  <p>Somos uma família dedicada a proporcionar experiências automotivas excepcionais a cada cliente que cruza nossas portas. Inovação, qualidade e paixão por automóveis, em cinco cidades de Santa Catarina.</p>
+</section>
+
+<!-- 8. Contato -->
+<section class="contato" id="contato" aria-label="Contato">
+  <video src="media/contato.mp4" poster="media/contato.jpg" autoplay muted loop playsinline preload="none" aria-hidden="true" id="videoAereo"></video>
+  <div class="dentro">
+    <p class="eyebrow" style="margin-bottom:1rem">08 · Contato</p>
+    <h2 class="display">Fale com quem <span>conhece o carro.</span></h2>
+    <p class="sub">WhatsApp direto com vendas ou com a oficina, e o telefone de cada loja. Quem responde é quem está na concessionária.</p>
+    <div class="areas" id="areas"></div>
+  </div>
+</section>
+<div class="faixa" aria-hidden="true"><div><span>Hyundai Geração <b>·</b> Florianópolis <b>·</b> São José <b>·</b> Rio do Sul <b>·</b> Lages <b>·</b> Brusque <b>·</b> 5 anos de garantia <b>·</b></span><span>Hyundai Geração <b>·</b> Florianópolis <b>·</b> São José <b>·</b> Rio do Sul <b>·</b> Lages <b>·</b> Brusque <b>·</b> 5 anos de garantia <b>·</b></span><span>Hyundai Geração <b>·</b> Florianópolis <b>·</b> São José <b>·</b> Rio do Sul <b>·</b> Lages <b>·</b> Brusque <b>·</b> 5 anos de garantia <b>·</b></span></div></div>
+</main>
+
+<footer class="rodape">
+  <img src="media/logo-branco.png" alt="Hyundai Geração" width="439" height="50">
+  <span>© 2026 Hyundai Geração · Concessionária Hyundai em Santa Catarina</span>
+  <div class="redes">
+    <a href="https://www.instagram.com/hyundai.geracao/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/geracaohyundaihmb" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://hyundaigeracao.com.br/" target="_blank" rel="noopener">Site atual</a>
+  </div>
+</footer>
+
+<dialog class="filme" id="filme" aria-label="Filme do Novo Creta">
+  <button class="fechar" id="fechaFilme" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="tela"><video id="videoFilme" src="media/filme.mp4" poster="media/filme.jpg" controls playsinline preload="none"></video></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SITE = 'https://hyundaigeracao.com.br/';
+const ZAP_VENDAS = '5548988187424';
+const ZAP_REVISAO = '554840002982';
+
+/* ===========================================================
+   Dados. Tudo tirado do site atual da Hyundai Geração: modelos,
+   fichas, cores (nome, tom e foto), lojas, horários e telefones.
+   =========================================================== */
+const MODELOS = [
+  {id:'creta', fam:'SUV', nome:'Novo CRETA', slug:'novo-hyundai-creta', td:'Novo CRETA', tag:'Imponente por fora, inovador por dentro. Um SUV que te coloca no comando.',
+    f:[[176,'cv','potência'],[27,'kgfm','torque'],[7,'marchas','DCT']],
+    cores:[['Azul Sapphire','#245079','azul-sapphire'],['Branco Atlas','#fafafa','branco-atlas'],['Cinza Silk','#4e5255','cinza-silk'],['Prata Brisk','#a2a8ac','prata-brisk'],['Prata Sand','#76706b','prata-sand'],['Preto Onix','#101010','preto-onix']]},
+  {id:'cretanline', fam:'SUV', nome:'Novo CRETA N Line', slug:'novo-creta-n-line', td:'Novo CRETA N Line', tag:'Desempenho que inspira. Estilo que fascina. Performance e design esportivo.',
+    f:[[176,'cv','potência'],[27,'kgfm','torque'],['1.6','TGDI','motor']],
+    cores:[['Preto Onix','#0d0c0c','preto-onix'],['Azul Sapphire','#0c2b5d','azul-sapphire'],['Branco Atlas','#ffffff','branco-atlas'],['Prata Brisk','#b9b9b9','prata-brisk'],['Cinza Silk','#585858','cinza-silk'],['Cinza Shadow','#47494a','cinza-shadow']]},
+  {id:'i20', fam:'Hatch', nome:'Novo Hyundai i20', slug:'novo-hyundai-i20', td:'Novo Hyundai i20', tag:'O upgrade que muda o jogo: design marcante, amplo espaço interno e muita tecnologia.',
+    f:[['12,3','pol.','painel digital'],[17,'pol.','rodas'],[6,'','versões']],
+    cores:[['Azul Sapphire','#2980b9','azul-sapphire']]},
+  {id:'hb20', fam:'Hatch', nome:'HB20', slug:'hb20', td:'HB20', tag:'O hatch mais completo da categoria, um dos carros mais vendidos do Brasil.',
+    f:[[120,'cv','potência'],['17,5','kgfm','torque'],[6,'marchas','automático']],
+    cores:[['Branco Atlas','#ffffff','branco-atlas'],['Preto Onix','#030303','preto-onix'],['Prata Brisk','#b9b9b9','prata-brisk'],['Cinza Silk','#585858','cinza-silk'],['Prata Sand','#cac7bd','prata-sand'],['Azul Sapphire','#0c2b5d','azul-sapphire'],['Cinza Shadow','#7a7e84','cinza-shadow']]},
+  {id:'hb20s', fam:'Sedan', nome:'HB20S', slug:'hb20s', td:'HB20S', tag:'Seu novo sedan 0 km, mais eficiente e tecnológico, com motor flex 1.0.',
+    f:[[120,'cv','potência'],['17,5','kgfm','torque'],[6,'marchas','automático']],
+    cores:[['Branco Atlas','#ffffff','branco-atlas'],['Preto Onix','#111010','preto-onix'],['Prata Brisk','#b9b9b9','prata-brisk'],['Cinza Silk','#585858','cinza-silk'],['Prata Sand','#cac7bd','prata-sand'],['Azul Sapphire','#0c2b5d','azul-sapphire'],['Cinza Shadow','#5a6063','cinza-shadow']]},
+  {id:'ioniq5', fam:'Elétrico', nome:'IONIQ 5', slug:'ioniq-5', td:'IONIQ 5', tag:'Sustentável, tecnológico e 100% elétrico. O primeiro CUV do Brasil.',
+    f:[[374,'km','autonomia'],[320,'cv','potência'],[84,'kWh','bateria']],
+    cores:[['Cinza Cyber Metallic','#656464','cinza-cyber'],['Cinza Ecotronic Matte','#c9c2c2','cinza-ecotronic'],['Champagne Gravity Matte','#cdcbc4','champagne-gravity'],['Preto Abyss Perolizado','#070707','preto-abyss']]},
+  {id:'kona', fam:'SUV Híbrido', nome:'KONA Hybrid', slug:'kona-hybrid', td:'KONA Hybrid', tag:'O SUV premium que abre novos horizontes. Elegância e potência com eficiência.',
+    f:[[141,'cv','potência'],[27,'kgfm','torque'],['1,32','kWh','bateria']],
+    cores:[['Atlas White','#ffffff','branco-atlas'],['Cyber Gray Metallic','#bbbbbb','cinza-cyber'],['Ecotronic Gray Pearl','#323540','cinza-ecotronic'],['Abyss Black Pearl','#030303','preto-abyss']]},
+  {id:'palisade', fam:'SUV', nome:'Palisade', slug:'palisade', td:'Palisade', tag:'A primeira classe dos SUVs. Três fileiras de conforto, luxo e tecnologia.',
+    f:[[295,'cv','potência'],['36,2','kgfm','torque'],['3.8','V6','motor']],
+    cores:[['Prata Brisk','#888888','prata-brisk'],['Branco Creamy Perolizado','#e9e9e9','branco-creamy'],['Preto Abyss Perolizado','#181515','preto-abyss']]}
+];
+const CRETA = MODELOS[0];
+const LOJAS = [
+  {cidade:'Florianópolis', nome:'Hyundai Geração Floripa Ilha', foto:'floripa', end:'Rua José Carlos Daux, SC-401, 4153', cep:'Florianópolis, SC, 88032-005', semana:'08h às 19h', sabado:'08h às 16h', fone:'(48) 3113-4000', tel:'4831134000'},
+  {cidade:'São José', nome:'Hyundai São José', foto:'saojose', end:'Av. Presidente Kennedy, 112, Campinas', cep:'São José, SC, 88101-000', semana:'08h às 19h', sabado:'08h às 16h', fone:'(48) 3298-0000', tel:'4832980000'},
+  {cidade:'Rio do Sul', nome:'Hyundai Geração Rio do Sul', foto:'riodosul', end:'Alameda Aristiliano Ramos, 1595, Jardim América', cep:'Rio do Sul, SC, 89160-240', semana:'08h às 18h (almoço das 12h às 13h)', sabado:'08h às 12h30', fone:'(47) 3411-0700', tel:'4734110700'},
+  {cidade:'Lages', nome:'Hyundai Geração Lages', foto:'lages', end:'Av. Presidente Vargas, 1010, Loja 2, Sagrado Coração de Jesus', cep:'Lages, SC, 88508-109', semana:'08h às 19h (almoço das 12h às 13h)', sabado:'08h às 14h', fone:'(49) 3251-8300', tel:'4932518300'},
+  {cidade:'Brusque', nome:'Hyundai Brusque', foto:'brusque', end:'Av. Otto Renaux, 155, Centro 1', cep:'Brusque, SC, 88351-300', semana:'08h às 19h', sabado:'08h às 14h', fone:'(47) 3044-8100', tel:'4730448100'}
+];
+const DIFERENCIAIS = [
+  {img:'hero-creta.jpg', t:'Test drive na sua loja.', p:'Dirija antes de decidir. Agende o test drive do modelo que quiser em qualquer uma das cinco lojas.', link:'test-drive'},
+  {img:'creta-rodas.jpg', t:'Oficina com agendamento.', p:'Revisões, Quick Service, recall e atualizações. Agende o serviço e fale direto com a oficina pelo WhatsApp.', link:'servicos'},
+  {img:'creta-grade.jpg', t:'Peças originais Hyundai.', p:'Projetadas, testadas e produzidas com o mesmo rigor do carro zero. Peças compradas e instaladas na rede têm 1 ano de garantia.', link:'pecas-e-acessorios'},
+  {img:'hero-hb20.jpg', t:'Compra Certa Hyundai.', p:'Parcelas até 50% menores que as de um financiamento tradicional, em 24, 36 ou 48 meses, com recompra garantida do seminovo.', link:'compra-certa-hyundai'},
+  {img:'hero-kona.jpg', t:'Consórcio Hyundai.', p:'Uma forma flexível e econômica de conquistar o seu Hyundai, sem pagar juros elevados.', link:'consorcio'},
+  {img:'creta-interior.jpg', t:'Seguro Hyundai.', p:'Cobertura abrangente, assistência 24 horas e uma rede de parceiros prontos para atender em qualquer imprevisto.', link:'corretora'},
+  {img:'hero-palisade.jpg', t:'Vendas diretas.', p:'Condições exclusivas para PcD, taxistas, produtor rural, frotistas, locadoras, autoescolas e corpo diplomático.', link:'vendas-diretas'},
+  {img:'garantia.jpg', t:'5 anos de garantia.', p:'Sem limite de quilometragem no uso particular. A bateria do IONIQ 5 tem 8 anos ou 160.000 km.', link:'garantia'},
+  {img:'veiculos.jpg', t:'Seminovos com procedência.', p:'Estoque de seminovos avaliados pela concessionária, nas cinco lojas. Confira o estoque.', link:'seminovos'}
+];
+const ZAP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.6-8.4Z"/></svg>';
+const TEL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>';
+const SETA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+const corUrl = (m, c) => `media/cores/${m.id}-${c[2]}.webp`;
+const msgZap = (area) => encodeURIComponent('Olá! Vim pelo site da Hyundai Geração e quero falar com ' + area + '.');
+
+/* ===========================================================
+   Sequência de quadros num canvas. Sem vídeo no scrub: imagem
+   decodificada responde na hora, em qualquer navegador.
+   =========================================================== */
+function sequencia(urls, paralelo = 6){
+  const imgs = urls.map(() => null);
+  const fila = [], pedidos = new Set();
+  let emVoo = 0, iniciou = false;
+  // poucos pedidos por vez: a fila não sufoca fontes, cores e vídeo
+  const dispara = () => {
+    while (emVoo < paralelo && fila.length){
+      const i = fila.shift(); emVoo++;
+      const im = new Image(); im.decoding = 'async'; im.src = urls[i];
+      const feito = () => { emVoo--; dispara(); };
+      im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { imgs[i] = im; seq.onload && seq.onload(i); feito(); }); };
+      im.onerror = () => { if (i === 0) seq.falhou = true; feito(); };
+    }
+  };
+  const carrega = (prioridade = []) => {
+    if (iniciou) return; iniciou = true;
+    [...prioridade, ...urls.keys()].forEach(i => { if (!pedidos.has(i)) { pedidos.add(i); fila.push(i); } });
+    dispara();
+  };
+  // reordena o que ainda não saiu: o que está perto do quadro pedido vem antes,
+  // e os quadros "grossos" (a cada 8, a cada 4) mantêm vantagem para nunca faltar imagem
+  const foco = (i) => {
+    if (fila.length < 2) return;
+    const peso = (k) => Math.abs(k - i) * (k % 8 === 0 ? .25 : k % 4 === 0 ? .5 : k % 2 === 0 ? .75 : 1);
+    fila.sort((a, b) => peso(a) - peso(b));
+  };
+  // quadro pronto mais perto do pedido, para nunca piscar em branco
+  const perto = (i) => {
+    if (imgs[i]) return imgs[i];
+    for (let d = 1; d < imgs.length; d++){
+      if (imgs[i - d]) return imgs[i - d];
+      if (imgs[i + d]) return imgs[i + d];
+    }
+    return null;
+  };
+  const seq = {imgs, carrega, foco, perto, n: urls.length, onload: null};
+  return seq;
+}
+
+function prepara(canvas){
+  const ctx = canvas.getContext('2d');
+  const mede = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.imageSmoothingQuality = 'high';
+    return {w, h};
+  };
+  return {ctx, mede};
+}
+
+// cobre a área inteira, como object-fit: cover, com zoom opcional
+function desenhaCover(ctx, im, w, h, zoom = 1, alpha = 1){
+  if (!im) return;
+  const s = Math.max(w / im.naturalWidth, h / im.naturalHeight) * zoom;
+  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+  ctx.globalAlpha = alpha;
+  ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  ctx.globalAlpha = 1;
+}
+
+// o carro inteiro dentro da área, como object-fit: contain, com margem e sombra no chão
+function desenhaContain(ctx, im, w, h, margem = .08, alpha = 1, sombra = true, baixo = .5){
+  if (!im) return;
+  const s = Math.min(w * (1 - 2 * margem) / im.naturalWidth, h * (1 - 2 * margem) / im.naturalHeight);
+  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+  const x = (w - dw) / 2, y = h * baixo - dh / 2;
+  ctx.globalAlpha = alpha;
+  if (sombra){
+    const g = ctx.createRadialGradient(w / 2, y + dh * .93, 0, w / 2, y + dh * .93, dw * .5);
+    g.addColorStop(0, 'rgba(0,20,50,.28)'); g.addColorStop(1, 'rgba(0,20,50,0)');
+    ctx.fillStyle = g;
+    ctx.save(); ctx.translate(w / 2, y + dh * .93); ctx.scale(1, .18); ctx.translate(-w / 2, -(y + dh * .93));
+    ctx.fillRect(0, y + dh * .93 - dw * .5, w, dw); ctx.restore();
+  }
+  ctx.drawImage(im, x, y, dw, dh);
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- Linha de modelos: cartões com troca de cor no arraste ---------- */
+function montaLinha(){
+  const grade = $('#grade');
+  grade.innerHTML = MODELOS.map((m, i) => `
+    <article class="maq" data-fam="${m.fam}" data-i="${i}">
+      <div class="vista${m.cores.length < 2 ? ' uma' : ''}" aria-label="${m.nome}, ${m.cores.length > 1 ? 'arraste para trocar a cor' : 'na cor ' + m.cores[0][0]}" role="img" ${m.cores.length > 1 ? 'tabindex="0"' : ''}>
+        <img src="${corUrl(m, m.cores[0])}" alt="" loading="lazy" decoding="async">
+        <canvas aria-hidden="true"></canvas>
+        <span class="dica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>Arraste para trocar a cor</span>
+        <span class="cores" aria-hidden="true">${m.cores.map((c, k) => `<button type="button" style="--c:${c[1]}" data-k="${k}" tabindex="-1" aria-current="${k === 0}" title="${c[0]}"></button>`).join('')}</span>
+      </div>
+      <div class="corpo">
+        <span class="fam">${m.fam}</span>
+        <h3>${m.nome}</h3>
+        <p class="tag">${m.tag}</p>
+        <p class="nomecor"><span class="atual">${m.cores[0][0]}</span> · ${m.cores.length} ${m.cores.length > 1 ? 'cores' : 'cor'}</p>
+        <dl>${m.f.map(([v, u, r]) => `<div><dt>${r}</dt><dd class="num">${v}${u ? `<small>${u}</small>` : ''}</dd></div>`).join('')}</dl>
+        <div class="acoes">
+          <a class="ver" href="${SITE}novos/${m.slug}" target="_blank" rel="noopener">Saiba mais ${SETA}</a>
+          <a class="ver" href="${SITE}test-drive?modelname=${encodeURIComponent(m.td)}" target="_blank" rel="noopener">Test drive ${SETA}</a>
+        </div>
+      </div>
+    </article>`).join('');
+
+  $$('.maq', grade).forEach(card => ligaCoresCartao(card, MODELOS[+card.dataset.i]));
+  ligaAbas();
+}
+
+function ligaCoresCartao(card, m){
+  const vista = $('.vista', card), canvas = $('canvas', vista), capa = $('img', vista), nome = $('.nomecor .atual', card);
+  const bolas = $$('.cores button', vista);
+  const N = m.cores.length;
+  if (N < 2) return;
+  const seq = sequencia(m.cores.map(c => corUrl(m, c)));
+  const {ctx, mede} = prepara(canvas);
+  let tam = null, pos = 0, vel = 0, raf = 0, ativo = false, alvo = 0;
+
+  const desenha = () => {
+    if (!tam || tam.w !== canvas.clientWidth) { if (!canvas.clientWidth) return; tam = mede(); }
+    const p = ((pos % N) + N) % N;
+    const a = Math.floor(p), b = (a + 1) % N, t = p - a;
+    ctx.clearRect(0, 0, tam.w, tam.h);
+    // funde duas cores vizinhas: o arraste vira uma troca contínua, sem corte seco
+    desenhaContain(ctx, seq.perto(a), tam.w, tam.h, .04, 1, false, .54);
+    if (t > .01 && seq.imgs[b]) desenhaContain(ctx, seq.imgs[b], tam.w, tam.h, .04, t, false, .54);
+    const k = Math.round(p) % N;
+    bolas.forEach((bt, i) => bt.setAttribute('aria-current', i === k));
+    if (nome.textContent !== m.cores[k][0]) nome.textContent = m.cores[k][0];
+  };
+  const acorda = () => { if (!ativo){ ativo = true; seq.carrega(); } };
+  seq.onload = () => { if (capa.style.opacity !== '0' && seq.imgs[0]) { desenha(); capa.style.opacity = '0'; } };
+
+  // depois do arraste: projeta o momento, escolhe a cor mais perto do ponto
+  // projetado e assenta nela com mola crítica, partindo da velocidade do dedo
+  const assenta = () => {
+    cancelAnimationFrame(raf);
+    let ultimo = performance.now();
+    const passo = (agora) => {
+      const dt = Math.min(48, agora - ultimo) / 1000; ultimo = agora;
+      // mola crítica: rigidez e amortecimento casados, sem oscilar
+      const k = 170, c = 2 * Math.sqrt(k);
+      const acc = -k * (pos - alvo) - c * vel;
+      vel += acc * dt; pos += vel * dt;
+      desenha();
+      if (Math.abs(pos - alvo) > .002 || Math.abs(vel) > .01) raf = requestAnimationFrame(passo);
+      else { pos = alvo; vel = 0; desenha(); }
+    };
+    raf = requestAnimationFrame(passo);
+  };
+  const projeta = (v, taxa = .995) => (v / 1000) * taxa / (1 - taxa);   // em cores, v em cores/s
+  const vaiPara = (k) => { alvo = k; assenta(); };
+
+  let inicio = null, historico = [], decidiu = false;
+  vista.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('.cores')) return;
+    acorda();
+    cancelAnimationFrame(raf); vel = 0;             // agarra no meio da troca
+    inicio = {x: e.clientX, y: e.clientY, pos};
+    historico = [{x: e.clientX, t: e.timeStamp}];
+    decidiu = e.pointerType === 'mouse';
+    if (decidiu) { vista.setPointerCapture(e.pointerId); vista.classList.add('agarrado'); }
+  });
+  vista.addEventListener('pointermove', (e) => {
+    if (!inicio) return;
+    const dx = e.clientX - inicio.x, dy = e.clientY - inicio.y;
+    if (!decidiu){
+      if (Math.hypot(dx, dy) < 8) return;          // histerese antes de escolher a direção
+      if (Math.abs(dy) > Math.abs(dx)) { inicio = null; return; }  // é rolagem, deixa passar
+      decidiu = true; vista.setPointerCapture(e.pointerId); vista.classList.add('agarrado');
+    }
+    const w = vista.clientWidth;
+    pos = inicio.pos - dx / w * 2.2;                 // uma largura de dedo = pouco mais de duas cores
+    historico.push({x: e.clientX, t: e.timeStamp});
+    if (historico.length > 5) historico.shift();
+    card.classList.add('girou');
+    desenha();
+  });
+  const fim = (e) => {
+    if (!inicio) return;
+    vista.classList.remove('agarrado');
+    const a = historico[0], b = historico[historico.length - 1];
+    const dt = Math.max(1, b.t - a.t);
+    vel = (decidiu && e.timeStamp - b.t < 80) ? -((b.x - a.x) / dt) * 1000 / vista.clientWidth * 2.2 : 0;
+    if (decidiu){ alvo = Math.round(pos + projeta(vel * 1000, .99)); assenta(); }
+    inicio = null;
+  };
+  vista.addEventListener('pointerup', fim);
+  vista.addEventListener('pointercancel', fim);
+  bolas.forEach(bt => bt.addEventListener('pointerdown', () => {
+    acorda(); card.classList.add('girou');
+    const k = +bt.dataset.k, p = ((pos % N) + N) % N;
+    // caminho mais curto até a cor pedida, partindo de onde está agora
+    let d = k - p; if (d > N / 2) d -= N; if (d < -N / 2) d += N;
+    vaiPara(pos + d);
+  }));
+  // teclado: cada seta passa para a cor seguinte, somando à que já está a caminho
+  vista.addEventListener('keydown', (e) => {
+    const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!dir) return;
+    e.preventDefault(); acorda();
+    card.classList.add('girou');
+    vaiPara(Math.round(raf ? alvo : pos) + dir);
+  });
+  addEventListener('resize', () => { tam = null; if (ativo) desenha(); });
+}
+
+function ligaAbas(){
+  const abas = $('#abas'), pilula = $('.pilula', abas), grade = $('#grade');
+  const botoes = $$('button', abas);
+  grade.setAttribute('role', 'tabpanel');
+  const move = (b) => {
+    pilula.style.width = b.offsetWidth + 'px';
+    pilula.style.transform = `translateX(${b.offsetLeft}px)`;
+  };
+  // sinal de que a lista continua: esmaece a borda enquanto houver aba escondida
+  const corte = () => {
+    const sobra = abas.scrollWidth - abas.clientWidth;
+    abas.classList.toggle('corta', sobra > 2);
+    abas.classList.toggle('fim', abas.scrollLeft >= sobra - 2);
+  };
+  abas.addEventListener('scroll', corte, {passive: true});
+  const escolhe = (b) => {
+    if (b.getAttribute('aria-selected') === 'true') return;
+    botoes.forEach(x => { const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; });
+    move(b);
+    b.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: calmo ? 'auto' : 'smooth'});
+    const fam = b.dataset.fam;
+    const cards = $$('.maq');
+    cards.forEach(c => c.classList.toggle('some', fam !== 'todas' && !c.dataset.fam.split(' ').includes(fam)));
+    if (!calmo && window.gsap) gsap.fromTo(cards.filter(c => !c.classList.contains('some')),
+      {opacity: 0, y: 24}, {opacity: 1, y: 0, duration: .6, ease: 'expo.out', stagger: .035, overwrite: true});
+    window.ScrollTrigger && ScrollTrigger.refresh();
+  };
+  botoes.forEach((b, i) => {
+    b.tabIndex = i ? -1 : 0;
+    b.setAttribute('aria-controls', 'grade');
+    b.addEventListener('pointerdown', () => escolhe(b));   // responde no toque, não na soltura
+    b.addEventListener('click', () => escolhe(b));
+    // setas trocam de categoria, como abas do sistema
+    b.addEventListener('keydown', (e) => {
+      const k = {ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity}[e.key];
+      if (k === undefined) return;
+      e.preventDefault();
+      const j = isFinite(k) ? (i + k + botoes.length) % botoes.length : k < 0 ? 0 : botoes.length - 1;
+      botoes[j].focus(); escolhe(botoes[j]);
+    });
+  });
+  requestAnimationFrame(() => { move(botoes[0]); corte(); });
+  addEventListener('resize', () => { move(botoes.find(b => b.getAttribute('aria-selected') === 'true')); corte(); });
+}
+
+function montaDiferenciais(){
+  $('#trilhoH').innerHTML = DIFERENCIAIS.map((d, i) => `
+    <a class="card-dif" href="${SITE}${d.link}" target="_blank" rel="noopener">
+      <img src="media/${d.img}" alt="" loading="lazy" decoding="async">
+      <span class="ir" aria-hidden="true">${SETA}</span>
+      <div class="txt"><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${d.t}</h3><p>${d.p}</p></div>
+    </a>`).join('');
+}
+
+function montaLojas(){
+  $('#passos').innerHTML = LOJAS.map((l, i) => `
+    <article class="passo${i === 0 ? ' on' : ''}" data-cidade="${l.cidade}">
+      <img class="mobile" src="media/lojas/${l.foto}.jpg" alt="${l.nome}" loading="lazy">
+      <p class="eyebrow"><b>${l.cidade}</b></p>
+      <h3>${l.nome}</h3>
+      <p>${l.end}<br>${l.cep}</p>
+      <div class="horario"><b>Segunda a sexta</b><span>${l.semana}</span><b>Sábado</b><span>${l.sabado}</span></div>
+      <div class="acoes">
+        <a class="btn btn-vidro" href="tel:+55${l.tel}">${TEL}${l.fone}</a>
+        <a class="btn btn-vidro" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.nome + ', ' + l.end + ', ' + l.cep)}" target="_blank" rel="noopener">Como chegar</a>
+      </div>
+    </article>`).join('');
+}
+
+function montaAreas(){
+  const zap = (nome, sub, fone, area, destaque) => `
+    <a class="area zap${destaque ? ' destaque' : ''}" href="https://wa.me/${fone}?text=${msgZap(area)}" target="_blank" rel="noopener">
+      ${ZAP}<span><b>${nome}</b><small>${sub}</small></span>
+    </a>`;
+  const tel = (l) => `
+    <a class="area" href="tel:+55${l.tel}">
+      ${TEL}<span><b>${l.cidade}</b><small>${l.fone}</small></span>
+    </a>`;
+  $('#areas').innerHTML = zap('Vendas', 'WhatsApp · 0 km, seminovos e test drive', ZAP_VENDAS, 'vendas', true)
+    + zap('Revisão e oficina', 'WhatsApp · agendamento de serviços', ZAP_REVISAO, 'a oficina para agendar uma revisão', false)
+    + LOJAS.map(tel).join('');
+}
+
+/* ---------- Toque: pressionado no pointerdown, sem esperar o clique ---------- */
+function ligaToques(){
+  document.addEventListener('pointerdown', (e) => {
+    const alvo = e.target.closest('.btn,.area');
+    if (!alvo) return;
+    alvo.classList.add('pressionado');
+    const solta = () => { alvo.classList.remove('pressionado'); removeEventListener('pointerup', solta); removeEventListener('pointercancel', solta); };
+    addEventListener('pointerup', solta); addEventListener('pointercancel', solta);
+  });
+}
+
+/* ---------- Filme: nasce do botão e volta para ele ---------- */
+function ligaFilme(){
+  const dlg = $('#filme'), tela = $('.tela', dlg), video = $('#videoFilme'), botao = $('#abreFilme');
+  const origem = () => {
+    const r = botao.getBoundingClientRect(), t = tela.getBoundingClientRect();
+    return {x: r.left + r.width / 2 - (t.left + t.width / 2), y: r.top + r.height / 2 - (t.top + t.height / 2), s: r.width / t.width};
+  };
+  const abre = () => {
+    dlg.showModal();
+    const o = origem();
+    if (calmo) { gsap.set(dlg, {opacity: 1}); }
+    else {
+      gsap.to(dlg, {opacity: 1, duration: .25, ease: 'power1.out', overwrite: true});
+      gsap.fromTo(tela, {x: o.x, y: o.y, scale: o.s, opacity: .4}, {x: 0, y: 0, scale: 1, opacity: 1, duration: .55, ease: 'expo.out', overwrite: true});
+    }
+    video.play().catch(() => {});
+    lenis && lenis.stop();
+  };
+  const fecha = () => {
+    video.pause();
+    const o = origem();
+    const acaba = () => { dlg.close(); lenis && lenis.start(); };
+    if (calmo) { gsap.set(dlg, {opacity: 0}); acaba(); return; }
+    // sai pelo mesmo caminho por onde entrou, partindo de onde está agora
+    gsap.to(tela, {x: o.x, y: o.y, scale: o.s, opacity: 0, duration: .42, ease: 'expo.inOut', overwrite: true});
+    gsap.to(dlg, {opacity: 0, duration: .38, delay: .08, ease: 'power1.in', overwrite: true, onComplete: acaba});
+  };
+  botao.addEventListener('click', abre);
+  $('#fechaFilme').addEventListener('click', fecha);
+  dlg.addEventListener('cancel', (e) => { e.preventDefault(); fecha(); });
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) fecha(); });
+}
+
+/* ---------- Barra do topo some ao descer, volta ao subir ---------- */
+function ligaTopo(){
+  const topo = $('#topo');
+  let ultimo = 0;
+  const atualiza = (y) => {
+    topo.classList.toggle('solido', y > innerHeight * .6);
+    if (Math.abs(y - ultimo) > 6){ topo.classList.toggle('escondido', y > ultimo && y > innerHeight); ultimo = y; }
+  };
+  return atualiza;
+}
+
+let lenis = null;
+montaLinha();
+montaDiferenciais();
+montaLojas();
+montaAreas();
+ligaToques();
+const topo = ligaTopo();
+
+/* ===========================================================
+   Movimento. Tudo preso à rolagem, então para, volta e acelera
+   junto com o dedo. Nada roda sozinho com duração fixa.
+   =========================================================== */
+// sem GSAP (CDN fora do ar), a página fica estática em vez de presa no carregamento
+if (!window.gsap || !window.ScrollTrigger){
+  document.documentElement.classList.remove('carregando'); $('#entrada') && $('#entrada').remove();
+  throw new Error('GSAP indisponível');
+}
+gsap.registerPlugin(ScrollTrigger);
+// barra de endereço do celular abrindo e fechando não recalcula tudo nem pula o quadro
+ScrollTrigger.config({ignoreMobileResize: true});
+if (calmo){ const v = $('#videoAereo'); v.removeAttribute('autoplay'); v.pause(); }
+
+if (!calmo && window.Lenis){
+  lenis = new Lenis({lerp: .11, smoothWheel: true});
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  document.documentElement.classList.add('lenis');
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
+    const alvo = $(a.getAttribute('href')); if (!alvo) return;
+    e.preventDefault(); lenis.scrollTo(alvo, {duration: 1.4});
+  }));
+}
+addEventListener('scroll', () => topo(scrollY), {passive: true});
+ligaFilme();
+
+/* ---------- O Creta em cores ---------- */
+const giro = (() => {
+  const canvas = $('#telaGiro'), {ctx, mede} = prepara(canvas);
+  const N = CRETA.cores.length;
+  const seq = sequencia(CRETA.cores.map(c => corUrl(CRETA, c)));
+  let tam = mede(), p = 0;
+  // cor contínua: cada cor segura um trecho e funde com a vizinha no meio do caminho
+  const posicao = (p) => {
+    const c = Math.min(N - 1, p * N);
+    const a = Math.min(N - 1, Math.floor(c)), t = c - a;
+    const suave = Math.max(0, Math.min(1, (t - .55) / .35));
+    return {a, b: Math.min(N - 1, a + 1), t: suave * suave * (3 - 2 * suave)};
+  };
+  // pinta o carro em qualquer canvas: o palco dele e a fusão final do percurso
+  const pinta = (ctx, tam, p, alpha = 1, comFundo = false) => {
+    const {a, b, t} = posicao(p);
+    const im = seq.perto(a); if (!im) return false;
+    ctx.globalAlpha = alpha;
+    if (comFundo){
+      const g = ctx.createLinearGradient(0, 0, 0, tam.h); g.addColorStop(0, '#dfe3e8'); g.addColorStop(1, '#f6f3f2');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, tam.w, tam.h);
+    }
+    const retrato = tam.h > tam.w;
+    // paisagem: o carro ocupa o centro; retrato: encaixa na largura, um pouco acima do meio
+    const margem = retrato ? .02 : .12, baixo = retrato ? .5 : .54;
+    desenhaContain(ctx, im, tam.w, tam.h, margem, alpha, true, baixo);
+    if (t > .01 && seq.imgs[b]) desenhaContain(ctx, seq.imgs[b], tam.w, tam.h, margem, alpha * t, false, baixo);
+    ctx.globalAlpha = 1;
+    return true;
+  };
+  const desenha = () => { ctx.clearRect(0, 0, tam.w, tam.h); pinta(ctx, tam, p); };
+  seq.onload = (i) => { const {a, b} = posicao(p); if (i === a || i === b || i === 0) { desenha(); giro.aoCarregar && giro.aoCarregar(); } };
+  addEventListener('resize', () => { tam = mede(); desenha(); });
+  return {seq, pinta, posicao, aoCarregar: null, set(v){ p = v; desenha(); }};
+})();
+
+/* ---------- Percurso ---------- */
+const CENAS = [[0,'Estrada'],[40,'Detalhe'],[60,'Mirante'],[102,'Cidade'],[147,'Chegada']];
+const percurso = (() => {
+  const canvas = $('#telaPercurso'), {ctx, mede} = prepara(canvas);
+  const TOTAL = 170;
+  // celular: metade dos quadros (5 por segundo, fundidos dois a dois), metade do peso
+  const PASSO = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData) ? 2 : 1;
+  const N = Math.ceil(TOTAL / PASSO);
+  const seq = sequencia([...Array(N)].map((_, i) => `media/percurso/${String(i * PASSO + 1).padStart(3, '0')}.jpg`));
+  // ordem de carga: primeiro um a cada 8, depois preenche; a rolagem nunca fica sem quadro
+  const ordem = []; [8, 4, 2, 1].forEach(passo => { for (let i = 0; i < N; i += passo) ordem.push(i); });
+  let tam = mede(), f = 0, fusao = 0, ultimoFoco = 0;
+  const desenha = () => {
+    const a = Math.floor(f), t = f - a;
+    ctx.clearRect(0, 0, tam.w, tam.h);
+    // no fim, a chegada se aproxima e dissolve no estúdio do Creta
+    const zoom = 1 + fusao * .14;
+    desenhaCover(ctx, seq.perto(a), tam.w, tam.h, zoom);
+    if (t > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t);
+    if (fusao > 0) giro.pinta(ctx, tam, 0, fusao * fusao * (3 - 2 * fusao), true);
+  };
+  seq.onload = (i) => { if (Math.abs(i - f) < 3 || i === 0) desenha(); };
+  giro.aoCarregar = () => { if (fusao > 0) desenha(); };
+  addEventListener('resize', () => { tam = mede(); desenha(); });
+  return {seq, N: TOTAL, carrega: () => seq.carrega(ordem),
+    // v em quadros originais (0 a 169); q é a fusão para o estúdio (0 a 1)
+    set(v, q = 0){
+      f = Math.min(N - 1, v / PASSO); fusao = q;
+      const alvo = Math.round(f);
+      if (Math.abs(alvo - ultimoFoco) >= 3){ ultimoFoco = alvo; seq.foco(alvo); }
+      desenha();
+    }};
+})();
+
+if (calmo){
+  percurso.seq.carrega([0]); percurso.set(0);
+  giro.seq.carrega([0]); giro.set(0);
+  $$('.passo').forEach(ativaPasso);
+  $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
+} else {
+  movimento();
+}
+
+function ativaPasso(el){
+  const i = $$('.passo').indexOf(el);
+  $$('.passo').forEach(x => x.classList.toggle('on', x === el));
+  $$('#moldura img').forEach((im, k) => im.classList.toggle('on', k === i));
+  $('#cidadeFixa').textContent = el.dataset.cidade;
+}
+
+function movimento(){
+  /* Carregamento: espera o primeiro quadro da estrada e as fontes, no máximo 2,4 s */
+  const entrada = $('#entrada'), barra = $('#barraEntrada');
+  gsap.set('#heroTitulo .l > span', {yPercent: 110});
+  gsap.set('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 0, y: 16});
+  percurso.carrega();
+  const esperas = [
+    document.fonts ? document.fonts.ready : Promise.resolve(),
+    new Promise(r => { const t = setInterval(() => { if (percurso.seq.imgs[0] || percurso.seq.falhou) { clearInterval(t); r(); } }, 60); })
+  ];
+  let prontas = 0;
+  esperas.forEach(p => p.then(() => barra.style.setProperty('--p', ++prontas / esperas.length)));
+  const t0 = performance.now();
+  Promise.race([Promise.all(esperas), new Promise(r => setTimeout(r, 2400))]).then(() => {
+    setTimeout(() => {
+      document.documentElement.classList.remove('carregando');
+      gsap.to(entrada, {opacity: 0, duration: .7, ease: 'power2.out', onComplete: () => entrada.remove()});
+      gsap.to('#heroTitulo .l > span', {yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: .09, delay: .1});
+      gsap.to('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: .5, stagger: .08});
+      ScrollTrigger.refresh();
+    }, Math.max(0, 900 - (performance.now() - t0)));
+  });
+  /* Percurso: a rolagem é a câmera. Segura a estrada parada no começo,
+     depois cada quadro acompanha o dedo, para frente e para trás. */
+  const PARADO = .05;   // estrada parada nos primeiros 5% (meia tela de rolagem)
+  const FUSAO = .9;     // últimos 10%: a chegada dissolve no estúdio do Creta
+  const cenas = $$('.cena').map(el => ({el, de: +el.dataset.de, ate: +el.dataset.ate}));
+  const heroC = $('#heroConteudo'), rolar = $('#rolar'), onde = $('#onde'), ondeNome = $('#ondeNome'), ondeBarra = $('#ondeBarra'), veu = $('#veu');
+  const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
+  const secGiro = $('#creta');
+  secGiro.classList.add('espera');
+  let giroPedido = false;
+  ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
+    onUpdate: s => {
+      const p = s.progress;
+      const f = p < PARADO ? 0 : Math.min(1, (p - PARADO) / (FUSAO - PARADO)) * (percurso.N - 1);
+      const q = Math.max(0, (p - FUSAO) / (1 - FUSAO));
+      // a primeira cor do Creta precisa estar pronta antes da fusão
+      if (!giroPedido && p > .4){ giroPedido = true; giro.seq.carrega([0, 1]); }
+      percurso.set(f, q);
+      veu.style.opacity = 1 - q;
+      // título some nos primeiros quadros, subindo como quem entra
+      const h = Math.min(1, p / .06);
+      heroC.style.opacity = 1 - h;
+      heroC.style.transform = `translateY(${-h * 12}vh)`;
+      heroC.style.pointerEvents = h > .6 ? 'none' : '';
+      rolar.style.opacity = 1 - Math.min(1, p / .02);
+      cenas.forEach(c => {
+        const o = janela(f, c.de - 6, c.de + 2, c.ate - 4, c.ate + 4) * (1 - q);
+        c.el.style.opacity = o;
+        c.el.style.transform = `translateY(${(1 - o) * (f < c.de + 2 ? 2 : -2)}rem)`;
+      });
+      onde.style.opacity = Math.min(1, Math.max(0, (p - .05) / .03)) * (1 - Math.min(1, q * 2));
+      let nome = CENAS[0][1]; CENAS.forEach(([q, n]) => { if (f >= q) nome = n; });
+      if (ondeNome.textContent !== nome) ondeNome.textContent = nome;
+      ondeBarra.style.setProperty('--p', p.toFixed(3));
+    }});
+
+  /* Cores: as seis cores do Creta passam pelo caminho, uma ficha por cor.
+     O palco fica invisível até prender: quem mostra o carro antes disso é o
+     fim do percurso, com a mesma imagem, então a troca não se vê. */
+  const fichas = $$('#fichas .ficha'), barras = $$('#trilhoGiro i'), corBola = $('#corBola'), corNome = $('#corNome'), cabeca = $('.giro .cabeca');
+  ScrollTrigger.create({trigger: '#creta', start: 'top 120%', once: true, onEnter: () => giro.seq.carrega([0, 1])});
+  let atual = -1;
+  ScrollTrigger.create({trigger: '#creta', start: 'top top', end: 'bottom bottom', scrub: true,
+    onToggle: s => {
+      const espera = !s.isActive && s.progress === 0;
+      secGiro.classList.toggle('espera', espera);
+      if (!espera && s.direction > 0) gsap.fromTo(cabeca, {opacity: 0, y: 18}, {opacity: 1, y: 0, duration: .8, ease: 'expo.out', overwrite: true});
+    },
+    onUpdate: s => {
+      const p = s.progress;
+      giro.set(p);
+      const {a, b, t} = giro.posicao(p);
+      const k = t > .5 ? b : a;
+      barras.forEach((bar, i) => bar.style.setProperty('--p', Math.max(0, Math.min(1, p * fichas.length - i))));
+      if (k !== atual){
+        const cor = CRETA.cores[k];
+        corBola.style.setProperty('--c', cor[1]); corNome.textContent = cor[0];
+        // cada ficha entra de onde a anterior está agora, sem esperar ela terminar
+        fichas.forEach((f, i) => gsap.to(f, {opacity: i === k ? 1 : 0, y: i === k ? 0 : (i < k ? -16 : 16),
+          duration: .5, ease: 'expo.out', overwrite: true}));
+        atual = k;
+      }
+    }});
+
+  /* Diferenciais: o trilho anda de lado enquanto a página desce */
+  const trilho = $('#trilhoH'), sec = $('#servicos');
+  const distancia = () => Math.max(0, trilho.scrollWidth - innerWidth);
+  sec.style.height = `calc(100svh + ${distancia()}px)`;
+  ScrollTrigger.addEventListener('refreshInit', () => { sec.style.height = `calc(100svh + ${distancia()}px)`; });
+  gsap.to(trilho, {x: () => -distancia(), ease: 'none',
+    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true}});
+  $$('.card-dif img').forEach(im => gsap.fromTo(im, {xPercent: -6}, {xPercent: 6, ease: 'none',
+    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true}}));
+
+  /* Números contam quando aparecem */
+  $$('[data-conta]').forEach(n => {
+    const alvo = +n.dataset.conta, o = {v: 0};
+    n.textContent = '0';
+    ScrollTrigger.create({trigger: n, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(o, {v: alvo, duration: 1.6, ease: 'expo.out', onUpdate: () => n.textContent = Math.round(o.v)})});
+  });
+
+  /* Linha: cartões sobem em cascata */
+  ScrollTrigger.batch('.maq', {start: 'top 90%', once: true,
+    onEnter: b => gsap.from(b, {opacity: 0, y: 40, duration: .9, ease: 'expo.out', stagger: .06})});
+
+  /* Lojas: a foto fixa troca conforme o passo passa pelo meio */
+  $$('.passo').forEach(el => ScrollTrigger.create({trigger: el, start: 'top 55%', end: 'bottom 55%',
+    onToggle: s => s.isActive && ativaPasso(el)}));
+
+  /* Propósito: a frase cresce até o tamanho final */
+  gsap.fromTo('#citacao', {scale: .82, opacity: .2}, {scale: 1, opacity: 1, ease: 'none',
+    scrollTrigger: {trigger: '#citacao', start: 'top 95%', end: 'center 55%', scrub: true}});
+
+  /* Contato: vídeo só carrega perto de aparecer */
+  ScrollTrigger.create({trigger: '#contato', start: 'top 150%', once: true, onEnter: () => {
+    const v = $('#videoAereo'); v.preload = 'auto'; v.play().catch(() => {});
+  }});
+  gsap.from('.area', {opacity: 0, y: 24, duration: .8, ease: 'expo.out', stagger: .06,
+    scrollTrigger: {trigger: '#areas', start: 'top 92%'}});
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+}
+})();
+</script>
+<script defer src="https://deck.k2ia.app/track.js"></script>
+</body>
+</html>
