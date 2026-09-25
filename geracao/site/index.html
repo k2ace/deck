@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#001E50">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23001e50'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="image" href="media/percurso/001.jpg">
+<link rel="preload" as="image" href="media/percurso/026.jpg">
 <link rel="preload" as="font" type="font/ttf" href="media/fonts/HyundaiSansHead-Bold.ttf" crossorigin>
 <link rel="preload" as="font" type="font/otf" href="media/fonts/HyundaiSansText-Regular.otf" crossorigin>
 <style>
@@ -99,17 +99,20 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .so-estreito{display:none}
 @media (max-width:760px){
   .topo nav a:not(.btn){display:none}
-  .topo nav a.fica{display:inline-block;padding:.5rem .55rem}
+  .topo nav a.fica{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 .6rem}
+  .topo .btn{min-height:2.75rem}
   .so-largo{display:none}.so-estreito{display:inline}
   .topo .logo img{height:1.25rem}
 }
 @media (max-width:360px){.topo nav a.fica{display:none}}
 
-/* ---------- 1. Percurso: da estrada até a Hyundai, preso à rolagem ----------
-   A página abre parada na estrada e cada rolada leva a câmera adiante:
-   o detalhe da grade, o mirante, a cidade e a chegada na Hyundai. */
-.percurso{position:relative;height:900vh}
-.percurso .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(media/percurso/001.jpg) center/cover}
+/* ---------- 1. Percurso: do Creta até a Hyundai, preso à rolagem ----------
+   A página abre parada no Creta de frente e cada rolada leva a câmera adiante:
+   o detalhe da grade, o mirante, a cidade e a chegada na Hyundai.
+   Em pé (celular), o filme vira uma faixa de cinema no alto, com ponto focal
+   que acompanha o carro, e o texto fica embaixo sobre o marinho. */
+.percurso{position:relative;height:780vh}
+.percurso .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(media/percurso/026.jpg) center/cover}
 .percurso canvas{position:absolute;inset:0;width:100%;height:100%}
 .percurso .veu{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(0,30,80,.5) 0%,rgba(0,30,80,.06) 28%,rgba(0,30,80,.12) 50%,rgba(0,30,80,.9) 100%)}
@@ -135,8 +138,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha);overflow:hidden}
 .onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
 @media (max-width:760px){
-  .percurso{height:760vh}
-  .percurso .veu{background:linear-gradient(180deg,rgba(0,30,80,.55) 0%,rgba(0,30,80,.1) 25%,rgba(0,30,80,.25) 45%,rgba(0,30,80,.94) 80%)}
+  .percurso{height:560vh}
+  .percurso .veu{background:linear-gradient(180deg,rgba(0,30,80,.5) 0%,rgba(0,30,80,0) 18%,rgba(0,30,80,0) 45%,rgba(0,30,80,.6) 62%,rgba(0,30,80,.85) 100%)}
+  .percurso .conteudo{gap:1.25rem;bottom:max(1.75rem,env(safe-area-inset-bottom))}
+  .percurso .acoes .btn{flex:1 1 auto;justify-content:center;min-height:3rem}
+  .cena{bottom:max(4.5rem,calc(env(safe-area-inset-bottom) + 3.5rem))}
+  .cena h2{font-size:clamp(2rem,9vw,2.6rem)}
+  .percurso .palco{background:var(--noite)}
   .onde{left:var(--pad);right:auto}
   .onde .barra{width:4rem}
 }
@@ -225,7 +233,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .abas button:focus-visible{outline-color:var(--marca);outline-offset:-2px}
 .abas .pilula{position:absolute;top:.3rem;bottom:.3rem;left:0;border-radius:99rem;background:#fff;
   box-shadow:0 .5px 1px rgba(0,30,80,.1),0 2px 6px rgba(0,30,80,.1);transition:transform .45s var(--mola),width .45s var(--mola)}
-@media (max-width:480px){.abas button{padding:.6rem .75rem;font-size:.8rem}}
+@media (max-width:480px){.abas button{padding:0 .85rem;min-height:2.75rem;font-size:.85rem}}
 .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,21rem),1fr));gap:1rem;padding:0 var(--pad);max-width:90rem;margin:0 auto}
 .maq{position:relative;border-radius:var(--r);background:#fff;overflow:hidden;
   box-shadow:0 .5px 1px rgba(0,30,80,.05),0 2px 5px rgba(0,30,80,.04),0 10px 28px rgba(0,30,80,.05);
@@ -243,8 +251,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .3s ease}
 .maq .dica svg{width:.95rem;height:.95rem}
 .maq.girou .dica,.maq .vista.uma .dica{opacity:0}
-.maq .cores{position:absolute;right:.75rem;bottom:.75rem;display:flex;gap:.35rem}
-.maq .cores button{width:1.1rem;height:1.1rem;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px transparent;transition:transform .3s var(--mola),box-shadow .2s ease}
+.maq .cores{position:absolute;right:.75rem;bottom:.75rem;display:flex;gap:.6rem}
+.maq .cores button::before{content:"";position:absolute;inset:-.55rem -.3rem}
+.maq .cores button{position:relative;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px transparent;transition:transform .3s var(--mola),box-shadow .2s ease}
 .maq .cores button[aria-current="true"]{transform:scale(1.25);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px var(--marca)}
 .maq .corpo{padding:1.1rem 1.2rem 1.25rem}
 .maq .fam{font:700 .72rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--marca)}
@@ -257,7 +266,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .maq dd small{font:700 .7rem/1 var(--text);letter-spacing:0;color:var(--tinta-2);margin-left:.15em}
 .maq dl div{display:flex;flex-direction:column;gap:.3rem}
 .maq .acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
-.maq .ver{display:inline-flex;align-items:center;gap:.35rem;font:700 .875rem/1 var(--text);color:var(--marca)}
+.maq .ver{display:inline-flex;align-items:center;gap:.35rem;min-height:2.75rem;white-space:nowrap;font:700 .875rem/1 var(--text);color:var(--marca)}
 .maq .ver:hover{text-decoration:underline;text-underline-offset:.2em}
 
 /* ---------- 6. Lojas: foto fixa, texto passa ---------- */
@@ -324,6 +333,19 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .rodape a:hover{color:var(--claro)}
 .rodape img{height:1.1rem;width:auto;opacity:.85}
 
+/* ---------- WhatsApp flutuante no celular: aparece quando a barra do topo some ---------- */
+.zap-flutua{display:none}
+@media (max-width:760px){
+  .zap-flutua{position:fixed;z-index:45;right:1rem;bottom:max(1rem,env(safe-area-inset-bottom));width:3.5rem;height:3.5rem;border-radius:50%;
+    display:grid;place-items:center;background:var(--zap);color:#fff;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 .5rem 1.5rem rgba(0,20,50,.35);
+    opacity:0;transform:scale(.6);pointer-events:none;transform-origin:50% 100%;
+    transition:transform .45s var(--mola),opacity .25s ease}
+  .zap-flutua.on{opacity:1;transform:scale(1);pointer-events:auto}
+  .zap-flutua.on.pressionado{transform:scale(.92);transition-duration:.08s}
+  .zap-flutua svg{width:1.65rem;height:1.65rem}
+}
+
 /* ---------- Filme: sai do botão e volta para ele ---------- */
 dialog.filme{padding:0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;
   place-items:center;pointer-events:none;opacity:0}
@@ -382,6 +404,7 @@ html.carregando{overflow:hidden}
   .card-dif{scroll-snap-align:start}
   .lojas .moldura img{transition:opacity .3s ease;transform:none}
   .btn,.area,.maq,.abas .pilula,.maq .cores button{transition-duration:0s!important}
+  .zap-flutua{transform:none!important;transition:opacity .2s ease}
 }
 </style>
 </head>
@@ -400,9 +423,11 @@ html.carregando{overflow:hidden}
   </nav>
 </header>
 
+<a class="zap-flutua" id="zapFlutua" href="https://wa.me/5548988187424?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Hyundai%20Gera%C3%A7%C3%A3o%20e%20quero%20falar%20com%20vendas." target="_blank" rel="noopener" aria-label="Falar com vendas pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.6-8.4Z"/></svg></a>
+
 <main>
 <!-- 1. Percurso -->
-<section class="percurso" id="inicio" aria-label="Da estrada até a Hyundai">
+<section class="percurso" id="inicio" aria-label="Do Novo Creta até a Hyundai">
   <div class="palco">
     <canvas id="telaPercurso" aria-hidden="true"></canvas>
     <div class="veu" id="veu"></div>
@@ -445,7 +470,7 @@ html.carregando{overflow:hidden}
         <p>Test drive, financiamento, consórcio e 5 anos de garantia. Tudo que a Hyundai oferece, com quem conhece Santa Catarina.</p>
       </div>
     </div>
-    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Estrada</span><span class="barra"><i id="ondeBarra"></i></span></div>
+    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Novo Creta</span><span class="barra"><i id="ondeBarra"></i></span></div>
   </div>
 </section>
 
@@ -701,6 +726,20 @@ function desenhaCover(ctx, im, w, h, zoom = 1, alpha = 1){
   ctx.globalAlpha = 1;
 }
 
+// filme do percurso: cobre a tela deitada; em pé vira faixa no alto,
+// centrada no ponto focal (fx, fração da largura do quadro) sem sobrar borda
+function faixaFilme(w, h){ return h > w * 1.15 ? Math.min(h * .62, w * 1.45) : h; }
+function desenhaFilme(ctx, im, w, h, zoom = 1, alpha = 1, fx = .5){
+  if (!im) return;
+  const bh = faixaFilme(w, h);
+  const s = Math.max(w / im.naturalWidth, bh / im.naturalHeight) * zoom;
+  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+  const x = Math.min(0, Math.max(w - dw, w / 2 - fx * dw));
+  ctx.globalAlpha = alpha;
+  ctx.drawImage(im, x, (bh - dh) / 2, dw, dh);
+  ctx.globalAlpha = 1;
+}
+
 // o carro inteiro dentro da área, como object-fit: contain, com margem e sombra no chão
 function desenhaContain(ctx, im, w, h, margem = .08, alpha = 1, sombra = true, baixo = .5){
   if (!im) return;
@@ -931,7 +970,7 @@ function montaAreas(){
 /* ---------- Toque: pressionado no pointerdown, sem esperar o clique ---------- */
 function ligaToques(){
   document.addEventListener('pointerdown', (e) => {
-    const alvo = e.target.closest('.btn,.area');
+    const alvo = e.target.closest('.btn,.area,.zap-flutua');
     if (!alvo) return;
     alvo.classList.add('pressionado');
     const solta = () => { alvo.classList.remove('pressionado'); removeEventListener('pointerup', solta); removeEventListener('pointercancel', solta); };
@@ -974,11 +1013,14 @@ function ligaFilme(){
 
 /* ---------- Barra do topo some ao descer, volta ao subir ---------- */
 function ligaTopo(){
-  const topo = $('#topo');
+  const topo = $('#topo'), zap = $('#zapFlutua'), contato = $('#contato'), creta = $('#creta');
   let ultimo = 0;
   const atualiza = (y) => {
     topo.classList.toggle('solido', y > innerHeight * .6);
     if (Math.abs(y - ultimo) > 6){ topo.classList.toggle('escondido', y > ultimo && y > innerHeight); ultimo = y; }
+    const c = contato.getBoundingClientRect().top, g = creta.getBoundingClientRect();
+    const noCreta = g.top <= 1 && g.bottom >= innerHeight - 1;
+    zap.classList.toggle('on', topo.classList.contains('escondido') && c > innerHeight * .5 && !noCreta);
   };
   return atualiza;
 }
@@ -1056,33 +1098,74 @@ const giro = (() => {
 })();
 
 /* ---------- Percurso ---------- */
-const CENAS = [[0,'Estrada'],[40,'Detalhe'],[60,'Mirante'],[102,'Cidade'],[147,'Chegada']];
+const CENAS = [[0,'Novo Creta'],[36,'Detalhe'],[60,'Mirante'],[102,'Cidade'],[147,'Chegada']];
+// onde está o carro em cada trecho do filme (quadro original, fração da largura): guia o recorte em pé
+const FOCO = [[25,.56],[31,.52],[40,.5],[50,.55],[64,.5],[86,.58],[100,.6],[112,.58],[118,.68],[123,.42],[128,.32],[133,.42],[137,.64],[144,.6],[148,.4],[169,.4]];
+const focoEm = (v) => {
+  for (let i = 1; i < FOCO.length; i++){
+    const [a, fa] = FOCO[i - 1], [b, fb] = FOCO[i];
+    if (v <= b){ const t = Math.max(0, (v - a) / (b - a)); return fa + (fb - fa) * t * t * (3 - 2 * t); }
+  }
+  return FOCO[FOCO.length - 1][1];
+};
 const percurso = (() => {
   const canvas = $('#telaPercurso'), {ctx, mede} = prepara(canvas);
-  const TOTAL = 170;
+  const TOTAL = 170, INICIO = 25;   // abre no quadro 26: o Creta de frente, na estrada
   // celular: metade dos quadros (5 por segundo, fundidos dois a dois), metade do peso
   const PASSO = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData) ? 2 : 1;
-  const N = Math.ceil(TOTAL / PASSO);
-  const seq = sequencia([...Array(N)].map((_, i) => `media/percurso/${String(i * PASSO + 1).padStart(3, '0')}.jpg`));
+  const N = Math.ceil((TOTAL - INICIO) / PASSO);
+  const seq = sequencia([...Array(N)].map((_, i) => `media/percurso/${String(INICIO + i * PASSO + 1).padStart(3, '0')}.jpg`));
   // ordem de carga: primeiro um a cada 8, depois preenche; a rolagem nunca fica sem quadro
   const ordem = []; [8, 4, 2, 1].forEach(passo => { for (let i = 0; i < N; i += passo) ordem.push(i); });
-  let tam = mede(), f = 0, fusao = 0, ultimoFoco = 0;
+  let tam = mede(), f = 0, fusao = 0, abre = 1, ultimoFoco = 0;
+  // o filme abre perto demais da frente: a página abre com o Creta inteiro
+  // e ele se funde no filme na primeira rolada
+  const carro = new Image(); carro.decoding = 'async';
+  carro.onload = () => { if (abre > 0) desenha(); };
+  carro.src = 'media/cores/creta-branco-atlas.webp';
+  const pintaCarro = (alpha) => {
+    if (!carro.naturalWidth || alpha <= 0) return;
+    const bh = faixaFilme(tam.w, tam.h), deitado = bh === tam.h;
+    // em pé: carro no alto, largura toda; deitado: carro à direita, acima do título
+    const cx = deitado ? tam.w * .64 : tam.w / 2, base = deitado ? Math.min(tam.w * .5, tam.h * 1.05) : tam.w * .98;
+    ctx.globalAlpha = alpha;
+    const g = ctx.createRadialGradient(cx, bh * .45, 0, cx, bh * .45, Math.max(tam.w, tam.h) * .8);
+    g.addColorStop(0, '#1d3f8f'); g.addColorStop(1, '#001E50');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, tam.w, tam.h);
+    const cw = base * (1 + (1 - alpha) * .25), ch = cw * carro.naturalHeight / carro.naturalWidth;
+    const y = bh * (deitado ? .34 : .53) - ch / 2;
+    const sg = ctx.createRadialGradient(cx, y + ch * .94, 0, cx, y + ch * .94, cw * .5);
+    sg.addColorStop(0, 'rgba(0,8,25,.55)'); sg.addColorStop(1, 'rgba(0,8,25,0)');
+    ctx.save(); ctx.translate(cx, y + ch * .94); ctx.scale(1, .16); ctx.translate(-cx, -(y + ch * .94));
+    ctx.fillStyle = sg; ctx.fillRect(0, y + ch * .94 - cw * .5, tam.w, cw); ctx.restore();
+    ctx.drawImage(carro, cx - cw / 2, y, cw, ch);
+    ctx.globalAlpha = 1;
+  };
   const desenha = () => {
     const a = Math.floor(f), t = f - a;
     ctx.clearRect(0, 0, tam.w, tam.h);
     // no fim, a chegada se aproxima e dissolve no estúdio do Creta
-    const zoom = 1 + fusao * .14;
-    desenhaCover(ctx, seq.perto(a), tam.w, tam.h, zoom);
-    if (t > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t);
+    const zoom = 1 + fusao * .14, fx = focoEm(INICIO + f * PASSO);
+    if (tam.h > tam.w * 1.15){ ctx.fillStyle = '#001E50'; ctx.fillRect(0, 0, tam.w, tam.h); }
+    desenhaFilme(ctx, seq.perto(a), tam.w, tam.h, zoom, 1, fx);
+    if (t > .01 && seq.imgs[a + 1]) desenhaFilme(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t, fx);
+    const bh = faixaFilme(tam.w, tam.h);
+    if (bh < tam.h){
+      // a faixa desmancha no marinho, sem linha de corte
+      const g = ctx.createLinearGradient(0, bh * .55, 0, bh + 1);
+      g.addColorStop(0, 'rgba(0,30,80,0)'); g.addColorStop(1, '#001E50');
+      ctx.fillStyle = g; ctx.fillRect(0, bh * .55, tam.w, bh * .45 + 2);
+    }
+    if (abre > 0) pintaCarro(abre * abre * (3 - 2 * abre));
     if (fusao > 0) giro.pinta(ctx, tam, 0, fusao * fusao * (3 - 2 * fusao), true);
   };
   seq.onload = (i) => { if (Math.abs(i - f) < 3 || i === 0) desenha(); };
   giro.aoCarregar = () => { if (fusao > 0) desenha(); };
   addEventListener('resize', () => { tam = mede(); desenha(); });
-  return {seq, N: TOTAL, carrega: () => seq.carrega(ordem),
-    // v em quadros originais (0 a 169); q é a fusão para o estúdio (0 a 1)
-    set(v, q = 0){
-      f = Math.min(N - 1, v / PASSO); fusao = q;
+  return {seq, N: TOTAL, INICIO, carrega: () => seq.carrega(ordem),
+    // v em quadros originais (25 a 169); q é a fusão para o estúdio (0 a 1)
+    set(v, q = 0, a = 0){
+      f = Math.max(0, Math.min(N - 1, (v - INICIO) / PASSO)); fusao = q; abre = a;
       const alvo = Math.round(f);
       if (Math.abs(alvo - ultimoFoco) >= 3){ ultimoFoco = alvo; seq.foco(alvo); }
       desenha();
@@ -1090,7 +1173,7 @@ const percurso = (() => {
 })();
 
 if (calmo){
-  percurso.seq.carrega([0]); percurso.set(0);
+  percurso.seq.carrega([0]); percurso.set(percurso.INICIO, 0, 1);
   giro.seq.carrega([0]); giro.set(0);
   $$('.passo').forEach(ativaPasso);
   $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
@@ -1127,9 +1210,9 @@ function movimento(){
       ScrollTrigger.refresh();
     }, Math.max(0, 900 - (performance.now() - t0)));
   });
-  /* Percurso: a rolagem é a câmera. Segura a estrada parada no começo,
+  /* Percurso: a rolagem é a câmera. Segura o Creta parado no começo,
      depois cada quadro acompanha o dedo, para frente e para trás. */
-  const PARADO = .05;   // estrada parada nos primeiros 5% (meia tela de rolagem)
+  const PARADO = .05;   // Creta parado nos primeiros 5% (meia tela de rolagem)
   const FUSAO = .9;     // últimos 10%: a chegada dissolve no estúdio do Creta
   const cenas = $$('.cena').map(el => ({el, de: +el.dataset.de, ate: +el.dataset.ate}));
   const heroC = $('#heroConteudo'), rolar = $('#rolar'), onde = $('#onde'), ondeNome = $('#ondeNome'), ondeBarra = $('#ondeBarra'), veu = $('#veu');
@@ -1140,11 +1223,12 @@ function movimento(){
   ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
     onUpdate: s => {
       const p = s.progress;
-      const f = p < PARADO ? 0 : Math.min(1, (p - PARADO) / (FUSAO - PARADO)) * (percurso.N - 1);
+      const f = percurso.INICIO + (p < PARADO ? 0 : Math.min(1, (p - PARADO) / (FUSAO - PARADO)) * (percurso.N - 1 - percurso.INICIO));
       const q = Math.max(0, (p - FUSAO) / (1 - FUSAO));
       // a primeira cor do Creta precisa estar pronta antes da fusão
       if (!giroPedido && p > .4){ giroPedido = true; giro.seq.carrega([0, 1]); }
-      percurso.set(f, q);
+      // o Creta inteiro segura o começo e dissolve no filme até 9% da abertura
+      percurso.set(f, q, 1 - Math.min(1, Math.max(0, (p - .015) / .075)));
       veu.style.opacity = 1 - q;
       // título some nos primeiros quadros, subindo como quem entra
       const h = Math.min(1, p / .06);
