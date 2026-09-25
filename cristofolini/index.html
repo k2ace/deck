@@ -747,34 +747,51 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   padding:clamp(2rem,6vh,4rem) var(--pad);
   border-bottom:1px solid rgba(255,255,255,.07);max-width:78rem;margin:0 auto;
 }
-@media(min-width:56rem){.vit-maq{grid-template-columns:1.35fr 1fr;gap:3rem}}
 .vit-foto{border-radius:1.25rem;overflow:hidden;background:
   radial-gradient(70% 70% at 50% 40%, #12384f, #061620 75%);aspect-ratio:16/9}
 .vit-foto img,.vit-foto video{width:100%;height:100%;object-fit:contain;display:block}
+/* No desktop as duas colunas precisam terminar juntas: a foto cresce em altura
+   em vez de flutuar no meio de um vão. */
+@media(min-width:56rem){
+  .vit-maq{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:4rem;align-items:center}
+  /* a foto preenche a coluna e acompanha a altura do texto, sem tarja preta em volta */
+  .vit-foto{aspect-ratio:4/3;height:auto}
+  .vit-foto img,.vit-foto video{object-fit:cover}
+  .vit-txt{max-width:33rem}
+}
+
 .vit-txt .rotfam{color:rgba(238,243,247,.55)}
 .vit-txt h3{font-family:Archivo,Inter,sans-serif;font-size:clamp(1.6rem,3.5vw,2.25rem);
   font-weight:600;letter-spacing:-.026em;line-height:1.08;margin:.25rem 0 1rem}
 .vit-txt h3 b{font-weight:700}
-.vit-lead{font-size:.9375rem;line-height:1.5;color:rgba(238,243,247,.66);margin:0 0 1.5rem;max-width:34rem}
-.vit-txt ul{margin:0 0 1.5rem 1rem;font-size:.875rem;line-height:1.7;color:rgba(238,243,247,.6)}
+.vit-lead{font-size:1rem;line-height:1.5;color:rgba(238,243,247,.68);margin:0 0 1.75rem;max-width:32rem}
+/* marcador discreto no lugar da bolinha do navegador */
+.vit-txt ul{list-style:none;margin:0 0 1.75rem;font-size:.875rem;line-height:1.6;
+  color:rgba(238,243,247,.62);display:grid;gap:.4375rem}
+.vit-txt ul li{position:relative;padding-left:1rem}
+.vit-txt ul li::before{content:"";position:absolute;left:0;top:.6875rem;
+  width:.375rem;height:1px;background:rgba(255,255,255,.35)}
 /* grandezas em destaque: número grande primeiro, explicação depois */
 .dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));
-  gap:1.125rem 1.75rem;margin:0 0 1.5rem}
+  gap:1.125rem 1.75rem;margin:0 0 1.75rem}
+@media(min-width:56rem){.dest{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem 2rem}}
 .dest-i{border-top:1px solid var(--line);padding-top:.6875rem;break-inside:avoid}
 .dest-ico{display:block;width:1.25rem;height:1.25rem;margin-bottom:.5rem;color:var(--marca);opacity:.9}
 .dest-i b{display:block;font-family:Archivo,Inter,sans-serif;font-weight:700;
   font-size:clamp(1.5rem,2.4vw,1.875rem);letter-spacing:-.03em;line-height:1}
 .dest-i b i{font-style:normal;font-size:.5em;font-weight:600;letter-spacing:-.01em;margin-left:.0625rem}
 .dest-i span{display:block;font-size:.75rem;line-height:1.35;color:var(--ink-3);margin-top:.4375rem}
-.dest-i em{display:block;font-style:normal;font-size:.75rem;line-height:1.35;margin-top:.25rem;
-  color:var(--ink-2);font-weight:600}
+.dest-i em{display:block;font-style:normal;font-size:.75rem;line-height:1.35;margin-top:.3125rem;
+  color:var(--ink-2);font-weight:500}
 .vit-txt .dest-i{border-top-color:rgba(255,255,255,.18)}
 .vit-txt .dest-i b{color:#fff}
 .vit-txt .dest-i span{color:rgba(238,243,247,.55)}
-.vit-txt .dest-i em{color:rgba(238,243,247,.82)}
+.vit-txt .dest-i em{color:rgba(238,243,247,.62)}
 .vit-txt .dest-ico{color:#6fb4e8}
-.vit-txt .btn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
-  box-shadow:none}
+.vit-txt .btn{background:#fff;color:#08151e;border:0;box-shadow:none}
+.vit-txt .btn.sec{background:transparent;color:rgba(238,243,247,.92);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.24)}
+.vit-txt .btn.sec:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
 /* Tela inicial: a fábrica deles ocupando a tela, duas portas e o que vem depois. */
 .inicio{padding-bottom:6rem}
 .ini-hero{
@@ -830,15 +847,20 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .barra-doc{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
 .barra-doc .btn,.barra-doc .escolha-btn{height:2.875rem}
 .barra-doc .escolha{margin-bottom:0;min-width:15rem;max-width:22rem;flex:1 1 15rem}
+.barra-doc .escolha-rot{display:none}
 .barra-doc .escolha-btn{padding:.6875rem .875rem}
 .barra-doc .escolha-val{font-weight:500;font-size:.875rem}
 .barra-doc .btn.zap{flex:0 0 auto}
+.vit-pe{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.14);padding-top:1.25rem;margin-top:1.75rem}
 .vit-acoes{display:flex;gap:.625rem;flex-wrap:wrap}
+.vit-acoes .btn{height:2.875rem;padding:0 1.25rem;display:inline-flex;align-items:center;
+  font-size:.875rem;font-weight:600}
 /* confirmação é contorno, não bloco de cor: o olho do cliente fica na máquina */
 .vit-acoes .btn.feito{background:transparent;color:#63dd92;
   box-shadow:inset 0 0 0 1.5px rgba(99,221,146,.6);border-color:transparent}
-.vit-preco{font-family:Archivo,Inter,sans-serif;font-size:1.25rem;font-weight:700;
-  letter-spacing:-.02em;margin-top:1rem;color:#fff}
+.vit-preco{font-family:Archivo,Inter,sans-serif;font-size:1.375rem;font-weight:700;
+  letter-spacing:-.024em;margin:0;color:#fff;line-height:1.1}
 .vit-preco small{font-weight:400;font-size:.8125rem;color:rgba(238,243,247,.6)}
 .vit-olho{
   display:grid;place-items:center;flex:0 0 auto;width:2.25rem;height:2.25rem;
@@ -901,6 +923,14 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .dock.sem-valor .row{justify-content:flex-end}
 .dock .row{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .dock .tot{font-size:1.375rem;font-weight:700;letter-spacing:-.024em;line-height:1.1}
+.dock.sem-valor .selo-i{display:none}
+/* selo de leitura rápida: o número está aqui, mas ainda não é palavra final */
+.selo-i{display:inline-grid;place-items:center;width:1.0625rem;height:1.0625rem;
+  margin-left:.375rem;vertical-align:-.1875rem;border-radius:50%;
+  font-family:Archivo,Inter,sans-serif;font-size:.625rem;font-weight:700;line-height:1;
+  color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line);
+  transition:color .2s ease,box-shadow .2s ease;will-change:transform}
+.selo-i:hover{color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--ink-3)}
 .btn{
   padding:.875rem 1.5rem;border-radius:.875rem;font-size:.9375rem;font-weight:600;letter-spacing:-.008em;
   background:linear-gradient(180deg,var(--marca-2),var(--marca));color:#fff;will-change:transform;
@@ -910,12 +940,15 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   transition:box-shadow .2s ease,filter .2s ease;
 }
 .btn:hover{filter:brightness(1.05)}
-/* o verde é contorno, não bloco: o botão avisa qual é sem gritar */
-.btn.zap{background:transparent;color:var(--zap);font-weight:600;
+/* o verde é contorno, não bloco: o botão avisa qual é sem gritar.
+   O texto segue o mesmo peso e tamanho do seletor ao lado, para os dois
+   lerem como um par. Verde fica só na borda e no símbolo do WhatsApp. */
+.btn.zap{background:transparent;color:var(--ink);font-weight:500;font-size:.875rem;
+  letter-spacing:-.004em;
   box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--zap) 55%,transparent);
-  display:inline-flex;align-items:center;gap:.5rem}
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
 .btn.zap:hover{filter:none;box-shadow:inset 0 0 0 1.5px var(--zap)}
-.btn.zap svg{width:1.125rem;height:1.125rem}
+.btn.zap svg{width:1.125rem;height:1.125rem;color:var(--zap)}
 /* botão só de ícone, para o que se explica pelo símbolo */
 .btn.ico{width:2.875rem;height:2.875rem;padding:0;display:grid;place-items:center}
 .btn.ico svg{width:1.1875rem;height:1.1875rem}
@@ -1190,7 +1223,7 @@ table.plan td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 <div class="dock no-print">
   <div class="wrap row">
     <div>
-      <p class="tiny" style="margin-bottom:.125rem" id="dockLabel" aria-live="polite">Total</p>
+      <p class="tiny" style="margin-bottom:.125rem"><span id="dockLabel" aria-live="polite">Total</span><button class="selo-i no-print" id="seloVal" type="button" aria-label="Sobre estes valores">i</button></p>
       <p class="tot num" id="dockTot">R$ 0</p>
     </div>
     <div style="display:flex;gap:.5rem">
@@ -2912,6 +2945,11 @@ ${U.nome}`;
     b.disabled = estado.etapa >= 1 && !estado.itens.length;
     document.querySelector('.dock').classList.toggle('pendente', falta.length > 0);
   }
+  el('#seloVal').addEventListener('click', () => {
+    aviso('Valores e prazos em validação com a Cristofolini');
+  });
+  tatil(el('#seloVal'), null, .86);
+
   function aviso(txt){
     const b = el('#dockLabel'), antes = b.textContent;
     b.textContent = txt; setTimeout(() => { b.textContent = antes; }, 2200);
@@ -3051,11 +3089,13 @@ ${U.nome}`;
             return `${p.variantes[0].desc[0] ? `<p class="vit-lead">${esc(p.variantes[0].desc[0])}</p>` : ''}
               ${grandezasHTML(g.achados)}
               <ul>${g.resto.slice(0, 3).map(d => `<li>${esc(d)}</li>`).join('')}</ul>`; })()}
-          <div class="vit-acoes">
-            <button class="btn" data-vadd="${pid}">Adicionar à proposta</button>
-            <button class="btn sec" data-ampliar="${pid}">${p.giro ? 'Girar em 360°' : 'Ver fotos'}</button>
+          <div class="vit-pe">
+            <p class="vit-preco num">${p.variantes.length > 1 ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</p>
+            <div class="vit-acoes">
+              <button class="btn" data-vadd="${pid}">Adicionar à proposta</button>
+              <button class="btn sec" data-ampliar="${pid}">${p.giro ? 'Girar em 360°' : 'Ver fotos'}</button>
+            </div>
           </div>
-          <p class="vit-preco num">${p.variantes.length > 1 ? '<small>a partir de </small>' : ''}${brl(p.variantes[0].valor)}</p>
         </div>
       </section>`).join('');
     pintaContagem();
