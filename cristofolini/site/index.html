@@ -6,36 +6,37 @@
 <title>Cristofolini Máquinas</title>
 <meta name="description" content="Extrusoras, picotadeiras e impressoras para embalagens plásticas flexíveis. Fabricadas na Grande Florianópolis desde 1997.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#06111a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23005389'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-style='italic' font-weight='700' fill='%23fff' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#07192A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23185790'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-style='italic' font-weight='700' fill='%23fff' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap">
-<link rel="preload" as="image" href="media/hero.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<link rel="preload" as="image" href="media/percurso/001.jpg">
 <style>
 /* ===========================================================
-   Tokens. Azul #005389 do logotipo; amarelo dos guarda-corpos
-   das máquinas como único acento. A página é cinematográfica:
-   capítulos escuros com um capítulo claro, o da máquina girando,
-   que usa o cinza do estúdio das renderizações.
+   Tokens. Identidade do site da Cristofolini: Montserrat,
+   azul #185790, marinho #07192A, cinza #F0F0F0 e o degradê azul
+   para marinho dos blocos. Títulos no padrão deles: parte leve,
+   parte forte ("Nossos <b>diferenciais</b>").
    =========================================================== */
 :root{
-  --marca:#005389;
-  --marca-2:#2E84C4;
-  --ouro:#F2B705;
-  --noite:#06111a;
-  --noite-2:#0b1a26;
-  --noite-3:#10212f;
-  --papel:#eef0f2;
+  --marca:#185790;
+  --marca-2:#1f68ab;
+  --prata:#C0C0C0;
+  --noite:#07192A;
+  --noite-2:#0a2136;
+  --noite-3:#0e2a44;
+  --papel:#F0F0F0;
+  --degrade:linear-gradient(180deg,#185790 0%,#07192A 100%);
   --estudio-cima:#a0a2a1;
   --estudio-baixo:#e0e1dc;
   --tinta:#0b1720;
   --tinta-2:#43525e;
   --claro:#f3f6f9;
   --claro-2:rgba(243,246,249,.66);
-  --claro-3:rgba(243,246,249,.42);
+  --claro-3:rgba(243,246,249,.62);
   --linha:rgba(255,255,255,.12);
-  --chrome:rgba(6,17,26,.55);
+  --chrome:rgba(7,25,42,.6);
   --pad:clamp(1rem,5vw,4rem);
   --r:1.25rem;
   --mola:cubic-bezier(.22,1,.36,1);
@@ -50,17 +51,18 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{margin:0;background:var(--noite);color:var(--claro);
-  font:400 1rem/1.6 Inter,system-ui,-apple-system,sans-serif;letter-spacing:-.005em;
+  font:400 1rem/1.6 Montserrat,system-ui,-apple-system,sans-serif;letter-spacing:-.005em;
   -webkit-font-smoothing:antialiased;overflow-x:clip}
 img,video,canvas{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--ouro);outline-offset:3px;border-radius:.5rem}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:.5rem}
 
-.display{font-family:Archivo,Inter,sans-serif;font-stretch:112%;font-weight:700;
-  letter-spacing:-.035em;line-height:.95;margin:0}
-.eyebrow{font:600 .75rem/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--claro-3);margin:0}
-.eyebrow b{color:var(--ouro);font-weight:600}
+.display{font-family:Montserrat,system-ui,sans-serif;font-weight:300;
+  letter-spacing:-.035em;line-height:1;margin:0}
+.display b,.it{font-weight:800;font-style:normal}
+.eyebrow{font:600 .75rem/1.2 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--claro-3);margin:0}
+.eyebrow b{color:#fff;font-weight:700}
 .num{font-variant-numeric:tabular-nums}
 
 /* ---------- Barra do topo: material translúcido, conteúdo passa por baixo ---------- */
@@ -74,15 +76,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .topo.escondido{transform:translateY(-110%)}
 .topo .logo img{height:1.35rem;width:auto}
 .topo nav{display:flex;align-items:center;gap:.25rem}
-.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 Inter,sans-serif;color:var(--claro-2);
+.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 Montserrat,sans-serif;color:var(--claro-2);
   transition:color .2s ease,background-color .2s ease}
 .topo nav a:hover{color:var(--claro);background:rgba(255,255,255,.08)}
 .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.25rem;border-radius:99rem;
-  font:600 .9375rem/1 Inter,sans-serif;letter-spacing:-.01em;white-space:nowrap;
+  font:600 .9375rem/1 Montserrat,sans-serif;letter-spacing:-.01em;white-space:nowrap;
   transition:transform .35s var(--mola),background-color .2s ease,box-shadow .2s ease;will-change:transform}
 .btn:active,.btn.pressionado{transform:scale(.96);transition-duration:.08s}
-.btn-ouro{background:var(--ouro);color:#1a1300}
-.btn-ouro:hover{background:#ffc619}
+.btn-marca{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.btn-marca:hover{background:var(--marca-2)}
 .btn-vidro{background:rgba(255,255,255,.12);color:var(--claro);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 .btn-vidro:hover{background:rgba(255,255,255,.2)}
@@ -91,45 +93,39 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .so-estreito{display:none}
 @media (max-width:760px){.topo nav a:not(.btn){display:none}.so-largo{display:none}.so-estreito{display:inline}}
 
-/* ---------- 1. Abertura ---------- */
-.abertura{position:relative;height:100svh;min-height:36rem}
-.abertura .quadro{position:absolute;inset:0;overflow:hidden;background:#000 url(media/hero.jpg) center/cover;
-  clip-path:inset(0 0 0 0 round 0);will-change:clip-path}
-.abertura video{width:100%;height:100%;object-fit:cover;transform:scale(1.08);will-change:transform}
-.abertura .veu{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(6,17,26,.55) 0%,rgba(6,17,26,.1) 30%,rgba(6,17,26,.2) 55%,rgba(6,17,26,.88) 100%)}
-.abertura .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.75rem}
-.abertura h1{font-size:clamp(3rem,min(9vw,13.5svh),9rem)}
-.abertura h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
-.abertura h1 .l span{display:block}
-.abertura h1 .l:nth-child(3) span{color:var(--ouro)}
-.abertura .base{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem}
-.abertura .base p{margin:0;max-width:30rem;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.125rem);line-height:1.55}
-.abertura .acoes{display:flex;gap:.75rem;flex-wrap:wrap}
+/* ---------- 1. Percurso: da fachada até a máquina, preso à rolagem ----------
+   Como a lukk: a página abre parada na fachada e cada rolada leva a
+   câmera para dentro, recepção, usinagem, solda, torno, montagem e galpão. */
+.percurso{position:relative;height:1000vh}
+.percurso .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(media/percurso/001.jpg) center/cover}
+.percurso canvas{position:absolute;inset:0;width:100%;height:100%}
+.percurso .veu{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(7,25,42,.55) 0%,rgba(7,25,42,.08) 28%,rgba(7,25,42,.15) 50%,rgba(7,25,42,.9) 100%)}
+.percurso .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.75rem;will-change:transform,opacity}
+.percurso h1{font-size:clamp(3rem,min(9vw,13.5svh),9rem)}
+.percurso h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
+.percurso h1 .l span{display:block}
+.percurso h1 .l:nth-child(3) span{font-weight:800}
+.percurso .base{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem}
+.percurso .base p{margin:0;max-width:30rem;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.125rem);line-height:1.55}
+.percurso .acoes{display:flex;gap:.75rem;flex-wrap:wrap}
 .rolar{position:absolute;left:50%;bottom:1rem;translate:-50% 0;width:1px;height:2.5rem;background:var(--linha);overflow:hidden}
 .rolar::after{content:"";position:absolute;inset:0;background:var(--claro);animation:rolar 2.4s var(--mola) infinite}
 @keyframes rolar{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
-
-/* ---------- 2. Manifesto: palavras acendem com a rolagem ---------- */
-.manifesto{padding:clamp(7rem,22vh,14rem) var(--pad);max-width:78rem;margin:0 auto}
-.manifesto .eyebrow{margin-bottom:2rem}
-.manifesto p.frase{font-family:Archivo,sans-serif;font-stretch:100%;font-weight:600;
-  font-size:clamp(1.75rem,4.4vw,4rem);line-height:1.12;letter-spacing:-.028em;margin:0}
-.manifesto .w{opacity:.14;transition:none}
-.manifesto em{font-style:normal;color:var(--ouro)}
-
-/* ---------- 3. Galpão: câmera entra rolando ---------- */
-.galpao{position:relative;height:320vh}
-.galpao .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#cfd2d4}
-.galpao canvas{position:absolute;inset:0;width:100%;height:100%}
-.galpao .veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,17,26,.7),rgba(6,17,26,0) 38%,rgba(6,17,26,0) 50%,rgba(6,17,26,.92))}
-@media (max-width:760px){.galpao .veu{background:linear-gradient(180deg,rgba(6,17,26,.7),rgba(6,17,26,0) 30%,rgba(6,17,26,.2) 45%,rgba(6,17,26,.95) 78%)}}
-.galpao .legenda{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(2rem,8vh,5rem);max-width:44rem;
-  opacity:0;transform:translateY(1.5rem)}
-.galpao .legenda h2{font-size:clamp(2.25rem,6vw,5.5rem)}
-.galpao .legenda p{margin:.9rem 0 0;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:34rem}
-.galpao .topo-legenda{position:absolute;top:clamp(5.5rem,14vh,8rem);left:var(--pad);right:var(--pad)}
-.galpao .topo-legenda h2{font-size:clamp(2rem,5vw,4.5rem);max-width:14ch}
+.cena{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(4.5rem,12vh,7rem);max-width:46rem;opacity:0;will-change:transform,opacity}
+.cena .eyebrow{margin-bottom:1rem}
+.cena h2{font-size:clamp(2.1rem,5.4vw,5rem)}
+.cena p{margin:1rem 0 0;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:34rem}
+.onde{position:absolute;right:var(--pad);bottom:clamp(1.25rem,4vh,2rem);display:flex;align-items:center;gap:.75rem;opacity:0;
+  font:600 .72rem/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--claro-2)}
+.onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha);overflow:hidden}
+.onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
+@media (max-width:760px){
+  .percurso{height:820vh}
+  .percurso .veu{background:linear-gradient(180deg,rgba(7,25,42,.6) 0%,rgba(7,25,42,.1) 25%,rgba(7,25,42,.25) 45%,rgba(7,25,42,.94) 80%)}
+  .onde{left:var(--pad);right:auto}
+  .onde .barra{width:4rem}
+}
 
 /* ---------- 4. A máquina em 360 ---------- */
 .giro{position:relative;height:420vh;color:var(--tinta)}
@@ -138,14 +134,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .giro canvas{position:absolute;inset:0;width:100%;height:100%}
 .giro .cabeca{position:absolute;top:clamp(5rem,12vh,7.5rem);left:var(--pad);right:var(--pad);
   display:flex;justify-content:space-between;align-items:start;gap:1rem}
-.giro .cabeca .eyebrow{color:rgba(11,23,32,.6)}
+.giro .cabeca .eyebrow{color:rgba(11,23,32,.78)}
 .giro .cabeca .eyebrow b{color:var(--marca)}
 .giro h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.6rem}
 .giro h2 small{display:block;font-size:.42em;letter-spacing:-.02em;color:var(--marca);font-weight:600;margin-bottom:.2em}
-.giro .graus{font:600 clamp(1.5rem,2.6vw,2.25rem)/1 Archivo,sans-serif;letter-spacing:-.03em;color:rgba(11,23,32,.35)}
+.giro .graus{font:600 clamp(1.5rem,2.6vw,2.25rem)/1 Montserrat,sans-serif;letter-spacing:-.03em;color:rgba(11,23,32,.35)}
 .giro .fichas{position:absolute;left:var(--pad);bottom:clamp(1.5rem,6vh,4rem);width:min(24rem,calc(100% - 2*var(--pad)));height:9.5rem}
 .giro .ficha{position:absolute;inset:auto 0 0;opacity:0;transform:translateY(1rem)}
-.giro .ficha .valor{font:700 clamp(3.25rem,7vw,6rem)/.9 Archivo,sans-serif;font-stretch:112%;letter-spacing:-.045em;color:var(--tinta)}
+.giro .ficha .valor{font:700 clamp(3.25rem,7vw,6rem)/.9 Montserrat,sans-serif;letter-spacing:-.045em;color:var(--tinta)}
 .giro .ficha .valor small{font-size:.36em;letter-spacing:-.01em;margin-left:.2em;color:var(--marca)}
 .giro .ficha p{margin:.55rem 0 0;color:var(--tinta-2);font-size:.975rem;line-height:1.45}
 .giro .trilho{position:absolute;right:var(--pad);bottom:clamp(1.5rem,6vh,4rem);display:flex;gap:.4rem}
@@ -154,6 +150,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* ---------- 5. Diferenciais: trilho horizontal ---------- */
 .diferenciais{position:relative;background:var(--noite)}
+.diferenciais .fixo{background:var(--degrade)}
 .diferenciais .fixo{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,4vh,3rem)}
 .diferenciais header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
 .diferenciais header h2{font-size:clamp(2.25rem,5.4vw,5rem);max-width:12ch}
@@ -161,29 +158,29 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .trilho-h{display:flex;gap:clamp(.75rem,1.6vw,1.25rem);padding:0 var(--pad);will-change:transform;width:max-content}
 .card-dif{position:relative;flex:none;width:clamp(17rem,30vw,25rem);aspect-ratio:490/700;border-radius:var(--r);overflow:hidden;background:var(--noite-3);isolation:isolate}
 .card-dif img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.12);will-change:transform}
-.card-dif::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,17,26,0) 35%,rgba(6,17,26,.92))}
+.card-dif::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,25,42,0) 35%,rgba(7,25,42,.92))}
 .card-dif .txt{position:absolute;inset:auto 0 0;padding:clamp(1.1rem,2vw,1.6rem)}
-.card-dif .n{font:600 .75rem/1 Inter,sans-serif;letter-spacing:.12em;color:var(--ouro)}
-.card-dif h3{font:700 clamp(1.4rem,2vw,1.8rem)/1.05 Archivo,sans-serif;letter-spacing:-.025em;margin:.6rem 0 .55rem}
+.card-dif .n{font:700 .75rem/1 Montserrat,sans-serif;letter-spacing:.12em;color:var(--prata)}
+.card-dif h3{font:700 clamp(1.4rem,2vw,1.8rem)/1.05 Montserrat,sans-serif;letter-spacing:-.025em;margin:.6rem 0 .55rem}
 .card-dif p{margin:0;color:var(--claro-2);font-size:.9rem;line-height:1.5}
 .card-dif.grande{width:clamp(19rem,40vw,34rem);aspect-ratio:auto;align-self:stretch}
 
 /* ---------- 6. Números ---------- */
-.numeros{padding:clamp(6rem,16vh,10rem) var(--pad);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem);
-  border-top:1px solid var(--linha);max-width:90rem;margin:0 auto}
-.numeros .n{font:700 clamp(3.5rem,8.5vw,8.5rem)/.85 Archivo,sans-serif;font-stretch:112%;letter-spacing:-.05em}
-.numeros .n sup{font-size:.4em;color:var(--ouro);vertical-align:top;margin-left:.04em}
-.numeros p{margin:.9rem 0 0;color:var(--claro-2);max-width:14rem;line-height:1.45}
+.numeros-fundo{background:var(--papel);color:var(--tinta)}
+.numeros{padding:clamp(6rem,16vh,10rem) var(--pad) clamp(3rem,8vh,5rem);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem);max-width:90rem;margin:0 auto}
+.numeros .n{font:800 clamp(3.5rem,8.5vw,8.5rem)/.85 Montserrat,sans-serif;letter-spacing:-.05em;color:var(--marca)}
+.numeros .n sup{font-size:.4em;color:var(--marca);vertical-align:top;margin-left:.04em}
+.numeros p{margin:.9rem 0 0;color:var(--tinta-2);max-width:14rem;line-height:1.45}
 @media (max-width:760px){.numeros{grid-template-columns:1fr 1fr;row-gap:3rem}}
 
 /* ---------- 7. Linha de máquinas ---------- */
-.linha{padding:clamp(5rem,12vh,8rem) 0 clamp(5rem,12vh,8rem);background:var(--papel);color:var(--tinta);border-radius:2rem 2rem 0 0}
+.linha{padding:clamp(5rem,12vh,8rem) 0 clamp(5rem,12vh,8rem);background:var(--papel);color:var(--tinta);border-top:1px solid rgba(11,31,48,.09)}
 .linha header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;max-width:90rem;margin:0 auto 2rem}
 .linha header .eyebrow{color:rgba(11,23,32,.55)}
 .linha header .eyebrow b{color:var(--marca)}
 .linha h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.7rem}
 .abas{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:.3rem;border-radius:99rem;background:rgba(11,23,32,.07);position:relative}
-.abas button{position:relative;z-index:1;padding:.65rem 1.1rem;border-radius:99rem;font:600 .9rem/1 Inter,sans-serif;color:var(--tinta-2);transition:color .25s ease}
+.abas button{position:relative;z-index:1;padding:.65rem 1.1rem;border-radius:99rem;font:600 .9rem/1 Montserrat,sans-serif;color:var(--tinta-2);transition:color .25s ease}
 .abas button[aria-selected="true"]{color:var(--tinta)}
 .abas .pilula{position:absolute;top:.3rem;bottom:.3rem;left:0;border-radius:99rem;background:#fff;
   box-shadow:0 .5px 1px rgba(11,31,48,.1),0 2px 6px rgba(11,31,48,.1);transition:transform .45s var(--mola),width .45s var(--mola)}
@@ -198,21 +195,21 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .maq .vista.agarrado{cursor:grabbing}
 .maq .vista canvas,.maq .vista img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .maq .dica{position:absolute;left:.75rem;bottom:.75rem;display:flex;align-items:center;gap:.4rem;padding:.4rem .65rem;border-radius:99rem;
-  font:600 .72rem/1 Inter,sans-serif;color:var(--tinta);background:rgba(255,255,255,.62);
+  font:600 .72rem/1 Montserrat,sans-serif;color:var(--tinta);background:rgba(255,255,255,.62);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .3s ease}
 .maq .dica svg{width:.95rem;height:.95rem}
 .maq.girou .dica{opacity:0}
 .maq .corpo{padding:1.1rem 1.2rem 1.25rem}
-.maq .fam{font:600 .72rem/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--marca)}
-.maq h3{font:700 1.6rem/1 Archivo,sans-serif;letter-spacing:-.03em;margin:.45rem 0 .4rem}
+.maq .fam{font:600 .72rem/1 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--marca)}
+.maq h3{font:700 1.6rem/1 Montserrat,sans-serif;letter-spacing:-.03em;margin:.45rem 0 .4rem}
 .maq h3 span{color:var(--tinta-2);font-weight:600}
 .maq .tag{margin:0;color:var(--tinta-2);font-size:.9rem;line-height:1.45;min-height:2.6em}
 .maq dl{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0 0;padding-top:1rem;border-top:1px solid rgba(11,31,48,.09)}
 .maq dt{font-size:.72rem;color:var(--tinta-2);line-height:1.3;order:2}
-.maq dd{margin:0;font:700 1.25rem/1 Archivo,sans-serif;letter-spacing:-.03em}
-.maq dd small{font:600 .7rem/1 Inter,sans-serif;letter-spacing:0;color:var(--tinta-2);margin-left:.15em}
+.maq dd{margin:0;font:700 1.25rem/1 Montserrat,sans-serif;letter-spacing:-.03em}
+.maq dd small{font:600 .7rem/1 Montserrat,sans-serif;letter-spacing:0;color:var(--tinta-2);margin-left:.15em}
 .maq dl div{display:flex;flex-direction:column;gap:.3rem}
-.maq .ver{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font:600 .875rem/1 Inter,sans-serif;color:var(--marca)}
+.maq .ver{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font:600 .875rem/1 Montserrat,sans-serif;color:var(--marca)}
 .maq .ver:hover{text-decoration:underline;text-underline-offset:.2em}
 
 /* ---------- 8. História: foto fixa, texto passa ---------- */
@@ -222,13 +219,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .historia .moldura img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);
   transition:opacity .9s ease,transform 1.6s var(--mola)}
 .historia .moldura img.on{opacity:1;transform:scale(1)}
-.historia .ano-fixo{position:absolute;left:1.25rem;bottom:1rem;font:700 clamp(3rem,6vw,5.5rem)/1 Archivo,sans-serif;font-stretch:112%;letter-spacing:-.05em;
+.historia .ano-fixo{position:absolute;left:1.25rem;bottom:1rem;font:700 clamp(3rem,6vw,5.5rem)/1 Montserrat,sans-serif;letter-spacing:-.05em;
   color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.35)}
 .historia .passos{padding:30svh 0 20svh}
 .historia .passo{min-height:70svh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s ease}
 .historia .passo.on{opacity:1}
 .historia .passo .eyebrow{margin-bottom:1rem}
-.historia .passo h3{font:700 clamp(2rem,3.6vw,3.25rem)/1 Archivo,sans-serif;letter-spacing:-.035em;margin:0 0 1rem}
+.historia .passo h3{font:700 clamp(2rem,3.6vw,3.25rem)/1 Montserrat,sans-serif;letter-spacing:-.035em;margin:0 0 1rem}
 .historia .passo p{margin:0 0 .9rem;color:var(--claro-2);font-size:1.0625rem;max-width:32rem}
 .historia .passo img.mobile{display:none}
 .historia-intro{padding:clamp(6rem,16vh,10rem) var(--pad) 0;max-width:90rem;margin:0 auto}
@@ -243,17 +240,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* ---------- 9. Propósito ---------- */
 .proposito{padding:clamp(8rem,24vh,16rem) var(--pad);text-align:center;overflow:hidden}
-.proposito blockquote{margin:0 auto;max-width:18ch;font:700 clamp(2.5rem,7.5vw,7.5rem)/.95 Archivo,sans-serif;font-stretch:112%;letter-spacing:-.045em}
-.proposito blockquote span{color:var(--ouro)}
+.proposito blockquote{margin:0 auto;max-width:18ch;font:300 clamp(2.5rem,7.5vw,7.5rem)/.95 Montserrat,sans-serif;letter-spacing:-.045em}
+.proposito blockquote span{font-weight:800}
 .proposito p{margin:2.5rem auto 0;max-width:36rem;color:var(--claro-2);font-size:1.125rem}
 
 /* ---------- 10. Contato ---------- */
 .contato{position:relative;min-height:100svh;display:flex;align-items:end;overflow:hidden;isolation:isolate}
 .contato video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.contato::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,17,26,.3),rgba(6,17,26,.55) 40%,rgba(6,17,26,.94))}
+.contato::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,25,42,.3),rgba(7,25,42,.55) 40%,rgba(7,25,42,.94))}
 .contato .dentro{width:100%;padding:clamp(6rem,14vh,9rem) var(--pad) clamp(2rem,6vh,4rem);max-width:90rem;margin:0 auto}
 .contato h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:14ch}
-.contato h2 span{color:var(--ouro)}
+.contato h2 span{font-weight:800}
 .contato .sub{margin:1.25rem 0 2.5rem;color:var(--claro-2);max-width:32rem;font-size:1.125rem}
 .areas{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem}
 .area{display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between;padding:1.1rem 1.1rem 1rem;border-radius:1rem;min-height:8.5rem;
@@ -262,12 +259,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   transition:transform .4s var(--mola),background-color .2s ease}
 .area:hover{background:rgba(255,255,255,.14)}
 .area:active,.area.pressionado{transform:scale(.97);transition-duration:.08s}
-.area svg{width:1.4rem;height:1.4rem;color:#62dd92}
-.area b{display:block;font:700 1.15rem/1.1 Archivo,sans-serif;letter-spacing:-.02em}
+.area svg{width:1.4rem;height:1.4rem;color:#25D366}
+.area b{display:block;font:700 1.15rem/1.1 Montserrat,sans-serif;letter-spacing:-.02em}
 .area small{display:block;margin-top:.3rem;color:var(--claro-3);font-size:.8rem}
-.area.destaque{background:var(--ouro);color:#1a1300;box-shadow:none}
-.area.destaque small{color:rgba(26,19,0,.65)}
-.area.destaque svg{color:#1a1300}
+.area.destaque{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.area.destaque small{color:rgba(255,255,255,.7)}
+.area.destaque svg{color:#fff}
 @media (max-width:960px){.areas{grid-template-columns:1fr 1fr}.area.destaque{grid-column:1/-1}}
 .rodape{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));
   border-top:1px solid var(--linha);color:var(--claro-3);font-size:.85rem;max-width:90rem;margin:0 auto}
@@ -277,8 +274,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* ---------- Filme institucional: sai do botão e volta para ele ---------- */
 dialog.filme{padding:0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;
-  display:grid;place-items:center;pointer-events:none;opacity:0}
-dialog.filme[open]{pointer-events:auto}
+  place-items:center;pointer-events:none;opacity:0}
+dialog.filme[open]{display:grid;pointer-events:auto}
 dialog.filme::backdrop{background:rgba(3,8,12,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 dialog.filme .tela{width:min(92vw,calc(82svh*16/9));aspect-ratio:16/9;border-radius:1rem;overflow:hidden;background:#000;
   box-shadow:0 2.5rem 6rem rgba(0,0,0,.6)}
@@ -287,17 +284,15 @@ dialog.filme .fechar{position:fixed;top:max(1rem,env(safe-area-inset-top));right
   display:grid;place-items:center;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 dialog.filme .fechar svg{width:1.1rem;height:1.1rem}
 
-/* ---------- Itálico de destaque: o traço inclinado do logotipo ---------- */
-.it{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:-.01em}
-.abertura h1 .it{font-size:1.08em;line-height:.9}
 
 /* ---------- Carregamento: monograma com brilho, sai assim que a abertura está pronta ---------- */
-.entrada{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--noite)}
-.entrada .mono{font:italic 400 clamp(6rem,18vw,11rem)/1 "Instrument Serif",Georgia,serif;
-  background:linear-gradient(100deg,rgba(243,246,249,.18) 30%,#fff 50%,rgba(243,246,249,.18) 70%) 0 0/250% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;animation:brilho 1.6s linear infinite}
+.entrada{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--degrade)}
+.entrada .mono{width:min(16rem,60vw);aspect-ratio:1024/184;
+  background:linear-gradient(100deg,rgba(243,246,249,.25) 30%,#fff 50%,rgba(243,246,249,.25) 70%) 0 0/250% 100%;
+  -webkit-mask:url(../img/logo-branco.png) center/contain no-repeat;mask:url(../img/logo-branco.png) center/contain no-repeat;
+  animation:brilho 1.6s linear infinite}
 .entrada .barra{position:absolute;left:50%;bottom:18%;width:7rem;height:2px;translate:-50% 0;border-radius:2px;background:var(--linha);overflow:hidden}
-.entrada .barra i{position:absolute;inset:0;background:var(--ouro);transform-origin:left;transform:scaleX(var(--p,0));transition:transform .3s var(--mola)}
+.entrada .barra i{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(var(--p,0));transition:transform .3s var(--mola)}
 @keyframes brilho{to{background-position:-150% 0}}
 html.carregando{overflow:hidden}
 
@@ -306,8 +301,8 @@ html.carregando{overflow:hidden}
   -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .faixa div{display:flex;width:max-content;animation:corre 38s linear infinite}
 .faixa:hover div{animation-play-state:paused}
-.faixa span{font:600 clamp(.8rem,1.2vw,.95rem)/1 Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;padding-right:1.5rem;color:var(--claro-2)}
-.faixa span b{color:var(--ouro);font-weight:600}
+.faixa span{font:600 clamp(.8rem,1.2vw,.95rem)/1 Montserrat,sans-serif;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;padding-right:1.5rem;color:var(--claro-2)}
+.faixa span b{color:var(--prata);font-weight:700}
 @keyframes corre{to{transform:translateX(-50%)}}
 
 /* ---------- Transparência e movimento reduzidos ---------- */
@@ -315,29 +310,33 @@ html.carregando{overflow:hidden}
   .topo::before{background:var(--noite);-webkit-backdrop-filter:none;backdrop-filter:none}
   .btn-vidro,.area,.maq .dica,dialog.filme .fechar{background:var(--noite-3);-webkit-backdrop-filter:none;backdrop-filter:none}
   .maq .dica{background:#fff}
-  .area.destaque{background:var(--ouro)}
+  .area.destaque{background:var(--marca)}
 }
 @media (prefers-reduced-motion: reduce){
   .rolar::after,.faixa div,.entrada .mono{animation:none}
   .entrada{display:none}
-  .galpao,.giro{height:auto}
-  .galpao .palco,.giro .palco{position:relative}
-  .galpao .legenda,.giro .ficha{opacity:1;transform:none}
-  .giro .fichas{position:relative;left:auto;bottom:auto;height:auto;padding:0 var(--pad) 2rem;width:auto;display:grid;gap:1.25rem;margin-top:-40svh}
+  .percurso,.giro{height:auto}
+  .percurso .palco,.giro .palco{position:relative}
+  .giro .ficha{opacity:1;transform:none}
+  .percurso .cenas{padding:3rem var(--pad) 1rem;display:grid;gap:3rem}
+  .cena{position:relative;inset:auto;opacity:1}
+  .onde{display:none}
+  .giro .palco{height:70svh}
+  .giro .graus{display:none}
+  .giro .fichas{position:relative;left:auto;bottom:auto;height:auto;padding:2rem var(--pad);width:auto;display:grid;gap:1.25rem;background:var(--estudio-baixo)}
   .giro .ficha{position:relative}
   .giro .trilho{display:none}
   .diferenciais .fixo{position:relative;height:auto;padding:6rem 0}
   .trilho-h{overflow-x:auto;width:auto;scroll-snap-type:x mandatory}
   .card-dif{scroll-snap-align:start}
   .historia .moldura img{transition:opacity .3s ease;transform:none}
-  .manifesto .w{opacity:1}
   .btn,.area,.maq,.abas .pilula{transition-duration:0s!important}
 }
 </style>
 </head>
 <body>
-<div class="entrada" id="entrada" aria-hidden="true"><span class="mono">C</span><span class="barra"><i id="barraEntrada"></i></span></div>
-<script>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("carregando")</script>
+<div class="entrada" id="entrada" aria-hidden="true"><span class="mono"></span><span class="barra"><i id="barraEntrada"></i></span></div>
+<script>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("carregando");setTimeout(function(){document.documentElement.classList.remove("carregando");var e=document.getElementById("entrada");e&&e.remove()},5000)</script>
 
 <header class="topo" id="topo">
   <a class="logo" href="#inicio" aria-label="Cristofolini Máquinas, início"><img src="../img/logo-branco.png" alt="Cristofolini" width="1024" height="184"></a>
@@ -345,57 +344,60 @@ html.carregando{overflow:hidden}
     <a href="#maquina">A máquina</a>
     <a href="#linha">Linha</a>
     <a href="#historia">História</a>
-    <a class="btn btn-ouro" href="#contato"><span class="so-largo">Falar com a fábrica</span><span class="so-estreito">Contato</span></a>
+    <a class="btn btn-marca" href="#contato"><span class="so-largo">Falar com a fábrica</span><span class="so-estreito">Contato</span></a>
   </nav>
 </header>
 
 <main>
-<!-- 1. Abertura -->
-<section class="abertura" id="inicio" aria-label="Abertura">
-  <div class="quadro" id="quadro">
-    <video id="heroVideo" src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+<!-- 1. Percurso -->
+<section class="percurso" id="inicio" aria-label="Da fachada até a máquina">
+  <div class="palco">
+    <canvas id="telaPercurso" aria-hidden="true"></canvas>
     <div class="veu"></div>
-  </div>
-  <div class="conteudo">
-    <p class="eyebrow"><b>Cristofolini Máquinas</b> · desde 1997 · Grande Florianópolis</p>
-    <h1 class="display" id="heroTitulo">
-      <span class="l"><span>Fazer melhor.</span></span>
-      <span class="l"><span>Fazer diferente.</span></span>
-      <span class="l"><span>Fazer a <span class="it">diferença.</span></span></span>
-    </h1>
-    <div class="base">
-      <p>Extrusoras, picotadeiras e impressoras para a indústria de embalagens plásticas flexíveis. Projeto próprio, usinagem própria, montagem em até três dias.</p>
-      <div class="acoes">
-        <button class="btn btn-vidro" id="abreFilme" type="button">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>
-          Assistir o filme
-        </button>
-        <a class="btn btn-ouro" href="#linha">Conhecer as máquinas</a>
+    <div class="conteudo" id="heroConteudo">
+      <p class="eyebrow"><b>Cristofolini Máquinas</b> · desde 1997 · Grande Florianópolis</p>
+      <h1 class="display" id="heroTitulo">
+        <span class="l"><span>Fazer melhor.</span></span>
+        <span class="l"><span>Fazer diferente.</span></span>
+        <span class="l"><span>Fazer a diferença.</span></span>
+      </h1>
+      <div class="base">
+        <p>Extrusoras, picotadeiras e impressoras para a indústria de embalagens plásticas flexíveis. Role a página e entre na fábrica.</p>
+        <div class="acoes">
+          <button class="btn btn-vidro" id="abreFilme" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>
+            Assistir ao filme
+          </button>
+          <a class="btn btn-marca" href="#linha">Conhecer as máquinas</a>
+        </div>
       </div>
     </div>
-  </div>
-  <span class="rolar" aria-hidden="true"></span>
-</section>
-
-<!-- 2. Manifesto -->
-<section class="manifesto" aria-label="Quem somos">
-  <p class="eyebrow">01 · Quem somos</p>
-  <p class="frase" id="frase">Produzir <em>máquinas de excelência</em> é apenas o nosso ponto de partida. Trabalhamos também para entregar serviços que garantam desempenho, confiança e resultados aos nossos clientes ao longo do tempo.</p>
-</section>
-
-<!-- 3. Galpão -->
-<section class="galpao" id="galpao" aria-label="Uma extrusora em produção">
-  <div class="palco">
-    <canvas id="telaGalpao" aria-hidden="true"></canvas>
-    <div class="veu"></div>
-    <div class="topo-legenda" id="galpaoTopo">
-      <p class="eyebrow">02 · No chão de fábrica</p>
-      <h2 class="display">Entre no <span class="it">galpão.</span></h2>
+    <span class="rolar" id="rolar" aria-hidden="true"></span>
+    <div class="cenas">
+      <div class="cena" data-de="33" data-ate="54">
+        <p class="eyebrow">01 · Quem somos</p>
+        <h2 class="display">Produzir <b>máquinas de excelência</b> é só o ponto de partida.</h2>
+        <p>Trabalhamos também para entregar serviços que garantam desempenho, confiança e resultados ao longo do tempo.</p>
+      </div>
+      <div class="cena" data-de="68" data-ate="100">
+        <p class="eyebrow">02 · No chão de fábrica</p>
+        <h2 class="display">Projeto próprio. <b>Usinagem própria.</b></h2>
+        <p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p>
+      </div>
+      <div class="cena" data-de="114" data-ate="136">
+        <h2 class="display">Sem cópias. <b>Sem atalhos.</b></h2>
+        <p>Desde 1997 desenvolvemos as nossas próprias máquinas, pensadas para a eficiência de quem produz.</p>
+      </div>
+      <div class="cena" data-de="146" data-ate="158">
+        <h2 class="display">Montada aqui. <b>Produzindo em 3 dias.</b></h2>
+        <p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p>
+      </div>
+      <div class="cena" data-de="180" data-ate="999">
+        <h2 class="display">Feita para produzir <b>sem parar.</b></h2>
+        <p>O máximo de produtividade com o mínimo de manutenção. O que muitos chamam de qualidade, nós chamamos de eficiência.</p>
+      </div>
     </div>
-    <div class="legenda" id="galpaoLegenda">
-      <h2 class="display">Feita para produzir sem parar.</h2>
-      <p>Engenharia inteligente e simplicidade operacional: o máximo de produtividade com o mínimo de manutenção. O que muitos chamam de qualidade, nós chamamos de eficiência.</p>
-    </div>
+    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Fachada</span><span class="barra"><i id="ondeBarra"></i></span></div>
   </div>
 </section>
 
@@ -406,14 +408,14 @@ html.carregando{overflow:hidden}
     <div class="cabeca">
       <div>
         <p class="eyebrow">03 · <b>Em destaque</b></p>
-        <h2 class="display"><small>Extrusora Superiore</small>MC-50</h2>
+        <h2 class="display"><small>Extrusora Superiore</small><b>MC-50</b></h2>
       </div>
       <span class="graus num" id="graus" aria-hidden="true">0°</span>
     </div>
     <div class="fichas" id="fichas">
       <div class="ficha"><div class="valor num">120<small>kg/h</small></div><p>Capacidade de produção com rosca de L/D 1:32, comprimento acima do convencional.</p></div>
       <div class="ficha"><div class="valor num">1.200<small>mm</small></div><p>Largura útil do bobinador. Até três bobinas de 400 mm ao mesmo tempo.</p></div>
-      <div class="ficha"><div class="valor num">Ø50<small>mm</small></div><p>Conjunto de extrusão desenhado para otimizar a plastificação da matéria prima.</p></div>
+      <div class="ficha"><div class="valor num">Ø50<small>mm</small></div><p>Conjunto de extrusão desenhado para otimizar a plastificação da resina.</p></div>
       <div class="ficha"><div class="valor num">10<small>pol.</small></div><p>CLP com tela touchscreen colorida. Operação simples e indicadores acompanhados à distância.</p></div>
       <div class="ficha"><div class="valor num">PEAD<small>PEBD</small></div><p>Cabeçote fixo, torre giratória e alinhador eletrônico para a melhor planicidade de filme.</p></div>
     </div>
@@ -432,23 +434,23 @@ html.carregando{overflow:hidden}
       <p>A máquina é o ponto de partida. O que faz a diferença é o que vem junto: montagem, suporte, peças e engenharia de quem fabrica.</p>
     </header>
     <div class="trilho-h" id="trilhoH">
-      <article class="card-dif"><img src="media/dif-montagem-1.jpg" alt="" loading="lazy"><div class="txt"><span class="n">01</span><h3>Produzindo em até 3 dias.</h3><p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p></div></article>
-      <article class="card-dif"><img src="media/dif-suporte-1.jpg" alt="" loading="lazy"><div class="txt"><span class="n">02</span><h3>Suporte com quem fez.</h3><p>Engenharia e suporte em canal remoto dedicado e gratuito, com visita presencial quando precisa.</p></div></article>
-      <article class="card-dif"><img src="media/dif-reposicao-1.jpg" alt="" loading="lazy"><div class="txt"><span class="n">03</span><h3>Peça na mão, rápido.</h3><p>Estoque dos itens de maior giro e prioridade na fabricação dos demais. Sua produção não fica esperando.</p></div></article>
-      <article class="card-dif"><img src="media/painel.jpg" alt="" loading="lazy"><div class="txt"><span class="n">04</span><h3>Sem cópias. Sem atalhos.</h3><p>Projetos originais, componentes de alta qualidade e só a tecnologia que faz diferença na operação.</p></div></article>
-      <article class="card-dif"><img src="media/dif-qualidade-1.jpg" alt="" loading="lazy"><div class="txt"><span class="n">05</span><h3>Qualidade em cada detalhe.</h3><p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p></div></article>
-      <article class="card-dif"><img src="media/dif-qualidade-2.jpg" alt="" loading="lazy"><div class="txt"><span class="n">06</span><h3>Feita aqui.</h3><p>Da usinagem à montagem, tudo dentro da nossa sede em Santa Catarina.</p></div></article>
+      <article class="card-dif"><img src="media/dif-montagem-1.jpg" alt=""><div class="txt"><span class="n">01</span><h3>Produzindo em até 3 dias.</h3><p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p></div></article>
+      <article class="card-dif"><img src="media/dif-suporte-1.jpg" alt=""><div class="txt"><span class="n">02</span><h3>Suporte com quem fez.</h3><p>Engenharia e suporte em canal remoto dedicado e gratuito, com visita presencial quando precisa.</p></div></article>
+      <article class="card-dif"><img src="media/dif-reposicao-1.jpg" alt=""><div class="txt"><span class="n">03</span><h3>Peça na mão, rápido.</h3><p>Estoque dos itens de maior giro e prioridade na fabricação dos demais. Sua produção não fica esperando.</p></div></article>
+      <article class="card-dif"><img src="media/painel.jpg" alt=""><div class="txt"><span class="n">04</span><h3>Sem cópias. Sem atalhos.</h3><p>Projetos originais, componentes de alta qualidade e só a tecnologia que faz diferença na operação.</p></div></article>
+      <article class="card-dif"><img src="media/dif-qualidade-1.jpg" alt=""><div class="txt"><span class="n">05</span><h3>Qualidade em cada detalhe.</h3><p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p></div></article>
+      <article class="card-dif"><img src="media/dif-qualidade-2.jpg" alt=""><div class="txt"><span class="n">06</span><h3>Feita aqui.</h3><p>Da usinagem à montagem, tudo dentro da nossa sede em Santa Catarina.</p></div></article>
     </div>
   </div>
 </section>
 
 <!-- 6. Números -->
-<section class="numeros" aria-label="Nossos números">
+<div class="numeros-fundo"><section class="numeros" aria-label="Nossos números">
   <div><div class="n num"><span data-conta="29">29</span></div><p>anos de história, desde o primeiro torno em 1997</p></div>
   <div><div class="n num"><span data-conta="60">60</span><sup>+</sup></div><p>profissionais entre engenharia, usinagem e montagem</p></div>
   <div><div class="n num"><span data-conta="5">5</span></div><p>países atendidos na América do Sul</p></div>
   <div><div class="n num"><span data-conta="3">3</span></div><p>dias da chegada da máquina até a primeira bobina</p></div>
-</section>
+</section></div>
 
 <!-- 7. Linha -->
 <section class="linha" id="linha" aria-label="Linha de máquinas">
@@ -514,7 +516,7 @@ html.carregando{overflow:hidden}
 
 <!-- 9. Propósito -->
 <section class="proposito" aria-label="Propósito">
-  <blockquote id="citacao">Se for para fazer <span>mais do mesmo,</span> preferimos <span class="it" style="color:inherit">não fazer.</span></blockquote>
+  <blockquote id="citacao">Se for para fazer <span>mais do mesmo,</span> preferimos não fazer.</blockquote>
   <p>Se um projeto não atinge o nível de produtividade, robustez ou desempenho em que acreditamos, ele não é lançado. Simples assim. Para nós, eficiência não é promessa. É resultado.</p>
 </section>
 
@@ -561,7 +563,7 @@ const IMG = '../img/';
    =========================================================== */
 const MAQUINAS = [
   {fam:'Extrusora', linha:'', mc:'MC-35', arq:'MC-35', slug:'extrusora-mc-35', tag:'O melhor custo para bobinas fundo estrela.', f:[[35,'kg/h','produção'],[400,'mm','bobinador'],[35,'mm','rosca']]},
-  {fam:'Extrusora', linha:'MultiStrati', mc:'MC-35', arq:'MC-35_Multistrati', slug:'extrusora-multistrati-mc-35', tag:'Filme em três camadas A+B+A: mais produção, menos matéria prima.', f:[[60,'kg/h','produção'],[400,'mm','bobinador'],['2×35','mm','rosca']]},
+  {fam:'Extrusora', linha:'MultiStrati', mc:'MC-35', arq:'MC-35_Multistrati', slug:'extrusora-multistrati-mc-35', tag:'Filme em três camadas A+B+A: mais produção, menos resina.', f:[[60,'kg/h','produção'],[400,'mm','bobinador'],['2×35','mm','rosca']]},
   {fam:'Extrusora', linha:'Versatile', mc:'MC-45', arq:'MC-45', slug:'extrusora-versatile-mc-45', tag:'Versatilidade e baixa manutenção com cabeçote giratório inteligente.', f:[[85,'kg/h','produção'],['1.000','mm','bobinador'],[45,'mm','rosca']]},
   {fam:'Extrusora', linha:'Versatile', mc:'MC-50', arq:'MC-50_Versatile', slug:'extrusora-versatile-mc-50', tag:'Robustez, alta produção e eficiência.', f:[[120,'kg/h','produção'],['1.200','mm','bobinador'],[50,'mm','rosca']]},
   {fam:'Extrusora', linha:'Versatile', mc:'MC-55', arq:'MC-55_Versatile', slug:'extrusora-versatile-mc-55', tag:'A maior capacidade de produção da linha Versatile.', f:[[140,'kg/h','produção'],['1.200','mm','bobinador'],[55,'mm','rosca']]},
@@ -599,7 +601,8 @@ function sequencia(urls){
     ordem.forEach(i => {
       if (vistos.has(i)) return; vistos.add(i);
       const im = new Image(); im.decoding = 'async'; im.src = urls[i];
-      im.onload = () => { imgs[i] = im; seq.onload && seq.onload(i); };
+      im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { imgs[i] = im; seq.onload && seq.onload(i); }); };
+      im.onerror = () => { if (i === 0) seq.falhou = true; };
     });
   };
   // quadro pronto mais perto do pedido, para nunca piscar em branco
@@ -652,7 +655,7 @@ function montaLinha(){
         <span class="fam">${m.fam}${m.linha ? ' ' + m.linha : ''}</span>
         <h3>${m.mc}</h3>
         <p class="tag">${m.tag}</p>
-        <dl>${m.f.map(([v, u, r]) => `<div><dd class="num">${v}${u ? `<small>${u}</small>` : ''}</dd><dt>${r}</dt></div>`).join('')}</dl>
+        <dl>${m.f.map(([v, u, r]) => `<div><dt>${r}</dt><dd class="num">${v}${u ? `<small>${u}</small>` : ''}</dd></div>`).join('')}</dl>
         <a class="ver" href="https://cristofolinimaquinas.com.br/${m.slug}/" target="_blank" rel="noopener">Ficha completa
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
@@ -670,7 +673,7 @@ function ligaGiroCartao(card, m){
   let tam = null, pos = 0, vel = 0, raf = 0, ativo = false;
 
   const desenha = () => {
-    if (!tam) tam = mede();
+    if (!tam || tam.w !== canvas.clientWidth) { if (!canvas.clientWidth) return; tam = mede(); }
     const p = ((pos % N) + N) % N;
     const a = Math.floor(p), b = (a + 1) % N, t = p - a;
     ctx.clearRect(0, 0, tam.w, tam.h);
@@ -842,7 +845,13 @@ const topo = ligaTopo();
    Movimento. Tudo preso à rolagem, então para, volta e acelera
    junto com o dedo. Nada roda sozinho com duração fixa.
    =========================================================== */
+// sem GSAP (CDN fora do ar), a página fica estática em vez de presa no carregamento
+if (!window.gsap || !window.ScrollTrigger){
+  document.documentElement.classList.remove('carregando'); $('#entrada') && $('#entrada').remove();
+  throw new Error('GSAP indisponível');
+}
 gsap.registerPlugin(ScrollTrigger);
+if (calmo){ const v = $('#videoAereo'); v.removeAttribute('autoplay'); v.pause(); }
 
 if (!calmo && window.Lenis){
   lenis = new Lenis({lerp: .11, smoothWheel: true});
@@ -858,20 +867,24 @@ if (!calmo && window.Lenis){
 addEventListener('scroll', () => topo(scrollY), {passive: true});
 ligaFilme();
 
-/* ---------- Galpão ---------- */
-const galpao = (() => {
-  const canvas = $('#telaGalpao'), {ctx, mede} = prepara(canvas);
-  const seq = sequencia([...Array(61)].map((_, i) => `media/galpao/${String(i + 1).padStart(2, '0')}.jpg`));
-  let tam = mede(), p = 0;
+/* ---------- Percurso ---------- */
+const CENAS = [[0,'Fachada'],[31,'Recepção'],[59,'Usinagem'],[90,'Solda'],[109,'Torno'],[125,'Usinagem'],[144,'Montagem'],[164,'Galpão']];
+const percurso = (() => {
+  const canvas = $('#telaPercurso'), {ctx, mede} = prepara(canvas);
+  const N = 213;
+  const seq = sequencia([...Array(N)].map((_, i) => `media/percurso/${String(i + 1).padStart(3, '0')}.jpg`));
+  // ordem de carga: primeiro um a cada 8, depois preenche; a rolagem nunca fica sem quadro
+  const ordem = []; [8, 4, 2, 1].forEach(passo => { for (let i = 0; i < N; i += passo) ordem.push(i); });
+  let tam = mede(), f = 0;
   const desenha = () => {
-    const f = p * (seq.n - 1), a = Math.floor(f);
+    const a = Math.floor(f), t = f - a;
     ctx.clearRect(0, 0, tam.w, tam.h);
-    desenhaCover(ctx, seq.perto(a), tam.w, tam.h, 1 + p * .06);
-    if (f - a > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, 1 + p * .06, f - a);
+    desenhaCover(ctx, seq.perto(a), tam.w, tam.h);
+    if (t > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, 1, t);
   };
-  seq.onload = (i) => { if (i === 0 || Math.abs(i - p * (seq.n - 1)) < 2) desenha(); };
+  seq.onload = (i) => { if (Math.abs(i - f) < 3 || i === 0) desenha(); };
   addEventListener('resize', () => { tam = mede(); desenha(); });
-  return {seq, set(v){ p = v; desenha(); }};
+  return {seq, N, carrega: () => seq.carrega(ordem), set(v){ f = v; desenha(); }};
 })();
 
 /* ---------- Giro 360 ---------- */
@@ -905,7 +918,7 @@ const giro = (() => {
 })();
 
 if (calmo){
-  galpao.seq.carrega([60]); galpao.set(1);
+  percurso.seq.carrega([0]); percurso.set(0);
   giro.seq.carrega([2]); giro.set(2 / 18);
   $$('.passo').forEach(ativaPasso);
   $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
@@ -921,14 +934,14 @@ function ativaPasso(el){
 }
 
 function movimento(){
-  /* Carregamento: espera o pôster da abertura e os primeiros quadros do galpão, no máximo 2,4 s */
+  /* Carregamento: espera o primeiro quadro da fachada e as fontes, no máximo 2,4 s */
   const entrada = $('#entrada'), barra = $('#barraEntrada');
   gsap.set('#heroTitulo .l > span', {yPercent: 110});
-  gsap.set('.abertura .eyebrow, .abertura .base', {opacity: 0, y: 16});
+  gsap.set('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 0, y: 16});
+  percurso.carrega();
   const esperas = [
-    new Promise(r => { const im = new Image(); im.onload = im.onerror = r; im.src = 'media/hero.jpg'; }),
     document.fonts ? document.fonts.ready : Promise.resolve(),
-    new Promise(r => { const t = setInterval(() => { if (galpao.seq.imgs[0]) { clearInterval(t); r(); } }, 60); })
+    new Promise(r => { const t = setInterval(() => { if (percurso.seq.imgs[0] || percurso.seq.falhou) { clearInterval(t); r(); } }, 60); })
   ];
   let prontas = 0;
   esperas.forEach(p => p.then(() => barra.style.setProperty('--p', ++prontas / esperas.length)));
@@ -938,42 +951,37 @@ function movimento(){
       document.documentElement.classList.remove('carregando');
       gsap.to(entrada, {opacity: 0, duration: .7, ease: 'power2.out', onComplete: () => entrada.remove()});
       gsap.to('#heroTitulo .l > span', {yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: .09, delay: .1});
-      gsap.to('.abertura .eyebrow, .abertura .base', {opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: .5, stagger: .08});
+      gsap.to('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: .5, stagger: .08});
       ScrollTrigger.refresh();
     }, Math.max(0, 900 - (performance.now() - t0)));
   });
-  /* Abertura: o vídeo encolhe num quadro ao rolar */
-  const tl = gsap.timeline({scrollTrigger: {trigger: '.abertura', start: 'top top', end: 'bottom top', scrub: true}});
-  tl.to('#quadro', {clipPath: 'inset(4% 4% 12% 4% round 2rem)', ease: 'none'}, 0)
-    .to('#heroVideo', {scale: 1.25, ease: 'none'}, 0)
-    .to('.abertura .conteudo', {yPercent: -30, opacity: 0, ease: 'none'}, 0);
-
-  /* Manifesto: cada palavra acende quando passa pelo meio da tela */
-  const frase = $('#frase');
-  const embrulha = (no) => {
-    [...no.childNodes].forEach(n => {
-      if (n.nodeType === 3){
-        const frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(p => {
-          if (!p.trim()) { frag.append(p); return; }
-          const s = document.createElement('span'); s.className = 'w'; s.textContent = p; frag.append(s);
-        });
-        n.replaceWith(frag);
-      } else embrulha(n);
-    });
-  };
-  embrulha(frase);
-  gsap.to($$('.w', frase), {opacity: 1, ease: 'none', stagger: .1,
-    scrollTrigger: {trigger: frase, start: 'top 78%', end: 'bottom 45%', scrub: true}});
-
-  /* Galpão: a câmera avança conforme a rolagem */
-  galpao.seq.carrega([0, 30, 60]);
-  galpao.set(0);
-  ScrollTrigger.create({trigger: '#galpao', start: 'top top', end: 'bottom bottom', scrub: true,
-    onUpdate: s => galpao.set(s.progress)});
-  gsap.timeline({scrollTrigger: {trigger: '#galpao', start: 'top top', end: 'bottom bottom', scrub: true}})
-    .to('#galpaoTopo', {opacity: 0, y: -30, ease: 'none', duration: .25}, .1)
-    .to('#galpaoLegenda', {opacity: 1, y: 0, ease: 'none', duration: .2}, .62);
+  /* Percurso: a rolagem é a câmera. Segura a fachada parada no começo,
+     depois cada quadro acompanha o dedo, para frente e para trás. */
+  const PARADO = .035;
+  const cenas = $$('.cena').map(el => ({el, de: +el.dataset.de, ate: +el.dataset.ate}));
+  const heroC = $('#heroConteudo'), rolar = $('#rolar'), onde = $('#onde'), ondeNome = $('#ondeNome'), ondeBarra = $('#ondeBarra');
+  const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
+  ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
+    onUpdate: s => {
+      const p = s.progress;
+      const f = p < PARADO ? 0 : (p - PARADO) / (1 - PARADO) * (percurso.N - 1);
+      percurso.set(f);
+      // título some nos primeiros quadros, subindo como quem entra
+      const h = Math.min(1, p / .05);
+      heroC.style.opacity = 1 - h;
+      heroC.style.transform = `translateY(${-h * 12}vh)`;
+      heroC.style.pointerEvents = h > .6 ? 'none' : '';
+      rolar.style.opacity = 1 - Math.min(1, p / .02);
+      cenas.forEach(c => {
+        const o = janela(f, c.de - 6, c.de + 2, c.ate - 4, c.ate + 4);
+        c.el.style.opacity = o;
+        c.el.style.transform = `translateY(${(1 - o) * (f < c.de + 2 ? 2 : -2)}rem)`;
+      });
+      onde.style.opacity = Math.min(1, Math.max(0, (p - .04) / .03));
+      let nome = CENAS[0][1]; CENAS.forEach(([q, n]) => { if (f >= q) nome = n; });
+      if (ondeNome.textContent !== nome) ondeNome.textContent = nome;
+      ondeBarra.style.setProperty('--p', p.toFixed(3));
+    }});
 
   /* Giro: uma volta completa da extrusora, fichas trocando pelo caminho */
   const fichas = $$('#fichas .ficha'), barras = $$('#trilhoGiro i'), graus = $('#graus');
