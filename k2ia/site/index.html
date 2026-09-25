@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>K2IA · Inteligência que trabalha dentro da sua empresa</title>
+<meta name="description" content="A K2IA cria e treina uma inteligência sob medida para o seu negócio: atendimento que não para, sistemas sob medida, automação e assistentes de IA. Coco Bambu, Xperiun, Clube M, Feeling Lounge e Full Raise já rodam com a K2IA.">
+<link rel="canonical" href="https://k2ia.app/">
+<meta name="theme-color" content="#050912">
+<meta property="og:type" content="website">
+<meta property="og:title" content="K2IA · Inteligência que trabalha dentro da sua empresa">
+<meta property="og:description" content="Marcas que você conhece já colocam a operação na mão da inteligência da K2IA. Atendimento, sistemas, automação e IA sob medida, de ponta a ponta.">
+<meta property="og:url" content="https://k2ia.app/">
+<meta property="og:image" content="https://k2ia.app/assets/logo-k2ia.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* ===========================================================
+   Tokens. Marca K2IA: quase preto #050912, um acento só (ciano
+   #2dd4ef; o #4cb9fb entra apenas em degradê discreto), Sora no
+   display com "parte leve, parte forte" e Inter no corpo.
+   =========================================================== */
+:root{
+  --fundo:#050912;
+  --fundo-2:#080f1c;
+  --painel:#0c1424;
+  --painel-2:#101a2e;
+  --ciano:#2dd4ef;
+  --ciano-2:#4cb9fb;
+  --ciano-forte:#5ce4fb;
+  --tinta:#eef3fc;
+  --tinta-2:rgba(238,243,252,.72);
+  --tinta-3:rgba(238,243,252,.52);
+  --escuro:#03121a;
+  --linha:rgba(120,170,255,.12);
+  --linha-2:rgba(120,170,255,.22);
+  --chrome:rgba(5,9,18,.62);
+  --degrade:linear-gradient(135deg,#2dd4ef,#4cb9fb);
+  --pad:clamp(1rem,5vw,4rem);
+  --r:1.25rem;
+  --mola:cubic-bezier(.22,1,.36,1);
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--tinta-2:rgba(238,243,252,.92);--tinta-3:rgba(238,243,252,.8);--linha:rgba(120,170,255,.4);--linha-2:rgba(120,170,255,.6);--chrome:rgba(5,9,18,.96)}
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--fundo);color:var(--tinta);
+  font:400 1.0625rem/1.5 Inter,system-ui,-apple-system,sans-serif;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,canvas,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ciano);outline-offset:3px;border-radius:.5rem}
+[tabindex="-1"]:focus{outline:none}
+section{scroll-margin-top:4.5rem}
+
+.display{font-family:Sora,system-ui,sans-serif;font-weight:300;letter-spacing:-.04em;line-height:1.02;margin:0;text-wrap:balance}
+.display b{font-weight:800}
+.eyebrow{font:600 .72rem/1.2 Sora,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-3);margin:0}
+.eyebrow b{color:var(--ciano);font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- Barra do topo: material translúcido, conteúdo passa por baixo ---------- */
+.topo{position:fixed;inset:0 0 auto;z-index:50;padding:max(.75rem,env(safe-area-inset-top)) var(--pad) .75rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  transition:transform .5s var(--mola)}
+.topo::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s ease;
+  background:var(--chrome);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+  -webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
+.topo.solido::before{opacity:1}
+.topo.escondido{transform:translateY(-110%)}
+.topo .marca{display:flex;align-items:center;gap:.55rem;font:700 1.05rem/1 Sora,sans-serif;letter-spacing:-.01em}
+.topo .marca img{width:1.75rem;height:1.75rem;border-radius:.45rem}
+.topo nav{display:flex;align-items:center;gap:.25rem}
+.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 Inter,sans-serif;color:var(--tinta-2);
+  transition:color .2s ease,background-color .2s ease}
+.topo nav a:hover{color:var(--tinta);background:rgba(255,255,255,.08)}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.3rem;border-radius:99rem;
+  font:600 .9375rem/1 Sora,sans-serif;letter-spacing:-.01em;white-space:nowrap;
+  transition:transform .35s var(--mola),background-color .2s ease,box-shadow .2s ease;will-change:transform}
+.btn:active,.btn.pressionado{transform:scale(.96);transition-duration:.08s}
+.btn-marca{background:var(--ciano);color:var(--escuro);box-shadow:0 .5rem 1.5rem -.5rem rgba(45,212,239,.55),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn-marca:hover{background:var(--ciano-forte)}
+.btn-vidro{background:rgba(255,255,255,.1);color:var(--tinta);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.btn-vidro:hover{background:rgba(255,255,255,.17)}
+.btn svg{width:1.05em;height:1.05em;flex:none}
+.topo .btn{padding:.6rem 1rem;font-size:.875rem}
+.so-estreito{display:none}
+@media (max-width:860px){
+  .topo nav a:not(.btn){display:none}
+  .topo nav a.fica{display:inline-block;padding:.5rem .55rem}
+  .so-largo{display:none}.so-estreito{display:inline}
+}
+@media (max-width:360px){.topo nav a.fica{display:none}}
+
+/* ---------- 1. Percurso: a rolagem é a câmera atravessando a rede ----------
+   A página abre parada na boca do túnel de partículas e cada rolada leva a
+   câmera mais fundo: a mensagem, a resposta, o gerente, as quatro frentes e,
+   no fim, a rede se organiza no cérebro da marca. */
+.rolo{position:relative}
+.rolo .palco{position:sticky;top:0;height:100svh;overflow:hidden;
+  background:radial-gradient(ellipse 70% 60% at 50% 42%,#0b1a33 0%,var(--fundo) 70%)}
+.rolo canvas{position:absolute;inset:0;width:100%;height:100%}
+.percurso{height:900vh}
+.rolo .veu{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(5,9,18,.6) 0%,rgba(5,9,18,0) 28%,rgba(5,9,18,0) 52%,rgba(5,9,18,.85) 100%)}
+.percurso .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.6rem;will-change:transform,opacity}
+.percurso h1{font-size:clamp(1.9rem,min(6.4vw,11svh),7.5rem);letter-spacing:-.045em}
+.percurso h1 .l{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.percurso h1 .l span{display:block}
+.percurso h1 .l:nth-child(n+2) span{font-weight:800}
+.percurso .base{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem}
+.percurso .base p{margin:0;max-width:32rem;color:var(--tinta-2);font-size:clamp(1rem,1.3vw,1.125rem);line-height:1.55}
+.percurso .acoes{display:flex;gap:.75rem;flex-wrap:wrap}
+.rolar{position:absolute;left:50%;bottom:1rem;translate:-50% 0;width:1px;height:2.5rem;background:var(--linha-2);overflow:hidden}
+.rolar::after{content:"";position:absolute;inset:0;background:var(--ciano);animation:rolar 2.4s var(--mola) infinite}
+@keyframes rolar{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+.cena{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(4.5rem,12vh,7rem);max-width:40rem;opacity:0;will-change:transform,opacity;
+  text-shadow:0 1px 2px rgba(5,9,18,.6),0 .5rem 2rem rgba(5,9,18,.6)}
+.cena .eyebrow{margin-bottom:1rem}
+.cena h2{font-size:clamp(2rem,5.2vw,5.25rem)}
+.cena.centro{left:var(--pad);right:var(--pad);max-width:none;text-align:center;bottom:clamp(3.5rem,9vh,6rem)}
+.cena.centro p{margin-inline:auto}
+.cena p{margin:1rem 0 0;color:var(--tinta-2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:32rem}
+.onde{position:absolute;right:var(--pad);bottom:clamp(1.25rem,4vh,2rem);display:flex;align-items:center;gap:.75rem;opacity:0;
+  font:600 .72rem/1 Sora,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);white-space:nowrap}
+.onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha-2);overflow:hidden}
+.onde .barra i{display:block;height:100%;background:var(--ciano);transform-origin:left;transform:scaleX(var(--p,0))}
+
+/* cartões sobre a rede: a conversa que vai chegando e o aviso ao gerente */
+.cartoes{position:absolute;right:var(--pad);bottom:clamp(4.5rem,12vh,7rem);width:min(22rem,calc(100% - 2*var(--pad)));
+  display:flex;flex-direction:column;gap:.75rem;opacity:0;pointer-events:none;will-change:transform,opacity}
+.cartao{border-radius:var(--r);background:rgba(12,20,36,.72);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(255,255,255,.06),0 .5px 1px rgba(0,0,0,.3),0 1.5rem 3rem -1rem rgba(0,0,0,.6);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);overflow:hidden}
+.cartao .cabeca{display:flex;align-items:center;gap:.65rem;padding:.8rem 1rem;border-bottom:1px solid var(--linha)}
+.cartao .avatar{width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;background:var(--degrade);
+  font:800 .8rem/1 Sora,sans-serif;color:var(--escuro)}
+.cartao .cabeca b{display:block;font:600 .85rem/1.2 Inter,sans-serif}
+.cartao .cabeca small{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--tinta-3)}
+.cartao .cabeca small::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--ciano);box-shadow:0 0 .5rem var(--ciano)}
+.mensagens{display:flex;flex-direction:column;gap:.5rem;padding:.9rem 1rem 1rem}
+.msg{display:none;flex-direction:column;max-width:88%;padding:.6rem .8rem;border-radius:1rem;font-size:.9rem;line-height:1.4;
+  background:rgba(255,255,255,.08);border-bottom-left-radius:.3rem;align-self:flex-start;will-change:transform,opacity}
+.msg.on{display:flex}
+.msg time{font-size:.66rem;color:var(--tinta-3);margin-top:.3rem;align-self:flex-end}
+.msg.k2ia{align-self:flex-end;background:rgba(45,212,239,.16);box-shadow:inset 0 0 0 1px rgba(45,212,239,.28);
+  border-bottom-left-radius:1rem;border-bottom-right-radius:.3rem}
+.msg.digitando .texto,.msg.digitando time{display:none}
+.msg .pontos{display:none;gap:.25rem;padding:.2rem 0}
+.msg.digitando .pontos{display:flex}
+.msg .pontos i{width:.4rem;height:.4rem;border-radius:50%;background:var(--ciano);opacity:.5;animation:pisca 1s ease-in-out infinite}
+.msg .pontos i:nth-child(2){animation-delay:.15s}.msg .pontos i:nth-child(3){animation-delay:.3s}
+@keyframes pisca{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:1;transform:translateY(-.15rem)}}
+.msg.registro{align-self:center;max-width:100%;background:none;box-shadow:inset 0 0 0 1px var(--linha-2);border-radius:99rem;
+  padding:.4rem .8rem;font:500 .74rem/1.2 Inter,sans-serif;color:var(--tinta-2);flex-direction:row;align-items:center;gap:.4rem}
+.msg.registro svg{width:.9rem;height:.9rem;color:var(--ciano)}
+.alerta{display:flex;gap:.75rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(45,212,239,.12);
+  box-shadow:inset 0 0 0 1px rgba(45,212,239,.35),0 1.5rem 3rem -1rem rgba(0,0,0,.6);opacity:0;transform:translateY(.5rem);
+  transition:opacity .45s ease,transform .45s var(--mola)}
+.alerta.on{opacity:1;transform:none}
+.alerta svg{width:1.25rem;height:1.25rem;flex:none;color:var(--ciano);margin-top:.1rem}
+.alerta b{display:block;font:600 .82rem/1.2 Sora,sans-serif;color:var(--ciano)}
+.alerta span{display:block;margin-top:.2rem;font-size:.85rem;line-height:1.4}
+.percurso .cartoes .mensagens .msg{transition:opacity .4s ease,transform .5s var(--mola)}
+@media (max-width:760px){
+  .percurso{height:760vh}
+  .percurso .conteudo{gap:1.2rem}
+  .percurso .base p{font-size:.95rem}
+  .cena{bottom:clamp(4rem,9vh,6rem)}
+  .cena p{font-size:.95rem}
+  .onde{left:var(--pad);right:auto}
+  .onde .barra{width:4rem}
+  /* celular: o cartão fica no alto e o texto embaixo, sem se cruzarem */
+  .cartoes{top:calc(4.25rem + env(safe-area-inset-top));bottom:auto;left:var(--pad);right:var(--pad);width:auto}
+  .cartoes .cartao .mensagens{max-height:9.5rem;justify-content:flex-end;padding:.6rem .8rem .8rem}
+  .msg{font-size:.84rem;padding:.5rem .7rem}
+  .alerta span{font-size:.8rem}
+  .rolo .veu{background:linear-gradient(180deg,rgba(5,9,18,.6) 0%,rgba(5,9,18,.1) 25%,rgba(5,9,18,.15) 50%,rgba(5,9,18,.9) 100%)}
+}
+@media (max-height:600px){.cartoes{display:none}}
+
+/* ---------- 2. A conversa, inteira: celular preso, fichas trocando ---------- */
+.conversa{position:relative;height:500vh;background:var(--fundo)}
+.conversa .palco{position:sticky;top:0;height:100svh;overflow:hidden;
+  background:radial-gradient(ellipse 40% 50% at 72% 52%,rgba(45,212,239,.09),transparent 70%),var(--fundo)}
+.conversa .cabeca{position:absolute;top:clamp(4.5rem,11vh,7rem);left:var(--pad);right:var(--pad)}
+.conversa .cabeca h2{font-size:clamp(2.25rem,5.4vw,5.25rem);margin-top:.6rem}
+.conversa .cabeca h2 b{color:var(--tinta)}
+.fone-pos{position:absolute;right:calc(var(--pad) + 6vw);top:50%;transform:translateY(-50%)}
+.fone{position:relative;width:min(19rem,38vw);height:min(38rem,74svh);will-change:transform,opacity;
+  border-radius:2.6rem;background:#0a1120;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 0 .45rem #060b16,0 .5px 1px rgba(0,0,0,.4),0 1rem 2rem -1rem rgba(0,0,0,.6),0 4rem 8rem -2rem rgba(0,0,0,.85);
+  overflow:hidden;display:flex;flex-direction:column}
+.fone::before{content:"";position:absolute;top:.85rem;left:50%;translate:-50% 0;width:5.5rem;height:1.35rem;border-radius:99rem;background:#060b16;z-index:2}
+.fone .cabeca-fone{padding:2.6rem 1.2rem .8rem;display:flex;align-items:center;gap:.65rem;border-bottom:1px solid var(--linha);flex:none}
+.fone .avatar{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:var(--degrade);font:800 .85rem/1 Sora,sans-serif;color:var(--escuro)}
+.fone .cabeca-fone b{display:block;font:600 .85rem/1.2 Inter,sans-serif}
+.fone .cabeca-fone small{font-size:.7rem;color:var(--tinta-3)}
+.fone .mensagens{flex:1;justify-content:flex-end;overflow:hidden;padding:.9rem 1rem 1.4rem}
+.fone .msg{font-size:.86rem}
+.conversa .fichas{position:absolute;left:var(--pad);bottom:clamp(6rem,16vh,9rem);width:min(28rem,calc(50% - var(--pad)));height:12rem}
+.conversa .ficha{position:absolute;inset:auto 0 0;opacity:0}
+.conversa .ficha .valor{font:800 clamp(1.75rem,3.2vw,2.75rem)/1.05 Sora,sans-serif;letter-spacing:-.035em;margin:0}
+.conversa .ficha .valor small{display:block;font:600 .72rem/1 Sora,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ciano);margin-bottom:.8rem}
+.conversa .ficha p{margin:.7rem 0 0;color:var(--tinta-2);font-size:1.05rem;line-height:1.5;max-width:24rem}
+.conversa .trilho{position:absolute;left:var(--pad);bottom:clamp(1.5rem,6vh,4rem);display:flex;gap:.4rem}
+.conversa .trilho i{width:1.75rem;height:.2rem;border-radius:1rem;background:var(--linha-2);overflow:hidden;position:relative}
+.conversa .trilho i::after{content:"";position:absolute;inset:0;background:var(--ciano);transform-origin:left;transform:scaleX(var(--p,0))}
+@media (max-width:760px){
+  .conversa .cabeca{top:calc(3.75rem + env(safe-area-inset-top))}
+  .conversa .cabeca h2{font-size:clamp(1.6rem,7vw,2.2rem)}
+  .conversa .cabeca .eyebrow{display:none}
+  .fone-pos{left:50%;right:auto;top:calc(7.75rem + env(safe-area-inset-top));transform:translateX(-50%)}
+  .fone{width:min(17rem,80vw);height:min(24rem,44svh);border-radius:2rem}
+  .fone .cabeca-fone{padding:1.8rem 1rem .6rem}
+  .fone::before{width:4rem;height:1rem;top:.55rem}
+  .fone .mensagens{padding:.6rem .8rem 1rem}
+  .fone .msg{font-size:.8rem;padding:.5rem .7rem}
+  .conversa .fichas{right:var(--pad);left:var(--pad);bottom:clamp(3.75rem,9vh,5rem);width:auto;height:8.5rem}
+  .conversa .ficha .valor{font-size:clamp(1.4rem,6vw,1.75rem)}
+  .conversa .ficha .valor small{margin-bottom:.4rem}
+  .conversa .ficha p{font-size:.92rem;margin-top:.4rem}
+  .conversa .trilho{left:var(--pad);right:auto;bottom:clamp(1.25rem,4vh,2rem)}
+}
+@media (max-height:640px) and (max-width:760px){
+  .fone{height:36svh}
+  .conversa .cabeca h2{font-size:1.4rem}
+}
+
+/* ---------- 3. Soluções: trilho horizontal ---------- */
+.solucoes{position:relative;background:var(--fundo)}
+.solucoes .fixo{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,4vh,3rem);
+  background:linear-gradient(180deg,var(--fundo),var(--fundo-2))}
+.solucoes header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
+.solucoes header h2{font-size:clamp(2.25rem,5.4vw,5.25rem);max-width:14ch;margin-top:.6rem}
+.solucoes header p{margin:0;max-width:26rem;color:var(--tinta-2)}
+.trilho-h{display:flex;gap:clamp(.75rem,1.6vw,1.25rem);padding:0 var(--pad);will-change:transform;width:max-content}
+.card-sol{position:relative;flex:none;width:clamp(17rem,27vw,22rem);min-height:clamp(20rem,46svh,26rem);border-radius:1.75rem;padding:clamp(1.5rem,2.2vw,2rem);
+  display:flex;flex-direction:column;background:var(--painel)}
+.card-sol .ic{width:2.75rem;height:2.75rem;display:grid;place-items:center;color:var(--ciano)}
+.card-sol .ic svg{width:1.75rem;height:1.75rem}
+.card-sol .n{margin-top:auto;padding-top:2rem;font:700 .72rem/1 Sora,sans-serif;letter-spacing:.14em;color:var(--ciano)}
+.card-sol h3{font:700 clamp(1.35rem,1.9vw,1.75rem)/1.08 Sora,sans-serif;letter-spacing:-.03em;margin:.6rem 0 .6rem;min-height:2.16em}
+.card-sol p{margin:0;color:var(--tinta-2);font-size:.925rem;line-height:1.5}
+@media (max-height:600px){
+  .solucoes .fixo{gap:1rem}
+  .solucoes header p{display:none}
+  .solucoes header h2{font-size:clamp(1.5rem,4.5vh,3rem)}
+  .card-sol{min-height:0;width:clamp(14rem,50svh,20rem);padding:1.25rem}
+  .card-sol h3{font-size:1.1rem}.card-sol p{font-size:.8rem}
+}
+
+/* ---------- 4. Números ---------- */
+.numeros-fundo{background:var(--fundo-2);border-top:1px solid var(--linha)}
+.numeros{padding:clamp(6rem,16vh,12rem) var(--pad);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem);max-width:90rem;margin:0 auto}
+.numeros .n{font:700 clamp(3.25rem,7.5vw,7.5rem)/.9 Sora,sans-serif;letter-spacing:-.05em;color:var(--tinta)}
+.numeros .n sup{font-size:.4em;vertical-align:top;margin-left:.04em;color:var(--ciano)}
+.numeros .n small{font-size:.4em;letter-spacing:-.02em;margin-left:.05em;color:var(--ciano)}
+.numeros p{margin:.9rem 0 0;color:var(--tinta-2);max-width:15rem;line-height:1.45}
+@media (max-width:760px){.numeros{grid-template-columns:1fr 1fr;row-gap:3rem}}
+
+/* ---------- 5. Cases: abas com pílula ---------- */
+.cases{padding:clamp(6rem,16vh,12rem) 0;background:var(--fundo)}
+.cases header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;max-width:90rem;margin:0 auto 2rem}
+.cases h2{font-size:clamp(2.25rem,5.4vw,5.25rem);margin-top:.6rem;max-width:14ch}
+.cases header p{margin:.75rem 0 0;color:var(--tinta-2);max-width:34rem}
+.abas{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:.3rem;border-radius:99rem;background:rgba(255,255,255,.06);position:relative;
+  scroll-padding:.3rem;-webkit-overflow-scrolling:touch}
+.abas::-webkit-scrollbar{display:none}
+.abas.corta{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent);mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent)}
+.abas.corta.fim{-webkit-mask:none;mask:none}
+.abas button{position:relative;z-index:1;padding:.65rem 1.1rem;border-radius:99rem;font:600 .9rem/1 Sora,sans-serif;color:var(--tinta-2);transition:color .25s ease;white-space:nowrap}
+.abas button[aria-selected="true"]{color:var(--tinta)}
+.abas button:focus-visible{outline-offset:-2px}
+.abas .pilula{position:absolute;top:.3rem;bottom:.3rem;left:0;border-radius:99rem;background:rgba(255,255,255,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 .25rem .75rem -.25rem rgba(0,0,0,.6);transition:transform .45s var(--mola),width .45s var(--mola)}
+@media (max-width:480px){.abas button{padding:.6rem .75rem;font-size:.8rem}}
+.paineis{padding:0 var(--pad);max-width:90rem;margin:0 auto}
+.painel{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(1.5rem,4vw,4rem);padding:clamp(1.75rem,3.5vw,3.5rem);border-radius:1.75rem;
+  background:var(--painel)}
+.painel[hidden]{display:none}
+.painel .logo{height:2.25rem;display:flex;align-items:center;margin-bottom:1.25rem}
+.painel .logo img{max-height:2.25rem;max-width:11rem;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+.painel .logo span{font:700 1.4rem/1 Sora,sans-serif;letter-spacing:-.02em}
+.painel .seg{font:600 .72rem/1.3 Sora,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ciano);margin:0 0 1rem}
+.painel h3{font:600 clamp(1.25rem,2vw,1.85rem)/1.28 Sora,sans-serif;letter-spacing:-.025em;margin:0}
+.painel .fez{margin:0 0 1.25rem;color:var(--tinta-2);line-height:1.55}
+.painel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+.painel li{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem}
+.painel li svg{width:1.1rem;height:1.1rem;flex:none;color:var(--ciano);margin-top:.15rem}
+.painel .lado{display:flex;flex-direction:column;justify-content:center}
+@media (max-width:860px){.painel{grid-template-columns:1fr}}
+
+/* ---------- 6. Propósito ---------- */
+.proposito{padding:clamp(8rem,24vh,16rem) var(--pad);text-align:center;overflow:hidden}
+.proposito blockquote{margin:0 auto;max-width:16ch;font:300 clamp(2.4rem,7vw,7rem)/.98 Sora,sans-serif;letter-spacing:-.04em;will-change:transform,opacity}
+.proposito blockquote span{font-weight:800}
+.proposito p{margin:2.5rem auto 0;max-width:38rem;color:var(--tinta-2);font-size:1.125rem}
+
+/* ---------- 7. Contato: eco da rede ao fundo ---------- */
+.contato{position:relative;min-height:100svh;display:flex;align-items:end;overflow:hidden;isolation:isolate;
+  background:radial-gradient(ellipse 70% 60% at 50% 30%,#0b1a33 0%,var(--fundo) 70%)}
+.contato canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;opacity:.6}
+.contato::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,9,18,.2),rgba(5,9,18,.35) 40%,rgba(5,9,18,.94))}
+.contato .dentro{width:100%;padding:clamp(6rem,14vh,9rem) var(--pad) clamp(2rem,6vh,4rem);max-width:90rem;margin:0 auto}
+.contato h2{font-size:clamp(2.5rem,7vw,7rem);max-width:14ch;margin-top:1rem}
+.contato h2 span{font-weight:800}
+.contato .sub{margin:1.25rem 0 0;color:var(--tinta-2);max-width:34rem;font-size:1.125rem}
+.contato .sub+.sub{margin-top:1rem;font-size:1rem;color:var(--tinta-3)}
+.contato .acoes{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2.5rem}
+.rodape{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem 2rem;padding:1.5rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));
+  border-top:1px solid var(--linha);color:var(--tinta-3);font-size:.85rem;max-width:90rem;margin:0 auto}
+.rodape .marca{display:flex;align-items:center;gap:.5rem;font:700 1rem/1 Sora,sans-serif;color:var(--tinta)}
+.rodape .marca img{width:1.5rem;height:1.5rem;border-radius:.4rem}
+.rodape .legal{margin:0;max-width:60ch;font-size:.78rem;line-height:1.5}
+.rodape .redes{display:flex;gap:1.25rem;flex-wrap:wrap}
+.rodape a:hover{color:var(--tinta)}
+@media (max-width:860px){.rodape{grid-template-columns:1fr}.rodape .legal{max-width:none}}
+
+/* ---------- Carregamento: marca com brilho, sai assim que a abertura está pronta ---------- */
+.entrada{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--fundo)}
+.entrada .marca{font:800 clamp(2rem,6vw,3rem)/1 Sora,sans-serif;letter-spacing:.08em;
+  background:linear-gradient(100deg,rgba(45,212,239,.35) 30%,#eef3fc 50%,rgba(45,212,239,.35) 70%) 0 0/250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:brilho 1.6s linear infinite}
+.entrada .barra{position:absolute;left:50%;bottom:18%;width:7rem;height:2px;translate:-50% 0;border-radius:2px;background:var(--linha-2);overflow:hidden}
+.entrada .barra i{position:absolute;inset:0;background:var(--ciano);transform-origin:left;transform:scaleX(var(--p,0));transition:transform .3s var(--mola)}
+@keyframes brilho{to{background-position:-150% 0}}
+html.carregando{overflow:hidden}
+
+/* ---------- Faixa corrida ---------- */
+.faixa{overflow:hidden;border-block:1px solid var(--linha);padding:1.1rem 0;margin-bottom:clamp(2rem,5vh,3rem);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.faixa div{display:flex;width:max-content;animation:corre 38s linear infinite}
+.faixa:hover div{animation-play-state:paused}
+.faixa span{font:600 clamp(.8rem,1.2vw,.95rem)/1 Sora,sans-serif;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;padding-right:1.5rem;color:var(--tinta-2)}
+.faixa span b{color:var(--ciano);font-weight:700}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* ---------- Transparência, contraste e movimento reduzidos: três sinais separados ---------- */
+@media (prefers-reduced-transparency: reduce){
+  .topo::before{background:var(--fundo);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .btn-vidro,.cartao,.alerta{-webkit-backdrop-filter:none;backdrop-filter:none}
+  .btn-vidro{background:var(--painel-2)}
+  .cartao{background:var(--painel)}
+  .alerta{background:#0c2a33}
+}
+@media (prefers-contrast: more){
+  .cartao,.painel,.card-sol{box-shadow:inset 0 0 0 1px var(--linha-2)}
+  .msg{box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+}
+@media (prefers-reduced-motion: reduce){
+  .rolar::after,.faixa div,.entrada .marca,.msg .pontos i{animation:none}
+  .entrada{display:none}
+  .percurso{height:auto}
+  .rolo .palco{position:relative;height:100svh}
+  .percurso .cenas,.percurso .cartoes,.onde,.rolar{display:none}
+  .conversa{height:auto}
+  .conversa .palco{position:relative;height:auto;overflow:visible;padding:clamp(5rem,12vh,8rem) 0 3rem}
+  .conversa .cabeca{position:static;padding:0 var(--pad);margin-bottom:2rem}
+  .fone-pos{position:static;transform:none}
+  .fone{height:auto;margin:0 auto;width:min(20rem,calc(100% - 2*var(--pad)))}
+  .fone .mensagens{overflow:visible}
+  .fone .msg{display:flex;opacity:1}
+  .fone .msg .pontos{display:none}
+  .conversa .fichas{position:static;transform:none;width:auto;height:auto;display:grid;gap:1.5rem;padding:2.5rem var(--pad) 0;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
+  .conversa .ficha{position:static;opacity:1}
+  .conversa .trilho{display:none}
+  .solucoes .fixo{position:relative;height:auto;padding:6rem 0}
+  .trilho-h{overflow-x:auto;width:auto;scroll-snap-type:x mandatory;scrollbar-width:thin}
+  .card-sol{scroll-snap-align:start}
+  .btn,.abas .pilula,.msg,.alerta{transition-duration:0s!important}
+}
+</style>
+</head>
+<body>
+<div class="entrada" id="entrada" aria-hidden="true"><span class="marca">K2IA</span><span class="barra"><i id="barraEntrada"></i></span></div>
+<script>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("carregando");setTimeout(function(){document.documentElement.classList.remove("carregando");var e=document.getElementById("entrada");e&&e.remove()},5000)</script>
+
+<header class="topo" id="topo">
+  <a class="marca" href="#inicio" aria-label="K2IA, início"><img src="assets/favicon.svg" alt="" width="64" height="64">K2IA</a>
+  <nav aria-label="Principal">
+    <a href="#conversa">Como funciona</a>
+    <a href="#cases" class="fica">Cases</a>
+    <a href="#solucoes">Soluções</a>
+    <a href="https://k2ia.app/whatsapp" class="fica">WhatsApp</a>
+    <a class="btn btn-marca" href="https://wa.me/5548984443624?text=Ol%C3%A1%21+Vim+pelo+site+k2ia.app+e+gostaria+de+conversar+com+a+K2IA." target="_blank" rel="noopener"><span class="so-largo">Falar com a Kaia</span><span class="so-estreito">Falar</span></a>
+  </nav>
+</header>
+
+<main>
+<!-- 1. Percurso: uma sexta à noite atravessando a rede -->
+<section class="percurso rolo" id="inicio" aria-label="Uma sexta à noite com a K2IA">
+  <div class="palco">
+    <canvas id="telaRede" aria-hidden="true"></canvas>
+    <div class="veu" id="veu"></div>
+    <div class="conteudo" id="heroConteudo">
+      <p class="eyebrow"><b>K2IA</b> · inteligência artificial aplicada ao seu negócio</p>
+      <h1 class="display" id="heroTitulo">
+        <span class="l"><span>Você cuida do negócio.</span></span>
+        <span class="l"><span>A inteligência</span></span>
+        <span class="l"><span>cuida do resto.</span></span>
+      </h1>
+      <div class="base">
+        <p>A K2IA cria e treina uma inteligência sob medida para a sua empresa, do primeiro contato com o cliente até a tarefa que a equipe repete todo dia. Role a página e acompanhe uma sexta à noite.</p>
+        <div class="acoes">
+          <a class="btn btn-marca" href="https://wa.me/5548984443624?text=Ol%C3%A1%21+Vim+pelo+site+k2ia.app+e+gostaria+de+conversar+com+a+K2IA." target="_blank" rel="noopener">Falar com a Kaia</a>
+          <a class="btn btn-vidro" href="#cases">Ver os cases</a>
+        </div>
+      </div>
+    </div>
+    <span class="rolar" id="rolar" aria-hidden="true"></span>
+    <div class="cenas">
+      <div class="cena" data-de="15" data-ate="29">
+        <p class="eyebrow">23:04 · sexta feira</p>
+        <h2 class="display">Casa lotada. <b>Uma mensagem chega.</b></h2>
+        <p>Uma reclamação cai no WhatsApp da loja. Numa noite comum, ela ficaria ali até segunda.</p>
+      </div>
+      <div class="cena" data-de="36" data-ate="49">
+        <h2 class="display">Alguém responde na hora. <b>Com o tom da casa.</b></h2>
+        <p>Não é robô genérico. É uma inteligência que sabe como a sua empresa fala, o que vende e como atende.</p>
+      </div>
+      <div class="cena" data-de="55" data-ate="66">
+        <h2 class="display">O gerente fica sabendo. <b>Antes do problema crescer.</b></h2>
+        <p>Quem reclama vira um aviso imediato para o gerente daquela loja.</p>
+      </div>
+      <div class="cena" data-de="72" data-ate="82">
+        <h2 class="display">Ao mesmo tempo, <b>em quatro frentes.</b></h2>
+        <p>Dúvida de cardápio e reserva, reclamação, evento para fechar e candidato a vaga. Cada conversa vai para quem precisa, sem fila.</p>
+      </div>
+      <div class="cena centro" data-de="89" data-ate="999">
+        <h2 class="display">Isso é a <b>K2IA.</b></h2>
+        <p>A inteligência que trabalha por baixo da sua operação, todos os dias, sem barulho.</p>
+      </div>
+    </div>
+    <div class="cartoes" id="cartoes" aria-hidden="true">
+      <div class="cartao alerta" id="alertaHero">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+        <div><b>Aviso para o gerente</b><span>Mesa 14 · pedido atrasado 50 min · cliente insatisfeita</span></div>
+      </div>
+      <div class="cartao">
+        <div class="cabeca"><span class="avatar">M</span><div><b>Marina</b><small>Atendimento da loja</small></div></div>
+        <div class="mensagens" id="msgsHero">
+          <div class="msg cliente" data-em="16"><span class="texto">Pedi há 50 minutos e nada. Vou embora.</span><time>23:04</time></div>
+          <div class="msg k2ia" data-em="41" data-digita="36"><span class="pontos"><i></i><i></i><i></i></span><span class="texto">Marina, sinto muito pela espera. Já avisei o gerente e ele está indo até a sua mesa agora.</span><time>23:04</time></div>
+          <div class="msg cliente" data-em="62"><span class="texto">Ele já chegou aqui. Obrigada!</span><time>23:07</time></div>
+        </div>
+      </div>
+    </div>
+    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">23:04 · Mensagem</span><span class="barra"><i id="ondeBarra"></i></span></div>
+  </div>
+</section>
+
+<!-- 2. A conversa, inteira -->
+<section class="conversa" id="conversa" aria-label="Como funciona uma conversa com a K2IA">
+  <div class="palco">
+    <div class="cabeca">
+      <p class="eyebrow">01 · <b>Como funciona</b></p>
+      <h2 class="display">A conversa, <b>inteira.</b></h2>
+    </div>
+    <div class="fone-pos"><div class="fone" id="fone" role="img" aria-label="Conversa de reserva atendida pela K2IA">
+      <div class="cabeca-fone"><span class="avatar">R</span><div><b>Rafael</b><small>Reservas</small></div></div>
+      <div class="mensagens" id="msgsFone">
+        <div class="msg cliente" data-em=".04"><span class="texto">Oi! Tem mesa pra 8 pessoas sábado à noite?</span><time>19:12</time></div>
+        <div class="msg k2ia" data-em=".18"><span class="pontos"><i></i><i></i><i></i></span><span class="texto">Oi, Rafael! Tem sim. Prefere às 20h ou às 21h30?</span><time>19:12</time></div>
+        <div class="msg cliente" data-em=".32"><span class="texto">20h. É aniversário da minha mãe</span><time>19:13</time></div>
+        <div class="msg k2ia" data-em=".46"><span class="pontos"><i></i><i></i><i></i></span><span class="texto">Que ótimo! Reserva feita: sábado, 20h, 8 pessoas, em nome de Rafael. Vou avisar a equipe do aniversário 🎂</span><time>19:13</time></div>
+        <div class="msg cliente" data-em=".60"><span class="texto">Dá pra levar bolo?</span><time>19:14</time></div>
+        <div class="msg k2ia" data-em=".74"><span class="pontos"><i></i><i></i><i></i></span><span class="texto">Pode sim. Essa eu confirmo com o gerente e já te retorno aqui.</span><time>19:14</time></div>
+        <div class="msg registro" data-em=".88"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reserva registrada no sistema da loja</div>
+      </div>
+    </div></div>
+    <div class="fichas" id="fichas">
+      <div class="ficha"><h3 class="valor"><small>Sempre</small>Responde na hora.</h3><p>Madrugada, fim de semana, feriado. Ninguém fica esperando.</p></div>
+      <div class="ficha"><h3 class="valor"><small>Sob medida</small>Com o tom da sua casa.</h3><p>Sabe como a sua empresa fala, o que vende e como atende cada cliente.</p></div>
+      <div class="ficha"><h3 class="valor"><small>Com limite</small>Segue as regras da casa.</h3><p>Responde dentro das suas regras e não inventa o que não sabe.</p></div>
+      <div class="ficha"><h3 class="valor"><small>Com critério</small>Sabe a hora de chamar gente.</h3><p>Quando o caso pede um humano, passa para a pessoa certa, no momento certo.</p></div>
+      <div class="ficha"><h3 class="valor"><small>Integrada</small>Conversa com o que você já usa.</h3><p>Registra tudo nas ferramentas que a equipe já abre todo dia.</p></div>
+    </div>
+    <div class="trilho" id="trilhoConversa" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- 3. Soluções -->
+<section class="solucoes" id="solucoes" aria-label="Soluções">
+  <div class="fixo">
+    <header class="revela">
+      <div>
+        <p class="eyebrow" style="margin-bottom:1rem">02 · <b>Soluções</b></p>
+        <h2 class="display">A dor que tira seu sono tem nome. <b>E tem solução.</b></h2>
+      </div>
+      <p>Não vendemos tecnologia. Resolvemos o problema que faz você trabalhar mais do que deveria.</p>
+    </header>
+    <div class="trilho-h" id="trilhoH">
+      <article class="card-sol"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 3.5V17H6.5A2.5 2.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12.5h4.5"/></svg></div><span class="n">01</span><h3>Atendimento que não dorme</h3><p>O cliente chega às 2 da manhã, no fim de semana, no feriado. Alguém responde na hora, com o tom da sua casa, sem deixar ninguém esperando.</p></article>
+      <article class="card-sol"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M9.5 9.5V20"/></svg></div><span class="n">02</span><h3>O sistema que faltava</h3><p>Aquela ferramenta sob medida que você procurou e nunca achou pronta. A gente constrói exatamente do jeito que sua operação funciona.</p></article>
+      <article class="card-sol"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/><path d="M12 8v4.5l2.8 1.7"/></svg></div><span class="n">03</span><h3>O fim do trabalho braçal</h3><p>Tarefa repetida que come o dia da sua equipe passa a rodar sozinha, sem erro de digitação e sem ninguém preso copiando e colando.</p></article>
+      <article class="card-sol"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c-3 0-5 2-5 4.5 0 .6.1 1.1.3 1.6A3.5 3.5 0 0 0 7 16.5c0 1.9 1.6 3.5 3.5 3.5H12M12 4c3 0 5 2 5 4.5 0 .6-.1 1.1-.3 1.6A3.5 3.5 0 0 1 17 16.5c0 1.9-1.6 3.5-3.5 3.5H12M12 4v16"/><path d="M9 9.5h1.5M9.5 13h1M13.5 9.5H15M13.5 13h1"/></svg></div><span class="n">04</span><h3>Um assistente que conhece sua casa</h3><p>Não é robô genérico. É um assistente que sabe como sua empresa fala, o que ela vende e como ela atende cada cliente.</p></article>
+      <article class="card-sol"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.2 5-4.8 2 2.2-5z"/></svg></div><span class="n">05</span><h3>IA com pé no chão</h3><p>Inteligência artificial que entende do seu negócio de verdade, responde dentro das suas regras e não inventa o que não sabe.</p></article>
+      <article class="card-sol"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 10.5 9 15m4.5-4.5c2.5-2.5 5.5-5 7.5-7.5-2.5 2-5 5-7.5 7.5zM9 15l-3.5-.5L4 16l4 4 1.5-1.5L9 15zm0 0 4.5-4.5"/><path d="M4.5 12.5 9 15l2.5 4.5"/><circle cx="15.5" cy="8.5" r="1"/></svg></div><span class="n">06</span><h3>Sua ideia no ar</h3><p>Aquele projeto que vive na sua cabeça vira algo funcionando, na frente do cliente, mais rápido do que você imagina.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Números -->
+<div class="numeros-fundo"><section class="numeros" aria-label="Números da K2IA">
+  <div><div class="n num"><span data-conta="50">50</span><sup>+</sup></div><p>lojas da rede Coco Bambu atendidas</p></div>
+  <div><div class="n num"><span data-conta="24">24</span><small>h</small></div><p>por dia, sete dias por semana, feriado incluso</p></div>
+  <div><div class="n num"><span data-conta="4">4</span></div><p>frentes num só atendimento: reserva, reclamação, evento e vaga</p></div>
+  <div><div class="n num"><span data-conta="5">5</span></div><p>operações rodando hoje com a K2IA</p></div>
+</section></div>
+
+<!-- 5. Cases -->
+<section class="cases" id="cases" aria-label="Cases">
+  <header class="revela">
+    <div>
+      <p class="eyebrow">03 · <b>Trabalhos em operação</b></p>
+      <h2 class="display">Problemas reais. <b>Já resolvidos.</b></h2>
+      <p>Não é demo nem promessa de palco. É gente que coloca a operação na rua todo dia e deixou a K2IA cuidar da parte que ninguém dava conta de responder a tempo.</p>
+    </div>
+    <div class="abas" role="tablist" aria-label="Cliente" id="abas">
+      <span class="pilula" aria-hidden="true"></span>
+      <button role="tab" aria-selected="true" data-painel="caseCocobambu" id="abaCocobambu">Coco Bambu</button>
+      <button role="tab" aria-selected="false" data-painel="caseFeeling" id="abaFeeling">Feeling Lounge</button>
+      <button role="tab" aria-selected="false" data-painel="caseClubem" id="abaClubem">Clube M</button>
+      <button role="tab" aria-selected="false" data-painel="caseXperiun" id="abaXperiun">Xperiun</button>
+      <button role="tab" aria-selected="false" data-painel="caseFullraise" id="abaFullraise">Full Raise</button>
+    </div>
+  </header>
+  <div class="paineis" id="paineis">
+    <article class="painel" id="caseCocobambu" role="tabpanel" aria-labelledby="abaCocobambu">
+      <div>
+        <div class="logo"><img src="assets/clientes/cocobambu.webp" alt="Coco Bambu"></div>
+        <p class="seg">Rede de restaurantes · mais de 50 lojas</p>
+        <h3>São onze da noite de sexta, a casa lotada, e uma reclamação acabou de cair numa caixa de entrada onde vai morrer até segunda, quando o diretor descobre que perdeu aquele cliente para sempre.</h3>
+      </div>
+      <div class="lado">
+        <p class="fez">A K2IA botou alguém para atender de verdade em quatro frentes ao mesmo tempo. Quem chega com dúvida de cardápio ou quer reservar é respondido na hora. Quem reclama vira um aviso imediato para o gerente daquela loja. Quem quer fechar um evento é conduzido sem espera. E quem se candidata a uma vaga já chega filtrado para quem faz sentido.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Cliente respondido na hora, sem fila e sem mesa perdida</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Gerente avisado na hora da insatisfação, agindo antes de o problema crescer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Evento conduzido na hora de fechar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Candidato certo chegando para cada vaga</li>
+        </ul>
+      </div>
+    </article>
+    <article class="painel" id="caseFeeling" role="tabpanel" aria-labelledby="abaFeeling" hidden>
+      <div>
+        <div class="logo"><img src="assets/clientes/feeling.png" alt="Feeling Lounge"></div>
+        <p class="seg">Lounge à beira do mar e eventos · Floripa</p>
+        <h3>O fim de tarde lota o deck à beira do mar, a equipe não para de servir, e quem manda mensagem para reservar fica esperando alguém ter um minuto que nunca sobra.</h3>
+      </div>
+      <div class="lado">
+        <p class="fez">A K2IA assumiu a conversa de quem chega querendo reservar, perguntar ou reclamar. Nada mais fica parado esperando a equipe respirar entre um atendimento e outro.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reserva e dúvida respondidas na hora, mesmo no pico</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reclamação ouvida na hora, em vez de virar silêncio</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Equipe livre para cuidar de quem está na mesa</li>
+        </ul>
+      </div>
+    </article>
+    <article class="painel" id="caseClubem" role="tabpanel" aria-labelledby="abaClubem" hidden>
+      <div>
+        <div class="logo"><img src="assets/clientes/clubem.png" alt="Clube M"></div>
+        <p class="seg">Clube com várias unidades</p>
+        <h3>O candidato a associado manda a mensagem animado, e a entrevista que devia ser marcada ali mesmo escorrega para o dia seguinte, quando a vontade já esfriou.</h3>
+      </div>
+      <div class="lado">
+        <p class="fez">A K2IA pegou na mão de quem quer entrar e marcou a entrevista de novo associado na hora da conversa, sem deixar o interesse esfriar até alguém abrir a agenda.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Entrevista agendada na hora do interesse</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Candidato conduzido sem espera entre a vontade e a visita</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Equipe recebendo a agenda pronta</li>
+        </ul>
+      </div>
+    </article>
+    <article class="painel" id="caseXperiun" role="tabpanel" aria-labelledby="abaXperiun" hidden>
+      <div>
+        <div class="logo"><img src="assets/clientes/xperiun.svg" alt="Xperiun"></div>
+        <p class="seg">Educação · especialização</p>
+        <h3>Quem decidiu fazer a especialização manda a dúvida no WhatsApp e fica olhando o visto sem resposta, enquanto a empolgação vira hesitação.</h3>
+      </div>
+      <div class="lado">
+        <p class="fez">A K2IA botou para responder na hora quem chega no WhatsApp querendo fazer a especialização, para a dúvida não virar desistência entre a vontade de estudar e a inscrição.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Interessado respondido na hora, no WhatsApp</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Dúvida resolvida antes de virar desistência</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Quem chega decidido conduzido sem esperar</li>
+        </ul>
+      </div>
+    </article>
+    <article class="painel" id="caseFullraise" role="tabpanel" aria-labelledby="abaFullraise" hidden>
+      <div>
+        <div class="logo"><span>Full Raise</span></div>
+        <p class="seg">Tênis e beach tennis · Floripa</p>
+        <h3>O lead vê o vídeo, pensa "vou marcar uma experimental", manda mensagem, e a vontade de pisar na quadra fica pendurada esperando alguém responder entre uma aula e outra.</h3>
+      </div>
+      <div class="lado">
+        <p class="fez">A K2IA assumiu a conversa inteira de aluno e de lead. Agenda a aula experimental de quem chega novo e cuida do relacionamento de quem já treina, da captação ao dia a dia de quadra.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aula experimental agendada na hora da vontade</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aluno acompanhado no dia a dia, sem cair no esquecimento</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Captação e relacionamento na mesma conversa</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 6. Propósito -->
+<section class="proposito" aria-label="Nossa visão">
+  <blockquote class="display" id="citacao">A IA parou de ser <span>promessa.</span> Na K2IA, ela trabalha.</blockquote>
+  <p>A inteligência artificial deixou de ser assunto de futuro. Hoje ela atende, organiza, responde e resolve, dentro de empresas que faturam de cinquenta mil a milhões por mês. O que separa quem aproveita disso de quem só assiste depende de uma coisa: ter quem crie e treine essa inteligência sob medida para o seu negócio e responda por ela. É isso que a K2IA faz. Criamos e treinamos a inteligência que trabalha por baixo da sua operação, todos os dias, sem barulho.</p>
+</section>
+
+<!-- 7. Contato -->
+<section class="contato" id="contato" aria-label="Contato">
+  <canvas id="telaEco" aria-hidden="true"></canvas>
+  <div class="dentro revela">
+    <p class="eyebrow">04 · <b>Contato</b></p>
+    <h2 class="display">Vamos olhar o seu negócio <span>juntos.</span></h2>
+    <p class="sub">Conte onde aperta na sua operação. Em uma conversa rápida, a gente diz com franqueza se a inteligência da K2IA resolve, e como.</p>
+    <p class="sub">Cada um dos cases começou do mesmo lugar onde você provavelmente está agora: uma conversa importante esperando alguém ter tempo. A gente senta junto, olha onde a sua operação perde essas conversas, e você decide com calma.</p>
+    <div class="acoes">
+      <a class="btn btn-marca" href="https://wa.me/5548984443624?text=Ol%C3%A1%21+Vim+pelo+site+k2ia.app+e+gostaria+de+olhar+a+minha+opera%C3%A7%C3%A3o+com+a+K2IA." target="_blank" rel="noopener">Falar com a Kaia</a>
+      <a class="btn btn-vidro" href="https://k2ia.app/whatsapp">Ver agentes de WhatsApp</a>
+    </div>
+  </div>
+</section>
+<div class="faixa" aria-hidden="true"><div><span>Atendimento que não para <b>·</b> Sistemas sob medida <b>·</b> Automação de processos <b>·</b> IA que conhece a casa <b>·</b></span><span>Atendimento que não para <b>·</b> Sistemas sob medida <b>·</b> Automação de processos <b>·</b> IA que conhece a casa <b>·</b></span><span>Atendimento que não para <b>·</b> Sistemas sob medida <b>·</b> Automação de processos <b>·</b> IA que conhece a casa <b>·</b></span><span>Atendimento que não para <b>·</b> Sistemas sob medida <b>·</b> Automação de processos <b>·</b> IA que conhece a casa <b>·</b></span></div></div>
+</main>
+
+<footer class="rodape">
+  <a class="marca" href="#inicio"><img src="assets/favicon.svg" alt="" width="64" height="64">K2IA</a>
+  <p class="legal">© 2026 K2IA. Todos os direitos reservados. A K2IA é uma empresa independente e não possui vínculo, patrocínio ou afiliação com a Meta Platforms, Inc., WhatsApp ou Instagram. As marcas citadas são clientes da K2IA e pertencem aos seus respectivos titulares.</p>
+  <div class="redes">
+    <a href="#cases">Cases</a>
+    <a href="#solucoes">Soluções</a>
+    <a href="https://k2ia.app/whatsapp">Agentes de WhatsApp</a>
+    <a href="https://wa.me/5548984443624?text=Ol%C3%A1%21+Vim+pelo+site+k2ia.app+e+gostaria+de+conversar+com+a+K2IA." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// celular ou economia de dados: menos partículas, menos pixels
+const LEVE = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData);
+const TAU = Math.PI * 2;
+const lim = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const suave = (v, a, b) => { const t = lim((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+// janela de opacidade: sobe entre a e b, fica em 1 até c, desce até d
+const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
+// gerador com semente fixa: a rede é a mesma em toda visita
+const semente = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+
+function prepara(canvas, maxDpr = 2){
+  const ctx = canvas.getContext('2d');
+  const mede = () => {
+    const dpr = Math.min(devicePixelRatio || 1, maxDpr);
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return {w, h};
+  };
+  return {ctx, mede};
+}
+
+// k vizinhos mais próximos de cada ponto viram filamentos (arestas únicas)
+function vizinhos(pts, k, dist){
+  const N = pts.length, vistas = new Set(), arestas = [];
+  for (let i = 0; i < N; i++){
+    const melhores = [];
+    for (let j = 0; j < N; j++){
+      if (j === i) continue;
+      const d = dist(pts[i], pts[j]);
+      if (melhores.length < k || d < melhores[melhores.length - 1].d){
+        let p = melhores.length;
+        while (p > 0 && melhores[p - 1].d > d) p--;
+        melhores.splice(p, 0, {d, j});
+        if (melhores.length > k) melhores.pop();
+      }
+    }
+    melhores.forEach(m => {
+      const a = Math.min(i, m.j), b = Math.max(i, m.j), chave = a * N + b;
+      if (!vistas.has(chave)){ vistas.add(chave); arestas.push([a, b]); }
+    });
+  }
+  return arestas;
+}
+
+/* ===========================================================
+   A rede. Partículas num túnel (ângulo e raio aleatórios, x
+   esticado), projeção em perspectiva, neblina perto e longe.
+   No herói a câmera anda pelo z conforme a rolagem; no fim
+   as partículas migram para o cérebro com "K2IA" no meio.
+   =========================================================== */
+function rede(canvas, {n, cheio}){
+  const {ctx, mede} = prepara(canvas, LEVE ? 1.5 : 2);
+  const rnd = semente(20260925 + n);
+  const P = [];
+  for (let i = 0; i < n; i++){
+    const ang = rnd() * TAU, r = .7 + Math.pow(rnd(), .75) * 4.3;
+    const dir = rnd() * TAU;
+    P.push({x: Math.cos(ang) * r * 1.5, y: Math.sin(ang) * r, z: rnd() * 72,
+      fase: rnd() * TAU, vel: .6 + rnd() * .9, tam: .6 + rnd() * 1.2, atraso: rnd(),
+      // quem está atrás da câmera espera fora da tela e entra por ali na formação
+      dx: Math.cos(dir) * .8, dy: Math.sin(dir) * .8});
+  }
+  const ARESTAS = vizinhos(P, 3, (a, b) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2 + (a.z - b.z) ** 2);
+  const S = new Float32Array(n * 4);   // sx, sy, tamanho, alpha por quadro
+  let tam = mede(), u = 0, alvo = null, arestasAlvo = [], texto = null;
+  const cam = {x: 0, y: 0, z: 0};
+  const mouse = {x: 0, y: 0, ax: 0, ay: 0};
+
+  // câmera: lenta nas cenas, rápida entre elas (fração u -> z)
+  const CHAVES = [[0, 0], [.06, 0], [.15, 12], [.30, 12], [.36, 24], [.49, 24], [.54, 36], [.66, 36], [.71, 48], [.82, 48], [.88, 50], [1, 50]];
+  const camZ = (u) => {
+    if (!cheio) return 0;
+    for (let i = 1; i < CHAVES.length; i++){
+      const [a, za] = CHAVES[i - 1], [b, zb] = CHAVES[i];
+      if (u <= b) return za + (zb - za) * suave(u, a, b);
+    }
+    return CHAVES[CHAVES.length - 1][1];
+  };
+  // nós especiais ancorados em fração de tela (fx, fy a partir do centro) e z absoluto:
+  // caem no mesmo lugar no desktop e no celular
+  const NOS = {
+    msg: {fx: -.1, fy: .02, z: 17.5},
+    resA: {fx: -.16, fy: .06, z: 27.5}, resB: {fx: .12, fy: -.08, z: 30},
+    ger0: {fx: -.18, fy: .1, z: 40}, ger: {fx: .18, fy: -.18, z: 45.5},
+    centro: {fx: 0, fy: -.02, z: 53},
+    frentes: [{fx: -.3, fy: -.2, z: 57, nome: 'Reserva'}, {fx: .3, fy: -.2, z: 57, nome: 'Reclamação'},
+              {fx: -.3, fy: .14, z: 57, nome: 'Evento'}, {fx: .3, fy: .14, z: 57, nome: 'Vaga'}]
+  };
+  // paisagem: o texto da cena ocupa a esquerda, então o feixe das quatro frentes vai para a direita e sobe
+  const NOS_LARGO = {centro: {fx: .16, fy: -.08, z: 53},
+    frentes: [{fx: -.1, fy: -.3, z: 57, nome: 'Reserva'}, {fx: .4, fy: -.28, z: 57, nome: 'Reclamação'},
+              {fx: -.06, fy: .1, z: 57, nome: 'Evento'}, {fx: .4, fy: .14, z: 57, nome: 'Vaga'}]};
+  const ponto = (no, f) => {
+    const dz = no.z - cam.z; if (dz < .12) return null;
+    const k = f / dz;
+    return {sx: tam.w / 2 + no.fx * tam.w - cam.x * k, sy: tam.h / 2 + no.fy * tam.h - cam.y * k, k, dz};
+  };
+
+  // cérebro + K2IA amostrados de um canvas fora da tela, depois das fontes
+  const amostra = () => {
+    if (!cheio) return;
+    const {w, h} = tam;
+    const retrato = h > w;
+    const esc = Math.min(w * .86 / 600, h * (retrato ? .46 : .6) / 520);
+    const cx = w / 2, cy = h * (retrato ? .4 : .4);
+    const off = document.createElement('canvas'); off.width = 600; off.height = 520;
+    const c = off.getContext('2d');
+    c.strokeStyle = '#fff'; c.fillStyle = '#fff'; c.lineCap = 'round'; c.lineJoin = 'round';
+    // contorno ondulado do cérebro
+    c.lineWidth = 5; c.beginPath();
+    for (let a = 0; a <= TAU + .01; a += .01){
+      const wob = 1 + .032 * Math.sin(7 * a + .5) + .014 * Math.sin(13 * a + 2);
+      const x = 300 + Math.cos(a) * 236 * wob, y = 238 + Math.sin(a) * 196 * wob;
+      a === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+    }
+    c.stroke();
+    // divisão central em cima e embaixo
+    c.lineWidth = 4;
+    [[42, 118], [434, 358]].forEach(([y0, y1]) => {
+      c.beginPath();
+      const passo = y1 > y0 ? 3 : -3;
+      for (let y = y0; passo > 0 ? y <= y1 : y >= y1; y += passo){ const x = 300 + 5 * Math.sin(y * .11); y === y0 ? c.moveTo(x, y) : c.lineTo(x, y); }
+      c.stroke();
+    });
+    // traços de circuito, espelhados
+    const tracos = [[[205, 112], [205, 156], [172, 156], [172, 190]], [[132, 236], [160, 236], [160, 206]], [[206, 364], [206, 326], [172, 326]], [[244, 398], [244, 366]]];
+    c.lineWidth = 3;
+    tracos.forEach(t => [1, -1].forEach(lado => {
+      const pts = t.map(([x, y]) => [lado > 0 ? x : 600 - x, y]);
+      c.beginPath(); pts.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y)); c.stroke();
+      const [ex, ey] = pts[pts.length - 1]; c.beginPath(); c.arc(ex, ey, 4.5, 0, TAU); c.fill();
+    }));
+    // K2IA em contorno: as partículas desenham as letras
+    c.font = '800 104px Sora, sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.lineWidth = 5; c.strokeText('K2IA', 300, 242);
+    const d = c.getImageData(0, 0, 600, 520).data, pts = [];
+    for (let y = 0; y < 520; y += 2) for (let x = 0; x < 600; x += 2) if (d[(y * 600 + x) * 4 + 3] > 110) pts.push(x, y);
+    const M = pts.length / 2, r2 = semente(7);
+    const ordem = [...Array(M).keys()];
+    for (let i = M - 1; i > 0; i--){ const j = Math.floor(r2() * (i + 1)); [ordem[i], ordem[j]] = [ordem[j], ordem[i]]; }
+    const novo = new Float32Array(n * 2), alvoPts = [];
+    for (let i = 0; i < n; i++){
+      const q = ordem[i % M];
+      const x = cx + (pts[q * 2] - 300) * esc, y = cy + (pts[q * 2 + 1] - 260) * esc;
+      novo[i * 2] = x; novo[i * 2 + 1] = y; alvoPts.push({x, y});
+    }
+    alvo = novo;
+    const perto2 = (esc * 16) ** 2;
+    arestasAlvo = vizinhos(alvoPts, 2, (a, b) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2)
+      .filter(([i, j]) => (alvoPts[i].x - alvoPts[j].x) ** 2 + (alvoPts[i].y - alvoPts[j].y) ** 2 < perto2);
+    texto = {x: cx, y: cy + (242 - 260) * esc, tamanho: 104 * esc};
+  };
+
+  const brilha = (pt, g, t, raio = 1) => {
+    if (!pt || g <= 0) return;
+    const r = (12 + 3 * Math.sin(t * .003)) * raio * lim(pt.k / 150, .7, 1.6);
+    const grad = ctx.createRadialGradient(pt.sx, pt.sy, 0, pt.sx, pt.sy, r * 2.6);
+    grad.addColorStop(0, `rgba(255,255,255,${(.95 * g).toFixed(3)})`);
+    grad.addColorStop(.22, `rgba(45,212,239,${(.6 * g).toFixed(3)})`);
+    grad.addColorStop(1, 'rgba(45,212,239,0)');
+    ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(pt.sx, pt.sy, r * 2.6, 0, TAU); ctx.fill();
+  };
+  // pulso de luz desenhando uma curva de A até B, com a cabeça brilhando em q
+  const pulso = (A, B, q, g, t) => {
+    if (!A || !B || g <= 0 || q <= 0) return;
+    const cx = (A.sx + B.sx) / 2 + (B.sy - A.sy) * .35, cy = (A.sy + B.sy) / 2 - (B.sx - A.sx) * .35;
+    const bez = (s) => [(1 - s) * (1 - s) * A.sx + 2 * (1 - s) * s * cx + s * s * B.sx, (1 - s) * (1 - s) * A.sy + 2 * (1 - s) * s * cy + s * s * B.sy];
+    ctx.lineWidth = 1.5; ctx.strokeStyle = `rgba(45,212,239,${(.55 * g).toFixed(3)})`;
+    ctx.beginPath();
+    for (let i = 0; i <= 28; i++){ const [x, y] = bez(q * i / 28); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+    ctx.stroke();
+    const [hx, hy] = bez(q);
+    brilha({sx: hx, sy: hy, k: 150}, g * (q < 1 ? 1 : .6), t, .6);
+  };
+  const rotulo = (pt, nome, a) => {
+    if (!pt || a <= 0) return;
+    ctx.font = `600 ${LEVE ? 12 : 13}px Inter, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const lw = ctx.measureText(nome).width + 20, y = pt.sy + 26;
+    ctx.fillStyle = `rgba(5,9,18,${(.72 * a).toFixed(3)})`;
+    ctx.beginPath(); ctx.roundRect(pt.sx - lw / 2, y - 12, lw, 24, 12); ctx.fill();
+    ctx.fillStyle = `rgba(238,243,252,${a.toFixed(3)})`; ctx.fillText(nome, pt.sx, y + .5);
+  };
+
+  const quadro = (t) => {
+    const {w, h} = tam, f = h * .9;
+    ctx.clearRect(0, 0, w, h);
+    mouse.ax += (mouse.x - mouse.ax) * .06; mouse.ay += (mouse.y - mouse.ay) * .06;
+    cam.z = camZ(u);
+    cam.x = (cheio ? Math.sin(u * 9) * .25 : 0) + mouse.ax * .5;
+    cam.y = (cheio ? Math.cos(u * 7) * .18 : 0) + mouse.ay * .3;
+    const m = cheio && alvo ? suave(u, .84, .96) : 0;
+    for (let i = 0; i < n; i++){
+      const p = P[i], dz = p.z - cam.z;
+      let sx, sy, tm, a;
+      if (dz > .12){
+        const k = f / dz;
+        sx = w / 2 + (p.x - cam.x) * k; sy = h / 2 + (p.y - cam.y) * k;
+        a = suave(dz, .25, 2.4) * (1 - suave(dz, 13, 24)) * .9;
+        tm = Math.min(6, p.tam * k * .012);
+      } else { sx = w / 2 + p.dx * w; sy = h / 2 + p.dy * h; a = 0; tm = 1.4; }
+      if (m > 0){
+        const ti = suave(m, p.atraso * .5, p.atraso * .5 + .5);
+        sx += (alvo[i * 2] - sx) * ti; sy += (alvo[i * 2 + 1] - sy) * ti;
+        a += (.85 - a) * ti; tm += (1.7 - tm) * ti;
+      }
+      if (!calmo) a *= .82 + .18 * Math.sin(t * .0015 * p.vel + p.fase);
+      S[i * 4] = sx; S[i * 4 + 1] = sy; S[i * 4 + 2] = tm; S[i * 4 + 3] = a;
+    }
+    ctx.globalCompositeOperation = 'lighter';
+    // filamentos em lotes por faixa de alpha: poucas trocas de estilo
+    const faixas = [[], [], [], [], [], []];
+    const junta = (lista, peso) => {
+      if (peso <= 0) return;
+      const max2 = (w * .5) ** 2;
+      for (let q = 0; q < lista.length; q++){
+        const i = lista[q][0], j = lista[q][1];
+        const a = Math.min(S[i * 4 + 3], S[j * 4 + 3]) * .45 * peso;
+        if (a < .02) continue;
+        const dx = S[i * 4] - S[j * 4], dy = S[i * 4 + 1] - S[j * 4 + 1];
+        if (dx * dx + dy * dy > max2) continue;
+        faixas[Math.min(5, Math.floor(a * 12))].push(S[i * 4], S[i * 4 + 1], S[j * 4], S[j * 4 + 1]);
+      }
+    };
+    junta(ARESTAS, 1 - m); junta(arestasAlvo, m);
+    ctx.lineWidth = 1;
+    faixas.forEach((c, k) => {
+      if (!c.length) return;
+      ctx.strokeStyle = `rgba(45,212,239,${((k + .5) / 12).toFixed(3)})`; ctx.beginPath();
+      for (let q = 0; q < c.length; q += 4){ ctx.moveTo(c[q], c[q + 1]); ctx.lineTo(c[q + 2], c[q + 3]); }
+      ctx.stroke();
+    });
+    // partículas, também em lotes
+    const lotes = [[], [], [], [], [], []];
+    for (let i = 0; i < n; i++){ const a = S[i * 4 + 3]; if (a > .03) lotes[Math.min(5, Math.floor(a * 6))].push(i); }
+    lotes.forEach((l, k) => {
+      if (!l.length) return;
+      ctx.fillStyle = `rgba(120,230,250,${((k + .5) / 6).toFixed(3)})`; ctx.beginPath();
+      l.forEach(i => { const x = S[i * 4], y = S[i * 4 + 1], r = S[i * 4 + 2]; ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, TAU); });
+      ctx.fill();
+    });
+    if (cheio){
+      const c = u * 100;
+      // 1. a mensagem chega
+      brilha(ponto(NOS.msg, f), janela(c, 10, 15, 29, 34), t, 1.1);
+      // 2. a resposta sai
+      const g2 = janela(c, 35, 38, 47, 51);
+      pulso(ponto(NOS.resA, f), ponto(NOS.resB, f), suave(u, .37, .46), g2, t);
+      brilha(ponto(NOS.resA, f), g2 * .8, t, .8);
+      // 3. o gerente é avisado
+      const g3 = janela(c, 54, 57, 65, 69), q3 = suave(u, .55, .62);
+      const ger = ponto(NOS.ger, f);
+      pulso(ponto(NOS.ger0, f), ger, q3, g3, t);
+      brilha(ger, g3 * suave(q3, .85, 1), t, 1.4);
+      // 4. quatro frentes ao mesmo tempo
+      const g4 = janela(c, 70, 73, 81, 85), v = suave(u, .71, .79);
+      const quatro = tam.w > tam.h ? NOS_LARGO : NOS;
+      const centro = ponto(quatro.centro, f);
+      brilha(centro, g4, t, 1.2);
+      const frentes = quatro.frentes.map((no, i) => ({pt: ponto(no, f), q: suave(v, i * .08, i * .08 + .55), nome: no.nome}));
+      frentes.forEach(fr => { pulso(centro, fr.pt, fr.q, g4, t); brilha(fr.pt, g4 * suave(fr.q, .8, 1) * .9, t, .9); });
+      ctx.globalCompositeOperation = 'source-over';
+      rotulo(ger, 'Gerente', g3 * suave(q3, .85, 1));
+      frentes.forEach(fr => rotulo(fr.pt, fr.nome, g4 * suave(fr.q, .85, 1)));
+      // 5. o nome acende dentro do cérebro
+      if (m > 0 && texto){
+        const a = suave(m, .55, 1);
+        ctx.font = `800 ${texto.tamanho}px Sora, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.shadowColor = `rgba(45,212,239,${(.9 * a).toFixed(3)})`; ctx.shadowBlur = 28;
+        ctx.fillStyle = `rgba(45,212,239,${(.85 * a).toFixed(3)})`; ctx.fillText('K2IA', texto.x, texto.y);
+        ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+      }
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  };
+
+  // laço só enquanto o palco está na tela
+  let rodando = false, raf = 0;
+  const laco = (t) => { quadro(t); raf = requestAnimationFrame(laco); };
+  const liga = (on) => {
+    if (on && !rodando && !calmo){ rodando = true; raf = requestAnimationFrame(laco); }
+    else if (!on && rodando){ rodando = false; cancelAnimationFrame(raf); }
+  };
+  if (cheio && matchMedia('(pointer:fine)').matches){
+    addEventListener('pointermove', (e) => { mouse.x = e.clientX / innerWidth - .5; mouse.y = e.clientY / innerHeight - .5; }, {passive: true});
+  }
+  let espera = 0;
+  addEventListener('resize', () => {
+    tam = mede(); quadro(performance.now());
+    clearTimeout(espera); espera = setTimeout(() => { amostra(); quadro(performance.now()); }, 150);
+  });
+  quadro(0);
+  return {
+    liga, amostra,
+    set(v){ u = v; if (!rodando) quadro(performance.now()); },
+    redesenha(){ quadro(performance.now()); }
+  };
+}
+
+/* ---------- Toque: pressionado no pointerdown, sem esperar o clique ---------- */
+function ligaToques(){
+  document.addEventListener('pointerdown', (e) => {
+    const alvo = e.target.closest('.btn');
+    if (!alvo) return;
+    alvo.classList.add('pressionado');
+    const solta = () => { alvo.classList.remove('pressionado'); removeEventListener('pointerup', solta); removeEventListener('pointercancel', solta); };
+    addEventListener('pointerup', solta); addEventListener('pointercancel', solta);
+  });
+}
+
+/* ---------- Barra do topo some ao descer, volta ao subir ---------- */
+function ligaTopo(){
+  const topo = $('#topo');
+  let ultimo = 0;
+  return (y) => {
+    topo.classList.toggle('solido', y > innerHeight * .6);
+    if (Math.abs(y - ultimo) > 6){ topo.classList.toggle('escondido', y > ultimo && y > innerHeight); ultimo = y; }
+  };
+}
+
+/* ---------- Cases: abas com pílula, troca sem travar input ---------- */
+function ligaAbas(){
+  const abas = $('#abas'), pilula = $('.pilula', abas);
+  const botoes = $$('button', abas);
+  const move = (b) => { pilula.style.width = b.offsetWidth + 'px'; pilula.style.transform = `translateX(${b.offsetLeft}px)`; };
+  const corte = () => {
+    const sobra = abas.scrollWidth - abas.clientWidth;
+    abas.classList.toggle('corta', sobra > 2);
+    abas.classList.toggle('fim', abas.scrollLeft >= sobra - 2);
+  };
+  abas.addEventListener('scroll', corte, {passive: true});
+  const escolhe = (b) => {
+    if (b.getAttribute('aria-selected') === 'true') return;
+    botoes.forEach(x => { const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; });
+    move(b);
+    b.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: calmo ? 'auto' : 'smooth'});
+    const painel = $('#' + b.dataset.painel);
+    $$('.painel').forEach(p => p.hidden = p !== painel);
+    if (!calmo && window.gsap) gsap.fromTo(painel.children, {opacity: 0, y: 18}, {opacity: 1, y: 0, duration: .55, ease: 'expo.out', stagger: .06, overwrite: true});
+    window.ScrollTrigger && ScrollTrigger.refresh();
+  };
+  botoes.forEach((b, i) => {
+    b.tabIndex = i ? -1 : 0;
+    b.setAttribute('aria-controls', b.dataset.painel);
+    b.addEventListener('pointerdown', () => escolhe(b));   // responde no toque, não na soltura
+    b.addEventListener('click', () => escolhe(b));
+    b.addEventListener('keydown', (e) => {
+      const k = {ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity}[e.key];
+      if (k === undefined) return;
+      e.preventDefault();
+      const j = isFinite(k) ? (i + k + botoes.length) % botoes.length : k < 0 ? 0 : botoes.length - 1;
+      botoes[j].focus(); escolhe(botoes[j]);
+    });
+  });
+  requestAnimationFrame(() => { move(botoes[0]); corte(); });
+  addEventListener('resize', () => { move(botoes.find(b => b.getAttribute('aria-selected') === 'true')); corte(); });
+}
+
+let lenis = null;
+ligaToques();
+ligaAbas();
+const topo = ligaTopo();
+addEventListener('scroll', () => topo(scrollY), {passive: true});
+
+// a rede do herói já nasce desenhada no primeiro quadro, com ou sem GSAP
+const redeHero = rede($('#telaRede'), {n: LEVE ? 480 : 860, cheio: true});
+const redeEco = rede($('#telaEco'), {n: LEVE ? 160 : 300, cheio: false});
+(document.fonts ? document.fonts.load('800 104px Sora') : Promise.resolve()).then(() => { redeHero.amostra(); redeHero.redesenha(); });
+
+/* ===========================================================
+   Movimento. Tudo preso à rolagem, então para, volta e acelera
+   junto com o dedo. Nada roda sozinho com duração fixa.
+   =========================================================== */
+// sem GSAP (CDN fora do ar), a página fica estática em vez de presa no carregamento
+if (!window.gsap || !window.ScrollTrigger){
+  document.documentElement.classList.remove('carregando'); $('#entrada') && $('#entrada').remove();
+  $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
+  throw new Error('GSAP indisponível');
+}
+gsap.registerPlugin(ScrollTrigger);
+// barra de endereço do celular abrindo e fechando não recalcula tudo nem pula o quadro
+ScrollTrigger.config({ignoreMobileResize: true});
+
+if (!calmo && window.Lenis){
+  lenis = new Lenis({lerp: .11, smoothWheel: true});
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  document.documentElement.classList.add('lenis');
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
+    const alvo = $(a.getAttribute('href')); if (!alvo) return;
+    e.preventDefault();
+    lenis.scrollTo(alvo, {duration: 1.4, onComplete: () => {
+      if (!alvo.hasAttribute('tabindex')) alvo.tabIndex = -1;
+      alvo.focus({preventScroll: true});
+    }});
+  }));
+}
+
+if (calmo){
+  $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
+  $$('#msgsFone .msg').forEach(m => m.classList.add('on'));
+  $('#entrada') && $('#entrada').remove();
+} else {
+  movimento();
+}
+
+function movimento(){
+  /* Carregamento: espera as fontes, no máximo 2,4 s, e revela o título linha a linha */
+  const entrada = $('#entrada'), barra = $('#barraEntrada');
+  gsap.set('#heroTitulo .l > span', {yPercent: 110});
+  gsap.set('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 0, y: 16});
+  const esperas = [document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => requestAnimationFrame(() => r()))];
+  let prontas = 0;
+  esperas.forEach(p => p.then(() => barra.style.setProperty('--p', ++prontas / esperas.length)));
+  const t0 = performance.now();
+  Promise.race([Promise.all(esperas), new Promise(r => setTimeout(r, 2400))]).then(() => {
+    setTimeout(() => {
+      document.documentElement.classList.remove('carregando');
+      gsap.to(entrada, {opacity: 0, duration: .7, ease: 'power2.out', onComplete: () => entrada.remove()});
+      gsap.to('#heroTitulo .l > span', {yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: .09, delay: .1});
+      gsap.to('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: .5, stagger: .08});
+      ScrollTrigger.refresh();
+    }, Math.max(0, 900 - (performance.now() - t0)));
+  });
+
+  /* Percurso: a rolagem é a câmera. Segura a boca do túnel no começo,
+     depois cada rolada leva a câmera mais fundo, para frente e para trás. */
+  const MOMENTOS = [[0, '23:04 · Mensagem'], [34, '23:04 · Resposta'], [52, '23:05 · Gerente'], [70, '23:05 · Quatro frentes'], [86, 'Toda noite · K2IA']];
+  const cenas = $$('#inicio .cena').map(el => ({el, de: +el.dataset.de, ate: +el.dataset.ate}));
+  const onde = $('#onde'), ondeNome = $('#ondeNome'), ondeBarra = $('#ondeBarra');
+  const heroC = $('#heroConteudo'), rolar = $('#rolar');
+  const cartoes = $('#cartoes'), msgsHero = $$('#msgsHero .msg'), alerta = $('#alertaHero');
+  redeHero.liga(true);
+  new IntersectionObserver(([e]) => redeHero.liga(e.isIntersecting)).observe($('#telaRede'));
+  ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
+    onUpdate: s => {
+      const u = s.progress, c = u * 100;
+      redeHero.set(u);
+      // título some nos primeiros quadros, subindo como quem entra
+      const h = Math.min(1, u / .06);
+      heroC.style.opacity = 1 - h;
+      heroC.style.transform = `translateY(${-h * 12}vh)`;
+      heroC.style.pointerEvents = h > .6 ? 'none' : '';
+      rolar.style.opacity = 1 - Math.min(1, u / .02);
+      cenas.forEach(x => {
+        const o = janela(c, x.de - 3, x.de + 1, x.ate - 2, x.ate + 2);
+        x.el.style.opacity = o;
+        x.el.style.transform = `translateY(${(1 - o) * (c < x.de + 1 ? 2 : -2)}rem)`;
+      });
+      onde.style.opacity = lim((u - .05) / .03);
+      let nome = MOMENTOS[0][1]; MOMENTOS.forEach(([q, x]) => { if (c >= q) nome = x; });
+      if (ondeNome.textContent !== nome) ondeNome.textContent = nome;
+      ondeBarra.style.setProperty('--p', u.toFixed(3));
+      // a conversa vai chegando no cartão; o aviso ao gerente aparece na cena 3
+      const v = janela(c, 12, 15, 67, 71);
+      cartoes.style.opacity = v;
+      cartoes.style.transform = `translateY(${(1 - v) * 1.5}rem)`;
+      msgsHero.forEach(m => {
+        const em = +m.dataset.em, digita = +m.dataset.digita || em;
+        m.classList.toggle('on', c >= digita);
+        m.classList.toggle('digitando', c >= digita && c < em);
+      });
+      alerta.classList.toggle('on', c >= 56);
+    }});
+
+  /* A conversa, inteira: celular entra como produto, mensagens chegam com FLIP,
+     fichas trocam pelo caminho */
+  const fone = $('#fone'), bolhas = $$('#msgsFone .msg'), fichas = $$('#fichas .ficha'), barras = $$('#trilhoConversa i');
+  gsap.set(fichas, {y: 16});
+  let ultimoEstado = '', atual = -1;
+  const aplica = (p) => {
+    const e = bolhas.map(b => { const em = +b.dataset.em; return p >= em ? 2 : (b.classList.contains('k2ia') && p >= em - .07) ? 1 : 0; });
+    const chave = e.join('');
+    if (chave === ultimoEstado) return;
+    ultimoEstado = chave;
+    // FLIP: mede antes, muda, mede depois e parte de onde cada bolha está na tela
+    const antes = new Map(bolhas.filter(b => b.classList.contains('on')).map(b => [b, b.getBoundingClientRect().top]));
+    bolhas.forEach((b, i) => { b.classList.toggle('on', e[i] > 0); b.classList.toggle('digitando', e[i] === 1); });
+    bolhas.forEach(b => {
+      if (!b.classList.contains('on')) return;
+      const topoAtual = b.getBoundingClientRect().top, yAtual = +gsap.getProperty(b, 'y') || 0;
+      const a = antes.get(b);
+      if (a === undefined) gsap.fromTo(b, {opacity: 0, y: 14, scale: .96}, {opacity: 1, y: 0, scale: 1, duration: .5, ease: 'expo.out', overwrite: true});
+      else if (Math.abs(a - topoAtual) > .5) gsap.fromTo(b, {y: a - (topoAtual - yAtual)}, {y: 0, duration: .5, ease: 'expo.out', overwrite: true});
+    });
+  };
+  ScrollTrigger.create({trigger: '#conversa', start: 'top bottom', end: 'top top', scrub: true,
+    onUpdate: s => {
+      // o celular chega como produto: cresce e aproxima enquanto a seção sobe
+      const p = s.progress;
+      fone.style.transform = `scale(${(.86 + .14 * p).toFixed(4)}) translateY(${((1 - p) * 4).toFixed(2)}rem)`;
+      fone.style.opacity = lim(p * 1.6);
+    }});
+  ScrollTrigger.create({trigger: '#conversa', start: 'top top', end: 'bottom bottom', scrub: true,
+    onUpdate: s => {
+      const p = s.progress;
+      aplica(p);
+      const k = Math.min(fichas.length - 1, Math.floor(p * fichas.length));
+      barras.forEach((b, i) => b.style.setProperty('--p', lim(p * fichas.length - i)));
+      if (k !== atual){
+        // cada ficha entra de onde a anterior está agora, sem esperar ela terminar
+        fichas.forEach((f, i) => gsap.to(f, {opacity: i === k ? 1 : 0, y: i === k ? 0 : (i < k ? -16 : 16), duration: .5, ease: 'expo.out', overwrite: true}));
+        atual = k;
+      }
+    }});
+
+  /* Soluções: o trilho anda de lado enquanto a página desce */
+  const trilho = $('#trilhoH'), sec = $('#solucoes');
+  const distancia = () => Math.max(0, trilho.scrollWidth - innerWidth);
+  sec.style.height = `calc(100svh + ${distancia()}px)`;
+  ScrollTrigger.addEventListener('refreshInit', () => { sec.style.height = `calc(100svh + ${distancia()}px)`; });
+  gsap.to(trilho, {x: () => -distancia(), ease: 'none',
+    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true}});
+
+  /* Cabeças de seção: revelação por linha presa à rolagem, reversível */
+  $$('.revela').forEach(el => {
+    const partes = $$('.eyebrow, h2, p, .abas, .acoes', el);
+    gsap.fromTo(partes, {opacity: 0, y: 28}, {opacity: 1, y: 0, ease: 'none', stagger: .12,
+      scrollTrigger: {trigger: el, start: 'top 92%', end: 'top 55%', scrub: true}});
+  });
+
+  /* Números contam quando aparecem */
+  $$('[data-conta]').forEach(n => {
+    const alvo = +n.dataset.conta, o = {v: 0};
+    n.textContent = '0';
+    ScrollTrigger.create({trigger: n, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(o, {v: alvo, duration: 1.6, ease: 'expo.out', onUpdate: () => n.textContent = Math.round(o.v)})});
+  });
+
+  /* Propósito: a frase cresce até o tamanho final */
+  gsap.fromTo('#citacao', {scale: .82, opacity: .2}, {scale: 1, opacity: 1, ease: 'none',
+    scrollTrigger: {trigger: '#citacao', start: 'top 95%', end: 'center 55%', scrub: true}});
+
+  /* Contato: o eco da rede é desenhado uma vez, perto de aparecer */
+  ScrollTrigger.create({trigger: '#contato', start: 'top 120%', once: true, onEnter: () => redeEco.redesenha()});
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+}
+})();
+</script>
+<script defer src="https://deck.k2ia.app/track.js"></script>
+</body>
+</html>
