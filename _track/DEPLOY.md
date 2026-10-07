@@ -27,3 +27,5 @@ As páginas do deck vão cifradas com uma chave por cliente. A tela de PIN manda
 4 dígitos para `/abre`, que confere contra o KV (`cad:<grupo>` e `cad:_mestre`, só
 hash com sal) e devolve a chave. Erros têm limite: 8 por IP a cada 15 min e 40 por
 cliente a cada hora. Quem grava os cadeados é `node _cadeado/trancar.mjs`.
+A contagem fica num Durable Object `Porteiro` (um por cliente), que conta a tentativa
+antes de conferir. Assim pedidos em paralelo não furam o limite.

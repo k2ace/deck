@@ -11,3 +11,11 @@ id = "f06e664d56aa4ff89a0fbb937f881860"
 
 # LIST_TOKEN protege a leitura em /list. E um secret na Cloudflare.
 # O valor NAO fica no repositorio (guardado em _Agents/.deck-radar-token).
+
+[[durable_objects.bindings]]
+name = "PORTEIRO"
+class_name = "Porteiro"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Porteiro"]
