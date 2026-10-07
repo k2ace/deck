@@ -5,6 +5,8 @@
      GET /list?token=XXX   devolve as ultimas aberturas em JSON (para o Claude consultar)
      POST /p     guarda uma proposta ja cifrada e devolve um codigo curto
      GET /p/CODIGO   devolve a proposta cifrada daquele codigo
+     POST /abre  {g, pin}  confere o PIN de uma página trancada e devolve a chave dela
+                 (cadeados em KV "cad:<grupo>" e "cad:_mestre", gravados por _cadeado/trancar.mjs)
    Ambiente:
      KV binding  DECK_HITS   (guarda o historico)
      secret      LIST_TOKEN  (protege a leitura em /list)
@@ -14,6 +16,14 @@
 
    Sem Telegram, sem cookie.
 */
+const MAX_IP = 8;       // erros por IP a cada 15 minutos
+const MAX_GRUPO = 40;   // erros por cliente a cada hora, somando todos os IPs
+
+async function hashPin(sal, pin) {
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(sal + ":" + pin));
+  return btoa(String.fromCharCode(...new Uint8Array(d)));
+}
+
 export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
@@ -83,6 +93,62 @@ export default {
       const pacote = await env.DECK_HITS.get("prop:" + codigo);
       if (!pacote) return new Response("nao encontrada", { status: 404, headers: cors });
       return new Response(pacote, { headers: { ...cors, "content-type": "text/plain; charset=utf-8" } });
+    }
+
+    // ---- cadeado: confere o PIN e entrega a chave da página ----
+    // As páginas do deck vão cifradas com uma chave longa e aleatória por cliente.
+    // A chave só sai daqui para quem acerta o PIN, e o erro tem limite: por IP e
+    // por cliente. Assim os 4 dígitos não podem ser testados aos milhares.
+    if (url.pathname === "/abre" && req.method === "OPTIONS") {
+      return new Response(null, {
+        headers: { ...cors, "access-control-allow-methods": "POST, OPTIONS",
+                   "access-control-allow-headers": "content-type" },
+      });
+    }
+
+    if (url.pathname === "/abre" && req.method === "POST") {
+      const json = (obj, status = 200) => new Response(JSON.stringify(obj), {
+        status, headers: { ...cors, "content-type": "application/json; charset=utf-8" },
+      });
+      if (!env.DECK_HITS) return json({ erro: "sem armazenamento" }, 500);
+      let g = "", pin = "";
+      try { ({ g, pin } = await req.json()); } catch (e) {}
+      if (!/^[a-z0-9-]{1,40}$/.test(g || "") || !/^[0-9]{4}$/.test(pin || "")) return json({ erro: "invalido" }, 400);
+
+      const ip = req.headers.get("cf-connecting-ip") || "?";
+      const kIp = "tent:ip:" + ip, kG = "tent:g:" + g;
+      const [nIp, nG] = (await Promise.all([env.DECK_HITS.get(kIp), env.DECK_HITS.get(kG)])).map((v) => Number(v) || 0);
+      if (nIp >= MAX_IP || nG >= MAX_GRUPO) return json({ erro: "espera" }, 429);
+
+      const [cad, mestre] = await Promise.all([
+        env.DECK_HITS.get("cad:" + g, "json"), env.DECK_HITS.get("cad:_mestre", "json")]);
+      if (!cad) return json({ erro: "invalido" }, 404);
+      const pessoas = [...(cad.pessoas || []), ...((mestre && mestre.pessoas) || [])];
+      let quem = null;
+      for (const p of pessoas) {
+        if (await hashPin(p.s, pin) === p.h) { quem = p.nome; break; }
+      }
+
+      if (!quem) {
+        // a contagem expira sozinha; KV não é atômico, então é um teto aproximado
+        ctx.waitUntil(Promise.all([
+          env.DECK_HITS.put(kIp, String(nIp + 1), { expirationTtl: 15 * 60 }),
+          env.DECK_HITS.put(kG, String(nG + 1), { expirationTtl: 60 * 60 }),
+        ]));
+        return json({ erro: "pin", resta: Math.max(0, MAX_IP - nIp - 1) }, 401);
+      }
+
+      const cf = req.cf || {};
+      const rec = {
+        ts: new Date().toISOString(), page: url.searchParams.get("p") || "", dest: "senha: " + quem, quem,
+        loc: [cf.city, cf.region, cf.country].filter(Boolean).join(", "), city: cf.city || "",
+        region: cf.region || "", country: cf.country || "", isp: cf.asOrganization || "",
+        device: /Mobi|Android|iPhone|iPad/i.test(req.headers.get("user-agent") || "") ? "celular" : "computador",
+        ua: req.headers.get("user-agent") || "",
+      };
+      ctx.waitUntil(env.DECK_HITS.put("hit:" + Date.now() + ":" + Math.random().toString(36).slice(2, 8),
+        JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 }));
+      return json({ chave: cad.chave, quem });
     }
 
     if (url.pathname === "/list") {

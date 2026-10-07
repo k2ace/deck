@@ -132,11 +132,11 @@ keys.addEventListener('click', (e) => {
   if (b.dataset.k === 'del') pin = pin.slice(0, -1);
   else if (pin.length < 4) pin += b.dataset.k;
   pintaDots();
-  if (pin.length === 4) tentar(pin, true);
+  if (pin.length === 4) tentar(pin);
 });
 addEventListener('keydown', (e) => {
   if (ocupado) return;
-  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin, true); }
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
   else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
 });
 function pintaDots(){
@@ -148,49 +148,45 @@ function pintaDots(){
 }
 
 const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-/* Registro de entrada: o mesmo sinal do track.js, dizendo quem destravou. A senha não sai daqui. */
-function marcaEntrada(nome){
-  try {
-    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
-      + '&q=' + encodeURIComponent(nome) + '&u=' + encodeURIComponent('senha: ' + nome)
-      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
-    if (navigator.sendBeacon) navigator.sendBeacon(u); else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
-  } catch (e) {}
-}
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
 
-async function abre(senha){
-  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveKey']);
-  for (const cf of C.cofres){
-    try {
-      const chave = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(cf.salt), iterations: C.iter, hash: 'SHA-256'},
-        base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
-      const bruta = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce)}, chave, b64(cf.chave));
-      const quem = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce2)}, chave, b64(cf.quem)));
-      const mestra = await crypto.subtle.importKey('raw', bruta, 'AES-GCM', false, ['decrypt']);
-      const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, mestra, b64(C.dados));
-      const ds = new DecompressionStream('gzip');
-      const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
-      return {quem, html: new TextDecoder().decode(await new Response(ds.readable).arrayBuffer())};
-    } catch (e) { /* cofre de outra pessoa */ }
-  }
-  return null;
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
 }
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
 
-async function tentar(senha, digitada){
+async function tentar(senha){
   ocupado = true;
   msg.classList.remove('err');
   msg.textContent = 'Abrindo…';
-  const r = await abre(senha).catch(() => null);
-  if (r){
-    try { sessionStorage.setItem(LEMBRA, senha); } catch (e) {}
-    if (digitada) marcaEntrada(r.quem);
-    document.open(); document.write(r.html); document.close();
-    return;
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
+    }
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
   }
   ocupado = false; pin = ''; pintaDots();
-  if (!digitada){ msg.textContent = ''; try { sessionStorage.removeItem(LEMBRA); } catch (e) {} return; }
   msg.classList.add('err');
-  msg.textContent = 'Senha incorreta. Tente de novo.';
+  msg.textContent = erro;
   const p = document.getElementById('porta');
   if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
 }
@@ -198,7 +194,7 @@ async function tentar(senha, digitada){
 /* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
 let lembrada = null;
 try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
-if (lembrada) tentar(lembrada, false);
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
 })();
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
