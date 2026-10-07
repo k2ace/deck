@@ -1,0 +1,98 @@
+<style>
+#gate { position:fixed; inset:0; z-index:200; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.4rem; padding:2rem 1rem;
+  background:linear-gradient(180deg, rgba(0,0,0,.72), rgba(10,10,10,.96)), image-set(url('img/bgfeirao.webp') type('image/webp'), url('img/bgfeirao.jpg') type('image/jpeg')) center/cover no-repeat;
+  transition:opacity .35s ease; }
+#gate.saindo { opacity:0; pointer-events:none; }
+body.trancado { overflow:hidden; }
+.g-logo { width:min(17rem,64vw); height:auto; filter:drop-shadow(0 10px 30px rgba(0,0,0,.8)); }
+.g-t { font-family:var(--display); font-weight:900; font-size:1.15rem; letter-spacing:-.01em; text-transform:uppercase; text-align:center; }
+.g-s { font-size:.85rem; color:var(--ink-2); margin-top:-.9rem; text-align:center; }
+.g-dots { display:flex; gap:.9rem; height:1rem; }
+.g-dots i { width:.9rem; height:.9rem; border-radius:50%; border:2px solid var(--ink-3); transition:background-color .12s, border-color .12s, transform .12s; }
+.g-dots i.on { background:var(--y); border-color:var(--y); box-shadow:0 0 12px rgba(243,255,0,.6); }
+.g-dots.erro i { border-color:#ff5a5a; background:transparent; box-shadow:none; }
+.g-dots.erro { animation:treme .4s cubic-bezier(.36,.07,.19,.97); }
+@keyframes treme { 20%,60% { transform:translateX(-.5rem); } 40%,80% { transform:translateX(.5rem); } }
+.g-pad { display:grid; grid-template-columns:repeat(3,4.4rem); gap:.8rem; }
+.g-pad button { height:4.4rem; border-radius:50%; border:1px solid var(--line); background:rgba(26,26,26,.75); color:var(--ink);
+  font:600 1.5rem/1 var(--body); cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); transition:transform .1s ease-out, background-color .1s; }
+.g-pad button.pressed { transform:scale(.92); background:rgba(243,255,0,.18); }
+.g-pad button.fn { background:transparent; border-color:transparent; font-size:1.1rem; color:var(--ink-3); }
+.g-pad button:focus-visible { outline:2px solid var(--y); outline-offset:2px; }
+.g-msg { font-size:.8rem; color:var(--ink-3); min-height:1.2em; text-align:center; }
+@media (prefers-reduced-motion:reduce) { #gate, .g-dots i, .g-pad button { transition:none; } .g-dots.erro { animation:none; } }
+@media (prefers-reduced-transparency:reduce) { .g-pad button { backdrop-filter:none; -webkit-backdrop-filter:none; background:#1a1a1a; } }
+@media (prefers-contrast:more) { .g-pad button { border-color:#777; } .g-dots i { border-color:#ccc; } }
+</style>
+<div id="gate" role="dialog" aria-label="Proposta reservada">
+  <img class="g-logo" src="img/logo.png" alt="Desafio das Concessionárias">
+  <div class="g-t">Proposta reservada</div>
+  <div class="g-s">Digite o PIN de 4 dígitos para abrir</div>
+  <div class="g-dots" aria-live="polite"><i></i><i></i><i></i><i></i></div>
+  <div class="g-pad">
+    <button>1</button><button>2</button><button>3</button>
+    <button>4</button><button>5</button><button>6</button>
+    <button>7</button><button>8</button><button>9</button>
+    <button class="fn" aria-hidden="true" tabindex="-1" style="visibility:hidden"></button><button>0</button><button class="fn" data-k="del" aria-label="Apagar">⌫</button>
+  </div>
+  <div class="g-msg"></div>
+</div>
+<div id="miolo"></div>
+<script>
+(function(){
+  var D = __DADOS__;
+  var KEY = 'desafio-pin';
+  var gate = document.getElementById('gate'), dots = gate.querySelectorAll('.g-dots i'), dotsBox = gate.querySelector('.g-dots'), msg = gate.querySelector('.g-msg');
+  var pin = '', ocupado = false;
+  document.body.classList.add('trancado');
+  var u8 = function(b){ return Uint8Array.from(atob(b), function(ch){ return ch.charCodeAt(0); }); };
+
+  function abrir(p){
+    var enc = new TextEncoder();
+    return crypto.subtle.importKey('raw', enc.encode(p), 'PBKDF2', false, ['deriveKey'])
+      .then(function(base){ return crypto.subtle.deriveKey({ name:'PBKDF2', salt:u8(D.s), iterations:D.n, hash:'SHA-256' }, base, { name:'AES-GCM', length:256 }, false, ['decrypt']); })
+      .then(function(k){ return crypto.subtle.decrypt({ name:'AES-GCM', iv:u8(D.i) }, k, u8(D.c)); })
+      .then(function(buf){ return new TextDecoder().decode(buf); });
+  }
+  function mostrar(html, p){
+    document.getElementById('miolo').outerHTML = html;
+    try { localStorage.setItem(KEY, p); } catch(e) {}
+    document.body.classList.remove('trancado');
+    gate.classList.add('saindo');
+    setTimeout(function(){ gate.remove(); }, 400);
+    if (window.iniciar) window.iniciar();
+  }
+  function pintar(){ dots.forEach(function(d, i){ d.classList.toggle('on', i < pin.length); }); }
+  function tentar(){
+    ocupado = true; msg.textContent = 'Abrindo…';
+    abrir(pin).then(function(html){ mostrar(html, pin); }, function(){
+      msg.textContent = 'PIN incorreto. Tente de novo.';
+      dotsBox.classList.remove('erro'); void dotsBox.offsetWidth; dotsBox.classList.add('erro');
+      if (navigator.vibrate) navigator.vibrate(60);
+      pin = ''; pintar(); ocupado = false;
+    });
+  }
+  function tecla(k){
+    if (ocupado) return;
+    if (k === 'del') { pin = pin.slice(0, -1); }
+    else if (/^\d$/.test(k) && pin.length < 4) { pin += k; dotsBox.classList.remove('erro'); msg.textContent = ''; }
+    pintar();
+    if (pin.length === 4) tentar();
+  }
+  gate.querySelectorAll('.g-pad button').forEach(function(b){
+    var k = b.dataset.k || b.textContent.trim();
+    if (!k) return;
+    // resposta no toque, não no soltar
+    b.addEventListener('pointerdown', function(e){ e.preventDefault(); b.classList.add('pressed'); tecla(k); });
+    ['pointerup','pointerleave','pointercancel'].forEach(function(ev){ b.addEventListener(ev, function(){ b.classList.remove('pressed'); }); });
+    b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tecla(k); } });
+  });
+  document.addEventListener('keydown', function(e){
+    if (!document.getElementById('gate')) return;
+    if (/^\d$/.test(e.key)) tecla(e.key); else if (e.key === 'Backspace') tecla('del');
+  });
+  var salvo = null; try { salvo = localStorage.getItem(KEY); } catch(e) {}
+  if (salvo) { ocupado = true; abrir(salvo).then(function(html){ mostrar(html, salvo); }, function(){ ocupado = false; try { localStorage.removeItem(KEY); } catch(e) {} }); }
+})();
+</script>
