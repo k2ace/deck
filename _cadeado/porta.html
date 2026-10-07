@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>__TITULO__</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
+}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
+}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
+</style>
+</head>
+<body>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+  </div>
+  <h1>__TITULO__</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
+  </div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
+
+<script type="application/json" id="cofre">__COFRE__</script>
+<script>
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
+
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin, true);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin, true); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
+
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+/* Registro de entrada: o mesmo sinal do track.js, dizendo quem destravou. A senha não sai daqui. */
+function marcaEntrada(nome){
+  try {
+    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
+      + '&q=' + encodeURIComponent(nome) + '&u=' + encodeURIComponent('senha: ' + nome)
+      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
+    if (navigator.sendBeacon) navigator.sendBeacon(u); else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
+  } catch (e) {}
+}
+
+async function abre(senha){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveKey']);
+  for (const cf of C.cofres){
+    try {
+      const chave = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(cf.salt), iterations: C.iter, hash: 'SHA-256'},
+        base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
+      const bruta = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce)}, chave, b64(cf.chave));
+      const quem = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce2)}, chave, b64(cf.quem)));
+      const mestra = await crypto.subtle.importKey('raw', bruta, 'AES-GCM', false, ['decrypt']);
+      const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, mestra, b64(C.dados));
+      const ds = new DecompressionStream('gzip');
+      const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+      return {quem, html: new TextDecoder().decode(await new Response(ds.readable).arrayBuffer())};
+    } catch (e) { /* cofre de outra pessoa */ }
+  }
+  return null;
+}
+
+async function tentar(senha, digitada){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  const r = await abre(senha).catch(() => null);
+  if (r){
+    try { sessionStorage.setItem(LEMBRA, senha); } catch (e) {}
+    if (digitada) marcaEntrada(r.quem);
+    document.open(); document.write(r.html); document.close();
+    return;
+  }
+  ocupado = false; pin = ''; pintaDots();
+  if (!digitada){ msg.textContent = ''; try { sessionStorage.removeItem(LEMBRA); } catch (e) {} return; }
+  msg.classList.add('err');
+  msg.textContent = 'Senha incorreta. Tente de novo.';
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
+
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) tentar(lembrada, false);
+})();
+</script>
+<script defer src="https://deck.k2ia.app/track.js"></script>
+</body>
+</html>

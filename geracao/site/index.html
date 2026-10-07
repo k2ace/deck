@@ -4,1316 +4,201 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hyundai Geração</title>
-<meta name="description" content="Concessionária Hyundai em Santa Catarina. Cinco lojas: Florianópolis, São José, Rio do Sul, Lages e Brusque. Modelos 0 km, seminovos, serviços, peças e financiamento.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#001E50">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23001e50'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="image" href="media/percurso/026.jpg">
-<link rel="preload" as="font" type="font/ttf" href="media/fonts/HyundaiSansHead-Bold.ttf" crossorigin>
-<link rel="preload" as="font" type="font/otf" href="media/fonts/HyundaiSansText-Regular.otf" crossorigin>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-/* ===========================================================
-   Tokens. Identidade do site da Hyundai Geração: Hyundai Sans
-   (Head para títulos, Text para corpo), marinho #001E50, azul
-   #0A2D82, verde do WhatsApp #3CA21D e o papel quente #F6F3F2.
-   =========================================================== */
-@font-face{font-family:"Hyundai Sans Head";font-weight:400;font-display:swap;src:url(media/fonts/HyundaiSansHead.otf) format("opentype")}
-@font-face{font-family:"Hyundai Sans Head";font-weight:500;font-display:swap;src:url(media/fonts/HyundaiSansHeadOffice-Medium.ttf) format("truetype")}
-@font-face{font-family:"Hyundai Sans Head";font-weight:700;font-display:swap;src:url(media/fonts/HyundaiSansHead-Bold.ttf) format("truetype")}
-@font-face{font-family:"Hyundai Sans Text";font-weight:400;font-display:swap;src:url(media/fonts/HyundaiSansText-Regular.otf) format("opentype")}
-@font-face{font-family:"Hyundai Sans Text";font-weight:700;font-display:swap;src:url(media/fonts/HyundaiSansText-Bold.otf) format("opentype")}
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
 :root{
-  --marca:#0A2D82;
-  --marca-2:#1240a8;
-  --noite:#001E50;
-  --noite-2:#04255e;
-  --noite-3:#0a2f6e;
-  --zap:#3CA21D;
-  --papel:#F6F3F2;
-  --degrade:linear-gradient(180deg,#0A2D82 0%,#001E50 100%);
-  --estudio-cima:#dfe3e8;
-  --estudio-baixo:#f6f3f2;
-  --tinta:#0b1220;
-  --tinta-2:#4a5566;
-  --claro:#f4f6fa;
-  --claro-2:rgba(244,246,250,.7);
-  --claro-3:rgba(244,246,250,.62);
-  --linha:rgba(255,255,255,.14);
-  --chrome:rgba(0,30,80,.6);
-  --pad:clamp(1rem,5vw,4rem);
-  --r:1.25rem;
-  --mola:cubic-bezier(.22,1,.36,1);
-  --head:"Hyundai Sans Head",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --text:"Hyundai Sans Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
   color-scheme:dark;
 }
 @media (prefers-contrast: more){
-  :root{--claro-2:rgba(244,246,250,.9);--claro-3:rgba(244,246,250,.76);--linha:rgba(255,255,255,.42);--tinta-2:#1f2a38}
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
 }
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-body{margin:0;background:var(--noite);color:var(--claro);
-  font:400 1rem/1.6 var(--text);letter-spacing:0;
-  -webkit-font-smoothing:antialiased;overflow-x:clip}
-img,video,canvas{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:.5rem}
-
-.display{font-family:var(--head);font-weight:400;letter-spacing:-.03em;line-height:1;margin:0}
-.display b,.it{font-weight:700;font-style:normal}
-.eyebrow{font:700 .72rem/1.2 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--claro-3);margin:0}
-.eyebrow b{color:#fff;font-weight:700}
-.num{font-variant-numeric:tabular-nums}
-
-/* ---------- Barra do topo: material translúcido, conteúdo passa por baixo ---------- */
-.topo{position:fixed;inset:0 0 auto;z-index:50;padding:max(.75rem,env(safe-area-inset-top)) var(--pad) .75rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  transition:transform .5s var(--mola),background-color .4s ease}
-.topo::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s ease;
-  background:var(--chrome);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
-  -webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
-.topo.solido::before{opacity:1}
-.topo.escondido{transform:translateY(-110%)}
-.topo .logo img{height:1.5rem;width:auto}
-.topo nav{display:flex;align-items:center;gap:.25rem}
-.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 var(--text);color:var(--claro-2);
-  transition:color .2s ease,background-color .2s ease}
-.topo nav a:hover{color:var(--claro);background:rgba(255,255,255,.08)}
-.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.25rem;border-radius:99rem;
-  font:700 .9375rem/1 var(--text);letter-spacing:-.005em;white-space:nowrap;
-  transition:transform .35s var(--mola),background-color .2s ease,box-shadow .2s ease;will-change:transform}
-.btn:active,.btn.pressionado{transform:scale(.96);transition-duration:.08s}
-.btn-marca{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
-.btn-marca:hover{background:var(--marca-2)}
-.btn-zap{background:var(--zap);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
-.btn-zap:hover{background:#45b425}
-.btn-vidro{background:rgba(255,255,255,.12);color:var(--claro);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-.btn-vidro:hover{background:rgba(255,255,255,.2)}
-.btn svg{width:1.05em;height:1.05em;flex:none}
-.topo .btn{padding:.6rem 1rem;font-size:.875rem}
-.so-estreito{display:none}
-@media (max-width:760px){
-  .topo nav a:not(.btn){display:none}
-  .topo nav a.fica{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 .6rem}
-  .topo .btn{min-height:2.75rem}
-  .so-largo{display:none}.so-estreito{display:inline}
-  .topo .logo img{height:1.25rem}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-@media (max-width:360px){.topo nav a.fica{display:none}}
-
-/* ---------- 1. Percurso: do Creta até a Hyundai, preso à rolagem ----------
-   A página abre parada no Creta de frente e cada rolada leva a câmera adiante:
-   o detalhe da grade, o mirante, a cidade e a chegada na Hyundai.
-   Em pé (celular), o filme vira uma faixa de cinema no alto, com ponto focal
-   que acompanha o carro, e o texto fica embaixo sobre o marinho. */
-.percurso{position:relative;height:780vh}
-.percurso .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(media/percurso/026.jpg) center/cover}
-.percurso canvas{position:absolute;inset:0;width:100%;height:100%}
-.percurso .veu{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(0,30,80,.5) 0%,rgba(0,30,80,.06) 28%,rgba(0,30,80,.12) 50%,rgba(0,30,80,.9) 100%)}
-.percurso .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.75rem;will-change:transform,opacity}
-.percurso h1{font-size:clamp(2.8rem,min(8.5vw,13svh),8.5rem)}
-.percurso h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
-.percurso h1 .l span{display:block}
-.percurso h1 .l:nth-child(2) span{font-weight:700}
-.percurso .base{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem}
-.percurso .base p{margin:0;max-width:30rem;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.125rem);line-height:1.55}
-.percurso .acoes{display:flex;gap:.75rem;flex-wrap:wrap}
-.rolar{position:absolute;left:50%;bottom:1rem;translate:-50% 0;width:1px;height:2.5rem;background:var(--linha);overflow:hidden}
-.rolar::after{content:"";position:absolute;inset:0;background:var(--claro);animation:rolar 2.4s var(--mola) infinite}
-@keyframes rolar{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
-.percurso .cenas{pointer-events:none}
-.cena{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(4.5rem,12vh,7rem);max-width:46rem;opacity:0;will-change:transform,opacity;
-  text-shadow:0 1px 2px rgba(0,20,50,.4),0 .5rem 2rem rgba(0,20,50,.4)}
-.cena .eyebrow{margin-bottom:1rem}
-.cena h2{font-size:clamp(2.1rem,5.4vw,5rem)}
-.cena p{margin:1rem 0 0;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:34rem}
-.onde{position:absolute;right:var(--pad);bottom:clamp(1.25rem,4vh,2rem);display:flex;align-items:center;gap:.75rem;opacity:0;
-  font:700 .72rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--claro-2)}
-.onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha);overflow:hidden}
-.onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
-@media (max-width:760px){
-  .percurso{height:560vh}
-  .percurso .veu{background:linear-gradient(180deg,rgba(0,30,80,.5) 0%,rgba(0,30,80,0) 18%,rgba(0,30,80,0) 45%,rgba(0,30,80,.6) 62%,rgba(0,30,80,.85) 100%)}
-  .percurso .conteudo{gap:1.25rem;bottom:max(1.75rem,env(safe-area-inset-bottom))}
-  .percurso .acoes .btn{flex:1 1 auto;justify-content:center;min-height:3rem}
-  .cena{bottom:max(4.5rem,calc(env(safe-area-inset-bottom) + 3.5rem))}
-  .cena h2{font-size:clamp(2rem,9vw,2.6rem)}
-  .percurso .palco{background:var(--noite)}
-  .onde{left:var(--pad);right:auto}
-  .onde .barra{width:4rem}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
 }
-
-/* ---------- 2. O Creta em cores ----------
-   A seção começa uma tela antes do fim do percurso e fica invisível até prender.
-   Quem mostra o carro nessa tela é o percurso, já fundido no estúdio, com a
-   mesma imagem: a troca de um palco pelo outro não aparece. Cada rolada
-   troca a cor (são as seis cores reais do catálogo, sem fingir giro). */
-.giro{position:relative;height:420vh;color:var(--tinta);margin-top:-100svh}
-.giro .palco{position:sticky;top:0;height:100svh;overflow:hidden;
-  background:linear-gradient(180deg,var(--estudio-cima),var(--estudio-baixo))}
-.giro.espera .palco{visibility:hidden}
-.giro canvas{position:absolute;inset:0;width:100%;height:100%}
-.giro .cabeca{position:absolute;top:clamp(5rem,12vh,7.5rem);left:var(--pad);right:var(--pad);
-  display:flex;justify-content:space-between;align-items:start;gap:1rem}
-.giro .cabeca .eyebrow{color:rgba(11,18,32,.72)}
-.giro .cabeca .eyebrow b{color:var(--marca)}
-.giro h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.6rem;color:var(--noite)}
-.giro h2 small{display:block;font-size:.42em;letter-spacing:-.02em;color:var(--marca);font-weight:500;margin-bottom:.2em}
-.giro .cor{display:flex;flex-direction:column;align-items:end;gap:.5rem;text-align:right;flex:none}
-.giro .cor i{width:2.25rem;height:2.25rem;border-radius:50%;background:var(--c,#245079);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12),0 .25rem 1rem rgba(0,20,50,.18);transition:background-color .35s ease}
-.giro .cor span{font:700 .72rem/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:rgba(11,18,32,.6);max-width:8rem}
-.giro .fichas{position:absolute;left:var(--pad);bottom:clamp(1.5rem,6vh,4rem);width:min(24rem,calc(100% - 2*var(--pad)));height:9.5rem}
-.giro .ficha{position:absolute;inset:auto 0 0;opacity:0;transform:translateY(1rem)}
-.giro .ficha .valor{font:700 clamp(3.25rem,7vw,6rem)/.9 var(--head);letter-spacing:-.04em;color:var(--noite)}
-.giro .ficha .valor small{font-size:.36em;letter-spacing:-.01em;margin-left:.2em;color:var(--marca)}
-.giro .ficha p{margin:.55rem 0 0;color:var(--tinta-2);font-size:.975rem;line-height:1.45}
-.giro .trilho{position:absolute;right:var(--pad);bottom:clamp(1.5rem,6vh,4rem);display:flex;gap:.4rem}
-.giro .trilho i{width:1.75rem;height:.2rem;border-radius:1rem;background:rgba(11,18,32,.16);overflow:hidden;position:relative}
-.giro .trilho i::after{content:"";position:absolute;inset:0;background:var(--marca);transform-origin:left;transform:scaleX(var(--p,0))}
-@media (max-width:760px){
-  .giro .cor span{display:none}
-  .giro .cor i{width:1.75rem;height:1.75rem}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
 }
-
-/* ---------- 3. Diferenciais: trilho horizontal ---------- */
-.diferenciais{position:relative;background:var(--noite)}
-.diferenciais .fixo{background:var(--degrade)}
-.diferenciais .fixo{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,4vh,3rem)}
-.diferenciais header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
-.diferenciais header h2{font-size:clamp(2.25rem,5.4vw,5rem);max-width:13ch}
-.diferenciais header p{margin:0;max-width:26rem;color:var(--claro-2)}
-.trilho-h{display:flex;gap:clamp(.75rem,1.6vw,1.25rem);padding:0 var(--pad);will-change:transform;width:max-content}
-.card-dif{position:relative;flex:none;width:clamp(17rem,30vw,25rem);aspect-ratio:490/700;border-radius:var(--r);overflow:hidden;background:var(--noite-3);isolation:isolate;color:var(--claro)}
-.card-dif img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.12);will-change:transform}
-.card-dif::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,30,80,0) 35%,rgba(0,30,80,.94))}
-.card-dif .txt{position:absolute;inset:auto 0 0;padding:clamp(1.1rem,2vw,1.6rem)}
-.card-dif .n{font:700 .75rem/1 var(--text);letter-spacing:.12em;color:rgba(244,246,250,.6)}
-.card-dif h3{font:700 clamp(1.4rem,2vw,1.8rem)/1.05 var(--head);letter-spacing:-.025em;margin:.6rem 0 .55rem}
-.card-dif p{margin:0;color:var(--claro-2);font-size:.9rem;line-height:1.5}
-.card-dif .ir{position:absolute;top:1rem;right:1rem;width:2.5rem;height:2.5rem;border-radius:50%;display:grid;place-items:center;
-  background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .35s var(--mola),background-color .2s ease}
-.card-dif .ir svg{width:1rem;height:1rem}
-.card-dif:hover .ir{background:rgba(255,255,255,.26)}
-@media (max-height:600px){
-  .diferenciais .fixo{gap:1rem}
-  .diferenciais header p{display:none}
-  .diferenciais header h2{font-size:clamp(1.75rem,4.5vh,3rem)}
-  .card-dif{width:clamp(12rem,42svh,25rem)}
-  .card-dif h3{font-size:1.15rem}
-  .card-dif p{font-size:.8rem}
-}
-
-/* ---------- 4. Números ---------- */
-.numeros-fundo{background:var(--papel);color:var(--tinta)}
-.numeros{padding:clamp(6rem,16vh,10rem) var(--pad) clamp(3rem,8vh,5rem);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem);max-width:90rem;margin:0 auto}
-.numeros .n{font:700 clamp(3.5rem,8.5vw,8.5rem)/.85 var(--head);letter-spacing:-.05em;color:var(--marca)}
-.numeros .n sup{font-size:.4em;color:var(--marca);vertical-align:top;margin-left:.04em}
-.numeros p{margin:.9rem 0 0;color:var(--tinta-2);max-width:14rem;line-height:1.45}
-@media (max-width:760px){.numeros{grid-template-columns:1fr 1fr;row-gap:3rem}}
-
-/* ---------- 5. Linha de modelos ---------- */
-.linha{padding:clamp(5rem,12vh,8rem) 0 clamp(5rem,12vh,8rem);background:var(--papel);color:var(--tinta);border-top:1px solid rgba(0,30,80,.09)}
-.linha header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;max-width:90rem;margin:0 auto 2rem}
-.linha header .eyebrow{color:rgba(11,18,32,.55)}
-.linha header .eyebrow b{color:var(--marca)}
-.linha h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.7rem;color:var(--noite)}
-.abas{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:.3rem;border-radius:99rem;background:rgba(0,30,80,.07);position:relative;
-  scroll-padding:.3rem;-webkit-overflow-scrolling:touch}
-.abas::-webkit-scrollbar{display:none}
-.abas.corta{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent);mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent)}
-.abas.corta.fim{-webkit-mask:none;mask:none}
-.abas button{position:relative;z-index:1;padding:.65rem 1.1rem;border-radius:99rem;font:700 .9rem/1 var(--text);color:var(--tinta-2);transition:color .25s ease;white-space:nowrap}
-.abas button[aria-selected="true"]{color:var(--noite)}
-.abas button:focus-visible{outline-color:var(--marca);outline-offset:-2px}
-.abas .pilula{position:absolute;top:.3rem;bottom:.3rem;left:0;border-radius:99rem;background:#fff;
-  box-shadow:0 .5px 1px rgba(0,30,80,.1),0 2px 6px rgba(0,30,80,.1);transition:transform .45s var(--mola),width .45s var(--mola)}
-@media (max-width:480px){.abas button{padding:0 .85rem;min-height:2.75rem;font-size:.85rem}}
-.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,21rem),1fr));gap:1rem;padding:0 var(--pad);max-width:90rem;margin:0 auto}
-.maq{position:relative;border-radius:var(--r);background:#fff;overflow:hidden;
-  box-shadow:0 .5px 1px rgba(0,30,80,.05),0 2px 5px rgba(0,30,80,.04),0 10px 28px rgba(0,30,80,.05);
-  transition:transform .45s var(--mola),box-shadow .3s ease}
-.maq.some{display:none}
-.maq .vista{position:relative;aspect-ratio:1110/640;background:linear-gradient(180deg,var(--estudio-cima),#fff);
-  touch-action:pan-y;cursor:grab;overflow:hidden;user-select:none;-webkit-user-select:none}
-.maq .vista:focus-visible{outline:2px solid var(--marca);outline-offset:-2px;border-radius:0}
-.maq .vista.agarrado{cursor:grabbing}
-.maq .vista canvas,.maq .vista img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:6% 4% 2%}
-.maq .vista canvas{padding:0}
-.maq .vista.uma{cursor:default}
-.maq .dica{position:absolute;left:.75rem;bottom:.75rem;display:flex;align-items:center;gap:.4rem;padding:.4rem .65rem;border-radius:99rem;
-  font:700 .72rem/1 var(--text);color:var(--tinta);background:rgba(255,255,255,.7);
-  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .3s ease}
-.maq .dica svg{width:.95rem;height:.95rem}
-.maq.girou .dica,.maq .vista.uma .dica{opacity:0}
-.maq .cores{position:absolute;right:.75rem;bottom:.75rem;display:flex;gap:.6rem}
-.maq .cores button::before{content:"";position:absolute;inset:-.55rem -.3rem}
-.maq .cores button{position:relative;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px transparent;transition:transform .3s var(--mola),box-shadow .2s ease}
-.maq .cores button[aria-current="true"]{transform:scale(1.25);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px var(--marca)}
-.maq .corpo{padding:1.1rem 1.2rem 1.25rem}
-.maq .fam{font:700 .72rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--marca)}
-.maq h3{font:700 1.6rem/1 var(--head);letter-spacing:-.03em;margin:.45rem 0 .4rem;color:var(--noite)}
-.maq .tag{margin:0;color:var(--tinta-2);font-size:.9rem;line-height:1.45;min-height:2.6em}
-.maq .nomecor{margin:.5rem 0 0;font:700 .72rem/1.3 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2)}
-.maq dl{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0 0;padding-top:1rem;border-top:1px solid rgba(0,30,80,.09)}
-.maq dt{font-size:.72rem;color:var(--tinta-2);line-height:1.3;order:2}
-.maq dd{margin:0;font:700 1.25rem/1 var(--head);letter-spacing:-.03em;color:var(--noite)}
-.maq dd small{font:700 .7rem/1 var(--text);letter-spacing:0;color:var(--tinta-2);margin-left:.15em}
-.maq dl div{display:flex;flex-direction:column;gap:.3rem}
-.maq .acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
-.maq .ver{display:inline-flex;align-items:center;gap:.35rem;min-height:2.75rem;white-space:nowrap;font:700 .875rem/1 var(--text);color:var(--marca)}
-.maq .ver:hover{text-decoration:underline;text-underline-offset:.2em}
-
-/* ---------- 6. Lojas: foto fixa, texto passa ---------- */
-.lojas{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);padding:0 var(--pad);max-width:90rem;margin:0 auto}
-.lojas .fotos{position:sticky;top:0;height:100svh;display:flex;align-items:center}
-.lojas .moldura{position:relative;width:100%;aspect-ratio:4/5;max-height:78svh;border-radius:var(--r);overflow:hidden;background:var(--noite-3)}
-.lojas .moldura img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);
-  transition:opacity .9s ease,transform 1.6s var(--mola)}
-.lojas .moldura img.on{opacity:1;transform:scale(1)}
-.lojas .cidade-fixa{position:absolute;left:1.25rem;bottom:1rem;font:700 clamp(2.25rem,4.5vw,4.25rem)/1 var(--head);letter-spacing:-.04em;
-  color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4)}
-.lojas .passos{padding:30svh 0 20svh}
-.lojas .passo{min-height:70svh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s ease}
-.lojas .passo.on{opacity:1}
-.lojas .passo .eyebrow{margin-bottom:1rem}
-.lojas .passo h3{font:700 clamp(2rem,3.6vw,3.25rem)/1 var(--head);letter-spacing:-.035em;margin:0 0 1rem}
-.lojas .passo p{margin:0 0 .9rem;color:var(--claro-2);font-size:1.0625rem;max-width:32rem}
-.lojas .passo .horario{display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem;margin:1rem 0 1.25rem;font-size:.95rem;color:var(--claro-2);max-width:26rem}
-.lojas .passo .horario b{color:var(--claro);font-weight:700}
-.lojas .passo .acoes{display:flex;gap:.6rem;flex-wrap:wrap}
-.lojas .passo img.mobile{display:none}
-.lojas-intro{padding:clamp(6rem,16vh,10rem) var(--pad) 0;max-width:90rem;margin:0 auto}
-.lojas-intro h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:13ch}
-@media (max-width:860px){
-  .lojas{grid-template-columns:1fr}
-  .lojas .fotos{display:none}
-  .lojas .passos{padding:3rem 0 2rem}
-  .lojas .passo{min-height:auto;opacity:1;padding:2rem 0}
-  .lojas .passo img.mobile{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);margin-bottom:1.5rem}
-}
-
-/* ---------- 7. Propósito ---------- */
-.proposito{padding:clamp(8rem,24vh,16rem) var(--pad);text-align:center;overflow:hidden}
-.proposito blockquote{margin:0 auto;max-width:18ch;font:400 clamp(2.5rem,7.5vw,7.5rem)/.95 var(--head);letter-spacing:-.04em}
-.proposito blockquote span{font-weight:700}
-.proposito p{margin:2.5rem auto 0;max-width:36rem;color:var(--claro-2);font-size:1.125rem}
-
-/* ---------- 8. Contato ---------- */
-.contato{position:relative;min-height:100svh;display:flex;align-items:end;overflow:hidden;isolation:isolate}
-.contato video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.contato::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,30,80,.3),rgba(0,30,80,.55) 40%,rgba(0,30,80,.94))}
-.contato .dentro{width:100%;padding:clamp(6rem,14vh,9rem) var(--pad) clamp(2rem,6vh,4rem);max-width:90rem;margin:0 auto}
-.contato h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:14ch}
-.contato h2 span{font-weight:700}
-.contato .sub{margin:1.25rem 0 2.5rem;color:var(--claro-2);max-width:32rem;font-size:1.125rem}
-.areas{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
-.area{display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between;padding:1.1rem 1.1rem 1rem;border-radius:1rem;min-height:8.5rem;
-  background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
-  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
-  transition:transform .4s var(--mola),background-color .2s ease}
-.area:hover{background:rgba(255,255,255,.14)}
-.area:active,.area.pressionado{transform:scale(.97);transition-duration:.08s}
-.area svg{width:1.4rem;height:1.4rem;color:#fff}
-.area.zap svg{color:#5ee04a}
-.area b{display:block;font:700 1.15rem/1.1 var(--head);letter-spacing:-.02em}
-.area small{display:block;margin-top:.3rem;color:var(--claro-3);font-size:.8rem}
-.area.destaque{background:var(--zap);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
-.area.destaque small{color:rgba(255,255,255,.78)}
-.area.destaque svg{color:#fff}
-@media (max-width:960px){.areas{grid-template-columns:1fr 1fr}.area.destaque{grid-column:1/-1}}
-.rodape{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));
-  border-top:1px solid var(--linha);color:var(--claro-3);font-size:.85rem;max-width:90rem;margin:0 auto}
-.rodape .redes{display:flex;gap:1.25rem}
-.rodape a:hover{color:var(--claro)}
-.rodape img{height:1.1rem;width:auto;opacity:.85}
-
-/* ---------- WhatsApp flutuante no celular: aparece quando a barra do topo some ---------- */
-.zap-flutua{display:none}
-@media (max-width:760px){
-  .zap-flutua{position:fixed;z-index:45;right:1rem;bottom:max(1rem,env(safe-area-inset-bottom));width:3.5rem;height:3.5rem;border-radius:50%;
-    display:grid;place-items:center;background:var(--zap);color:#fff;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 .5rem 1.5rem rgba(0,20,50,.35);
-    opacity:0;transform:scale(.6);pointer-events:none;transform-origin:50% 100%;
-    transition:transform .45s var(--mola),opacity .25s ease}
-  .zap-flutua.on{opacity:1;transform:scale(1);pointer-events:auto}
-  .zap-flutua.on.pressionado{transform:scale(.92);transition-duration:.08s}
-  .zap-flutua svg{width:1.65rem;height:1.65rem}
-}
-
-/* ---------- Filme: sai do botão e volta para ele ---------- */
-dialog.filme{padding:0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;
-  place-items:center;pointer-events:none;opacity:0}
-dialog.filme[open]{display:grid;pointer-events:auto}
-dialog.filme::backdrop{background:rgba(0,10,30,.84);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-dialog.filme .tela{width:min(92vw,calc(82svh*16/9));aspect-ratio:16/9;border-radius:1rem;overflow:hidden;background:#000;
-  box-shadow:0 2.5rem 6rem rgba(0,0,0,.6)}
-dialog.filme video{width:100%;height:100%}
-dialog.filme .fechar{position:fixed;top:max(1rem,env(safe-area-inset-top));right:1rem;width:2.75rem;height:2.75rem;border-radius:50%;
-  display:grid;place-items:center;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-dialog.filme .fechar svg{width:1.1rem;height:1.1rem}
-
-/* ---------- Carregamento: logotipo com brilho, sai assim que a abertura está pronta ---------- */
-.entrada{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--degrade)}
-.entrada .mono{width:min(18rem,64vw);aspect-ratio:439/50;
-  background:linear-gradient(100deg,rgba(244,246,250,.3) 30%,#fff 50%,rgba(244,246,250,.3) 70%) 0 0/250% 100%;
-  -webkit-mask:url(media/logo-branco.png) center/contain no-repeat;mask:url(media/logo-branco.png) center/contain no-repeat;
-  animation:brilho 1.6s linear infinite}
-.entrada .barra{position:absolute;left:50%;bottom:18%;width:7rem;height:2px;translate:-50% 0;border-radius:2px;background:var(--linha);overflow:hidden}
-.entrada .barra i{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(var(--p,0));transition:transform .3s var(--mola)}
-@keyframes brilho{to{background-position:-150% 0}}
-html.carregando{overflow:hidden}
-
-/* ---------- Faixa corrida ---------- */
-.faixa{overflow:hidden;border-block:1px solid var(--linha);padding:1.1rem 0;margin-bottom:clamp(2rem,5vh,3rem);
-  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.faixa div{display:flex;width:max-content;animation:corre 38s linear infinite}
-.faixa:hover div{animation-play-state:paused}
-.faixa span{font:700 clamp(.8rem,1.2vw,.95rem)/1 var(--text);letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;padding-right:1.5rem;color:var(--claro-2)}
-.faixa span b{color:#8fb0ff;font-weight:700}
-@keyframes corre{to{transform:translateX(-50%)}}
-
-/* ---------- Transparência e movimento reduzidos ---------- */
-@media (prefers-reduced-transparency: reduce){
-  .topo::before{background:var(--noite);-webkit-backdrop-filter:none;backdrop-filter:none}
-  .btn-vidro,.area,.maq .dica,.card-dif .ir,dialog.filme .fechar{background:var(--noite-3);-webkit-backdrop-filter:none;backdrop-filter:none}
-  .maq .dica{background:#fff}
-  .area.destaque{background:var(--zap)}
-}
-@media (prefers-reduced-motion: reduce){
-  .rolar::after,.faixa div,.entrada .mono{animation:none}
-  .entrada{display:none}
-  .percurso,.giro{height:auto}
-  .giro{margin-top:0}
-  .percurso .palco,.giro .palco{position:relative}
-  .giro .ficha{opacity:1;transform:none}
-  .percurso .cenas{padding:3rem var(--pad) 1rem;display:grid;gap:3rem}
-  .cena{position:relative;inset:auto;opacity:1}
-  .onde{display:none}
-  .giro .palco{height:70svh}
-  .giro .fichas{position:relative;left:auto;bottom:auto;height:auto;padding:2rem var(--pad);width:auto;display:grid;gap:1.25rem;background:var(--estudio-baixo)}
-  .giro .ficha{position:relative}
-  .giro .trilho{display:none}
-  .diferenciais .fixo{position:relative;height:auto;padding:6rem 0}
-  .trilho-h{overflow-x:auto;width:auto;scroll-snap-type:x mandatory}
-  .card-dif{scroll-snap-align:start}
-  .lojas .moldura img{transition:opacity .3s ease;transform:none}
-  .btn,.area,.maq,.abas .pilula,.maq .cores button{transition-duration:0s!important}
-  .zap-flutua{transform:none!important;transition:opacity .2s ease}
-}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-<div class="entrada" id="entrada" aria-hidden="true"><span class="mono"></span><span class="barra"><i id="barraEntrada"></i></span></div>
-<script>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("carregando");setTimeout(function(){document.documentElement.classList.remove("carregando");var e=document.getElementById("entrada");e&&e.remove()},5000)</script>
-
-<header class="topo" id="topo">
-  <a class="logo" href="#inicio" aria-label="Hyundai Geração, início"><img src="media/logo-branco.png" alt="Hyundai Geração" width="439" height="50"></a>
-  <nav aria-label="Principal">
-    <a href="#creta">Novo Creta</a>
-    <a href="#linha" class="fica">Modelos</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#lojas" class="fica">Lojas</a>
-    <a class="btn btn-zap" href="https://wa.me/5548988187424?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Hyundai%20Gera%C3%A7%C3%A3o%20e%20quero%20falar%20com%20vendas." target="_blank" rel="noopener"><span class="so-largo">Falar com vendas</span><span class="so-estreito">WhatsApp</span></a>
-  </nav>
-</header>
-
-<a class="zap-flutua" id="zapFlutua" href="https://wa.me/5548988187424?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Hyundai%20Gera%C3%A7%C3%A3o%20e%20quero%20falar%20com%20vendas." target="_blank" rel="noopener" aria-label="Falar com vendas pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.6-8.4Z"/></svg></a>
-
-<main>
-<!-- 1. Percurso -->
-<section class="percurso" id="inicio" aria-label="Do Novo Creta até a Hyundai">
-  <div class="palco">
-    <canvas id="telaPercurso" aria-hidden="true"></canvas>
-    <div class="veu" id="veu"></div>
-    <div class="conteudo" id="heroConteudo">
-      <p class="eyebrow"><b>Hyundai Geração</b> · Concessionária Hyundai · Santa Catarina</p>
-      <h1 class="display" id="heroTitulo">
-        <span class="l"><span>Sua Hyundai</span></span>
-        <span class="l"><span>em Santa Catarina.</span></span>
-      </h1>
-      <div class="base">
-        <p>Cinco lojas, oito modelos 0 km, seminovos, oficina e peças originais. Role a página e venha até a Hyundai.</p>
-        <div class="acoes">
-          <button class="btn btn-vidro" id="abreFilme" type="button">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>
-            Assistir ao filme
-          </button>
-          <a class="btn btn-marca" href="#linha">Conhecer os modelos</a>
-        </div>
-      </div>
-    </div>
-    <span class="rolar" id="rolar" aria-hidden="true"></span>
-    <div class="cenas">
-      <div class="cena" data-de="42" data-ate="58">
-        <p class="eyebrow">01 · Novo Creta</p>
-        <h2 class="display">Impressionante <b>em cada detalhe.</b></h2>
-        <p>Grade frontal quadriculada, rodas de liga leve diamantadas e lanternas redesenhadas. Um SUV que te coloca no comando.</p>
-      </div>
-      <div class="cena" data-de="70" data-ate="100">
-        <p class="eyebrow">02 · Nova geração</p>
-        <h2 class="display">O que você <b>nunca sentiu antes.</b></h2>
-        <p>Motor 1.6 Turbo GDI Flex com 176 cv, câmbio de dupla embreagem de 7 velocidades e teto solar panorâmico.</p>
-      </div>
-      <div class="cena" data-de="108" data-ate="140">
-        <p class="eyebrow">03 · Onde estamos</p>
-        <h2 class="display">Cinco lojas. <b>Uma Geração.</b></h2>
-        <p>Florianópolis, São José, Rio do Sul, Lages e Brusque. Vendas, oficina, peças e seminovos perto de você.</p>
-      </div>
-      <div class="cena" data-de="150" data-ate="999">
-        <h2 class="display">Chegou. <b>Hyundai Geração.</b></h2>
-        <p>Test drive, financiamento, consórcio e 5 anos de garantia. Tudo que a Hyundai oferece, com quem conhece Santa Catarina.</p>
-      </div>
-    </div>
-    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Novo Creta</span><span class="barra"><i id="ondeBarra"></i></span></div>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-</section>
-
-<!-- 2. O Creta em cores -->
-<section class="giro" id="creta" aria-label="Novo Creta nas seis cores do catálogo">
-  <div class="palco">
-    <canvas id="telaGiro" role="img" aria-label="Novo Hyundai Creta mudando de cor"></canvas>
-    <div class="cabeca">
-      <div>
-        <p class="eyebrow">04 · <b>Em destaque</b></p>
-        <h2 class="display"><small>Novo Hyundai</small><b>CRETA</b></h2>
-      </div>
-      <div class="cor" aria-hidden="true"><i id="corBola"></i><span id="corNome">Azul Sapphire</span></div>
-    </div>
-    <div class="fichas" id="fichas">
-      <div class="ficha"><div class="valor num">176<small>cv</small></div><p>Motor Gamma 1.6 Turbo GDI Flex. Potência máxima a 5.500 rpm.</p></div>
-      <div class="ficha"><div class="valor num">27<small>kgfm</small></div><p>Torque máximo já a 1.600 rpm: resposta imediata na cidade e na estrada.</p></div>
-      <div class="ficha"><div class="valor num">7<small>marchas</small></div><p>Transmissão automatizada de dupla embreagem, com aletas Smartshift no volante.</p></div>
-      <div class="ficha"><div class="valor num">4<small>versões</small></div><p>Comfort 1.0T, Limited 1.0T, Platinum 1.0T e Ultimate 1.6T.</p></div>
-      <div class="ficha"><div class="valor num">6<small>cores</small></div><p>Azul Sapphire, Branco Atlas, Cinza Silk, Prata Brisk, Prata Sand e Preto Onix.</p></div>
-      <div class="ficha"><div class="valor num">5<small>anos</small></div><p>Garantia Hyundai. Cobertura particular sem limite de quilometragem.</p></div>
-    </div>
-    <div class="trilho" id="trilhoGiro" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <h1>Hyundai Geração</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-</section>
-
-<!-- 3. Diferenciais -->
-<section class="diferenciais" id="servicos" aria-label="Serviços e diferenciais">
-  <div class="fixo">
-    <header>
-      <div>
-        <p class="eyebrow" style="margin-bottom:1rem">05 · Serviços</p>
-        <h2 class="display">Muito além <span class="it">do carro novo.</span></h2>
-      </div>
-      <p>Oficina, peças originais, seminovos, financiamento, consórcio e seguro. Tudo dentro da mesma casa, em qualquer uma das cinco lojas.</p>
-    </header>
-    <div class="trilho-h" id="trilhoH"></div>
-  </div>
-</section>
-
-<!-- 4. Números -->
-<div class="numeros-fundo"><section class="numeros" aria-label="Nossos números">
-  <div><div class="n num"><span data-conta="5">5</span></div><p>lojas em Santa Catarina, do litoral à serra</p></div>
-  <div><div class="n num"><span data-conta="8">8</span></div><p>modelos 0 km, de hatch a SUV de sete lugares e elétrico</p></div>
-  <div><div class="n num"><span data-conta="5">5</span></div><p>anos de garantia Hyundai, sem limite de quilometragem no uso particular</p></div>
-  <div><div class="n num"><span data-conta="8">8</span></div><p>anos de garantia na bateria do IONIQ 5</p></div>
-</section></div>
-
-<!-- 5. Linha -->
-<section class="linha" id="linha" aria-label="Linha de modelos">
-  <header>
-    <div>
-      <p class="eyebrow">06 · <b>Linha completa</b></p>
-      <h2 class="display">Oito modelos.<br>Arraste e <span class="it">escolha a cor.</span></h2>
-    </div>
-    <div class="abas" role="tablist" aria-label="Categoria" id="abas">
-      <span class="pilula" aria-hidden="true"></span>
-      <button role="tab" aria-selected="true" data-fam="todas">Todos</button>
-      <button role="tab" aria-selected="false" data-fam="SUV">SUV</button>
-      <button role="tab" aria-selected="false" data-fam="Hatch">Hatch</button>
-      <button role="tab" aria-selected="false" data-fam="Sedan">Sedan</button>
-      <button role="tab" aria-selected="false" data-fam="Elétrico">Elétrico</button>
-      <button role="tab" aria-selected="false" data-fam="Híbrido">Híbrido</button>
-    </div>
-  </header>
-  <div class="grade" id="grade"></div>
-</section>
-
-<!-- 6. Lojas -->
-<div class="lojas-intro" id="lojas">
-  <p class="eyebrow" style="margin-bottom:1rem">07 · Onde estamos</p>
-  <h2 class="display">Venha nos fazer <span class="it">uma visita.</span></h2>
-</div>
-<section class="lojas" aria-label="Nossas lojas">
-  <div class="fotos" aria-hidden="true">
-    <div class="moldura" id="moldura">
-      <img src="media/lojas/floripa.jpg" alt="" class="on">
-      <img src="media/lojas/saojose.jpg" alt="">
-      <img src="media/lojas/riodosul.jpg" alt="">
-      <img src="media/lojas/lages.jpg" alt="">
-      <img src="media/lojas/brusque.jpg" alt="">
-      <span class="cidade-fixa" id="cidadeFixa">Florianópolis</span>
-    </div>
-  </div>
-  <div class="passos" id="passos"></div>
-</section>
-
-<!-- 7. Propósito -->
-<section class="proposito" aria-label="Propósito">
-  <blockquote id="citacao">Somos mais do que <span>uma concessionária.</span></blockquote>
-  <p>Somos uma família dedicada a proporcionar experiências automotivas excepcionais a cada cliente que cruza nossas portas. Inovação, qualidade e paixão por automóveis, em cinco cidades de Santa Catarina.</p>
-</section>
-
-<!-- 8. Contato -->
-<section class="contato" id="contato" aria-label="Contato">
-  <video src="media/contato.mp4" poster="media/contato.jpg" autoplay muted loop playsinline preload="none" aria-hidden="true" id="videoAereo"></video>
-  <div class="dentro">
-    <p class="eyebrow" style="margin-bottom:1rem">08 · Contato</p>
-    <h2 class="display">Fale com quem <span>conhece o carro.</span></h2>
-    <p class="sub">WhatsApp direto com vendas ou com a oficina, e o telefone de cada loja. Quem responde é quem está na concessionária.</p>
-    <div class="areas" id="areas"></div>
-  </div>
-</section>
-<div class="faixa" aria-hidden="true"><div><span>Hyundai Geração <b>·</b> Florianópolis <b>·</b> São José <b>·</b> Rio do Sul <b>·</b> Lages <b>·</b> Brusque <b>·</b> 5 anos de garantia <b>·</b></span><span>Hyundai Geração <b>·</b> Florianópolis <b>·</b> São José <b>·</b> Rio do Sul <b>·</b> Lages <b>·</b> Brusque <b>·</b> 5 anos de garantia <b>·</b></span><span>Hyundai Geração <b>·</b> Florianópolis <b>·</b> São José <b>·</b> Rio do Sul <b>·</b> Lages <b>·</b> Brusque <b>·</b> 5 anos de garantia <b>·</b></span></div></div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
 </main>
 
-<footer class="rodape">
-  <img src="media/logo-branco.png" alt="Hyundai Geração" width="439" height="50">
-  <span>© 2026 Hyundai Geração · Concessionária Hyundai em Santa Catarina</span>
-  <div class="redes">
-    <a href="https://www.instagram.com/hyundai.geracao/" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.facebook.com/geracaohyundaihmb" target="_blank" rel="noopener">Facebook</a>
-    <a href="https://hyundaigeracao.com.br/" target="_blank" rel="noopener">Site atual</a>
-  </div>
-</footer>
-
-<dialog class="filme" id="filme" aria-label="Filme do Novo Creta">
-  <button class="fechar" id="fechaFilme" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  <div class="tela"><video id="videoFilme" src="media/filme.mp4" poster="media/filme.jpg" controls playsinline preload="none"></video></div>
-</dialog>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script type="application/json" id="cofre">{"v":1,"grupo":"geracao","iter":200000,"nonce":"LebcRY3KSaFPRm0Y","dados":"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","cofres":[{"salt":"mfZqrM/IzkoAC4icG548NQ==","nonce":"2e3dU8R3QCa08lzM","nonce2":"ykYhFdOr5o8A5ZuF","chave":"fQSde3xxiv/hK4MFxIvRdEQEZRJLNWLmgdZJ7vvHc/A0+CktB4CzITmPYsPe2z5I","quem":"NWylEEaG/VuXS/6sfyBbS7nq5svnx1MfIA=="}]}</script>
 <script>
-(() => {
-'use strict';
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const SITE = 'https://hyundaigeracao.com.br/';
-const ZAP_VENDAS = '5548988187424';
-const ZAP_REVISAO = '554840002982';
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-/* ===========================================================
-   Dados. Tudo tirado do site atual da Hyundai Geração: modelos,
-   fichas, cores (nome, tom e foto), lojas, horários e telefones.
-   =========================================================== */
-const MODELOS = [
-  {id:'creta', fam:'SUV', nome:'Novo CRETA', slug:'novo-hyundai-creta', td:'Novo CRETA', tag:'Imponente por fora, inovador por dentro. Um SUV que te coloca no comando.',
-    f:[[176,'cv','potência'],[27,'kgfm','torque'],[7,'marchas','DCT']],
-    cores:[['Azul Sapphire','#245079','azul-sapphire'],['Branco Atlas','#fafafa','branco-atlas'],['Cinza Silk','#4e5255','cinza-silk'],['Prata Brisk','#a2a8ac','prata-brisk'],['Prata Sand','#76706b','prata-sand'],['Preto Onix','#101010','preto-onix']]},
-  {id:'cretanline', fam:'SUV', nome:'Novo CRETA N Line', slug:'novo-creta-n-line', td:'Novo CRETA N Line', tag:'Desempenho que inspira. Estilo que fascina. Performance e design esportivo.',
-    f:[[176,'cv','potência'],[27,'kgfm','torque'],['1.6','TGDI','motor']],
-    cores:[['Preto Onix','#0d0c0c','preto-onix'],['Azul Sapphire','#0c2b5d','azul-sapphire'],['Branco Atlas','#ffffff','branco-atlas'],['Prata Brisk','#b9b9b9','prata-brisk'],['Cinza Silk','#585858','cinza-silk'],['Cinza Shadow','#47494a','cinza-shadow']]},
-  {id:'i20', fam:'Hatch', nome:'Novo Hyundai i20', slug:'novo-hyundai-i20', td:'Novo Hyundai i20', tag:'O upgrade que muda o jogo: design marcante, amplo espaço interno e muita tecnologia.',
-    f:[['12,3','pol.','painel digital'],[17,'pol.','rodas'],[6,'','versões']],
-    cores:[['Azul Sapphire','#2980b9','azul-sapphire']]},
-  {id:'hb20', fam:'Hatch', nome:'HB20', slug:'hb20', td:'HB20', tag:'O hatch mais completo da categoria, um dos carros mais vendidos do Brasil.',
-    f:[[120,'cv','potência'],['17,5','kgfm','torque'],[6,'marchas','automático']],
-    cores:[['Branco Atlas','#ffffff','branco-atlas'],['Preto Onix','#030303','preto-onix'],['Prata Brisk','#b9b9b9','prata-brisk'],['Cinza Silk','#585858','cinza-silk'],['Prata Sand','#cac7bd','prata-sand'],['Azul Sapphire','#0c2b5d','azul-sapphire'],['Cinza Shadow','#7a7e84','cinza-shadow']]},
-  {id:'hb20s', fam:'Sedan', nome:'HB20S', slug:'hb20s', td:'HB20S', tag:'Seu novo sedan 0 km, mais eficiente e tecnológico, com motor flex 1.0.',
-    f:[[120,'cv','potência'],['17,5','kgfm','torque'],[6,'marchas','automático']],
-    cores:[['Branco Atlas','#ffffff','branco-atlas'],['Preto Onix','#111010','preto-onix'],['Prata Brisk','#b9b9b9','prata-brisk'],['Cinza Silk','#585858','cinza-silk'],['Prata Sand','#cac7bd','prata-sand'],['Azul Sapphire','#0c2b5d','azul-sapphire'],['Cinza Shadow','#5a6063','cinza-shadow']]},
-  {id:'ioniq5', fam:'Elétrico', nome:'IONIQ 5', slug:'ioniq-5', td:'IONIQ 5', tag:'Sustentável, tecnológico e 100% elétrico. O primeiro CUV do Brasil.',
-    f:[[374,'km','autonomia'],[320,'cv','potência'],[84,'kWh','bateria']],
-    cores:[['Cinza Cyber Metallic','#656464','cinza-cyber'],['Cinza Ecotronic Matte','#c9c2c2','cinza-ecotronic'],['Champagne Gravity Matte','#cdcbc4','champagne-gravity'],['Preto Abyss Perolizado','#070707','preto-abyss']]},
-  {id:'kona', fam:'SUV Híbrido', nome:'KONA Hybrid', slug:'kona-hybrid', td:'KONA Hybrid', tag:'O SUV premium que abre novos horizontes. Elegância e potência com eficiência.',
-    f:[[141,'cv','potência'],[27,'kgfm','torque'],['1,32','kWh','bateria']],
-    cores:[['Atlas White','#ffffff','branco-atlas'],['Cyber Gray Metallic','#bbbbbb','cinza-cyber'],['Ecotronic Gray Pearl','#323540','cinza-ecotronic'],['Abyss Black Pearl','#030303','preto-abyss']]},
-  {id:'palisade', fam:'SUV', nome:'Palisade', slug:'palisade', td:'Palisade', tag:'A primeira classe dos SUVs. Três fileiras de conforto, luxo e tecnologia.',
-    f:[[295,'cv','potência'],['36,2','kgfm','torque'],['3.8','V6','motor']],
-    cores:[['Prata Brisk','#888888','prata-brisk'],['Branco Creamy Perolizado','#e9e9e9','branco-creamy'],['Preto Abyss Perolizado','#181515','preto-abyss']]}
-];
-const CRETA = MODELOS[0];
-const LOJAS = [
-  {cidade:'Florianópolis', nome:'Hyundai Geração Floripa Ilha', foto:'floripa', end:'Rua José Carlos Daux, SC-401, 4153', cep:'Florianópolis, SC, 88032-005', semana:'08h às 19h', sabado:'08h às 16h', fone:'(48) 3113-4000', tel:'4831134000'},
-  {cidade:'São José', nome:'Hyundai São José', foto:'saojose', end:'Av. Presidente Kennedy, 112, Campinas', cep:'São José, SC, 88101-000', semana:'08h às 19h', sabado:'08h às 16h', fone:'(48) 3298-0000', tel:'4832980000'},
-  {cidade:'Rio do Sul', nome:'Hyundai Geração Rio do Sul', foto:'riodosul', end:'Alameda Aristiliano Ramos, 1595, Jardim América', cep:'Rio do Sul, SC, 89160-240', semana:'08h às 18h (almoço das 12h às 13h)', sabado:'08h às 12h30', fone:'(47) 3411-0700', tel:'4734110700'},
-  {cidade:'Lages', nome:'Hyundai Geração Lages', foto:'lages', end:'Av. Presidente Vargas, 1010, Loja 2, Sagrado Coração de Jesus', cep:'Lages, SC, 88508-109', semana:'08h às 19h (almoço das 12h às 13h)', sabado:'08h às 14h', fone:'(49) 3251-8300', tel:'4932518300'},
-  {cidade:'Brusque', nome:'Hyundai Brusque', foto:'brusque', end:'Av. Otto Renaux, 155, Centro 1', cep:'Brusque, SC, 88351-300', semana:'08h às 19h', sabado:'08h às 14h', fone:'(47) 3044-8100', tel:'4730448100'}
-];
-const DIFERENCIAIS = [
-  {img:'hero-creta.jpg', t:'Test drive na sua loja.', p:'Dirija antes de decidir. Agende o test drive do modelo que quiser em qualquer uma das cinco lojas.', link:'test-drive'},
-  {img:'creta-rodas.jpg', t:'Oficina com agendamento.', p:'Revisões, Quick Service, recall e atualizações. Agende o serviço e fale direto com a oficina pelo WhatsApp.', link:'servicos'},
-  {img:'creta-grade.jpg', t:'Peças originais Hyundai.', p:'Projetadas, testadas e produzidas com o mesmo rigor do carro zero. Peças compradas e instaladas na rede têm 1 ano de garantia.', link:'pecas-e-acessorios'},
-  {img:'hero-hb20.jpg', t:'Compra Certa Hyundai.', p:'Parcelas até 50% menores que as de um financiamento tradicional, em 24, 36 ou 48 meses, com recompra garantida do seminovo.', link:'compra-certa-hyundai'},
-  {img:'hero-kona.jpg', t:'Consórcio Hyundai.', p:'Uma forma flexível e econômica de conquistar o seu Hyundai, sem pagar juros elevados.', link:'consorcio'},
-  {img:'creta-interior.jpg', t:'Seguro Hyundai.', p:'Cobertura abrangente, assistência 24 horas e uma rede de parceiros prontos para atender em qualquer imprevisto.', link:'corretora'},
-  {img:'hero-palisade.jpg', t:'Vendas diretas.', p:'Condições exclusivas para PcD, taxistas, produtor rural, frotistas, locadoras, autoescolas e corpo diplomático.', link:'vendas-diretas'},
-  {img:'garantia.jpg', t:'5 anos de garantia.', p:'Sem limite de quilometragem no uso particular. A bateria do IONIQ 5 tem 8 anos ou 160.000 km.', link:'garantia'},
-  {img:'veiculos.jpg', t:'Seminovos com procedência.', p:'Estoque de seminovos avaliados pela concessionária, nas cinco lojas. Confira o estoque.', link:'seminovos'}
-];
-const ZAP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.6-8.4Z"/></svg>';
-const TEL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>';
-const SETA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
-const corUrl = (m, c) => `media/cores/${m.id}-${c[2]}.webp`;
-const msgZap = (area) => encodeURIComponent('Olá! Vim pelo site da Hyundai Geração e quero falar com ' + area + '.');
-
-/* ===========================================================
-   Sequência de quadros num canvas. Sem vídeo no scrub: imagem
-   decodificada responde na hora, em qualquer navegador.
-   =========================================================== */
-function sequencia(urls, paralelo = 6){
-  const imgs = urls.map(() => null);
-  const fila = [], pedidos = new Set();
-  let emVoo = 0, iniciou = false;
-  // poucos pedidos por vez: a fila não sufoca fontes, cores e vídeo
-  const dispara = () => {
-    while (emVoo < paralelo && fila.length){
-      const i = fila.shift(); emVoo++;
-      const im = new Image(); im.decoding = 'async'; im.src = urls[i];
-      const feito = () => { emVoo--; dispara(); };
-      im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { imgs[i] = im; seq.onload && seq.onload(i); feito(); }); };
-      im.onerror = () => { if (i === 0) seq.falhou = true; feito(); };
-    }
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
   };
-  const carrega = (prioridade = []) => {
-    if (iniciou) return; iniciou = true;
-    [...prioridade, ...urls.keys()].forEach(i => { if (!pedidos.has(i)) { pedidos.add(i); fila.push(i); } });
-    dispara();
-  };
-  // reordena o que ainda não saiu: o que está perto do quadro pedido vem antes,
-  // e os quadros "grossos" (a cada 8, a cada 4) mantêm vantagem para nunca faltar imagem
-  const foco = (i) => {
-    if (fila.length < 2) return;
-    const peso = (k) => Math.abs(k - i) * (k % 8 === 0 ? .25 : k % 4 === 0 ? .5 : k % 2 === 0 ? .75 : 1);
-    fila.sort((a, b) => peso(a) - peso(b));
-  };
-  // quadro pronto mais perto do pedido, para nunca piscar em branco
-  const perto = (i) => {
-    if (imgs[i]) return imgs[i];
-    for (let d = 1; d < imgs.length; d++){
-      if (imgs[i - d]) return imgs[i - d];
-      if (imgs[i + d]) return imgs[i + d];
-    }
-    return null;
-  };
-  const seq = {imgs, carrega, foco, perto, n: urls.length, onload: null};
-  return seq;
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin, true);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin, true); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
 }
 
-function prepara(canvas){
-  const ctx = canvas.getContext('2d');
-  const mede = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.imageSmoothingQuality = 'high';
-    return {w, h};
-  };
-  return {ctx, mede};
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+/* Registro de entrada: o mesmo sinal do track.js, dizendo quem destravou. A senha não sai daqui. */
+function marcaEntrada(nome){
+  try {
+    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
+      + '&q=' + encodeURIComponent(nome) + '&u=' + encodeURIComponent('senha: ' + nome)
+      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
+    if (navigator.sendBeacon) navigator.sendBeacon(u); else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
+  } catch (e) {}
 }
 
-// cobre a área inteira, como object-fit: cover, com zoom opcional
-function desenhaCover(ctx, im, w, h, zoom = 1, alpha = 1){
-  if (!im) return;
-  const s = Math.max(w / im.naturalWidth, h / im.naturalHeight) * zoom;
-  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  ctx.globalAlpha = alpha;
-  ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
-  ctx.globalAlpha = 1;
-}
-
-// filme do percurso: cobre a tela deitada; em pé vira faixa no alto,
-// centrada no ponto focal (fx, fração da largura do quadro) sem sobrar borda
-function faixaFilme(w, h){ return h > w * 1.15 ? Math.min(h * .62, w * 1.45) : h; }
-function desenhaFilme(ctx, im, w, h, zoom = 1, alpha = 1, fx = .5){
-  if (!im) return;
-  const bh = faixaFilme(w, h);
-  const s = Math.max(w / im.naturalWidth, bh / im.naturalHeight) * zoom;
-  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  const x = Math.min(0, Math.max(w - dw, w / 2 - fx * dw));
-  ctx.globalAlpha = alpha;
-  ctx.drawImage(im, x, (bh - dh) / 2, dw, dh);
-  ctx.globalAlpha = 1;
-}
-
-// o carro inteiro dentro da área, como object-fit: contain, com margem e sombra no chão
-function desenhaContain(ctx, im, w, h, margem = .08, alpha = 1, sombra = true, baixo = .5){
-  if (!im) return;
-  const s = Math.min(w * (1 - 2 * margem) / im.naturalWidth, h * (1 - 2 * margem) / im.naturalHeight);
-  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  const x = (w - dw) / 2, y = h * baixo - dh / 2;
-  ctx.globalAlpha = alpha;
-  if (sombra){
-    const g = ctx.createRadialGradient(w / 2, y + dh * .93, 0, w / 2, y + dh * .93, dw * .5);
-    g.addColorStop(0, 'rgba(0,20,50,.28)'); g.addColorStop(1, 'rgba(0,20,50,0)');
-    ctx.fillStyle = g;
-    ctx.save(); ctx.translate(w / 2, y + dh * .93); ctx.scale(1, .18); ctx.translate(-w / 2, -(y + dh * .93));
-    ctx.fillRect(0, y + dh * .93 - dw * .5, w, dw); ctx.restore();
+async function abre(senha){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveKey']);
+  for (const cf of C.cofres){
+    try {
+      const chave = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(cf.salt), iterations: C.iter, hash: 'SHA-256'},
+        base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
+      const bruta = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce)}, chave, b64(cf.chave));
+      const quem = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce2)}, chave, b64(cf.quem)));
+      const mestra = await crypto.subtle.importKey('raw', bruta, 'AES-GCM', false, ['decrypt']);
+      const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, mestra, b64(C.dados));
+      const ds = new DecompressionStream('gzip');
+      const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+      return {quem, html: new TextDecoder().decode(await new Response(ds.readable).arrayBuffer())};
+    } catch (e) { /* cofre de outra pessoa */ }
   }
-  ctx.drawImage(im, x, y, dw, dh);
-  ctx.globalAlpha = 1;
+  return null;
 }
 
-/* ---------- Linha de modelos: cartões com troca de cor no arraste ---------- */
-function montaLinha(){
-  const grade = $('#grade');
-  grade.innerHTML = MODELOS.map((m, i) => `
-    <article class="maq" data-fam="${m.fam}" data-i="${i}">
-      <div class="vista${m.cores.length < 2 ? ' uma' : ''}" aria-label="${m.nome}, ${m.cores.length > 1 ? 'arraste para trocar a cor' : 'na cor ' + m.cores[0][0]}" role="img" ${m.cores.length > 1 ? 'tabindex="0"' : ''}>
-        <img src="${corUrl(m, m.cores[0])}" alt="" loading="lazy" decoding="async">
-        <canvas aria-hidden="true"></canvas>
-        <span class="dica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>Arraste para trocar a cor</span>
-        <span class="cores" aria-hidden="true">${m.cores.map((c, k) => `<button type="button" style="--c:${c[1]}" data-k="${k}" tabindex="-1" aria-current="${k === 0}" title="${c[0]}"></button>`).join('')}</span>
-      </div>
-      <div class="corpo">
-        <span class="fam">${m.fam}</span>
-        <h3>${m.nome}</h3>
-        <p class="tag">${m.tag}</p>
-        <p class="nomecor"><span class="atual">${m.cores[0][0]}</span> · ${m.cores.length} ${m.cores.length > 1 ? 'cores' : 'cor'}</p>
-        <dl>${m.f.map(([v, u, r]) => `<div><dt>${r}</dt><dd class="num">${v}${u ? `<small>${u}</small>` : ''}</dd></div>`).join('')}</dl>
-        <div class="acoes">
-          <a class="ver" href="${SITE}novos/${m.slug}" target="_blank" rel="noopener">Saiba mais ${SETA}</a>
-          <a class="ver" href="${SITE}test-drive?modelname=${encodeURIComponent(m.td)}" target="_blank" rel="noopener">Test drive ${SETA}</a>
-        </div>
-      </div>
-    </article>`).join('');
-
-  $$('.maq', grade).forEach(card => ligaCoresCartao(card, MODELOS[+card.dataset.i]));
-  ligaAbas();
-}
-
-function ligaCoresCartao(card, m){
-  const vista = $('.vista', card), canvas = $('canvas', vista), capa = $('img', vista), nome = $('.nomecor .atual', card);
-  const bolas = $$('.cores button', vista);
-  const N = m.cores.length;
-  if (N < 2) return;
-  const seq = sequencia(m.cores.map(c => corUrl(m, c)));
-  const {ctx, mede} = prepara(canvas);
-  let tam = null, pos = 0, vel = 0, raf = 0, ativo = false, alvo = 0;
-
-  const desenha = () => {
-    if (!tam || tam.w !== canvas.clientWidth) { if (!canvas.clientWidth) return; tam = mede(); }
-    const p = ((pos % N) + N) % N;
-    const a = Math.floor(p), b = (a + 1) % N, t = p - a;
-    ctx.clearRect(0, 0, tam.w, tam.h);
-    // funde duas cores vizinhas: o arraste vira uma troca contínua, sem corte seco
-    desenhaContain(ctx, seq.perto(a), tam.w, tam.h, .04, 1, false, .54);
-    if (t > .01 && seq.imgs[b]) desenhaContain(ctx, seq.imgs[b], tam.w, tam.h, .04, t, false, .54);
-    const k = Math.round(p) % N;
-    bolas.forEach((bt, i) => bt.setAttribute('aria-current', i === k));
-    if (nome.textContent !== m.cores[k][0]) nome.textContent = m.cores[k][0];
-  };
-  const acorda = () => { if (!ativo){ ativo = true; seq.carrega(); } };
-  seq.onload = () => { if (capa.style.opacity !== '0' && seq.imgs[0]) { desenha(); capa.style.opacity = '0'; } };
-
-  // depois do arraste: projeta o momento, escolhe a cor mais perto do ponto
-  // projetado e assenta nela com mola crítica, partindo da velocidade do dedo
-  const assenta = () => {
-    cancelAnimationFrame(raf);
-    let ultimo = performance.now();
-    const passo = (agora) => {
-      const dt = Math.min(48, agora - ultimo) / 1000; ultimo = agora;
-      // mola crítica: rigidez e amortecimento casados, sem oscilar
-      const k = 170, c = 2 * Math.sqrt(k);
-      const acc = -k * (pos - alvo) - c * vel;
-      vel += acc * dt; pos += vel * dt;
-      desenha();
-      if (Math.abs(pos - alvo) > .002 || Math.abs(vel) > .01) raf = requestAnimationFrame(passo);
-      else { pos = alvo; vel = 0; desenha(); }
-    };
-    raf = requestAnimationFrame(passo);
-  };
-  const projeta = (v, taxa = .995) => (v / 1000) * taxa / (1 - taxa);   // em cores, v em cores/s
-  const vaiPara = (k) => { alvo = k; assenta(); };
-
-  let inicio = null, historico = [], decidiu = false;
-  vista.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('.cores')) return;
-    acorda();
-    cancelAnimationFrame(raf); vel = 0;             // agarra no meio da troca
-    inicio = {x: e.clientX, y: e.clientY, pos};
-    historico = [{x: e.clientX, t: e.timeStamp}];
-    decidiu = e.pointerType === 'mouse';
-    if (decidiu) { vista.setPointerCapture(e.pointerId); vista.classList.add('agarrado'); }
-  });
-  vista.addEventListener('pointermove', (e) => {
-    if (!inicio) return;
-    const dx = e.clientX - inicio.x, dy = e.clientY - inicio.y;
-    if (!decidiu){
-      if (Math.hypot(dx, dy) < 8) return;          // histerese antes de escolher a direção
-      if (Math.abs(dy) > Math.abs(dx)) { inicio = null; return; }  // é rolagem, deixa passar
-      decidiu = true; vista.setPointerCapture(e.pointerId); vista.classList.add('agarrado');
-    }
-    const w = vista.clientWidth;
-    pos = inicio.pos - dx / w * 2.2;                 // uma largura de dedo = pouco mais de duas cores
-    historico.push({x: e.clientX, t: e.timeStamp});
-    if (historico.length > 5) historico.shift();
-    card.classList.add('girou');
-    desenha();
-  });
-  const fim = (e) => {
-    if (!inicio) return;
-    vista.classList.remove('agarrado');
-    const a = historico[0], b = historico[historico.length - 1];
-    const dt = Math.max(1, b.t - a.t);
-    vel = (decidiu && e.timeStamp - b.t < 80) ? -((b.x - a.x) / dt) * 1000 / vista.clientWidth * 2.2 : 0;
-    if (decidiu){ alvo = Math.round(pos + projeta(vel * 1000, .99)); assenta(); }
-    inicio = null;
-  };
-  vista.addEventListener('pointerup', fim);
-  vista.addEventListener('pointercancel', fim);
-  bolas.forEach(bt => bt.addEventListener('pointerdown', () => {
-    acorda(); card.classList.add('girou');
-    const k = +bt.dataset.k, p = ((pos % N) + N) % N;
-    // caminho mais curto até a cor pedida, partindo de onde está agora
-    let d = k - p; if (d > N / 2) d -= N; if (d < -N / 2) d += N;
-    vaiPara(pos + d);
-  }));
-  // teclado: cada seta passa para a cor seguinte, somando à que já está a caminho
-  vista.addEventListener('keydown', (e) => {
-    const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-    if (!dir) return;
-    e.preventDefault(); acorda();
-    card.classList.add('girou');
-    vaiPara(Math.round(raf ? alvo : pos) + dir);
-  });
-  addEventListener('resize', () => { tam = null; if (ativo) desenha(); });
-}
-
-function ligaAbas(){
-  const abas = $('#abas'), pilula = $('.pilula', abas), grade = $('#grade');
-  const botoes = $$('button', abas);
-  grade.setAttribute('role', 'tabpanel');
-  const move = (b) => {
-    pilula.style.width = b.offsetWidth + 'px';
-    pilula.style.transform = `translateX(${b.offsetLeft}px)`;
-  };
-  // sinal de que a lista continua: esmaece a borda enquanto houver aba escondida
-  const corte = () => {
-    const sobra = abas.scrollWidth - abas.clientWidth;
-    abas.classList.toggle('corta', sobra > 2);
-    abas.classList.toggle('fim', abas.scrollLeft >= sobra - 2);
-  };
-  abas.addEventListener('scroll', corte, {passive: true});
-  const escolhe = (b) => {
-    if (b.getAttribute('aria-selected') === 'true') return;
-    botoes.forEach(x => { const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; });
-    move(b);
-    b.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: calmo ? 'auto' : 'smooth'});
-    const fam = b.dataset.fam;
-    const cards = $$('.maq');
-    cards.forEach(c => c.classList.toggle('some', fam !== 'todas' && !c.dataset.fam.split(' ').includes(fam)));
-    if (!calmo && window.gsap) gsap.fromTo(cards.filter(c => !c.classList.contains('some')),
-      {opacity: 0, y: 24}, {opacity: 1, y: 0, duration: .6, ease: 'expo.out', stagger: .035, overwrite: true});
-    window.ScrollTrigger && ScrollTrigger.refresh();
-  };
-  botoes.forEach((b, i) => {
-    b.tabIndex = i ? -1 : 0;
-    b.setAttribute('aria-controls', 'grade');
-    b.addEventListener('pointerdown', () => escolhe(b));   // responde no toque, não na soltura
-    b.addEventListener('click', () => escolhe(b));
-    // setas trocam de categoria, como abas do sistema
-    b.addEventListener('keydown', (e) => {
-      const k = {ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity}[e.key];
-      if (k === undefined) return;
-      e.preventDefault();
-      const j = isFinite(k) ? (i + k + botoes.length) % botoes.length : k < 0 ? 0 : botoes.length - 1;
-      botoes[j].focus(); escolhe(botoes[j]);
-    });
-  });
-  requestAnimationFrame(() => { move(botoes[0]); corte(); });
-  addEventListener('resize', () => { move(botoes.find(b => b.getAttribute('aria-selected') === 'true')); corte(); });
-}
-
-function montaDiferenciais(){
-  $('#trilhoH').innerHTML = DIFERENCIAIS.map((d, i) => `
-    <a class="card-dif" href="${SITE}${d.link}" target="_blank" rel="noopener">
-      <img src="media/${d.img}" alt="" loading="lazy" decoding="async">
-      <span class="ir" aria-hidden="true">${SETA}</span>
-      <div class="txt"><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${d.t}</h3><p>${d.p}</p></div>
-    </a>`).join('');
-}
-
-function montaLojas(){
-  $('#passos').innerHTML = LOJAS.map((l, i) => `
-    <article class="passo${i === 0 ? ' on' : ''}" data-cidade="${l.cidade}">
-      <img class="mobile" src="media/lojas/${l.foto}.jpg" alt="${l.nome}" loading="lazy">
-      <p class="eyebrow"><b>${l.cidade}</b></p>
-      <h3>${l.nome}</h3>
-      <p>${l.end}<br>${l.cep}</p>
-      <div class="horario"><b>Segunda a sexta</b><span>${l.semana}</span><b>Sábado</b><span>${l.sabado}</span></div>
-      <div class="acoes">
-        <a class="btn btn-vidro" href="tel:+55${l.tel}">${TEL}${l.fone}</a>
-        <a class="btn btn-vidro" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.nome + ', ' + l.end + ', ' + l.cep)}" target="_blank" rel="noopener">Como chegar</a>
-      </div>
-    </article>`).join('');
-}
-
-function montaAreas(){
-  const zap = (nome, sub, fone, area, destaque) => `
-    <a class="area zap${destaque ? ' destaque' : ''}" href="https://wa.me/${fone}?text=${msgZap(area)}" target="_blank" rel="noopener">
-      ${ZAP}<span><b>${nome}</b><small>${sub}</small></span>
-    </a>`;
-  const tel = (l) => `
-    <a class="area" href="tel:+55${l.tel}">
-      ${TEL}<span><b>${l.cidade}</b><small>${l.fone}</small></span>
-    </a>`;
-  $('#areas').innerHTML = zap('Vendas', 'WhatsApp · 0 km, seminovos e test drive', ZAP_VENDAS, 'vendas', true)
-    + zap('Revisão e oficina', 'WhatsApp · agendamento de serviços', ZAP_REVISAO, 'a oficina para agendar uma revisão', false)
-    + LOJAS.map(tel).join('');
-}
-
-/* ---------- Toque: pressionado no pointerdown, sem esperar o clique ---------- */
-function ligaToques(){
-  document.addEventListener('pointerdown', (e) => {
-    const alvo = e.target.closest('.btn,.area,.zap-flutua');
-    if (!alvo) return;
-    alvo.classList.add('pressionado');
-    const solta = () => { alvo.classList.remove('pressionado'); removeEventListener('pointerup', solta); removeEventListener('pointercancel', solta); };
-    addEventListener('pointerup', solta); addEventListener('pointercancel', solta);
-  });
-}
-
-/* ---------- Filme: nasce do botão e volta para ele ---------- */
-function ligaFilme(){
-  const dlg = $('#filme'), tela = $('.tela', dlg), video = $('#videoFilme'), botao = $('#abreFilme');
-  const origem = () => {
-    const r = botao.getBoundingClientRect(), t = tela.getBoundingClientRect();
-    return {x: r.left + r.width / 2 - (t.left + t.width / 2), y: r.top + r.height / 2 - (t.top + t.height / 2), s: r.width / t.width};
-  };
-  const abre = () => {
-    dlg.showModal();
-    const o = origem();
-    if (calmo) { gsap.set(dlg, {opacity: 1}); }
-    else {
-      gsap.to(dlg, {opacity: 1, duration: .25, ease: 'power1.out', overwrite: true});
-      gsap.fromTo(tela, {x: o.x, y: o.y, scale: o.s, opacity: .4}, {x: 0, y: 0, scale: 1, opacity: 1, duration: .55, ease: 'expo.out', overwrite: true});
-    }
-    video.play().catch(() => {});
-    lenis && lenis.stop();
-  };
-  const fecha = () => {
-    video.pause();
-    const o = origem();
-    const acaba = () => { dlg.close(); lenis && lenis.start(); };
-    if (calmo) { gsap.set(dlg, {opacity: 0}); acaba(); return; }
-    // sai pelo mesmo caminho por onde entrou, partindo de onde está agora
-    gsap.to(tela, {x: o.x, y: o.y, scale: o.s, opacity: 0, duration: .42, ease: 'expo.inOut', overwrite: true});
-    gsap.to(dlg, {opacity: 0, duration: .38, delay: .08, ease: 'power1.in', overwrite: true, onComplete: acaba});
-  };
-  botao.addEventListener('click', abre);
-  $('#fechaFilme').addEventListener('click', fecha);
-  dlg.addEventListener('cancel', (e) => { e.preventDefault(); fecha(); });
-  dlg.addEventListener('click', (e) => { if (e.target === dlg) fecha(); });
-}
-
-/* ---------- Barra do topo some ao descer, volta ao subir ---------- */
-function ligaTopo(){
-  const topo = $('#topo'), zap = $('#zapFlutua'), contato = $('#contato'), creta = $('#creta');
-  let ultimo = 0;
-  const atualiza = (y) => {
-    topo.classList.toggle('solido', y > innerHeight * .6);
-    if (Math.abs(y - ultimo) > 6){ topo.classList.toggle('escondido', y > ultimo && y > innerHeight); ultimo = y; }
-    const c = contato.getBoundingClientRect().top, g = creta.getBoundingClientRect();
-    const noCreta = g.top <= 1 && g.bottom >= innerHeight - 1;
-    zap.classList.toggle('on', topo.classList.contains('escondido') && c > innerHeight * .5 && !noCreta);
-  };
-  return atualiza;
-}
-
-let lenis = null;
-montaLinha();
-montaDiferenciais();
-montaLojas();
-montaAreas();
-ligaToques();
-const topo = ligaTopo();
-
-/* ===========================================================
-   Movimento. Tudo preso à rolagem, então para, volta e acelera
-   junto com o dedo. Nada roda sozinho com duração fixa.
-   =========================================================== */
-// sem GSAP (CDN fora do ar), a página fica estática em vez de presa no carregamento
-if (!window.gsap || !window.ScrollTrigger){
-  document.documentElement.classList.remove('carregando'); $('#entrada') && $('#entrada').remove();
-  throw new Error('GSAP indisponível');
-}
-gsap.registerPlugin(ScrollTrigger);
-// barra de endereço do celular abrindo e fechando não recalcula tudo nem pula o quadro
-ScrollTrigger.config({ignoreMobileResize: true});
-if (calmo){ const v = $('#videoAereo'); v.removeAttribute('autoplay'); v.pause(); }
-
-if (!calmo && window.Lenis){
-  lenis = new Lenis({lerp: .11, smoothWheel: true});
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(t => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-  document.documentElement.classList.add('lenis');
-  $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
-    const alvo = $(a.getAttribute('href')); if (!alvo) return;
-    e.preventDefault(); lenis.scrollTo(alvo, {duration: 1.4});
-  }));
-}
-addEventListener('scroll', () => topo(scrollY), {passive: true});
-ligaFilme();
-
-/* ---------- O Creta em cores ---------- */
-const giro = (() => {
-  const canvas = $('#telaGiro'), {ctx, mede} = prepara(canvas);
-  const N = CRETA.cores.length;
-  const seq = sequencia(CRETA.cores.map(c => corUrl(CRETA, c)));
-  let tam = mede(), p = 0;
-  // cor contínua: cada cor segura um trecho e funde com a vizinha no meio do caminho
-  const posicao = (p) => {
-    const c = Math.min(N - 1, p * N);
-    const a = Math.min(N - 1, Math.floor(c)), t = c - a;
-    const suave = Math.max(0, Math.min(1, (t - .55) / .35));
-    return {a, b: Math.min(N - 1, a + 1), t: suave * suave * (3 - 2 * suave)};
-  };
-  // pinta o carro em qualquer canvas: o palco dele e a fusão final do percurso
-  const pinta = (ctx, tam, p, alpha = 1, comFundo = false) => {
-    const {a, b, t} = posicao(p);
-    const im = seq.perto(a); if (!im) return false;
-    ctx.globalAlpha = alpha;
-    if (comFundo){
-      const g = ctx.createLinearGradient(0, 0, 0, tam.h); g.addColorStop(0, '#dfe3e8'); g.addColorStop(1, '#f6f3f2');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, tam.w, tam.h);
-    }
-    const retrato = tam.h > tam.w;
-    // paisagem: o carro ocupa o centro; retrato: encaixa na largura, um pouco acima do meio
-    const margem = retrato ? .02 : .12, baixo = retrato ? .5 : .54;
-    desenhaContain(ctx, im, tam.w, tam.h, margem, alpha, true, baixo);
-    if (t > .01 && seq.imgs[b]) desenhaContain(ctx, seq.imgs[b], tam.w, tam.h, margem, alpha * t, false, baixo);
-    ctx.globalAlpha = 1;
-    return true;
-  };
-  const desenha = () => { ctx.clearRect(0, 0, tam.w, tam.h); pinta(ctx, tam, p); };
-  seq.onload = (i) => { const {a, b} = posicao(p); if (i === a || i === b || i === 0) { desenha(); giro.aoCarregar && giro.aoCarregar(); } };
-  addEventListener('resize', () => { tam = mede(); desenha(); });
-  return {seq, pinta, posicao, aoCarregar: null, set(v){ p = v; desenha(); }};
-})();
-
-/* ---------- Percurso ---------- */
-const CENAS = [[0,'Novo Creta'],[36,'Detalhe'],[60,'Mirante'],[102,'Cidade'],[147,'Chegada']];
-// onde está o carro em cada trecho do filme (quadro original, fração da largura): guia o recorte em pé
-const FOCO = [[25,.56],[31,.52],[40,.5],[50,.55],[64,.5],[86,.58],[100,.6],[112,.58],[118,.68],[123,.42],[128,.32],[133,.42],[137,.64],[144,.6],[148,.4],[169,.4]];
-const focoEm = (v) => {
-  for (let i = 1; i < FOCO.length; i++){
-    const [a, fa] = FOCO[i - 1], [b, fb] = FOCO[i];
-    if (v <= b){ const t = Math.max(0, (v - a) / (b - a)); return fa + (fb - fa) * t * t * (3 - 2 * t); }
+async function tentar(senha, digitada){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  const r = await abre(senha).catch(() => null);
+  if (r){
+    try { sessionStorage.setItem(LEMBRA, senha); } catch (e) {}
+    if (digitada) marcaEntrada(r.quem);
+    document.open(); document.write(r.html); document.close();
+    return;
   }
-  return FOCO[FOCO.length - 1][1];
-};
-const percurso = (() => {
-  const canvas = $('#telaPercurso'), {ctx, mede} = prepara(canvas);
-  const TOTAL = 170, INICIO = 25;   // abre no quadro 26: o Creta de frente, na estrada
-  // celular: metade dos quadros (5 por segundo, fundidos dois a dois), metade do peso
-  const PASSO = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData) ? 2 : 1;
-  const N = Math.ceil((TOTAL - INICIO) / PASSO);
-  const seq = sequencia([...Array(N)].map((_, i) => `media/percurso/${String(INICIO + i * PASSO + 1).padStart(3, '0')}.jpg`));
-  // ordem de carga: primeiro um a cada 8, depois preenche; a rolagem nunca fica sem quadro
-  const ordem = []; [8, 4, 2, 1].forEach(passo => { for (let i = 0; i < N; i += passo) ordem.push(i); });
-  let tam = mede(), f = 0, fusao = 0, abre = 1, ultimoFoco = 0;
-  // o filme abre perto demais da frente: a página abre com o Creta inteiro
-  // e ele se funde no filme na primeira rolada
-  const carro = new Image(); carro.decoding = 'async';
-  carro.onload = () => { if (abre > 0) desenha(); };
-  carro.src = 'media/cores/creta-branco-atlas.webp';
-  const pintaCarro = (alpha) => {
-    if (!carro.naturalWidth || alpha <= 0) return;
-    const bh = faixaFilme(tam.w, tam.h), deitado = bh === tam.h;
-    // em pé: carro no alto, largura toda; deitado: carro à direita, acima do título
-    const cx = deitado ? tam.w * .64 : tam.w / 2, base = deitado ? Math.min(tam.w * .5, tam.h * 1.05) : tam.w * .98;
-    ctx.globalAlpha = alpha;
-    const g = ctx.createRadialGradient(cx, bh * .45, 0, cx, bh * .45, Math.max(tam.w, tam.h) * .8);
-    g.addColorStop(0, '#1d3f8f'); g.addColorStop(1, '#001E50');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, tam.w, tam.h);
-    const cw = base * (1 + (1 - alpha) * .25), ch = cw * carro.naturalHeight / carro.naturalWidth;
-    const y = bh * (deitado ? .34 : .53) - ch / 2;
-    const sg = ctx.createRadialGradient(cx, y + ch * .94, 0, cx, y + ch * .94, cw * .5);
-    sg.addColorStop(0, 'rgba(0,8,25,.55)'); sg.addColorStop(1, 'rgba(0,8,25,0)');
-    ctx.save(); ctx.translate(cx, y + ch * .94); ctx.scale(1, .16); ctx.translate(-cx, -(y + ch * .94));
-    ctx.fillStyle = sg; ctx.fillRect(0, y + ch * .94 - cw * .5, tam.w, cw); ctx.restore();
-    ctx.drawImage(carro, cx - cw / 2, y, cw, ch);
-    ctx.globalAlpha = 1;
-  };
-  const desenha = () => {
-    const a = Math.floor(f), t = f - a;
-    ctx.clearRect(0, 0, tam.w, tam.h);
-    // no fim, a chegada se aproxima e dissolve no estúdio do Creta
-    const zoom = 1 + fusao * .14, fx = focoEm(INICIO + f * PASSO);
-    if (tam.h > tam.w * 1.15){ ctx.fillStyle = '#001E50'; ctx.fillRect(0, 0, tam.w, tam.h); }
-    desenhaFilme(ctx, seq.perto(a), tam.w, tam.h, zoom, 1, fx);
-    if (t > .01 && seq.imgs[a + 1]) desenhaFilme(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t, fx);
-    const bh = faixaFilme(tam.w, tam.h);
-    if (bh < tam.h){
-      // a faixa desmancha no marinho, sem linha de corte
-      const g = ctx.createLinearGradient(0, bh * .55, 0, bh + 1);
-      g.addColorStop(0, 'rgba(0,30,80,0)'); g.addColorStop(1, '#001E50');
-      ctx.fillStyle = g; ctx.fillRect(0, bh * .55, tam.w, bh * .45 + 2);
-    }
-    if (abre > 0) pintaCarro(abre * abre * (3 - 2 * abre));
-    if (fusao > 0) giro.pinta(ctx, tam, 0, fusao * fusao * (3 - 2 * fusao), true);
-  };
-  seq.onload = (i) => { if (Math.abs(i - f) < 3 || i === 0) desenha(); };
-  giro.aoCarregar = () => { if (fusao > 0) desenha(); };
-  addEventListener('resize', () => { tam = mede(); desenha(); });
-  return {seq, N: TOTAL, INICIO, carrega: () => seq.carrega(ordem),
-    // v em quadros originais (25 a 169); q é a fusão para o estúdio (0 a 1)
-    set(v, q = 0, a = 0){
-      f = Math.max(0, Math.min(N - 1, (v - INICIO) / PASSO)); fusao = q; abre = a;
-      const alvo = Math.round(f);
-      if (Math.abs(alvo - ultimoFoco) >= 3){ ultimoFoco = alvo; seq.foco(alvo); }
-      desenha();
-    }};
-})();
-
-if (calmo){
-  percurso.seq.carrega([0]); percurso.set(percurso.INICIO, 0, 1);
-  giro.seq.carrega([0]); giro.set(0);
-  $$('.passo').forEach(ativaPasso);
-  $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
-} else {
-  movimento();
+  ocupado = false; pin = ''; pintaDots();
+  if (!digitada){ msg.textContent = ''; try { sessionStorage.removeItem(LEMBRA); } catch (e) {} return; }
+  msg.classList.add('err');
+  msg.textContent = 'Senha incorreta. Tente de novo.';
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
 }
 
-function ativaPasso(el){
-  const i = $$('.passo').indexOf(el);
-  $$('.passo').forEach(x => x.classList.toggle('on', x === el));
-  $$('#moldura img').forEach((im, k) => im.classList.toggle('on', k === i));
-  $('#cidadeFixa').textContent = el.dataset.cidade;
-}
-
-function movimento(){
-  /* Carregamento: espera o primeiro quadro da estrada e as fontes, no máximo 2,4 s */
-  const entrada = $('#entrada'), barra = $('#barraEntrada');
-  gsap.set('#heroTitulo .l > span', {yPercent: 110});
-  gsap.set('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 0, y: 16});
-  percurso.carrega();
-  const esperas = [
-    document.fonts ? document.fonts.ready : Promise.resolve(),
-    new Promise(r => { const t = setInterval(() => { if (percurso.seq.imgs[0] || percurso.seq.falhou) { clearInterval(t); r(); } }, 60); })
-  ];
-  let prontas = 0;
-  esperas.forEach(p => p.then(() => barra.style.setProperty('--p', ++prontas / esperas.length)));
-  const t0 = performance.now();
-  Promise.race([Promise.all(esperas), new Promise(r => setTimeout(r, 2400))]).then(() => {
-    setTimeout(() => {
-      document.documentElement.classList.remove('carregando');
-      gsap.to(entrada, {opacity: 0, duration: .7, ease: 'power2.out', onComplete: () => entrada.remove()});
-      gsap.to('#heroTitulo .l > span', {yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: .09, delay: .1});
-      gsap.to('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: .5, stagger: .08});
-      ScrollTrigger.refresh();
-    }, Math.max(0, 900 - (performance.now() - t0)));
-  });
-  /* Percurso: a rolagem é a câmera. Segura o Creta parado no começo,
-     depois cada quadro acompanha o dedo, para frente e para trás. */
-  const PARADO = .05;   // Creta parado nos primeiros 5% (meia tela de rolagem)
-  const FUSAO = .9;     // últimos 10%: a chegada dissolve no estúdio do Creta
-  const cenas = $$('.cena').map(el => ({el, de: +el.dataset.de, ate: +el.dataset.ate}));
-  const heroC = $('#heroConteudo'), rolar = $('#rolar'), onde = $('#onde'), ondeNome = $('#ondeNome'), ondeBarra = $('#ondeBarra'), veu = $('#veu');
-  const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
-  const secGiro = $('#creta');
-  secGiro.classList.add('espera');
-  let giroPedido = false;
-  ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
-    onUpdate: s => {
-      const p = s.progress;
-      const f = percurso.INICIO + (p < PARADO ? 0 : Math.min(1, (p - PARADO) / (FUSAO - PARADO)) * (percurso.N - 1 - percurso.INICIO));
-      const q = Math.max(0, (p - FUSAO) / (1 - FUSAO));
-      // a primeira cor do Creta precisa estar pronta antes da fusão
-      if (!giroPedido && p > .4){ giroPedido = true; giro.seq.carrega([0, 1]); }
-      // o Creta inteiro segura o começo e dissolve no filme até 9% da abertura
-      percurso.set(f, q, 1 - Math.min(1, Math.max(0, (p - .015) / .075)));
-      veu.style.opacity = 1 - q;
-      // título some nos primeiros quadros, subindo como quem entra
-      const h = Math.min(1, p / .06);
-      heroC.style.opacity = 1 - h;
-      heroC.style.transform = `translateY(${-h * 12}vh)`;
-      heroC.style.pointerEvents = h > .6 ? 'none' : '';
-      rolar.style.opacity = 1 - Math.min(1, p / .02);
-      cenas.forEach(c => {
-        const o = janela(f, c.de - 6, c.de + 2, c.ate - 4, c.ate + 4) * (1 - q);
-        c.el.style.opacity = o;
-        c.el.style.transform = `translateY(${(1 - o) * (f < c.de + 2 ? 2 : -2)}rem)`;
-      });
-      onde.style.opacity = Math.min(1, Math.max(0, (p - .05) / .03)) * (1 - Math.min(1, q * 2));
-      let nome = CENAS[0][1]; CENAS.forEach(([q, n]) => { if (f >= q) nome = n; });
-      if (ondeNome.textContent !== nome) ondeNome.textContent = nome;
-      ondeBarra.style.setProperty('--p', p.toFixed(3));
-    }});
-
-  /* Cores: as seis cores do Creta passam pelo caminho, uma ficha por cor.
-     O palco fica invisível até prender: quem mostra o carro antes disso é o
-     fim do percurso, com a mesma imagem, então a troca não se vê. */
-  const fichas = $$('#fichas .ficha'), barras = $$('#trilhoGiro i'), corBola = $('#corBola'), corNome = $('#corNome'), cabeca = $('.giro .cabeca');
-  ScrollTrigger.create({trigger: '#creta', start: 'top 120%', once: true, onEnter: () => giro.seq.carrega([0, 1])});
-  let atual = -1;
-  ScrollTrigger.create({trigger: '#creta', start: 'top top', end: 'bottom bottom', scrub: true,
-    onToggle: s => {
-      const espera = !s.isActive && s.progress === 0;
-      secGiro.classList.toggle('espera', espera);
-      if (!espera && s.direction > 0) gsap.fromTo(cabeca, {opacity: 0, y: 18}, {opacity: 1, y: 0, duration: .8, ease: 'expo.out', overwrite: true});
-    },
-    onUpdate: s => {
-      const p = s.progress;
-      giro.set(p);
-      const {a, b, t} = giro.posicao(p);
-      const k = t > .5 ? b : a;
-      barras.forEach((bar, i) => bar.style.setProperty('--p', Math.max(0, Math.min(1, p * fichas.length - i))));
-      if (k !== atual){
-        const cor = CRETA.cores[k];
-        corBola.style.setProperty('--c', cor[1]); corNome.textContent = cor[0];
-        // cada ficha entra de onde a anterior está agora, sem esperar ela terminar
-        fichas.forEach((f, i) => gsap.to(f, {opacity: i === k ? 1 : 0, y: i === k ? 0 : (i < k ? -16 : 16),
-          duration: .5, ease: 'expo.out', overwrite: true}));
-        atual = k;
-      }
-    }});
-
-  /* Diferenciais: o trilho anda de lado enquanto a página desce */
-  const trilho = $('#trilhoH'), sec = $('#servicos');
-  const distancia = () => Math.max(0, trilho.scrollWidth - innerWidth);
-  sec.style.height = `calc(100svh + ${distancia()}px)`;
-  ScrollTrigger.addEventListener('refreshInit', () => { sec.style.height = `calc(100svh + ${distancia()}px)`; });
-  gsap.to(trilho, {x: () => -distancia(), ease: 'none',
-    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true}});
-  $$('.card-dif img').forEach(im => gsap.fromTo(im, {xPercent: -6}, {xPercent: 6, ease: 'none',
-    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true}}));
-
-  /* Números contam quando aparecem */
-  $$('[data-conta]').forEach(n => {
-    const alvo = +n.dataset.conta, o = {v: 0};
-    n.textContent = '0';
-    ScrollTrigger.create({trigger: n, start: 'top 85%', once: true,
-      onEnter: () => gsap.to(o, {v: alvo, duration: 1.6, ease: 'expo.out', onUpdate: () => n.textContent = Math.round(o.v)})});
-  });
-
-  /* Linha: cartões sobem em cascata */
-  ScrollTrigger.batch('.maq', {start: 'top 90%', once: true,
-    onEnter: b => gsap.from(b, {opacity: 0, y: 40, duration: .9, ease: 'expo.out', stagger: .06})});
-
-  /* Lojas: a foto fixa troca conforme o passo passa pelo meio */
-  $$('.passo').forEach(el => ScrollTrigger.create({trigger: el, start: 'top 55%', end: 'bottom 55%',
-    onToggle: s => s.isActive && ativaPasso(el)}));
-
-  /* Propósito: a frase cresce até o tamanho final */
-  gsap.fromTo('#citacao', {scale: .82, opacity: .2}, {scale: 1, opacity: 1, ease: 'none',
-    scrollTrigger: {trigger: '#citacao', start: 'top 95%', end: 'center 55%', scrub: true}});
-
-  /* Contato: vídeo só carrega perto de aparecer */
-  ScrollTrigger.create({trigger: '#contato', start: 'top 150%', once: true, onEnter: () => {
-    const v = $('#videoAereo'); v.preload = 'auto'; v.play().catch(() => {});
-  }});
-  gsap.from('.area', {opacity: 0, y: 24, duration: .8, ease: 'expo.out', stagger: .06,
-    scrollTrigger: {trigger: '#areas', start: 'top 92%'}});
-
-  addEventListener('load', () => ScrollTrigger.refresh());
-}
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) tentar(lembrada, false);
 })();
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>

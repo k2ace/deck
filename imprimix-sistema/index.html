@@ -2,865 +2,205 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Proposta K2IA × Imprimix Goiânia · Sistema de Orçamento e Artes</title>
-<meta name="theme-color" content="#0c0b0d">
+<meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c0b0d'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='28' font-weight='700' fill='%23ff3d9e' text-anchor='middle'%3Eix%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-:root {
-  --mag: #ff3d9e;
-  --mag-light: #ff7cc0;
-  --mag-deep: #d1237c;
-  --cyan: #3bd6f0;
-  --wa: #25d366;
-  --wa-bubble: #005c4b;
-  --wa-bg: #0b141a;
-  --wa-top: #1f2c34;
-  --dark: #0c0b0d;
-  --dark-2: #100f12;
-  --dark-3: #171519;
-  --dark-4: #201d22;
-  --text: #f5f4f6;
-  --text-muted: #9c98a0;
-  --border: rgba(255,61,158,0.20);
-  --line: rgba(255,255,255,0.06);
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
 }
-
-html { scroll-behavior:smooth; }
-body { background:var(--dark); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
-
-/* NAV */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:0 60px; height:64px;
-  background:rgba(12,11,13,0.94); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
 }
-.nav-logo { display:flex; align-items:center; gap:11px; }
-.nav-logo .g-mark {
-  width:34px; height:34px; border-radius:8px; background:#0e0d0f;
-  border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:var(--mag);
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
 }
-.nav-logo .wm { font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:var(--text); }
-.nav-logo .wm b { color:var(--mag); }
-.nav-right { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
-
-/* UTILITÁRIOS */
-.tag { display:inline-block; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px; }
-.section-title { font-family:'Space Grotesk',sans-serif; font-size:clamp(34px,4vw,54px); font-weight:600; line-height:1.08; color:var(--text); letter-spacing:-0.02em; }
-.section-title em { color:var(--mag); font-style:normal; }
-.divider { width:48px; height:2px; background:var(--mag); margin:20px 0; }
-.free-badge { display:inline-flex; align-items:center; gap:8px; font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#2b0619; background:var(--mag); padding:5px 12px; border-radius:6px; }
-
-/* ════ HERO ════ */
-#hero {
-  min-height:100vh; position:relative; display:flex; align-items:center; overflow:hidden;
-  background:
-    radial-gradient(1100px 600px at 78% 42%, rgba(255,61,158,0.13), transparent 60%),
-    radial-gradient(800px 500px at 12% 12%, rgba(59,214,240,0.07), transparent 60%),
-    var(--dark);
-  padding:120px 60px 60px;
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
 }
-.hero-grid { position:absolute; inset:0; opacity:0.5;
-  background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size:64px 64px; mask-image:radial-gradient(circle at 70% 45%, black, transparent 72%); }
-.hero-inner { position:relative; z-index:2; max-width:1180px; margin:0 auto; width:100%;
-  display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center; }
-.hero-eyebrow { display:inline-flex; align-items:center; gap:12px; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--mag-light); margin-bottom:26px; }
-.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--mag-light); }
-.hero-copy h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(36px,4.8vw,62px); font-weight:600; line-height:1.05; color:#fff; margin-bottom:22px; letter-spacing:-0.02em; }
-.hero-copy h1 em { color:var(--mag); font-style:normal; }
-.hero-copy p { font-size:15px; color:#bcb8bf; line-height:1.85; max-width:520px; margin-bottom:38px; }
-.hero-stats { display:flex; gap:0; border-top:1px solid var(--line); padding-top:30px; }
-.hero-stat { flex:1; padding-right:20px; }
-.hero-stat+.hero-stat { padding-left:20px; border-left:1px solid var(--line); }
-.hero-stat .v { font-family:'Space Grotesk'; font-size:clamp(21px,2.5vw,34px); font-weight:600; color:var(--mag-light); line-height:1; }
-.hero-stat .l { font-size:10px; letter-spacing:1.4px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.4; }
-
-/* hero visual: WhatsApp vira funil */
-.hero-visual { position:relative; display:flex; align-items:center; justify-content:center; }
-.phone { position:relative; width:290px; border-radius:36px; background:#0e0d0f; border:1px solid var(--border); padding:12px; box-shadow:0 40px 70px rgba(0,0,0,0.6); }
-.phone .notch { position:absolute; top:20px; left:50%; transform:translateX(-50%); width:96px; height:6px; border-radius:99px; background:#000; z-index:3; }
-.screen { border-radius:26px; overflow:hidden; background:var(--wa-bg); }
-.wa-top { background:var(--wa-top); padding:16px 16px 12px; display:flex; align-items:center; gap:11px; }
-.wa-top .av { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--mag-light),var(--mag-deep)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:13px; color:#2b0619; }
-.wa-top .who { flex:1; }
-.wa-top .who .n { font-size:13.5px; font-weight:600; color:#fff; }
-.wa-top .who .s { font-size:10.5px; color:var(--wa); margin-top:1px; }
-.wa-top .oficial { font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:var(--mag-light); border:1px solid var(--border); border-radius:5px; padding:3px 6px; }
-.wa-body { padding:18px 14px 14px; display:flex; flex-direction:column; gap:9px; min-height:190px;
-  background:linear-gradient(180deg, rgba(11,20,26,1), rgba(11,20,26,0.92)); }
-.bub { max-width:80%; font-size:11.5px; line-height:1.5; padding:8px 11px; border-radius:11px; position:relative; }
-.bub .t { display:block; font-size:8.5px; color:rgba(255,255,255,0.45); text-align:right; margin-top:3px; }
-.bub.in { background:var(--wa-top); color:#e9edef; align-self:flex-start; border-top-left-radius:3px; }
-.bub.out { background:var(--wa-bubble); color:#e9edef; align-self:flex-end; border-top-right-radius:3px; }
-.lead-card { position:absolute; right:-38px; bottom:64px; width:216px; background:var(--dark-4); border:1px solid var(--border); border-radius:13px; padding:14px 15px; box-shadow:0 22px 44px rgba(0,0,0,0.6); z-index:4; }
-.lead-card .lc-top { display:flex; align-items:center; gap:9px; margin-bottom:11px; }
-.lead-card .lc-av { width:30px; height:30px; border-radius:50%; background:var(--dark-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:600; font-size:11px; color:var(--mag-light); }
-.lead-card .lc-n { font-size:12px; font-weight:600; color:#fff; }
-.lead-card .lc-src { font-size:9.5px; color:var(--text-muted); margin-top:1px; }
-.lead-card .lc-stage { display:flex; gap:4px; }
-.lead-card .st { flex:1; height:4px; border-radius:99px; background:rgba(255,255,255,0.10); }
-.lead-card .st.on { background:var(--mag); }
-.lead-card .lc-lbl { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--mag-light); margin-top:9px; }
-.hero-cap { position:absolute; left:-14px; top:40px; background:var(--dark-4); border:1px solid var(--border); border-radius:9px; padding:8px 11px; font-size:10.5px; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,0.5); z-index:4; }
-.hero-cap b { color:var(--mag-light); font-weight:600; }
-
-/* SCROLL HINT */
-.scroll-hint { position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:7px; opacity:0.4; animation:bob 2s ease-in-out infinite; z-index:3; }
-.scroll-hint span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
-.scroll-hint::after { content:'↓'; color:var(--mag); font-size:14px; }
-@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
-
-/* ════ DESAFIO ════ */
-#desafio { background:var(--dark-2); padding:100px 60px; }
-.desafio-wrap { max-width:1100px; margin:0 auto; }
-.desafio-header { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; margin-bottom:56px; }
-.desafio-header p { font-size:15px; line-height:1.9; color:var(--text-muted); }
-.desafio-header blockquote { font-family:'Space Grotesk'; font-size:22px; font-weight:500; color:var(--mag-light); border-left:2px solid var(--mag); padding-left:22px; line-height:1.5; }
-.desafio-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
-.desafio-card { background:var(--dark-3); padding:30px 24px; }
-.desafio-card .dc-ico { width:34px; height:34px; margin-bottom:16px; color:var(--mag); }
-.desafio-card h4 { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--mag); margin-bottom:11px; }
-.desafio-card p { font-size:12.5px; line-height:1.75; color:var(--text-muted); }
-
-/* ════ COEXISTÊNCIA ════ */
-#coex { padding:100px 60px; background:var(--dark); }
-.coex-wrap { max-width:1100px; margin:0 auto; }
-.inv-cards { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; align-items:stretch; }
-.inv-card { background:var(--dark-3); border:1px solid var(--border); border-radius:16px; padding:34px 32px; display:flex; flex-direction:column; }
-.inv-card.pack { background:linear-gradient(180deg, var(--dark-4), var(--dark-3)); border-color:var(--mag); box-shadow:0 30px 70px rgba(0,0,0,0.5); position:relative; }
-.inv-card .ic-kick { font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:10px; }
-.inv-card h3 { font-family:'Space Grotesk'; font-size:22px; font-weight:600; color:var(--text); margin-bottom:6px; }
-.inv-card .ic-sub { font-size:12.5px; color:var(--text-muted); line-height:1.6; margin-bottom:22px; }
-.plain-list { list-style:none; }
-.plain-list li { font-size:12.5px; color:var(--text-muted); padding:9px 0 9px 16px; position:relative; line-height:1.6; border-bottom:1px solid var(--line); }
-.plain-list li:last-child { border-bottom:none; }
-.plain-list li::before { content:''; position:absolute; left:0; top:14px; width:5px; height:5px; border-radius:50%; background:var(--mag); }
-.plain-list.warn li::before { background:#e0a06b; }
-.coex-line { font-family:'Space Grotesk'; font-size:15px; color:var(--mag-light); text-align:center; margin-top:40px; letter-spacing:0.3px; }
-
-/* ════ MÓDULOS ════ */
-#modulos { padding:100px 60px; background:var(--dark-2); }
-.mod-wrap { max-width:1100px; margin:0 auto; }
-.mod-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:48px; }
-.mod { background:var(--dark-3); padding:38px 30px; position:relative; overflow:hidden; }
-.mod-ghost { position:absolute; top:14px; right:18px; font-family:'Space Grotesk'; font-size:70px; font-weight:700; color:rgba(255,61,158,0.06); line-height:1; }
-.mod .m-num { font-size:11px; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; display:block; }
-.mod h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:600; color:var(--text); margin-bottom:8px; line-height:1.2; }
-.mod .m-tag { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px; display:block; }
-.mod p { font-size:12.5px; line-height:1.75; color:var(--text-muted); }
-.mod ul { list-style:none; margin-top:14px; }
-.mod ul li { font-size:12.5px; color:var(--text-muted); padding:7px 0 7px 15px; position:relative; line-height:1.5; border-bottom:1px solid rgba(255,255,255,0.04); }
-.mod ul li:last-child { border:none; }
-.mod ul li::before { content:''; position:absolute; left:0; top:13px; width:5px; height:5px; border-radius:50%; background:var(--mag); }
-
-/* ════ INVESTIMENTO ════ */
-#investimento { padding:100px 60px; background:var(--dark); }
-.inv-wrap { max-width:1100px; margin:0 auto; }
-.li-row { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); }
-.li-row .k { font-size:13px; color:var(--text); font-weight:500; }
-.li-row .k small { display:block; color:var(--text-muted); font-weight:400; font-size:11px; margin-top:3px; line-height:1.5; max-width:32ch; }
-.li-row .v { font-family:'Space Grotesk'; font-size:16px; color:var(--text); white-space:nowrap; text-align:right; }
-.li-row .v small { display:block; font-size:10px; color:var(--text-muted); margin-top:2px; }
-.li-row.total { border-bottom:none; border-top:2px solid var(--border); margin-top:6px; padding-top:18px; }
-.li-row.total .k { font-family:'Space Grotesk'; font-size:15px; color:var(--text); }
-.li-row.total .v { font-size:26px; color:var(--mag-light); }
-.check-list { list-style:none; margin:6px 0 8px; padding:0; }
-.check-list li { display:flex; gap:11px; padding:12px 0; border-bottom:1px solid var(--line); }
-.check-list li:last-child { border-bottom:none; }
-.check-list .ck { color:var(--mag); flex-shrink:0; font-weight:700; font-size:14px; }
-.check-list .tx { font-size:13.5px; color:var(--text); font-weight:600; line-height:1.4; }
-.check-list .tx span { display:block; font-size:12px; color:var(--text-muted); font-weight:400; margin-top:2px; }
-.ic-note { font-size:11px; color:var(--text-muted); line-height:1.7; margin-top:16px; padding-left:12px; border-left:2px solid var(--border); }
-.inv-cards.three { grid-template-columns:1fr 1fr 1fr; }
-
-/* ════ CASE ════ */
-#case { padding:100px 60px; background:var(--dark-2); border-top:1px solid var(--border); }
-.case-wrap { max-width:1100px; margin:0 auto; }
-
-/* ════ PRÓXIMOS PASSOS ════ */
-#passos { padding:100px 60px; background:var(--dark); }
-.ps-wrap { max-width:1100px; margin:0 auto; }
-.passos { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:48px; }
-.passo { padding:34px 26px; border-right:1px solid var(--border); }
-.passo:last-child { border:none; }
-.passo .ps-n { font-family:'Space Grotesk'; font-size:40px; font-weight:700; color:rgba(255,61,158,0.14); line-height:1; margin-bottom:14px; }
-.passo h4 { font-size:13.5px; font-weight:600; color:var(--text); margin-bottom:9px; line-height:1.4; }
-.passo p { font-size:12px; color:var(--text-muted); line-height:1.7; }
-
-/* ════ CLOSING ════ */
-#closing { position:relative; padding:120px 40px; text-align:center; overflow:hidden;
-  background:radial-gradient(900px 500px at 50% 30%, rgba(255,61,158,0.15), transparent 60%), var(--dark); }
-.closing-inner { position:relative; z-index:2; max-width:720px; margin:0 auto; }
-.closing-inner .ct { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--mag-light); margin-bottom:26px; display:block; }
-.closing-inner h2 { font-family:'Space Grotesk'; font-size:clamp(30px,4.4vw,52px); font-weight:600; color:#fff; line-height:1.12; margin-bottom:20px; letter-spacing:-0.02em; }
-.closing-inner h2 em { color:var(--mag); font-style:normal; }
-.closing-inner p { font-size:14px; color:var(--text-muted); line-height:1.85; margin-bottom:36px; }
-.cta-btn { display:inline-block; padding:17px 42px; background:var(--mag); color:#2b0619; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border-radius:10px; transition:transform .15s, box-shadow .15s; box-shadow:0 12px 30px rgba(255,61,158,0.3); }
-.cta-btn:hover { transform:translateY(-2px); box-shadow:0 18px 40px rgba(255,61,158,0.45); }
-.cta-btn:active { transform:scale(0.97); transition:transform 100ms ease-out; }
-
-/* FOOTER */
-footer { background:var(--dark); padding:28px 60px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); }
-footer .fl { display:flex; align-items:center; gap:12px; }
-footer .g-mark { width:30px; height:30px; border-radius:7px; background:#0e0d0f; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:13px; color:var(--mag); }
-footer .fb { font-family:'Space Grotesk'; font-size:13px; font-weight:600; letter-spacing:1px; color:var(--text); }
-footer .fs { font-size:10px; color:var(--text-muted); margin-top:2px; }
-footer .fr { font-size:11px; color:var(--text-muted); text-align:right; line-height:1.8; }
-footer .fr a { color:var(--mag); text-decoration:none; }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior:auto; }
-  .scroll-hint { animation:none; }
-  .cta-btn, .cta-btn:hover { transition:none; transform:none; }
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-@media (prefers-reduced-transparency: reduce) {
-  nav { background:var(--dark); backdrop-filter:none; }
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
 }
-@media (prefers-contrast: more) {
-  .desafio-card p, .mod p, .mod ul li, .plain-list li { color:#c9c5cd; }
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
 }
-
-@media(max-width:900px){
-  nav { padding:0 20px; } .nav-right { display:none; }
-  #desafio,#coex,#modulos,#investimento,#case,#passos { padding-left:24px; padding-right:24px; }
-  #hero { padding:100px 24px 50px; }
-  .hero-inner { grid-template-columns:1fr; gap:60px; }
-  .hero-copy h1 { font-size:clamp(28px,7.4vw,54px); }
-  .hero-copy p { font-size:14px; max-width:100%; }
-  .hero-stat .v { font-size:24px; }
-  .hero-visual { margin-top:10px; }
-  .lead-card { right:-14px; } .hero-cap { left:0; }
-  .desafio-header { grid-template-columns:1fr; gap:24px; }
-  .desafio-grid { grid-template-columns:1fr 1fr; }
-  .mod-grid { grid-template-columns:1fr; }
-  .inv-cards, .inv-cards.three { grid-template-columns:1fr; }
-  .inv-card { padding:28px 22px; }
-  .passos { grid-template-columns:1fr 1fr; }
-  .passo:nth-child(2){ border-right:none; } .passo:nth-child(1),.passo:nth-child(2){ border-bottom:1px solid var(--border); }
-  footer { padding:26px 24px; flex-direction:column; gap:16px; text-align:center; }
-}
-@media(max-width:540px){
-  .desafio-grid { grid-template-columns:1fr; }
-  .hero-stats { flex-wrap:wrap; } .hero-stat { flex:0 0 100%; padding:14px 0 !important; border-left:none !important; border-top:1px solid var(--line); }
-  .section-title { font-size:clamp(26px,7.6vw,40px); }
-  .passos { grid-template-columns:1fr; } .passo { border-right:none; border-bottom:1px solid var(--border); }
-}
-
-/* ════ MOCKUP DE APP (hero e provas) ════ */
-.app { position:relative; width:330px; border-radius:16px; background:#0e0d0f; border:1px solid var(--border); box-shadow:0 40px 70px rgba(0,0,0,0.6); overflow:hidden; }
-.app-bar { display:flex; align-items:center; gap:6px; padding:11px 14px; background:var(--dark-4); border-bottom:1px solid var(--line); }
-.app-bar i { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.13); }
-.app-bar .u { margin-left:9px; font-size:9.5px; letter-spacing:0.4px; color:var(--text-muted); }
-.app-body { padding:16px 15px; }
-.app-h { font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--cyan); margin-bottom:13px; }
-.fld { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 11px; border:1px solid var(--line); border-radius:9px; margin-bottom:7px; background:var(--dark-2); }
-.fld .fk { font-size:9px; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); }
-.fld .fv { font-size:11.5px; color:var(--text); font-weight:500; }
-.out { margin-top:13px; padding:12px 12px; border-radius:10px; background:var(--wa-bubble); }
-.out .ol { font-size:10.5px; color:#e9edef; line-height:1.65; }
-.out .ol b { color:#fff; font-weight:600; }
-.out .ot { margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.14); font-size:11px; color:#fff; font-weight:600; display:flex; justify-content:space-between; }
-.float-card { position:absolute; right:-40px; bottom:52px; width:212px; background:var(--dark-4); border:1px solid var(--border); border-radius:13px; padding:14px 15px; box-shadow:0 22px 44px rgba(0,0,0,0.6); z-index:4; }
-.float-card .fc-l { font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--mag-light); margin-bottom:9px; }
-.float-card .fc-v { font-family:'Space Grotesk'; font-size:23px; font-weight:600; color:#fff; line-height:1; }
-.float-card .fc-s { font-size:10px; color:var(--text-muted); margin-top:6px; line-height:1.5; }
-.float-card .fc-bars { display:flex; gap:3px; margin-top:11px; }
-.float-card .fc-bars i { flex:1; height:4px; border-radius:99px; background:var(--mag); }
-.float-card .fc-bars i.off { background:rgba(255,255,255,0.10); }
-
-/* ════ PROVA ════ */
-#prova { padding:100px 60px; background:var(--dark); }
-.prova-wrap { max-width:1100px; margin:0 auto; }
-.match { display:flex; align-items:center; justify-content:center; gap:26px; flex-wrap:wrap; margin:30px 0 4px; padding:26px 20px; border:1px solid var(--border); border-radius:14px; background:var(--dark-3); }
-.match .mc { text-align:center; }
-.match .mc .ml { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
-.match .mc .mv { font-family:'Space Grotesk'; font-size:clamp(24px,3.2vw,34px); font-weight:600; color:var(--mag-light); line-height:1; }
-.match .eq { font-family:'Space Grotesk'; font-size:22px; color:var(--mag); }
-
-/* ════ ESCOPO ════ */
-#escopo { padding:100px 60px; background:var(--dark-2); }
-.esc-wrap { max-width:1100px; margin:0 auto; }
-
-/* ════ PREÇO POR FORMA DE PAGAMENTO ════ */
-.pay { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:20px; }
-.pay .po { background:var(--dark-2); padding:18px 14px; text-align:center; }
-.pay .po.best { background:linear-gradient(180deg, rgba(255,61,158,0.10), var(--dark-2)); }
-.pay .po .pl { font-size:9.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--text-muted); margin-bottom:9px; }
-.pay .po.best .pl { color:var(--mag-light); }
-.pay .po .pv { font-family:'Space Grotesk'; font-size:21px; font-weight:600; color:var(--text); line-height:1.1; }
-.pay .po.best .pv { color:var(--mag-light); font-size:25px; }
-.pay .po .ps { font-size:10px; color:var(--text-muted); margin-top:6px; line-height:1.5; }
-@media(max-width:900px){
-  #prova,#escopo { padding-left:24px; padding-right:24px; }
-  .app { width:100%; max-width:330px; }
-  .float-card { right:-10px; }
-  .pay { grid-template-columns:1fr; }
-}
-
-/* ════ MODELO E QUADRO ════ */
-#modelo { padding:100px 60px; background:var(--dark); }
-#quadro { padding:100px 60px; background:var(--dark-2); border-top:1px solid var(--border); }
-.mq-wrap { max-width:1100px; margin:0 auto; }
-.qa { border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:44px; }
-.qa-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr); gap:0; border-bottom:1px solid var(--border); }
-.qa-row:last-child { border-bottom:none; }
-.qa-q { background:var(--dark-3); padding:26px 26px; font-family:'Space Grotesk'; font-size:16px; font-weight:600; color:var(--mag-light); line-height:1.4; }
-.qa-a { background:var(--dark-2); padding:26px 26px; font-size:13.5px; color:var(--text-muted); line-height:1.85; border-left:1px solid var(--border); }
-.qa-a b { color:var(--text); font-weight:600; }
-.tbl { width:100%; border-collapse:collapse; margin-top:44px; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
-.tbl th { background:var(--dark-4); font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--cyan); font-weight:600; text-align:left; padding:16px 20px; }
-.tbl th.r, .tbl td.r { text-align:right; white-space:nowrap; }
-.tbl td { background:var(--dark-3); padding:18px 20px; font-size:13px; color:var(--text-muted); border-top:1px solid var(--line); line-height:1.6; }
-.tbl td.n { color:var(--text); font-weight:500; }
-.tbl td.n small { display:block; color:var(--text-muted); font-weight:400; font-size:11px; margin-top:3px; }
-.tbl td.v { font-family:'Space Grotesk'; color:var(--text); font-size:14px; }
-.tbl tr.tot td { background:var(--dark-4); border-top:2px solid var(--border); color:var(--text); font-weight:600; }
-.tbl tr.tot td.v { color:var(--mag-light); font-size:19px; }
-.tbl td.v small { display:block; font-size:10px; color:var(--text-muted); font-weight:400; margin-top:3px; font-family:'Inter',sans-serif; }
-.tbl .pago { display:inline-block; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--wa); border:1px solid rgba(37,211,102,0.35); border-radius:5px; padding:2px 7px; margin-left:7px; vertical-align:middle; }
-.wrapx { overflow-x:auto; }
-@media(max-width:900px){
-  #modelo,#quadro { padding-left:24px; padding-right:24px; }
-  .qa-row { grid-template-columns:1fr; }
-  .qa-a { border-left:none; border-top:1px solid var(--border); }
-  .tbl { min-width:620px; }
-}
-
-/* ════ INTEGRAÇÃO CRM ════ */
-#crm { padding:100px 60px; background:var(--dark); border-top:1px solid var(--border); }
-.crm-wrap { max-width:1100px; margin:0 auto; }
-.crm-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:48px; }
-.crm-flow { font-family:'Space Grotesk'; font-size:14.5px; color:var(--mag-light); margin-top:30px; letter-spacing:0.3px; line-height:1.9; }
-.kx { position:relative; border-radius:16px; background:#0e0d0f; border:1px solid var(--border); box-shadow:0 40px 70px rgba(0,0,0,0.6); overflow:hidden; }
-.kx-head { padding:15px 17px; background:var(--dark-4); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:11px; }
-.kx-head .av { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--mag-light),var(--mag-deep)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:12px; color:#2b0619; }
-.kx-head .n { font-size:13px; font-weight:600; color:#fff; }
-.kx-head .s { font-size:10px; color:var(--text-muted); margin-top:2px; }
-.kx-tabs { display:flex; gap:0; border-bottom:1px solid var(--line); background:var(--dark-2); }
-.kx-tabs span { font-size:10.5px; letter-spacing:0.6px; color:var(--text-muted); padding:11px 15px; border-bottom:2px solid transparent; }
-.kx-tabs span.on { color:var(--mag-light); border-bottom-color:var(--mag); font-weight:600; }
-.kx-body { padding:14px 15px 16px; }
-.kx-item { padding:11px 12px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; background:var(--dark-2); }
-.kx-item .t { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
-.kx-item .t .d { font-size:11.5px; color:var(--text); font-weight:500; line-height:1.4; }
-.kx-item .t .p { font-family:'Space Grotesk'; font-size:12.5px; color:var(--mag-light); white-space:nowrap; }
-.kx-item .m { font-size:9.5px; color:var(--text-muted); margin-top:6px; }
-.kx-btn { margin-top:4px; text-align:center; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#2b0619; background:var(--mag); border-radius:8px; padding:10px; font-weight:700; }
-@media(max-width:900px){
-  #crm { padding-left:24px; padding-right:24px; }
-  .crm-grid { grid-template-columns:1fr; gap:38px; }
-}
-
-/* ════ ANTES E DEPOIS ════ */
-.ba { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:36px; }
-.ba .bc { background:var(--dark-3); padding:30px 28px; }
-.ba .bc.now { background:linear-gradient(180deg, rgba(255,61,158,0.07), var(--dark-3)); }
-.ba .bl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; }
-.ba .bc.now .bl { color:var(--mag-light); }
-.ba .bh { font-family:'Space Grotesk'; font-size:19px; font-weight:600; color:var(--text); margin-bottom:20px; letter-spacing:-0.01em; }
-.ba ol { list-style:none; counter-reset:st; }
-.ba ol li { counter-increment:st; position:relative; padding:11px 0 11px 34px; font-size:13px; color:var(--text-muted); line-height:1.6; border-bottom:1px solid var(--line); }
-.ba ol li:last-child { border-bottom:none; }
-.ba ol li::before { content:counter(st); position:absolute; left:0; top:10px; width:22px; height:22px; border-radius:6px; background:var(--dark-2); border:1px solid var(--line); font-family:'Space Grotesk'; font-size:10.5px; font-weight:600; color:var(--text-muted); display:flex; align-items:center; justify-content:center; }
-.ba .bc.now ol li::before { background:rgba(255,61,158,0.12); border-color:var(--border); color:var(--mag-light); }
-.proof { margin-top:26px; padding:20px 24px; border:1px solid var(--border); border-radius:12px; background:var(--dark-3); font-size:13px; color:var(--text-muted); line-height:1.8; }
-.proof b { color:var(--text); font-weight:600; }
-.proof .pk { display:block; font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; }
-.sub-h { display:flex; align-items:baseline; gap:14px; margin-top:64px; padding-bottom:4px; }
-.sub-h .sn { font-family:'Space Grotesk'; font-size:12px; font-weight:700; color:var(--mag); letter-spacing:2px; }
-.sub-h .st { font-family:'Space Grotesk'; font-size:clamp(20px,2.4vw,27px); font-weight:600; color:var(--text); letter-spacing:-0.01em; line-height:1.2; }
-.sub-h + p { font-size:14px; line-height:1.85; color:var(--text-muted); max-width:720px; margin-top:8px; }
-@media(max-width:900px){ .ba { grid-template-columns:1fr; } .sub-h { flex-direction:column; gap:6px; margin-top:48px; } }
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <div class="g-mark">ix</div>
-    <span class="wm">K2<b>IA</b></span>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-  <div class="nav-right">Proposta · Sistema de Orçamento e Artes · 2026</div>
-</nav>
-
-<!-- ════ HERO ════ -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <div class="hero-eyebrow">Imprimix Goiânia · 2026</div>
-      <h1>O orçamento e a arte que tomavam o dia, agora em <em>minutos.</em></h1>
-      <p>Este é o sistema que a gente construiu junto nas últimas semanas, já no ar em imprimix.k2ia.app. A tabela de preços da Imprimix está inteira dentro dele, a equipe já entra com login próprio, e ele foi conferido contra um orçamento real que vocês tinham feito na mão. Não é proposta de algo a construir: é o valor de algo que já está funcionando.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="v">3 escolhas</div><div class="l">do pedido do cliente ao orçamento pronto</div></div>
-        <div class="hero-stat"><div class="v">62</div><div class="l">palestrantes num lote só, em minutos</div></div>
-        <div class="hero-stat"><div class="v">20</div><div class="l">abas da tabela de preços, dentro do sistema</div></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="app">
-        <div class="app-bar"><i></i><i></i><i></i><span class="u">imprimix.k2ia.app/orcamento</span></div>
-        <div class="app-body">
-          <div class="app-h">Calculadora de orçamento</div>
-          <div class="fld"><span class="fk">Produto</span><span class="fv">Credencial PVC</span></div>
-          <div class="fld"><span class="fk">Variação</span><span class="fv">4/4 · 9 x 14 cm</span></div>
-          <div class="fld"><span class="fk">Quantidade</span><span class="fv">23</span></div>
-          <div class="out">
-            <div class="ol"><b>ORÇAMENTO IMPRIMIX</b><br>23 un. Credencial em PVC 0,76 mm, frente e verso<br>23 un. Cordão personalizado 20 mm, dois mosquetões</div>
-            <div class="ot"><span>VALOR TOTAL</span><span>R$ 514,51</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="float-card">
-        <div class="fc-l">Lote gerado</div>
-        <div class="fc-v">62 peças</div>
-        <div class="fc-s">7 folhas Super A3, com marcas de corte, em PDF CMYK</div>
-        <div class="fc-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i class="off"></i></div>
-      </div>
-    </div>
+  <h1>Proposta K2IA × Imprimix Goiânia · Sistema de Orçamento e Artes</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-  <div class="scroll-hint"><span>rolar</span></div>
-</section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
-<!-- ════ CENÁRIO ════ -->
-<section id="desafio">
-  <div class="desafio-wrap">
-    <div class="desafio-header">
-      <div>
-        <span class="tag">O cenário de hoje</span>
-        <h2 class="section-title">A conta certa existe. Ela só <em>mora em 20 abas.</em></h2>
-        <div class="divider"></div>
-        <p>O preço da Imprimix é bem construído: faixa de quantidade, aproveitamento de folha, frente e verso, acabamento. O problema nunca foi a tabela. Foi ela viver numa planilha que sete pessoas consultam na correria, e a arte de lote ser montada peça por peça. É trabalho que não aparece no orçamento, mas sai do dia de todo mundo.</p>
-      </div>
-      <blockquote>"Atualmente, nossos orçamentos são calculados e digitados manualmente."<br><span style="font-size:13px;color:var(--text-muted);font-family:'Inter';font-weight:400;display:block;margin-top:14px;">Bárbara, 9 de setembro de 2026</span></blockquote>
-    </div>
-    <div class="desafio-grid">
-      <div class="desafio-card">
-        <h4>Orçamento no braço</h4>
-        <p>Achar a aba certa, calcular o aproveitamento, escrever o texto. Multiplicado pelos orçamentos do dia e pelas pessoas que orçam.</p>
-      </div>
-      <div class="desafio-card">
-        <h4>Preço que varia</h4>
-        <p>Sete pessoas lendo a mesma planilha chegam a preços diferentes. Para menos queima margem, para mais perde pedido. Nos dois casos, ninguém percebe.</p>
-      </div>
-      <div class="desafio-card">
-        <h4>Arte peça por peça</h4>
-        <p>Crachá, credencial e pulseira com nome, foto e numeração, montados um a um no programa de arte. É o que mais consome o time.</p>
-      </div>
-      <div class="desafio-card">
-        <h4>Nada fica registrado</h4>
-        <p>Orçamento enviado se perde no histórico do WhatsApp. Não dá para saber o que foi orçado, por quem, nem o que virou pedido.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<script type="application/json" id="cofre">{"v":1,"grupo":"imprimix","iter":200000,"nonce":"T8tJ3W1vQ1TBe1Mv","dados":"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","cofres":[{"salt":"eLI8/SRRjIgnHJVBwsM0Yg==","nonce":"O+vljFXATRirAlsg","nonce2":"hg1df2oB+bx8+Meq","chave":"2/oVVb23ngb/oWWeNplR69uTHU3nftq80OSCkxHEacGKZIz3uP6QNKdYtf2eElbj","quem":"jQseD78SVCu38hVX9mmHV4jaCu9n1p3z"}]}</script>
+<script>
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-<!-- ════ PROVA ════ -->
-<section id="prova">
-  <div class="prova-wrap">
-    <span class="tag">O que já foi testado</span>
-    <h2 class="section-title">Fim da planilha de 20 abas. E da <em>arte feita uma por uma.</em></h2>
-    <div class="divider"></div>
-    <p style="font-size:15px;line-height:1.9;color:var(--text-muted);max-width:760px;">São as duas frentes onde a Imprimix mais perde tempo hoje, e as duas já foram testadas com arquivo e com caso da própria loja, com a equipe de vocês conferindo o resultado.</p>
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin, true);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin, true); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
 
-    <div class="sub-h"><span class="sn">01</span><span class="st">O orçamento</span></div>
-    <p>Hoje o preço certo existe, mas mora numa planilha de 20 abas que sete pessoas consultam na correria.</p>
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+/* Registro de entrada: o mesmo sinal do track.js, dizendo quem destravou. A senha não sai daqui. */
+function marcaEntrada(nome){
+  try {
+    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
+      + '&q=' + encodeURIComponent(nome) + '&u=' + encodeURIComponent('senha: ' + nome)
+      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
+    if (navigator.sendBeacon) navigator.sendBeacon(u); else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
+  } catch (e) {}
+}
 
-    <div class="ba">
-      <div class="bc">
-        <div class="bl">Como é hoje</div>
-        <div class="bh">À mão, na planilha</div>
-        <ol>
-          <li>Abrir a planilha e achar a aba do produto</li>
-          <li>Localizar a faixa de quantidade certa</li>
-          <li>Calcular o aproveitamento da folha, quando o produto pede</li>
-          <li>Somar os itens e digitar o texto do orçamento</li>
-          <li>Conferir, porque errou para menos queima margem</li>
-        </ol>
-      </div>
-      <div class="bc now">
-        <div class="bl">Como fica</div>
-        <div class="bh">Três escolhas e copiar</div>
-        <ol>
-          <li>Escolher o produto</li>
-          <li>Escolher a variação</li>
-          <li>Informar a quantidade</li>
-          <li>Copiar o texto já pronto para o WhatsApp</li>
-        </ol>
-      </div>
-    </div>
+async function abre(senha){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveKey']);
+  for (const cf of C.cofres){
+    try {
+      const chave = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(cf.salt), iterations: C.iter, hash: 'SHA-256'},
+        base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
+      const bruta = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce)}, chave, b64(cf.chave));
+      const quem = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce2)}, chave, b64(cf.quem)));
+      const mestra = await crypto.subtle.importKey('raw', bruta, 'AES-GCM', false, ['decrypt']);
+      const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, mestra, b64(C.dados));
+      const ds = new DecompressionStream('gzip');
+      const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+      return {quem, html: new TextDecoder().decode(await new Response(ds.readable).arrayBuffer())};
+    } catch (e) { /* cofre de outra pessoa */ }
+  }
+  return null;
+}
 
-    <div class="proof">
-      <span class="pk">A conta foi conferida</span>
-      No teste feito com um orçamento real de vocês, 23 credenciais em PVC 4/4 mais 23 cordões de 20 mm com dois mosquetões, <b>o sistema chegou ao mesmo valor que a Imprimix tinha calculado à mão</b>. Mesma tabela, mesma lógica, mesmo resultado. O que muda é que ninguém precisou abrir planilha nem digitar.
-    </div>
+async function tentar(senha, digitada){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  const r = await abre(senha).catch(() => null);
+  if (r){
+    try { sessionStorage.setItem(LEMBRA, senha); } catch (e) {}
+    if (digitada) marcaEntrada(r.quem);
+    document.open(); document.write(r.html); document.close();
+    return;
+  }
+  ocupado = false; pin = ''; pintaDots();
+  if (!digitada){ msg.textContent = ''; try { sessionStorage.removeItem(LEMBRA); } catch (e) {} return; }
+  msg.classList.add('err');
+  msg.textContent = 'Senha incorreta. Tente de novo.';
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
 
-
-    <div class="sub-h"><span class="sn">02</span><span class="st">A arte em lote</span></div>
-    <p>É onde o ganho é maior. Crachá, credencial, ingresso e pulseira com nome, foto e numeração eram montados um a um no programa de arte.</p>
-
-    <div class="ba">
-      <div class="bc">
-        <div class="bl">Como é hoje</div>
-        <div class="bh">Peça por peça, no programa</div>
-        <ol>
-          <li>Abrir a arte modelo e duplicar para cada pessoa</li>
-          <li>Trocar nome, cargo e numeração em cada uma</li>
-          <li>Encaixar a foto de cada um no vão, por baixo do logo</li>
-          <li>Conferir se nome comprido não vazou da caixa</li>
-          <li>Repetir tudo isso pelo número de pessoas do evento</li>
-        </ol>
-      </div>
-      <div class="bc now">
-        <div class="bl">Como fica</div>
-        <div class="bh">Um arquivo, o lote inteiro</div>
-        <ol>
-          <li>Subir a arte modelo e a planilha do cliente</li>
-          <li>Ligar cada campo à coluna correspondente</li>
-          <li>Baixar o PDF do lote inteiro, em CMYK e já montado na folha</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="proof">
-      <span class="pk">Rodou com o material da casa</span>
-      <b>62 palestrantes num lote só:</b> o sistema achou a caixa de texto na própria arte, encolheu os nomes compridos para caberem e centralizou sozinho. Nas credenciais do Uberaba, reconheceu as cinco versões, encaixou a foto de cada pessoa no vão e manteve o logo por cima. E o gabarito IronBand foi impresso pela produção de vocês com cor, medida e sangria certas, sem nenhum ajuste manual do arte finalista.
-    </div>
-
-    <div class="inv-cards" style="margin-top:56px;">
-      <div class="inv-card">
-        <div class="ic-kick">Na calculadora</div>
-        <h3>A conta bateu</h3>
-        <div class="ic-sub">O teste foi feito com o orçamento que vocês já tinham enviado a um cliente.</div>
-        <ul class="plain-list">
-          <li>Tabela das 20 abas carregada: pulseiras, ingressos, cordões, crachás, credenciais, cartões, medalhas, ficha de bar e acabamentos</li>
-          <li>Área útil, espaçamento do adesivo e aproveitamento conferidos com a produção</li>
-          <li>Panfleto 10 x 15 fechou em 8 por folha, igual à planilha de vocês</li>
-          <li>O texto sai no formato que vocês já usam, com prazo e observações</li>
-        </ul>
-      </div>
-      <div class="inv-card">
-        <div class="ic-kick">No gerador de artes</div>
-        <h3>A arte saiu pronta para a máquina</h3>
-        <div class="ic-sub">Impresso de verdade, conferido pela produção de vocês.</div>
-        <ul class="plain-list">
-          <li>Gabarito IronBand impresso: cor e medida bateram com o padrão da casa</li>
-          <li>Sangria veio no arquivo, sem ajuste manual do arte finalista</li>
-          <li>62 palestrantes num lote, com nome comprido encolhendo e centralizando sozinho</li>
-          <li>Credenciais do Uberaba com cinco versões, foto entrando no vão e logo por cima</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ MÓDULOS ════ -->
-<section id="modulos">
-  <div class="mod-wrap">
-    <span class="tag">O que o sistema faz</span>
-    <h2 class="section-title">Quatro peças, <em>um sistema só.</em></h2>
-    <div class="divider"></div>
-    <div class="mod-grid">
-      <div class="mod">
-        <div class="mod-ghost">01</div>
-        <span class="m-num">01 / 04</span>
-        <h3>Calculadora de orçamento</h3>
-        <span class="m-tag">A tabela inteira, sem planilha</span>
-        <p>Produto, variação e quantidade. Ele acha a faixa certa e monta o texto pronto para o WhatsApp.</p>
-        <ul>
-          <li>Faixa de quantidade, frente e verso e acabamento aplicados sozinhos</li>
-          <li>Adesivo e panfleto calculam o aproveitamento na Super A3</li>
-          <li>Vários itens no mesmo orçamento, com a opção de somar ou não</li>
-          <li>Descrição completa do produto, do jeito que vai para o cliente</li>
-        </ul>
-      </div>
-      <div class="mod">
-        <div class="mod-ghost">02</div>
-        <span class="m-num">02 / 04</span>
-        <h3>Sistema de criação de artes</h3>
-        <span class="m-tag">Do arquivo do cliente ao PDF de impressão</span>
-        <p>Uma frente só, em duas partes. O lote em série já está no ar. A criação a partir do gabarito entra conforme os gabaritos de cada material chegarem.</p>
-        <ul>
-          <li>Nome comprido encolhe e centraliza dentro da caixa, sem vazar</li>
-          <li>Foto entra no vão da arte, por baixo do logo, e a versão vem da coluna</li>
-          <li>Numeração automática para ingresso e pulseira</li>
-          <li>Peça sem gabarito montada na folha, com marcas de corte</li>
-          <li>Gabarito mais logomarca do cliente virando arte e amostra virtual para aprovação</li>
-        </ul>
-      </div>
-      <div class="mod">
-        <div class="mod-ghost">03</div>
-        <span class="m-num">03 / 04</span>
-        <h3>Cadastros e controle</h3>
-        <span class="m-tag">Preço na mão de quem pode</span>
-        <p>A tabela é editada pela administração, e só por ela. O resto da equipe orça.</p>
-        <ul>
-          <li>Login individual, cada função enxergando o que é dela</li>
-          <li>Preço alterado só pela administração, com registro de quem e quando</li>
-          <li>Produto, gabarito e modelo novos cadastrados pela própria equipe</li>
-          <li>Tela de atividade mostrando o que cada pessoa fez</li>
-        </ul>
-      </div>
-      <div class="mod">
-        <div class="mod-ghost">04</div>
-        <span class="m-num">04 / 04</span>
-        <h3>Clientes e histórico</h3>
-        <span class="m-tag">O que foi orçado não se perde mais</span>
-        <p>Cada orçamento copiado fica salvo, com o cliente e com quem fez.</p>
-        <ul>
-          <li>Base de clientes compartilhada por toda a equipe</li>
-          <li>Filtro por cliente, por vendedor, por tipo e por período</li>
-          <li>Reabrir um orçamento antigo e refazer em cima dele</li>
-          <li>O histórico de cada cliente aparecendo dentro do cartão do lead no CRM</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ INTEGRAÇÃO COM O CRM ════ -->
-<section id="crm">
-  <div class="crm-wrap">
-    <span class="tag">Integração</span>
-    <h2 class="section-title">O orçamento nasce aqui e <em>aparece sozinho no CRM.</em></h2>
-    <div class="divider"></div>
-    <div class="crm-grid">
-      <div>
-        <p style="font-size:15px;line-height:1.9;color:var(--text-muted);">Os dois sistemas conversam. Quando o vendedor calcula e copia o orçamento, ele fica gravado no cliente. No Kommo, dentro do cartão do lead, aparece uma aba Imprimix com o histórico daquele cliente. Ninguém copia nada de um lado para o outro, e ninguém precisa lembrar de registrar.</p>
-        <ul class="plain-list" style="margin-top:26px;">
-          <li>Todos os orçamentos daquele cliente, do mais recente para o mais antigo</li>
-          <li>Produto, quantidade, valor, quem fez e quando</li>
-          <li>O texto exato que foi enviado no WhatsApp, para consultar ou reenviar</li>
-          <li>Atalho para abrir a calculadora já com o cliente selecionado</li>
-        </ul>
-        <p class="crm-flow">Vendedor orça no sistema.&nbsp; O orçamento grava no cliente.&nbsp; O cartão do lead no Kommo mostra tudo.</p>
-      </div>
-      <div class="kx">
-        <div class="kx-head">
-          <div class="av">CR</div>
-          <div><div class="n">Carla Ribeiro</div><div class="s">Eventos · WhatsApp · lead em negociação</div></div>
-        </div>
-        <div class="kx-tabs"><span>Conversa</span><span>Tarefas</span><span class="on">Imprimix</span></div>
-        <div class="kx-body">
-          <div class="kx-item">
-            <div class="t"><span class="d">23 un. Credencial PVC 4/4<br>23 un. Cordão 20 mm</span><span class="p">R$ 514,51</span></div>
-            <div class="m">Jessyka · hoje, 10:26 · texto enviado no WhatsApp</div>
-          </div>
-          <div class="kx-item">
-            <div class="t"><span class="d">300 un. Pulseira Iron Band 15 mm</span><span class="p">R$ 438,00</span></div>
-            <div class="m">Augusto · 12 de setembro · texto enviado no WhatsApp</div>
-          </div>
-          <div class="kx-btn">Novo orçamento para a Carla</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ COMO FUNCIONA O MODELO ════ -->
-<section id="modelo">
-  <div class="mq-wrap">
-    <span class="tag">Como funciona</span>
-    <h2 class="section-title">O modelo, <em>explicado do começo.</em></h2>
-    <div class="divider"></div>
-    <p style="font-size:15px;line-height:1.9;color:var(--text-muted);max-width:760px;">Sistema sob medida funciona diferente de comprar uma licença de prateleira. Como essa é uma decisão da sociedade, seguem as perguntas que normalmente aparecem, respondidas direto.</p>
-
-    <div class="qa">
-      <div class="qa-row">
-        <div class="qa-q">É algo que vocês desenvolvem e mantêm, e a gente paga por mês?</div>
-        <div class="qa-a">Exatamente isso. <b>A implementação paga a construção</b>, uma vez só. <b>A mensalidade paga manter de pé e evoluindo</b>: servidor, segurança, suporte à equipe, correção e melhoria contínua. Software vivo não é como comprar uma máquina: ele precisa ser cuidado todo mês para continuar servindo.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">Isso é um programa pronto que vocês revendem?</div>
-        <div class="qa-a">Não. Foi escrito do zero para a Imprimix, em cima da tabela de preços de vocês, do formato de orçamento de vocês e dos gabaritos da produção de vocês. Não existe igual no mercado, e é por isso que ele acerta a conta no centavo.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">Tem custo por usuário, como o Kommo?</div>
-        <div class="qa-a">Não tem. <b>Pode colocar a loja inteira dentro</b>, hoje e quando o time crescer, sem mudar o valor. O custo por usuário existe só na licença do Kommo, que é a plataforma de CRM e é paga direto a ela.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">E quantos produtos e gabaritos a gente pode cadastrar?</div>
-        <div class="qa-a">Quantos vocês quiserem, e a própria equipe cadastra, sem depender da K2IA e sem custo. O catálogo inteiro da loja cabe.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">De quem são os dados?</div>
-        <div class="qa-a">Da Imprimix. Tabela de preços, clientes, orçamentos e modelos de arte são de vocês. <b>Se um dia decidirem seguir sem a K2IA, a gente exporta tudo e entrega</b>, sem retenção e sem multa. Ninguém fica preso a fornecedor aqui.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">A gente ainda nem começou a usar o CRM. Por que já vem outra proposta?</div>
-        <div class="qa-a">Porque são duas frentes independentes, e uma não espera a outra. <b>O CRM depende de um acesso da Meta que está travado</b>, e isso não está na mão de ninguém aqui. <b>O sistema de orçamento e artes não depende disso</b>: já está no ar, com a tabela de preços carregada, a equipe com login e a arte saindo pronta para a máquina. A Imprimix pode começar a ganhar tempo hoje, mesmo com o WhatsApp ainda parado.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">Isso muda alguma coisa no que a gente já paga hoje?</div>
-        <div class="qa-a">Não muda nada. <b>O contrato do CRM com a inteligência artificial no atendimento segue no mesmo valor</b>, com o mesmo escopo. <b>A licença do Kommo continua paga direto à plataforma</b>, sem nenhuma margem da K2IA. Esta proposta acrescenta apenas o sistema de orçamento e artes, e nada mais é mexido.</div>
-      </div>
-      <div class="qa-row">
-        <div class="qa-q">Por que o valor de implementação é uma vez só, se o sistema já está pronto?</div>
-        <div class="qa-a">Porque a construção já aconteceu. Foram semanas montando o motor de cálculo em cima das 20 abas e o motor de arte que lê o gabarito, encaixa a foto e monta a folha. <b>Vocês só estão pagando depois de ver funcionando com o material da casa</b>, e não antes.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ INVESTIMENTO ════ -->
-<section id="investimento">
-  <div class="inv-wrap">
-    <span class="tag">Investimento</span>
-    <h2 class="section-title">Simples: <em>uma vez e todo mês.</em></h2>
-    <div class="divider"></div>
-    <p style="font-size:15px;line-height:1.9;color:var(--text-muted);max-width:760px;">Os valores abaixo são só do sistema de orçamento e artes. Um valor único para a implementação, e uma mensalidade para manter no ar e evoluindo. O contrato do CRM e da inteligência artificial no atendimento segue separado, do jeito que já está.</p>
-
-    <div class="inv-cards">
-      <div class="inv-card">
-        <div class="ic-kick">Uma vez</div>
-        <h3>1 · Implementação do sistema</h3>
-        <div class="ic-sub">Tudo o que já está no ar, entregue e validado.</div>
-        <ul class="check-list">
-          <li><span class="ck">✓</span><span class="tx">Sistema no ar em imprimix.k2ia.app<span>endereço próprio, com segurança e acesso por pessoa</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Sua tabela de 20 abas carregada<span>produto, variação, faixa, acabamento e prazo conferidos</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Login individual para a equipe<span>administração, vendedor e arte, cada um com a sua permissão</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Motor de arte completo<span>foto, versão, numeração, caixa de texto e imposição na folha</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Criação de arte e amostra virtual<span>a partir do gabarito e da logomarca do cliente, entrando conforme os gabaritos chegarem</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Acompanhamento da adoção<span>a K2IA junto até o time estar usando de verdade</span></span></li>
-        </ul>
-        <div class="ic-note" style="margin-bottom:18px;">Proposta válida até 7 de outubro de 2026.</div>
-        <div class="pay">
-          <div class="po best">
-            <div class="pl">À vista</div>
-            <div class="pv">R$ 5.900</div>
-            <div class="ps">sem acréscimo nenhum</div>
-          </div>
-          <div class="po">
-            <div class="pl">Em 3x</div>
-            <div class="pv">R$ 1.966</div>
-            <div class="ps">sem acréscimo, total de R$ 5.900</div>
-          </div>
-          <div class="po">
-            <div class="pl">Em 6x</div>
-            <div class="pv">R$ 1.030</div>
-            <div class="ps">total de R$ 6.180, com acréscimo de parcelamento</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="inv-card pack">
-        <div class="ic-kick">Todo mês</div>
-        <h3>2 · Mensalidade</h3>
-        <div class="ic-sub">O que mantém o sistema no ar, seguro e funcionando.</div>
-        <ul class="check-list">
-          <li><span class="ck">✓</span><span class="tx">Sistema no ar e cuidado<span>hospedagem, segurança, backup diário e monitoramento</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Suporte à equipe<span>dúvida do dia a dia, ajuste e correção do que já existe</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Integração com o CRM ativa<span>o orçamento aparecendo sozinho no cartão do lead no Kommo</span></span></li>
-          <li><span class="ck">✓</span><span class="tx">Cadastro sem limite<span>produto, gabarito e modelo novos, quantos precisar, pela sua equipe</span></span></li>
-        </ul>
-        <div class="li-row total"><div class="k">Mensalidade do sistema</div><div class="v">R$ 590<small>/mês</small></div></div>
-        <div class="ic-note">Manter e corrigir o que o sistema já faz está incluso. Recurso novo, que muda o que ele faz, é orçado à parte e só entra depois de você aprovar. Esta mensalidade é apenas do sistema de orçamento e artes: o contrato do CRM com a inteligência artificial segue igual, sem alteração de valor.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ ESCOPO ════ -->
-<section id="escopo">
-  <div class="esc-wrap">
-    <span class="tag">Escopo</span>
-    <h2 class="section-title">O que está incluso, e o que é <em>fase nova.</em></h2>
-    <div class="divider"></div>
-    <div class="inv-cards">
-      <div class="inv-card">
-        <div class="ic-kick">Dentro da mensalidade</div>
-        <h3>Sem custo adicional</h3>
-        <ul class="plain-list">
-          <li>Ajuste e correção de qualquer coisa que já existe no sistema</li>
-          <li>Afinação dos motores de cálculo e de arte conforme a operação pedir</li>
-          <li>Produto, gabarito e modelo novos, cadastrados pela sua equipe</li>
-          <li>Suporte à equipe no dia a dia e usuário novo quando entrar gente</li>
-          <li>Hospedagem, segurança, backup diário e monitoramento</li>
-        </ul>
-      </div>
-      <div class="inv-card">
-        <div class="ic-kick">Fase nova</div>
-        <h3>Orçado à parte, e só com o seu sim</h3>
-        <ul class="plain-list warn">
-          <li>Conferência do arquivo do cliente, avisando RGB, resolução baixa e falta de sangria</li>
-          <li>Artes geradas também no cartão do lead, com o PDF para baixar de novo</li>
-          <li>Qualquer recurso novo que mude o que o sistema faz hoje</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ PRÓXIMOS PASSOS ════ -->
-<section id="passos">
-  <div class="ps-wrap">
-    <span class="tag">Próximos passos</span>
-    <h2 class="section-title">Como seguimos.</h2>
-    <div class="divider"></div>
-    <div class="passos">
-      <div class="passo">
-        <div class="ps-n">01</div>
-        <h4>Aceite e forma de pagamento</h4>
-        <p>Você escolhe à vista ou parcelado, e a gente emite. O sistema já está no ar, então não tem espera.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">02</div>
-        <h4>Fechamento da tabela</h4>
-        <p>Você termina de revisar produto, nomenclatura e descrição. É o que faz o orçamento sair redondo na mão de todo mundo.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">03</div>
-        <h4>Equipe usando</h4>
-        <p>Os acessos provisórios viram definitivos e o time passa a orçar e a gerar arte direto pelo sistema.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">04</div>
-        <h4>Gabaritos e evolução</h4>
-        <p>Os gabaritos dos demais materiais entram, e o motor passa a cobrir o catálogo inteiro da loja.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ CLOSING ════ -->
-<section id="closing">
-  <div class="closing-inner">
-    <span class="ct">K2IA × Imprimix Goiânia · 2026</span>
-    <h2>A conta continua sendo a de vocês. <em>O trabalho de fazer a conta, não.</em></h2>
-    <p>O preço é o mesmo, a descrição é a mesma, o arquivo sai do jeito que a máquina de vocês espera. O que muda é o tempo entre o cliente perguntar e o orçamento estar no WhatsApp dele, e o tempo entre o pedido fechar e a arte estar pronta para imprimir.</p>
-    <a href="https://wa.me/5521980529617?text=Klaus%2C%20vamos%20em%20frente%20com%20o%20sistema%20de%20or%C3%A7amento%20e%20artes!" class="cta-btn" target="_blank">Quero seguir com a proposta</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="fl">
-    <div class="g-mark">ix</div>
-    <div>
-      <div class="fb">K2IA</div>
-      <div class="fs">Sistemas sob medida &amp; inteligência artificial</div>
-    </div>
-  </div>
-  <div class="fr">
-    <a href="mailto:klaus@k2ace.com">klaus@k2ace.com</a><br>
-    Proposta válida por 15 dias · Confidencial · 2026
-  </div>
-</footer>
-
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) tentar(lembrada, false);
+})();
+</script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
 </body>
 </html>

@@ -2,782 +2,205 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Proposta K2IA × Les Sept</title>
-<link rel="icon" type="image/png" href="imgs/k2ia-logo.png">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-:root {
-  --gold: #C9A84C;
-  --gold-light: #E8C97A;
-  --cyan: #00C8FF;
-  --dark: #080C12;
-  --dark-2: #0D1320;
-  --dark-3: #131B2A;
-  --dark-4: #1A2438;
-  --text: #E8E4DC;
-  --text-muted: #8A8A7A;
-  --border: rgba(201,168,76,0.2);
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
 }
-
-html { scroll-behavior:smooth; }
-body { background:var(--dark); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
-
-/* NAV */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:0 60px; height:64px;
-  background:rgba(8,12,18,0.96); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
 }
-.nav-logo { display:flex; align-items:center; gap:12px; }
-.nav-logo img { width:34px; height:34px; border-radius:7px; mix-blend-mode:screen; }
-.nav-logo span { font-weight:600; font-size:13px; letter-spacing:2px; color:var(--cyan); }
-.nav-right { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
-
-/* UTILITÁRIOS */
-.tag {
-  display:inline-block; font-size:11px; font-weight:500;
-  letter-spacing:3px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px;
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
 }
-.section-title {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(36px,4vw,58px); font-weight:300; line-height:1.1; color:var(--text);
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
 }
-.section-title em { color:var(--gold); font-style:italic; }
-.divider { width:48px; height:1px; background:var(--gold); margin:20px 0; }
-
-/* ════════════════════════════════
-   HERO
-════════════════════════════════ */
-#hero {
-  height:100vh; position:relative; display:flex;
-  align-items:flex-end; overflow:hidden;
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-.hero-bg {
-  position:absolute; inset:0;
-  background:url('imgs/leno-fogo.png') center top/cover no-repeat;
-  filter:brightness(0.45);
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
 }
-.hero-overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(8,12,18,1) 0%, rgba(8,12,18,0.3) 55%, transparent 100%);
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
 }
-.hero-content {
-  position:relative; z-index:2; padding:0 60px 80px; max-width:860px;
-}
-.hero-eyebrow {
-  display:inline-flex; align-items:center; gap:12px;
-  font-size:11px; letter-spacing:4px; text-transform:uppercase;
-  color:var(--gold-light); margin-bottom:28px;
-}
-.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--gold-light); }
-.hero-content h1 {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(48px,6.5vw,88px); font-weight:300; line-height:1.05; color:#fff; margin-bottom:24px;
-}
-.hero-content h1 em { color:var(--gold-light); font-style:italic; }
-.hero-content p { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.9; max-width:500px; margin-bottom:44px; }
-.hero-stats {
-  display:flex; gap:0; border-top:1px solid rgba(255,255,255,0.1); padding-top:36px;
-}
-.hero-stat { flex:1; padding-right:32px; }
-.hero-stat+.hero-stat { padding-left:32px; border-left:1px solid rgba(255,255,255,0.1); }
-.hero-stat .v {
-  font-family:'Cormorant Garamond',serif; font-size:42px;
-  color:var(--gold-light); line-height:1;
-}
-.hero-stat .l { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:6px; }
-
-/* ════════════════════════════════
-   DIAGNÓSTICO
-════════════════════════════════ */
-#diagnostico { background:var(--dark-2); padding:100px 60px; }
-.diag-header {
-  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-bottom:60px;
-}
-.diag-header p { font-size:15px; line-height:1.9; color:var(--text-muted); }
-.diag-header blockquote {
-  font-family:'Cormorant Garamond',serif; font-size:24px; font-style:italic;
-  color:var(--gold-light); border-left:2px solid var(--gold); padding-left:24px; line-height:1.6;
-}
-.diag-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
-.diag-card { background:var(--dark-3); padding:32px 26px; }
-.diag-card .d-icon { font-size:18px; margin-bottom:14px; }
-.diag-card h4 { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
-.diag-card p { font-size:13px; line-height:1.8; color:var(--text-muted); }
-
-/* ════════════════════════════════
-   GALERIA FOTOS
-════════════════════════════════ */
-#galeria { padding:0; }
-.gallery-grid {
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  grid-template-rows:280px 280px;
-  gap:3px;
-}
-.g-item { background-size:cover; background-position:center; overflow:hidden; }
-.g-item.tall { grid-row:span 2; }
-.gallery-bar {
-  background:var(--dark); padding:16px 60px;
-  display:flex; justify-content:space-between; align-items:center;
-  border-top:1px solid var(--border);
-}
-.gallery-bar p { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
-.gallery-bar span { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--gold); }
-
-/* ════════════════════════════════
-   PROPOSTA — 3 PILARES
-════════════════════════════════ */
-#proposta { padding:100px 60px; background:var(--dark); }
-.pilares { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:48px; }
-.pilar { background:var(--dark-3); padding:44px 36px; position:relative; overflow:hidden; }
-.pilar-ghost {
-  position:absolute; top:16px; right:20px;
-  font-family:'Cormorant Garamond',serif; font-size:80px; font-weight:300;
-  color:rgba(201,168,76,0.06); line-height:1;
-}
-.pilar .p-num { font-size:11px; letter-spacing:3px; color:var(--text-muted); margin-bottom:20px; display:block; }
-.pilar h3 { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px; line-height:1.2; }
-.pilar .p-tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:20px; display:block; }
-.pilar p { font-size:13px; line-height:1.8; color:var(--text-muted); margin-bottom:20px; }
-.pilar ul { list-style:none; }
-.pilar ul li {
-  font-size:13px; color:var(--text-muted); padding:8px 0;
-  border-bottom:1px solid rgba(201,168,76,0.08);
-  padding-left:14px; position:relative; line-height:1.5;
-}
-.pilar ul li:last-child { border:none; }
-.pilar ul li::before { content:'·'; position:absolute; left:0; color:var(--gold); font-size:18px; top:5px; }
-.pilar-price { margin-top:28px; padding-top:20px; border-top:1px solid var(--border); }
-.pilar-price .amount { font-family:'Cormorant Garamond',serif; font-size:40px; color:var(--gold); line-height:1; }
-.pilar-price .freq { font-size:12px; color:var(--text-muted); margin-top:4px; display:block; }
-
-/* ════════════════════════════════
-   FOTO DESTAQUE + CONTEÚDO
-════════════════════════════════ */
-#conteudo { padding:0; }
-.conteudo-split { display:grid; grid-template-columns:1fr 1fr; min-height:680px; }
-.conteudo-foto {
-  background:url('imgs/gabriel-fogo.png') center top/cover no-repeat;
-  position:relative;
-}
-.conteudo-foto-overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(to right, transparent 60%, var(--dark-2));
-}
-.conteudo-texto {
-  background:var(--dark-2); padding:80px 60px; display:flex; flex-direction:column; justify-content:center;
-}
-.piloto-box {
-  margin-top:36px; padding:28px 32px;
-  border:1px solid rgba(201,168,76,0.35); background:rgba(201,168,76,0.04);
-}
-.piloto-box .pt-badge {
-  font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
-  color:var(--gold); margin-bottom:12px; display:block;
-}
-.piloto-box h4 { font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--text); margin-bottom:10px; }
-.piloto-box p { font-size:13px; color:var(--text-muted); line-height:1.8; margin-bottom:20px; }
-.piloto-deliverables { list-style:none; margin-bottom:24px; }
-.piloto-deliverables li {
-  font-size:13px; color:var(--text-muted); padding:6px 0;
-  display:flex; gap:10px; align-items:center;
-  border-bottom:1px solid rgba(255,255,255,0.04);
-}
-.piloto-deliverables li:last-child { border:none; }
-.piloto-deliverables li::before { content:'✓'; color:var(--gold); font-size:12px; flex-shrink:0; }
-.piloto-price .big { font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); line-height:1; }
-.piloto-price .sub { font-size:12px; color:var(--text-muted); margin-top:6px; }
-
-/* ════════════════════════════════
-   INVESTIMENTO + ANCORAGEM
-════════════════════════════════ */
-#investimento { padding:100px 60px; background:var(--dark-3); }
-.invest-layout { display:grid; grid-template-columns:3fr 2fr; gap:60px; align-items:start; margin-top:48px; }
-
-.invest-table { width:100%; border-collapse:collapse; }
-.invest-table thead tr { border-bottom:1px solid var(--border); }
-.invest-table th { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); font-weight:400; padding:0 0 14px; text-align:left; }
-.invest-table th:last-child { text-align:right; }
-.invest-table td { padding:22px 0; border-bottom:1px solid rgba(201,168,76,0.07); vertical-align:middle; }
-.invest-table tr:last-child td { border:none; }
-.invest-table .i-name { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--text); }
-.invest-table .i-desc { font-size:12px; color:var(--text-muted); margin-top:3px; }
-.invest-table .i-type { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-top:5px; display:block; }
-.invest-table .i-price { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--text-muted); text-align:right; }
-.invest-total-row { display:flex; justify-content:space-between; align-items:center; padding:20px 0; border-top:1px solid rgba(255,255,255,0.06); }
-.invest-total-row .tl { font-size:12px; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; }
-.invest-total-row .tv { font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--text-muted); text-decoration:line-through; opacity:0.5; }
-
-/* PACOTE DESTAQUE */
-.pacote-box {
-  background:var(--dark-4); border:1px solid var(--gold);
-  padding:40px 36px; position:relative;
-}
-.pacote-badge {
-  position:absolute; top:-1px; right:32px;
-  background:var(--gold); color:var(--dark); font-size:10px; font-weight:700;
-  letter-spacing:2px; text-transform:uppercase; padding:5px 12px;
-}
-.pacote-box h3 {
-  font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--text);
-  margin-bottom:6px; margin-top:16px;
-}
-.pacote-box .pb-sub { font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-bottom:24px; display:block; }
-.pacote-includes { list-style:none; margin-bottom:28px; }
-.pacote-includes li {
-  font-size:13px; color:var(--text-muted); padding:8px 0;
-  border-bottom:1px solid rgba(201,168,76,0.1);
-  display:flex; gap:10px; align-items:center;
-}
-.pacote-includes li:last-child { border:none; }
-.pacote-includes li::before { content:'✓'; color:var(--gold); flex-shrink:0; font-size:12px; }
-.pacote-economy {
-  background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2);
-  padding:12px 16px; margin-bottom:24px;
-  display:flex; justify-content:space-between; align-items:center;
-}
-.pacote-economy .eco-label { font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gold); }
-.pacote-economy .eco-val { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold-light); }
-.pacote-price .de {
-  font-size:13px; color:var(--text-muted); text-decoration:line-through; display:block; margin-bottom:4px;
-}
-.pacote-price .por { font-family:'Cormorant Garamond',serif; font-size:56px; color:var(--gold-light); line-height:1; }
-.pacote-price .mes { font-size:12px; color:var(--text-muted); margin-top:6px; display:block; }
-
-/* ════════════════════════════════
-   GALERIA SEGUNDA
-════════════════════════════════ */
-#galeria2 { padding:0; display:flex; height:320px; gap:3px; }
-#galeria2 > div { flex:1; background-size:cover; background-position:center; }
-
-/* ════════════════════════════════
-   POR QUE K2IA
-════════════════════════════════ */
-#porque { padding:100px 60px; background:var(--dark-2); }
-.porque-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:48px; }
-.porque-card { background:var(--dark-3); padding:40px 36px; }
-.porque-card .pk-n {
-  font-family:'Cormorant Garamond',serif; font-size:56px; font-weight:300;
-  color:rgba(201,168,76,0.08); line-height:1; margin-bottom:14px;
-}
-.porque-card h4 { font-size:14px; font-weight:500; color:var(--text); margin-bottom:12px; line-height:1.4; }
-.porque-card p { font-size:13px; color:var(--text-muted); line-height:1.8; }
-.porque-card p strong { color:var(--text); font-weight:500; }
-
-/* ════════════════════════════════
-   PRÓXIMOS PASSOS
-════════════════════════════════ */
-#proximos { padding:100px 60px; background:var(--dark); }
-.passos { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid var(--border); margin-top:48px; }
-.passo { padding:36px 28px; border-right:1px solid var(--border); }
-.passo:last-child { border:none; }
-.passo .ps-n { font-family:'Cormorant Garamond',serif; font-size:48px; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; }
-.passo h4 { font-size:13px; font-weight:500; color:var(--text); margin-bottom:10px; line-height:1.4; }
-.passo p { font-size:12px; color:var(--text-muted); line-height:1.7; }
-
-/* ════════════════════════════════
-   CLOSING
-════════════════════════════════ */
-#closing {
-  position:relative; height:520px; overflow:hidden;
-  display:flex; align-items:center; justify-content:center; text-align:center;
-}
-.closing-bg {
-  position:absolute; inset:0;
-  background:url('imgs/foto3.jpg') center/cover no-repeat;
-  filter:brightness(0.45);
-}
-.closing-overlay { position:absolute; inset:0; background:rgba(8,12,18,0.45); }
-.closing-content { position:relative; z-index:2; max-width:660px; padding:0 40px; }
-.closing-content .ct { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold-light); margin-bottom:28px; display:block; }
-.closing-content h2 {
-  font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,56px);
-  color:#fff; font-weight:300; line-height:1.2; margin-bottom:20px;
-}
-.closing-content h2 em { color:var(--gold-light); font-style:italic; }
-.closing-content p { font-size:14px; color:rgba(255,255,255,0.4); line-height:1.8; margin-bottom:36px; }
-.cta-btn {
-  display:inline-block; padding:16px 40px;
-  background:var(--gold); color:var(--dark);
-  font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
-  text-decoration:none; transition:background 0.2s;
-}
-.cta-btn:hover { background:var(--gold-light); }
-
-/* FOOTER */
-footer {
-  background:var(--dark); padding:28px 60px;
-  display:flex; justify-content:space-between; align-items:center;
-  border-top:1px solid var(--border);
-}
-footer .fl { display:flex; align-items:center; gap:12px; }
-footer img { width:30px; height:30px; border-radius:6px; mix-blend-mode:screen; }
-footer .fb { font-size:12px; font-weight:600; letter-spacing:2px; color:var(--cyan); }
-footer .fs { font-size:10px; color:var(--text-muted); margin-top:2px; }
-footer .fr { font-size:11px; color:var(--text-muted); text-align:right; line-height:1.8; }
-footer .fr a { color:var(--gold); text-decoration:none; }
-
-/* SCROLL DOT */
-.scroll-hint {
-  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:8px;
-  opacity:0.35; animation:bob 2s ease-in-out infinite;
-}
-.scroll-hint span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
-.scroll-hint::after { content:'↓'; color:var(--gold); font-size:14px; }
-@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
-
-@media(max-width:900px){
-  /* NAV */
-  nav { padding:0 20px; }
-  .nav-right { display:none; }
-
-  /* SEÇÕES — padding lateral */
-  #diagnostico,#proposta,#investimento,#porque,#proximos { padding-left:24px; padding-right:24px; }
-  #closing .closing-content { padding:0 24px; }
-  footer { padding:28px 24px; flex-direction:column; gap:16px; text-align:center; }
-
-  /* HERO */
-  .hero-content { padding:0 24px 60px; }
-  .hero-content h1 { font-size:clamp(34px,9vw,60px); }
-  .hero-content p { font-size:14px; max-width:100%; }
-  .hero-eyebrow { font-size:9px; letter-spacing:2px; flex-wrap:wrap; }
-  .hero-stats { flex-wrap:wrap; }
-  .hero-stat { flex:0 0 50%; padding:20px 0 0 0 !important; border-left:none !important; }
-  .hero-stat:nth-child(even) { padding-left:20px !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
-  .hero-stat .v { font-size:32px; }
-
-  /* DIAGNÓSTICO */
-  .diag-header { grid-template-columns:1fr; gap:28px; }
-  .diag-grid { grid-template-columns:1fr 1fr; }
-
-  /* PILARES — 1 coluna no mobile */
-  .pilares { grid-template-columns:1fr; }
-
-  /* GALERIA */
-  .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
-  .g-item.tall { grid-row:span 1; }
-  .g-item { height:200px; }
-  .gallery-bar { padding:14px 24px; flex-direction:column; gap:4px; text-align:center; }
-  #galeria2 { height:auto; flex-direction:column; }
-  #galeria2 > div { height:200px; }
-
-  /* CONTEÚDO SPLIT */
-  .conteudo-split { grid-template-columns:1fr; }
-  .conteudo-foto { min-height:300px; }
-  .conteudo-foto-overlay { background:linear-gradient(to bottom,transparent 50%,var(--dark-2)); }
-  .conteudo-texto { padding:56px 24px; }
-
-  /* INVESTIMENTO */
-  .invest-layout { grid-template-columns:1fr; gap:40px; }
-  .invest-table th:nth-child(2),.invest-table td:nth-child(2) { display:none; }
-  .pacote-box { padding:32px 24px; }
-  .pacote-price .por { font-size:44px; }
-
-  /* POR QUÊ */
-  .porque-grid { grid-template-columns:1fr 1fr; }
-
-  /* PRÓXIMOS PASSOS */
-  .passos { grid-template-columns:1fr 1fr; }
-  .passo { border-right:none; border-bottom:1px solid var(--border); }
-  .passo:last-child { border:none; }
-}
-
-@media(max-width:540px){
-  /* 1 coluna para tudo no celular pequeno */
-  .diag-grid,.porque-grid { grid-template-columns:1fr; }
-  .passos { grid-template-columns:1fr; }
-  .gallery-grid { grid-template-columns:1fr; }
-  .g-item { height:220px; }
-  .hero-stat { flex:0 0 50%; }
-  .pilar { padding:32px 22px; }
-  .section-title { font-size:clamp(28px,8.5vw,44px); }
-  .invest-table .i-price { font-size:22px; }
-  .closing-content h2 { font-size:clamp(28px,7vw,44px); }
-}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <img src="imgs/k2ia-logo.png" alt="K2IA">
-    <span>K2IA</span>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-  <div class="nav-right">Proposta Estratégica · Les Sept · 2026</div>
-</nav>
-
-<!-- ════ HERO ════ -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Proposta Estratégica Exclusiva · 2026</div>
-    <h1>30 anos de história.<br><em>O mundo precisa<br>saber disso.</em></h1>
-    <p>Uma estratégia construída a partir da realidade da Les Sept. Tráfego, CRM e conteúdo integrados para que o reconhecimento finalmente chegue ao nível da entrega.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="v">30</div>
-        <div class="l">anos de operação</div>
-      </div>
-      <div class="hero-stat">
-        <div class="v">30k</div>
-        <div class="l">pessoas em 1 evento</div>
-      </div>
-      <div class="hero-stat">
-        <div class="v">👑</div>
-        <div class="l">serviram o Rei da Noruega</div>
-      </div>
-    </div>
+  <h1>Proposta K2IA × Les Sept</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-  <div class="scroll-hint"><span>scroll</span></div>
-</section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
-<!-- ════ DIAGNÓSTICO ════ -->
-<section id="diagnostico">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">O que identificamos</span>
-    <div class="diag-header">
-      <div>
-        <h2 class="section-title">Vocês têm um dos maiores <em>ativos ocultos</em> do mercado.</h2>
-        <div class="divider"></div>
-      </div>
-      <div>
-        <p style="margin-bottom:28px;">Família Senna, WebSummit, o Rei da Noruega, Congresso de Psiquiatria, cook show suspenso a 80 metros de altura. São 30 anos de casos extraordinários que vivem na memória de quem esteve lá e quase não aparecem para o mercado.</p>
-        <blockquote>"O problema não é o trabalho. É a visibilidade."</blockquote>
-      </div>
-    </div>
-    <div class="diag-grid">
-      <div class="diag-card">
-        <div class="d-icon">📱</div>
-        <h4>Instagram</h4>
-        <p>~6 mil seguidores orgânicos, abaixo do real potencial. Conteúdo bom quando aparece, mas sem consistência. Jéssica faz milagres sem tempo nem estrutura.</p>
-      </div>
-      <div class="diag-card">
-        <div class="d-icon">📋</div>
-        <h4>Atendimento</h4>
-        <p>O time comercial recebe os leads todos pelo mesmo número, sem filtro ou direcionamento. Sem CRM, sem funil. Funciona hoje, mas não vai escalar quando o volume chegar.</p>
-      </div>
-      <div class="diag-card">
-        <div class="d-icon">🏢</div>
-        <h4>Agências anteriores</h4>
-        <p>Já investiram várias vezes. Resultado sempre abaixo. Conteúdo genérico, sem entender a essência. Os caras chegavam, ficavam esperando, e iam embora.</p>
-      </div>
-      <div class="diag-card">
-        <div class="d-icon">📁</div>
-        <h4>Material parado</h4>
-        <p>Servidor cheio de fotos e vídeos nunca aproveitados. Mais do que isso: há histórias incríveis que nunca foram contadas. Leno e Gabriel são showmen natos. Isso é ouro esperando ser extraído.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<script type="application/json" id="cofre">{"v":1,"grupo":"les-sept","iter":200000,"nonce":"+pcp5clYxmh8Kz+c","dados":"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","cofres":[{"salt":"b8TYJKJdKxws2f7eE5vpfQ==","nonce":"Ak7gH331R3c23xOH","nonce2":"sPnhHxwxcJ8MCB/J","chave":"XioysSbBmYXiwrkK3HO6aIy9bYFVAIjoVQzo4c8VKTNv9idfGC5d6zSECbxbwMhk","quem":"OPhYviqWUfvNhe8UlsL056k8UR/ZQ2iD"}]}</script>
+<script>
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-<!-- ════ GALERIA 1 ════ -->
-<div id="galeria">
-  <div class="gallery-grid">
-    <div class="g-item tall" style="background-image:url('imgs/foto1.jpg')"></div>
-    <div class="g-item" style="background-image:url('imgs/foto2.jpg')"></div>
-    <div class="g-item" style="background-image:url('imgs/foto6.jpg')"></div>
-    <div class="g-item" style="background-image:url('imgs/foto7.jpg')"></div>
-    <div class="g-item" style="background-image:url('imgs/foto8.jpg')"></div>
-  </div>
-  <div class="gallery-bar">
-    <p>Portfólio · Les Sept Catering Personnalité</p>
-    <span>Gastronomia de alto padrão há 30 anos</span>
-  </div>
-</div>
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin, true);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin, true); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
 
-<!-- ════ 3 PILARES ════ -->
-<section id="proposta">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">Nossa proposta</span>
-    <h2 class="section-title">Três pilares.<br><em>Um objetivo.</em></h2>
-    <div class="pilares">
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+/* Registro de entrada: o mesmo sinal do track.js, dizendo quem destravou. A senha não sai daqui. */
+function marcaEntrada(nome){
+  try {
+    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
+      + '&q=' + encodeURIComponent(nome) + '&u=' + encodeURIComponent('senha: ' + nome)
+      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
+    if (navigator.sendBeacon) navigator.sendBeacon(u); else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
+  } catch (e) {}
+}
 
-      <div class="pilar">
-        <span class="pilar-ghost">01</span>
-        <span class="p-num">01 / 03</span>
-        <h3>Tráfego Pago<br>Meta & Google</h3>
-        <span class="p-tag">Gestão mensal</span>
-        <p>Levar o trabalho da Les Sept para quem ainda não conhece, usando material que já existe sem custo extra de produção no início.</p>
-        <ul>
-          <li>Campanhas por nicho: formatura, corporativo e casamento</li>
-          <li>Google Ads: defesa de marca e busca ativa</li>
-          <li>Remarketing com histórias para quem visitou o site</li>
-          <li>Relatórios quinzenais com reunião de acompanhamento</li>
-          <li>Segmentação por região e perfil de cliente</li>
-          <li>Verba de mídia recomendada: mínimo R$ 5.000/mês</li>
-        </ul>
-        <div class="pilar-price">
-          <div class="amount">R$ 3.500</div>
-          <span class="freq">por mês · verba de mídia separada</span>
-        </div>
-      </div>
+async function abre(senha){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveKey']);
+  for (const cf of C.cofres){
+    try {
+      const chave = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(cf.salt), iterations: C.iter, hash: 'SHA-256'},
+        base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
+      const bruta = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce)}, chave, b64(cf.chave));
+      const quem = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce2)}, chave, b64(cf.quem)));
+      const mestra = await crypto.subtle.importKey('raw', bruta, 'AES-GCM', false, ['decrypt']);
+      const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, mestra, b64(C.dados));
+      const ds = new DecompressionStream('gzip');
+      const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+      return {quem, html: new TextDecoder().decode(await new Response(ds.readable).arrayBuffer())};
+    } catch (e) { /* cofre de outra pessoa */ }
+  }
+  return null;
+}
 
-      <div class="pilar">
-        <span class="pilar-ghost">02</span>
-        <span class="p-num">02 / 03</span>
-        <h3>Implementação<br>de CRM</h3>
-        <span class="p-tag">Setup único</span>
-        <p>Organizar a casa antes que o volume chegue. Quando o tráfego funcionar, a operação precisa estar pronta para receber sem travar.</p>
-        <ul>
-          <li>Plataforma R$ 800 a cada 7 meses centraliza Instagram e WhatsApp</li>
-          <li>Funil configurado por nicho com qualificação automática</li>
-          <li>Leads direcionados ao comercial correto por segmento</li>
-          <li>Time comercial recebe os leads já filtrados e categorizados</li>
-          <li>Treinamento da equipe incluído</li>
-        </ul>
-        <div class="pilar-price">
-          <div class="amount">R$ 2.000</div>
-          <span class="freq">implementação única</span>
-        </div>
-      </div>
+async function tentar(senha, digitada){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  const r = await abre(senha).catch(() => null);
+  if (r){
+    try { sessionStorage.setItem(LEMBRA, senha); } catch (e) {}
+    if (digitada) marcaEntrada(r.quem);
+    document.open(); document.write(r.html); document.close();
+    return;
+  }
+  ocupado = false; pin = ''; pintaDots();
+  if (!digitada){ msg.textContent = ''; try { sessionStorage.removeItem(LEMBRA); } catch (e) {} return; }
+  msg.classList.add('err');
+  msg.textContent = 'Senha incorreta. Tente de novo.';
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
 
-      <div class="pilar">
-        <span class="pilar-ghost">03</span>
-        <span class="p-num">03 / 03</span>
-        <h3>Conteúdo<br>"Legado ao Fogo"</h3>
-        <span class="p-tag">Piloto sem compromisso</span>
-        <p>A voz da marca vem de dentro. Leno e Gabi são showmen natos com 30 anos de histórias para contar. Nenhuma agência faz isso por vocês.</p>
-        <ul>
-          <li>Conceito, roteiro e direção criativa completos</li>
-          <li>Dois formatos: correria real do dia a dia OU conversa descontraída meia luz</li>
-          <li>1 gravação gera vídeo longo + múltiplos cortes, cada um uma mini história</li>
-          <li>Você vê o resultado antes de qualquer contrato mensal</li>
-          <li>Referência: Chef's Table e a autenticidade que só vem de dentro</li>
-        </ul>
-        <div class="pilar-price">
-          <div class="amount" style="font-size:28px;color:var(--text-muted);">A confirmar</div>
-          <span class="freq">piloto único · sem mensalidade obrigatória</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════ CONTEÚDO DETALHE ════ -->
-<div id="conteudo">
-  <div class="conteudo-split">
-    <div class="conteudo-foto">
-      <div class="conteudo-foto-overlay"></div>
-    </div>
-    <div class="conteudo-texto">
-      <span class="tag">Pilar 03 · Conteúdo</span>
-      <h2 class="section-title" style="font-size:38px;">Antes de assinar,<br><em>você vê.</em></h2>
-      <div class="divider"></div>
-      <p style="font-size:14px;color:var(--text-muted);line-height:1.9;margin-bottom:0;">
-        O maior ativo da Les Sept não está no servidor de fotos. Está na memória do Leno e do Gabriel. Os dois falam muito bem, têm carisma natural e histórias que ninguém nunca ouviu. Isso é o diferencial que nenhuma agência cria do zero.
-      </p>
-      <div class="piloto-box">
-        <span class="pt-badge">Piloto · Sem compromisso</span>
-        <h4>Dois formatos. Você escolhe.</h4>
-        <p style="margin-bottom:16px;"><strong style="color:var(--gold);">Opção A · Correria real</strong>: câmera discreta no dia a dia da operação. A energia da cozinha, a pressão, os bastidores. Autêntico e cinematográfico.</p>
-        <p style="margin-bottom:20px;"><strong style="color:var(--gold);">Opção B · Conversa descontraída</strong>: meia luz, Leno e Gabi numa mesa, vinho, contando uma história que marcou. Elegante, intimista, poderoso.</p>
-        <p>1 encontro de 2 a 3h. Conceito, roteiro, direção e edição inclusos. Cada corte é uma mini história independente.</p>
-        <ul class="piloto-deliverables">
-          <li>1 vídeo longo (YouTube / feed)</li>
-          <li>8 a 12 cortes para Reels e Stories, cada um uma mini história</li>
-          <li>Conceito e roteiro direcionado</li>
-          <li>Edição finalizada, pronta para publicar</li>
-        </ul>
-        <div class="piloto-price">
-          <div class="big" style="font-size:36px;color:var(--text-muted);">A confirmar</div>
-          <div class="sub">piloto único · sem mensalidade obrigatória · você vê e decide</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════ INVESTIMENTO + ANCORAGEM ════ -->
-<section id="investimento">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">Investimento</span>
-    <h2 class="section-title">Transparente.<br><em>Sem surpresas.</em></h2>
-
-    <div class="invest-layout">
-
-      <!-- TABELA INDIVIDUAL -->
-      <div>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px;line-height:1.8;">Valores individuais por serviço, ou feche o pacote completo e economize.</p>
-        <table class="invest-table">
-          <thead>
-            <tr>
-              <th>Serviço</th>
-              <th>Tipo</th>
-              <th style="text-align:right">Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="i-name">Tráfego Pago · Meta & Google</div>
-                <div class="i-desc">Gestão completa, segmentação por nicho, relatórios</div>
-                <span class="i-type">Mensal</span>
-              </td>
-              <td></td>
-              <td><div class="i-price">R$ 3.500</div></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="i-name">Implementação de CRM</div>
-                <div class="i-desc">Setup, funil, integração de canais e treinamento</div>
-                <span class="i-type">Único</span>
-              </td>
-              <td></td>
-              <td><div class="i-price">R$ 2.000</div></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="i-name">Conteúdo · Piloto "Legado ao Fogo"</div>
-                <div class="i-desc">Gravação, edição, 1 vídeo longo + 8 a 12 cortes</div>
-                <span class="i-type">Único</span>
-              </td>
-              <td></td>
-              <td><div class="i-price" style="font-size:18px;color:var(--text-muted);">A confirmar</div></td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="font-size:12px;color:var(--text-muted);margin-top:16px;line-height:1.7;">
-          * Verba de mídia não incluída. Fica 100% sob controle da Les Sept, direto nas plataformas.<br>
-          Recomendamos mínimo de R$ 5.000/mês para resultados consistentes.
-        </p>
-      </div>
-
-      <!-- PACOTE COM DESCONTO -->
-      <div class="pacote-box">
-        <span class="pacote-badge">Recomendado</span>
-        <h3>Pacote Completo</h3>
-        <span class="pb-sub">Tráfego + CRM + Piloto</span>
-        <ul class="pacote-includes">
-          <li>Tráfego Meta e Google: gestão completa</li>
-          <li>Implementação de CRM com treinamento</li>
-          <li>Piloto "Legado ao Fogo": conceito, gravação e edição</li>
-          <li>Prioridade de atendimento e suporte direto</li>
-        </ul>
-        <div class="pacote-economy">
-          <span class="eco-label">Valor do piloto</span>
-          <span class="eco-val" style="font-size:16px;color:var(--text-muted);">A confirmar</span>
-        </div>
-        <div class="pacote-price">
-          <span class="de" style="text-decoration:none;">Tráfego + CRM: R$ 5.500</span>
-          <div class="por" style="font-size:36px;">+ piloto</div>
-          <span class="mes">valor do piloto em fechamento · a partir do mês 2: R$ 3.500/mês</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════ GALERIA 2 ════ -->
-<div id="galeria2">
-  <div style="background-image:url('imgs/leno-gabriel.png');background-position:center top;"></div>
-  <div style="background-image:url('imgs/foto9.jpg')"></div>
-  <div style="background-image:url('imgs/foto10.jpg')"></div>
-</div>
-
-<!-- ════ POR QUE K2IA ════ -->
-<section id="porque">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">Por que a K2IA</span>
-    <h2 class="section-title">Não somos mais<br><em>uma agência.</em></h2>
-    <div class="porque-grid">
-      <div class="porque-card">
-        <div class="pk-n">01</div>
-        <h4>Saímos apaixonados pela história de vocês</h4>
-        <p>O entusiasmo do Gabriel ao contar cada detalhe foi contagiante. <strong>Família Senna, Rei da Noruega, cook show a 80m de altura</strong>. Saímos da reunião com a certeza de que existe algo enorme aqui esperando para ser mostrado.</p>
-      </div>
-      <div class="porque-card">
-        <div class="pk-n">02</div>
-        <h4>Resultado antes do contrato</h4>
-        <p>Não pedimos confiança cega. <strong>Fazemos o piloto, você vê como fica</strong>, e aí decide se quer continuar. O risco fica no mínimo e o resultado fala por si.</p>
-      </div>
-      <div class="porque-card">
-        <div class="pk-n">03</div>
-        <h4>Tráfego com propósito, não volume</h4>
-        <p>Tráfego sozinho não resolve. <strong>Só amplifica o que já existe.</strong> Por isso integramos tráfego, CRM e conteúdo. Cada lead qualificado, cada real com retorno mensurável.</p>
-      </div>
-      <div class="porque-card">
-        <div class="pk-n">04</div>
-        <h4>A voz da marca fica com vocês</h4>
-        <p>Nenhuma agência vai contar a história da Les Sept melhor do que o <strong>Leno e o Gabi.</strong> Nosso papel é estruturar e garantir que isso aconteça, não substituir a essência de vocês.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ PRÓXIMOS PASSOS ════ -->
-<section id="proximos">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">Próximos passos</span>
-    <h2 class="section-title">Como <em>começamos</em>?</h2>
-    <div class="passos">
-      <div class="passo">
-        <div class="ps-n">01</div>
-        <h4>Proposta aprovada</h4>
-        <p>Vanessa confirma o escopo e valores. Contrato simples, sem burocracia.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">02</div>
-        <h4>Setup do CRM</h4>
-        <p>Configuramos a ferramenta e integramos todos os canais em uma semana.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">03</div>
-        <h4>Curadoria de material</h4>
-        <p>Gabi nos passa o acervo. Mapeamos o que vai para o ar primeiro.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">04</div>
-        <h4>Tráfego no ar</h4>
-        <p>Primeiras campanhas ativas por nicho. Google + Meta segmentados.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">05</div>
-        <h4>Piloto gravado</h4>
-        <p>Leno + Gabi + câmera + história. Você vê e decide o próximo capítulo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ CLOSING ════ -->
-<div id="closing">
-  <div class="closing-bg"></div>
-  <div class="closing-overlay"></div>
-  <div class="closing-content">
-    <span class="ct">K2IA × Les Sept · 2026</span>
-    <h2>Vocês já ganharam o mundo.<br>Agora é hora de<br><em>serem reconhecidos por isso.</em></h2>
-    <p>Quem serve o Rei da Noruega, a Família Senna e as maiores empresas do país merece ser o Top One na mente do mercado. A gente coloca isso no lugar.</p>
-    <a href="https://wa.me/5521980529617?text=Klaus%2C%20vamos%20em%20frente%20com%20essa%20proposta!" class="cta-btn" target="_blank">Quero fechar essa proposta</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="fl">
-    <img src="imgs/k2ia-logo.png" alt="K2IA">
-    <div>
-      <div class="fb">K2IA</div>
-      <div class="fs">Inteligência & Estratégia Digital</div>
-    </div>
-  </div>
-  <div class="fr">
-    <a href="mailto:klaus@k2ace.com">klaus@k2ace.com</a><br>
-    Proposta válida por 15 dias · Confidencial · 2026
-  </div>
-</footer>
-
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) tentar(lembrada, false);
+})();
+</script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
 </body>
 </html>

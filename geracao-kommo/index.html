@@ -2,771 +2,205 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Proposta K2ACE × Grupo Geração · CRM Kommo + WhatsApp Oficial</title>
-<meta name="theme-color" content="#0b0b0c">
+<meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<link rel="icon" type="image/svg+xml" href="../geracao/imgs/favicon.svg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-:root {
-  --teal: #19c7b0;
-  --teal-light: #5fe3d0;
-  --teal-deep: #11a392;
-  --cyan: #35d0e8;
-  --wa: #25d366;
-  --wa-bubble: #005c4b;
-  --wa-bg: #0b141a;
-  --wa-top: #1f2c34;
-  --dark: #0b0b0c;
-  --dark-2: #0f0f10;
-  --dark-3: #161617;
-  --dark-4: #1f1f21;
-  --text: #f5f5f5;
-  --text-muted: #9a9a9a;
-  --border: rgba(25,199,176,0.20);
-  --line: rgba(255,255,255,0.06);
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
 }
-
-html { scroll-behavior:smooth; }
-body { background:var(--dark); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
-
-/* NAV */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:0 60px; height:64px;
-  background:rgba(11,11,12,0.94); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
 }
-.nav-logo { display:flex; align-items:center; gap:11px; }
-.nav-logo .g-mark {
-  width:34px; height:34px; border-radius:8px; background:#0d0d0d;
-  border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Space Grotesk'; font-weight:700; font-style:italic; font-size:20px; color:var(--teal);
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
 }
-.nav-logo .wm { font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:var(--text); }
-.nav-logo .wm b { color:var(--teal); }
-.nav-right { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
-
-/* UTILITÁRIOS */
-.tag { display:inline-block; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px; }
-.section-title { font-family:'Space Grotesk',sans-serif; font-size:clamp(34px,4vw,54px); font-weight:600; line-height:1.08; color:var(--text); letter-spacing:-0.5px; }
-.section-title em { color:var(--teal); font-style:normal; }
-.divider { width:48px; height:2px; background:var(--teal); margin:20px 0; }
-.free-badge { display:inline-flex; align-items:center; gap:8px; font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#04211d; background:var(--teal); padding:5px 12px; border-radius:6px; }
-
-/* ════ HERO ════ */
-#hero {
-  min-height:100vh; position:relative; display:flex; align-items:center; overflow:hidden;
-  background:
-    radial-gradient(1100px 600px at 78% 42%, rgba(25,199,176,0.14), transparent 60%),
-    radial-gradient(800px 500px at 12% 12%, rgba(53,208,232,0.07), transparent 60%),
-    var(--dark);
-  padding:120px 60px 60px;
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
 }
-.hero-grid { position:absolute; inset:0; opacity:0.5;
-  background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size:64px 64px; mask-image:radial-gradient(circle at 70% 45%, black, transparent 72%); }
-.hero-inner { position:relative; z-index:2; max-width:1180px; margin:0 auto; width:100%;
-  display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center; }
-.hero-eyebrow { display:inline-flex; align-items:center; gap:12px; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--teal-light); margin-bottom:26px; }
-.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--teal-light); }
-.hero-copy h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(36px,4.8vw,62px); font-weight:600; line-height:1.05; color:#fff; margin-bottom:22px; letter-spacing:-1px; }
-.hero-copy h1 em { color:var(--teal); font-style:normal; }
-.hero-copy p { font-size:15px; color:#b9b9b9; line-height:1.85; max-width:520px; margin-bottom:38px; }
-.hero-stats { display:flex; gap:0; border-top:1px solid var(--line); padding-top:30px; }
-.hero-stat { flex:1; padding-right:20px; }
-.hero-stat+.hero-stat { padding-left:20px; border-left:1px solid var(--line); }
-.hero-stat .v { font-family:'Space Grotesk'; font-size:34px; font-weight:600; color:var(--teal-light); line-height:1; }
-.hero-stat .l { font-size:10px; letter-spacing:1.4px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.4; }
-
-/* hero visual: WhatsApp para funil */
-.hero-visual { position:relative; display:flex; align-items:center; justify-content:center; }
-.phone { position:relative; width:290px; border-radius:36px; background:#0d0d0d; border:1px solid var(--border); padding:12px; box-shadow:0 40px 70px rgba(0,0,0,0.6); }
-.phone .notch { position:absolute; top:20px; left:50%; transform:translateX(-50%); width:96px; height:6px; border-radius:99px; background:#000; z-index:3; }
-.screen { border-radius:26px; overflow:hidden; background:var(--wa-bg); }
-.wa-top { background:var(--wa-top); padding:16px 16px 12px; display:flex; align-items:center; gap:11px; }
-.wa-top .av { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--teal-light),var(--teal-deep)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:14px; color:#04211d; }
-.wa-top .who { flex:1; }
-.wa-top .who .n { font-size:13.5px; font-weight:600; color:#fff; }
-.wa-top .who .s { font-size:10.5px; color:var(--wa); margin-top:1px; }
-.wa-top .oficial { font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:var(--teal-light); border:1px solid var(--border); border-radius:5px; padding:3px 6px; }
-.wa-body { padding:18px 14px 14px; display:flex; flex-direction:column; gap:9px; min-height:190px;
-  background:linear-gradient(180deg, rgba(11,20,26,1), rgba(11,20,26,0.92)); }
-.bub { max-width:78%; font-size:11.5px; line-height:1.5; padding:8px 11px; border-radius:11px; position:relative; }
-.bub .t { display:block; font-size:8.5px; color:rgba(255,255,255,0.45); text-align:right; margin-top:3px; }
-.bub.in { background:var(--wa-top); color:#e9edef; align-self:flex-start; border-top-left-radius:3px; }
-.bub.out { background:var(--wa-bubble); color:#e9edef; align-self:flex-end; border-top-right-radius:3px; }
-/* lead card floating */
-.lead-card { position:absolute; right:-38px; bottom:64px; width:214px; background:var(--dark-4); border:1px solid var(--border); border-radius:13px; padding:14px 15px; box-shadow:0 22px 44px rgba(0,0,0,0.6); z-index:4; }
-.lead-card .lc-top { display:flex; align-items:center; gap:9px; margin-bottom:11px; }
-.lead-card .lc-av { width:30px; height:30px; border-radius:50%; background:var(--dark-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:600; font-size:11px; color:var(--teal-light); }
-.lead-card .lc-n { font-size:12px; font-weight:600; color:#fff; }
-.lead-card .lc-src { font-size:9.5px; color:var(--text-muted); margin-top:1px; }
-.lead-card .lc-stage { display:flex; gap:4px; }
-.lead-card .st { flex:1; height:4px; border-radius:99px; background:rgba(255,255,255,0.10); }
-.lead-card .st.on { background:var(--teal); }
-.lead-card .lc-lbl { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--teal-light); margin-top:9px; }
-.hero-cap { position:absolute; left:-14px; top:40px; background:var(--dark-4); border:1px solid var(--border); border-radius:9px; padding:8px 11px; font-size:10.5px; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,0.5); z-index:4; }
-.hero-cap b { color:var(--teal-light); font-weight:600; }
-
-/* SCROLL HINT */
-.scroll-hint { position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:7px; opacity:0.4; animation:bob 2s ease-in-out infinite; z-index:3; }
-.scroll-hint span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
-.scroll-hint::after { content:'↓'; color:var(--teal); font-size:14px; }
-@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
-
-/* ════ DESAFIO ════ */
-#desafio { background:var(--dark-2); padding:100px 60px; }
-.desafio-wrap { max-width:1100px; margin:0 auto; }
-.desafio-header { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; margin-bottom:56px; }
-.desafio-header p { font-size:15px; line-height:1.9; color:var(--text-muted); }
-.desafio-header blockquote { font-family:'Space Grotesk'; font-size:22px; font-weight:500; color:var(--teal-light); border-left:2px solid var(--teal); padding-left:22px; line-height:1.5; }
-.desafio-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
-.desafio-card { background:var(--dark-3); padding:30px 24px; }
-.desafio-card .dc-ico { width:34px; height:34px; margin-bottom:16px; color:var(--teal); }
-.desafio-card h4 { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); margin-bottom:11px; }
-.desafio-card p { font-size:12.5px; line-height:1.75; color:var(--text-muted); }
-
-/* ════ ARQUITETURA / MÓDULOS ════ */
-#modulos { padding:100px 60px; background:var(--dark); }
-.mod-wrap { max-width:1100px; margin:0 auto; }
-.mod-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:48px; }
-.mod { background:var(--dark-3); padding:38px 30px; position:relative; overflow:hidden; }
-.mod-ghost { position:absolute; top:14px; right:18px; font-family:'Space Grotesk'; font-size:70px; font-weight:700; color:rgba(25,199,176,0.06); line-height:1; }
-.mod .m-num { font-size:11px; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; display:block; }
-.mod h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:600; color:var(--text); margin-bottom:8px; line-height:1.2; }
-.mod .m-tag { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px; display:block; }
-.mod p { font-size:12.5px; line-height:1.75; color:var(--text-muted); }
-.mod ul { list-style:none; margin-top:14px; }
-.mod ul li { font-size:12.5px; color:var(--text-muted); padding:7px 0 7px 15px; position:relative; line-height:1.5; border-bottom:1px solid rgba(255,255,255,0.04); }
-.mod ul li:last-child { border:none; }
-.mod ul li::before { content:''; position:absolute; left:0; top:13px; width:5px; height:5px; border-radius:50%; background:var(--teal); }
-
-/* ════ RELATÓRIO INCLUÍDO ════ */
-#relatorio { padding:100px 60px; background:var(--dark-3); border-top:1px solid var(--border); }
-.rel-wrap { max-width:1100px; margin:0 auto; }
-.rel-top { max-width:780px; margin-bottom:44px; }
-.rel-top h2 { margin:14px 0 18px; }
-.rel-top p { font-size:15px; color:var(--text-muted); line-height:1.9; }
-.rel-top p strong { color:var(--text); font-weight:500; }
-.rel-grid { display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; align-items:stretch; }
-.rel-segs { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
-.seg-card { background:var(--dark-2); padding:26px 22px; }
-.seg-card .sc-v { font-family:'Space Grotesk'; font-size:30px; font-weight:600; color:var(--teal-light); line-height:1; }
-.seg-card h4 { font-size:12.5px; font-weight:600; color:var(--text); margin:12px 0 6px; }
-.seg-card p { font-size:11.5px; color:var(--text-muted); line-height:1.6; }
-.rel-panel { background:linear-gradient(180deg,var(--dark-4),var(--dark-3)); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 30px 70px rgba(0,0,0,0.5); display:flex; flex-direction:column; }
-.rp-head { display:flex; justify-content:space-between; align-items:center; padding:18px 22px; border-bottom:1px solid var(--border); }
-.rp-head .rp-t { font-family:'Space Grotesk'; font-size:14px; font-weight:600; color:var(--text); }
-.rp-head .rp-live { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--teal); display:flex; align-items:center; gap:7px; }
-.rp-head .rp-live::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); }
-.rp-row { display:flex; align-items:center; gap:14px; padding:14px 22px; border-bottom:1px solid var(--line); }
-.rp-row:last-child { border:none; }
-.rp-av { width:38px; height:38px; border-radius:50%; flex-shrink:0; background:var(--dark-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:600; font-size:13px; color:var(--teal-light); }
-.rp-info { flex:1; min-width:0; }
-.rp-info .rp-n { font-size:13.5px; font-weight:600; color:var(--text); }
-.rp-info .rp-d { font-size:11.5px; color:var(--text-muted); margin-top:2px; }
-.rp-sig { font-size:10px; font-weight:600; letter-spacing:0.4px; text-transform:uppercase; padding:4px 10px; border-radius:99px; background:rgba(25,199,176,0.12); color:var(--teal-light); border:1px solid var(--border); white-space:nowrap; }
-.rp-score { text-align:right; flex-shrink:0; width:56px; }
-.rp-score .sv { font-family:'Space Grotesk'; font-size:19px; font-weight:600; color:var(--teal-light); line-height:1; }
-.rp-score .sl { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
-.rel-note { font-size:11px; color:var(--text-muted); margin-top:18px; font-style:italic; }
-
-/* ════ FAIXA BANDEIRAS ════ */
-#bandeiras-band { display:flex; height:150px; gap:1px; background:var(--border); }
-#bandeiras-band .bb { flex:1; background:var(--dark-3); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; position:relative; }
-#bandeiras-band .bb img { max-height:26px; max-width:74%; filter:brightness(0) invert(1); opacity:0.82; }
-#bandeiras-band .bb .txt { font-family:'Space Grotesk'; font-size:17px; font-weight:600; color:rgba(255,255,255,0.82); letter-spacing:0.5px; }
-#bandeiras-band .bb .cnt { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal-light); }
-
-/* ════ INVESTIMENTO ════ */
-#investimento { padding:100px 60px; background:var(--dark); }
-.inv-wrap { max-width:1100px; margin:0 auto; }
-.inv-cards { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; align-items:stretch; }
-.inv-card { background:var(--dark-3); border:1px solid var(--border); border-radius:16px; padding:34px 32px; display:flex; flex-direction:column; }
-.inv-card.pack { background:linear-gradient(180deg, var(--dark-4), var(--dark-3)); border-color:var(--teal); box-shadow:0 30px 70px rgba(0,0,0,0.5); position:relative; }
-.inv-card .ic-kick { font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:10px; }
-.inv-card h3 { font-family:'Space Grotesk'; font-size:22px; font-weight:600; color:var(--text); margin-bottom:6px; }
-.inv-card .ic-sub { font-size:12.5px; color:var(--text-muted); line-height:1.6; margin-bottom:22px; }
-.li-row { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); }
-.li-row .k { font-size:13px; color:var(--text); font-weight:500; }
-.li-row .k small { display:block; color:var(--text-muted); font-weight:400; font-size:11px; margin-top:3px; line-height:1.5; max-width:30ch; }
-.li-row .v { font-family:'Space Grotesk'; font-size:16px; color:var(--text); white-space:nowrap; text-align:right; }
-.li-row .v small { display:block; font-size:10px; color:var(--text-muted); margin-top:2px; }
-.li-row.total { border-bottom:none; border-top:2px solid var(--border); margin-top:6px; padding-top:18px; }
-.li-row.total .k { font-family:'Space Grotesk'; font-size:15px; color:var(--text); }
-.li-row.total .v { font-size:26px; color:var(--teal-light); }
-.li-row.repasse .v { color:var(--text-muted); }
-.ic-badge { margin-top:auto; padding-top:22px; }
-.ic-perloja { display:flex; justify-content:space-between; align-items:center; margin-top:22px; padding:14px 18px; background:rgba(25,199,176,0.06); border:1px solid var(--border); border-radius:10px; }
-.ic-perloja .pl-k { font-size:11.5px; color:var(--text-muted); }
-.ic-perloja .pl-k b { color:var(--teal-light); }
-.ic-perloja .pl-v { font-family:'Space Grotesk'; font-size:16px; color:var(--teal-light); white-space:nowrap; }
-.ic-note { font-size:11px; color:var(--text-muted); line-height:1.7; margin-top:16px; padding-left:12px; border-left:2px solid var(--border); }
-
-/* formatos */
-.fmt-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; }
-.fmt { background:var(--dark-3); border:1px solid var(--border); border-radius:16px; padding:32px 30px; position:relative; }
-.fmt.hl { border-color:var(--teal); background:linear-gradient(180deg, var(--dark-4), var(--dark-3)); }
-.fmt-badge { position:absolute; top:-12px; left:30px; background:var(--teal); color:#04211d; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:6px 14px; border-radius:6px; }
-.fmt .f-kick { font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; margin-top:6px; }
-.fmt h4 { font-family:'Space Grotesk'; font-size:19px; font-weight:600; color:var(--text); margin-bottom:14px; }
-.fmt .f-price { display:flex; align-items:flex-end; gap:8px; margin-bottom:4px; }
-.fmt .f-price .num { font-family:'Space Grotesk'; font-size:42px; font-weight:700; color:var(--teal-light); line-height:0.9; letter-spacing:-1px; }
-.fmt .f-price .per { font-size:12px; color:var(--text-muted); padding-bottom:6px; }
-.fmt .f-desc { font-size:12px; color:var(--text-muted); margin-bottom:18px; }
-.fmt .f-line { display:flex; justify-content:space-between; gap:12px; font-size:12.5px; padding:9px 0; border-top:1px dashed var(--line); }
-.fmt .f-line span:last-child { font-family:'Space Grotesk'; color:var(--text); }
-.fmt .f-foot { font-size:11.5px; color:var(--text-muted); line-height:1.6; margin-top:14px; }
-.inv-foot-note { font-size:11.5px; color:var(--text-muted); margin-top:26px; line-height:1.8; max-width:820px; }
-
-/* ════ POR QUE K2ACE ════ */
-#porque { padding:100px 60px; background:var(--dark-2); }
-.pq-wrap { max-width:1100px; margin:0 auto; }
-.pq-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:48px; }
-.pq-card { background:var(--dark-3); padding:38px 34px; }
-.pq-card .pq-n { font-family:'Space Grotesk'; font-size:48px; font-weight:700; color:rgba(25,199,176,0.10); line-height:1; margin-bottom:14px; }
-.pq-card h4 { font-size:15px; font-weight:600; color:var(--text); margin-bottom:11px; line-height:1.4; }
-.pq-card p { font-size:13px; color:var(--text-muted); line-height:1.8; }
-.pq-card p strong { color:var(--text); font-weight:500; }
-
-/* ════ PRÓXIMOS PASSOS ════ */
-#passos { padding:100px 60px; background:var(--dark); }
-.ps-wrap { max-width:1100px; margin:0 auto; }
-.passos { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:48px; }
-.passo { padding:34px 26px; border-right:1px solid var(--border); }
-.passo:last-child { border:none; }
-.passo .ps-n { font-family:'Space Grotesk'; font-size:40px; font-weight:700; color:rgba(25,199,176,0.14); line-height:1; margin-bottom:14px; }
-.passo h4 { font-size:13.5px; font-weight:600; color:var(--text); margin-bottom:9px; line-height:1.4; }
-.passo p { font-size:12px; color:var(--text-muted); line-height:1.7; }
-
-/* ════ CLOSING ════ */
-#closing { position:relative; padding:120px 40px; text-align:center; overflow:hidden;
-  background:radial-gradient(900px 500px at 50% 30%, rgba(25,199,176,0.16), transparent 60%), var(--dark); }
-.closing-inner { position:relative; z-index:2; max-width:720px; margin:0 auto; }
-.closing-inner .ct { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--teal-light); margin-bottom:26px; display:block; }
-.closing-inner h2 { font-family:'Space Grotesk'; font-size:clamp(30px,4.4vw,52px); font-weight:600; color:#fff; line-height:1.12; margin-bottom:20px; letter-spacing:-0.5px; }
-.closing-inner h2 em { color:var(--teal); font-style:normal; }
-.closing-inner p { font-size:14px; color:var(--text-muted); line-height:1.85; margin-bottom:36px; }
-.cta-btn { display:inline-block; padding:17px 42px; background:var(--teal); color:#04211d; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border-radius:10px; transition:transform .15s, box-shadow .15s; box-shadow:0 12px 30px rgba(25,199,176,0.3); }
-.cta-btn:hover { transform:translateY(-2px); box-shadow:0 18px 40px rgba(25,199,176,0.45); }
-
-/* FOOTER */
-footer { background:var(--dark); padding:28px 60px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); }
-footer .fl { display:flex; align-items:center; gap:12px; }
-footer .g-mark { width:30px; height:30px; border-radius:7px; background:#0d0d0d; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-style:italic; font-size:17px; color:var(--teal); }
-footer .fb { font-family:'Space Grotesk'; font-size:13px; font-weight:600; letter-spacing:1px; color:var(--text); }
-footer .fs { font-size:10px; color:var(--text-muted); margin-top:2px; }
-footer .fr { font-size:11px; color:var(--text-muted); text-align:right; line-height:1.8; }
-footer .fr a { color:var(--teal); text-decoration:none; }
-
-@media(max-width:900px){
-  nav { padding:0 20px; } .nav-right { display:none; }
-  #desafio,#modulos,#investimento,#porque,#passos,#relatorio { padding-left:24px; padding-right:24px; }
-  #hero { padding:100px 24px 50px; }
-  .hero-inner { grid-template-columns:1fr; gap:60px; }
-  .hero-copy h1 { font-size:clamp(28px,7.4vw,54px); }
-  .hero-copy p { font-size:14px; max-width:100%; }
-  .hero-stat .v { font-size:26px; }
-  .hero-visual { margin-top:10px; }
-  .lead-card { right:-14px; } .hero-cap { left:0; }
-  .desafio-header { grid-template-columns:1fr; gap:24px; }
-  .desafio-grid { grid-template-columns:1fr 1fr; }
-  .mod-grid { grid-template-columns:1fr; }
-  .rel-grid { grid-template-columns:1fr; gap:22px; }
-  .rp-head { padding:16px; } .rp-row { padding:13px 16px; gap:10px; }
-  .inv-cards { grid-template-columns:1fr; }
-  .inv-card { padding:28px 22px; }
-  .fmt-grid { grid-template-columns:1fr; }
-  .pq-grid { grid-template-columns:1fr; }
-  .passos { grid-template-columns:1fr 1fr; }
-  .passo:nth-child(2){ border-right:none; } .passo:nth-child(1),.passo:nth-child(2){ border-bottom:1px solid var(--border); }
-  #bandeiras-band { height:auto; flex-wrap:wrap; } #bandeiras-band .bb { flex:0 0 calc(33.33% - 1px); height:120px; }
-  footer { padding:26px 24px; flex-direction:column; gap:16px; text-align:center; }
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-@media(max-width:540px){
-  .desafio-grid { grid-template-columns:1fr; }
-  .hero-stats { flex-wrap:wrap; } .hero-stat { flex:0 0 100%; padding:14px 0 !important; border-left:none !important; border-top:1px solid var(--line); }
-  .section-title { font-size:clamp(26px,7.6vw,40px); }
-  .rel-segs { grid-template-columns:1fr 1fr; } .seg-card { padding:20px 14px; } .seg-card .sc-v { font-size:26px; }
-  .rp-sig { display:none; }
-  #bandeiras-band .bb { flex:0 0 calc(50% - 1px); }
-  .passos { grid-template-columns:1fr; } .passo { border-right:none; border-bottom:1px solid var(--border); }
-  .fmt .f-price .num { font-size:34px; }
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
 }
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <div class="g-mark">G</div>
-    <span class="wm">K2<b>ACE</b></span>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-  <div class="nav-right">Proposta · Kommo + WhatsApp Oficial · 2026</div>
-</nav>
-
-<!-- ════ HERO ════ -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <div class="hero-eyebrow">CRM + WhatsApp Oficial · 2026</div>
-      <h1>O CRM da rede inteira, com <em>WhatsApp oficial</em> em cada loja.</h1>
-      <p>Cada uma das 24 lojas com sua conta Kommo, seu número oficial e um funil padronizado. Os 120 vendedores atendendo dentro do CRM, e a diretoria enxergando cada lead e cada vendedor, atualizado dia a dia.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="v">24</div><div class="l">lojas · 7 bandeiras</div></div>
-        <div class="hero-stat"><div class="v">140</div><div class="l">vendedores & gerentes</div></div>
-        <div class="hero-stat"><div class="v">24</div><div class="l">WhatsApp oficiais</div></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-cap">Lead que chega no <b>WhatsApp</b>…</div>
-      <div class="phone">
-        <div class="notch"></div>
-        <div class="screen">
-          <div class="wa-top">
-            <div class="av">HY</div>
-            <div class="who"><div class="n">Hyundai São José</div><div class="s">online agora</div></div>
-            <div class="oficial">Oficial</div>
-          </div>
-          <div class="wa-body">
-            <div class="bub in">Oi! Vi o anúncio do Creta. Ainda tem condição esse mês?<span class="t">09:41</span></div>
-            <div class="bub out">Oi João! Tenho sim 🚗 Posso te chamar pra um test drive amanhã?<span class="t">09:41</span></div>
-            <div class="bub in">Pode ser de tarde<span class="t">09:42</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="lead-card">
-        <div class="lc-top">
-          <div class="lc-av">JP</div>
-          <div><div class="lc-n">João Pereira</div><div class="lc-src">WhatsApp · Campanha Creta</div></div>
-        </div>
-        <div class="lc-stage"><span class="st on"></span><span class="st on"></span><span class="st on"></span><span class="st"></span><span class="st"></span></div>
-        <div class="lc-lbl">…vira lead no funil</div>
-      </div>
-    </div>
+  <h1>Proposta K2ACE × Grupo Geração · CRM Kommo + WhatsApp Oficial</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-  <div class="scroll-hint"><span>scroll</span></div>
-</section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
-<!-- ════ DESAFIO ════ -->
-<section id="desafio">
-  <div class="desafio-wrap">
-    <span class="tag">O desafio da rede</span>
-    <div class="desafio-header">
-      <div>
-        <h2 class="section-title">120 vendedores.<br>E o lead <em>no celular de cada um.</em></h2>
-        <div class="divider"></div>
-      </div>
-      <div>
-        <p style="margin-bottom:24px;">Hoje o atendimento acontece no WhatsApp pessoal de cada vendedor. Quando ele sai, a conversa vai junto e o lead fica sem dono. E, mais fundo, a diretoria não tem clareza do que o marketing faz: onde o dinheiro é investido, qual campanha traz gente pra loja e o que de fato vira venda. A ideia é dar essa clareza, de cada real investido ao retorno para o grupo, loja por loja.</p>
-        <blockquote>"O lead é da loja, não do celular do vendedor."</blockquote>
-      </div>
-    </div>
-    <div class="desafio-grid">
-      <div class="desafio-card">
-        <svg class="dc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        <h4>WhatsApp oficial</h4>
-        <p>Número verificado da loja, com selo. Nada de conta pessoal que some quando o vendedor troca de emprego.</p>
-      </div>
-      <div class="desafio-card">
-        <svg class="dc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-        <h4>Nenhum lead perdido</h4>
-        <p>Toda conversa entra no funil da loja com dono, etapa e histórico. Ninguém escorrega entre os dedos.</p>
-      </div>
-      <div class="desafio-card">
-        <svg class="dc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
-        <h4>Gestor enxerga tudo</h4>
-        <p>O gerente vê o funil da própria loja e a produção de cada vendedor, sem pedir print no grupo.</p>
-      </div>
-      <div class="desafio-card">
-        <svg class="dc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-        <h4>Cada loja no seu box</h4>
-        <p>24 contas independentes: uma loja nunca enxerga a base da outra. Isolamento total entre unidades e donos.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<script type="application/json" id="cofre">{"v":1,"grupo":"geracao","iter":200000,"nonce":"0QXnt1i8x3Nez4NR","dados":"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","cofres":[{"salt":"GCE0snhdFumzbCse1bwbFg==","nonce":"To0nxmxCpAeoQ+dN","nonce2":"evHVkhXqhi/9Dx4j","chave":"385ocQEM3K2KUjkx3C59DB16+/UBoLnTdSJUM/AFyjb4QJ7qaostmp1p5PJlH2Ro","quem":"NAIN6g9EzDbN46+YD+scb22Ya0HcDy0Big=="}]}</script>
+<script>
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-<!-- ════ ARQUITETURA / MÓDULOS ════ -->
-<section id="modulos">
-  <div class="mod-wrap">
-    <span class="tag">O que a implantação entrega</span>
-    <h2 class="section-title">24 lojas, cada uma<br><em>na medida da operação.</em></h2>
-    <div class="mod-grid">
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin, true);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin, true); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
 
-      <div class="mod">
-        <span class="mod-ghost">01</span>
-        <span class="m-num">01 / 06</span>
-        <h3>Uma conta por loja</h3>
-        <span class="m-tag">Arquitetura</span>
-        <p>24 contas Kommo independentes, cada uma dedicada à loja, no padrão do Grupo Geração.</p>
-        <ul>
-          <li>Isolamento total: uma loja não vê a base da outra</li>
-          <li>3 papéis: admin da rede, gerente e vendedor</li>
-          <li>Cada um enxerga só o que lhe cabe</li>
-          <li>Funil no padrão Geração em cada loja</li>
-        </ul>
-      </div>
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+/* Registro de entrada: o mesmo sinal do track.js, dizendo quem destravou. A senha não sai daqui. */
+function marcaEntrada(nome){
+  try {
+    const u = 'https://deck-track.k2ia.workers.dev/hit?p=' + encodeURIComponent(location.pathname)
+      + '&q=' + encodeURIComponent(nome) + '&u=' + encodeURIComponent('senha: ' + nome)
+      + '&s=' + ((screen.width || 0) + 'x' + (screen.height || 0));
+    if (navigator.sendBeacon) navigator.sendBeacon(u); else fetch(u, {mode: 'no-cors', keepalive: true}).catch(() => {});
+  } catch (e) {}
+}
 
-      <div class="mod">
-        <span class="mod-ghost">02</span>
-        <span class="m-num">02 / 06</span>
-        <h3>WhatsApp oficial por loja</h3>
-        <span class="m-tag">Meta · verificado</span>
-        <p>Número oficial da Meta em cada unidade, conectado direto ao CRM.</p>
-        <ul>
-          <li>Provisionamento dos 24 números na Meta</li>
-          <li>Verificação e nome de exibição da loja</li>
-          <li>Conversa cai direto no funil do vendedor</li>
-          <li>Histórico da conversa guardado na loja</li>
-        </ul>
-      </div>
+async function abre(senha){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveKey']);
+  for (const cf of C.cofres){
+    try {
+      const chave = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(cf.salt), iterations: C.iter, hash: 'SHA-256'},
+        base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
+      const bruta = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce)}, chave, b64(cf.chave));
+      const quem = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(cf.nonce2)}, chave, b64(cf.quem)));
+      const mestra = await crypto.subtle.importKey('raw', bruta, 'AES-GCM', false, ['decrypt']);
+      const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, mestra, b64(C.dados));
+      const ds = new DecompressionStream('gzip');
+      const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+      return {quem, html: new TextDecoder().decode(await new Response(ds.readable).arrayBuffer())};
+    } catch (e) { /* cofre de outra pessoa */ }
+  }
+  return null;
+}
 
-      <div class="mod">
-        <span class="mod-ghost">03</span>
-        <span class="m-num">03 / 06</span>
-        <h3>Automação & atendimento</h3>
-        <span class="m-tag">Salesbot</span>
-        <p>Régua de atendimento e distribuição automática de leads no ar.</p>
-        <ul>
-          <li>Roteamento do lead ao vendedor certo</li>
-          <li>Respostas rápidas e saudação automática</li>
-          <li>Lembrete de acompanhamento que não deixa esfriar</li>
-          <li>Etiquetas e etapas padronizadas</li>
-        </ul>
-      </div>
+async function tentar(senha, digitada){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  const r = await abre(senha).catch(() => null);
+  if (r){
+    try { sessionStorage.setItem(LEMBRA, senha); } catch (e) {}
+    if (digitada) marcaEntrada(r.quem);
+    document.open(); document.write(r.html); document.close();
+    return;
+  }
+  ocupado = false; pin = ''; pintaDots();
+  if (!digitada){ msg.textContent = ''; try { sessionStorage.removeItem(LEMBRA); } catch (e) {} return; }
+  msg.classList.add('err');
+  msg.textContent = 'Senha incorreta. Tente de novo.';
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
 
-      <div class="mod">
-        <span class="mod-ghost">04</span>
-        <span class="m-num">04 / 06</span>
-        <h3>Funil & migração</h3>
-        <span class="m-tag">Base da loja</span>
-        <p>O funil de cada loja desenhado sob medida e a base importada.</p>
-        <ul>
-          <li>Etapas do funil desenhadas com o time</li>
-          <li>Contatos existentes migrados para o CRM</li>
-          <li>Campos sob medida da operação automotiva</li>
-          <li>Testes ponta a ponta antes de entrar no ar</li>
-        </ul>
-      </div>
-
-      <div class="mod">
-        <span class="mod-ghost">05</span>
-        <span class="m-num">05 / 06</span>
-        <h3>Treinamento por bandeira</h3>
-        <span class="m-tag">Time comercial</span>
-        <p>Uma turma por bandeira, vendedores e gerentes, mão na massa.</p>
-        <ul>
-          <li>Operação do funil e atendimento no app</li>
-          <li>Boas práticas de resposta e acompanhamento</li>
-          <li>Gerente aprende a ler a produção do time</li>
-          <li>Material de apoio para novos vendedores</li>
-        </ul>
-      </div>
-
-      <div class="mod">
-        <span class="mod-ghost">06</span>
-        <span class="m-num">06 / 06</span>
-        <h3>Relatório da rede</h3>
-        <span class="m-tag">Consolidado da rede</span>
-        <p>A visão consolidada das 24 contas dentro do sistema Geração.</p>
-        <ul>
-          <li>Cada lead: origem, dono e status</li>
-          <li>Produção por vendedor e por loja</li>
-          <li>Funil da rede num lugar só</li>
-          <li>Atualizado diariamente, sem planilha</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════ DISTRIBUIÇÃO DE LEAD ════ -->
-<section id="pegalead" style="padding:clamp(64px,9vw,100px) clamp(20px,5vw,60px);background:var(--dark-2);">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">Distribuição de leads</span>
-    <h2 class="section-title">Chega lead? O vendedor certo <em>pega na hora.</em></h2>
-    <p style="font-size:15px;color:var(--text-muted);line-height:1.9;max-width:780px;margin:18px 0 44px;">Hoje, quando entra um lead, alguém joga no grupo <em style="color:#e0a06b;font-style:normal;">"alguém disponível?"</em>, espera responder e reenvia no privado na mão. O lead esfria na espera, some, ou cai no vendedor errado. Com o Kommo, isso vira automático, sem ninguém fazendo triagem no dedo.</p>
-    <div class="inv-cards">
-      <div class="inv-card">
-        <div class="ic-kick" style="color:#e0a06b;">Hoje · na mão</div>
-        <h3>"Alguém disponível?"</h3>
-        <div class="ic-sub" style="margin-bottom:16px;">A cada lead, a mesma novela no grupo.</div>
-        <ul style="list-style:none;">
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;border-bottom:1px solid var(--line);">Alguém pergunta no grupo e espera resposta<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:#e0a06b;"></span></li>
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;border-bottom:1px solid var(--line);">O lead é reenviado no privado, na mão<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:#e0a06b;"></span></li>
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;border-bottom:1px solid var(--line);">Esfria na espera, ou vai pro vendedor errado<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:#e0a06b;"></span></li>
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;">Ninguém sabe quantos leads entraram de verdade<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:#e0a06b;"></span></li>
-        </ul>
-      </div>
-      <div class="inv-card pack">
-        <div class="ic-kick" style="color:var(--teal-light);">Com o Kommo · automático</div>
-        <h3>O lead se distribui sozinho</h3>
-        <div class="ic-sub" style="margin-bottom:16px;">Entrou no funil, o time é avisado na hora.</div>
-        <ul style="list-style:none;">
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;border-bottom:1px solid var(--line);">Lead novo dispara o aviso no grupo, na hora<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:var(--teal);"></span></li>
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;border-bottom:1px solid var(--line);">O primeiro que <b style="color:var(--text);font-weight:600;">pega</b> leva o lead pro próprio funil<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:var(--teal);"></span></li>
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;border-bottom:1px solid var(--line);">Ou rodízio automático, se quiserem repartir igual<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:var(--teal);"></span></li>
-          <li style="font-size:12.5px;color:var(--text-muted);padding:9px 0 9px 16px;position:relative;line-height:1.6;">Cada lead com dono, hora e origem registrados<span style="position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%;background:var(--teal);"></span></li>
-        </ul>
-      </div>
-    </div>
-    <p style="font-family:'Space Grotesk';font-size:15px;color:var(--teal-light);text-align:center;margin-top:40px;letter-spacing:0.3px;">Lead entra&nbsp; →&nbsp; grupo é avisado&nbsp; →&nbsp; vendedor pega&nbsp; →&nbsp; cai no funil dele. Sem ninguém no meio.</p>
-  </div>
-</section>
-
-<!-- ════ RELATÓRIO INCLUÍDO ════ -->
-<section id="relatorio">
-  <div class="rel-wrap">
-    <div class="rel-top">
-      <span class="free-badge">Consolidado da rede</span>
-      <h2 class="section-title" style="margin-top:18px;">Vocês vão <em>enxergar</em> a rede inteira.</h2>
-      <p>Com contas separadas, o Kommo sozinho não mostra a rede num lugar só. Então a gente puxa os números das 24 contas para dentro do <strong>sistema Geração que vocês já usam</strong> e transforma em relatório da rede, <strong>atualizado diariamente</strong>. A mesma visão que já entregamos em outras redes, com a diretoria e cada gerente sabendo o que acontece com <strong>cada lead e cada vendedor</strong>.</p>
-    </div>
-    <div class="rel-grid">
-      <div class="rel-segs">
-        <div class="seg-card"><div class="sc-v">24</div><h4>Lojas num painel</h4><p>Toda a rede consolidada, sem trocar de conta nem juntar planilha.</p></div>
-        <div class="seg-card"><div class="sc-v">120</div><h4>Vendedores medidos</h4><p>Leads recebidos, respondidos e convertidos, um a um.</p></div>
-        <div class="seg-card"><div class="sc-v">100%</div><h4>Leads rastreados</h4><p>Origem, dono e etapa de cada contato que entra pela porta digital.</p></div>
-        <div class="seg-card"><div class="sc-v">Diário</div><h4>Atualização</h4><p>Os números da rede refrescados todo dia, sem juntar planilha.</p></div>
-      </div>
-      <div class="rel-panel">
-        <div class="rp-head"><span class="rp-t">Painel da rede · vendedores</span></div>
-        <div class="rp-row"><div class="rp-av">MS</div><div class="rp-info"><div class="rp-n">Marcos Silva · Hyundai SJ</div><div class="rp-d">18 leads · 12 respondidos · 3 test drives</div></div><span class="rp-sig">Convertendo</span><div class="rp-score"><div class="sv">4</div><div class="sl">vendas</div></div></div>
-        <div class="rp-row"><div class="rp-av">AC</div><div class="rp-info"><div class="rp-n">Ana Costa · Chery Criciúma</div><div class="rp-d">22 leads · 20 respondidos · 5 test drives</div></div><span class="rp-sig">Quente</span><div class="rp-score"><div class="sv">6</div><div class="sl">vendas</div></div></div>
-        <div class="rp-row"><div class="rp-av">RL</div><div class="rp-info"><div class="rp-n">Rafael Luz · Yamaha Tubarão</div><div class="rp-d">15 leads · 6 respondidos · sem retorno há 2 dias</div></div><span class="rp-sig">Atenção</span><div class="rp-score"><div class="sv">1</div><div class="sl">vendas</div></div></div>
-        <div class="rp-row"><div class="rp-av">JB</div><div class="rp-info"><div class="rp-n">Julia Brum · Omoda Floripa</div><div class="rp-d">19 leads · 17 respondidos · 4 test drives</div></div><span class="rp-sig">Convertendo</span><div class="rp-score"><div class="sv">5</div><div class="sl">vendas</div></div></div>
-      </div>
-    </div>
-    <p class="rel-note">Números e nomes ilustrativos. Na operação, a leitura é feita sobre os leads reais das 24 contas do Grupo Geração.</p>
-  </div>
-</section>
-
-<!-- ════ INVESTIMENTO ════ -->
-<section id="investimento">
-  <div class="inv-wrap">
-    <span class="tag">Investimento</span>
-    <h2 class="section-title">Simples: <em>uma vez</em> e <em>todo mês.</em></h2>
-    <p style="font-size:15px;color:var(--text-muted);line-height:1.9;max-width:770px;margin:18px 0 6px;">Implantar o Kommo numa loja avulsa sai por cerca de <b style="color:var(--text);">R$ 5.500</b>. Nas 24 lojas, nessa régua, seriam <s style="opacity:0.7;">R$ 132.000</s>. No pacote da rede o grupo paga bem menos, e cada loja entra personalizada no padrão do Grupo Geração.</p>
-
-    <div class="inv-cards" style="grid-template-columns:1fr;">
-      <!-- 1 · Implementação -->
-      <div class="inv-card">
-        <div class="ic-kick">Você paga uma vez</div>
-        <h3>1 · Implementação</h3>
-        <div class="ic-sub">Um valor único para colocar a rede toda no ar. Contempla:</div>
-        <ul style="list-style:none;margin:6px 0 8px;padding:0;">
-          <li style="display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Arquitetura no padrão Grupo Geração<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">o sistema montado do jeito que o grupo vende</span></div></li>
-          <li style="display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Automações<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">Salesbot, régua de atendimento e distribuição de leads</span></div></li>
-          <li style="display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Implantação personalizada das 24 lojas<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">conta, funil, usuários, migração e WhatsApp oficial em cada uma</span></div></li>
-          <li style="display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Treinamento das 7 bandeiras<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">vendedores e gerentes, turma por bandeira</span></div></li>
-          <li style="display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Dashboard interativo do diretor<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">todas as lojas, funil e produção da rede num painel só</span></div></li>
-          <li style="display:flex;gap:11px;padding:12px 0;"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">3 meses de suporte de perto a 140 usuários<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">colocar 120 vendedores e 20 gerentes pra usar de verdade: onboarding, ajustes e melhorias, a K2ACE junto no dia a dia</span></div></li>
-        </ul>
-        <div class="li-row total"><div class="k">Investimento por loja</div><div class="v" style="line-height:1.12;"><span style="font-size:28px;">R$ 4.000</span><span style="font-size:12px;color:var(--text-muted);font-weight:400;"> /loja</span><small style="display:block;font-size:11px;color:var(--text-muted);margin-top:4px;">24 lojas = R$ 96.000 no total</small></div></div>
-        <div class="ic-perloja"><div class="pl-k">Tudo separado somaria R$ 132.000 · <b>você economiza R$ 36.000</b></div><div class="pl-v">−27%</div></div>
-        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
-          <div style="flex:1;min-width:150px;background:rgba(25,199,176,0.08);border:1px solid var(--teal);border-radius:11px;padding:15px 18px;">
-            <div style="font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-light);margin-bottom:7px;">À vista · 11% off</div>
-            <div style="font-family:'Space Grotesk';font-size:25px;font-weight:700;color:var(--teal-light);letter-spacing:-0.5px;line-height:1;">R$ 85.440</div>
-            <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">economia de R$ 10.560</div>
-          </div>
-          <div style="flex:1;min-width:150px;background:var(--dark-2);border:1px solid var(--border);border-radius:11px;padding:15px 18px;">
-            <div style="font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;">Parcelado</div>
-            <div style="font-family:'Space Grotesk';font-size:25px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1;">3× R$ 32.000</div>
-            <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">total R$ 96.000</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 · Mensalidade -->
-      <div class="inv-card pack">
-        <div class="ic-kick" style="color:var(--teal-light);">Depois que está no ar</div>
-        <h3>2 · Licença do Kommo</h3>
-        <div class="ic-sub">A única mensalidade recorrente, cobrada direto pelo Kommo, por semestre.</div>
-        <div class="li-row"><div class="k">Licença Kommo · plano Advanced<small>140 usuários: 120 vendedores + 20 gerentes</small></div><div class="v" style="line-height:1.12;"><span style="font-size:23px;">R$ 127</span><span style="font-size:11px;color:var(--text-muted);font-weight:400;"> /usuário mês</span><small style="display:block;font-size:10.5px;color:var(--text-muted);margin-top:4px;">140 usuários = R$ 106.680 no semestre</small></div></div>
-        <div class="ic-perloja" style="background:rgba(25,199,176,0.10);"><div class="pl-k">Plano semestral · <b>pague 6 meses e use 7</b>: o 7º mês é bônus</div><div class="pl-v">+1 mês</div></div>
-        <div class="ic-note">A licença é por vendedor, no plano Advanced, paga por semestre. Como <b>parceiro oficial do Kommo</b> (já implementamos centenas de contas), a K2ACE garante um mês de bônus a cada semestre: você paga 6 e usa 7, benefício que não existe contratando direto.</div>
-      </div>
-
-      <!-- 3 · Suporte contínuo (opcional) -->
-      <div class="inv-card">
-        <div class="ic-kick">Opcional · depois dos 3 meses inclusos</div>
-        <h3>3 · Suporte contínuo</h3>
-        <div class="ic-sub">Time de vendas gira: entra vendedor novo, troca gerente, muda a operação. O suporte contínuo mantém a rede afiada: treina cada vendedor que chega, evolui as automações, ajusta o que a operação pedir e cuida da saúde do CRM. Com 140 pessoas usando, apoio de verdade não acaba nos 3 meses.</div>
-        <div class="li-row total" style="border-top:none;padding-top:0;margin-top:0;"><div class="k">Suporte contínuo</div><div class="v" style="line-height:1.12;"><span style="font-size:28px;">R$ 500</span><span style="font-size:12px;color:var(--text-muted);font-weight:400;"> /loja mês</span><small style="display:block;font-size:11px;color:var(--text-muted);margin-top:4px;">24 lojas = R$ 12.000 / mês</small></div></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════ PROJETO PILOTO ════ -->
-<section id="piloto" style="padding:clamp(64px,9vw,100px) clamp(20px,5vw,60px);background:var(--dark-3);border-top:1px solid var(--border);">
-  <div style="max-width:1000px;margin:0 auto;">
-    <span class="free-badge">Prova antes de escalar</span>
-    <h2 class="section-title" style="margin-top:18px;">Se quiser, <em>comece por uma loja.</em></h2>
-    <p style="font-size:15px;color:var(--text-muted);line-height:1.9;max-width:800px;margin:18px 0 6px;">Implantar uma loja sai por R$ 5.500. A proposta é essa: comece por uma única loja, veja o CRM completo funcionando de verdade, e esse valor vira <b style="color:var(--text);">crédito 100% abatido</b> do total quando o grupo liberar as outras 23. Você não paga a mais por validar primeiro, e a gente mostra na prática que o negócio dá certo.</p>
-    <div class="inv-cards" style="margin-top:40px;">
-      <div class="inv-card pack">
-        <div class="ic-kick" style="color:var(--teal-light);">Comece aqui</div>
-        <h3>Piloto · 1 loja</h3>
-        <div class="ic-sub">O CRM completo rodando numa loja, pra rede ver antes de decidir pelo todo.</div>
-        <ul style="list-style:none;margin:6px 0 8px;padding:0;">
-          <li style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Conta e funil no padrão Grupo Geração</div></li>
-          <li style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Automações e distribuição de leads</div></li>
-          <li style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">WhatsApp oficial da loja</div></li>
-          <li style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Treinamento do time da loja</div></li>
-          <li style="display:flex;gap:11px;padding:11px 0;"><span style="color:var(--teal);flex-shrink:0;font-weight:700;font-size:14px;">✓</span><div style="font-size:13.5px;color:var(--text);font-weight:600;line-height:1.4;">Painel pra acompanhar os resultados da loja</div></li>
-        </ul>
-        <div class="li-row total"><div class="k">Investimento do piloto</div><div class="v">R$ 5.500</div></div>
-      </div>
-      <div class="inv-card">
-        <div class="ic-kick">Seguiu com a rede?</div>
-        <h3>O piloto vira crédito</h3>
-        <div class="ic-sub">Nada do que você pagou no piloto é perdido: abate do total da implementação da rede.</div>
-        <div class="li-row"><div class="k">Implementação da rede · 24 lojas</div><div class="v">R$ 96.000</div></div>
-        <div class="li-row"><div class="k">Abatimento do piloto</div><div class="v" style="color:var(--teal-light);">− R$ 5.500</div></div>
-        <div class="li-row total"><div class="k">Restante pelas outras lojas</div><div class="v">R$ 90.500</div></div>
-        <div class="ic-note">No fim, o custo total é o mesmo. Muda só a ordem: você vê funcionando antes de ir com tudo.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ POR QUE K2ACE ════ -->
-<section id="porque">
-  <div class="pq-wrap">
-    <span class="tag">Por que a K2ACE</span>
-    <h2 class="section-title">Quem já roda o Geração<br><em>implanta o CRM.</em></h2>
-    <div class="pq-grid">
-      <div class="pq-card">
-        <div class="pq-n">01</div>
-        <h4>Já conhece a rede por dentro</h4>
-        <p>Não é um implementador de fora aprendendo o grupo do zero. A K2ACE <strong>já construiu e opera o sistema Geração</strong>. Conhece as 24 lojas, as bandeiras e os vendedores. Isso encurta a implantação e reduz a ida e vinda.</p>
-      </div>
-      <div class="pq-card">
-        <div class="pq-n">02</div>
-        <h4>A diretoria enxerga a rede toda</h4>
-        <p>A visão consolidada das 24 lojas fica dentro do <strong>sistema Geração que a rede já usa</strong>: cada lead e cada vendedor à vista, num relatório <strong>atualizado diariamente</strong>, sem trocar de conta nem juntar planilha.</p>
-      </div>
-      <div class="pq-card">
-        <div class="pq-n">03</div>
-        <h4>WhatsApp oficial de verdade</h4>
-        <p>Número verificado da Meta, com selo, conectado ao CRM. <strong>Não é gambiarra</strong> de celular ou app não oficial que cai e derruba o atendimento no meio do evento.</p>
-      </div>
-      <div class="pq-card">
-        <div class="pq-n">04</div>
-        <h4>Preço de rede, não de varejo</h4>
-        <p>Uma loja avulsa custaria R$ 5.500 só de implantação. No pacote, cada loja sai por <strong>R$ 4.000</strong>, e a licença ainda vem no plano semestral com <strong>um mês de bônus</strong>. A escala trabalha a favor do grupo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ PRÓXIMOS PASSOS ════ -->
-<section id="passos">
-  <div class="ps-wrap">
-    <span class="tag">Próximos passos</span>
-    <h2 class="section-title">Como <em>começamos.</em></h2>
-    <div class="passos">
-      <div class="passo">
-        <div class="ps-n">01</div>
-        <h4>Aprovação &amp; kickoff</h4>
-        <p>Fechamento do formato, alinhamento do padrão de funil e definição das ondas de rollout.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">02</div>
-        <h4>Provisionamento Meta</h4>
-        <p>Verificação da conta business e liberação dos 24 números oficiais, etapa que depende do prazo da Meta.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">03</div>
-        <h4>Loja piloto</h4>
-        <p>Uma loja primeiro, do lead ao WhatsApp, validando o motor antes de escalar para a rede.</p>
-      </div>
-      <div class="passo">
-        <div class="ps-n">04</div>
-        <h4>Rollout em ondas</h4>
-        <p>Expansão bandeira por bandeira, com treinamento dedicado da turma de cada uma na entrada no ar, e o relatório da rede junto.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ CASES ════ -->
-<section id="cases" style="padding:clamp(64px,9vw,100px) clamp(20px,5vw,60px);background:var(--dark-2);border-top:1px solid var(--border);">
-  <div style="max-width:1100px;margin:0 auto;">
-    <span class="tag">Quem já confia na K2ACE</span>
-    <h2 class="section-title">Rede grande <em>a gente já roda.</em></h2>
-    <p style="font-size:15px;color:var(--text-muted);line-height:1.9;max-width:760px;margin:18px 0 6px;">Colocar atendimento, CRM e automação pra rodar em operações com dezenas de unidades não é teoria pra K2ACE — é o que a gente já faz todo dia. Quando o assunto é escalar pra uma rede inteira, o caminho já está trilhado.</p>
-
-    <div style="display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px;">
-      <div class="inv-card pack">
-        <div class="ic-kick" style="color:var(--teal-light);">Coco Bambu · rede de restaurantes · +50 lojas</div>
-        <h3>Atendimento e CRM rodando em rede nacional</h3>
-        <div class="ic-sub" style="margin-bottom:0;max-width:78ch;">A K2ACE botou alguém pra atender de verdade em quatro frentes ao mesmo tempo, em mais de 50 unidades: dúvida de cardápio e reserva respondidas na hora, reclamação virando aviso imediato pro gerente daquela loja, evento conduzido sem espera e candidato a vaga já chegando filtrado.</div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
-        <div class="inv-card">
-          <div class="ic-kick">Clube M · várias unidades</div>
-          <h3 style="font-size:17px;">Captação multi-unidade</h3>
-          <div class="ic-sub" style="margin-bottom:0;">Responde na hora quem chega interessado, em várias unidades, pra dúvida não virar desistência.</div>
-        </div>
-        <div class="inv-card">
-          <div class="ic-kick">Xperiun · educação</div>
-          <h3 style="font-size:17px;">Aluno captado na hora</h3>
-          <div class="ic-sub" style="margin-bottom:0;">Quem chega querendo fazer a pós é atendido na hora, antes de a vontade esfriar esperando resposta.</div>
-        </div>
-        <div class="inv-card">
-          <div class="ic-kick">Full Raise · tênis &amp; beach tennis</div>
-          <h3 style="font-size:17px;">Da captação à quadra</h3>
-          <div class="ic-sub" style="margin-bottom:0;">Agenda a aula experimental de quem chega e cuida do relacionamento de quem já treina, todo dia.</div>
-        </div>
-      </div>
-    </div>
-    <p style="font-size:11px;color:var(--text-muted);margin-top:26px;font-style:italic;">Marcas citadas são clientes reais da K2ACE e pertencem aos seus respectivos titulares.</p>
-  </div>
-</section>
-
-<!-- ════ CLOSING ════ -->
-<div id="closing">
-  <div class="closing-inner">
-    <span class="ct">K2ACE × Grupo Geração · 2026</span>
-    <h2>A rede inteira no CRM,<br>com WhatsApp oficial<br><em>e nada se perdendo.</em></h2>
-    <p>Cada loja com seu número, cada vendedor no funil e a diretoria enxergando a rede toda, atualizada dia a dia, implantado por quem já conhece a operação de vocês. O relatório da rede vai junto no pacote.</p>
-    <a href="https://wa.me/5521980529617?text=Klaus%2C%20vamos%20em%20frente%20com%20a%20proposta%20do%20Kommo%20para%20o%20Grupo%20Gera%C3%A7%C3%A3o!" class="cta-btn" target="_blank">Quero seguir com a proposta</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="fl">
-    <div class="g-mark">G</div>
-    <div>
-      <div class="fb">K2ACE</div>
-      <div class="fs">Tecnologia &amp; Inteligência de Vendas</div>
-    </div>
-  </div>
-  <div class="fr">
-    <a href="mailto:klaus@k2ace.com">klaus@k2ace.com</a><br>
-    Proposta válida por 15 dias · Confidencial · 2026
-  </div>
-</footer>
-
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) tentar(lembrada, false);
+})();
+</script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
 </body>
 </html>
