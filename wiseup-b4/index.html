@@ -1,819 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How Do You Want to Be Seen? · Klaus</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-  :root{
-    --bg:#08080A;
-    --surface:rgba(255,255,255,.04);
-    --surface-2:rgba(255,255,255,.07);
-    --border:rgba(255,255,255,.10);
-    --border-strong:rgba(255,255,255,.18);
-    --text:#F5F5F7;
-    --text-dim:#A8A8B3;
-    --text-faint:#6A6A75;
-    --accent:#7C5CFF;
-    --accent-2:#22D3EE;
-    --accent-warm:#F5A623;
-    --gradient-1:linear-gradient(135deg,#7C5CFF 0%,#22D3EE 100%);
-    --gradient-2:linear-gradient(135deg,#F5A623 0%,#FF6B6B 100%);
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{
-    height:100%;background:var(--bg);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',Arial,sans-serif;
-    color:var(--text);overflow:hidden;
-    -webkit-font-smoothing:antialiased;
-    font-feature-settings:'ss01','cv11';
-  }
-
-  .deck{
-    position:fixed;inset:0;
-    display:flex;align-items:center;justify-content:center;
-    background:#000;overflow:hidden;
-  }
-  /* Fixed 16:9 stage @ 1920x1080 — scaled via JS to fit any monitor */
-  .stage{
-    position:relative;
-    width:1920px;height:1080px;
-    transform-origin:center center;
-    background:var(--bg);
-    overflow:hidden;
-  }
-
-  .slide{
-    position:absolute;inset:0;
-    display:none;flex-direction:column;
-    padding:0;
-    opacity:0;
-    overflow:hidden;
-    transition:opacity .55s cubic-bezier(.2,.8,.2,1);
-  }
-  .slide.active{display:flex;opacity:1;}
-  .slide.active .reveal{animation:reveal .85s cubic-bezier(.2,.8,.2,1) both;}
-  .slide.active .reveal:nth-child(2){animation-delay:.08s;}
-  .slide.active .reveal:nth-child(3){animation-delay:.16s;}
-  .slide.active .reveal:nth-child(4){animation-delay:.24s;}
-  .slide.active .reveal:nth-child(5){animation-delay:.32s;}
-  .slide.active .reveal:nth-child(6){animation-delay:.40s;}
-  .slide.active .reveal:nth-child(7){animation-delay:.48s;}
-  @keyframes reveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
-
-  /* Slow ken-burns effect on hero images */
-  @keyframes kenburns{
-    0%{transform:scale(1.05) translate(0,0);}
-    100%{transform:scale(1.15) translate(-1%,1%);}
-  }
-
-  .grain{
-    position:fixed;inset:0;pointer-events:none;z-index:90;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode:overlay;opacity:.6;
-  }
-
-  /* Hero image full-bleed background */
-  .hero-img{
-    position:absolute;inset:0;z-index:0;
-    background-size:cover;background-position:center;
-    animation:kenburns 18s ease-in-out infinite alternate;
-  }
-  .hero-overlay{
-    position:absolute;inset:0;z-index:1;
-    background:
-      linear-gradient(180deg,rgba(8,8,10,.4) 0%,rgba(8,8,10,.75) 60%,rgba(8,8,10,.95) 100%),
-      linear-gradient(90deg,rgba(8,8,10,.85) 0%,rgba(8,8,10,.4) 50%,rgba(8,8,10,.3) 100%);
-  }
-  .hero-content{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:80px;}
-
-  /* META */
-  .meta{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:8px 16px;border-radius:999px;
-    background:rgba(255,255,255,.06);border:1px solid var(--border);
-    color:var(--text-dim);font-size:12px;font-weight:500;
-    letter-spacing:.18em;text-transform:uppercase;
-    backdrop-filter:blur(16px);
-    width:fit-content;
-  }
-  .meta .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:pulse 2s ease-in-out infinite;}
-  @keyframes pulse{50%{box-shadow:0 0 24px var(--accent);}}
-
-  /* TYPOGRAPHY */
-  h1.display{
-    font-size:128px;
-    font-weight:600;line-height:.95;letter-spacing:-.045em;
-  }
-  h1.display .serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.01em;}
-  h1.display .grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-
-  h2.title{
-    font-size:72px;
-    font-weight:600;line-height:1.02;letter-spacing:-.035em;margin-bottom:12px;
-  }
-  h2.title .serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;}
-  h2.title .grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-
-  .lede{
-    font-size:20px;color:var(--text-dim);line-height:1.5;
-    max-width:680px;font-weight:400;
-  }
-
-  /* Nav footer */
-  .nav{
-    position:absolute;left:80px;right:80px;bottom:36px;z-index:5;
-    display:flex;justify-content:space-between;align-items:center;
-    color:var(--text-faint);font-size:11px;
-    letter-spacing:.18em;text-transform:uppercase;font-weight:500;
-  }
-  .nav .name{color:var(--text-dim);}
-  .nav .count{font-feature-settings:"tnum";letter-spacing:.1em;}
-
-  /* ==================== SLIDE 1: COVER ==================== */
-  .cover .hero-img{
-    background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=2400&q=85&auto=format&fit=crop');
-  }
-  .cover .hero-overlay{
-    background:
-      linear-gradient(135deg,rgba(124,92,255,.35) 0%,transparent 50%),
-      linear-gradient(180deg,rgba(8,8,10,.55) 0%,rgba(8,8,10,.85) 70%,rgba(8,8,10,1) 100%);
-  }
-  .cover .hero-content{justify-content:center;padding:0 100px;}
-  .cover .badge{
-    position:absolute;top:60px;right:80px;z-index:3;
-    padding:10px 18px;border-radius:999px;
-    background:rgba(255,255,255,.08);backdrop-filter:blur(16px);
-    border:1px solid var(--border-strong);
-    font-size:11px;color:var(--text);letter-spacing:.18em;text-transform:uppercase;font-weight:500;
-  }
-  .cover .meta{margin-bottom:48px;}
-  .cover h1{margin-bottom:48px;max-width:1100px;}
-  .cover .by{
-    display:flex;align-items:center;gap:18px;
-    margin-top:24px;color:var(--text-dim);font-size:18px;
-  }
-  .cover .by .line{width:56px;height:1px;background:var(--text-faint);}
-  .cover .by b{color:var(--text);font-weight:600;}
-
-  /* ==================== SLIDE 2: ABOUT ME ==================== */
-  .about-layout{
-    display:grid;grid-template-columns:1fr 1.05fr;height:100%;
-  }
-  .about-photo{
-    position:relative;overflow:hidden;
-    background-image:url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1600&q=85&auto=format&fit=crop');
-    background-size:cover;background-position:center;
-  }
-  .about-photo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,transparent 60%,var(--bg) 100%),
-               linear-gradient(180deg,rgba(8,8,10,.2),rgba(8,8,10,.5));
-  }
-  .about-photo .photo-label{
-    position:absolute;bottom:32px;left:32px;z-index:2;
-    padding:8px 14px;border-radius:8px;background:rgba(0,0,0,.5);backdrop-filter:blur(12px);
-    color:var(--text-dim);font-size:11px;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--border);
-  }
-  .about-right{padding:80px;display:flex;flex-direction:column;justify-content:center;}
-  .about-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px;
-  }
-  .stat{
-    padding:24px 24px;
-    background:var(--surface);
-    border:1px solid var(--border);border-radius:16px;
-    position:relative;overflow:hidden;
-    transition:border-color .3s,background .3s;
-  }
-  .stat:hover{border-color:var(--border-strong);background:var(--surface-2);}
-  .stat .k{
-    font-size:10px;color:var(--text-faint);
-    letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:12px;
-  }
-  .stat .v{font-size:17px;font-weight:500;line-height:1.45;color:var(--text);}
-  .stat .v em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent-2);font-size:1.1em;}
-  .stat .v b{font-weight:600;color:var(--text);}
-
-  /* ==================== SLIDE 3: ASSESSMENT ==================== */
-  .b3{padding:80px;display:flex;flex-direction:column;flex:1;}
-  .assess-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;flex:1;margin-top:44px;}
-  .acard{
-    padding:40px;border-radius:22px;
-    background:var(--surface);border:1px solid var(--border);
-    display:flex;flex-direction:column;gap:14px;
-    transition:border-color .35s,background .35s,transform .35s;
-  }
-  .acard:hover{border-color:var(--border-strong);background:var(--surface-2);transform:translateY(-4px);}
-  .acard .tag{
-    font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
-  }
-  .acard:nth-child(1) .tag{color:var(--accent-2);}
-  .acard:nth-child(2) .tag{color:#7CE38B;}
-  .acard:nth-child(3) .tag{color:var(--accent-warm);}
-  .acard:nth-child(4) .tag{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .acard h3{font-size:30px;font-weight:600;letter-spacing:-.02em;}
-  .acard p{font-size:18px;color:var(--text-dim);line-height:1.55;}
-  .acard p b{color:var(--text);font-weight:600;}
-  .acard p em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent-2);font-weight:400;font-size:1.08em;}
-
-  /* ==================== SLIDE 4: PROJECT ==================== */
-  .s4{padding:0;flex:1;display:flex;}
-  .s4 .left-col{
-    flex:1.2;padding:80px;display:flex;flex-direction:column;justify-content:center;
-    background:var(--bg);position:relative;z-index:2;
-  }
-  .s4 .right-col{
-    flex:1;position:relative;overflow:hidden;
-  }
-  .s4 .right-col .img{
-    position:absolute;inset:0;
-    background:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=85&auto=format&fit=crop') center/cover;
-    animation:kenburns 20s ease-in-out infinite alternate;
-  }
-  .s4 .right-col .ov{
-    position:absolute;inset:0;
-    background:linear-gradient(90deg,var(--bg) 0%,transparent 30%,transparent 70%,rgba(8,8,10,.6) 100%),
-               linear-gradient(180deg,rgba(8,8,10,.4),rgba(8,8,10,.8));
-  }
-  .s4 .clients-overlay{
-    position:absolute;bottom:60px;right:60px;z-index:3;
-    padding:32px;border-radius:20px;
-    background:rgba(8,8,10,.75);backdrop-filter:blur(20px);
-    border:1px solid var(--border-strong);
-    min-width:340px;
-  }
-  .s4 .clients-overlay .hdr{
-    color:var(--accent-2);font-size:11px;
-    letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:20px;
-  }
-  .s4 .clients-overlay .list{display:flex;flex-direction:column;gap:14px;}
-  .s4 .clients-overlay .list span{
-    font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--text);
-    padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .s4 .clients-overlay .list span small{
-    display:block;font-size:13px;font-weight:400;color:var(--text-dim);letter-spacing:0;margin-top:4px;
-  }
-  .s4 .clients-overlay .list span:last-child{border:none;padding-bottom:0;}
-  .s4 .clients-overlay .ft{
-    margin-top:18px;font-size:13px;color:var(--text-dim);line-height:1.5;
-  }
-  .s4 .clients-overlay .ft b{color:var(--text);font-weight:600;}
-
-  .metrics{display:flex;flex-direction:column;gap:8px;margin-top:48px;}
-  .metric{
-    display:grid;grid-template-columns:160px 120px 1fr;align-items:baseline;gap:24px;
-    padding:22px 0;border-bottom:1px solid var(--border);
-  }
-  .metric:last-child{border:none;}
-  .metric .big{
-    font-family:'Instrument Serif',serif;font-size:72px;line-height:1;
-    font-weight:400;letter-spacing:-.03em;
-  }
-  .metric .big.grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .metric .big.warm{color:var(--accent-warm);}
-  .metric .lbl{font-size:13px;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;font-weight:600;}
-  .metric .desc{font-size:14px;color:var(--text-dim);line-height:1.5;}
-  .metric .desc b{color:var(--text);font-weight:600;}
-
-  /* ==================== SLIDE 5: CHARACTERISTICS ==================== */
-  .s5{padding:80px;flex:1;display:flex;flex-direction:column;}
-  .char-list{display:flex;flex-direction:column;flex:1;margin-top:32px;justify-content:center;gap:8px;}
-  .char{
-    display:grid;grid-template-columns:140px 1fr 80px;align-items:center;gap:48px;
-    padding:36px 0;border-top:1px solid var(--border);
-    transition:padding-left .35s ease,background .35s ease;
-    position:relative;
-  }
-  .char:hover{padding-left:24px;}
-  .char:last-child{border-bottom:1px solid var(--border);}
-  .char .n{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:96px;line-height:.9;font-weight:400;
-  }
-  .char:nth-child(1) .n{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .char:nth-child(2) .n{background:var(--gradient-2);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .char:nth-child(3) .n{color:var(--accent-warm);}
-  .char .info h3{font-size:42px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px;}
-  .char .info p{font-size:18px;color:var(--text-dim);line-height:1.5;max-width:680px;}
-  .char .arrow{font-size:32px;color:var(--text-faint);transition:color .3s,transform .3s;}
-  .char:hover .arrow{color:var(--text);transform:translateX(8px);}
-
-  /* ==================== SLIDE 6: IDENTITY ==================== */
-  .s6-layout{
-    display:grid;grid-template-columns:1fr 1.1fr;height:100%;
-  }
-  .s6-photo{
-    position:relative;overflow:hidden;
-    background:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=85&auto=format&fit=crop') center/cover;
-  }
-  .s6-photo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,rgba(8,8,10,.3) 0%,rgba(8,8,10,.6) 80%,var(--bg) 100%);
-  }
-  .s6-right{padding:80px;display:flex;flex-direction:column;justify-content:center;}
-  .id-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
-  .id-card{
-    padding:28px;border-radius:18px;
-    background:var(--surface);border:1px solid var(--border);
-    display:flex;flex-direction:column;gap:12px;
-    transition:border-color .3s,background .3s,transform .3s;
-  }
-  .id-card:hover{border-color:var(--border-strong);background:var(--surface-2);transform:translateY(-3px);}
-  .id-card .ico{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:40px;color:var(--accent-2);line-height:1;font-weight:400;
-  }
-  .id-card h3{font-size:20px;font-weight:600;letter-spacing:-.015em;}
-  .id-card p{font-size:14px;color:var(--text-dim);line-height:1.5;}
-
-  /* ==================== SLIDE 7: CONCLUSION ==================== */
-  .concl .hero-img{
-    background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2400&q=85&auto=format&fit=crop');
-  }
-  .concl .hero-overlay{
-    background:
-      radial-gradient(ellipse at 50% 40%,rgba(124,92,255,.4),transparent 60%),
-      radial-gradient(ellipse at 50% 100%,rgba(34,211,238,.3),transparent 70%),
-      linear-gradient(180deg,rgba(8,8,10,.85),rgba(8,8,10,.95));
-  }
-  .concl .hero-content{justify-content:center;align-items:center;text-align:center;padding:80px 100px;}
-  .concl .q{
-    font-size:72px;font-weight:500;
-    line-height:1.05;letter-spacing:-.03em;margin:32px 0 48px;
-  }
-  .concl .q em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
-  .concl .answer-card{
-    max-width:960px;padding:48px 56px;border-radius:24px;
-    background:rgba(255,255,255,.06);backdrop-filter:blur(24px);
-    border:1px solid var(--border-strong);
-    margin-bottom:48px;
-    position:relative;overflow:hidden;
-    box-shadow:0 32px 80px rgba(0,0,0,.5);
-  }
-  .concl .answer-card::before{
-    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:60%;height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-  }
-  .concl .answer-card .tag{
-    color:var(--accent-2);font-size:11px;letter-spacing:.28em;
-    text-transform:uppercase;font-weight:600;margin-bottom:24px;
-  }
-  .concl .answer-card p{
-    font-size:28px;font-weight:500;line-height:1.45;letter-spacing:-.02em;
-  }
-  .concl .answer-card p em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent-2);}
-  .concl .quote{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:36px;line-height:1.35;color:var(--text);font-weight:400;
-    max-width:820px;
-  }
-  .concl .quote-author{
-    margin-top:18px;font-family:'Inter',sans-serif;font-style:normal;
-    font-size:12px;color:var(--text-faint);letter-spacing:.22em;text-transform:uppercase;
-  }
-
-  /* ==================== SLIDE: TRAININGS / STUDENTS ==================== */
-  .train .hero-img{
-    background-image:url('palco.jpg');
-    background-position:32% 38%;
-  }
-  /* Light on top so the audience is visible; dark band at the bottom for the text */
-  .train .hero-overlay{
-    background:
-      linear-gradient(180deg,rgba(8,8,10,.32) 0%,rgba(8,8,10,.05) 26%,rgba(8,8,10,.10) 46%,rgba(8,8,10,.62) 74%,rgba(8,8,10,.96) 100%);
-  }
-  .train .hero-content{justify-content:space-between;padding:60px 90px;}
-  .train-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:56px;}
-  .train-bottom .txt{max-width:900px;}
-  .train-stat{display:flex;flex-direction:column;align-items:flex-end;text-align:right;flex-shrink:0;}
-  .train-stat .big{
-    font-family:'Instrument Serif',serif;font-size:150px;line-height:.82;
-    font-weight:400;letter-spacing:-.03em;
-    background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .train-stat .lbl{font-size:22px;color:var(--text);max-width:300px;line-height:1.25;font-weight:500;margin-top:8px;}
-  .train-stat .lbl b{color:var(--text);font-weight:700;}
-
-  /* ==================== SLIDE 8: THANK YOU ==================== */
-  .ty .hero-img{
-    background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=2400&q=85&auto=format&fit=crop');
-  }
-  .ty .hero-overlay{
-    background:
-      radial-gradient(ellipse at 80% 20%,rgba(245,166,35,.25),transparent 50%),
-      radial-gradient(ellipse at 20% 80%,rgba(124,92,255,.25),transparent 50%),
-      linear-gradient(180deg,rgba(8,8,10,.75),rgba(8,8,10,.92));
-  }
-  .ty .hero-content{padding:80px;}
-  .ty-top{flex:1;display:flex;flex-direction:column;justify-content:center;}
-  .ty-big{
-    font-size:220px;font-weight:600;
-    line-height:.9;letter-spacing:-.06em;margin:32px 0;
-  }
-  .ty-big .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
-  .ty-big .grad{background:var(--gradient-2);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .ty-q{font-size:36px;font-weight:500;color:var(--text);letter-spacing:-.025em;margin-bottom:10px;}
-  .ty-sub{font-size:18px;color:var(--text-dim);max-width:640px;line-height:1.5;}
-
-  .sources{
-    margin-top:auto;padding-top:32px;border-top:1px solid var(--border);
-    display:flex;gap:48px;flex-wrap:wrap;
-  }
-  .sources .col{flex:1;min-width:240px;}
-  .sources h4{
-    color:var(--text-faint);font-size:11px;letter-spacing:.22em;
-    text-transform:uppercase;font-weight:600;margin-bottom:14px;
-  }
-  .sources p{font-size:14px;color:var(--text-dim);line-height:1.6;}
-  .sources p em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--text);}
-
-  /* ==================== Controls ==================== */
-  .controls{
-    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-    background:rgba(255,255,255,.05);backdrop-filter:blur(24px);
-    border:1px solid var(--border-strong);
-    border-radius:999px;padding:8px 12px;
-    display:flex;gap:6px;align-items:center;z-index:200;
-    box-shadow:0 12px 40px rgba(0,0,0,.6);
-  }
-  .controls button{
-    width:34px;height:34px;border-radius:50%;
-    background:transparent;border:none;color:var(--text);
-    cursor:pointer;font-size:15px;
-    display:flex;align-items:center;justify-content:center;
-    transition:background .2s;
-  }
-  .controls button:hover{background:rgba(255,255,255,.1);}
-  .controls .count{
-    color:var(--text-dim);font-size:12px;font-weight:500;
-    padding:0 14px;font-feature-settings:"tnum";letter-spacing:.08em;
-  }
-  .controls .count b{color:var(--text);font-weight:600;}
-  .controls .hint{
-    color:var(--text-faint);font-size:10px;padding:0 10px;
-    border-left:1px solid var(--border);margin-left:4px;letter-spacing:.12em;text-transform:uppercase;
-  }
-
-  .progress{
-    position:fixed;top:0;left:0;right:0;height:2px;
-    background:rgba(255,255,255,.05);z-index:201;
-  }
-  .progress .bar{
-    height:100%;background:var(--gradient-1);
-    transition:width .6s cubic-bezier(.2,.8,.2,1);
-    box-shadow:0 0 12px var(--accent);
-  }
-
-  @media print{
-    .controls,.progress,.grain{display:none;}
-    .slide{display:flex!important;opacity:1!important;page-break-after:always;position:relative;height:100%;}
-  }
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
+}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
+}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<div class="grain"></div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-
-<div class="deck">
-<div class="stage" id="stage">
-
-<!-- SLIDE 1: COVER -->
-<section class="slide cover active">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="badge">Lesson 3 · Book 4</div>
-  <div class="hero-content">
-    <div class="meta reveal"><span class="dot"></span>Wise Up · Basic 3 · Book 4</div>
-    <h1 class="display reveal">How do you<br>want to be <span class="serif grad">seen?</span></h1>
-    <div class="by reveal">
-      <span class="line"></span>
-      <span>Presented by <b>Klaus</b></span>
-    </div>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">01 / 09</span></div>
-</section>
-
-<!-- SLIDE 2: PART 1 — TALK ABOUT YOURSELF -->
-<section class="slide">
-  <div class="about-layout">
-    <div class="about-photo">
-      <div class="photo-label">Florianópolis · Rio de Janeiro</div>
-    </div>
-    <div class="about-right">
-      <div class="reveal"><div class="meta"><span class="dot"></span>Part 01 · Talk About Yourself</div></div>
-      <h2 class="title reveal" style="margin-top:32px;">A little <span class="serif">about</span><br>me.</h2>
-      <p class="lede reveal">Where I come from, what I used to do, and what I do today.</p>
-
-      <div class="about-grid">
-        <div class="stat reveal">
-          <div class="k">Origin</div>
-          <div class="v">I was born in <b>Florianópolis</b>. I spent half of my childhood there and the other half in <em>Rio de Janeiro</em>.</div>
-        </div>
-        <div class="stat reveal">
-          <div class="k">Teenage years</div>
-          <div class="v">I <em>used to</em> play football and play in the streets with my friends.</div>
-        </div>
-        <div class="stat reveal">
-          <div class="k">First job</div>
-          <div class="v">Grocery <b>bagger</b> at a supermarket.</div>
-        </div>
-        <div class="stat reveal">
-          <div class="k">Education &amp; today</div>
-          <div class="v">Business Administration · <em>MBA</em> in Management. Entrepreneur for <b>more or less 12 years</b>, working with technology, data and AI.</div>
-        </div>
-      </div>
-    </div>
+  <h1>How Do You Want to Be Seen? · Klaus</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">02 / 09</span></div>
-</section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
-<!-- SLIDE 3: PART 2 — PERSONAL ASSESSMENT -->
-<section class="slide b3">
-  <div class="reveal"><div class="meta"><span class="dot"></span>Part 02 · Personal Assessment</div></div>
-  <h2 class="title reveal" style="margin-top:24px;">Where I am, and where I'm <span class="serif">going.</span></h2>
-  <p class="lede reveal">My goal, my strengths, my weakness, and what I am changing right now.</p>
-
-  <div class="assess-grid">
-    <div class="acard reveal">
-      <div class="tag">My goal</div>
-      <h3>Build with AI</h3>
-      <p>I want to build a company that helps other businesses <b>grow with data and artificial intelligence</b>.</p>
-    </div>
-    <div class="acard reveal">
-      <div class="tag">My strengths</div>
-      <h3>Ideas + delivery</h3>
-      <p>I am <b>creative</b>, I solve problems fast, and I am good with <em>people and technology</em> at the same time.</p>
-    </div>
-    <div class="acard reveal">
-      <div class="tag">My weakness</div>
-      <h3>Too many things</h3>
-      <p>Sometimes I <b>start too many projects</b> at the same time, and I need to focus more.</p>
-    </div>
-    <div class="acard reveal">
-      <div class="tag">What I'm changing</div>
-      <h3>Right now</h3>
-      <p>I <b>am learning English</b>, I am delegating more to my team, and I am <em>saying "no"</em> more often.</p>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">03 / 09</span></div>
-</section>
-
-<!-- SLIDE 4: PART 3 — NARRATE A SITUATION -->
-<section class="slide s4">
-  <div class="left-col">
-    <div class="reveal"><div class="meta"><span class="dot"></span>Part 03 · Narrate a Situation</div></div>
-    <h2 class="title reveal" style="margin-top:24px;">Two big projects I<br>delivered <span class="serif">this year.</span></h2>
-    <p class="lede reveal">Real teams, real clients, real results, in 2026.</p>
-
-    <div class="metrics">
-      <div class="metric reveal">
-        <span class="big grad">2</span>
-        <div>
-          <div class="lbl">Big projects</div>
-          <div class="desc" style="margin-top:6px;">Two <b>big projects</b>, both delivered a few months ago, in 2026.</div>
-        </div>
-        <span></span>
-      </div>
-      <div class="metric reveal">
-        <span class="big">~7</span>
-        <div>
-          <div class="lbl">People</div>
-          <div class="desc" style="margin-top:6px;">A <b>small squad</b>: developers, analysts and me.</div>
-        </div>
-        <span></span>
-      </div>
-      <div class="metric reveal">
-        <span class="big warm">100%</span>
-        <div>
-          <div class="lbl">Delivered</div>
-          <div class="desc" style="margin-top:6px;">Two very <b>satisfied clients</b>. In my opinion, a great result.</div>
-        </div>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <div class="right-col">
-    <div class="img"></div>
-    <div class="ov"></div>
-    <div class="clients-overlay">
-      <div class="hdr">Delivered in 2026</div>
-      <div class="list">
-        <span>Grupo Geração<small>A live sales board for a car &amp; motorcycle group</small></span>
-        <span>Coco Bambu<small>AI agents on WhatsApp for the restaurants</small></span>
-      </div>
-      <div class="ft">We spent <b>a few months</b> on each one. Every person on the team owned one part.</div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">04 / 09</span></div>
-</section>
-
-<!-- SLIDE 5: TRAININGS / STUDENTS -->
-<section class="slide train">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="reveal"><div class="meta"><span class="dot"></span>We Also Teach</div></div>
-    <div class="train-bottom">
-      <div class="txt reveal">
-        <h2 class="title" style="max-width:900px;">We teach what we <span class="serif">know.</span></h2>
-        <p class="lede" style="margin-top:10px;">Trainings and immersions on data, Power BI, and AI for business.</p>
-      </div>
-      <div class="train-stat reveal">
-        <span class="big">+20,000</span>
-        <span class="lbl"><b>students</b> have already learned with us.</span>
-      </div>
-    </div>
-  </div>
-  <div class="nav" style="color:rgba(255,255,255,.5);"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">05 / 09</span></div>
-</section>
-
-<!-- SLIDE 6: PART 4 — CHARACTERISTICS I HIGHLIGHT -->
-<section class="slide s5">
-  <div class="reveal"><div class="meta"><span class="dot"></span>Part 04 · How I Want to Be Seen</div></div>
-  <h2 class="title reveal" style="margin-top:24px;">Three things I want people to <span class="serif">highlight.</span></h2>
-
-  <div class="char-list">
-    <div class="char reveal">
-      <div class="n">i</div>
-      <div class="info">
-        <h3>Reliable</h3>
-        <p>When I say I will deliver, I deliver. People can count on me.</p>
-      </div>
-      <div class="arrow">→</div>
-    </div>
-    <div class="char reveal">
-      <div class="n">ii</div>
-      <div class="info">
-        <h3>Innovative</h3>
-        <p>I like to solve old problems with new technology.</p>
-      </div>
-      <div class="arrow">→</div>
-    </div>
-    <div class="char reveal">
-      <div class="n">iii</div>
-      <div class="info">
-        <h3>Approachable</h3>
-        <p>I am serious about work, but I am easy to talk to.</p>
-      </div>
-      <div class="arrow">→</div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">06 / 09</span></div>
-</section>
-
-<!-- SLIDE 6: PART 4 — HOW I WANT TO BE REMEMBERED -->
-<section class="slide">
-  <div class="s6-layout">
-    <div class="s6-photo"></div>
-    <div class="s6-right">
-      <div class="reveal"><div class="meta"><span class="dot"></span>Part 04 · The Mark I Want to Leave</div></div>
-      <h2 class="title reveal" style="margin-top:24px;">How I want to be<br><span class="serif">remembered.</span></h2>
-      <p class="lede reveal">Not only for the results, but for how I make people feel.</p>
-
-      <div class="id-grid">
-        <div class="id-card reveal">
-          <div class="ico">α</div>
-          <h3>The problem solver</h3>
-          <p>"If Klaus is on it, it will get done." That is what I want people to think.</p>
-        </div>
-        <div class="id-card reveal">
-          <div class="ico">β</div>
-          <h3>The one who teaches</h3>
-          <p>I share what I learn with my team. I grow when they grow.</p>
-        </div>
-        <div class="id-card reveal">
-          <div class="ico">γ</div>
-          <h3>Calm under pressure</h3>
-          <p>I keep the team calm and focused when things get hard.</p>
-        </div>
-        <div class="id-card reveal">
-          <div class="ico">δ</div>
-          <h3>Honest</h3>
-          <p>People trust what I say. In my opinion, trust is everything.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">07 / 09</span></div>
-</section>
-
-<!-- SLIDE 7: DRAW A CONCLUSION -->
-<section class="slide concl">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="reveal"><div class="meta"><span class="dot"></span>Draw a Conclusion</div></div>
-    <div class="q reveal">So, <em>how do you</em><br>want to be seen?</div>
-
-    <div class="answer-card reveal">
-      <div class="tag">My best qualities in two lines</div>
-      <p>I am a <em>curious</em> and <em>reliable</em> entrepreneur. I turn difficult problems into simple results with technology, data, and a calm mind.</p>
-    </div>
-
-    <div class="quote reveal">
-      "Your brand is what people say<br>about you when you are not in the room."
-      <div class="quote-author">Jeff Bezos</div>
-    </div>
-  </div>
-  <div class="nav" style="color:rgba(255,255,255,.5);"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">08 / 09</span></div>
-</section>
-
-<!-- SLIDE 8: THANK YOU -->
-<section class="slide ty">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="ty-top">
-      <div class="reveal"><div class="meta"><span class="dot"></span>Q &amp; A</div></div>
-      <h1 class="ty-big reveal">Thank <span class="serif grad">you.</span></h1>
-      <div class="ty-q reveal">And you, how do you want to be seen?</div>
-      <p class="ty-sub reveal">I want to be remembered as reliable, curious and easy to work with. What about you?</p>
-    </div>
-
-    <div class="sources reveal">
-      <div class="col">
-        <h4>Book</h4>
-        <p>Dale Carnegie, <em>How to Win Friends and Influence People</em></p>
-      </div>
-      <div class="col">
-        <h4>Talk</h4>
-        <p>Simon Sinek, <em>Start With Why</em> (TED)</p>
-      </div>
-      <div class="col">
-        <h4>Article</h4>
-        <p>Harvard Business Review, <em>Reinventing Your Personal Brand</em></p>
-      </div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Strategic Planning &amp; Entrepreneurship in Practice</span><span class="count">09 / 09</span></div>
-</section>
-
-</div>
-</div>
-
+<script type="application/json" id="cofre">{"v":2,"grupo":"wiseup","nonce":"fHXYLebdxfX/Rtic","dados":"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"}</script>
 <script>
-  // Fill the whole screen on any monitor/tablet — no black bars, no distortion.
-  // Keeps the type size of the 1920x1080 design; the stage grows in the axis the
-  // screen has extra room, and the flexible layouts absorb it.
-  const stage = document.getElementById('stage');
-  function fit(){
-    const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    stage.style.width  = (window.innerWidth  / s) + 'px';
-    stage.style.height = (window.innerHeight / s) + 'px';
-    stage.style.transform = `scale(${s})`;
-  }
-  fit();
-  window.addEventListener('resize', fit);
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-  let idx = 0;
-  function go(n){
-    idx = Math.max(0, Math.min(total-1, n));
-    slides.forEach((s,i)=>s.classList.toggle('active', i===idx));
-    document.getElementById('bar').style.width = ((idx+1)/total*100)+'%';
-  }
-
-  // Tap anywhere to advance (tablet-friendly). Left 25% = back, rest = forward.
-  const deckEl = document.querySelector('.deck');
-  deckEl.addEventListener('click', e=>{
-    if(e.clientX < window.innerWidth * 0.25) go(idx-1);
-    else go(idx+1);
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
   });
+}
 
-  // Swipe left/right for a natural tablet feel
-  let tx=0, ty=0;
-  deckEl.addEventListener('touchstart', e=>{
-    tx=e.changedTouches[0].clientX; ty=e.changedTouches[0].clientY;
-  }, {passive:true});
-  deckEl.addEventListener('touchend', e=>{
-    const dx=e.changedTouches[0].clientX - tx;
-    const dy=e.changedTouches[0].clientY - ty;
-    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)){   // horizontal swipe
-      e.preventDefault();
-      go(dx < 0 ? idx+1 : idx-1);                          // swipe left = next
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
+
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
     }
-  });
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
 
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') go(idx+1);
-    else if(e.key==='ArrowLeft'||e.key==='PageUp') go(idx-1);
-    else if(e.key==='Home') go(0);
-    else if(e.key==='End') go(total-1);
-    else if(e.key.toLowerCase()==='f'){
-      if(document.fullscreenElement) document.exitFullscreen();
-      else document.documentElement.requestFullscreen();
-    }
-  });
-  go(0);
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
+})();
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
 </body>

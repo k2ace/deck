@@ -4,734 +4,197 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Proposta K2ACE × Cristofolini Máquinas</title>
-<meta name="description" content="Site institucional, gerador de propostas e CRM comercial para a Cristofolini Máquinas.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#07192A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23185790'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='26' font-weight='800' fill='%23fff' text-anchor='middle'%3EK2%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
-<link rel="preload" as="image" href="../site/media/bobina/095.jpg">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-/* ===========================================================
-   Proposta na identidade da Cristofolini, a mesma do site novo:
-   Montserrat, azul #185790, marinho #07192A, cinza #F0F0F0.
-   A K2ACE assina, mas quem aparece é a fábrica deles.
-   =========================================================== */
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
 :root{
-  --marca:#185790;
-  --marca-2:#1f68ab;
-  --prata:#C0C0C0;
-  --noite:#07192A;
-  --noite-2:#0a2136;
-  --noite-3:#0e2a44;
-  --papel:#F0F0F0;
-  --degrade:linear-gradient(180deg,#185790 0%,#07192A 100%);
-  --tinta:#0b1720;
-  --tinta-2:#43525e;
-  --claro:#f3f6f9;
-  --claro-2:rgba(243,246,249,.7);
-  --claro-3:rgba(243,246,249,.62);
-  --linha:rgba(255,255,255,.12);
-  --linha-escura:rgba(11,31,48,.1);
-  --chrome:rgba(7,25,42,.6);
-  --zap:#25D366;
-  --pad:clamp(1rem,5vw,4rem);
-  --r:1.25rem;
-  --mola:cubic-bezier(.22,1,.36,1);
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
   color-scheme:dark;
 }
 @media (prefers-contrast: more){
-  :root{--claro-2:rgba(243,246,249,.9);--claro-3:rgba(243,246,249,.8);--linha:rgba(255,255,255,.4);--tinta-2:#1d2a34;--linha-escura:rgba(11,31,48,.35)}
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
 }
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-body{margin:0;background:var(--noite);color:var(--claro);
-  font:400 1rem/1.6 Montserrat,system-ui,-apple-system,sans-serif;letter-spacing:-.005em;
-  -webkit-font-smoothing:antialiased;overflow-x:clip}
-img,canvas{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:.5rem}
-
-.display{font-weight:300;letter-spacing:-.035em;line-height:1;margin:0}
-.display b{font-weight:800}
-.eyebrow{font:600 .75rem/1.2 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--claro-3);margin:0}
-.eyebrow b{color:#fff;font-weight:700}
-.claro .eyebrow{color:rgba(11,23,32,.62)}
-.claro .eyebrow b{color:var(--marca)}
-.num{font-variant-numeric:tabular-nums}
-.sec{padding:clamp(5.5rem,14vh,9rem) var(--pad);max-width:90rem;margin:0 auto}
-.sec-cab{display:flex;justify-content:space-between;align-items:end;gap:1.5rem 3rem;flex-wrap:wrap;margin-bottom:clamp(2.5rem,6vh,4rem)}
-.sec-cab h2{font-size:clamp(2.25rem,5.4vw,5rem);max-width:15ch;margin-top:1rem}
-.sec-cab p{margin:0;max-width:30rem;color:var(--claro-2);font-size:1.0625rem}
-.claro{background:var(--papel);color:var(--tinta)}
-.claro .sec-cab p{color:var(--tinta-2)}
-
-/* ---------- Topo ---------- */
-.topo{position:fixed;inset:0 0 auto;z-index:50;padding:max(.75rem,env(safe-area-inset-top)) var(--pad) .75rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:transform .5s var(--mola)}
-.topo::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s ease;
-  background:var(--chrome);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
-  -webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
-.topo.solido::before{opacity:1}
-.topo.escondido{transform:translateY(-110%)}
-.assinatura{display:flex;align-items:center;gap:.8rem}
-.assinatura img{height:1.25rem;width:auto}
-.assinatura .x{color:var(--claro-3);font-weight:300}
-.k2{font:800 1rem/1 Montserrat,sans-serif;letter-spacing:-.02em}
-.k2 span{font-weight:300}
-.topo nav{display:flex;align-items:center;gap:.25rem}
-.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 Montserrat,sans-serif;color:var(--claro-2);transition:color .2s ease,background-color .2s ease}
-.topo nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
-@media (max-width:860px){.topo nav a:not(.btn){display:none}}
-.so-estreito{display:none}
-@media (max-width:560px){.so-largo{display:none}.so-estreito{display:inline}.assinatura{gap:.55rem}.assinatura img{height:1.05rem}}
-.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.3rem;border-radius:99rem;
-  font:600 .9375rem/1 Montserrat,sans-serif;letter-spacing:-.01em;white-space:nowrap;
-  transition:transform .35s var(--mola),background-color .2s ease;will-change:transform}
-.btn:active,.btn.pressionado{transform:scale(.96);transition-duration:.08s}
-.btn-marca{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
-.btn-marca:hover{background:var(--marca-2)}
-.btn-vidro{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-.btn-vidro:hover{background:rgba(255,255,255,.2)}
-.btn-contorno{color:var(--marca);box-shadow:inset 0 0 0 1.5px var(--marca)}
-.btn-contorno:hover{background:rgba(24,87,144,.07)}
-.btn svg{width:1.05em;height:1.05em;flex:none}
-.topo .btn{padding:.6rem 1rem;font-size:.875rem}
-
-/* ---------- 1. Abertura: o rolo pronto funde na fachada ---------- */
-.abertura{position:relative;height:420vh}
-.abertura .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000 url(../site/media/bobina/095.jpg) center/cover}
-.abertura canvas{position:absolute;inset:0;width:100%;height:100%}
-.abertura .veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,25,42,.6) 0%,rgba(7,25,42,.12) 30%,rgba(7,25,42,.3) 55%,rgba(7,25,42,.93) 100%)}
-@media (max-aspect-ratio: 1/1.15){.abertura .veu{background:linear-gradient(180deg,rgba(7,25,42,.45) 0%,rgba(7,25,42,0) 14%,rgba(7,25,42,0) 52%,rgba(7,25,42,.7) 70%,rgba(7,25,42,.92) 100%)}}
-.abertura .bloco{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(2.5rem,9vh,5.5rem);max-width:60rem;will-change:transform,opacity}
-.abertura .bloco + .bloco{opacity:0}
-.abertura h1{font-size:clamp(2.6rem,min(7.4vw,11.5svh),7.25rem);margin-top:1.25rem;text-shadow:0 2px 40px rgba(0,0,0,.25)}
-.abertura h2{font-size:clamp(2.2rem,5.6vw,5.25rem);text-shadow:0 2px 40px rgba(0,0,0,.25)}
-.abertura p.sub{margin:1.5rem 0 0;max-width:36rem;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.15rem)}
-.abertura .meta{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:1.75rem;color:var(--claro-3);font:500 .8125rem/1.3 Montserrat,sans-serif}
-.abertura .meta b{color:#fff;font-weight:600}
-.rolar{position:absolute;left:50%;bottom:1rem;translate:-50% 0;width:1px;height:2.5rem;background:var(--linha);overflow:hidden}
-.rolar::after{content:"";position:absolute;inset:0;background:#fff;animation:rolar 2.4s var(--mola) infinite}
-@keyframes rolar{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
-
-/* ---------- 2. Cenário ---------- */
-.cenario{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.dor{padding:1.6rem 1.5rem 1.75rem;border-radius:var(--r);background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--linha)}
-.dor .n{font:700 .75rem/1 Montserrat,sans-serif;letter-spacing:.12em;color:var(--prata)}
-.dor h3{font:700 1.35rem/1.15 Montserrat,sans-serif;letter-spacing:-.025em;margin:1.1rem 0 .7rem}
-.dor p{margin:0;color:var(--claro-2);font-size:.95rem;line-height:1.55}
-@media (max-width:860px){.cenario{grid-template-columns:1fr}}
-
-/* ---------- 3. Fase 1: entregas prontas ---------- */
-.fase-selo{display:inline-flex;align-items:center;gap:.55rem;padding:.45rem .8rem;border-radius:99rem;
-  font:700 .72rem/1 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;background:rgba(24,87,144,.1);color:var(--marca)}
-.fase-selo i{width:.5rem;height:.5rem;border-radius:50%;background:#1f9e48;box-shadow:0 0 0 3px rgba(31,158,72,.18)}
-.entrega{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:center;padding:clamp(2.5rem,6vh,4rem) 0;border-top:1px solid var(--linha-escura)}
-.entrega:first-of-type{border-top:0;padding-top:0}
-.entrega .num-g{font:800 clamp(3.5rem,7vw,6rem)/.85 Montserrat,sans-serif;letter-spacing:-.05em;color:var(--marca)}
-.entrega h3{font:300 clamp(2rem,3.6vw,3.2rem)/1.02 Montserrat,sans-serif;letter-spacing:-.035em;margin:1.25rem 0 1rem}
-.entrega h3 b{font-weight:800}
-.entrega .txt > p{margin:0 0 1.5rem;color:var(--tinta-2);font-size:1.0625rem;max-width:32rem}
-.lista{list-style:none;margin:0 0 2rem;padding:0;display:grid;gap:.85rem}
-.lista li{display:grid;grid-template-columns:1.4rem 1fr;gap:.6rem;font-size:.95rem;line-height:1.45}
-.lista li svg{width:1.1rem;height:1.1rem;margin-top:.15rem;color:var(--marca)}
-.lista li b{font-weight:700;display:block}
-.lista li span{color:var(--tinta-2)}
-.acoes{display:flex;flex-wrap:wrap;gap:.75rem}
-.acoes small{display:block;width:100%;color:var(--tinta-2);font-size:.8rem;margin-top:.25rem}
-/* telas em janela de navegador, empilhadas */
-.telas{position:relative;aspect-ratio:16/11.5}
-.janela{position:absolute;border-radius:.9rem;overflow:hidden;background:#fff;
-  box-shadow:0 .5px 1px rgba(11,31,48,.08),0 1.5rem 3.5rem rgba(11,31,48,.2),0 0 0 1px rgba(11,31,48,.06);will-change:transform}
-.janela .barra{display:flex;align-items:center;gap:.35rem;height:1.65rem;padding:0 .7rem;background:#e9ecef;border-bottom:1px solid rgba(11,31,48,.07)}
-.janela .barra i{width:.5rem;height:.5rem;border-radius:50%;background:#c8ced4}
-.janela .barra span{margin-left:.6rem;font:500 .62rem/1 Montserrat,sans-serif;color:#6b7a87;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.janela img{width:100%;height:auto}
-.telas .j1{left:0;top:0;width:82%;z-index:1}
-.telas .j2{right:0;bottom:0;width:62%;z-index:2}
-.telas.tres .j3{left:6%;bottom:-4%;width:40%;z-index:3}
-@media (max-width:960px){.entrega{grid-template-columns:1fr}.telas{order:-1;margin-bottom:1rem}}
-
-/* cortina do site: ele só é mostrado ao vivo */
-.ao-vivo{display:flex;align-items:center;gap:.6rem;margin:0;color:var(--marca);font-weight:600;font-size:.95rem}
-.ao-vivo svg{width:1.2rem;height:1.2rem;flex:none}
-.cortina{position:relative;aspect-ratio:16/11;border-radius:1.25rem;overflow:hidden;background:var(--noite);isolation:isolate;
-  box-shadow:0 1.5rem 3.5rem rgba(11,31,48,.22)}
-.cortina .fundo{position:absolute;inset:0;z-index:-1;background:url(../site/media/bobina/095.jpg) center/cover}
-.cortina::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,25,42,.05) 35%,rgba(7,25,42,.88))}
-.selo-cortina{position:absolute;left:clamp(1.25rem,3vw,2.25rem);right:clamp(1.25rem,3vw,2.25rem);bottom:clamp(1.25rem,3vw,2.25rem);color:#fff}
-.selo-cortina strong{display:block;margin-top:.9rem;font:300 clamp(1.6rem,2.8vw,2.4rem)/1.08 Montserrat,sans-serif;letter-spacing:-.03em}
-.selo-cortina span:last-child{display:block;margin-top:.7rem;color:var(--claro-2);font-size:.9rem}
-@media (max-width:960px){.cortina{order:-1;margin-bottom:1rem}}
-
-/* ---------- 4. Fase 2: CRM ---------- */
-.crm{background:var(--degrade)}
-.caminho{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:clamp(2.5rem,6vh,4rem);position:relative}
-.caminho::before{content:"";position:absolute;left:0;right:0;top:1.05rem;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.55),rgba(255,255,255,.15))}
-.passo-c{position:relative;padding-right:1rem}
-.passo-c i{display:block;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--noite);box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);position:relative}
-.passo-c:first-child i{background:#fff;box-shadow:none}
-.passo-c:first-child i::after{content:"";position:absolute;inset:.55rem;border-radius:50%;background:var(--marca)}
-.passo-c b{display:block;margin-top:1rem;font:700 1.05rem/1.2 Montserrat,sans-serif;letter-spacing:-.02em}
-.passo-c span{display:block;margin-top:.35rem;color:var(--claro-2);font-size:.875rem;line-height:1.45}
-.modulos{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.mod{padding:1.4rem 1.4rem 1.5rem;border-radius:var(--r);background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.mod svg{width:1.5rem;height:1.5rem;color:#fff;opacity:.9}
-.mod h3{font:700 1.2rem/1.2 Montserrat,sans-serif;letter-spacing:-.02em;margin:1rem 0 .5rem}
-.mod p{margin:0;color:var(--claro-2);font-size:.9rem;line-height:1.5}
-.ponte{margin-top:clamp(2rem,5vh,3rem);padding:1.4rem 1.5rem;border-radius:var(--r);background:rgba(7,25,42,.45);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);
-  display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center}
-.ponte svg{width:1.6rem;height:1.6rem}
-.ponte p{margin:0;color:var(--claro-2);font-size:.975rem}
-.ponte p b{color:#fff}
-@media (max-width:960px){.modulos{grid-template-columns:1fr 1fr}}
-@media (max-width:620px){.modulos{grid-template-columns:1fr}.caminho{grid-template-columns:1fr 1fr;row-gap:2rem}.caminho::before{display:none}}
-
-/* ---------- 5. Investimento ---------- */
-.planos{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:1rem;align-items:stretch}
-.plano{border-radius:1.5rem;background:#fff;padding:clamp(1.5rem,3vw,2.5rem);
-  box-shadow:0 .5px 1px rgba(11,31,48,.05),0 2px 5px rgba(11,31,48,.04),0 10px 28px rgba(11,31,48,.06)}
-.plano.destaque{box-shadow:0 0 0 2px var(--marca),0 1.5rem 3.5rem rgba(24,87,144,.18)}
-.plano .tipo{font:700 .72rem/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--marca)}
-.plano h3{font:300 clamp(1.7rem,2.6vw,2.3rem)/1.05 Montserrat,sans-serif;letter-spacing:-.03em;margin:.8rem 0 .5rem}
-.plano h3 b{font-weight:800}
-.plano > p{margin:0 0 1.5rem;color:var(--tinta-2)}
-.plano .lista{margin-bottom:1.75rem}
-.formas{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
-.forma{padding:1rem 1rem 1.1rem;border-radius:1rem;background:var(--papel)}
-.forma.vista{background:var(--marca);color:#fff}
-.forma small{display:block;font:700 .7rem/1 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
-.forma strong{display:block;margin-top:.55rem;font:800 clamp(1.35rem,2.2vw,1.8rem)/1 Montserrat,sans-serif;letter-spacing:-.035em}
-.forma span{display:block;margin-top:.45rem;font-size:.78rem;line-height:1.35;opacity:.8}
-.mensal{display:flex;align-items:baseline;gap:.35rem;margin:1.5rem 0 .4rem}
-.mensal strong{font:800 clamp(2.4rem,4vw,3.4rem)/1 Montserrat,sans-serif;letter-spacing:-.045em;color:var(--marca)}
-.mensal span{color:var(--tinta-2);font-weight:500}
-.nota{margin:1rem 0 0;color:var(--tinta-2);font-size:.85rem;line-height:1.5}
-.fase2-preco{margin-top:1rem;display:grid;grid-template-columns:1fr auto auto;gap:1rem 2rem;align-items:center;border-radius:1.5rem;background:#fff;padding:clamp(1.5rem,3vw,2.25rem);
-  box-shadow:inset 0 0 0 1.5px rgba(24,87,144,.25)}
-.fase2-preco h3{font:300 clamp(1.5rem,2.3vw,2rem)/1.05 Montserrat,sans-serif;letter-spacing:-.03em;margin:.6rem 0 .4rem}
-.fase2-preco h3 b{font-weight:800}
-.fase2-preco p{margin:0;color:var(--tinta-2);font-size:.9rem;max-width:34rem}
-.valor-f2 small{display:block;font:700 .7rem/1 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2)}
-.valor-f2 strong{display:block;margin-top:.5rem;font:800 clamp(1.6rem,2.6vw,2.1rem)/1 Montserrat,sans-serif;letter-spacing:-.04em;color:var(--marca)}
-.valor-f2 span{display:block;margin-top:.35rem;font-size:.78rem;color:var(--tinta-2)}
-@media (max-width:960px){.planos{grid-template-columns:1fr}.fase2-preco{grid-template-columns:1fr 1fr}.fase2-preco > div:first-child{grid-column:1/-1}}
-.separado{display:grid;gap:.45rem;margin:0 0 1.25rem;padding:1rem 1.1rem;border-radius:1rem;box-shadow:inset 0 0 0 1px var(--linha-escura)}
-.separado div{display:flex;justify-content:space-between;gap:1rem;font-size:.9rem;color:var(--tinta-2)}
-.separado div b{font-weight:600;color:var(--tinta);white-space:nowrap}
-.separado .soma{padding-top:.5rem;border-top:1px solid var(--linha-escura)}
-.separado .soma b{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--tinta-2)}
-.separado .eco{color:var(--marca);font-weight:700}
-.separado .eco b{color:var(--marca)}
-.mensal-sep{margin:.2rem 0 0;color:var(--tinta-2);font-size:.85rem}
-.fase3{box-shadow:inset 0 0 0 1.5px var(--linha-escura);background:transparent}
-@media (max-width:560px){.formas{grid-template-columns:1fr}}
-
-/* ---------- 6. Escopo ---------- */
-.escopo{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.coluna{border-radius:var(--r);padding:1.6rem 1.6rem 1.8rem;background:#fff;box-shadow:0 .5px 1px rgba(11,31,48,.05),0 10px 28px rgba(11,31,48,.05)}
-.coluna.fora{background:transparent;box-shadow:inset 0 0 0 1.5px var(--linha-escura)}
-.coluna h3{font:700 1.15rem/1.2 Montserrat,sans-serif;letter-spacing:-.02em;margin:0 0 .3rem}
-.coluna > p{margin:0 0 1.25rem;color:var(--tinta-2);font-size:.875rem}
-.coluna ul{margin:0;padding:0;list-style:none;display:grid;gap:.7rem}
-.coluna li{padding-left:1.4rem;position:relative;font-size:.95rem;line-height:1.45}
-.coluna li::before{content:"";position:absolute;left:0;top:.5em;width:.5rem;height:.5rem;border-radius:50%;background:var(--marca)}
-.coluna.fora li::before{background:transparent;box-shadow:inset 0 0 0 1.5px var(--tinta-2)}
-@media (max-width:760px){.escopo{grid-template-columns:1fr}}
-
-/* ---------- 7. Próximos passos ---------- */
-.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;counter-reset:p}
-.passo{padding-top:1.25rem;border-top:2px solid rgba(255,255,255,.2)}
-.passo:first-child{border-top-color:#fff}
-.passo .n{font:800 2.4rem/1 Montserrat,sans-serif;letter-spacing:-.05em;color:rgba(255,255,255,.35)}
-.passo:first-child .n{color:#fff}
-.passo h3{font:700 1.15rem/1.2 Montserrat,sans-serif;letter-spacing:-.02em;margin:1rem 0 .5rem}
-.passo p{margin:0;color:var(--claro-2);font-size:.9rem;line-height:1.5}
-@media (max-width:960px){.passos{grid-template-columns:1fr 1fr;row-gap:2rem}}
-@media (max-width:560px){.passos{grid-template-columns:1fr}}
-
-/* ---------- 8. Fecho ---------- */
-.fecho{position:relative;min-height:90svh;display:flex;align-items:end;overflow:hidden;isolation:isolate}
-.fecho img.fundo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.08);will-change:transform}
-.fecho::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,25,42,.35),rgba(7,25,42,.6) 45%,rgba(7,25,42,.95))}
-.fecho .dentro{width:100%;max-width:90rem;margin:0 auto;padding:clamp(6rem,14vh,9rem) var(--pad) clamp(3rem,8vh,5rem)}
-.fecho h2{font-size:clamp(2.5rem,6.5vw,6.25rem);max-width:16ch;margin-top:1rem}
-.fecho p{margin:1.5rem 0 2.25rem;max-width:36rem;color:var(--claro-2);font-size:1.125rem}
-.rodape{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));
-  border-top:1px solid var(--linha);color:var(--claro-3);font-size:.85rem;max-width:90rem;margin:0 auto}
-.rodape a:hover{color:#fff}
-
-/* ---------- Revelação na rolagem ---------- */
-.sobe{opacity:0;transform:translateY(2rem)}
-
-@media (prefers-reduced-transparency: reduce){
-  .topo::before{background:var(--noite);-webkit-backdrop-filter:none;backdrop-filter:none}
-  .btn-vidro,.mod{background:var(--noite-3);-webkit-backdrop-filter:none;backdrop-filter:none}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-@media (prefers-reduced-motion: reduce){
-  .rolar::after{animation:none}
-  .abertura{height:auto}
-  .abertura .palco{position:relative}
-  .abertura .bloco + .bloco{display:none}
-  .sobe{opacity:1;transform:none}
-  .btn{transition-duration:0s!important}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
 }
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<header class="topo" id="topo">
-  <a class="assinatura" href="#inicio" aria-label="Proposta K2ACE para a Cristofolini, início">
-    <img src="../img/logo-branco.png" alt="Cristofolini" width="1024" height="184">
-    <span class="x">×</span>
-    <span class="k2">K2<span>ACE</span></span>
-  </a>
-  <nav aria-label="Seções da proposta">
-    <a href="#pronto">Os protótipos</a>
-    <a href="#crm">Fase 2</a>
-    <a href="#investimento">Investimento</a>
-    <a class="btn btn-marca" href="#seguir"><span class="so-largo">Seguir com a proposta</span><span class="so-estreito">Seguir</span></a>
-  </nav>
-</header>
-
-<main>
-<!-- 1. Abertura -->
-<section class="abertura" id="inicio" aria-label="Abertura da proposta">
-  <div class="palco">
-    <canvas id="tela" aria-hidden="true"></canvas>
-    <div class="veu"></div>
-    <div class="bloco" id="b1">
-      <p class="eyebrow"><b>Proposta comercial</b> · K2ACE × Cristofolini Máquinas · 2026</p>
-      <h1 class="display">A fábrica já faz a diferença.<br><b>Agora, a venda também.</b></h1>
-      <p class="sub">Um site à altura das máquinas, um gerador de propostas na mão de cada consultor e, na fase 2, um CRM que acompanha o cliente do primeiro contato ao pedido.</p>
-      <div class="meta"><span><b>Fase 1</b> protótipos para ver</span><span><b>Fase 2</b> CRM comercial</span><span>Válida até <b>10 de outubro de 2026</b></span></div>
-    </div>
-    <div class="bloco" id="b2">
-      <p class="eyebrow">O ponto de partida</p>
-      <h2 class="display">Quem compra uma Cristofolini compra <b>engenharia de verdade.</b></h2>
-      <p class="sub">Máquinas de R$ 370 mil a mais de R$ 1,3 milhão, feitas desde 1997 na Grande Florianópolis. A forma de apresentar e de vender precisa estar no mesmo nível.</p>
-    </div>
-    <span class="rolar" id="rolar" aria-hidden="true"></span>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-</section>
-
-<!-- 2. Cenário -->
-<section class="sec" aria-label="O cenário">
-  <div class="sec-cab sobe">
-    <div>
-      <p class="eyebrow">01 · O cenário</p>
-      <h2 class="display">A máquina é de primeira. <b>A venda pode ser também.</b></h2>
-    </div>
-    <p>Três pontos em que a Cristofolini pode mostrar e vender ainda mais do que já é, e que este projeto resolve.</p>
+  <h1>Proposta K2ACE × Cristofolini Máquinas</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-  <div class="cenario">
-    <article class="dor sobe"><span class="n">01</span><h3>Um bom site, no padrão do mercado.</h3><p>Bem feito e bem cuidado, mas no mesmo formato de qualquer fabricante. Faltava a experiência que faz o visitante sentir a usinagem, a montagem e o produto que sai das máquinas.</p></article>
-    <article class="dor sobe"><span class="n">02</span><h3>Proposta montada na planilha.</h3><p>Cada proposta dependia de montar configuração, opcionais e condições de pagamento na mão. Tempo do consultor e risco de erro numa venda de centenas de milhares de reais.</p></article>
-    <article class="dor sobe"><span class="n">03</span><h3>Depois do envio, cada um no seu controle.</h3><p>Sem um lugar só para o histórico, o funil e a próxima ação, fica difícil ver o que está em negociação, o que esfriou e onde está a venda do trimestre.</p></article>
-  </div>
-</section>
-
-<!-- 3. Fase 1 -->
-<div class="claro" id="pronto">
-<section class="sec" aria-label="Fase 1: os protótipos">
-  <div class="sec-cab sobe">
-    <div>
-      <span class="fase-selo"><i></i>Fase 1 · Protótipos navegáveis</span>
-      <h2 class="display">Não é promessa de slide. <b>Já tem protótipo.</b></h2>
-    </div>
-    <p>As duas entregas da primeira fase já existem como protótipo, feitas com o material da própria Cristofolini. O gerador vocês já podem testar, montando uma proposta de verdade. O site a gente apresenta ao vivo. Com o aceite, os dois viram a versão final.</p>
-  </div>
-
-  <article class="entrega">
-    <div class="txt sobe">
-      <span class="num-g">01</span>
-      <h3>Site institucional <b>cinematográfico.</b></h3>
-      <p>A página abre no rolo de sacos sendo bobinado e, conforme a pessoa rola, entra na fábrica até a extrusora girando em 360°. É o site que ninguém no setor tem.</p>
-      <ul class="lista">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Percurso da fábrica preso à rolagem</b><span>Do produto pronto à fachada, usinagem, solda, montagem e galpão</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>As 15 máquinas girando em 360°</b><span>Arraste com o dedo ou o mouse, com ficha técnica de cada uma</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Identidade visual da Cristofolini</b><span>Montserrat, o azul e o marinho da marca, o material de vocês</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>WhatsApp direto por área</b><span>Comercial, peças, suporte técnico, financeiro e atendimento</span></div></li>
-      </ul>
-      <p class="ao-vivo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Apresentação ao vivo, em reunião com o time da Cristofolini.</p>
-    </div>
-    <div class="cortina sobe" aria-hidden="true">
-      <div class="fundo"></div>
-      <div class="selo-cortina">
-        <span class="eyebrow"><b>Em breve</b> · ao vivo</span>
-        <strong>O site vocês vão ver rolando na tela.</strong>
-        <span>Uma experiência que se mostra melhor ao vivo do que em print.</span>
-      </div>
-    </div>
-  </article>
-
-  <article class="entrega">
-    <div class="txt sobe">
-      <span class="num-g">02</span>
-      <h3>Gerador de <b>propostas.</b></h3>
-      <p>O consultor monta a máquina, fecha o pagamento e manda a proposta em PDF ou por link, no padrão visual da Cristofolini. No celular, no escritório ou na frente do cliente.</p>
-      <ul class="lista">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Configurador com dependências</b><span>Cada escolha filtra a seguinte e a proposta só fecha completa</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Condições reais de negociação</b><span>Direto com a fábrica, banco ou à vista, e parcela por parcela quando sai do padrão</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Modo apresentação e portfólio</b><span>As 15 máquinas com vídeo e 360°, com o preço escondido até você querer</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>PDF, link curto e WhatsApp</b><span>Capa com o nome do cliente, apresentação institucional e selo de validação</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Acesso por consultor, com tabela protegida</b><span>Entrada por PIN e catálogo de preços cifrado</span></div></li>
-      </ul>
-      <div class="acoes">
-        <a class="btn btn-contorno" href="../" target="_blank" rel="noopener">Abrir o protótipo do gerador
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        <small>O acesso é por PIN. Peça o seu para navegar no protótipo.</small>
-      </div>
-    </div>
-    <div class="telas tres sobe" aria-hidden="true">
-      <div class="janela j1"><div class="barra"><i></i><i></i><i></i><span>Gerador de propostas · Portfólio</span></div><img src="img/gerador-portfolio.jpg" alt="" loading="lazy"></div>
-      <div class="janela j2"><div class="barra"><i></i><i></i><i></i><span>Condições de pagamento</span></div><img src="img/gerador-pagamento.jpg" alt="" loading="lazy"></div>
-      <div class="janela j3"><div class="barra"><i></i><i></i><i></i><span>Proposta pronta</span></div><img src="img/gerador-proposta.jpg" alt="" loading="lazy"></div>
-    </div>
-  </article>
-</section>
-</div>
-
-<!-- 4. Fase 2 -->
-<section class="crm" id="crm" aria-label="Fase 2: CRM comercial">
-  <div class="sec">
-    <div class="sec-cab sobe">
-      <div>
-        <p class="eyebrow">03 · Fase 2</p>
-        <h2 class="display">A proposta é a porta. <b>O CRM cuida do resto.</b></h2>
-      </div>
-      <p>Construído sobre o gerador que o time já usa. Nada de sistema genérico adaptado: o mesmo cadastro, as mesmas máquinas, a mesma linguagem da Cristofolini.</p>
-    </div>
-    <div class="caminho sobe" aria-label="O caminho do cliente no CRM">
-      <div class="passo-c"><i></i><b>Primeiro contato</b><span>Feira, site, indicação ou visita</span></div>
-      <div class="passo-c"><i></i><b>Proposta</b><span>Montada no gerador, já registrada</span></div>
-      <div class="passo-c"><i></i><b>Negociação</b><span>Tarefas, retornos e condições</span></div>
-      <div class="passo-c"><i></i><b>Pedido</b><span>Fechada, com o histórico inteiro</span></div>
-    </div>
-    <div class="modulos">
-      <article class="mod sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><h3>Todas as propostas</h3><p>O histórico do que já saiu, por cliente e por consultor, para reabrir, revisar e reenviar.</p></article>
-      <article class="mod sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><h3>Clientes</h3><p>Carteira com perfil: o que fabrica, toneladas por mês, porte e como chegou até a Cristofolini.</p></article>
-      <article class="mod sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg><h3>Funil</h3><p>Proposta emitida, em negociação, fechada e perdida. O valor de cada etapa na tela.</p></article>
-      <article class="mod sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg><h3>Tarefas</h3><p>O que fazer com cada cliente e quando, para nenhuma proposta esfriar por esquecimento.</p></article>
-      <article class="mod sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><h3>Agenda e rota</h3><p>A semana do consultor e o caminho das visitas, com os clientes da região no mapa.</p></article>
-      <article class="mod sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><h3>Relatórios</h3><p>Propostas por máquina, por consultor e por período. Onde está a venda e onde ela trava.</p></article>
-    </div>
-    <div class="ponte sobe">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-      <p><b>Conversa com o Useall.</b> Na fase 2, o CRM já lê a carteira de clientes e o histórico de pedidos direto do sistema de vocês. Na fase 3, com a liberação da Useall, a proposta aceita entra como pedido sem ser digitada duas vezes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 5. Investimento -->
-<div class="claro" id="investimento">
-<section class="sec" aria-label="Investimento">
-  <div class="sec-cab sobe">
-    <div>
-      <p class="eyebrow">04 · <b>Investimento</b></p>
-      <h2 class="display">Uma fase já desenhada. <b>Outra construída junto.</b></h2>
-    </div>
-    <p>Os protótipos da fase 1 já mostram o caminho, então o trabalho parte de algo que vocês viram e aprovaram. As fases 2 e 3 começam quando vocês quiserem, com escopo fechado antes.</p>
-  </div>
-
-  <div class="planos">
-    <article class="plano destaque sobe">
-      <span class="tipo">Fase 1 · Uma vez</span>
-      <h3>Site institucional <b>+ gerador de propostas</b></h3>
-      <p>Os dois protótipos viram a versão final, ajustada com vocês e com o time comercial treinado.</p>
-      <ul class="lista">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Versão final do site</b><span>textos, fotos, vídeos e fichas das máquinas validados com vocês</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Gerador com a tabela e as condições atuais</b><span>catálogo, opcionais, preços e formas de pagamento conferidos</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Treinamento do time comercial</b><span>PIN de cada consultor e acompanhamento das primeiras propostas</span></div></li>
-      </ul>
-      <div class="separado num">
-        <div><span>Site institucional</span><b>R$ 8.900</b></div>
-        <div><span>Gerador de propostas</span><b>R$ 6.900</b></div>
-        <div class="soma"><span>Separados</span><b>R$ 15.800</b></div>
-        <div class="eco"><span>No pacote, vocês economizam</span><b>R$ 2.900</b></div>
-      </div>
-      <div class="formas">
-        <div class="forma vista"><small>Pacote à vista</small><strong class="num">R$ 12.900</strong><span>pagamento único</span></div>
-        <div class="forma"><small>Em 3×</small><strong class="num">R$ 4.300</strong><span>sem acréscimo, total de R$ 12.900</span></div>
-        <div class="forma"><small>Em 6×</small><strong class="num">R$ 2.258</strong><span>total de R$ 13.548</span></div>
-      </div>
-    </article>
-
-    <article class="plano sobe">
-      <span class="tipo">Todo mês</span>
-      <h3>No ar, <b>cuidado e atualizado.</b></h3>
-      <p>O que mantém site e gerador funcionando e acompanhando a linha de máquinas.</p>
-      <ul class="lista">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Hospedagem, segurança e backup</b><span>site e gerador rápidos e no ar</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Máquinas, preços e fichas atualizados</b><span>lançamento, tabela nova e opcional novo, sem custo extra</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Suporte ao time</b><span>consultor novo, dúvida do dia a dia e ajuste do que já existe</span></div></li>
-      </ul>
-      <div class="mensal"><strong class="num">R$ 390</strong><span>/mês, site e gerador</span></div>
-      <p class="mensal-sep num">Separados seriam R$ 190 do site e R$ 290 do gerador.</p>
-      <p class="nota">Começa a contar quando a versão final entra no ar. Recurso novo, que muda o que o sistema faz, é orçado à parte e só entra com o seu sim.</p>
-    </article>
-  </div>
-
-  <div class="fase2-preco sobe">
-    <div>
-      <span class="fase-selo" style="background:rgba(24,87,144,.08)">Fase 2 · Referência</span>
-      <h3>CRM comercial <b>lendo o Useall</b></h3>
-      <p>Propostas, clientes, funil, tarefas, agenda e rota, relatórios. A carteira de clientes e o histórico de pedidos vêm direto do Useall, sem digitar de novo. Valores confirmados no início da fase, com o escopo fechado.</p>
-    </div>
-    <div class="valor-f2"><small>Implantação</small><strong class="num">R$ 11.900</strong><span>à vista ou parcelado</span></div>
-    <div class="valor-f2"><small>Mensalidade</small><strong class="num">R$ 1.490</strong><span>substitui os R$ 390 e cobre site, gerador e CRM</span></div>
-  </div>
-
-  <div class="fase2-preco fase3 sobe">
-    <div>
-      <span class="fase-selo" style="background:rgba(24,87,144,.08)">Fase 3 · Referência</span>
-      <h3>Pedido direto <b>no Useall</b></h3>
-      <p>Proposta aceita vira pedido dentro do Useall, sem ninguém digitar duas vezes. Depende de a Useall liberar o acesso de gravação, então o valor é fechado quando ela responder.</p>
-    </div>
-    <div class="valor-f2"><small>Implantação, a partir de</small><strong class="num">R$ 6.900</strong><span>fechado após a resposta da Useall</span></div>
-    <div class="valor-f2"><small>Mensalidade</small><strong class="num">+ R$ 290</strong><span>monitoramento da integração</span></div>
-  </div>
-</section>
-
-<!-- 6. Escopo -->
-<section class="sec" style="padding-top:0" aria-label="Escopo">
-  <div class="sec-cab sobe">
-    <div>
-      <p class="eyebrow">05 · Escopo</p>
-      <h2 class="display">O que está incluso, <b>e o que é fase nova.</b></h2>
-    </div>
-  </div>
-  <div class="escopo">
-    <div class="coluna sobe">
-      <h3>Dentro da mensalidade</h3>
-      <p>Sem custo adicional</p>
-      <ul>
-        <li>Ajuste e correção de qualquer coisa que já existe no site e no gerador</li>
-        <li>Máquina nova, opcional novo e tabela de preços atualizada</li>
-        <li>Textos, fotos e vídeos novos das máquinas no site</li>
-        <li>Consultor novo com PIN próprio e suporte no dia a dia</li>
-        <li>Hospedagem, segurança, backup e monitoramento</li>
-      </ul>
-    </div>
-    <div class="coluna fora sobe">
-      <h3>Fase nova</h3>
-      <p>Orçado à parte, e só com o seu sim</p>
-      <ul>
-        <li>O CRM comercial da fase 2, com a leitura do Useall</li>
-        <li>O pedido gravado no Useall, na fase 3</li>
-        <li>Versão do site em outro idioma para a América do Sul</li>
-        <li>Qualquer recurso novo que mude o que o site ou o gerador fazem hoje</li>
-      </ul>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- 7. Próximos passos -->
-<section class="sec" aria-label="Próximos passos">
-  <div class="sec-cab sobe">
-    <div>
-      <p class="eyebrow">06 · Próximos passos</p>
-      <h2 class="display">Como <b>seguimos.</b></h2>
-    </div>
-  </div>
-  <div class="passos">
-    <div class="passo sobe"><span class="n">01</span><h3>Aceite e pagamento</h3><p>Vocês escolhem à vista ou parcelado e a K2ACE emite. O trabalho parte dos protótipos que vocês já viram.</p></div>
-    <div class="passo sobe"><span class="n">02</span><h3>Revisão final</h3><p>O Dyogo e o time conferem textos, fichas e preços nos protótipos. Os ajustes entram na versão final.</p></div>
-    <div class="passo sobe"><span class="n">03</span><h3>Versão final</h3><p>Site e gerador saem do protótipo e entram no ar na versão definitiva.</p></div>
-    <div class="passo sobe"><span class="n">04</span><h3>Time no gerador</h3><p>Treinamento, PIN de cada consultor e as primeiras propostas acompanhadas. Em seguida, o início da fase 2.</p></div>
-  </div>
-</section>
-
-<!-- 8. Fecho -->
-<section class="fecho" id="seguir" aria-label="Seguir com a proposta">
-  <img class="fundo" src="../site/media/hist-hoje.jpg" alt="" aria-hidden="true" loading="lazy">
-  <div class="dentro sobe">
-    <p class="eyebrow"><b>K2ACE × Cristofolini</b> · 2026</p>
-    <h2 class="display">Fazer melhor. Fazer diferente. <b>Vender à altura.</b></h2>
-    <p>A engenharia continua sendo de vocês. A diferença é que agora o site, a proposta e o acompanhamento do cliente mostram isso em cada contato.</p>
-    <div class="acoes">
-      <a class="btn btn-marca" href="https://wa.me/5521980529617?text=Klaus%2C%20vamos%20seguir%20com%20a%20proposta%20da%20Cristofolini!" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.6-8.4Z"/></svg>
-        Quero seguir com a proposta</a>
-    </div>
-  </div>
-</section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
 </main>
 
-<footer class="rodape">
-  <span class="k2">K2<span>ACE</span></span>
-  <span>Inteligência artificial & dados · <a href="mailto:klaus@k2ace.com">klaus@k2ace.com</a></span>
-  <span>Proposta válida até 10 de outubro de 2026 · Confidencial</span>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script type="application/json" id="cofre">{"v":2,"grupo":"cristofolini","nonce":"yXRFN6VJEsyaNbd3","dados":"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"}</script>
 <script>
-(() => {
-'use strict';
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const LEVE = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData);
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-/* ---------- Toque: pressionado já no pointerdown ---------- */
-document.addEventListener('pointerdown', (e) => {
-  const alvo = e.target.closest('.btn');
-  if (!alvo) return;
-  alvo.classList.add('pressionado');
-  const solta = () => { alvo.classList.remove('pressionado'); removeEventListener('pointerup', solta); removeEventListener('pointercancel', solta); };
-  addEventListener('pointerup', solta); addEventListener('pointercancel', solta);
-});
-
-/* ---------- Topo some ao descer e volta ao subir ---------- */
-const topo = $('#topo'); let ultimo = 0;
-addEventListener('scroll', () => {
-  const y = scrollY;
-  topo.classList.toggle('solido', y > innerHeight * .5);
-  if (Math.abs(y - ultimo) > 6){ topo.classList.toggle('escondido', y > ultimo && y > innerHeight); ultimo = y; }
-}, {passive: true});
-
-/* ===========================================================
-   Abertura: o mesmo filme do site novo. O rolo de sacos sendo
-   bobinado, o rolo na mão e a fusão na fachada da fábrica.
-   =========================================================== */
-const QUADROS = [
-  ...[...Array(63)].map((_, i) => `bobina/${String(i + 95).padStart(3, '0')}`),
-  ...[...Array(8)].map((_, i) => `transicao2/${String(i + 1).padStart(3, '0')}`),
-  ...[...Array(24)].map((_, i) => `percurso/${String(31 - i).padStart(3, '0')}`)
-];
-const PASSO = LEVE ? 2 : 1;
-const urls = QUADROS.filter((_, i) => i % PASSO === 0).map(q => `../site/media/${q}.jpg`);
-const imgs = urls.map(() => null);
-const canvas = $('#tela'), ctx = canvas.getContext('2d');
-let tam = {w: 0, h: 0}, f = 0;
-const mede = () => {
-  const dpr = Math.min(devicePixelRatio || 1, 2);
-  tam = {w: canvas.clientWidth, h: canvas.clientHeight};
-  canvas.width = Math.round(tam.w * dpr); canvas.height = Math.round(tam.h * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.imageSmoothingQuality = 'high';
-};
-const cobre = (im, alpha = 1) => {
-  if (!im) return;
-  const s = Math.max(tam.w / im.naturalWidth, tam.h / im.naturalHeight);
-  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  ctx.globalAlpha = alpha; ctx.drawImage(im, (tam.w - dw) / 2, (tam.h - dh) / 2, dw, dh); ctx.globalAlpha = 1;
-};
-const perto = (i) => { if (imgs[i]) return imgs[i]; for (let d = 1; d < imgs.length; d++){ if (imgs[i - d]) return imgs[i - d]; if (imgs[i + d]) return imgs[i + d]; } return null; };
-// celular em pé: faixa larga no alto com bordas suaves e a mesma cena desfocada
-// no fundo, em vez de cortar a imagem horizontal na tela inteira
-const miniF = document.createElement('canvas'), miniC = miniF.getContext('2d');
-const faixa = document.createElement('canvas'), faixaC = faixa.getContext('2d');
-const cobreEm = (c, im, w, h, alpha = 1) => {
-  if (!im) return;
-  const s = Math.max(w / im.naturalWidth, h / im.naturalHeight);
-  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  c.globalAlpha = alpha; c.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh); c.globalAlpha = 1;
-};
-const emPe = (a, t) => {
-  const w = tam.w, h = tam.h, dpr = canvas.width / w;
-  miniF.width = 36; miniF.height = Math.round(36 * h / w);
-  cobreEm(miniC, perto(a), miniF.width, miniF.height);
-  if (t > .01 && imgs[a + 1]) cobreEm(miniC, imgs[a + 1], miniF.width, miniF.height, t);
-  ctx.drawImage(miniF, 0, 0, w, h);
-  ctx.fillStyle = 'rgba(7,25,42,.5)'; ctx.fillRect(0, 0, w, h);
-  const fh = h * .5, fw = fh * 16 / 9, fy = h * .1, dx = (w - fw) / 2;
-  faixa.width = Math.round(w * dpr); faixa.height = Math.round(fh * dpr);
-  faixaC.setTransform(dpr, 0, 0, dpr, 0, 0);
-  faixaC.globalCompositeOperation = 'source-over';
-  const pinta = (im, al) => { if (!im) return; faixaC.globalAlpha = al; faixaC.drawImage(im, dx, 0, fw, fh); faixaC.globalAlpha = 1; };
-  pinta(perto(a), 1);
-  if (t > .01 && imgs[a + 1]) pinta(imgs[a + 1], t);
-  faixaC.globalCompositeOperation = 'destination-in';
-  const g = faixaC.createLinearGradient(0, 0, 0, fh);
-  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(.16, '#000'); g.addColorStop(.84, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
-  faixaC.fillStyle = g; faixaC.fillRect(0, 0, w, fh);
-  faixaC.globalCompositeOperation = 'source-over';
-  ctx.drawImage(faixa, 0, fy, w, fh);
-};
-const desenha = () => {
-  const a = Math.floor(f), t = f - a;
-  ctx.clearRect(0, 0, tam.w, tam.h);
-  if (tam.h > tam.w * 1.15) { emPe(a, t); return; }
-  cobre(perto(a));
-  if (t > .01 && imgs[a + 1]) cobre(imgs[a + 1], t);
-};
-// carga em ordem grossa para fina: um a cada 8, depois 4, 2, 1
-const ordem = []; [8, 4, 2, 1].forEach(p => { for (let i = 0; i < urls.length; i += p) if (!ordem.includes(i)) ordem.push(i); });
-let emVoo = 0, pos = 0;
-const proximo = () => {
-  while (emVoo < 6 && pos < ordem.length){
-    const i = ordem[pos++]; emVoo++;
-    const im = new Image(); im.decoding = 'async'; im.src = urls[i];
-    im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { imgs[i] = im; emVoo--; if (Math.abs(i - f) < 3 || i === 0) desenha(); proximo(); }); };
-    im.onerror = () => { emVoo--; proximo(); };
-  }
-};
-mede(); proximo();
-addEventListener('resize', () => { mede(); desenha(); });
-
-if (!window.gsap || !window.ScrollTrigger || calmo){
-  f = 0; desenha();
-  $$('.sobe').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-  return;
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
 }
-gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.config({ignoreMobileResize: true});
-
-const lenis = new Lenis({lerp: .11, smoothWheel: true});
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(t => lenis.raf(t * 1000));
-gsap.ticker.lagSmoothing(0);
-document.documentElement.classList.add('lenis');
-$$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
-  const alvo = $(a.getAttribute('href')); if (!alvo) return;
-  e.preventDefault();
-  lenis.scrollTo(alvo, {duration: 1.4, onComplete: () => { alvo.tabIndex = -1; alvo.focus({preventScroll: true}); }});
-}));
-
-/* Entrada: o primeiro bloco sobe linha a linha */
-gsap.from('#b1 > *', {opacity: 0, y: 24, duration: 1.1, ease: 'expo.out', stagger: .08, delay: .15});
-
-/* A rolagem é a câmera: parado no rolo, depois o filme acompanha o dedo */
-const b1 = $('#b1'), b2 = $('#b2'), rolar = $('#rolar');
-const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
-ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
-  onUpdate: s => {
-    const p = s.progress;
-    f = Math.min(1, Math.max(0, (p - .06) / .9)) * (urls.length - 1);
-    desenha();
-    const o1 = 1 - Math.min(1, Math.max(0, (p - .06) / .12));
-    b1.style.opacity = o1; b1.style.transform = `translateY(${-(1 - o1) * 8}vh)`; b1.style.pointerEvents = o1 < .4 ? 'none' : '';
-    const o2 = janela(p, .52, .64, .9, 1.01);
-    b2.style.opacity = o2; b2.style.transform = `translateY(${(1 - o2) * (p < .64 ? 2 : -2)}rem)`;
-    rolar.style.opacity = 1 - Math.min(1, p / .03);
-  }});
-
-/* Revelação: cada bloco sobe quando entra na tela */
-ScrollTrigger.batch('.sobe', {start: 'top 88%', once: true,
-  onEnter: b => gsap.to(b, {opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .07, overwrite: true})});
-
-/* Telas: parallax leve, a janela da frente anda mais que a de trás */
-$$('.telas').forEach(t => {
-  const [j1, j2, j3] = $$('.janela', t);
-  const tl = gsap.timeline({scrollTrigger: {trigger: t, start: 'top bottom', end: 'bottom top', scrub: true}});
-  tl.fromTo(j1, {y: 30}, {y: -30, ease: 'none'}, 0).fromTo(j2, {y: 70}, {y: -50, ease: 'none'}, 0);
-  if (j3) tl.fromTo(j3, {y: 110}, {y: -70, ease: 'none'}, 0);
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
 });
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
 
-/* Fecho: a sede se aproxima */
-gsap.to('.fecho img.fundo', {scale: 1, ease: 'none', scrollTrigger: {trigger: '.fecho', start: 'top bottom', end: 'bottom bottom', scrub: true}});
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
 
-addEventListener('load', () => ScrollTrigger.refresh());
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
+    }
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
+
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
 })();
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>

@@ -9,7 +9,7 @@
                  (cadeados em KV "cad:<grupo>" e "cad:_mestre", gravados por _cadeado/trancar.mjs)
    Ambiente:
      KV binding  DECK_HITS   (guarda o historico)
-     Durable Object PORTEIRO (um por cliente; conta os erros de PIN sem corrida)
+     Durable Object PORTEIRO (contadores de erro de PIN: por IP, por cliente e geral)
      secret      LIST_TOKEN  (protege a leitura em /list)
    A proposta chega aqui ja cifrada no navegador de quem emitiu, com a chave
    derivada dos 4 ultimos digitos do telefone do cliente. O Worker guarda bytes
@@ -19,44 +19,28 @@
 */
 const MAX_IP = 8;       // erros por IP a cada 15 minutos
 const MAX_GRUPO = 40;   // erros por cliente a cada hora, somando todos os IPs
+const MAX_TODOS = 100;  // erros no deck inteiro a cada hora: segura ataque ao PIN mestre vindo de muitos IPs
 
 async function hashPin(sal, pin) {
   const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(sal + ":" + pin));
   return btoa(String.fromCharCode(...new Uint8Array(d)));
 }
 
+// Contador de tentativas. Um Durable Object processa um pedido por vez, então a conta
+// é exata mesmo com pedidos em paralelo. Usado com três nomes: "ip:<ip>" (vale para
+// todas as páginas, porque o PIN mestre abre todas), "g:<grupo>" e "todos".
 export class Porteiro {
-  constructor(state, env) { this.state = state; this.env = env; }
-
+  constructor(state) { this.state = state; }
   async fetch(req) {
-    const { g, pin, ip } = await req.json();
+    const { acao, max, janela } = await req.json();
     const st = this.state.storage, agora = Date.now();
-    const resp = (obj, status = 200) => new Response(JSON.stringify(obj), { status });
-    const conta = async (k, janela) => {
-      const c = (await st.get(k)) || { n: 0, ate: 0 };
-      return c.ate < agora ? { n: 0, ate: agora + janela } : c;
-    };
-    const kIp = "ip:" + ip;
-    const cIp = await conta(kIp, 15 * 60 * 1000), cG = await conta("grupo", 60 * 60 * 1000);
-    if (cIp.n >= MAX_IP || cG.n >= MAX_GRUPO) return resp({ erro: "espera" }, 429);
-    // A tentativa é contada antes de conferir: ler o KV abre espaço para outro pedido
-    // entrar, e ele já tem que ver esta tentativa na conta.
-    cIp.n++; cG.n++;
-    await st.put({ [kIp]: cIp, grupo: cG });
-
-    const [cad, mestre] = await Promise.all([
-      this.env.DECK_HITS.get("cad:" + g, "json"), this.env.DECK_HITS.get("cad:_mestre", "json")]);
-    if (!cad) return resp({ erro: "invalido" }, 404);
-    for (const p of [...(cad.pessoas || []), ...((mestre && mestre.pessoas) || [])]) {
-      if (await hashPin(p.s, pin) === p.h) {
-        // acerto não conta como erro: devolve a tentativa, relendo o valor atual
-        const [a, b] = [(await st.get(kIp)) || cIp, (await st.get("grupo")) || cG];
-        a.n = Math.max(0, a.n - 1); b.n = Math.max(0, b.n - 1);
-        await st.put({ [kIp]: a, grupo: b });
-        return resp({ quem: p.nome, chave: cad.chave });
-      }
-    }
-    return resp({ erro: "pin", resta: Math.max(0, MAX_IP - cIp.n) }, 401);
+    let c = (await st.get("c")) || { n: 0, ate: 0 };
+    if (c.ate < agora) c = { n: 0, ate: agora + janela };
+    if (acao === "devolve") { c.n = Math.max(0, c.n - 1); await st.put("c", c); return new Response("{}"); }
+    if (c.n >= max) return new Response(JSON.stringify({ ok: false }));
+    c.n++;
+    await st.put("c", c);
+    return new Response(JSON.stringify({ ok: true, resta: max - c.n }));
   }
 }
 
@@ -151,14 +135,26 @@ export default {
       try { ({ g, pin } = await req.json()); } catch (e) {}
       if (!/^[a-z0-9-]{1,40}$/.test(g || "") || !/^[0-9]{4}$/.test(pin || "")) return json({ erro: "invalido" }, 400);
 
-      // Um Porteiro (Durable Object) por cliente: ele processa uma tentativa por vez,
-      // então a contagem de erros é exata mesmo com pedidos em paralelo.
+      // A tentativa é reservada nos três contadores antes de conferir o PIN.
       const ip = req.headers.get("cf-connecting-ip") || "?";
-      const porteiro = env.PORTEIRO.get(env.PORTEIRO.idFromName(g));
-      const r = await porteiro.fetch("https://porteiro/", { method: "POST", body: JSON.stringify({ g, pin, ip }) });
-      const res = await r.json();
-      if (!res.quem) return json(res, r.status);
-      const { quem, chave } = res;
+      const contadores = [["ip:" + ip, MAX_IP, 15 * 60e3], ["g:" + g, MAX_GRUPO, 60 * 60e3], ["todos", MAX_TODOS, 60 * 60e3]];
+      const porteiro = (nome) => env.PORTEIRO.get(env.PORTEIRO.idFromName(nome));
+      const pede = (nome, corpo) => porteiro(nome).fetch("https://porteiro/", { method: "POST", body: JSON.stringify(corpo) }).then((r) => r.json());
+      const reservas = await Promise.all(contadores.map(([nome, max, janela]) => pede(nome, { acao: "conta", max, janela })));
+      const devolve = () => Promise.all(contadores.map(([nome, , janela], i) =>
+        reservas[i].ok ? pede(nome, { acao: "devolve", janela }) : null));
+      if (reservas.some((r) => !r.ok)) { ctx.waitUntil(devolve()); return json({ erro: "espera" }, 429); }
+
+      const [cad, mestre] = await Promise.all([
+        env.DECK_HITS.get("cad:" + g, "json"), env.DECK_HITS.get("cad:_mestre", "json")]);
+      if (!cad) return json({ erro: "invalido" }, 404);
+      let quem = null;
+      for (const p of [...(cad.pessoas || []), ...((mestre && mestre.pessoas) || [])]) {
+        if (await hashPin(p.s, pin) === p.h) { quem = p.nome; break; }
+      }
+      if (!quem) return json({ erro: "pin", resta: reservas[0].resta }, 401);
+      ctx.waitUntil(devolve());   // acerto não conta como erro
+      const chave = cad.chave;
 
       const cf = req.cf || {};
       const rec = {

@@ -4,1238 +4,197 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cristofolini Máquinas</title>
-<meta name="description" content="Extrusoras, picotadeiras e impressoras para embalagens plásticas flexíveis. Fabricadas na Grande Florianópolis desde 1997.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#07192A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23185790'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-style='italic' font-weight='700' fill='%23fff' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
-<link rel="preload" as="image" href="../media/percurso/001.jpg">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-/* ===========================================================
-   Tokens. Identidade do site da Cristofolini: Montserrat,
-   azul #185790, marinho #07192A, cinza #F0F0F0 e o degradê azul
-   para marinho dos blocos. Títulos no padrão deles: parte leve,
-   parte forte ("Nossos <b>diferenciais</b>").
-   =========================================================== */
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
 :root{
-  --marca:#185790;
-  --marca-2:#1f68ab;
-  --prata:#C0C0C0;
-  --noite:#07192A;
-  --noite-2:#0a2136;
-  --noite-3:#0e2a44;
-  --papel:#F0F0F0;
-  --degrade:linear-gradient(180deg,#185790 0%,#07192A 100%);
-  --estudio-cima:#a0a2a1;
-  --estudio-baixo:#e0e1dc;
-  --tinta:#0b1720;
-  --tinta-2:#43525e;
-  --claro:#f3f6f9;
-  --claro-2:rgba(243,246,249,.66);
-  --claro-3:rgba(243,246,249,.62);
-  --linha:rgba(255,255,255,.12);
-  --chrome:rgba(7,25,42,.6);
-  --pad:clamp(1rem,5vw,4rem);
-  --r:1.25rem;
-  --mola:cubic-bezier(.22,1,.36,1);
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
   color-scheme:dark;
 }
 @media (prefers-contrast: more){
-  :root{--claro-2:rgba(243,246,249,.88);--claro-3:rgba(243,246,249,.72);--linha:rgba(255,255,255,.4);--tinta-2:#1d2a34}
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
 }
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-body{margin:0;background:var(--noite);color:var(--claro);
-  font:400 1rem/1.6 Montserrat,system-ui,-apple-system,sans-serif;letter-spacing:-.005em;
-  -webkit-font-smoothing:antialiased;overflow-x:clip}
-img,video,canvas{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:.5rem}
-[tabindex="-1"]:focus{outline:none}
-
-.display{font-family:Montserrat,system-ui,sans-serif;font-weight:300;
-  letter-spacing:-.035em;line-height:1;margin:0}
-.display b,.it{font-weight:800;font-style:normal}
-.eyebrow{font:600 .75rem/1.2 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--claro-3);margin:0}
-.eyebrow b{color:#fff;font-weight:700}
-.num{font-variant-numeric:tabular-nums}
-
-/* ---------- Barra do topo: material translúcido, conteúdo passa por baixo ---------- */
-.topo{position:fixed;inset:0 0 auto;z-index:50;padding:max(.75rem,env(safe-area-inset-top)) var(--pad) .75rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  transition:transform .5s var(--mola),background-color .4s ease}
-.topo::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s ease;
-  background:var(--chrome);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
-  -webkit-mask:linear-gradient(#000 70%,transparent);mask:linear-gradient(#000 70%,transparent)}
-.topo.solido::before{opacity:1}
-.topo.escondido{transform:translateY(-110%)}
-.topo .logo img{height:1.35rem;width:auto}
-.topo nav{display:flex;align-items:center;gap:.25rem}
-.topo nav a{padding:.5rem .8rem;border-radius:99rem;font:500 .875rem/1 Montserrat,sans-serif;color:var(--claro-2);
-  transition:color .2s ease,background-color .2s ease}
-.topo nav a:hover{color:var(--claro);background:rgba(255,255,255,.08)}
-.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.25rem;border-radius:99rem;
-  font:600 .9375rem/1 Montserrat,sans-serif;letter-spacing:-.01em;white-space:nowrap;
-  transition:transform .35s var(--mola),background-color .2s ease,box-shadow .2s ease;will-change:transform}
-.btn:active,.btn.pressionado{transform:scale(.96);transition-duration:.08s}
-.btn-marca{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
-.btn-marca:hover{background:var(--marca-2)}
-.btn-vidro{background:rgba(255,255,255,.12);color:var(--claro);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-.btn-vidro:hover{background:rgba(255,255,255,.2)}
-.btn svg{width:1.05em;height:1.05em;flex:none}
-.topo .btn{padding:.6rem 1rem;font-size:.875rem}
-.so-estreito{display:none}
-@media (max-width:760px){
-  .topo nav a:not(.btn){display:none}
-  .topo nav a.fica{display:inline-block;padding:.5rem .55rem}
-  .so-largo{display:none}.so-estreito{display:inline}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-@media (max-width:360px){.topo nav a.fica{display:none}}
-
-/* ---------- 1. Percurso: da fachada até a máquina, preso à rolagem ----------
-   Como a lukk: a página abre parada na fachada e cada rolada leva a
-   câmera para dentro, recepção, usinagem, solda, torno, montagem e galpão. */
-.rolo{position:relative}
-.rolo .palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#000}
-.rolo canvas{position:absolute;inset:0;width:100%;height:100%}
-.percurso{height:1350vh}
-.percurso .palco{background:#000 url(../media/bobina/095.jpg) center/cover}
-.rolo .veu{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(7,25,42,.55) 0%,rgba(7,25,42,.08) 28%,rgba(7,25,42,.15) 50%,rgba(7,25,42,.9) 100%)}
-.percurso .conteudo{position:absolute;inset:auto var(--pad) clamp(2rem,7vh,4.5rem);display:grid;gap:1.75rem;will-change:transform,opacity}
-.percurso h1{font-size:clamp(3rem,min(9vw,13.5svh),9rem)}
-.percurso h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
-.percurso h1 .l span{display:block}
-.percurso h1 .l:nth-child(3) span{font-weight:800}
-.percurso .base{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem}
-.percurso .base p{margin:0;max-width:30rem;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.125rem);line-height:1.55}
-.percurso .acoes{display:flex;gap:.75rem;flex-wrap:wrap}
-.rolar{position:absolute;left:50%;bottom:1rem;translate:-50% 0;width:1px;height:2.5rem;background:var(--linha);overflow:hidden}
-.rolar::after{content:"";position:absolute;inset:0;background:var(--claro);animation:rolar 2.4s var(--mola) infinite}
-@keyframes rolar{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
-.cena{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(4.5rem,12vh,7rem);max-width:46rem;opacity:0;will-change:transform,opacity;
-  text-shadow:0 1px 2px rgba(7,25,42,.35),0 .5rem 2rem rgba(7,25,42,.35)}
-.cena .eyebrow{margin-bottom:1rem}
-.cena h2{font-size:clamp(2.1rem,5.4vw,5rem)}
-.cena p{margin:1rem 0 0;color:var(--claro-2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:34rem}
-.onde{position:absolute;right:var(--pad);bottom:clamp(1.25rem,4vh,2rem);display:flex;align-items:center;gap:.75rem;opacity:0;
-  font:600 .72rem/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--claro-2)}
-.onde .barra{width:6rem;height:2px;border-radius:2px;background:var(--linha);overflow:hidden}
-.onde .barra i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
-@media (max-width:760px){
-  .percurso{height:1100vh}
-  .rolo .veu{background:linear-gradient(180deg,rgba(7,25,42,.45) 0%,rgba(7,25,42,0) 14%,rgba(7,25,42,0) 52%,rgba(7,25,42,.7) 70%,rgba(7,25,42,.92) 100%)}
-  .onde{left:var(--pad);right:auto}
-  .onde .barra{width:4rem}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
 }
-
-/* ---------- Do grão à bobina: o que o cliente entrega, preso à rolagem ---------- */
-.bobina{height:700vh;background:var(--noite)}
-.bobina .palco{background:var(--noite)}
-.bobina .veu{background:linear-gradient(180deg,rgba(7,25,42,.35) 0%,rgba(7,25,42,.05) 30%,rgba(7,25,42,.3) 55%,rgba(7,25,42,.92) 100%)}
-.bobina .cena h2 b{color:#fff}
-
-/* ---------- 4. A máquina em 360 ----------
-   A seção começa uma tela antes do fim do percurso e fica invisível até prender.
-   Quem mostra a máquina nessa tela é o percurso, já fundido no estúdio, com a
-   mesma imagem: a troca de um palco pelo outro não aparece. */
-.giro{position:relative;height:420vh;color:var(--tinta);margin-top:-100svh}
-.giro .palco{position:sticky;top:0;height:100svh;overflow:hidden;
-  background:linear-gradient(180deg,var(--estudio-cima),var(--estudio-baixo))}
-.giro.espera .palco{visibility:hidden}
-.giro canvas{position:absolute;inset:0;width:100%;height:100%}
-.giro .cabeca{position:absolute;top:clamp(5rem,12vh,7.5rem);left:var(--pad);right:var(--pad);
-  display:flex;justify-content:space-between;align-items:start;gap:1rem}
-.giro .cabeca .eyebrow{color:rgba(11,23,32,.78)}
-.giro .cabeca .eyebrow b{color:var(--marca)}
-.giro h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.6rem}
-.giro h2 small{display:block;font-size:.42em;letter-spacing:-.02em;color:var(--marca);font-weight:600;margin-bottom:.2em}
-.giro .graus{font:600 clamp(1.5rem,2.6vw,2.25rem)/1 Montserrat,sans-serif;letter-spacing:-.03em;color:rgba(11,23,32,.35)}
-.giro .fichas{position:absolute;left:var(--pad);bottom:clamp(1.5rem,6vh,4rem);width:min(24rem,calc(100% - 2*var(--pad)));height:9.5rem}
-.giro .ficha{position:absolute;inset:auto 0 0;opacity:0;transform:translateY(1rem)}
-.giro .ficha .valor{font:700 clamp(3.25rem,7vw,6rem)/.9 Montserrat,sans-serif;letter-spacing:-.045em;color:var(--tinta)}
-.giro .ficha .valor small{font-size:.36em;letter-spacing:-.01em;margin-left:.2em;color:var(--marca)}
-.giro .ficha p{margin:.55rem 0 0;color:var(--tinta-2);font-size:.975rem;line-height:1.45}
-.giro .trilho{position:absolute;right:var(--pad);bottom:clamp(1.5rem,6vh,4rem);display:flex;gap:.4rem}
-.giro .trilho i{width:1.75rem;height:.2rem;border-radius:1rem;background:rgba(11,23,32,.16);overflow:hidden;position:relative}
-.giro .trilho i::after{content:"";position:absolute;inset:0;background:var(--marca);transform-origin:left;transform:scaleX(var(--p,0))}
-
-/* ---------- 5. Diferenciais: trilho horizontal ---------- */
-.diferenciais{position:relative;background:var(--noite)}
-.diferenciais .fixo{background:var(--degrade)}
-.diferenciais .fixo{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,4vh,3rem)}
-.diferenciais header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
-.diferenciais header h2{font-size:clamp(2.25rem,5.4vw,5rem);max-width:12ch}
-.diferenciais header p{margin:0;max-width:26rem;color:var(--claro-2)}
-.trilho-h{display:flex;gap:clamp(.75rem,1.6vw,1.25rem);padding:0 var(--pad);will-change:transform;width:max-content}
-.card-dif{position:relative;flex:none;width:clamp(17rem,30vw,25rem);aspect-ratio:490/700;border-radius:var(--r);overflow:hidden;background:var(--noite-3);isolation:isolate}
-.card-dif img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.12);will-change:transform}
-.card-dif::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,25,42,0) 35%,rgba(7,25,42,.92))}
-.card-dif .txt{position:absolute;inset:auto 0 0;padding:clamp(1.1rem,2vw,1.6rem)}
-.card-dif .n{font:700 .75rem/1 Montserrat,sans-serif;letter-spacing:.12em;color:var(--prata)}
-.card-dif h3{font:700 clamp(1.4rem,2vw,1.8rem)/1.05 Montserrat,sans-serif;letter-spacing:-.025em;margin:.6rem 0 .55rem}
-.card-dif p{margin:0;color:var(--claro-2);font-size:.9rem;line-height:1.5}
-.card-dif.grande{width:clamp(19rem,40vw,34rem);aspect-ratio:auto;align-self:stretch}
-/* celular deitado e telas baixas: o cartão cabe abaixo do título em vez de ser cortado */
-@media (max-height:600px){
-  .diferenciais .fixo{gap:1rem}
-  .diferenciais header p{display:none}
-  .diferenciais header h2{font-size:clamp(1.75rem,4.5vh,3rem)}
-  .card-dif{width:clamp(12rem,42svh,25rem)}
-  .card-dif h3{font-size:1.15rem}
-  .card-dif p{font-size:.8rem}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
 }
-
-/* ---------- 6. Números ---------- */
-.numeros-fundo{background:var(--papel);color:var(--tinta)}
-.numeros{padding:clamp(6rem,16vh,10rem) var(--pad) clamp(3rem,8vh,5rem);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem);max-width:90rem;margin:0 auto}
-.numeros .n{font:800 clamp(3.5rem,8.5vw,8.5rem)/.85 Montserrat,sans-serif;letter-spacing:-.05em;color:var(--marca)}
-.numeros .n sup{font-size:.4em;color:var(--marca);vertical-align:top;margin-left:.04em}
-.numeros p{margin:.9rem 0 0;color:var(--tinta-2);max-width:14rem;line-height:1.45}
-@media (max-width:760px){.numeros{grid-template-columns:1fr 1fr;row-gap:3rem}}
-
-/* ---------- 7. Linha de máquinas ---------- */
-.linha{padding:clamp(5rem,12vh,8rem) 0 clamp(5rem,12vh,8rem);background:var(--papel);color:var(--tinta);border-top:1px solid rgba(11,31,48,.09)}
-.linha header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;max-width:90rem;margin:0 auto 2rem}
-.linha header .eyebrow{color:rgba(11,23,32,.55)}
-.linha header .eyebrow b{color:var(--marca)}
-.linha h2{font-size:clamp(2.25rem,5.4vw,5rem);margin-top:.7rem}
-.abas{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:.3rem;border-radius:99rem;background:rgba(11,23,32,.07);position:relative;
-  scroll-padding:.3rem;-webkit-overflow-scrolling:touch}
-.abas::-webkit-scrollbar{display:none}
-/* quando não cabe tudo, a borda direita esmaece: sinal de que tem mais */
-.abas.corta{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent);mask:linear-gradient(90deg,#000 calc(100% - 3rem),transparent)}
-.abas.corta.fim{-webkit-mask:none;mask:none}
-.abas button{position:relative;z-index:1;padding:.65rem 1.1rem;border-radius:99rem;font:600 .9rem/1 Montserrat,sans-serif;color:var(--tinta-2);transition:color .25s ease;white-space:nowrap}
-.abas button[aria-selected="true"]{color:var(--tinta)}
-.abas button:focus-visible{outline-color:var(--marca);outline-offset:-2px}
-.abas .pilula{position:absolute;top:.3rem;bottom:.3rem;left:0;border-radius:99rem;background:#fff;
-  box-shadow:0 .5px 1px rgba(11,31,48,.1),0 2px 6px rgba(11,31,48,.1);transition:transform .45s var(--mola),width .45s var(--mola)}
-@media (max-width:480px){.abas button{padding:.6rem .75rem;font-size:.8rem}}
-.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,21rem),1fr));gap:1rem;padding:0 var(--pad);max-width:90rem;margin:0 auto}
-.maq{position:relative;border-radius:var(--r);background:#fff;overflow:hidden;
-  box-shadow:0 .5px 1px rgba(11,31,48,.05),0 2px 5px rgba(11,31,48,.04),0 10px 28px rgba(11,31,48,.05);
-  transition:transform .45s var(--mola),box-shadow .3s ease}
-.maq.some{display:none}
-.maq .vista{position:relative;aspect-ratio:900/506;background:linear-gradient(180deg,var(--estudio-cima),var(--estudio-baixo));
-  touch-action:pan-y;cursor:grab;overflow:hidden;user-select:none;-webkit-user-select:none}
-.maq .vista:focus-visible{outline:2px solid var(--marca);outline-offset:-2px;border-radius:0}
-.maq .vista.agarrado{cursor:grabbing}
-.maq .vista canvas,.maq .vista img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.maq .dica{position:absolute;left:.75rem;bottom:.75rem;display:flex;align-items:center;gap:.4rem;padding:.4rem .65rem;border-radius:99rem;
-  font:600 .72rem/1 Montserrat,sans-serif;color:var(--tinta);background:rgba(255,255,255,.62);
-  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .3s ease}
-.maq .dica svg{width:.95rem;height:.95rem}
-.maq.girou .dica{opacity:0}
-.maq .corpo{padding:1.1rem 1.2rem 1.25rem}
-.maq .fam{font:600 .72rem/1 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--marca)}
-.maq h3{font:700 1.6rem/1 Montserrat,sans-serif;letter-spacing:-.03em;margin:.45rem 0 .4rem}
-.maq h3 span{color:var(--tinta-2);font-weight:600}
-.maq .tag{margin:0;color:var(--tinta-2);font-size:.9rem;line-height:1.45;min-height:2.6em}
-.maq dl{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0 0;padding-top:1rem;border-top:1px solid rgba(11,31,48,.09)}
-.maq dt{font-size:.72rem;color:var(--tinta-2);line-height:1.3;order:2}
-.maq dd{margin:0;font:700 1.25rem/1 Montserrat,sans-serif;letter-spacing:-.03em}
-.maq dd small{font:600 .7rem/1 Montserrat,sans-serif;letter-spacing:0;color:var(--tinta-2);margin-left:.15em}
-.maq dl div{display:flex;flex-direction:column;gap:.3rem}
-.maq .ver{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font:600 .875rem/1 Montserrat,sans-serif;color:var(--marca)}
-.maq .ver:hover{text-decoration:underline;text-underline-offset:.2em}
-
-/* ---------- 8. História: foto fixa, texto passa ---------- */
-.historia{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);padding:0 var(--pad);max-width:90rem;margin:0 auto}
-.historia .fotos{position:sticky;top:0;height:100svh;display:flex;align-items:center}
-.historia .moldura{position:relative;width:100%;aspect-ratio:4/5;max-height:78svh;border-radius:var(--r);overflow:hidden;background:var(--noite-3)}
-.historia .moldura img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);
-  transition:opacity .9s ease,transform 1.6s var(--mola)}
-.historia .moldura img.on{opacity:1;transform:scale(1)}
-.historia .ano-fixo{position:absolute;left:1.25rem;bottom:1rem;font:700 clamp(3rem,6vw,5.5rem)/1 Montserrat,sans-serif;letter-spacing:-.05em;
-  color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.35)}
-.historia .passos{padding:30svh 0 20svh}
-.historia .passo{min-height:70svh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s ease}
-.historia .passo.on{opacity:1}
-.historia .passo .eyebrow{margin-bottom:1rem}
-.historia .passo h3{font:700 clamp(2rem,3.6vw,3.25rem)/1 Montserrat,sans-serif;letter-spacing:-.035em;margin:0 0 1rem}
-.historia .passo p{margin:0 0 .9rem;color:var(--claro-2);font-size:1.0625rem;max-width:32rem}
-.historia .passo img.mobile{display:none}
-.historia-intro{padding:clamp(6rem,16vh,10rem) var(--pad) 0;max-width:90rem;margin:0 auto}
-.historia-intro h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:13ch}
-@media (max-width:860px){
-  .historia{grid-template-columns:1fr}
-  .historia .fotos{display:none}
-  .historia .passos{padding:3rem 0 2rem}
-  .historia .passo{min-height:auto;opacity:1;padding:2rem 0}
-  .historia .passo img.mobile{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);margin-bottom:1.5rem}
-}
-
-/* ---------- 9. Propósito ---------- */
-.proposito{padding:clamp(8rem,24vh,16rem) var(--pad);text-align:center;overflow:hidden}
-.proposito blockquote{margin:0 auto;max-width:18ch;font:300 clamp(2.5rem,7.5vw,7.5rem)/.95 Montserrat,sans-serif;letter-spacing:-.045em}
-.proposito blockquote span{font-weight:800}
-.proposito p{margin:2.5rem auto 0;max-width:36rem;color:var(--claro-2);font-size:1.125rem}
-
-/* ---------- 10. Contato ---------- */
-.contato{position:relative;min-height:100svh;display:flex;align-items:end;overflow:hidden;isolation:isolate}
-.contato video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.contato::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,25,42,.3),rgba(7,25,42,.55) 40%,rgba(7,25,42,.94))}
-.contato .dentro{width:100%;padding:clamp(6rem,14vh,9rem) var(--pad) clamp(2rem,6vh,4rem);max-width:90rem;margin:0 auto}
-.contato h2{font-size:clamp(2.5rem,7vw,6.5rem);max-width:14ch}
-.contato h2 span{font-weight:800}
-.contato .sub{margin:1.25rem 0 2.5rem;color:var(--claro-2);max-width:32rem;font-size:1.125rem}
-.areas{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem}
-.area{display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between;padding:1.1rem 1.1rem 1rem;border-radius:1rem;min-height:8.5rem;
-  background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
-  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
-  transition:transform .4s var(--mola),background-color .2s ease}
-.area:hover{background:rgba(255,255,255,.14)}
-.area:active,.area.pressionado{transform:scale(.97);transition-duration:.08s}
-.area svg{width:1.4rem;height:1.4rem;color:#25D366}
-.area b{display:block;font:700 1.15rem/1.1 Montserrat,sans-serif;letter-spacing:-.02em}
-.area small{display:block;margin-top:.3rem;color:var(--claro-3);font-size:.8rem}
-.area.destaque{background:var(--marca);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
-.area.destaque small{color:rgba(255,255,255,.7)}
-.area.destaque svg{color:#fff}
-@media (max-width:960px){.areas{grid-template-columns:1fr 1fr}.area.destaque{grid-column:1/-1}}
-.rodape{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));
-  border-top:1px solid var(--linha);color:var(--claro-3);font-size:.85rem;max-width:90rem;margin:0 auto}
-.rodape .redes{display:flex;gap:1.25rem}
-.rodape a:hover{color:var(--claro)}
-.rodape img{height:1.1rem;width:auto;opacity:.8}
-
-/* ---------- Filme institucional: sai do botão e volta para ele ---------- */
-dialog.filme{padding:0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;
-  place-items:center;pointer-events:none;opacity:0}
-dialog.filme[open]{display:grid;pointer-events:auto}
-dialog.filme::backdrop{background:rgba(3,8,12,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-dialog.filme .tela{width:min(92vw,calc(82svh*16/9));aspect-ratio:16/9;border-radius:1rem;overflow:hidden;background:#000;
-  box-shadow:0 2.5rem 6rem rgba(0,0,0,.6)}
-dialog.filme video{width:100%;height:100%}
-dialog.filme .fechar{position:fixed;top:max(1rem,env(safe-area-inset-top));right:1rem;width:2.75rem;height:2.75rem;border-radius:50%;
-  display:grid;place-items:center;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-dialog.filme .fechar svg{width:1.1rem;height:1.1rem}
-
-
-/* ---------- Carregamento: monograma com brilho, sai assim que a abertura está pronta ---------- */
-.entrada{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--degrade)}
-.entrada .mono{width:min(16rem,60vw);aspect-ratio:1024/184;
-  background:linear-gradient(100deg,rgba(243,246,249,.25) 30%,#fff 50%,rgba(243,246,249,.25) 70%) 0 0/250% 100%;
-  -webkit-mask:url(../../img/logo-branco.png) center/contain no-repeat;mask:url(../../img/logo-branco.png) center/contain no-repeat;
-  animation:brilho 1.6s linear infinite}
-.entrada .barra{position:absolute;left:50%;bottom:18%;width:7rem;height:2px;translate:-50% 0;border-radius:2px;background:var(--linha);overflow:hidden}
-.entrada .barra i{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(var(--p,0));transition:transform .3s var(--mola)}
-@keyframes brilho{to{background-position:-150% 0}}
-html.carregando{overflow:hidden}
-
-/* ---------- Faixa corrida ---------- */
-.faixa{overflow:hidden;border-block:1px solid var(--linha);padding:1.1rem 0;margin-bottom:clamp(2rem,5vh,3rem);
-  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.faixa div{display:flex;width:max-content;animation:corre 38s linear infinite}
-.faixa:hover div{animation-play-state:paused}
-.faixa span{font:600 clamp(.8rem,1.2vw,.95rem)/1 Montserrat,sans-serif;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;padding-right:1.5rem;color:var(--claro-2)}
-.faixa span b{color:var(--prata);font-weight:700}
-@keyframes corre{to{transform:translateX(-50%)}}
-
-/* ---------- Transparência e movimento reduzidos ---------- */
-@media (prefers-reduced-transparency: reduce){
-  .topo::before{background:var(--noite);-webkit-backdrop-filter:none;backdrop-filter:none}
-  .btn-vidro,.area,.maq .dica,dialog.filme .fechar{background:var(--noite-3);-webkit-backdrop-filter:none;backdrop-filter:none}
-  .maq .dica{background:#fff}
-  .area.destaque{background:var(--marca)}
-}
-@media (prefers-reduced-motion: reduce){
-  .rolar::after,.faixa div,.entrada .mono{animation:none}
-  .entrada{display:none}
-  .percurso,.bobina,.giro{height:auto}
-  .giro{margin-top:0}
-  .rolo .palco,.giro .palco{position:relative}
-  /* filme vira uma imagem parada em cima e as frases em lista embaixo, fora da área da imagem */
-  .rolo .palco{height:auto;overflow:visible;display:grid;grid-template-columns:100%;grid-template-rows:100svh auto}
-  .bobina .palco{grid-template-rows:70svh auto}
-  .rolo canvas,.rolo .veu,.percurso .conteudo,.rolar{grid-area:1/1/2/2}   /* posicionado absoluto precisa das quatro linhas para ficar na área da imagem */
-  .rolo .cenas{grid-area:2/1;background:var(--noite)}
-  .bobina .veu{display:none}
-  .giro .ficha{opacity:1;transform:none}
-  .rolo .cenas{padding:3rem var(--pad) 1rem;display:grid;gap:3rem}
-  .cena{position:relative;inset:auto;opacity:1}
-  .onde{display:none}
-  .giro .palco{height:auto;overflow:visible}
-  .giro canvas{position:relative;height:70svh}
-  .giro .graus{display:none}
-  .giro .fichas{position:relative;left:auto;bottom:auto;height:auto;padding:2rem var(--pad);width:auto;display:grid;gap:1.25rem;background:var(--estudio-baixo)}
-  .giro .ficha{position:relative}
-  .giro .trilho{display:none}
-  .diferenciais .fixo{position:relative;height:auto;padding:6rem 0}
-  .trilho-h{overflow-x:auto;width:auto;scroll-snap-type:x mandatory}
-  .card-dif{scroll-snap-align:start}
-  .historia .moldura img{transition:opacity .3s ease;transform:none}
-  .btn,.area,.maq,.abas .pilula{transition-duration:0s!important}
-}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-<div class="entrada" id="entrada" aria-hidden="true"><span class="mono"></span><span class="barra"><i id="barraEntrada"></i></span></div>
-<script>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("carregando");setTimeout(function(){document.documentElement.classList.remove("carregando");var e=document.getElementById("entrada");e&&e.remove()},5000)</script>
-
-<header class="topo" id="topo">
-  <a class="logo" href="#inicio" aria-label="Cristofolini Máquinas, início"><img src="../../img/logo-branco.png" alt="Cristofolini" width="1024" height="184"></a>
-  <nav aria-label="Principal">
-    <a href="#maquina">A máquina</a>
-    <a href="#linha" class="fica">Linha</a>
-    <a href="#historia" class="fica">História</a>
-    <a class="btn btn-marca" href="#contato"><span class="so-largo">Falar com a fábrica</span><span class="so-estreito">Contato</span></a>
-  </nav>
-</header>
-
-<main>
-<!-- 1. Percurso -->
-<section class="percurso rolo" id="inicio" aria-label="Do produto pronto até a máquina que faz">
-  <div class="palco">
-    <canvas id="telaPercurso" aria-hidden="true"></canvas>
-    <div class="veu" id="veu"></div>
-    <div class="conteudo" id="heroConteudo">
-      <p class="eyebrow"><b>Cristofolini Máquinas</b> · desde 1997 · Grande Florianópolis</p>
-      <h1 class="display" id="heroTitulo">
-        <span class="l"><span>Fazer melhor.</span></span>
-        <span class="l"><span>Fazer diferente.</span></span>
-        <span class="l"><span>Fazer a diferença.</span></span>
-      </h1>
-      <div class="base">
-        <p>Extrusoras, picotadeiras e impressoras para a indústria de embalagens plásticas flexíveis. Role a página e entre na fábrica que faz isso.</p>
-        <div class="acoes">
-          <button class="btn btn-vidro" id="abreFilme" type="button">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>
-            Assistir ao filme
-          </button>
-          <a class="btn btn-marca" href="#linha">Conhecer as máquinas</a>
-        </div>
-      </div>
-    </div>
-    <span class="rolar" id="rolar" aria-hidden="true"></span>
-    <div class="cenas">
-      <div class="cena" data-de="10" data-ate="56">
-        <p class="eyebrow">01 · O que sai daqui</p>
-        <h2 class="display">Na mão do seu cliente. <b>Pronta para vender.</b></h2>
-        <p>O rolo de sacos picotados sai da máquina do jeito que vai para a gôndola. É isso que a sua fábrica entrega.</p>
-      </div>
-      <div class="cena" data-de="117" data-ate="134">
-        <p class="eyebrow">02 · Quem somos</p>
-        <h2 class="display">Produzir <b>máquinas de excelência</b> é só o ponto de partida.</h2>
-        <p>Trabalhamos também para entregar serviços que garantam desempenho, confiança e resultados ao longo do tempo.</p>
-      </div>
-      <div class="cena" data-de="144" data-ate="176">
-        <p class="eyebrow">03 · No chão de fábrica</p>
-        <h2 class="display">Projeto próprio. <b>Usinagem própria.</b></h2>
-        <p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p>
-      </div>
-      <div class="cena" data-de="190" data-ate="212">
-        <h2 class="display">Sem cópias. <b>Sem atalhos.</b></h2>
-        <p>Desde 1997 desenvolvemos as nossas próprias máquinas, pensadas para a eficiência de quem produz.</p>
-      </div>
-      <div class="cena" data-de="222" data-ate="234">
-        <h2 class="display">Montada aqui. <b>Produzindo em 3 dias.</b></h2>
-        <p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p>
-      </div>
-      <div class="cena" data-de="256" data-ate="999">
-        <h2 class="display">Feita para produzir <b>sem parar.</b></h2>
-        <p>O máximo de produtividade com o mínimo de manutenção. O que muitos chamam de qualidade, nós chamamos de eficiência.</p>
-      </div>
-    </div>
-    <div class="onde" id="onde" aria-hidden="true"><span id="ondeNome">Produto final</span><span class="barra"><i id="ondeBarra"></i></span></div>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-</section>
-
-<!-- 4. A máquina em 360 -->
-<section class="giro" id="maquina" aria-label="Extrusora Superiore MC-50 em 360 graus">
-  <div class="palco">
-    <canvas id="telaGiro" role="img" aria-label="Extrusora Superiore MC-50 girando"></canvas>
-    <div class="cabeca">
-      <div>
-        <p class="eyebrow">04 · <b>Em destaque</b></p>
-        <h2 class="display"><small>Extrusora Superiore</small><b>MC-50</b></h2>
-      </div>
-      <span class="graus num" id="graus" aria-hidden="true">0°</span>
-    </div>
-    <div class="fichas" id="fichas">
-      <div class="ficha"><div class="valor num">120<small>kg/h</small></div><p>Capacidade de produção com rosca de L/D 1:32, comprimento acima do convencional.</p></div>
-      <div class="ficha"><div class="valor num">1.200<small>mm</small></div><p>Largura útil do bobinador. Até três bobinas de 400 mm ao mesmo tempo.</p></div>
-      <div class="ficha"><div class="valor num">Ø50<small>mm</small></div><p>Conjunto de extrusão desenhado para otimizar a plastificação da resina.</p></div>
-      <div class="ficha"><div class="valor num">10<small>pol.</small></div><p>CLP com tela touchscreen colorida. Operação simples e indicadores acompanhados à distância.</p></div>
-      <div class="ficha"><div class="valor num">PEAD<small>PEBD</small></div><p>Cabeçote fixo, torre giratória e alinhador eletrônico para a melhor planicidade de filme.</p></div>
-    </div>
-    <div class="trilho" id="trilhoGiro" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <h1>Cristofolini Máquinas</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-</section>
-
-
-<!-- 5. Diferenciais -->
-<section class="diferenciais" id="diferenciais" aria-label="Diferenciais">
-  <div class="fixo">
-    <header>
-      <div>
-        <p class="eyebrow" style="margin-bottom:1rem">05 · Diferenciais</p>
-        <h2 class="display">Depois da venda é que <span class="it">começa.</span></h2>
-      </div>
-      <p>A máquina é o ponto de partida. O que faz a diferença é o que vem junto: montagem, suporte, peças e engenharia de quem fabrica.</p>
-    </header>
-    <div class="trilho-h" id="trilhoH">
-      <article class="card-dif"><img src="../media/dif-montagem-1.jpg" alt=""><div class="txt"><span class="n">01</span><h3>Produzindo em até 3 dias.</h3><p>Lógica modular de projeto e técnicos experientes: a montagem mais rápida do Brasil.</p></div></article>
-      <article class="card-dif"><img src="../media/dif-suporte-1.jpg" alt=""><div class="txt"><span class="n">02</span><h3>Suporte com quem fez.</h3><p>Engenharia e suporte em canal remoto dedicado e gratuito, com visita presencial quando precisa.</p></div></article>
-      <article class="card-dif"><img src="../media/dif-reposicao-1.jpg" alt=""><div class="txt"><span class="n">03</span><h3>Peça na mão, rápido.</h3><p>Estoque dos itens de maior giro e prioridade na fabricação dos demais. Sua produção não fica esperando.</p></div></article>
-      <article class="card-dif"><img src="../media/painel.jpg" alt=""><div class="txt"><span class="n">04</span><h3>Sem cópias. Sem atalhos.</h3><p>Projetos originais, componentes de alta qualidade e só a tecnologia que faz diferença na operação.</p></div></article>
-      <article class="card-dif"><img src="../media/dif-qualidade-1.jpg" alt=""><div class="txt"><span class="n">05</span><h3>Qualidade em cada detalhe.</h3><p>Centros de usinagem e tornos CNC de última geração, equipe treinada e fornecedores de referência mundial.</p></div></article>
-      <article class="card-dif"><img src="../media/dif-qualidade-2.jpg" alt=""><div class="txt"><span class="n">06</span><h3>Feita aqui.</h3><p>Da usinagem à montagem, tudo dentro da nossa sede em Santa Catarina.</p></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- 6. Números -->
-<div class="numeros-fundo"><section class="numeros" aria-label="Nossos números">
-  <div><div class="n num"><span data-conta="29">29</span></div><p>anos de história, desde o primeiro torno em 1997</p></div>
-  <div><div class="n num"><span data-conta="60">60</span><sup>+</sup></div><p>profissionais entre engenharia, usinagem e montagem</p></div>
-  <div><div class="n num"><span data-conta="5">5</span></div><p>países atendidos na América do Sul</p></div>
-  <div><div class="n num"><span data-conta="3">3</span></div><p>dias da chegada da máquina até a primeira bobina</p></div>
-</section></div>
-
-<!-- 7. Linha -->
-<section class="linha" id="linha" aria-label="Linha de máquinas">
-  <header>
-    <div>
-      <p class="eyebrow">06 · <b>Linha completa</b></p>
-      <h2 class="display">Quinze máquinas.<br>Nenhuma <span class="it">cópia.</span></h2>
-    </div>
-    <div class="abas" role="tablist" aria-label="Família" id="abas">
-      <span class="pilula" aria-hidden="true"></span>
-      <button role="tab" aria-selected="true" data-fam="todas">Todas</button>
-      <button role="tab" aria-selected="false" data-fam="Extrusora">Extrusoras</button>
-      <button role="tab" aria-selected="false" data-fam="Picotadeira">Picotadeiras</button>
-      <button role="tab" aria-selected="false" data-fam="Impressora">Impressora</button>
-    </div>
-  </header>
-  <div class="grade" id="grade"></div>
-</section>
-
-<!-- 8. História -->
-<div class="historia-intro" id="historia">
-  <p class="eyebrow" style="margin-bottom:1rem">07 · Nossa história</p>
-  <h2 class="display">Tudo começou com um <span class="it">torno.</span></h2>
-</div>
-<section class="historia" aria-label="Linha do tempo">
-  <div class="fotos" aria-hidden="true">
-    <div class="moldura" id="moldura">
-      <img src="../media/hist-oficina.jpg" alt="" class="on">
-      <img src="../media/hist-metalurgica.jpg" alt="">
-      <img src="../media/hist-crescimento.jpg" alt="">
-      <img src="../media/hist-hoje.jpg" alt="">
-      <span class="ano-fixo num" id="anoFixo">1983</span>
-    </div>
-  </div>
-  <div class="passos">
-    <article class="passo on" data-ano="1983">
-      <img class="mobile" src="../media/hist-oficina.jpg" alt="Oficina nos anos 1980" loading="lazy">
-      <p class="eyebrow"><b>1983</b></p>
-      <h3>A vivência veio antes da empresa.</h3>
-      <p>Começamos dentro de uma grande indústria do setor de plásticos flexíveis, na mecânica, usinagem, elétrica e metrologia. Anos acompanhando de perto a produção e resolvendo problema real.</p>
-      <p>Depois de mais de uma década, passamos a prestar serviços especializados para outras indústrias do segmento.</p>
-    </article>
-    <article class="passo" data-ano="1997">
-      <img class="mobile" src="../media/hist-metalurgica.jpg" alt="A primeira sede, Metalúrgica Cristofolini" loading="lazy">
-      <p class="eyebrow"><b>1997</b></p>
-      <h3>O primeiro torno.</h3>
-      <p>Com a compra do primeiro torno nasce oficialmente a Cristofolini. Os primeiros anos foram de manutenção de extrusoras de balão e demais equipamentos do setor.</p>
-    </article>
-    <article class="passo" data-ano="2000s">
-      <img class="mobile" src="../media/hist-crescimento.jpg" alt="Montagem na fábrica" loading="lazy">
-      <p class="eyebrow"><b>Crescimento</b></p>
-      <h3>A pedido dos clientes, máquinas próprias.</h3>
-      <p>O passo que mudou o futuro: desenvolver e fabricar nossos próprios equipamentos. Sem cópias. Sem atalhos. Soluções que mexem direto na eficiência e no resultado de quem produz.</p>
-    </article>
-    <article class="passo" data-ano="Hoje">
-      <img class="mobile" src="../media/hist-hoje.jpg" alt="A sede na Grande Florianópolis" loading="lazy">
-      <p class="eyebrow"><b>Hoje</b></p>
-      <h3>Do Brasil para a América do Sul.</h3>
-      <p>Sede na Grande Florianópolis e clientes em todas as regiões do Brasil e da América do Sul. Crescimento feito de experiência prática, engenharia, equipe qualificada e estrutura moderna.</p>
-    </article>
-  </div>
-</section>
-
-<!-- 9. Propósito -->
-<section class="proposito" aria-label="Propósito">
-  <blockquote id="citacao">Se for para fazer <span>mais do mesmo,</span> preferimos não fazer.</blockquote>
-  <p>Se um projeto não atinge o nível de produtividade, robustez ou desempenho em que acreditamos, ele não é lançado. Simples assim. Para nós, eficiência não é promessa. É resultado.</p>
-</section>
-
-<!-- 10. Contato -->
-<section class="contato" id="contato" aria-label="Contato">
-  <video src="../media/aereo.mp4" poster="../media/aereo.jpg" autoplay muted loop playsinline preload="none" aria-hidden="true" id="videoAereo"></video>
-  <div class="dentro">
-    <p class="eyebrow" style="margin-bottom:1rem">08 · Contato</p>
-    <h2 class="display">Faça como as empresas que <span>mais crescem</span> no Brasil.</h2>
-    <p class="sub">Fale direto com a área certa pelo WhatsApp. Quem responde é quem conhece a máquina.</p>
-    <div class="areas" id="areas"></div>
-  </div>
-</section>
-<div class="faixa" aria-hidden="true"><div><span>Feito em Santa Catarina <b>·</b> Sem cópias <b>·</b> Sem atalhos <b>·</b> Montagem em 3 dias <b>·</b></span><span>Feito em Santa Catarina <b>·</b> Sem cópias <b>·</b> Sem atalhos <b>·</b> Montagem em 3 dias <b>·</b></span><span>Feito em Santa Catarina <b>·</b> Sem cópias <b>·</b> Sem atalhos <b>·</b> Montagem em 3 dias <b>·</b></span><span>Feito em Santa Catarina <b>·</b> Sem cópias <b>·</b> Sem atalhos <b>·</b> Montagem em 3 dias <b>·</b></span></div></div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
 </main>
 
-<footer class="rodape">
-  <img src="../../img/logo-branco.png" alt="Cristofolini" width="1024" height="184">
-  <span>© 2026 Cristofolini Máquinas · Grande Florianópolis, SC</span>
-  <div class="redes">
-    <a href="https://www.instagram.com/cristofolinimaquinas" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.youtube.com/@CristofoliniMaquinas" target="_blank" rel="noopener">YouTube</a>
-  </div>
-</footer>
-
-<dialog class="filme" id="filme" aria-label="Filme institucional">
-  <button class="fechar" id="fechaFilme" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  <div class="tela"><video id="videoFilme" src="../media/filme.mp4" poster="../media/filme.jpg" controls playsinline preload="none"></video></div>
-</dialog>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script type="application/json" id="cofre">{"v":2,"grupo":"cristofolini","nonce":"qvuQwLmzehHQAq2j","dados":"0OVPa0Is1srpfJeA1cZEQ2k8Bfr2Oux1v9zXYFwW+Sx9ihhynDnB6Iddp4IhH2EzTFguxN2TkPoATrcbyrmQvcC32/SmhCg39dCe21g32sB6zDPVYR7JUWKFbqT8U5QM8b3ER2br04w+XAE64IrP57bjZ1LpzbA0grVPRLNMFQX8ChImdtSq1LBI3sI3bTLZcN0RhQmYf/1N9l9Tq8VYDZ3CVBGthLD93+lka06U2QNH4nlVDwgVaBI7N6u+VQKcsQ+MzRSsWLKUrHxqUZPh9HkN2A03rHdXPQqdEkWQI2tkSOcHzknYotodDu99DiaMdroarTdFjQoGGuvVyjZq7NlYZA6dkbdase9ErpMgqAFxYqmgwLiO/s1lJNq/HEJg0tZrJagf7j6hTGoC0snCvoOs5e9vgrxUcAwnXcbj9pwIYHDLXuomVCBjXSr/dnJAUjHIS0ykHC1kUpuoMY35rZ8Y2v0LPNK2ZX8Qqjaa0PlK+KQRdY53juv27RURN1uUcFfb1ja1YhU+D97bYDzyAgm6jzIhNbsV+M94QTQz1TisnhYr5C+uYuCOachvEAx/HZNtdfOfT2a9bgUHnsMzTuafk4DPmZKESpl4ZSWJEzB3EzUmmdJ9HAnM7bspuinu3dF35+X35DW0B6aBTlH7M4pcp/h7OXTuiOHTPi8bn7fIfSr86HgC+Q7hHdb1uvKADjRfNujidtKMhLHhY1gDNFC8Y2wT9eTuxISCIFE0yxDrDG3MVoP/UwksZJAUA50u5JFElG4CboGLKZIr/djm/3G6GTpbD0Pho/A+6Mb2Sbmt5vX055ipt6BWPzkLpZ6Ed/d5v/aCA7PYmqxTPUun970QM/omxQObo2Q72Ot/OXlYVifJzb6rBhM8iBhhUbXMKwPWjGYvmc9cWJf2bsKMcYrVTocZDFG0ZS6uSnaJYYXNASyETjxT64oGLwtfii7cQ1oZ2ijK3vIF7x5QrqJJNhWsebAZPJpvFQisp9J0pC/MOK9E7B16kjndmVWXlfLp7n3R6kvPGz/HSlgvqpKWcI2FyQL3NzoZRsnHJb/7KUVeHls4XALkB6Sx6UMmvbyTJrz1oeyBJ1zlqDqx09d308lKshGcHIrFAaTJDpgk9t55FcvUba4HYRkXZBMOJDOKHeKr7pk1b3EPVoxoxqWN+RTfuKKlXSCptTsvtquAoKDAElphjpo3IG8oDRn2tW/GqkDsJ/rGZDFi9VhAiwSfK442nsODPL3s5VmmZuuHNfLIi/Dzzf4mnFG9jn62m3fmBwspqs+inSgdn9pq3/PaZuwRgWWXlfd3cn+pqyucM+JZcnT1PHd4ZI5Mz+ZNK91YYK5UH3NXSZNuT1/Q8BnvDTtwppM7VrZ4uPX8FZcL+sry7iVONJRj1ImIcW+kNW7vMiur6UyWxsNLPea7+g1K6ZM1drhmjH6/zanOBIH4WH7Ij3a9ZXiF9aSDcWT5ZQ6Lk+Xl3In8/y70ZDVf+2fLWd+oFbBrbpMUO9WG4R3+LeARz3cMzryIqinpjVX1Mn5F/wse8Uu5UDA7YMvPfE/HIO/WUv7nIr7YI+Rx8Esna1Utx9FAMlH61CbEntAkVhOH/KYhKRUKl1ziW3LmBv3x7M8XWYa/sQh5h7XszaGsPVk/XUKrKyNj3g1bjppwkdWLx+3mGhoqtbemJRKpqfhHisvswZ2hfn7ZOKyOh/jURe0D583x0gaO+pKBasKKtnQjKQoXQIgBBHnl0MHjOPMwD7wNYsFsvUWeMpP1P8Uv7LTScMEW5mMReLctrye2OBth+NqPkCkmJLP53wN9xjCn1R8CDLJmc3CGeXfAkc0XUXoWJS83wgGRiEEJfSQX4Sd1l80s51LS52EsVmTbjOpX5/ZS4cOqNIBxl+HW8FX/STqqwk495D5/4VOJSq98u+u5EkPNauO1/o7M8TH141kXQJWz9+qcYDvP4atgiZ71GZngKJ1yTESyD49aUTX8VPoKkmlVhxzWnIdQVJSizYGJpPNOvgUxq3ck/8yl0hZNymCZAqbL2et2tzX1001EFcPPsqxwwncVXFibio2C2We6Un3e0qKhHf5rBYQpIme0zQjtQE1ENULoSvmpCFuBE4qC/MM8KUh2yb1ko9blaQ5Sxl0T4XbpNXicq/V1aatUlDCwvODdhETsZxWh8ZCdINuzAGndH8FXkllwkGiH/OgAH25feJoJtW5l0nF9AGrrbAT1K5I1ziBs6VKzI4J9quQh61GUcfCeXuYkiA3iFQt2LvkL0ZLIWsK99Ve+E81gcHo2n9nUTtI59dRcJCJ40f/w/FYrXJ2K95a59LmNEfak9wUN+SY7QAAkBKHwIUrJi/9brroS6iPERXxwxqoaJM2YPT+W+eRI7+E0hJvyjmCTdR+Y8D9XXWwf9g9wY+vhQdYeP+WJSF7bT3mM8qGafgGTeoSLGBwIlKG1jkyxasy0w37s7qmGIrrC2pnLljzUvhFGM1UDpy+eO0Df8tMXLUtsP3PhFTvXGKW0iFENqcrfQ5jNExTlbJWSfLf9DOZX3TE04cfrxJzV4kXh9IG6pdW2G0PwjraPb5euKIQ+TXnrV/4Q9/mbzndBF5NPKhnPvP3Rq9E7CikQoxmaV0ReUCr+ivD2GtHg0bxJNI2gEr7awGsJxuYzi7h6yRczR81lLJgQvTosEyRususc7KjHbSlW0zeASUaEf0yKLIGguUZi6ZwD5ojJHF73gJSoba8ccRA7FRuk42mwTSnE4IXBNk/BKYfzH3YXszbttpBOm+rmonhiud1qTiITY0UviJ63E8JN7s0VsYrPukGj87hXwW9cTjSAQiA7oQCL9cqH0HruEzfJ6F+y0F82Dk/4hUklYA7jeRrzhpaYPZUoCjcHkLrlwbmNMWpv1WS+lUWTdckyng1ylqA7Inq8/kjMAg37bxATF1ZFlZSLaPAl8FJhjMfC4zOYQwrBDfmGPon2MyCwxS+DiDQTXY9NBQf4flf6VdoZEPAnUiN042k1E8rq+g/lh+suP9mhjKHnuCFv3iYNePoD/QNlACS/2Khfgnktm+vO/EnHKTWiNF7pNI1iS7EIiHHWkM6HhgLKrFCZCsX5Pqj055rriuqQoh9CaWkWOdWsaQ2hwK5Gdxar4jbEVp7okPvzTbwze7tKof3U4gwo9XwwCAH5EMVoTHa9aWYPTFUn2cPuRBZlOTz4I2+K83Z7ryr88pnsZuDClgIFBscLJwa8aHkZ0O/t0dK1aNtRJW5m/KP0F080hmDcr4KpFJUYrj4yP/Nh+IhPfoZKWcY7Evh51nIf+VJo32I6Cd9/EzMFrN7+CY/B0CKiyZqL0S1GC+893izlkJGpdzqLOzgLZWHhT8O3AS73yXL4HuxSN+2Hd5MGPmdDmRnoUVDmqUQRXQyAcIIcOfr5GxjEym7jTLFM/KwEV1CF1zgu8KBzKgs0XFSAsdTisvaNO4fbU02IBHHH5H4IGxYRS5T/cBXVvqrgaHso22Dr9HyUpYJkHPH6XpM28KOWPxcvRMtmrCOhexUuuvkOaQG/L2n2HYzPW5hb0i7fjR2LD/a/AZU23dJStcq/C0bIhGstlwdxb0JdSgLlrDd+8j94E1vWfdvTiKpNH/U1ccI30o/Ufw+OO516BbX1euXpQDEMBTk6WpAFMet99QDJoDOv9/fEShilyWFxR4NPeZWGuaYidgz2TwN7b9E2FHAtWhSfXhzo6DpZTmU2PYA/EI70SusL1JBWVORU6VhSbJATxd7cUyIaQvqvzzAbXfER3c/Vpy+vw78wxqC/jf75d/eFBR6a2vQBu9hVnME/9pNZne/q9fzs0P5vt+BAYK/AsK3EmXAxY72VfebGOg0bUTDd3pYv2qyDPRxeW4FbVSA46jm6DmX+EO+AIFt6F0wLWMZ1Y9V4KtXtfJb14on6+xBfnvNsA5hpWJpkuHWTdg0hMAixGVVkhWby4FyJHkpjE2w4rNIz85WIbKiMeGB4UsCQXie6/TXYBsC1qg05z6cmSlZkd163QHFImHoRGkgCAflw3lMBJ7HAafjnmrxsFU55R50RQZEzGukk26coS9/vRgJKwVNJZNSI1XUf0hbT14/onPwZViCjdRQ87tEomaOfdsXZ3mT1VzsgCQl2z8GnsYVmuImEbqf6m85C2lRNVMMWtLs+Xp0XH5w0d0mK6pBqKw+YL+YEUeVzadmvFI7BB8AJ6IwPzbvlBdjSIbU4ECDEgR9ZKTaL5SIGMt4rTNJ0wLDvtuJsSTitpORA8jN9KHg+Dl/YEF6LxxSdD8nhppi/g7hqQWBqPATBb0qBw9saf8cuENLQEOhDkHXhhgdU6HRda6tU4zJiXKrYuiVVohxT8u6Zy/dOEpFT3GD0taOBKwxIx+gFHVjpDvJDuGt94hM1CS4AP/yKWOZfTYnY3Efz8mRsZv7MqSZ0f3wwwYsrhQ6jMX8PEXuadEaTkE9Q2mXJdsfMZWikSZhYyN62J/hD91Rm5SZpfAzv/QHex3WJa330myjFGJbrbXVQTkV+4oS6QBUXyzkq94DRLX6IsH9y3USQdI7lsS4Ecg1EJiDlf57SUwjgtuW+t5Jm88szUDO9nG/Az0ZVM+1RkUU3f8z6KqMaaSjUQaniksESU2s68UVwKgWMXO/Ntznz4nlFQNjKkk98/aR2g/RggwvHIiqoJQR6eSDWDn7el8VTmcn5P55M+RQJuiwWbKqjRiS5Z/FRl/s4+vRdLdiwsOV8IJiB8HPsZYVUzmEDXJS5CJALS8SrQM55P+kbDDVLCnzABRfjpZsqg1lO4C7pXRDLEtaFWe24K3HB8YNjoL1JK+SctTkNl97YXJ8kHVCRD6+tGDzvgnZpaHLRIfLifLV4uSZIBUdH/TYak1ScWwdslQc8wyz0WuKlQarAbA4LEvNfEydLf0wdq4WjP3Eb7eSeDS4/DOKw8XT4Xwyj8HiyW83v9DzJBDwoaw+8zqCmppGlw68cvWQZFucgKWUeTQ7mUIiEnrX/zFfoX5E7wCaI3yXZEBtmdg6Tj1Uu6SGo2Lk2Jr6hBu4UIDHqy7PJdC0V0Q5PGB2cZ4eNSQQ81PmgGmNWC14Z8Fbwr6ePqPsXCkTA/HxDKDapmBqrwWAoE29sfy1Lvgh4wVFAXuLV7j5q4p7/Q1ThWqCeOAtpg0FRaW2P8xBYZ81CQZ8yLVlDtivNZqLIK+R/KXXeF39zBFXgvkoy1EKvBn6w8ZgFW/3P1fuSdVXwfXKDObz5dDP2CWDVWIXL9Rde36gfCYFC2NT4iVlgzh5vNDDUDhTidKggNOCTbh4QLdfJLagXCxOHfb73csLxz7i7NL1Rsi+0fIemOC4kv7owaczxJ3ti8QNljlLHgEkqGl4oHLNll/T3hVthlZCh4MwSI8q3bpixQH2+gcY3upb9+WUafBCDj7IPjSBP+nyKc0CL5SfWW7birdfJro6fvj2pOtOCz4EJGzPJ13PcIMhbc6leHKaohfQkgl9AB080Ke2TEUvSWHTgXGCzWZIPEb5DgDtcQ+DN9j0FI/qUpgNr27E/LWE0b3gs6KfCnhSOLem/g1KuzKklrPy9T81tYBRVriZOvwHpBU4rVYAXiIrL5Cb2nrztxigUhfZTy9O8WxNUZ1/at2bnXxRn2BOYe7KwuJJLDjJEaYr7ujr28aV9W/wW+zhXqjZBNCIz2MRfxZJ6YvFi77YCifsp82SH89A3ayPK4hnldphn4fkQ3JYUv56L6P5Pm6SQjzxVSgVrkImM/DzKVt2riWej44vOdPhnjhD4LnhoIMdmIPSRlrsaCkIVQGXTIxZsKrX6mZERTaUBehaqguPH8I38x7DfS8VL+Yfbhux9ik6q/0cEe1sBq6h8QVzt2kaZY6cPwmry7tU6RkiBFwgDIMZ5g8HbeEiR0bnve+rHaPk7amZoDvGRmbcrBuYLHpaj/9zI/VTgR8M3Dw7l7F7aCgO82K4IBDdGrw9CUKgUH3uyzMxdhFT46KUsMOdR6tMh1Q/vIAdPtwZKWPvt5X8QEcIiQyy5aitkL6C49nW7pkzg1dpYxkGGBvcFWNV6ku6YQxGZSToePEtweSbAB+UJEW0Uahuh/1a1K9pVEZVcnWr7FcgjUQZGd7ilX0ilGQaEELjHi5Uin7UrsAK47i2ix54jdrGtm4dq+n8KWuXc0ob/oEHh0k+XxUUHsQtMdSpa5nJ4Lre6qnbP1FVsGQqpPYRUAySSAkaRIrtbYlAw7V9eeILN/jrMK0Hw3Hk2WB4E7xUGsLPSHk5svjRepdgxugJM+QcJIDUOn2UWdtt25miXHIHpgB30fpmzE9MtYkSSBk9XKygDvNXtPhbPSwn+jWTxiQNkcmn66X7CxISOHyC6MfxQ7sN1oQ711fGAicuFq624HO09jXdmLIBZgx5v3NIdca26HUO3Zh09AAe3UKKgG6f+0vZq1Ve4gm83yBiEPXgyRz+u5P2LDE0D6fbRo9AvtAFHtQHKZvOgBAndSE2MMMppRrO8OMKoa1QbvCC4CKuqhecDoYqMsfNsRp2H+RLnylGVjepAuba0PPKetgVMya8I6u7pa/+YoFBlj6xvVllUYJGYN/WYYIpItHTE4iWn8P20hs5CP/2RQumFJMzGNUAFgU27Vx0G2VRjWaCQrH6c1hYodHOWOU9KKTYs/dqVzngAeukx6y5gEljbovzv+ttuPdkoT/D67lm4f3xUWiF/cTgwzZQp3rjFuZDpftP8WOzo83GmqIJDrcHYznXj+HDYbwNUicWINfoh1kIZ0rPWskfxG1QL751O5pZ5Saj2PIq3Hn2AaMtEp9IHuoY9U08ZZ3cpE8UM0+qj86B2+NmN9Gbm1IDyJpxfYnVGRY8i1zSIdul+pROp4UyUupM9BHu4+3EcolXNLjK05vYt12nlKeMCnS8s3sJLQxD9GklkHI8CFpRnBI7TSr4RXPDJYfIUI06bLcV/5cDsC1L5AU8qFJ9clLix/JB1Mmay3F2kNq8tu2rLjjZW7uf7/5bFuf6PAa66Vc3kLOtQ+j0iBZltSxGJnKeSHv4Ge6VGJBKXK/Ry/tZctIzF8AABmGJWiWdc6o7pHXnpVnlfOo8Rbpl4+a4mWgpr4sWQMAwFlmz+hlWHAWhAwWgKNtq2w1OTjVhL2MbJiwA70xoQrPFZhkAjERA2ZL2JSTkX45eVxDvDSBvjt8jleWDMW2/ByLQPgjFSK2Li6DfzFu6plwiy/MUsDGr+pILsjvLqVHE5keCmBo4J5CiobdKVbKtIAl5yK4AzFbUT/Iz7o4hDH2Sf/Pbi7pRcBeBxbgui3IqHrecOIYCffW23UpEdoX2WPmBwJn5ELB5FV+SIun5F3jVt4vG0v6Nl8K9p8baaS0yc4k0NnOBMWc8R357dWNrdZXxNjyYIG8VLi4tMsO8w3BHP13Vv0lr9Zv1bWMSKu0bSTMw4Z0uZOe1ziUdf/eY2MlNtWH44yY6f6q0wLS9GGiYHO+dmOs26m3nJmFz9yHgyzCdu0p13hUAElqwZMe/ZtmXXk8Sjr/WJDpmR85Y1f8oB/u2juS7uY4XEN/T67KV77ZF84tK1YMqbMFLrWFwhd9IkQvVAGX6ruAYay9jXsCTnnBaTybybXKHMLFwl+rfBf1j289ZRRGbYBV+S+0qyZu83WVb/EeyI2waxN+yjDu9dmoKDV1NJaob8RZFYCYpzQrf7yP4RbCXN7df8zpSO6D38+LyGCrxbYvqbpELTwTvSFxnH7L4QCZkBPSA/3jdU5T/KX1YluOqqjMnJZakwT7vJs61E805NlSatqaxWbazYgpBvsKl0kt8d9aEdBH3BzgO3+eSnduhdjcLiPT3FILskaLibaOZvK/DUQkM5GiuunZ/M3meqdX6Wr7SdI71+878F3gbsJ50dgxOm360ycO9QaKFOxhPE7jWkFGXcJ+HsrKeO8/vHNnPhGFNsIH5ukjrHo9GRb73Byv5upyOzbp7VeLgFiGSWapYFWDljbjoc3N/liBDs8mERUjoXhLUiokAI60RtcHVhUxlI6PVgmP8IEVY5PK510UH/qi/3luukKUQwUx9B7G4FROk/o4V7GIRBPXR+hBhc6Mnq+OCjybH79+uKj8ZxJSnhNSVaTnTx+X14GSmjHBVGjG9pZOEnXkf/x3T2VI1bc7sA5mG55oV1rxVrU4vAaFlYKuYhh/ZPX8+7XDFgWNXn/ICi0l/25BhIDSXGnmYnndiX2hBpYQBCtws6kgAaDkBTUgQx4w/50MhXyuvqvhjV3BLCxOYWoql+NpSnJqYWK9F6k+Z1o8qoLpCUPL/nxo/jsUNsG6IOMYm2I1tSB3oz1xrcxsTZo880xfjN/c0rLb1DDsSCEZygbnNTbS2PxguaKfaur7Delu/t6tRNXrcBBbOKUgoxsIpz4ZNtnYfOdvSfBy5cu5WzYpn4YLCIAuUtmwnkQDcJXVnz+QAU9iuKJujrq7Sp7TocHlG7jnfTrBGzHnglCj5HfHuRMQUwumcVF7s8XWicG8kiJ1rMUuoE+rq3jLLvdofqYDY8tMW9gjw5hBs7NPoDH2MTb2fUmInFbzTMeESOgz1tcsSAjA74DbCg57O7C/BG2qrnldsfyfRGAnnfr4fkyjQhcFrjrmkczn8uIycDbqw+oL+tOX0A58lT0nwrroHBQFxVp456/1MaBgd/U4+E4leWXypCJ4yzifF+fIcvJEXfbXsywRB2W9HD46MBgkDNL2NkmOcHEO1nYUii4oUolF9cVPAnCR+G6+91hINx8HROHX/Ekr6oGHEsAgELaADEagQ6HfVH6qAty5SA2pLrNRV16b0T9sTvY4dv/H+nNPBdriDgDAKXkFtCJjaHGKkCvJLX9Yhigvy4UGjVUaN5FTLQ0+2gcRBBkM4pbsT35xxk3atC03aOIK12rXqk6r9r0ioxVfuDEKaDrxE+P9MXXCBaGPU84u7G3obSot4yZrSCfQbSu73G4BiXV/NCk5bW7Hc2gn1KESxoltv1ytaf1D7+pvDhoyI+PynikpkFbjMxmP38B+m6/cQtbA6Z5sE11srmp/RwiJk1PdKhVcpj+2DI/LWE2OydDfQqPmm9ESAZV4kOL10A/h4d6GQ6xJ93r2CAg7HuJsBA0vvUjoNcnFokorGyH6CFpsmtdNq9tYXxbo0s4YWMuzDJkXv7CWy+cvzeOyQJx8YyRwQEJjNRYTGJaUKU5eex45OWWTgLJQdccq9V7YD8nsxBKCUL7am8mNe0jaVhND0akaHqcn6ObW7Jis2QrKcfgZ08y0tXEDz9TkMOu4GxZAZNVDz+srtiMcJSsrGs11Jf0qLA6ozLFZAVe9B3+vcHdz1ztP6Oo0dgeg4O5gWb7NMjYwmK6wWQLgrtTZJ3ZhIzKQU/ecUiLF7coP9s+Uw30KiWH1P+vSNNMgBP5TxEtqME1sciQ93mNLtAXvAGRqPCd83wo1EUlyhb85T3JEtnzSS4/bDiF4T1dVbI+WpE3ivkn2Wjpr1w/QkFZ/r72Cfp0MpFLrrShmV2VPkm2uNnpXD8MiYzl9gnOxms7JRWt95DZbRhKlRfG/yjA0H9Ma/Tl4l/wnty9iZGbmC8B+wzk7zz4I84TqIDuLzB/bEilPdDyN1d1asxzJesVHBiMH5XoxmL5P7qCFSfIncZlttpK82DJTExDSLThKHvcyqmtin4n7P837ZraxD6ZfqJmn9z4Ts2Qgl/d97Zr1G/4r902AEt8RL10OrHYUGQDyD2a6Ip2X9iJALfcvS6VFfppibJqe5K4qdWbiC22WljNbvEeB+w3ML/8hkha1/4gHdJ26Y+lDo9WKkUKpPw+soEO/IfP1IENg4nhyMJ49jB9w++swpZynzjtL68oMb5iShmhWqCbylqnSoEyRBWSiRPJYsoy9scP6oyAZlrc6BOln81XdH85ca9d/eOdogq7aN7c0tlGumudSEetVwCU2Sff+lIKcqp+8tsk6SfVHmJa/AUEUOhLXfKjW8IaUw4RnHwZ0Sgmc8L+zoo3GZTAiPi9/s+BIH3o7VjTSfbaV8WDLD2EO3qL5S5sixDy7w6klV8YM8nqwG0WpNdOxVTPpyVRTOBPLek9M7Fd2momX0QWyUiZD69KNjtwJitGx3g7Fxv5ASceYdYLIyZBb1vIQCJnB4fVKyp1jqTQsynnLRJtmlshRKmzx93iaEmoVina8KfiJM22Oh3pr01i1ufE8nyid0GWFiJaOsnHLgDXH2zQEjDiWuuon/ctbrr+hK7U7TLGxbARzPwnqs8Rpn6XbAooeVdo5LgH9TpTgy0jc5AV9CE0UFFSczFnHgix6aGQV48JA6GHhZ9v3sLx40hB+Q3fEGF/ShRIcV4RFSCfP7zh33PYdnb1jvHF0op51/pQJ5f2P6E2IgsPbXdby/NCXa/F93htGDgOqvRiJaYvSvuWntW2NEHyNMFwXDLKxOv/kvRFt0YMHQbb0n+C90fdkyGZ9n5z1QdU5BA65mqcJzbCTjZ7Lfu95MnQlb3caDTMWVuD5SSos7DubCyJnivfcVmqMaWZSJkhALqqw+UNGHRwlKJEf0tyXyQWo3U1Ce7RPrCuV06kZWIMELZZbjyTuY09jUTr9S0W3Zm7AxvgnLfxmNMBj+MhSVVRA1rPDpKvx4KIHWoM476gWPju4SRViCK7xnwd41+kB4fEjsOvhSblg33IDbREc3GCIwFQI89I9jkTyDg7Ym3+H5N3qviLmTJ8rW9ieZDbHKBlHD736SivMLMopTxLvWVfWIk3OxbecI/4lBTm5N2Wom/6mxijSVd+Vbb8x8z4PsQp4wd3PmHqMdnfqnzGlLhy6XaqxRx+O+i+be0q3/P1BgDAYgBqvIMZv4YQN8iMeBq99jTTMPSzyfyT9r0g6Sue3AB2qK3wLxEPqY5n4jTfPZIkbe0Rs6FSY53l+60Jc3D8+PwtCt7B8kZhQY8KbNWxPeWRPddkpOcFUfv/Fp8/u75vPzmNM3+sdSYWdbmvNNHOO/GZnZ5hpOmlhCW7LUpAAzbls6y2ULUrfxivIJVGEUnyRDLw00HTjudyZfv1ptTooqfeehKk8cx1fZtOOQm6Ssa7kaWMimHgMIk05QEhz9s/MRSqiQmRsrj9PVOuYMmxomDVruQNcHejM59Xhe70VRPWRYGiqzenbKUjIlo/HMbSpQ7+efxDI87P7RFw8HG228sjbI8rWjuGPV3cue8JeQvVRwh8mBsz+aZYVckNKArX4XWORwsiZGDTWqEEN8OgBEW2vZLEKIB2NWWH9V1jsq4Y3HVBOzlw6rFkMdtQ9bxY3YUeV8XU0g5KfGufS7NFT9tKbFedvRtj4NcKM3d84p8TeJ3juDUZK97xW5PUcHINdodytzKRaqNsXyV8odYfZ82F/cwWxrNsaSF/KUDub6wOabTDCKYvaHrBj0DrrI4SllsGmajzCuvJwij8S2k+wxWHcrUf6G9/A33x0EveMb5FzZGSLQ2PeEoj6CBQKfldgB9uzb82Io2WAwA0F09MZOVQDH6agTBMbIn88cY0eIUoLrWVor4YV9rZ9x8rVBJ2Jo4W6jhVo34KVMixqSESIbTPg+qJFRXD1J0E8sLdJ1gfYu+n+1dE9F9hB8lL3p9YQ5W0zrkPqjpzh79jwpYVN6+SGkwE8u8kDvAAVlaDsMC8/Cbm4k4Bba+QuQEwjnWG/AYxHAFR9W9cewvaHCB8IZICIh3zsFacZ8xJ4fYR9jkkUwKCIgqMyF8X9aFsz01u0qJgszlGO+MWL0Tt0SDvL+s3DRxCAGTV8haQntT4sUaIZj4QPC7PYkoRq4pVY2BeS9j6cL5JWVtivN2uVRnl78wHuN3kontAvPz8rKP3zfVkjahjaFqhKn/foPQ53ali23T+gFOC/jbk7uHHAtPlOO4AZM/ETET65XrF//7OPIDUAYLoTTDCVXG1X3007cx2xoRwK4c/eqxfKjOo2Vc2hwVb9GcuzqNoRbciEEbUlplpULDxT6jJtPfuX/r6ddtvobtsaWa2TuLlqpeqA20PuAXzDZ4dsmaINh1G2J/yUg6P+m5zoFbecj+OJG0ATICZ8dIFYUS08/c8ehJ+ziWVXQCbObyc2ThOZDzbPzke5jn2kGB3dOrtElXNlzHsPxg2jX1A7+97pgCLDH4gxv0AWmh3gT8gIlu1qQuh/lO/0opjcANBuvJS+fADT5HW6tizpyxNmRO5St31dNgXKMPppqjOp5jZfC8ZCw0z44OF0fKPHYOtxfQjR3AEozOAJJ+DLOjorWNCwEmhQCE9vo/21VTsNy8TXpsIpRFfyBJr0XBwX0r40E1Qejt5R2AbByhCaIwXvMiDomblqDJ/eK9+2RJtYxxscPnTnS+J85bSNcO3oH57V/1BZwq4MZbidzskAwvQb0zY9NYkGEJEcK+0EqMJcqTFKrV90UeuTcMURH5qOFVKKnBif3qr0mM4MgJh3vjFgSM7xdhIr6PVQGnQ6Y+LaP+qka3oJJR4DBUKzs7O89Y9ZDj3dwS1P0PmQg4jYK8Fca00RESvC/79fNtQgIxwWBKWG2fDXarFb44gEOgK0WSDd1OdJDc/miIt7gjdqIuH1+qovHgyhgQnKLUoNc9tmDM6XRuY2K6IVFR2s8aAoiLONaVsS639x1+OuRREcxbwnZnz/2+dKsCtlGN3Ih51jjYDMbpOUVZnY5e18Wq2lqzuWcrbBMqa5Nrr6EmjbNfsHhNIVpQI/IiWNZIuvtcCyIo0xP7YbxgmxTRvKDaaFd/1s8o4RmlIujmuFQZDPMgaQ1FocX6yEoQyTzolXyRN0YZa+7Dai3krudAjeBwvLQ1m3vkACVZwpfBFNve/qV/crX7mj8rKfkmaFG7REr6kubQtT17elqGnxDLoIM8esPWvk4OsTSgG/eohKbEduejvas5CvfGR8xQKezVaSwLkH7Zf6myXgJh+0CMKJm/UN3PqqF5/Gx2MFnjqER8bpuMHRgtjtGwHlFWBzQet0XvbPgYRVMmWKzSB288pitHyknJuT9HqV9P6i6jJySdrXc+25Rl8KdMffEVGaqqwKh0vuuZkxv3z70b535EaDgSs80oJlLx3RKfV/0Nv2/aRQm4MHeP0Tqz2i5EDCgaHPDMjB5ebXOwIhJmK5VP5QQBBNM7N4OXReW1ifI5Ge7LOrPvus/KT7sWfcDJrWOgajtqNx6u2uQZm6iZm/a7H7YoBiyxzloEsyTJX1Udf+dAOErV/zqUqYW0voeZYrLjjixp/9ESPx16/c51JzaSo/mremtj6RO6dUEVB/HWKhID7N6PsV/QnHI33l51wP6NBlz7h6C36VKGF4BYOSUBU6rkoY/WVVnnkKdpgbtqZCWH4Ptdgu3MJQ9khkLYtadZtmxAsOSiwaBNEGtYZUocljTe7prD5YafS6VgJtM9LR9Y53uhXzIH5L3BKY6xM4xhowsK8kVN6wNcwxqKuI0UwlAdbJ+3dbOKvuqUyPWeajxKx7+cKho1DY7dLFi98mIj5TkmmeYz1zEY61wUYWeatsO1a/9BGS/7uzqzZsW5odsGOOcK5k65RbYfIz1nYstBP75PKnSYGedy9D7p7dwrLzL1nWQTP8tQ0ezmifIkzS8nwhqlmbJ9zcPHtW+LxpFEhkfBFgXcXG5lAOl1AI6HAItHj0dvhAXFL/li2ohZgUqPDFwMW1KJ9+AqASjYQt6T9v7U3sl7dpcoy44NJGA6XWgtDcqB/6cjz2r2yssTShdjxZrgOyPWrcI/r5NmkWPfI1LtfDIhS7DHK69/pRgRzoYXR4hBiHUrpCUeuOn1m4gKQLjPeQqP3tEdEceMEeeTJ59fVRTNBaDML+w9V5YOvxIqZSog+Bv+D0HMX++1lhF31ZqeJ3IuXhc2G65Vi5AgmO8CfjsY/Yod6gYIF0M03K5pCqAibIZ2jN72/Qeuqr1T2kK9X2DskDhl7VEp3/Grm69baZMQrv8kTS4WeP7IU/tfxMRafjGpPb36XAIyfZ8Y+8MGYuGZ1BsCFMgNFk4TdfPvrwybwSE4H0F8EFHNiuaHuanS7SfJFLHtt71ioy+gv7Pf2Xt91fmo/c2IFPZag3NqCy0up2pBjUEcbPTCC+pQTfWMZLkzsdjMz40fhnl5yfcspWqWkpdloXkZER+1qOBYUgPSlonGwGpTvMi5o8jP74pwGLdsGe3h28xz+2K156Mk9TfrrGCmpTFaOaufqaqH/H7h+osTvtNtKSgiHPqiZUoo1YWMkxHchxk88m3SyPF7slIGlLpzmVm0xLHF1NFni0lkwSOQ9c/nZ0smYxmTn6xPC+CcVIzj5RAwbdqYLIzQAfzDaLOhJ7oAw5H/oLvJd5WjAHnirhdsQqGjMZZZnXhT1O2p6N/iTau831fdgbDSwkT+KJTVXfzulThQ3Cio8PxhKMlWcERdeXVH1HHDBRW21DTRl7KNZWPwbyZtJLeuL8N6wZB9czhEMT/aE8V8gfwgzM/z9RNq/yyZH/4A1vGji6kvXIWWbTeQK0n07Vi9Kfjk0GEy00iJGHuwX7Ks1nDXUiCfym4z3ssXxxmxFdAKMwd2iBUwOWWIYqD9Xu77ShxNQQ6z3IqD1/mfpnhEY9pNJOZNu/xKiW4/n1aPBhBB9soM44taPcG4UzZKORm823yY7t7twRtEak/4LRZaKM+AGUEJiqyu3CJkGiS3q1qBJdP1OknXc5K/61Ny/ncdb705ZIPqS4yRKdFrB858CvrKFaIDqM3J48TEKe6oqmaODtwg7+ZYPOBrLqXA3tImxL8q5rqVpC3YiBYnxaoxy3OnLrabE0kkIIab29AvkdywavjAQg2H6p6dN94e7g8ya102P02s6Lmj6V/fb00+hapKK3BQ5RSySBo+N+4bmrlxrEXrH/Cs9YSgxlLWLCETnYBa1jbUxXdQwxRDvljkhXE4BzW7BQhn+x6n+DM5c4Weg7LqZHNJRoHhIYjtaQn25hUXp/p1xhpsQnvugFuJQ7PrJ1OpQXhNFczFwae0nAKfaTY9Qv3uMNTVJs9NzGDGasRZhVZyfY2vxyJIYMqEsZzOkYoiCa3w3PrLf8IvQtoDx0LwPm3QDqlSgzEg87cuARiBUOj6eRW9UqcCNVJ81albUtbKfyIEhxCy07YlhFHGlQvpNqXrWTVVbsGdolfYVnbWHf9QFZkryI4tPY/xD6SE0nyWrje7LclXK0zOTBhf4ssQuu2w4Nb5YlZUreI6RoBj93YdG7Zu78LWx35N/n/KH82cmLtN2BSP9lez5rbvJmYMG7xdb8w8Bz8lxrrbXQDIVxnmXZjPmjkmbNoYIO0ZhnZda4MlHjHH/HB4LvbCjGoIRAAMwTqZUqF3Fd1ICLdeMReuAQdSJqEAmPSJ6pIN+4hSqCphiKcV7ZY2U/IUXTGcHdSNHzyJMOZr4NYAryoK1VSa+x4GOJuYrnDIEkCU71JNPX6r13H3IMgsUmyNLaLUnEBT86sAa14LB358QwKxYcnyM2Fu/jbwbnQRcQteU26HbVWAu+bbeyJwKUuKdPBT1looM3jAvMqxhvMV62DTKB55PXswo8+QlADuBvO8TZi/zsJw3xdB0j+VukY4tq2F3c8Cig8fVJ6i7zV/pu6cKgIH8ky12k6Bh5qA/Av2upcgXV72fQSN2Jf+940DcfYPOXda5ScsMzrElpryPIu51zh3lCt1tgwnYzLD7wgKbllhwsj9CABMYaD6D2a7IhcTkdsDivCiolqUyna4lOsvP4QsJn2HspPImxESEBscgDtBomZNVIo1x6iz0C5Ru7salOeZmV+dkx2oG+oxYtv8aHgVVRsF8uhSFWXCHbwFki7qVmZ6tTL2t4QCwB/7P5etLvy0GBGlStp51OVhAvXu5XXu+iS7wXC94Ivg5cf8DreGBWrWQrJkUWzJwR5C6QiLAXhuEvYrYFG6hZGqKRR74AnrKSyFB9GvRLWRTJE+PWx7/oWJCkucR7khQDmHN0ey1nz0fKZp8hG9NOrktZFYXTpWb9WG06OFeAlUoEfczR4oVbuPto2ux+Kxp1suUujPwQFWIl505+ER3DmBcKL60v8hxo+Z7u2kK8O0PXjQjGDadF9aRV2NGI2fOtbmpSUeKqV5/bfIqSiLl0KHS0iXnaeGHQ+MBj6qpIEEOIBFvkKOVelmMe/8Dmr7Kp93T3tTeavpRDJsYUcG4TfKnDTAgWuxLMIA3MjY1uKBKHq9/ljYVvl2pmuFAoFUIxyQJmQAkpSXL4WuMerG04gaVD3VLo1rlLM9hef0H3hZ6WHviO5OtxYQoi3wWYxiUeM2PnHzFhxKcE42cy9dMLjCpTNIQKivt/dEIFArGdwuDsUDcl9aG5ev+BDiOtL6oPSfZJAfwXQWPT5i1haruE+znOK+CGUYL2lmZgh/YlOnA/3ctwPdYA99ejRGCAcqzejyF+VcLeny8vCBCo8m49f+MzKrswSBNq4C9bPAuiIsvpJLyF0rF+bOQBRschbcUz3amWGD0AOFoYyszQYidESmTk8kptskB21LFaSW+71gR70/G+Uye6Q7/uoe5BCCjxQcJ3jpwhjZgmMas1S7TbTzjXzkA/HNrPlfpIXBaNbz/HLUMMsSqtAluwNoaqtjUL8kaVHNKg4cCv9gz63crvJw9iHcoNGz+dOwsOpCFwX0Dvbptv9wzbPdG1U3Y5mKhk6y+UrA7Fi0zdZ2GcOIkC+83t70m1BzNv+1CGVp8X5j9qwc7s93+SUsD0YkA4R1+WNHO9aDh89VYEbw3k/mGFuDbGLtAQXuw4sidC/Vcl9YXFnavh6c/0pr0E8ZlO3uflTNcU0o8Dgj2SXhmGQFlUggw7PIionhANV7S8y73B2wAQNly2bYfvBXR6n64O5pbQK31qVTUfmNXNgOhKegnFRMbkLOcPGE9mtmVDibaR/Jsh8hQOBKGIBL+aqCrFSiOL8w3DPS8E4wtJG/rTq8EOYM6vHEOxp0Xektx/rD/WDvhCHp0BDzYHtaq/2fQc/LCJoAfOLeGn5AqyNp81PeHi2p6IYsc2rt09xqwLytMbs5b+8+n14rVPxz/DaUUNc7U9uPOKMBoX2KqUGUXJxH6VFDLnz5eoqzE702m+2VwHAQfsLm3ABDILJDFb8d7UF6D0ZNY/Ekd2vK2+SOCiQzpdHeZaC/xhA7rHDDd1s4MKEf5NsCKBl5X5eSvLcmLE+ZfbHIvwZNwjIfTTg4eHnw8+jSYo9rzr8lNdCcEAi0lU77RFTIp6JIN5fmtHZUtyogp1093eWa7zBAQyBzPopWMCETnXl94vifjTtOBE+uW7JhKOnhS4QDFJ1wH+YOsSYZ7OwAuw5Kc3yClmJs1Pimdf5oogKSHVu5MmqeP84U2SYpWx1fPDQmTvzlJrucALTd5gnTj6hxjwdIz2VEKMqfmFQYMU77ej2cfUwI+nW2HOjon9x2djBAskS7buyqhDMguulkqbxHbdOlzkPx15nAit//dTx7Qo4APHsy19ph/fWcruXOq8J4XGiNosmcwFndYZazcvtz/RQo/3c85QMcbyhT+mz91lnAJZGEiBDuSk0Dnrgki6eaToX7INY++s/DOpdm2HgF+eT+wU5osYECQwgmshOuJlmoQYkBnWB4ibxmsI2wPshxQPQfVhWqY+sQReej1EgGdTUzKdM/AD9vIzLExN4QgPRgo70xcOhxHXo/rBvP6GKe5EZk3kt4pgS6QeWplSibQ/95DHHTUgGi3HEak3drtEm8RLSj3mnifcwl/nh2xVStLaYt5N5Q6waTbgKsaype1NGJI8F/xXdeyqu3dzYQDM9MGzG0q+bOBN0Aqi+Fix6nlJ9Ejv48eIjGhWf2nBF7OmMkRZeVHSDWKowLw0ZpOedcpzDHl82NES7ututUSf1Kny+DA5tevVIjEhXvcRTmre38d2MuaV3jNJYK6W2JqUYY12E5v54yW3a4YIrvu+QQiYrdR0Ga5pdvu4OjZD8XAHnfPrLuMrd6xpn5s6KOn7+oiK8A6Kf2SHrewz/Is/l1oGd3joHxMcC30Gw0rFDfdhKCiutUOLTCVUOHTLpSjLiYaQL1phZo7tJzaXX87U8Ko37urD0h6hPGfeJVbmwyX6i6/DNLczckdeFAvQyTqr2P2cbNmKj2piFieBm6oEmD+te0yBADaUSEPYNI8eDygRqg02cuK9L+Ig5X4ZnJjgmbkIgrzun/1S4YNDLxlQVsfeV1CXJ9cQB1TQP9Z5DmwgWSPKSZF/8y2YgEeRmqmCXU+Wtfa/b4H3SVxlCt3zp3uJqCPi7AjnOsPE+8U5UUtbEIsoQaIoFOTul4KKjUp2G263NX7MOsCBHp7qA/5SBDBCJe8WDy+calnCLYJF5tVtsJGYQBFfSutg0Z74xhj0ZbIpOkOINNgHxGIP7140aaucl6hb9jC2ANWvwFy99al4s7rGbHTyOwAzFhBDObllo4lps2WkC1+QMnxAzT1VVbBypnw5I9DIb2b7reiIXm5syPVmzJC7W1TN+i79TTjC9HuyRJnyUVew1Xhrmd59HMZYmyysVtsTRaO4XUZQvu/ZaLjoct8xcy8F631RYyApJsleewfqNEyAIzel5WAr0/G2pv182y3Dyq+HOjl/V7uioP9D6RPfgt546a8K9xLEEZFFaq9UdOKYxA+IMyUh42LvJpp/w7WXp/LCNYNSqQLbO/JQ6XIHoHPS8Lxs4eQsJFRut8Uw3r9tSBv4WeMBuLRdVDWlpwpdh/fl7TcmN/QA/RsLJRE157EauN6GV5GDgqc4/m/KFO1OKk2NEsRY/ybal8ewQrrCKZWZN/shyyq1e95YIrmvbE2S1RE5M6372ivFW6lTLCNIKUCNujcfJDS1HZQfYPikvFQ3H1rY9y0aOIpDTqwINXPMi3V6V9ME7+Oaxv6udEuPPkJWsRILfhj0RrXqVBUfOlGtN6UjEQqcIUXzY4P4J4l9JoV0vA5IyBXGuBeBtuOYA+MJyPK4qpg6q8Ec5Hq5jl3jn6LkLDxHonqkdyRHoaQ83aaLR6NzBjvulSJcGVfgJ1eusGkL78svtTYmi6x1J0SCkyjNe920jsQhOHvSQgyhPS1dgxEKiYiHT/8/7BbJaw9eH/g+ue0tjLnLz7EDoTn/YNPKeO8S4msnMP+qcPTnNm+MW1tzgX4yk5Zn0K+jXYFeSX1b7bQsaSQgsLyRJ2wU0M8AaNIxWtf4Q4HZq9nUzA0UUj7ftidsn6ZyXgeoWm1vzI/qlXGa8Drkk+M1LYtS3zOyG3e6ducscomfTwa6TJw5Rtka4kbOYQMoaTc5pvXCJsl0WAm8FNBunMwfojOvKJH2WI3AMVBoc55bpHrz4xlSe7ziOfdMas3P+XHl6iDYr8paJ7zmR/f9Oxc/Y2mHeiYBVj4ULFNKqhFdrSrhNWySSrT+wBY1Gb6twXQhe8Oe9g1ZjvrrtDUOPuipEHZq/QupewwLOZNBMMC9e4rLT9ksPbJix/lB1gfogJkZhq8DzIUwyAkl7kX6o2tutQiGLDVkXnB6wdPmKpcfw4yg7AqCgiR2YnGfW+hlfSAm4TSXJFkRfPUm0b0dMoENDNidofNfUo8ZWcnMT0Jb6H8LLGWNtUml3DVytphKaDSnnGbE5lSEZ4thWM7befhJqwTIcfLLtAN3/sqxjBWPejqsftp3UwvBy2Bsx1TwemfaXJ3A+ApJHPz7536kjAqozHZsjssg7iCH12Ue91kKk5NaoSDH7zoX9VnnKQHesboqUCwe928uSxCTscenSORe3vbeETzXWT79sUrLgwoDAaV9tHx0RznIMZKbg5J5jjy2veKINmG0RPakiX67oNfT243aoBBGsySGxVLzXugQCIsaEwJtJppcd7SC5yuE+BrGNE6368Hsl30KeIlUJQ4kQGG8kY5dORNKwaqHSrKfz9lRbsG9mRlywC+njuOTRgirzZZlL4cw39S/31qdct1f53k9wTtqyI5LoZ8iukqMm7pCkTY2w0ibzgkVQBCyGE9R3poURpfqp9zfDj8xU6M29fBBHmtHh0txHTIDGIo74GcFGcUq3CL8Co/6SwFRuxPx/NZo2lMjeLagbcEip5v8lJGlqVK9dmirDeoIuqnmjm9cB0d0RT4GwxMnBxUmnESvUCWWhWvcpchZl9X3fm/7Jwr+AuKZ7Iw+hEukgZboAizWo8v0xRFDp/Dmat0f/eePks1LpyvmDnvh8v/APSCcgR48cTjaPDBcDHFHLaediG9kRYjjut/jiC6Pnlif3PtMWm/pMwi9b9KD+UMJLrlZ+UaL36MO/DVHJjkRRK+95HCkpNZQ59a6lgqgA4gBIqGBT/GQmWT2etlUFq6mIdKHVG6VJuhO2aGTzMv/oER9xTh3zZ4JLHbqZx+Y+yuaEW7JHzKBw760NZp38klqwOjb9rS7hOEYRjuv9bZ/VJk73ETzabuaSEm4yoqcNfUYIrzxKnBVo6jTvrHRkopGjKBm5XHA0/ZFdmifBgvgYQPa2S4grQl6x+9wRnMqaMZGZM+huakpmUmoAgjeVEQHS6marCfMxYAXjKhTCXcqg0wbzPVPnCDqnSZUvZV5mYc8qMLazougP0iU3/SPyul4diusLlJvBjtuO/aKveBEZxyzVgCE0eQ5ZLVoJq/YlF64ZRETm+azo7ITAFjyxAiWbj6nLhXQ9cpBPiNQTwTRBmdqjF6r8kqKS95JDi8W1QJM6zRDZmSCM/ArhbfBKnkXeR7MbRDyas1JFP7ZNzBS7WFjPXEyfwNEylmQMlziIk5Y468x/aaKXb1T0tQdORMkun14JOwdgUL4ZC08qSozzyV2YFRyizAXUcB54pA5rIkmnifqYQWs+EgftJRvcU5f8O3bModoy6GiLLH9DsBMn0+i3DP1RBLyVLyvrtiqgIKBMwDzSL138O71+t9kQS1VjWyW6CqhIJWYMUMS9I4F93RS3OP4FG3asj/RHkgx6tTde4uIWlJ3eXOZNRKtEOIKk5Jie934fLYaIZziTsrfeTCNXBSYTBazzDNaio/ebffgsHmYnSAD/mogwAGp6cUjrKKc7bpL/Ozp36w4X4mb+dPyQeKBuA0HYHVgl7WepVyJi+Y6neGuF5hwvSpzU/jUi6uV9GZ8cKf0VEpl7oZHqqYSUtWsjvGsyk/XIOhOrQZ6ecutqDkmmXTbonD8up1F6Fjp3x0jrbJ15owGQXYWUQsB5aaij02AK3bfU/ezl5DaWlLzQ4bJ8obigGc6uovmbsmrmd3j/RZUznwaGISAX/ES62FH1JxG8NrO2lrkO1tTkNxHaHE+O0PT2zVpPiNoz/yv7L3piVLBBd8WH258ciOz/zABETjAoCHwXFMUDMYqNHzGFVU7IpDEEsoyJK1vFHNqkS8bDiyuP7RpPvtClBCcJqCI8N0fiUaajwyyi65hFz7ulxKin13ShSpo04S8sNcpknF0mfYPCy60B5e5mcxtD7eW9AvKm2qeH7gklNd4oYvp4TTJcxPDHIjDnNwDve+KplOrOSWU4H9gk5TDXe+q3hwFIdwjx+00BPRz60DPtvdD9+UuH7cefBn5uD07RxlkQh5gXLHuoIipSFZ8NZucOlHFDPs+E45lPS6pyb80OeglJo8I/qnFaF0BUZDolDZbkZIhGyOb+K1EmJsPRcYuJCrIoaKkJN+Q4ixRVGXntREvZNk9jHtNq0j2TJ2m98BeyO66JlAdxw5+MSq4o8Ls/bjQ/C0judlVlV0E+DAJ68kPX+JK4iAYOxT9LXR8foyU0aU108eWTE2tABI2ozTPuO01RVwkXDrFMSadphupijnxmu18myk10AeYabNtQ4itqM6tiJ6tAexPHseJTTrmUVyqGVVp9eNvdOPrDOu6a41JiE1T75uQsQUh4nfK9AdYmIr1ljp1oX5gKPzqtL0APKA/w3WFy54G5jbn/zPVFkY1BUK+b3rcT2+VLoMkLAPyBw9Ijku4qr3/ODXqdwtZdTYejLSSGZ+qzeqhpEsmGZfN47q+OaBKq8+eLU03x3QgUB1F9JgqYoBTrbks/gACrbw1FvB/BuMhDR93vKivziaiyrR2K5vlxTBGqcbItMaOapP3DWX3EuRgFaOJ1v2joBkExwYabKqxW//FPCbpQhfQckfRC8OVx0nY5vmxuXyion2lH5uvTPyNVXmhUr/qUV2ZJ/KClH+zWT0gvXDVrSxbYiK+tWJki1PumZRvgOdmxHy3o2Z6Ya+5lYdHq8QY8PGMIdP+CfAeY5HWUAXieqjIAfNnwVrVuk6KWOvqMKgmHFEJQJXY821nWkRwDBrGb+RiLSdRhJ58D6Mm8NzuFhrq0dcvDXzJVlYh/9rO8grFiXzjKx61oL0Y57cwRnNDqi5Ofs8fEHm8eKnz0MACCk6RpqSYz3rCNkDhMJxk+2f2KF21APQSM3a03HARuCv0s5jXa/CG1321FsOWn+4S82IO0X+Gvp/IzWBSG1yjeMb1j+Tc3hZU9Dk/lEXjTvjs5kmjWiAF11C2yqcWJ7Kzfg8mPWhCxHs8rO+h8avGdR7oPlX6soC/pQz/6hbH5i7C0smO54QyeOhjNYcvbmqyiWZxl93AuGuyLUotwZk1mlikQfWvRnhy1+miwR2GvKrSzGdjCFOlb3qOeQff3xNSBpjwDSnY/zKFw5Pg1GHiyij4VBoNTUceEdPPaOwAoheVStknHquoEiDs3kG+rppeBX894dY0a6vNjNm2whyf7SN/kx9eServV/eDwgFF7wXXN+10ZkPXem/wqnJPGX4d0c+FSo4hjomdb8NGANqBT5PXGSjGfO0X2VMdGgwW/DjPIcWmN+MypwGm44XE/BuBIaKaa1L0XsGc68XELH9+auPtIy7cX+QXVc2J6ArW6k9x6fKLQSKy379OpAbQ3PYdEdnHFMg7j/6DYOVaJQ+BsJ2TN+w3stX3JPc4OuazgfTB5nnuVU3uRyVpTIt0MQ9g9/Wmy6iESnDOJ3k4uKxssZZbCTkC7A/4z/BNfoTbD61IuevWQMcUtRsBOiytFRcPFxOPgbOKZF5EBg5sOQP90YAsBlNDE2q46bwgzL3ehirOgugatwY/YvhPCYvVY390rhDzGvDfF5LB/37iYogzEK2rNurmYIxjqSxq27swTltK3M3h1/9x1QZs5gGgq4gyXHCkUxAzK+UfOSVb0dL5n30XSolcpTOuHgMD02lEib4i3xM3qknt/NK4Gb7QJqyqyIYHAhtF6e5zymDbmrQZ47IaAaPdGmn3w6g0RSMFgu3c0XqDg6FUiWZPX11744KmEIzyMcCV47n9lSf5R9xIOmRcvlNdjsT9EpCtarGUMQBfGTPC8bdvzjpOAqIePut5MfQCVWmyI2OmZNA1YFSHMzfge6e2pj2/kG7G5SpQTn9q5vVKdJwaoeVRR0sWWMqcR4w1t0UhD2ESa7RFBeTIfaFytPy9eMlQJqfCrO/JMqX/DoKbiEfKTSpf/sMtd4b2ggnCvycUlaygUNtvF5s3fUmywBtP+lcIPg67N+xVaScnpApBVE+tMQBymOG9+b9JrP5qMbIh5YonSOB95J5XZbYEJInEIF2kS+TfRMKuGpBe8QHMxB6vnNAjeHRIJbQWsZ0BpCU33fRFvB8w9iAD09v9eytCqohULY/+KvUr7OVtqAinV46cYFq6EJmZFJp9YC96RY/1czok7gftckIdoIQqfslrXLd/mjsooPy2W+lMfpYOgFvRJqpKcWXUxXN7bSaMTGGFx4vvLxmhwZHnSD1BiwnAEetADVNfOwMM2yAtceEIKH/tfJ7kQbGXd+Bp1tyrdGrjfcWtIZDs9d/oWVTV+LEn3pSorj4PeWNXoM1Cs/D7oj3z0+DiFK2maHBHNGe9vIG/E56106aJch1SughE+S/FxhHoe5YFT2FweO8cpQuHGvjpqPk5OCBIEaUYrOcIshbdzUL7FC+zW0q/9MrMc7hB7JAbEO4u3BHFevaE4TlqegmbvVvZltjX3jo6aumHXdVM+y2APjuZ/9MxXR170jFHBlYzWkuTWzBgalF1VdajG6tyfAaN+Ou4mNRItY7IZJuVWQrqY5UUJ1ReiDtfpVWNdWIZY6UOKIRPeSu3ZTrYnO3uc4mJ0zaPDKah4zRDIFwgdxjB/lB2bPxZ5tCXQ6yQZXYjl2Jt80rDnei1auxJ3e/BcjWie0ELBmseo9js24lhYJva9Mu+ul/hbtSPd1xCvR4Z8g5Yxjg5fWmrt8zGsjynFCazYGWcbPB46mOXjidQjm3wLOjoh9PeRr208hu9UxwCpM5xi7gsjmMK+Dx0A0YP/luCIjBFHTQgd1mR/8b06yRA+RXY2ZTjDZxgI/Q4RSu9/LQFT1pL9BY5vpt6jxf2T7iSucpoAzzLcYC4VkBt2GRJ4RBjBD9lf3y8Rlwu1E3RZREyZTCabD6q34y1pgILCjLj1xVaMrIif/maOgcxxgm3/lNEA6CY7/xOXsV9VRdwI2Ubb3onioDfxsIhNnCCO+RWvxJPLKver4aOynCFeTKil0D7180exReDfJSZiV69k23EPItkEZO+hwaSOI35ptl2qbxh4WOyHt0/QI9vhrivLN09+kS3fdTNIlRWtLWVd6Te5Wq/qJqtUK2+jqZExjNxXvmbSOgRJgl+D+11JZRCq+XK26jocXdJq7aJnvUjhTxEr2NNjblvwlXw4+76SgCQzaHE9yKRaBMoaOKcud1G8aO6jlZedh7QutZ1bvFG+U6TVjnOtBEIcG077lUS0HgQLcWH09i0u8ODP12viAzblu4xdoD59EtUfwKf1wNWst5xg/s6kQR+Ot+naFuXi2cmVP39mKpfoy+TptbnVeTgkUNmfNQ3fCOLDRp3p2t0fngct0A2X7MGVRTBqRTuEUAyf1XFFCYL64Tf57gQtDNteMsyaCSd9JpMS6haejLpBEFvic24VmFO3Hu6VREyOL/x6IzrZxUzQEUNATydiv0uHdOSFaUi1dAzVHGCm74UHpw0DEpYHeasvdUzpa+Q82m1nB75wbFG77zx73WijB325hF3O29pXmaZwGrUpqfbVFhTRvlWoo/HsLxjnS3ytsSXGy5p3aXbCAX2D+ki3BfpzhIdiuchgaHCHDCbrHMXZ/mBpwXY1XMRHzufX+6aal3zPhvXNpgqq6w3UWfPGa56Rjq/DFPKJqqz/wab1ynTEa0PxfKtby4AFa/y83bRuJ/9Xjh8kjXDNUoU7ma4I7d/PLuJJtD1UG6/Ld+/kDxgzsy6Z7xNF5CbpsCL0+gVEkB0doZEKASDj05/9GKlO1N6ndXUtuqvRBF1b+ur22s1TpfY13i/VR9F3o7LJVAwZB1QQiOVKoE+GMWE5MFUVNxJOfdNNyrqD+33RiF3/e8q1SUWd3kfL2UQfUdpNG7oZtLzOCEvnkGUl3AT8imCMLceb9JzonpuiSgoNh4FwjjXs4pfbIKWfftFGod6rZbbIvmrBMW/3aZuOXx1lZaLmLYr/CT2n9YP1zkEA/ovAjBUTk11gsxPEvw5GsY0/qxbrl7I4YENlDFcR4H8Mefhq+1F/pI6I7uZEt5OYyZpQNy3/wORG2KS07oqYrUhu45mSU0HYY0Rv1DugtUd4Ni40CjZvO+Hh7mClol0RjkzbpdMrqMSLw5xwBaVR+mvW0fS4ecGeKIMxpt2o+zx7dCwrhssvBG98m2H5hBOXDyBCbYWTypgYqG0VoILll22826N8OiTqTJ4mQ/NCo+Sz4nEps8SInsDVIFl6JLO2/C0wVhbpHgouem3frSu52O+K2aEXYosTRnSFU2SvIyQc88WMXO+V3I2AIPKbHr3/AAtAOifcg/PJKx0CztpmcxR3TuhaPRpga5kGwvCf4LHt4yOUTeqNm40LReAnb3E/VTYNtvt6GsE/elsjeeeme7YRtGvTxOE1PVoUkcPTetBhPDawSWHzFbBJbQJU6KKCPwE8vqnWdT2MsyYuQKA8Ifr9Ftsm327nCeumORCXll+Y5rkV1HxU+o1WrlijkwcyidazAN6up71pRj58vewyVQM7+Zd5fe//mXoJJ+Zf+unmbBc/dXREhe0LKtIArqzKmBgmJM53cGXDF3eg4QEOD0MwwAFilBNiGTPRMG/VWSGFNejwh9Y1rD1rvzdrglriOHGSBlWbPJNIGpwV2DHdodPczVQxgiPDP/fNOiwc4w4bXdHFkG1XyVP+C04UG6X4ntyVJxDG3eVWT72las5SPLNZ1283ap8lAEGn+eHax2iuV2y/gkBDtVPl20hT4iOS6V4tglS29USqn9BsjSVo23M2aItgQLjFz9bHJb6qnTQ8dIxtt5ByCWyZmmZll/VwNrc8GUglBIKWJMxwE/oRMkMG1bZP53ltjHW2rXTmGqVJ62QoBrDgODO1Pb2r2HcQXab88UTvD0w4oFjW2+Sc79mETWj9YS6HBpnlq/gp+Pd9euKYVF8EB28JI0j9xTOk0M8ntAld4V1Ijamxdqo2e9CLGJndWImw+vEusJRiOxi7IeDByQBBnLOP4p5HM6WJlGOq6MRQueohw1cWnA3EIzmYBfqEu5huWkfEUomfdcYK8KSerEHxPiHRE5dsjqkTBiuzakBWDeM3vLgIWlyzfv8G8jWncwcUWUzy7PjMfup1CAqpH1fXQHaZ3ruB3JSyJdaTV1FWfFGQ5bUTX8keCc/QO/irPi5bTulWCWEQ5Py+E7ZANILgYmWUHHgA1d4CQ86Lac+w05wYyfkrIJ2IWddD0enrHQDc5yi2yN7KNT/+O/Y8rTcbebp/LEwzGPOGo3VyGUrC/G7e/atLM87eq95LAYsE0rv7qP2L62vW8yzJyHG/dIbMVAzftIcSjejd1dwRXTXfPTzMghVsydhIKFkkm23l1OLXUzssuQMOXgNfXDWyFDS9CW+OpMjeaTtiGXn6Su63wqfbblo2ZX229Vy9V/KCWfcjndKSpDkjPCBg6VdP3sD/qObufVPdzP4CzWjCTb9w5gLJr8zbnDKyc5PLSqG2glRmlBsAC7E1yKSF0p8gXRdG1mYbv/IpXMNRXJqPiGH+9uxBDHQnJOe7hNTitHGRsMFu2YWh5VNdnTrls8chcFKwJ2QExOhkm6ix0fnUqIMpJOK4tT8LSCMEAAB4r3ZSZIZL7QgVazljTEUa2tvQSIwGxvz+mUqDAuSfyGrijgB1rX+wqFKFUohilu5ibr1mbI4cOI/taCQf3V2xq8nExEPux/ixpIAP49CSyyDqFDYTDyw54FvYakGYg+NWvFbA2GKhsxmaQ6fzCl1psS1emKOdsJfppZZX1e5RvVtbeTljUCu7tDY33BkPWosiljf4scNPAW0qC9BGgwmaVR8ebSZ3QmT2q1Skca1cd6LycFCr4Acdy00UvzW8XWZEx5nwsA0QyIPFilTzJqLISVnRZ9jbLq33/VJwtWkPZ6mAsFGMs2UF25+BBEhKj4TwOH75nIU03HPtJvHrWbm2fL8zv2Hu8NiYZ+7USLPmiia0Pq1+adovc3HgIyWVFdZtPVuiw2yluhKcVfkFaqDWbA0F3gj0Hk036zNsYebl+zv01dqLy/Avv/xrvtfZxGDPITKuEkea+OANwsbXsjU+vqT5blu4cTbUHtjQmrLxBGXdt6Zw6Gv7pZV/3ZYm1t44eAqZNHCvr/YvFFGmXIRl5jqKBmngbn3HvdZdYyx/r17T6LGkqvtsZfSckXMKrLVHJsk3vh7L6NX6RhQGb9CpNXyzCkKzbxtBb3l5cUTyJ6zStIsykHn93nio5IsUNSEwUaHL7f1EkUrIxDestpOn830Zmrnp5IX+O7sNUuld9Gvpmry0/EIgOltxEc89xdtwQuxr0QUzyjEuV9zVMGP5HmtsjMWop6C6TSVUA8jdi0w39ldheCrZGiorBuZgVHZsVbf+9MQwIhhzN9yMImFKbnJXPkljH9+Xlb7syjFWe0VFMnDQjCkKTJZnYScey09yAGCZkUOrWpWZDpsLgqdbG14ue1jhH8RlpuI54OKotc4c72+617uvXEsRdAVOn9XqCsnKCs/Y/u7y8PGUKbzc1JGKI2z4TdBU0MQESaezHnB0ZmLw5blvHovmO4ky6o7BXYSOKL5aOMrYQshINBOfN+n7IVl0BKvqMsHOwX3v1fwYUwZLpqNlpY2iknHhDI6otcuS8Yuz725nNEG0s/vmZGwyr9tjtrgcL4D8IUag9hp8Az6cPwKW4o4AjZmRXCiqz3cBMpEpaW45Jy2qhqEOKUg8vOCNY+5zw6G215SCBEk14LnTnAHUZ6QB0ARpqzp8uAJja95MYba/7Mqd2f4e8tVUlphOi+qV9bl9lt3A+nZ0Ij4sM9tVpAPeb7gl16khvImK9Nf7CoZ/wchAeetPvLCCrqkAix1ZSph7XRuPMfS8pxswkuerKDFfOIS3gomnQjq4ml26IPe3vhEmQor+WsTe8WQOznpGdMJ9k/Hr9MdnJTnDW8/oJp1rlkYRzMTDob2uyQlqe2FfS/8dPqsO6oOjFe7yainoFcfS7PmPifZtMYG8aLCFSgfLMrWTctNrsm6w/WvI9vNQWZC8k0j5FHwXiIe1Iw0rqndASQsCKPALqgvbS6m9VmXu1rvlDgO6hhbRdLzGbZbfm7yY8pD2BIES7DXEe60mmEOK8DltTphhoQvm/UUoeZvbKMnOzmONfOVZIt7AqTkcNdA7vX+aLg0YaVfS4ZhY3I3w3EV0Q/KG2SXC54P0b0e99OAIkCDnW1j8cr9jDqtYOynKAv0J+gEQpar4QvbNBxnv7JpeKBooXJyBe8ZaV5qZl6NBpMrryoV8BFvPYqQbE2+bHvY6gSkMkeexpC8xs4hzqd5bdXUhMc0F1wtj2dzVmrexcmo7Ay0kv6B6XrLIAdMurY6AopRyXD1ksNsstvuwkfXML80nshcqVqTRi4Y5OmVSzlPbpc1ySFhGqhpYX7pZKWtBMdbIhu4GN02AKiXaAloW6D5C+TbDGqv8Js8m8ds0kQgR+3XyGmVz9VtNL7vaKHvCE437DvoUOFnqvRdnXJNMSI1g4Lgxrf0CCeFQG5nRYqowJ/hGYuJLkKsmvo3O43H29OmUrMYr6yrbUVzb5W+WFmFcfIRHY/HSvKuKfKxasePfjXv8XFfQasaK2HNliGJUpnWCOAyI2axsEisVQNy+sqfJhuPc/8J0KqlOAzkr812EsUcBa++9VV+RabwOqKnTokgkMzWyVdS9Gt2TTajGZ5xhO10ltaQe2Qil7tytunfh5AX4Dq11WKRdrkKsNxJ5eWjxRfPuUBTqzaiR9lini3Y9NdNANVVGlU44HaiXBhAO8TGqSZY1DRYmxlWhh3IHMTDWLP5qfbt1UEu0hNaoY5Uvdop4lR+es2AttDZxv0pMcfU6hM+OrG5dtnobffFHCvrMCTEM3ELwVltO0blONuyW6ty3Ow4ZNhc226chFo8jKGbXX0OK5rLv88hv1YJAU8JqmUFLtKQn0dJf8Q54YsrbF924qirjepNGY4PxD20v0n0dKLn/tqdKRDUJRqvl951dlDMLYB8PXZiIkGvmO3QH+I9810fXx0RKbY5ThLIMI/BPqAhW+azdK4JtDe3zcJgDs8hAosm7PUxSsU9/Y5ULDJ888pGBLoyouUCuLBrRDB0C38n7ExzLI3iSKSGMAn1boxKHSymJgPGWIL+TsmgJ5GQO/c9e3dXaKDawiqbiScndUjLmzA0EHC43CQAPxmqTZczLmNIw7uNSe7qmrs9SvW7ULOFK6nXQy/2Nf2xUYbkWhnpxBnMBlr6nNYuelz/JcIHhHUU/kuB8baDfEa0hVrJ50OBRtGYG74nA96bB1j6xhBR52IEaS5EtLVvCcH0u7mTlBDaATnkkrtuOC/Da1TvgMb8L8GSowMXVTw+cwayIy8/+bNHybt9ECgtMbkZRvfMC0svaidF07W1iDQuzsLu8qIFNSE+MJ5l/E46LXAFKtgPVZgYw6TRlDxHgRe/w6e3TqTrdtrJt+HnugKUt3U8MB9q54LnWRDZxe4fF/ImaguZHnd14t7+Xeaq86rPwPpuQNDfIybJWh0FUAIGKh3U5nwWDHnCB5oGlQPfkCMwSPs5IKdOF0TKRSP7DQdeC0McRMISekVIWIM4hJlW95tQ9qedn8Wlhoweb9v8g0fnYN61ikAV5giLlbShMQtVvwYKZ3uvY1ICTe0UGisMGkFhNHORJd9bu1J/iIldh9E30W4M/OKtfGprSpFFZzZxjCbZ9hd/St2NNZghJwlBNJFs9smqW4GsdMhaGvln+Bb0hhYhxPua9XcUoygeeOGYDyAUcY3ieL1BsrY8kEc9R/eIShLfChIAxNCQapT++5fLEdf9s+GHQU9vAr+FcmccvKbIqQ9fMarFLnCnf5oLOoE2xcZKnqOzWtay0C0jnk/8NvKSSXccvm/uZQNWkAkWWIuSKJGku3lXB3T/1Coljqoyu4mzg3eUQ0LoaSadxjXK/XnTEI+3f3RJ3AAMGSQqfd4ka1Kwn3t03wFnEkQghzGFBT8h7JXlciCnMyr30xYjTDdXnydUfQJlRs5H5xBQTjcc7gia833Z+qLscn0M0S2uLNT8xtZBN2IbFeEXQlbABqdQrDu9NyaL/JO2+o4fKRuAqpXMwYFDru5CuDYhc5AbLBTKHoKIBX5YkP5DWU01HZub1Ftak5ouQPjongjH31+smTdcTl1nTK3fIgbGvdl+jcid+j5Oqzt/2rJlLuJFcsV0Ju9Ds+gD/Ay0wuTPByb/fJwAPNJHK/kJnBCoeGgFjEyTYrtVE8IqWCRsYQhqXHA7TVRC+zmWhkrOPqcPgln7QvQuIVBevawA25ZyRCgF8PHgznC+hcs8emPOUOmXudMGdOMrre2RyE0inK8prY+du4CCqWaV3dQZbzv28zEDPzo0NqEMduqnvJvlwjbzDlYggN+KbR4mh/Nov0V3K+bCz+oxyepQHMzJwuu/oiuaKf0LqtcVAZFTyQK9GsPf16CrmGO81VtGxE2/iR41oO5/VeP9pNybIYBJag1hi+IrDb8l+cAwpDj8EI3aYGNhyk4QctmHOWJCb5USTXiS6o314NEBufIpw9VBnXyHAbvnyOMg9yFvwOyRRLXDEc6qOzoInApSeOHdrHdP90f/avM5zQ5y6w1Hikk9UooGeNki74sORKKp21C4P6a7p5JXGlk/iOyIKt00gjHY0Hz4hnYvsjXN6nej1gM+utSBsNL1O+fLVoE4H0eaYrnfwDqIyjpfe++ctNDSTMQ26pmHWR9BmZScDbFsSaH+x4EsJTmuzaH0JBTG4="}</script>
 <script>
-(() => {
-'use strict';
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const IMG = '../../img/';
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-/* ===========================================================
-   Dados. Texto e ficha tirados do site atual da Cristofolini.
-   =========================================================== */
-const MAQUINAS = [
-  {fam:'Extrusora', linha:'', mc:'MC-35', arq:'MC-35', slug:'extrusora-mc-35', tag:'O melhor custo para bobinas fundo estrela.', f:[[35,'kg/h','produção'],[400,'mm','bobinador'],[35,'mm','rosca']]},
-  {fam:'Extrusora', linha:'MultiStrati', mc:'MC-35', arq:'MC-35_Multistrati', slug:'extrusora-multistrati-mc-35', tag:'Filme em três camadas A+B+A: mais produção, menos resina.', f:[[60,'kg/h','produção'],[400,'mm','bobinador'],['2×35','mm','rosca']]},
-  {fam:'Extrusora', linha:'Versatile', mc:'MC-45', arq:'MC-45', slug:'extrusora-versatile-mc-45', tag:'Versatilidade e baixa manutenção com cabeçote giratório inteligente.', f:[[85,'kg/h','produção'],['1.000','mm','bobinador'],[45,'mm','rosca']]},
-  {fam:'Extrusora', linha:'Versatile', mc:'MC-50', arq:'MC-50_Versatile', slug:'extrusora-versatile-mc-50', tag:'Robustez, alta produção e eficiência.', f:[[120,'kg/h','produção'],['1.200','mm','bobinador'],[50,'mm','rosca']]},
-  {fam:'Extrusora', linha:'Versatile', mc:'MC-55', arq:'MC-55_Versatile', slug:'extrusora-versatile-mc-55', tag:'A maior capacidade de produção da linha Versatile.', f:[[140,'kg/h','produção'],['1.200','mm','bobinador'],[55,'mm','rosca']]},
-  {fam:'Extrusora', linha:'Superiore', mc:'MC-50', arq:'MC-50_Superiore', slug:'extrusora-superiore-mc-50', tag:'Tecnologia, alta produção e planicidade de filme.', f:[[120,'kg/h','produção'],['1.200','mm','bobinador'],[50,'mm','rosca']]},
-  {fam:'Extrusora', linha:'Superiore', mc:'MC-55', arq:'MC-55_Superiore', slug:'extrusora-superiore-mc-55', tag:'Tecnologia de ponta com a maior produção da linha Superiore.', f:[[140,'kg/h','produção'],['1.200','mm','bobinador'],[55,'mm','rosca']]},
-  {fam:'Extrusora', linha:'MultiStrati', mc:'MC-50', arq:'MC-50_Multistrati', slug:'extrusora-multistrati-mc-50', tag:'Alta produção, qualidade e economia em filme multicamada.', f:[[200,'kg/h','produção'],['1.200','mm','bobinador'],['2×50','mm','rosca']]},
-  {fam:'Picotadeira', linha:'Fundo Estrela', mc:'MC-01', arq:'MC-01', slug:'picotadeira-fundo-estrela-mc-01', tag:'Simplicidade operacional e baixa manutenção no fundo estrela.', f:[[165,'m/min','produção'],[750,'mm','saco máx.'],[250,'mm','bobinador']]},
-  {fam:'Picotadeira', linha:'Fundo Estrela', mc:'MC-02', arq:'MC-02', slug:'picotadeira-fundo-estrela-mc-02', tag:'Troca totalmente automática: o operador só retira as bobinas.', f:[[220,'m/min','produção'],[750,'mm','saco máx.'],[250,'mm','bobinador']]},
-  {fam:'Picotadeira', linha:'Fundo Reto', mc:'MC-12', arq:'MC-12', slug:'picotadeira-fundo-reto-mc-12', tag:'A melhor picotadeira para bobinas fundo reto do mercado.', f:[[150,'m/min','produção'],[700,'mm','saco máx.'],[420,'mm','bobinador']]},
-  {fam:'Picotadeira', linha:'Sacola em Rolo', mc:'MC-21', arq:'MC-21', slug:'picotadeira-sacola-em-rolo-mc-21', tag:'A máquina que revolucionou o mercado de picotados.', f:[[200,'m/min','produção'],[250,'mm','bobinador'],['IHM','','comprimento']]},
-  {fam:'Picotadeira', linha:'Multi Dobra', mc:'MC-31', arq:'MC-31', slug:'picotadeira-multi-dobra-mc-31', tag:'A maior eficiência na produção de bobinas multi dobra.', f:[[165,'m/min','produção'],[750,'mm','saco máx.'],[420,'mm','bobinador']]},
-  {fam:'Picotadeira', linha:'Multi Dobra', mc:'MC-32', arq:'MC-32', slug:'picotadeira-multi-dobra-mc-32', tag:'Multi dobra com troca totalmente automática.', f:[[220,'m/min','produção'],[750,'mm','saco máx.'],[420,'mm','bobinador']]},
-  {fam:'Impressora', linha:'Flexográfica', mc:'MC-400', arq:'MC-400', slug:'impressora-flexografica-mc-400', tag:'Personalize bobinas de até 400 mm com impressão em clichê.', f:[[210,'m/min','produção'],[400,'mm','filme'],[2,'','cores']]}
-];
-const AREAS = [
-  {nome:'Comercial', sub:'Orçamento e novas máquinas', fone:'5548991968763', destaque:true},
-  {nome:'Peças de reposição', sub:'Estoque e fabricação', fone:'5548991563325'},
-  {nome:'Suporte técnico', sub:'Engenharia direto', fone:'5548996772759'},
-  {nome:'Financeiro', sub:'Boletos e contratos', fone:'5548998097265'},
-  {nome:'Atendimento', sub:'Geral', fone:'554832434894'}
-];
-const ZAP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.6-8.4Z"/></svg>';
-
-/* ===========================================================
-   Sequência de quadros num canvas. Sem vídeo no scrub: imagem
-   decodificada responde na hora, em qualquer navegador.
-   =========================================================== */
-function sequencia(urls, paralelo = 6){
-  const imgs = urls.map(() => null);
-  const fila = [], pedidos = new Set();
-  let emVoo = 0, iniciou = false;
-  // poucos pedidos por vez: a fila não sufoca fontes, giro e vídeo
-  const dispara = () => {
-    while (emVoo < paralelo && fila.length){
-      const i = fila.shift(); emVoo++;
-      const im = new Image(); im.decoding = 'async'; im.src = urls[i];
-      const feito = () => { emVoo--; dispara(); };
-      im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { imgs[i] = im; seq.onload && seq.onload(i); feito(); }); };
-      im.onerror = () => { if (i === 0) seq.falhou = true; feito(); };
-    }
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
   };
-  const carrega = (prioridade = []) => {
-    if (iniciou) return; iniciou = true;
-    [...prioridade, ...urls.keys()].forEach(i => { if (!pedidos.has(i)) { pedidos.add(i); fila.push(i); } });
-    dispara();
-  };
-  // reordena o que ainda não saiu: o que está perto do quadro pedido vem antes,
-  // e os quadros "grossos" (a cada 8, a cada 4) mantêm vantagem para nunca faltar imagem
-  const foco = (i) => {
-    if (fila.length < 2) return;
-    const peso = (k) => Math.abs(k - i) * (k % 8 === 0 ? .25 : k % 4 === 0 ? .5 : k % 2 === 0 ? .75 : 1);
-    fila.sort((a, b) => peso(a) - peso(b));
-  };
-  // quadro pronto mais perto do pedido, para nunca piscar em branco
-  const perto = (i) => {
-    if (imgs[i]) return imgs[i];
-    for (let d = 1; d < imgs.length; d++){
-      if (imgs[i - d]) return imgs[i - d];
-      if (imgs[i + d]) return imgs[i + d];
-    }
-    return null;
-  };
-  const seq = {imgs, carrega, foco, perto, n: urls.length, onload: null};
-  return seq;
+  st.raf = requestAnimationFrame(passo);
 }
-
-function prepara(canvas){
-  const ctx = canvas.getContext('2d');
-  const mede = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.imageSmoothingQuality = 'high';
-    return {w, h};
-  };
-  return {ctx, mede};
-}
-
-// cobre a área inteira, como object-fit: cover, com zoom opcional
-function desenhaCover(ctx, im, w, h, zoom = 1, alpha = 1){
-  if (!im) return;
-  const s = Math.max(w / im.naturalWidth, h / im.naturalHeight) * zoom;
-  const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  ctx.globalAlpha = alpha;
-  ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
-  ctx.globalAlpha = 1;
-}
-
-/* ---------- Linha de máquinas: cartões com giro no arraste ---------- */
-function montaLinha(){
-  const grade = $('#grade');
-  grade.innerHTML = MAQUINAS.map((m, i) => `
-    <article class="maq" data-fam="${m.fam}" data-i="${i}">
-      <div class="vista" aria-label="${m.fam} ${m.linha} ${m.mc}, arraste ou use as setas para girar" role="img" tabindex="0">
-        <img src="${IMG}${m.arq}-360-00.jpg" alt="" loading="lazy" decoding="async">
-        <canvas aria-hidden="true"></canvas>
-        <span class="dica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Arraste para girar</span>
-      </div>
-      <div class="corpo">
-        <span class="fam">${m.fam}${m.linha ? ' ' + m.linha : ''}</span>
-        <h3>${m.mc}</h3>
-        <p class="tag">${m.tag}</p>
-        <dl>${m.f.map(([v, u, r]) => `<div><dt>${r}</dt><dd class="num">${v}${u ? `<small>${u}</small>` : ''}</dd></div>`).join('')}</dl>
-        <a class="ver" href="https://cristofolinimaquinas.com.br/${m.slug}/" target="_blank" rel="noopener">Ficha completa
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-    </article>`).join('');
-
-  $$('.maq', grade).forEach(card => ligaGiroCartao(card, MAQUINAS[+card.dataset.i]));
-  ligaAbas();
-}
-
-function ligaGiroCartao(card, m){
-  const vista = $('.vista', card), canvas = $('canvas', vista), capa = $('img', vista);
-  const N = 18;
-  const seq = sequencia([...Array(N)].map((_, i) => `${IMG}${m.arq}-360-${String(i).padStart(2, '0')}.jpg`));
-  const {ctx, mede} = prepara(canvas);
-  let tam = null, pos = 0, vel = 0, raf = 0, ativo = false;
-
-  const desenha = () => {
-    if (!tam || tam.w !== canvas.clientWidth) { if (!canvas.clientWidth) return; tam = mede(); }
-    const p = ((pos % N) + N) % N;
-    const a = Math.floor(p), b = (a + 1) % N, t = p - a;
-    ctx.clearRect(0, 0, tam.w, tam.h);
-    // funde dois quadros vizinhos: 18 fotos viram um giro contínuo
-    desenhaCover(ctx, seq.perto(a), tam.w, tam.h);
-    if (t > .01 && seq.imgs[b]) desenhaCover(ctx, seq.imgs[b], tam.w, tam.h, 1, t);
-  };
-  const acorda = () => { if (!ativo){ ativo = true; seq.carrega(); } };
-  seq.onload = () => { if (capa.style.opacity !== '0' && seq.imgs[0]) { desenha(); capa.style.opacity = '0'; } };
-
-  // inércia depois do arraste: decaimento exponencial, como a rolagem do sistema
-  const solta = () => {
-    cancelAnimationFrame(raf);
-    let ultimo = performance.now();
-    const passo = (agora) => {
-      const dt = Math.min(48, agora - ultimo); ultimo = agora;
-      pos += vel * dt / 1000;
-      vel *= Math.pow(0.996, dt);
-      desenha();
-      if (Math.abs(vel) > .15) raf = requestAnimationFrame(passo);
-    };
-    raf = requestAnimationFrame(passo);
-  };
-
-  let inicio = null, historico = [], decidiu = false;
-  vista.addEventListener('pointerdown', (e) => {
-    acorda();
-    cancelAnimationFrame(raf); vel = 0;             // agarra no meio do giro
-    inicio = {x: e.clientX, y: e.clientY, pos};
-    historico = [{x: e.clientX, t: e.timeStamp}];
-    decidiu = e.pointerType === 'mouse';
-    if (decidiu) { vista.setPointerCapture(e.pointerId); vista.classList.add('agarrado'); }
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
   });
-  vista.addEventListener('pointermove', (e) => {
-    if (!inicio){
-      // mouse passando por cima já mostra a máquina girando junto
-      if (e.pointerType === 'mouse'){
-        acorda();
-        const r = vista.getBoundingClientRect();
-        const alvo = ((e.clientX - r.left) / r.width) * N * .9;
-        if (!raf || Math.abs(vel) < .15){ pos += (alvo - ((pos % N) + N) % N) * .35; desenha(); }
-      }
+}
+
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
+
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
       return;
     }
-    const dx = e.clientX - inicio.x, dy = e.clientY - inicio.y;
-    if (!decidiu){
-      if (Math.hypot(dx, dy) < 8) return;          // histerese antes de escolher a direção
-      if (Math.abs(dy) > Math.abs(dx)) { inicio = null; return; }  // é rolagem, deixa passar
-      decidiu = true; vista.setPointerCapture(e.pointerId); vista.classList.add('agarrado');
-    }
-    const w = vista.clientWidth;
-    pos = inicio.pos - dx / w * N * .9;             // uma largura de dedo = quase uma volta
-    historico.push({x: e.clientX, t: e.timeStamp});
-    if (historico.length > 5) historico.shift();
-    card.classList.add('girou');
-    desenha();
-  });
-  const fim = (e) => {
-    if (!inicio) return;
-    vista.classList.remove('agarrado');
-    const a = historico[0], b = historico[historico.length - 1];
-    const dt = Math.max(1, b.t - a.t);
-    if (decidiu && e.timeStamp - b.t < 80) {
-      vel = -((b.x - a.x) / dt) * 1000 / vista.clientWidth * N * .9;
-      solta();
-    }
-    inicio = null;
-  };
-  vista.addEventListener('pointerup', fim);
-  vista.addEventListener('pointercancel', fim);
-  // teclado: cada seta dá um empurrão, somando à velocidade que já existe
-  vista.addEventListener('keydown', (e) => {
-    const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-    if (!dir) return;
-    e.preventDefault(); acorda();
-    card.classList.add('girou');
-    vel = (Math.sign(vel) === dir ? vel : 0) + dir * 6;
-    solta();
-  });
-  addEventListener('resize', () => { tam = null; if (ativo) desenha(); });
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
 }
 
-function ligaAbas(){
-  const abas = $('#abas'), pilula = $('.pilula', abas), grade = $('#grade');
-  const botoes = $$('button', abas);
-  grade.setAttribute('role', 'tabpanel');
-  const move = (b) => {
-    pilula.style.width = b.offsetWidth + 'px';
-    pilula.style.transform = `translateX(${b.offsetLeft}px)`;
-  };
-  // sinal de que a lista continua: esmaece a borda enquanto houver aba escondida
-  const corte = () => {
-    const sobra = abas.scrollWidth - abas.clientWidth;
-    abas.classList.toggle('corta', sobra > 2);
-    abas.classList.toggle('fim', abas.scrollLeft >= sobra - 2);
-  };
-  abas.addEventListener('scroll', corte, {passive: true});
-  const escolhe = (b) => {
-    if (b.getAttribute('aria-selected') === 'true') return;
-    botoes.forEach(x => { const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; });
-    move(b);
-    b.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: calmo ? 'auto' : 'smooth'});
-    const fam = b.dataset.fam;
-    const cards = $$('.maq');
-    cards.forEach(c => c.classList.toggle('some', fam !== 'todas' && c.dataset.fam !== fam));
-    if (!calmo) gsap.fromTo(cards.filter(c => !c.classList.contains('some')),
-      {opacity: 0, y: 24}, {opacity: 1, y: 0, duration: .6, ease: 'expo.out', stagger: .035, overwrite: true});
-    ScrollTrigger.refresh();
-  };
-  botoes.forEach((b, i) => {
-    b.tabIndex = i ? -1 : 0;
-    b.setAttribute('aria-controls', 'grade');
-    b.addEventListener('pointerdown', () => escolhe(b));   // responde no toque, não na soltura
-    b.addEventListener('click', () => escolhe(b));
-    // setas trocam de família, como abas do sistema
-    b.addEventListener('keydown', (e) => {
-      const k = {ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity}[e.key];
-      if (k === undefined) return;
-      e.preventDefault();
-      const j = isFinite(k) ? (i + k + botoes.length) % botoes.length : k < 0 ? 0 : botoes.length - 1;
-      botoes[j].focus(); escolhe(botoes[j]);
-    });
-  });
-  requestAnimationFrame(() => { move(botoes[0]); corte(); });
-  addEventListener('resize', () => { move(botoes.find(b => b.getAttribute('aria-selected') === 'true')); corte(); });
-}
-
-function montaAreas(){
-  const msg = encodeURIComponent('Olá! Vim pelo site da Cristofolini e quero falar com a área de ');
-  $('#areas').innerHTML = AREAS.map(a => `
-    <a class="area${a.destaque ? ' destaque' : ''}" href="https://wa.me/${a.fone}?text=${msg}${encodeURIComponent(a.nome.toLowerCase() + '.')}" target="_blank" rel="noopener">
-      ${ZAP}<span><b>${a.nome}</b><small>${a.sub}</small></span>
-    </a>`).join('');
-}
-
-/* ---------- Toque: pressionado no pointerdown, sem esperar o clique ---------- */
-function ligaToques(){
-  document.addEventListener('pointerdown', (e) => {
-    const alvo = e.target.closest('.btn,.area');
-    if (!alvo) return;
-    alvo.classList.add('pressionado');
-    const solta = () => { alvo.classList.remove('pressionado'); removeEventListener('pointerup', solta); removeEventListener('pointercancel', solta); };
-    addEventListener('pointerup', solta); addEventListener('pointercancel', solta);
-  });
-}
-
-/* ---------- Filme: nasce do botão e volta para ele ---------- */
-function ligaFilme(){
-  const dlg = $('#filme'), tela = $('.tela', dlg), video = $('#videoFilme'), botao = $('#abreFilme');
-  const origem = () => {
-    const r = botao.getBoundingClientRect(), t = tela.getBoundingClientRect();
-    return {x: r.left + r.width / 2 - (t.left + t.width / 2), y: r.top + r.height / 2 - (t.top + t.height / 2), s: r.width / t.width};
-  };
-  const abre = () => {
-    dlg.showModal();
-    const o = origem();
-    if (calmo) { gsap.set(dlg, {opacity: 1}); }
-    else {
-      gsap.to(dlg, {opacity: 1, duration: .25, ease: 'power1.out', overwrite: true});
-      gsap.fromTo(tela, {x: o.x, y: o.y, scale: o.s, opacity: .4}, {x: 0, y: 0, scale: 1, opacity: 1, duration: .55, ease: 'expo.out', overwrite: true});
-    }
-    video.play().catch(() => {});
-    lenis && lenis.stop();
-  };
-  const fecha = () => {
-    video.pause();
-    const o = origem();
-    const acaba = () => { dlg.close(); lenis && lenis.start(); };
-    if (calmo) { gsap.set(dlg, {opacity: 0}); acaba(); return; }
-    // sai pelo mesmo caminho por onde entrou, partindo de onde está agora
-    gsap.to(tela, {x: o.x, y: o.y, scale: o.s, opacity: 0, duration: .42, ease: 'expo.inOut', overwrite: true});
-    gsap.to(dlg, {opacity: 0, duration: .38, delay: .08, ease: 'power1.in', overwrite: true, onComplete: acaba});
-  };
-  botao.addEventListener('click', abre);
-  $('#fechaFilme').addEventListener('click', fecha);
-  dlg.addEventListener('cancel', (e) => { e.preventDefault(); fecha(); });
-  dlg.addEventListener('click', (e) => { if (e.target === dlg) fecha(); });
-}
-
-/* ---------- Barra do topo some ao descer, volta ao subir ---------- */
-function ligaTopo(){
-  const topo = $('#topo');
-  let ultimo = 0;
-  const atualiza = (y) => {
-    topo.classList.toggle('solido', y > innerHeight * .6);
-    if (Math.abs(y - ultimo) > 6){ topo.classList.toggle('escondido', y > ultimo && y > innerHeight); ultimo = y; }
-  };
-  return atualiza;
-}
-
-let lenis = null;
-montaLinha();
-montaAreas();
-ligaToques();
-const topo = ligaTopo();
-
-/* ===========================================================
-   Movimento. Tudo preso à rolagem, então para, volta e acelera
-   junto com o dedo. Nada roda sozinho com duração fixa.
-   =========================================================== */
-// sem GSAP (CDN fora do ar), a página fica estática em vez de presa no carregamento
-if (!window.gsap || !window.ScrollTrigger){
-  document.documentElement.classList.remove('carregando'); $('#entrada') && $('#entrada').remove();
-  throw new Error('GSAP indisponível');
-}
-gsap.registerPlugin(ScrollTrigger);
-// barra de endereço do celular abrindo e fechando não recalcula tudo nem pula o quadro
-ScrollTrigger.config({ignoreMobileResize: true});
-if (calmo){ const v = $('#videoAereo'); v.removeAttribute('autoplay'); v.pause(); }
-
-if (!calmo && window.Lenis){
-  lenis = new Lenis({lerp: .11, smoothWheel: true});
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(t => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-  document.documentElement.classList.add('lenis');
-  $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
-    const alvo = $(a.getAttribute('href')); if (!alvo) return;
-    e.preventDefault();
-    // ao chegar, o foco vai junto: Tab continua de lá, e não do topo
-    lenis.scrollTo(alvo, {duration: 1.4, onComplete: () => {
-      if (!alvo.hasAttribute('tabindex')) alvo.tabIndex = -1;
-      alvo.focus({preventScroll: true});
-    }});
-  }));
-}
-addEventListener('scroll', () => topo(scrollY), {passive: true});
-ligaFilme();
-
-/* ---------- Giro 360 ---------- */
-const giro = (() => {
-  const canvas = $('#telaGiro'), {ctx, mede} = prepara(canvas);
-  const N = 18;
-  const seq = sequencia([...Array(N)].map((_, i) => `${IMG}MC-50_Superiore-360-${String(i).padStart(2, '0')}.jpg`));
-  let tam = mede(), p = 0;
-  // pinta a máquina em qualquer canvas: o giro usa no palco dele e o percurso usa na fusão final
-  const pinta = (ctx, tam, p, alpha = 1, comFundo = false) => {
-    const f = p * N, a = Math.floor(f) % N, b = (a + 1) % N, t = f - Math.floor(f);
-    const im = seq.perto(a); if (!im) return false;
-    ctx.globalAlpha = alpha;
-    if (comFundo){
-      const g = ctx.createLinearGradient(0, 0, 0, tam.h); g.addColorStop(0, '#a0a2a1'); g.addColorStop(1, '#e0e1dc');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, tam.w, tam.h);
-    }
-    const retrato = tam.h > tam.w;
-    // paisagem cobre a tela; retrato encaixa a máquina na largura e funde as bordas no estúdio
-    const s = retrato ? tam.w / (im.naturalWidth * .66) : Math.max(tam.w / im.naturalWidth, tam.h / im.naturalHeight) * 1.02;
-    const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-    const x = (tam.w - dw) / 2, y = retrato ? tam.h * .4 - dh / 2 : (tam.h - dh) / 2;
-    ctx.drawImage(im, x, y, dw, dh);
-    if (t > .01 && seq.imgs[b]) { ctx.globalAlpha = alpha * t; ctx.drawImage(seq.imgs[b], x, y, dw, dh); ctx.globalAlpha = alpha; }
-    if (retrato){
-      const fade = (y0, y1, cor) => { const g = ctx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, cor); g.addColorStop(1, cor.replace(/[\d.]+\)$/, '0)')); ctx.fillStyle = g; ctx.fillRect(0, Math.min(y0, y1), tam.w, Math.abs(y1 - y0)); };
-      ctx.fillStyle = 'rgba(160,162,161,1)'; ctx.fillRect(0, 0, tam.w, y + 1);
-      ctx.fillStyle = 'rgba(224,225,220,1)'; ctx.fillRect(0, y + dh - 1, tam.w, tam.h);
-      fade(y, y + dh * .22, 'rgba(160,162,161,1)');
-      fade(y + dh, y + dh * .78, 'rgba(224,225,220,1)');
-    }
-    ctx.globalAlpha = 1;
-    return true;
-  };
-  const desenha = () => { ctx.clearRect(0, 0, tam.w, tam.h); pinta(ctx, tam, p); };
-  seq.onload = (i) => { if (Math.abs(i - p * N) < 2 || i === 0) { desenha(); giro.aoCarregar && giro.aoCarregar(); } };
-  addEventListener('resize', () => { tam = mede(); desenha(); });
-  return {seq, pinta, aoCarregar: null, set(v){ p = v; desenha(); }};
-})();
-
-/* ---------- Percurso ---------- */
-// o topo abre no rolo de sacos sendo bobinado, vai para a mão, funde na fachada e entra na fábrica
-const CENAS = [[0,'Produto final'],[67,'Fachada'],[107,'Recepção'],[135,'Usinagem'],[166,'Solda'],[185,'Torno'],[201,'Usinagem'],[220,'Montagem'],[240,'Galpão']];
-const QUADROS = [
-  ...[...Array(63)].map((_, i) => `bobina/${String(i + 95).padStart(3, '0')}`),
-  // do rolo para o sol, e o drone desce do sol até a fábrica
-  ...[...Array(8)].map((_, i) => `transicao2/${String(i + 1).padStart(3, '0')}`),
-  ...[...Array(31)].map((_, i) => `percurso/${String(31 - i).padStart(3, '0')}`),
-  // a câmera acelera para a porta e atravessa: a recepção aparece por dentro
-  ...[...Array(10)].map((_, i) => `entrada/a${String(i + 1).padStart(3, '0')}`),
-  ...[...Array(8)].map((_, i) => `entrada/b${String(i + 1).padStart(3, '0')}`),
-  // recepção, usinagem, solda, torno, montagem
-  ...[...Array(119)].map((_, i) => `percurso/${String(i + 45).padStart(3, '0')}`),
-  // e a câmera entra no galpão até a extrusora
-  ...[...Array(5)].map((_, i) => `fusao/b${String(i + 1).padStart(3, '0')}`),
-  ...[...Array(45)].map((_, i) => `percurso/${String(213 - i).padStart(3, '0')}`)
-];
-// celular ou economia de dados: metade dos quadros (fundidos dois a dois), metade do peso
-const LEVE = matchMedia('(max-width:760px)').matches || (navigator.connection && navigator.connection.saveData);
-function filmeRolagem(canvas, pasta, TOTAL, fim){
-  const {ctx, mede} = prepara(canvas);
-  const PASSO = LEVE ? 2 : 1;
-  const N = Math.ceil(TOTAL / PASSO);
-  const seq = sequencia([...Array(N)].map((_, i) => Array.isArray(pasta) ? `../media/${pasta[i * PASSO]}.jpg` : `../media/${pasta}/${String(i * PASSO + 1).padStart(3, '0')}.jpg`));
-  // ordem de carga: primeiro um a cada 8, depois preenche; a rolagem nunca fica sem quadro
-  const ordem = []; [8, 4, 2, 1].forEach(passo => { for (let i = 0; i < N; i += passo) ordem.push(i); });
-  let tam = mede(), f = 0, fusao = 0, ultimoFoco = 0;
-  // celular em pé: a cena horizontal não cabe cortada na tela inteira (sobraria
-  // um quarto da imagem, ampliado). Ela vira uma faixa larga no alto, com bordas
-  // suaves, e a mesma cena desfocada preenche o fundo, como nos stories.
-  const miniF = document.createElement('canvas'), miniC = miniF.getContext('2d');
-  const faixa = document.createElement('canvas'), faixaC = faixa.getContext('2d');
-  const emPe = () => tam.h > tam.w * 1.15;
-  const quadroEmPe = (a, t, zoom) => {
-    const w = tam.w, h = tam.h, dpr = canvas.width / w;
-    // fundo: a cena num canvas minúsculo, esticado, já sai desfocada e leve
-    miniF.width = 36; miniF.height = Math.round(36 * h / w);
-    miniC.clearRect(0, 0, miniF.width, miniF.height);
-    desenhaCover(miniC, seq.perto(a), miniF.width, miniF.height);
-    if (t > .01 && seq.imgs[a + 1]) desenhaCover(miniC, seq.imgs[a + 1], miniF.width, miniF.height, 1, t);
-    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(miniF, 0, 0, w, h);
-    ctx.fillStyle = 'rgba(7,25,42,.5)'; ctx.fillRect(0, 0, w, h);
-    // faixa: a cena com mais de metade da largura visível, bordas em degradê
-    const fh = h * .5 * zoom, fw = fh * 16 / 9, fy = h * .1 - (fh - h * .5) / 2;
-    faixa.width = Math.round(w * dpr); faixa.height = Math.round(fh * dpr);
-    faixaC.setTransform(dpr, 0, 0, dpr, 0, 0);
-    faixaC.globalCompositeOperation = 'source-over'; faixaC.globalAlpha = 1;
-    const dx = (w - fw) / 2;
-    const pinta = (im, al) => { if (!im) return; faixaC.globalAlpha = al; faixaC.drawImage(im, dx, 0, fw, fh); faixaC.globalAlpha = 1; };
-    pinta(seq.perto(a), 1);
-    if (t > .01 && seq.imgs[a + 1]) pinta(seq.imgs[a + 1], t);
-    faixaC.globalCompositeOperation = 'destination-in';
-    const g = faixaC.createLinearGradient(0, 0, 0, fh);
-    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(.16, '#000'); g.addColorStop(.84, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
-    faixaC.fillStyle = g; faixaC.fillRect(0, 0, w, fh);
-    faixaC.globalCompositeOperation = 'source-over';
-    ctx.drawImage(faixa, 0, fy, w, fh);
-  };
-  const desenha = () => {
-    const a = Math.floor(f), t = f - a;
-    ctx.clearRect(0, 0, tam.w, tam.h);
-    const zoom = fim ? 1 + fusao * .14 : 1;
-    if (emPe()) quadroEmPe(a, t, zoom);
-    else {
-      desenhaCover(ctx, seq.perto(a), tam.w, tam.h, zoom);
-      if (t > .01 && seq.imgs[a + 1]) desenhaCover(ctx, seq.imgs[a + 1], tam.w, tam.h, zoom, t);
-    }
-    if (fim && fusao > 0) fim(ctx, tam, fusao);
-  };
-  seq.onload = (i) => { if (Math.abs(i - f) < 3 || i === 0 || i === N - 1) desenha(); };
-  addEventListener('resize', () => { tam = mede(); desenha(); });
-  return {seq, N: TOTAL, carrega: () => seq.carrega(ordem), redesenha: desenha,
-    // v em quadros originais (0 a TOTAL-1); q é a fusão final (0 a 1), só no percurso
-    set(v, q = 0){
-      f = Math.min(N - 1, v / PASSO); fusao = q;
-      const alvo = Math.round(f);
-      if (Math.abs(alvo - ultimoFoco) >= 3){ ultimoFoco = alvo; seq.foco(alvo); }
-      desenha();
-    }};
-}
-// no fim do percurso, o galpão se aproxima da máquina e dissolve no estúdio do giro
-const percurso = filmeRolagem($('#telaPercurso'), QUADROS, QUADROS.length, (ctx, tam, q) => giro.pinta(ctx, tam, 0, q * q * (3 - 2 * q), true));
-giro.aoCarregar = () => percurso.redesenha();
-
-
-if (calmo){
-  percurso.seq.carrega([0]); percurso.set(0);
-  giro.seq.carrega([2]); giro.set(2 / 18);
-  $$('.passo').forEach(ativaPasso);
-  $$('[data-conta]').forEach(n => n.textContent = n.dataset.conta);
-} else {
-  movimento();
-}
-
-function ativaPasso(el){
-  const i = $$('.passo').indexOf(el);
-  $$('.passo').forEach(x => x.classList.toggle('on', x === el));
-  $$('#moldura img').forEach((im, k) => im.classList.toggle('on', k === i));
-  $('#anoFixo').textContent = el.dataset.ano;
-}
-
-function movimento(){
-  /* Carregamento: espera o primeiro quadro da fachada e as fontes, no máximo 2,4 s */
-  const entrada = $('#entrada'), barra = $('#barraEntrada');
-  gsap.set('#heroTitulo .l > span', {yPercent: 110});
-  gsap.set('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 0, y: 16});
-  percurso.carrega();
-  const esperas = [
-    document.fonts ? document.fonts.ready : Promise.resolve(),
-    new Promise(r => { const t = setInterval(() => { if (percurso.seq.imgs[0] || percurso.seq.falhou) { clearInterval(t); r(); } }, 60); })
-  ];
-  let prontas = 0;
-  esperas.forEach(p => p.then(() => barra.style.setProperty('--p', ++prontas / esperas.length)));
-  const t0 = performance.now();
-  Promise.race([Promise.all(esperas), new Promise(r => setTimeout(r, 2400))]).then(() => {
-    setTimeout(() => {
-      document.documentElement.classList.remove('carregando');
-      gsap.to(entrada, {opacity: 0, duration: .7, ease: 'power2.out', onComplete: () => entrada.remove()});
-      gsap.to('#heroTitulo .l > span', {yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: .09, delay: .1});
-      gsap.to('#heroConteudo .eyebrow, #heroConteudo .base', {opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: .5, stagger: .08});
-      ScrollTrigger.refresh();
-    }, Math.max(0, 900 - (performance.now() - t0)));
-  });
-  /* Percurso: a rolagem é a câmera. Segura a fachada parada no começo,
-     depois cada quadro acompanha o dedo, para frente e para trás. */
-  const PARADO = .04;   // abertura parada no rolo nos primeiros 4% (meia tela de rolagem)
-  const FUSAO = .92;    // últimos 8%: o galpão dissolve no estúdio do giro
-  const janela = (x, a, b, c, d) => x < a ? 0 : x < b ? (x - a) / (b - a) : x < c ? 1 : x < d ? 1 - (x - c) / (d - c) : 0;
-  // frases em janelas de quadros e indicador de etapa, iguais nos dois filmes
-  const ligaCenas = (sec, etapas) => {
-    const cenas = $$('.cena', sec).map(el => ({el, de: +el.dataset.de, ate: +el.dataset.ate}));
-    const onde = $('.onde', sec), nome = $('span', onde), barra = $('.barra i', onde);
-    return (f, p, some = 0, ondeVisivel = 1) => {
-      cenas.forEach(c => {
-        const o = janela(f, c.de - 6, c.de + 2, c.ate - 4, c.ate + 4) * (1 - some);
-        c.el.style.opacity = o;
-        c.el.style.transform = `translateY(${(1 - o) * (f < c.de + 2 ? 2 : -2)}rem)`;
-      });
-      onde.style.opacity = ondeVisivel * (1 - Math.min(1, some * 2));
-      let n = etapas[0][1]; etapas.forEach(([q, x]) => { if (f >= q) n = x; });
-      if (nome.textContent !== n) nome.textContent = n;
-      barra.style.setProperty('--p', p.toFixed(3));
-    };
-  };
-  const cenasPercurso = ligaCenas($('#inicio'), CENAS);
-  const heroC = $('#heroConteudo'), rolar = $('#rolar'), veu = $('#veu');
-  const secGiro = $('#maquina');
-  secGiro.classList.add('espera');
-  let giroPedido = false;
-  ScrollTrigger.create({trigger: '#inicio', start: 'top top', end: 'bottom bottom', scrub: true,
-    onUpdate: s => {
-      const p = s.progress;
-      const f = p < PARADO ? 0 : Math.min(1, (p - PARADO) / (FUSAO - PARADO)) * (percurso.N - 1);
-      const q = Math.max(0, (p - FUSAO) / (1 - FUSAO));
-      // o primeiro quadro do giro precisa estar pronto antes da fusão
-      if (!giroPedido && p > .5){ giroPedido = true; giro.seq.carrega([0, 9]); }
-      percurso.set(f, q);
-      veu.style.opacity = 1 - q;
-      // título some nos primeiros quadros, subindo como quem entra
-      const h = Math.min(1, p / .045);
-      heroC.style.opacity = 1 - h;
-      heroC.style.transform = `translateY(${-h * 12}vh)`;
-      heroC.style.pointerEvents = h > .6 ? 'none' : '';
-      rolar.style.opacity = 1 - Math.min(1, p / .02);
-      cenasPercurso(f, p, q, Math.min(1, Math.max(0, (p - .04) / .02)));
-    }});
-
-
-  /* Giro: uma volta completa da extrusora, fichas trocando pelo caminho.
-     O palco fica invisível até prender: quem mostra a máquina antes disso é o
-     fim do percurso, com a mesma imagem, então a troca não se vê. */
-  const fichas = $$('#fichas .ficha'), barras = $$('#trilhoGiro i'), graus = $('#graus'), cabeca = $('.giro .cabeca');
-  ScrollTrigger.create({trigger: '#maquina', start: 'top 120%', once: true, onEnter: () => giro.seq.carrega([0, 9])});
-  let atual = -1;
-  ScrollTrigger.create({trigger: '#maquina', start: 'top top', end: 'bottom bottom', scrub: true,
-    onToggle: s => {
-      const espera = !s.isActive && s.progress === 0;
-      secGiro.classList.toggle('espera', espera);
-      if (!espera && s.direction > 0) gsap.fromTo(cabeca, {opacity: 0, y: 18}, {opacity: 1, y: 0, duration: .8, ease: 'expo.out', overwrite: true});
-    },
-    onUpdate: s => {
-      const p = s.progress;
-      giro.set(p);
-      graus.textContent = Math.round(p * 360) + '°';
-      const k = Math.min(fichas.length - 1, Math.floor(p * fichas.length));
-      barras.forEach((b, i) => b.style.setProperty('--p', Math.max(0, Math.min(1, p * fichas.length - i))));
-      if (k !== atual){
-        // cada ficha entra de onde a anterior está agora, sem esperar ela terminar
-        fichas.forEach((f, i) => gsap.to(f, {opacity: i === k ? 1 : 0, y: i === k ? 0 : (i < k ? -16 : 16),
-          duration: .5, ease: 'expo.out', overwrite: true}));
-        atual = k;
-      }
-    }});
-
-  /* Diferenciais: o trilho anda de lado enquanto a página desce */
-  const trilho = $('#trilhoH'), sec = $('#diferenciais');
-  const distancia = () => Math.max(0, trilho.scrollWidth - innerWidth);
-  sec.style.height = `calc(100svh + ${distancia()}px)`;
-  ScrollTrigger.addEventListener('refreshInit', () => { sec.style.height = `calc(100svh + ${distancia()}px)`; });
-  gsap.to(trilho, {x: () => -distancia(), ease: 'none',
-    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true}});
-  $$('.card-dif img').forEach(im => gsap.fromTo(im, {xPercent: -6}, {xPercent: 6, ease: 'none',
-    scrollTrigger: {trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true}}));
-
-  /* Números contam quando aparecem */
-  $$('[data-conta]').forEach(n => {
-    const alvo = +n.dataset.conta, o = {v: 0};
-    n.textContent = '0';
-    ScrollTrigger.create({trigger: n, start: 'top 85%', once: true,
-      onEnter: () => gsap.to(o, {v: alvo, duration: 1.6, ease: 'expo.out', onUpdate: () => n.textContent = Math.round(o.v)})});
-  });
-
-  /* Linha: cartões sobem em cascata */
-  ScrollTrigger.batch('.maq', {start: 'top 90%', once: true,
-    onEnter: b => gsap.from(b, {opacity: 0, y: 40, duration: .9, ease: 'expo.out', stagger: .06})});
-
-  /* História: a foto fixa troca conforme o passo passa pelo meio */
-  $$('.passo').forEach(el => ScrollTrigger.create({trigger: el, start: 'top 55%', end: 'bottom 55%',
-    onToggle: s => s.isActive && ativaPasso(el)}));
-
-  /* Propósito: a frase cresce até o tamanho final */
-  gsap.fromTo('#citacao', {scale: .82, opacity: .2}, {scale: 1, opacity: 1, ease: 'none',
-    scrollTrigger: {trigger: '#citacao', start: 'top 95%', end: 'center 55%', scrub: true}});
-
-  /* Contato: vídeo aéreo só carrega perto de aparecer */
-  ScrollTrigger.create({trigger: '#contato', start: 'top 150%', once: true, onEnter: () => {
-    const v = $('#videoAereo'); v.preload = 'auto'; v.play().catch(() => {});
-  }});
-  gsap.from('.area', {opacity: 0, y: 24, duration: .8, ease: 'expo.out', stagger: .06,
-    scrollTrigger: {trigger: '#areas', start: 'top 92%'}});
-
-  addEventListener('load', () => ScrollTrigger.refresh());
-}
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
 })();
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>

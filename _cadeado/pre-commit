@@ -1,0 +1,17 @@
+#!/bin/sh
+# Regra do deck: toda página publicada abre só com PIN. Recusa o commit de qualquer
+# .html que não seja a porta gerada por _cadeado/trancar.mjs.
+# Instalar: cp _cadeado/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+ruim=""
+for f in $(git diff --cached --name-only --diff-filter=ACMR -- '*.html' '*.htm'); do
+  case "$f" in
+    _cadeado/*) continue ;;            # o molde da porta
+    index.html) continue ;;            # raiz: só redireciona
+    cristofolini/index.html) continue ;; # Gerador: cofre próprio por consultor (dados.enc)
+  esac
+  git show ":$f" | grep -q 'id="cofre"' || ruim="$ruim\n  $f"
+done
+if [ -n "$ruim" ]; then
+  printf "Página sem PIN, commit recusado:$ruim\n\nColoque o original em _fonte/<caminho>, o grupo em _fonte/cadeados.json e rode:\n  node _cadeado/trancar.mjs <grupo>\n" >&2
+  exit 1
+fi

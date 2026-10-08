@@ -1,796 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How Can We Make Teamwork Happen? — Klaus</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-  :root{
-    --bg:#08080A;
-    --surface:rgba(255,255,255,.04);
-    --surface-2:rgba(255,255,255,.07);
-    --border:rgba(255,255,255,.10);
-    --border-strong:rgba(255,255,255,.18);
-    --text:#F5F5F7;
-    --text-dim:#A8A8B3;
-    --text-faint:#6A6A75;
-    --accent:#7C5CFF;
-    --accent-2:#22D3EE;
-    --accent-warm:#F5A623;
-    --gradient-1:linear-gradient(135deg,#7C5CFF 0%,#22D3EE 100%);
-    --gradient-2:linear-gradient(135deg,#F5A623 0%,#FF6B6B 100%);
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{
-    height:100%;background:var(--bg);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',Arial,sans-serif;
-    color:var(--text);overflow:hidden;
-    -webkit-font-smoothing:antialiased;
-    font-feature-settings:'ss01','cv11';
-  }
-
-  .deck{
-    position:fixed;inset:0;
-    display:flex;align-items:center;justify-content:center;
-    background:#000;overflow:hidden;
-  }
-  /* Fixed 16:9 stage @ 1920x1080 — scaled via JS to fit any monitor */
-  .stage{
-    position:relative;
-    width:1920px;height:1080px;
-    transform-origin:center center;
-    background:var(--bg);
-    overflow:hidden;
-  }
-
-  .slide{
-    position:absolute;inset:0;
-    display:none;flex-direction:column;
-    padding:0;
-    opacity:0;
-    overflow:hidden;
-    transition:opacity .55s cubic-bezier(.2,.8,.2,1);
-  }
-  .slide.active{display:flex;opacity:1;}
-  .slide.active .reveal{animation:reveal .85s cubic-bezier(.2,.8,.2,1) both;}
-  .slide.active .reveal:nth-child(2){animation-delay:.08s;}
-  .slide.active .reveal:nth-child(3){animation-delay:.16s;}
-  .slide.active .reveal:nth-child(4){animation-delay:.24s;}
-  .slide.active .reveal:nth-child(5){animation-delay:.32s;}
-  .slide.active .reveal:nth-child(6){animation-delay:.40s;}
-  .slide.active .reveal:nth-child(7){animation-delay:.48s;}
-  @keyframes reveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
-
-  /* Slow ken-burns effect on hero images */
-  @keyframes kenburns{
-    0%{transform:scale(1.05) translate(0,0);}
-    100%{transform:scale(1.15) translate(-1%,1%);}
-  }
-
-  .grain{
-    position:fixed;inset:0;pointer-events:none;z-index:90;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode:overlay;opacity:.6;
-  }
-
-  /* Hero image full-bleed background */
-  .hero-img{
-    position:absolute;inset:0;z-index:0;
-    background-size:cover;background-position:center;
-    animation:kenburns 18s ease-in-out infinite alternate;
-  }
-  .hero-overlay{
-    position:absolute;inset:0;z-index:1;
-    background:
-      linear-gradient(180deg,rgba(8,8,10,.4) 0%,rgba(8,8,10,.75) 60%,rgba(8,8,10,.95) 100%),
-      linear-gradient(90deg,rgba(8,8,10,.85) 0%,rgba(8,8,10,.4) 50%,rgba(8,8,10,.3) 100%);
-  }
-  .hero-content{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:80px;}
-
-  /* META */
-  .meta{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:8px 16px;border-radius:999px;
-    background:rgba(255,255,255,.06);border:1px solid var(--border);
-    color:var(--text-dim);font-size:12px;font-weight:500;
-    letter-spacing:.18em;text-transform:uppercase;
-    backdrop-filter:blur(16px);
-    width:fit-content;
-  }
-  .meta .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:pulse 2s ease-in-out infinite;}
-  @keyframes pulse{50%{box-shadow:0 0 24px var(--accent);}}
-
-  /* TYPOGRAPHY */
-  h1.display{
-    font-size:128px;
-    font-weight:600;line-height:.95;letter-spacing:-.045em;
-  }
-  h1.display .serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.01em;}
-  h1.display .grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-
-  h2.title{
-    font-size:72px;
-    font-weight:600;line-height:1.02;letter-spacing:-.035em;margin-bottom:12px;
-  }
-  h2.title .serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;}
-  h2.title .grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-
-  .lede{
-    font-size:20px;color:var(--text-dim);line-height:1.5;
-    max-width:680px;font-weight:400;
-  }
-
-  /* Nav footer */
-  .nav{
-    position:absolute;left:80px;right:80px;bottom:36px;z-index:5;
-    display:flex;justify-content:space-between;align-items:center;
-    color:var(--text-faint);font-size:11px;
-    letter-spacing:.18em;text-transform:uppercase;font-weight:500;
-  }
-  .nav .name{color:var(--text-dim);}
-  .nav .count{font-feature-settings:"tnum";letter-spacing:.1em;}
-
-  /* ==================== SLIDE 1: COVER ==================== */
-  .cover .hero-img{
-    background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2400&q=85&auto=format&fit=crop');
-  }
-  .cover .hero-overlay{
-    background:
-      linear-gradient(135deg,rgba(124,92,255,.35) 0%,transparent 50%),
-      linear-gradient(180deg,rgba(8,8,10,.55) 0%,rgba(8,8,10,.85) 70%,rgba(8,8,10,1) 100%);
-  }
-  .cover .hero-content{justify-content:center;padding:0 100px;}
-  .cover .badge{
-    position:absolute;top:60px;right:80px;z-index:3;
-    padding:10px 18px;border-radius:999px;
-    background:rgba(255,255,255,.08);backdrop-filter:blur(16px);
-    border:1px solid var(--border-strong);
-    font-size:11px;color:var(--text);letter-spacing:.18em;text-transform:uppercase;font-weight:500;
-  }
-  .cover .meta{margin-bottom:48px;}
-  .cover h1{margin-bottom:48px;max-width:1100px;}
-  .cover .by{
-    display:flex;align-items:center;gap:18px;
-    margin-top:24px;color:var(--text-dim);font-size:18px;
-  }
-  .cover .by .line{width:56px;height:1px;background:var(--text-faint);}
-  .cover .by b{color:var(--text);font-weight:600;}
-
-  /* ==================== SLIDE 2: ABOUT ME ==================== */
-  .about-layout{
-    display:grid;grid-template-columns:1fr 1.05fr;height:100%;
-  }
-  .about-photo{
-    position:relative;overflow:hidden;
-    background-image:url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1600&q=85&auto=format&fit=crop');
-    background-size:cover;background-position:center;
-  }
-  .about-photo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,transparent 60%,var(--bg) 100%),
-               linear-gradient(180deg,rgba(8,8,10,.2),rgba(8,8,10,.5));
-  }
-  .about-photo .photo-label{
-    position:absolute;bottom:32px;left:32px;z-index:2;
-    padding:8px 14px;border-radius:8px;background:rgba(0,0,0,.5);backdrop-filter:blur(12px);
-    color:var(--text-dim);font-size:11px;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--border);
-  }
-  .about-right{padding:80px;display:flex;flex-direction:column;justify-content:center;}
-  .about-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px;
-  }
-  .stat{
-    padding:24px 24px;
-    background:var(--surface);
-    border:1px solid var(--border);border-radius:16px;
-    position:relative;overflow:hidden;
-    transition:border-color .3s,background .3s;
-  }
-  .stat:hover{border-color:var(--border-strong);background:var(--surface-2);}
-  .stat .k{
-    font-size:10px;color:var(--text-faint);
-    letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:12px;
-  }
-  .stat .v{font-size:17px;font-weight:500;line-height:1.45;color:var(--text);}
-  .stat .v em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent-2);font-size:1.1em;}
-  .stat .v b{font-weight:600;color:var(--text);}
-
-  /* ==================== SLIDE 3: BENEFITS ==================== */
-  .b3{padding:80px;display:flex;flex-direction:column;flex:1;}
-  .bcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;flex:1;margin-top:48px;}
-  .bcard{
-    position:relative;overflow:hidden;border-radius:24px;
-    border:1px solid var(--border);
-    display:flex;flex-direction:column;
-    transition:transform .35s ease,border-color .35s;
-    min-height:420px;
-  }
-  .bcard:hover{transform:translateY(-6px);border-color:var(--border-strong);}
-  .bcard .img{
-    position:absolute;inset:0;background-size:cover;background-position:center;
-    transition:transform .6s ease;
-  }
-  .bcard:hover .img{transform:scale(1.08);}
-  .bcard .ov{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(8,8,10,.3) 0%,rgba(8,8,10,.85) 60%,rgba(8,8,10,.97) 100%);
-  }
-  .bcard:nth-child(1) .img{background-image:url('https://images.unsplash.com/photo-1501139083538-0139583c060f?w=1200&q=85&auto=format&fit=crop');}
-  .bcard:nth-child(2) .img{background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=85&auto=format&fit=crop');}
-  .bcard:nth-child(3) .img{background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=85&auto=format&fit=crop');}
-  .bcard .content{
-    position:relative;z-index:2;padding:32px;
-    display:flex;flex-direction:column;justify-content:flex-end;flex:1;
-  }
-  .bcard .num{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:64px;line-height:1;color:rgba(255,255,255,.85);font-weight:400;
-    margin-bottom:16px;
-  }
-  .bcard:nth-child(1) .num{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .bcard:nth-child(2) .num{color:var(--accent-2);}
-  .bcard:nth-child(3) .num{color:var(--accent-warm);}
-  .bcard h3{font-size:30px;font-weight:600;letter-spacing:-.02em;margin-bottom:10px;}
-  .bcard p{font-size:16px;color:var(--text-dim);line-height:1.55;}
-
-  .ask-row{
-    margin-top:32px;
-    display:flex;align-items:center;gap:16px;
-    color:var(--text-dim);font-size:15px;
-  }
-  .ask-row .pill{
-    padding:8px 18px;border-radius:999px;background:var(--surface);
-    border:1px solid var(--border);color:var(--text);font-weight:500;
-  }
-
-  /* ==================== SLIDE 4: PROJECT ==================== */
-  .s4{padding:0;flex:1;display:flex;}
-  .s4 .left-col{
-    flex:1.2;padding:80px;display:flex;flex-direction:column;justify-content:center;
-    background:var(--bg);position:relative;z-index:2;
-  }
-  .s4 .right-col{
-    flex:1;position:relative;overflow:hidden;
-  }
-  .s4 .right-col .img{
-    position:absolute;inset:0;
-    background:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=85&auto=format&fit=crop') center/cover;
-    animation:kenburns 20s ease-in-out infinite alternate;
-  }
-  .s4 .right-col .ov{
-    position:absolute;inset:0;
-    background:linear-gradient(90deg,var(--bg) 0%,transparent 30%,transparent 70%,rgba(8,8,10,.6) 100%),
-               linear-gradient(180deg,rgba(8,8,10,.4),rgba(8,8,10,.8));
-  }
-  .s4 .clients-overlay{
-    position:absolute;bottom:60px;right:60px;z-index:3;
-    padding:32px;border-radius:20px;
-    background:rgba(8,8,10,.75);backdrop-filter:blur(20px);
-    border:1px solid var(--border-strong);
-    min-width:300px;
-  }
-  .s4 .clients-overlay .hdr{
-    color:var(--accent-2);font-size:11px;
-    letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:20px;
-  }
-  .s4 .clients-overlay .list{display:flex;flex-direction:column;gap:14px;}
-  .s4 .clients-overlay .list span{
-    font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--text);
-    padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .s4 .clients-overlay .list span:last-child{border:none;padding-bottom:0;}
-  .s4 .clients-overlay .ft{
-    margin-top:18px;font-size:13px;color:var(--text-dim);line-height:1.5;
-  }
-  .s4 .clients-overlay .ft b{color:var(--text);font-weight:600;}
-
-  .metrics{display:flex;flex-direction:column;gap:8px;margin-top:48px;}
-  .metric{
-    display:grid;grid-template-columns:160px 120px 1fr;align-items:baseline;gap:24px;
-    padding:22px 0;border-bottom:1px solid var(--border);
-  }
-  .metric:last-child{border:none;}
-  .metric .big{
-    font-family:'Instrument Serif',serif;font-size:72px;line-height:1;
-    font-weight:400;letter-spacing:-.03em;
-  }
-  .metric .big.grad{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .metric .big.warm{color:var(--accent-warm);}
-  .metric .lbl{font-size:13px;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;font-weight:600;}
-  .metric .desc{font-size:14px;color:var(--text-dim);line-height:1.5;}
-  .metric .desc b{color:var(--text);font-weight:600;}
-
-  /* ==================== SLIDE 5: CHARACTERISTICS ==================== */
-  .s5{padding:80px;flex:1;display:flex;flex-direction:column;}
-  .char-list{display:flex;flex-direction:column;flex:1;margin-top:32px;justify-content:center;gap:8px;}
-  .char{
-    display:grid;grid-template-columns:140px 1fr 80px;align-items:center;gap:48px;
-    padding:36px 0;border-top:1px solid var(--border);
-    transition:padding-left .35s ease,background .35s ease;
-    position:relative;
-  }
-  .char:hover{padding-left:24px;}
-  .char:last-child{border-bottom:1px solid var(--border);}
-  .char .n{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:96px;line-height:.9;font-weight:400;
-  }
-  .char:nth-child(1) .n{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .char:nth-child(2) .n{background:var(--gradient-2);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .char:nth-child(3) .n{color:var(--accent-warm);}
-  .char .info h3{font-size:42px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px;}
-  .char .info p{font-size:18px;color:var(--text-dim);line-height:1.5;max-width:680px;}
-  .char .arrow{font-size:32px;color:var(--text-faint);transition:color .3s,transform .3s;}
-  .char:hover .arrow{color:var(--text);transform:translateX(8px);}
-
-  /* ==================== SLIDE 6: IDENTITY ==================== */
-  .s6-layout{
-    display:grid;grid-template-columns:1fr 1.1fr;height:100%;
-  }
-  .s6-photo{
-    position:relative;overflow:hidden;
-    background:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=85&auto=format&fit=crop') center/cover;
-  }
-  .s6-photo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,rgba(8,8,10,.3) 0%,rgba(8,8,10,.6) 80%,var(--bg) 100%);
-  }
-  .s6-right{padding:80px;display:flex;flex-direction:column;justify-content:center;}
-  .id-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
-  .id-card{
-    padding:28px;border-radius:18px;
-    background:var(--surface);border:1px solid var(--border);
-    display:flex;flex-direction:column;gap:12px;
-    transition:border-color .3s,background .3s,transform .3s;
-  }
-  .id-card:hover{border-color:var(--border-strong);background:var(--surface-2);transform:translateY(-3px);}
-  .id-card .ico{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:40px;color:var(--accent-2);line-height:1;font-weight:400;
-  }
-  .id-card h3{font-size:20px;font-weight:600;letter-spacing:-.015em;}
-  .id-card p{font-size:14px;color:var(--text-dim);line-height:1.5;}
-
-  /* ==================== SLIDE 7: CONCLUSION ==================== */
-  .concl .hero-img{
-    background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2400&q=85&auto=format&fit=crop');
-  }
-  .concl .hero-overlay{
-    background:
-      radial-gradient(ellipse at 50% 40%,rgba(124,92,255,.4),transparent 60%),
-      radial-gradient(ellipse at 50% 100%,rgba(34,211,238,.3),transparent 70%),
-      linear-gradient(180deg,rgba(8,8,10,.85),rgba(8,8,10,.95));
-  }
-  .concl .hero-content{justify-content:center;align-items:center;text-align:center;padding:80px 100px;}
-  .concl .q{
-    font-size:72px;font-weight:500;
-    line-height:1.05;letter-spacing:-.03em;margin:32px 0 48px;
-  }
-  .concl .q em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
-  .concl .answer-card{
-    max-width:920px;padding:48px 56px;border-radius:24px;
-    background:rgba(255,255,255,.06);backdrop-filter:blur(24px);
-    border:1px solid var(--border-strong);
-    margin-bottom:56px;
-    position:relative;overflow:hidden;
-    box-shadow:0 32px 80px rgba(0,0,0,.5);
-  }
-  .concl .answer-card::before{
-    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:60%;height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-  }
-  .concl .answer-card .tag{
-    color:var(--accent-2);font-size:11px;letter-spacing:.28em;
-    text-transform:uppercase;font-weight:600;margin-bottom:24px;
-  }
-  .concl .answer-card p{
-    font-size:28px;font-weight:500;line-height:1.45;letter-spacing:-.02em;
-  }
-  .concl .quote{
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:36px;line-height:1.35;color:var(--text);font-weight:400;
-    max-width:780px;
-  }
-  .concl .quote-author{
-    margin-top:18px;font-family:'Inter',sans-serif;font-style:normal;
-    font-size:12px;color:var(--text-faint);letter-spacing:.22em;text-transform:uppercase;
-  }
-
-  /* ==================== SLIDE 8: THANK YOU ==================== */
-  .ty .hero-img{
-    background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=2400&q=85&auto=format&fit=crop');
-  }
-  .ty .hero-overlay{
-    background:
-      radial-gradient(ellipse at 80% 20%,rgba(245,166,35,.25),transparent 50%),
-      radial-gradient(ellipse at 20% 80%,rgba(124,92,255,.25),transparent 50%),
-      linear-gradient(180deg,rgba(8,8,10,.75),rgba(8,8,10,.92));
-  }
-  .ty .hero-content{padding:80px;}
-  .ty-top{flex:1;display:flex;flex-direction:column;justify-content:center;}
-  .ty-big{
-    font-size:220px;font-weight:600;
-    line-height:.9;letter-spacing:-.06em;margin:32px 0;
-  }
-  .ty-big .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
-  .ty-big .grad{background:var(--gradient-2);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .ty-q{font-size:36px;font-weight:500;color:var(--text);letter-spacing:-.025em;margin-bottom:10px;}
-  .ty-sub{font-size:18px;color:var(--text-dim);max-width:600px;line-height:1.5;}
-
-  .sources{
-    margin-top:auto;padding-top:32px;border-top:1px solid var(--border);
-    display:flex;gap:48px;flex-wrap:wrap;
-  }
-  .sources .col{flex:1;min-width:240px;}
-  .sources h4{
-    color:var(--text-faint);font-size:11px;letter-spacing:.22em;
-    text-transform:uppercase;font-weight:600;margin-bottom:14px;
-  }
-  .sources p{font-size:14px;color:var(--text-dim);line-height:1.6;}
-  .sources p em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--text);}
-
-  /* ==================== Controls ==================== */
-  .controls{
-    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-    background:rgba(255,255,255,.05);backdrop-filter:blur(24px);
-    border:1px solid var(--border-strong);
-    border-radius:999px;padding:8px 12px;
-    display:flex;gap:6px;align-items:center;z-index:200;
-    box-shadow:0 12px 40px rgba(0,0,0,.6);
-  }
-  .controls button{
-    width:34px;height:34px;border-radius:50%;
-    background:transparent;border:none;color:var(--text);
-    cursor:pointer;font-size:15px;
-    display:flex;align-items:center;justify-content:center;
-    transition:background .2s;
-  }
-  .controls button:hover{background:rgba(255,255,255,.1);}
-  .controls .count{
-    color:var(--text-dim);font-size:12px;font-weight:500;
-    padding:0 14px;font-feature-settings:"tnum";letter-spacing:.08em;
-  }
-  .controls .count b{color:var(--text);font-weight:600;}
-  .controls .hint{
-    color:var(--text-faint);font-size:10px;padding:0 10px;
-    border-left:1px solid var(--border);margin-left:4px;letter-spacing:.12em;text-transform:uppercase;
-  }
-
-  .progress{
-    position:fixed;top:0;left:0;right:0;height:2px;
-    background:rgba(255,255,255,.05);z-index:201;
-  }
-  .progress .bar{
-    height:100%;background:var(--gradient-1);
-    transition:width .6s cubic-bezier(.2,.8,.2,1);
-    box-shadow:0 0 12px var(--accent);
-  }
-
-  @media print{
-    .controls,.progress,.grain{display:none;}
-    .slide{display:flex!important;opacity:1!important;page-break-after:always;position:relative;height:100%;}
-  }
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
+}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
+}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<div class="grain"></div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-
-<div class="deck">
-<div class="stage" id="stage">
-
-<!-- SLIDE 1: COVER -->
-<section class="slide cover active">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="badge">Lesson 3 of 4</div>
-  <div class="hero-content">
-    <div class="meta reveal"><span class="dot"></span>Wise Up · Basic 3 · Book 3</div>
-    <h1 class="display reveal">How can we<br>make <span class="serif grad">teamwork</span><br>happen?</h1>
-    <div class="by reveal">
-      <span class="line"></span>
-      <span>Presented by <b>Klaus</b></span>
-    </div>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">01 / 08</span></div>
-</section>
-
-<!-- SLIDE 2: ABOUT ME -->
-<section class="slide">
-  <div class="about-layout">
-    <div class="about-photo">
-      <div class="photo-label">Florianópolis · Rio de Janeiro</div>
-    </div>
-    <div class="about-right">
-      <div class="reveal"><div class="meta"><span class="dot"></span>Chapter 01 · About Me</div></div>
-      <h2 class="title reveal" style="margin-top:32px;">A little <span class="serif">about</span><br>me.</h2>
-      <p class="lede reveal">Where I come from, what I studied, and what I do today.</p>
-
-      <div class="about-grid">
-        <div class="stat reveal">
-          <div class="k">Origin</div>
-          <div class="v">Born in <b>Florianópolis</b>. I spent half of my childhood there and the other half in <em>Rio de Janeiro</em>.</div>
-        </div>
-        <div class="stat reveal">
-          <div class="k">Teenage years</div>
-          <div class="v">I <em>used to</em> play football and play in the streets with friends.</div>
-        </div>
-        <div class="stat reveal">
-          <div class="k">First job</div>
-          <div class="v">Grocery <b>bagger</b> at a supermarket.</div>
-        </div>
-        <div class="stat reveal">
-          <div class="k">Education &amp; today</div>
-          <div class="v">Business Administration · <em>MBA</em> in Management. Entrepreneur for <b>more or less 12 years</b> — tech, data &amp; BI.</div>
-        </div>
-      </div>
-    </div>
+  <h1>How Can We Make Teamwork Happen? — Klaus</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">02 / 08</span></div>
-</section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
-<!-- SLIDE 3: BENEFITS -->
-<section class="slide b3">
-  <div class="reveal"><div class="meta"><span class="dot"></span>Chapter 02 · Benefits</div></div>
-  <h2 class="title reveal" style="margin-top:24px;">Why we go <span class="serif">further</span> together.</h2>
-  <p class="lede reveal">Three benefits that show up every time a team works well.</p>
-
-  <div class="bcards">
-    <div class="bcard reveal">
-      <div class="img"></div><div class="ov"></div>
-      <div class="content">
-        <div class="num">01</div>
-        <h3>Time</h3>
-        <p>We divide the tasks. A project that takes one week alone takes only <b>a few</b> days with a team.</p>
-      </div>
-    </div>
-    <div class="bcard reveal">
-      <div class="img"></div><div class="ov"></div>
-      <div class="content">
-        <div class="num">02</div>
-        <h3>Relationships</h3>
-        <p>We build trust, make new friends, and grow our professional network.</p>
-      </div>
-    </div>
-    <div class="bcard reveal">
-      <div class="img"></div><div class="ov"></div>
-      <div class="content">
-        <div class="num">03</div>
-        <h3>Results</h3>
-        <p>More minds, more ideas. Mistakes are detected faster and outcomes improve.</p>
-      </div>
-    </div>
-  </div>
-  <div class="ask-row reveal">
-    <span class="pill">In my opinion</span>
-    <span>Teamwork is essential — <em>what do you think?</em></span>
-  </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">03 / 08</span></div>
-</section>
-
-<!-- SLIDE 4: PROJECT -->
-<section class="slide s4">
-  <div class="left-col">
-    <div class="reveal"><div class="meta"><span class="dot"></span>Chapter 03 · A Real Project</div></div>
-    <h2 class="title reveal" style="margin-top:24px;">The last project<br>I <span class="serif">delivered.</span></h2>
-    <p class="lede reveal">A consulting squad, real numbers, real clients.</p>
-
-    <div class="metrics">
-      <div class="metric reveal">
-        <span class="big grad">8</span>
-        <div>
-          <div class="lbl">People</div>
-          <div class="desc" style="margin-top:6px;">Analysts, developers and PMs in <b>one squad</b>.</div>
-        </div>
-        <span></span>
-      </div>
-      <div class="metric reveal">
-        <span class="big">~60</span>
-        <div>
-          <div class="lbl">Days</div>
-          <div class="desc" style="margin-top:6px;"><b>Full scope</b> divided — each person owned one part.</div>
-        </div>
-        <span></span>
-      </div>
-      <div class="metric reveal">
-        <span class="big warm">100%</span>
-        <div>
-          <div class="lbl">Delivered</div>
-          <div class="desc" style="margin-top:6px;">Result: a very <b>satisfied client</b>.</div>
-        </div>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <div class="right-col">
-    <div class="img"></div>
-    <div class="ov"></div>
-    <div class="clients-overlay">
-      <div class="hdr">Clients we serve</div>
-      <div class="list">
-        <span>Oakberry</span>
-        <span>Petrobras</span>
-        <span>ArcelorMittal</span>
-        <span>Coco Bambu</span>
-      </div>
-      <div class="ft"><b>Hundreds</b> of satisfied clients · projects between <b>30 and 90 days</b>.</div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">04 / 08</span></div>
-</section>
-
-<!-- SLIDE 5: CHARACTERISTICS -->
-<section class="slide s5">
-  <div class="reveal"><div class="meta"><span class="dot"></span>Chapter 04 · The Building Blocks</div></div>
-  <h2 class="title reveal" style="margin-top:24px;">Three traits of a <span class="serif">great</span> team.</h2>
-
-  <div class="char-list">
-    <div class="char reveal">
-      <div class="n">i</div>
-      <div class="info">
-        <h3>Trust</h3>
-        <p>When we trust each other, we work better together.</p>
-      </div>
-      <div class="arrow">→</div>
-    </div>
-    <div class="char reveal">
-      <div class="n">ii</div>
-      <div class="info">
-        <h3>Communication</h3>
-        <p>Clear communication avoids mistakes and saves time.</p>
-      </div>
-      <div class="arrow">→</div>
-    </div>
-    <div class="char reveal">
-      <div class="n">iii</div>
-      <div class="info">
-        <h3>Commitment</h3>
-        <p>A team committed to the same goal delivers better results.</p>
-      </div>
-      <div class="arrow">→</div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">05 / 08</span></div>
-</section>
-
-<!-- SLIDE 6: IDENTITY -->
-<section class="slide">
-  <div class="s6-layout">
-    <div class="s6-photo"></div>
-    <div class="s6-right">
-      <div class="reveal"><div class="meta"><span class="dot"></span>Chapter 05 · Team Identity</div></div>
-      <h2 class="title reveal" style="margin-top:24px;">Small things,<br><span class="serif">big</span> belonging.</h2>
-      <p class="lede reveal">How a group becomes a team that feels like its own thing.</p>
-
-      <div class="id-grid">
-        <div class="id-card reveal">
-          <div class="ico">α</div>
-          <h3>Shared purpose</h3>
-          <p>Everyone aligned around the same goal — the reason the team exists.</p>
-        </div>
-        <div class="id-card reveal">
-          <div class="ico">β</div>
-          <h3>Celebrate wins</h3>
-          <p>Small victories matter. Recognize progress, not only outcomes.</p>
-        </div>
-        <div class="id-card reveal">
-          <div class="ico">γ</div>
-          <h3>Rituals</h3>
-          <p>Weekly meetings, a team name, shared culture — the glue of identity.</p>
-        </div>
-        <div class="id-card reveal">
-          <div class="ico">δ</div>
-          <h3>Recognition</h3>
-          <p>Each contribution visible. People stay engaged when they feel seen.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">06 / 08</span></div>
-</section>
-
-<!-- SLIDE 7: CONCLUSION -->
-<section class="slide concl">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="reveal"><div class="meta"><span class="dot"></span>The Answer</div></div>
-    <div class="q reveal">So, <em>how can we make</em><br>teamwork happen?</div>
-
-    <div class="answer-card reveal">
-      <div class="tag">My Answer</div>
-      <p>Teamwork happens when we choose the right people, build trust, communicate clearly, and work for a common goal.</p>
-    </div>
-
-    <div class="quote reveal">
-      "Alone we go faster,<br>but together we go further."
-      <div class="quote-author">African proverb</div>
-    </div>
-  </div>
-  <div class="nav" style="color:rgba(255,255,255,.5);"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">07 / 08</span></div>
-</section>
-
-<!-- SLIDE 8: THANK YOU -->
-<section class="slide ty">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="ty-top">
-      <div class="reveal"><div class="meta"><span class="dot"></span>Q &amp; A</div></div>
-      <h1 class="ty-big reveal">Thank <span class="serif grad">you.</span></h1>
-      <div class="ty-q reveal">What do you think?</div>
-      <p class="ty-sub reveal">Do you agree these are the keys to great teamwork?</p>
-    </div>
-
-    <div class="sources reveal">
-      <div class="col">
-        <h4>Book</h4>
-        <p>Patrick Lencioni — <em>The Five Dysfunctions of a Team</em></p>
-      </div>
-      <div class="col">
-        <h4>Talk</h4>
-        <p>Simon Sinek — <em>How Great Leaders Inspire Action</em> (TED)</p>
-      </div>
-      <div class="col">
-        <h4>Article</h4>
-        <p>Harvard Business Review — <em>What Makes a Team Successful</em></p>
-      </div>
-    </div>
-  </div>
-  <div class="nav"><span class="name">Klaus · Teamwork &amp; Leadership in Practice</span><span class="count">08 / 08</span></div>
-</section>
-
-</div>
-</div>
-
-<div class="controls">
-  <button id="prev" title="Previous (←)">‹</button>
-  <span class="count"><b id="cur">01</b> &nbsp;/&nbsp; <span id="total">08</span></span>
-  <button id="next" title="Next (→)">›</button>
-  <span class="hint">F · Fullscreen</span>
-</div>
-
+<script type="application/json" id="cofre">{"v":2,"grupo":"wiseup","nonce":"HWk/kZ+ENXKrLTXj","dados":"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"}</script>
 <script>
-  // Auto-scale stage to fit any monitor while preserving 16:9 design
-  const stage = document.getElementById('stage');
-  function fit(){
-    const sx = window.innerWidth / 1920;
-    const sy = window.innerHeight / 1080;
-    const s = Math.min(sx, sy);
-    stage.style.transform = `scale(${s})`;
-  }
-  fit();
-  window.addEventListener('resize', fit);
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-  document.getElementById('total').textContent = String(total).padStart(2,'0');
-  let idx = 0;
-  function go(n){
-    idx = Math.max(0, Math.min(total-1, n));
-    slides.forEach((s,i)=>s.classList.toggle('active', i===idx));
-    document.getElementById('cur').textContent = String(idx+1).padStart(2,'0');
-    document.getElementById('bar').style.width = ((idx+1)/total*100)+'%';
-  }
-  document.getElementById('prev').onclick = ()=>go(idx-1);
-  document.getElementById('next').onclick = ()=>go(idx+1);
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') go(idx+1);
-    else if(e.key==='ArrowLeft'||e.key==='PageUp') go(idx-1);
-    else if(e.key==='Home') go(0);
-    else if(e.key==='End') go(total-1);
-    else if(e.key.toLowerCase()==='f'){
-      if(document.fullscreenElement) document.exitFullscreen();
-      else document.documentElement.requestFullscreen();
-    }
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
   });
-  go(0);
+}
+
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
+
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
+    }
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
+
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
+})();
 </script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
 </body>

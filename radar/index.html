@@ -2,233 +2,201 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deck Radar</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-  :root{
-    --bg:#0c0b0d; --panel:#141317; --panel-2:#1b1a1f; --line:rgba(255,255,255,0.08);
-    --text:#f2f1f4; --muted:#9c98a0; --mag:#ff3d9e; --cyan:#3bd6f0; --good:#35d9a6; --warn:#e0a06b;
-    --sans:'Inter',system-ui,-apple-system,sans-serif;
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1100px;margin:0 auto;padding:26px 20px 60px;}
-  header{display:flex;align-items:center;gap:14px;margin-bottom:6px;flex-wrap:wrap;}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;font-size:1.15rem;}
-  .dot{width:10px;height:10px;border-radius:50%;background:var(--mag);box-shadow:0 0 0 4px rgba(255,61,158,.18);}
-  .sp{flex:1;}
-  .btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:9px 15px;font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:background .15s;}
-  .btn:hover{background:var(--panel-2);}
-  .btn.primary{background:var(--mag);border-color:var(--mag);color:#2b0619;}
-  .sub{color:var(--muted);font-size:.9rem;margin-bottom:22px;}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 16px;}
-  .stat .k{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
-  .stat .v{font-size:1.5rem;font-weight:800;margin-top:5px;letter-spacing:-.02em;}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
-  .tbl{width:100%;border-collapse:collapse;font-size:.86rem;}
-  .tbl th{text-align:left;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;}
-  .tbl td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;}
-  .tbl tr:last-child td{border-bottom:none;}
-  .tbl tr.bot{opacity:.5;}
-  .pg{font-weight:700;color:var(--cyan);}
-  .who{color:var(--mag);font-weight:700;}
-  .muted{color:var(--muted);}
-  .pill{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--muted);}
-  .pill.hum{background:rgba(53,217,166,.14);color:var(--good);}
-  .pill.bot{background:rgba(224,160,107,.14);color:var(--warn);}
-  a{color:var(--cyan);}
-  .gate{max-width:440px;margin:60px auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;}
-  .gate h2{font-size:1.1rem;margin-bottom:8px;}
-  .gate p{color:var(--muted);font-size:.9rem;margin-bottom:16px;line-height:1.5;}
-  .gate input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font:inherit;margin-bottom:12px;}
-  .msg{color:var(--warn);font-size:.85rem;margin-top:10px;min-height:1.2em;}
-  .wrapover{overflow-x:auto;}
-  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
-  .filters input,.filters select{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px;font:inherit;font-size:.86rem;}
-  .filters input{flex:1;min-width:190px;}
-  .filters select{cursor:pointer;}
-  @media(max-width:720px){ .stats{grid-template-columns:1fr 1fr;} .filters input{min-width:120px;} }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
+}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
+}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="logo"><span class="dot"></span>Deck Radar</div>
-    <span class="sp"></span>
-    <button class="btn" id="reload">Atualizar</button>
-    <button class="btn" id="forget">Trocar token</button>
-  </header>
-  <div class="sub">Quem abriu as propostas do deck, com local, aparelho e origem.</div>
-
-  <div id="gate" class="gate" hidden>
-    <h2>Entrar no radar</h2>
-    <p>Cole o token de leitura uma vez. Ele fica guardado só neste navegador.</p>
-    <input id="tok" type="password" placeholder="token" autocomplete="off">
-    <button class="btn primary" id="enter" style="width:100%">Ver aberturas</button>
-    <div class="msg" id="gmsg"></div>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-
-  <div id="dash" hidden>
-    <div class="filters">
-      <input id="f-q" type="search" placeholder="Buscar cidade, operadora, quem, página...">
-      <select id="f-page"><option value="">Todas as páginas</option></select>
-      <select id="f-type">
-        <option value="">Pessoas e robôs</option>
-        <option value="human">Só pessoas</option>
-        <option value="bot">Só robôs</option>
-      </select>
-      <select id="f-period">
-        <option value="">Todo o período</option>
-        <option value="today">Hoje</option>
-        <option value="7d">Últimos 7 dias</option>
-      </select>
-      <button class="btn" id="f-clear">Limpar</button>
-    </div>
-    <div class="stats" id="stats"></div>
-    <div class="card wrapover">
-      <table class="tbl">
-        <thead><tr>
-          <th>Quando</th><th>Página</th><th>Quem</th><th>Local</th><th>CEP</th><th>Operadora</th><th>Aparelho</th><th>Origem</th><th></th>
-        </tr></thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-    <div class="sub" style="margin-top:14px" id="foot"></div>
+  <h1>Deck Radar</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-</div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
+<script type="application/json" id="cofre">{"v":2,"grupo":"interno","nonce":"1X2MriXijYQyBEKB","dados":"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"}</script>
 <script>
 (function(){
-  var EP = "https://deck-track.k2ia.workers.dev/list";
-  var KEY = "deckradar_token";
-  var $ = function(s){ return document.querySelector(s); };
-  var ALL = [];
-  function getTok(){ try{ return localStorage.getItem(KEY) || ""; }catch(e){ return ""; } }
-  function setTok(t){ try{ localStorage.setItem(KEY, t); }catch(e){} }
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
 
-  function fmtWhen(ts){
-    try{
-      var d = new Date(ts);
-      return d.toLocaleString("pt-BR", { timeZone:"America/Sao_Paulo", day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" });
-    }catch(e){ return ts; }
-  }
-  function isBot(h){
-    var ua = (h.ua||"").toLowerCase();
-    var ref = (h.ref||"").toLowerCase();
-    return ua.indexOf("headless")>=0 || ua.indexOf("bot")>=0 || ref.indexOf("localhost")>=0 || (h.ua==="" && h.screen==="");
-  }
-  function origem(h){
-    if(!h.ref) return "direto";
-    if(h.ref.indexOf("deck.k2ia.app")>=0) return "home do deck";
-    if(h.ref.indexOf("localhost")>=0) return "localhost";
-    try{ return new URL(h.ref).hostname; }catch(e){ return h.ref; }
-  }
-
-  // Tudo que entra nesta tabela veio de fora: caminho da página, parâmetro do
-  // link, Referer, User-Agent e os cabeçalhos de geolocalização. Sem escapar,
-  // quem chama o beacon escreve HTML dentro do painel.
-  function esc(v){
-    return String(v == null ? "" : v).replace(/[&<>"']/g, function(c){
-      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-    });
-  }
-  function num(v){ var n = Number(v); return isFinite(n) ? n : 0; }
-
-  function render(hits){
-    var humans = hits.filter(function(h){ return !isBot(h); });
-    var pages = {};
-    humans.forEach(function(h){ pages[h.page]=(pages[h.page]||0)+1; });
-    var last = hits.length ? fmtWhen(hits[0].ts) : "sem registro";
-    $("#stats").innerHTML =
-      stat("Aberturas humanas", humans.length) +
-      stat("Total de toques", hits.length) +
-      stat("Páginas abertas", Object.keys(pages).length) +
-      stat("Última", last);
-
-    $("#rows").innerHTML = hits.map(function(h){
-      var bot = isBot(h);
-      var loc = [h.city, h.regionCode || h.region].filter(Boolean).join(", ") || (h.loc||"?");
-      var coord = num(h.lat) + "," + num(h.lon);
-      var maps = (num(h.lat) && num(h.lon))
-        ? '<a href="https://www.google.com/maps?q='+encodeURIComponent(coord)+'" target="_blank" rel="noopener">mapa</a>' : "";
-      return '<tr class="'+(bot?'bot':'')+'">'+
-        '<td class="muted" style="white-space:nowrap">'+esc(fmtWhen(h.ts))+'</td>'+
-        '<td class="pg">'+esc(h.page||"?")+'</td>'+
-        '<td>'+(h.dest?'<span class="who">'+esc(h.dest)+'</span>':'<span class="muted">—</span>')+'</td>'+
-        '<td>'+esc(loc)+(maps?' · '+maps:'')+'</td>'+
-        '<td class="muted">'+esc(h.postal||"—")+'</td>'+
-        '<td class="muted">'+esc(h.isp||"—")+'</td>'+
-        '<td>'+esc(h.device||"?")+'</td>'+
-        '<td class="muted">'+esc(origem(h))+'</td>'+
-        '<td><span class="pill '+(bot?'bot':'hum')+'">'+(bot?'robô?':'pessoa')+'</span></td>'+
-      '</tr>';
-    }).join("") || '<tr><td colspan="9" class="muted" style="text-align:center;padding:26px">Nenhuma abertura ainda.</td></tr>';
-
-    $("#foot").textContent = "Cidade e operadora vêm do IP, aproximados. No celular a cidade pode cair no hub da operadora. Bairro o IP não entrega. Para saber a pessoa exata, mande o link com ?u=nome no fim.";
-  }
-  function stat(k,v){ return '<div class="stat"><div class="k">'+esc(k)+'</div><div class="v">'+esc(v)+'</div></div>'; }
-
-  function populatePages(){
-    var sel = $("#f-page"); var cur = sel.value;
-    var set = {}; ALL.forEach(function(h){ if(h.page) set[h.page]=1; });
-    var opts = Object.keys(set).sort();
-    sel.innerHTML = '<option value="">Todas as páginas</option>' + opts.map(function(p){ return '<option value="'+esc(p)+'">'+esc(p)+'</option>'; }).join("");
-    sel.value = cur;
-  }
-  function applyFilters(){
-    var q = ($("#f-q").value||"").toLowerCase().trim();
-    var pg = $("#f-page").value, ty = $("#f-type").value, pe = $("#f-period").value;
-    var now = Date.now();
-    var mid = new Date(); mid.setHours(0,0,0,0); var startToday = mid.getTime();
-    var out = ALL.filter(function(h){
-      if(pg && h.page!==pg) return false;
-      if(ty==="human" && isBot(h)) return false;
-      if(ty==="bot" && !isBot(h)) return false;
-      if(pe){
-        var t = Date.parse(h.ts);
-        if(pe==="today" && !(t>=startToday)) return false;
-        if(pe==="7d" && !(t>= now - 7*86400000)) return false;
-      }
-      if(q){
-        var hay = [h.page,h.dest,h.city,h.region,h.isp,h.postal,h.ref,h.device,h.loc].join(" ").toLowerCase();
-        if(hay.indexOf(q)<0) return false;
-      }
-      return true;
-    });
-    render(out);
-  }
-
-  function load(){
-    var t = getTok();
-    if(!t){ show("gate"); return; }
-    fetch(EP + "?token=" + encodeURIComponent(t))
-      .then(function(r){ if(r.status===401){ throw new Error("token inválido"); } return r.json(); })
-      .then(function(data){ ALL = data || []; show("dash"); populatePages(); applyFilters(); })
-      .catch(function(e){ $("#gmsg").textContent = "Não deu para entrar: " + e.message; show("gate"); });
-  }
-  function show(which){
-    $("#gate").hidden = which!=="gate";
-    $("#dash").hidden = which!=="dash";
-  }
-
-  $("#enter").addEventListener("click", function(){
-    var t = $("#tok").value.trim();
-    if(!t){ return; }
-    setTok(t); $("#gmsg").textContent=""; load();
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
   });
-  $("#tok").addEventListener("keydown", function(e){ if(e.key==="Enter"){ $("#enter").click(); } });
-  $("#reload").addEventListener("click", load);
-  $("#forget").addEventListener("click", function(){ try{ localStorage.removeItem(KEY); }catch(e){} $("#tok").value=""; show("gate"); });
-  ["f-q","f-page","f-type","f-period"].forEach(function(id){
-    var el = document.getElementById(id);
-    el.addEventListener("input", applyFilters); el.addEventListener("change", applyFilters);
-  });
-  $("#f-clear").addEventListener("click", function(){ $("#f-q").value=""; $("#f-page").value=""; $("#f-type").value=""; $("#f-period").value=""; applyFilters(); });
+}
 
-  load();
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
+
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
+    }
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
+
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
 })();
 </script>
+<script defer src="https://deck.k2ia.app/track.js"></script>
 </body>
 </html>

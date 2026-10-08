@@ -1,608 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#1A1C19">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Conselho">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1C19'/%3E%3Crect x='6' y='7' width='3' height='18' fill='%23356647'/%3E%3Crect x='13' y='7' width='13' height='2.4' fill='%23fff'/%3E%3Crect x='13' y='15' width='13' height='2.4' fill='%23fff' opacity='.7'/%3E%3Crect x='13' y='22.6' width='8' height='2.4' fill='%23fff' opacity='.45'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mesa de Conselho</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
 <style>
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
 :root{
-  --paper:#E4E5DF; --panel:#F1F2ED; --sunk:#D6D8D0;
-  --ink:#1A1C19; --muted:#5B615A; --faint:#8C918A; --hair:#C9CBC3;
-  --moss:#356647; --violet:#453C80; --alert:#A8600F;
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#121412; --panel:#1B1E1B; --sunk:#232722;
-  --ink:#E7E9E4; --muted:#979C94; --faint:#6C716A; --hair:#282C27;
-  --moss:#7FBF95; --violet:#A79BEB; --alert:#DEA85A;
-}}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
 :root[data-theme="dark"]{
-  --paper:#121412; --panel:#1B1E1B; --sunk:#232722;
-  --ink:#E7E9E4; --muted:#979C94; --faint:#6C716A; --hair:#282C27;
-  --moss:#7FBF95; --violet:#A79BEB; --alert:#DEA85A;
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
 body{
-  background:var(--paper); color:var(--ink);
-  font-family:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  font-size:16.5px; line-height:1.5; font-synthesis:none;
-  padding-bottom:calc(4.6rem + env(safe-area-inset-bottom));
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
 }
-body[data-adv="n"]{--sig:var(--moss)}
-body[data-adv="u"]{--sig:var(--violet)}
-.voice{font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:400;letter-spacing:0}
-.tag{font-size:.74rem;font-weight:600;letter-spacing:.04em;color:var(--faint)}
-
-.shell{max-width:33rem;margin:0 auto;padding:0 1.2rem}
-
-
-/* topo */
-.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
-.top .shell{display:flex;align-items:stretch;gap:1.4rem;padding-top:.45rem}
-.who{background:none;border:0;padding:.5rem 0 .55rem;font:inherit;color:var(--faint);
-     cursor:pointer;text-align:left;border-bottom:2px solid transparent;margin-bottom:-1px}
-.who .h{display:block;font-size:.72rem;font-weight:500;letter-spacing:.02em}
-.who .m{display:block;font-weight:700;font-size:1.02rem;line-height:1.15;letter-spacing:-.01em}
-.who[aria-selected=true]{color:var(--ink);border-bottom-color:var(--sig)}
-.who:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
-
-main{padding-top:1.5rem}
-.screen{animation:in .17s cubic-bezier(.2,.7,.3,1)}
-@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.screen{animation:none}}
-
-h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.72rem;line-height:1.1;
-   letter-spacing:-.01em;margin:0 0 .4rem;text-wrap:balance}
-h2{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:1.32rem;line-height:1.26;
-   margin:0 0 1rem;text-wrap:balance}
-.lede{color:var(--muted);margin:0 0 2rem;font-size:.96rem;max-width:30rem}
-.eyebrow{display:block;font-size:.74rem;font-weight:600;letter-spacing:.03em;color:var(--sig);margin-bottom:.5rem}
-.sect{margin-top:2.3rem}
-.sect > h3{font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--faint);
-           margin:0 0 .2rem;padding-bottom:.55rem;border-bottom:1px solid var(--hair)}
-
-/* linhas */
-.row{display:flex;gap:.9rem;align-items:flex-start;width:100%;text-align:left;background:none;
-     border:0;border-bottom:1px solid var(--hair);padding:1rem 0;font:inherit;color:var(--ink);cursor:pointer}
-.row:active{background:var(--sunk)}
-.row:focus-visible{outline:2px solid var(--sig);outline-offset:-2px}
-.row .b{flex:1;min-width:0}
-.row .b .k{display:block;font-size:.74rem;font-weight:600;color:var(--sig);margin-bottom:.28rem;letter-spacing:.02em}
-.row .b .s{display:block;color:var(--faint);font-size:.82rem;margin-top:.28rem}
-.row .go{flex:none;color:var(--hair);align-self:center;font-size:1.3rem;line-height:1}
-.row:active .go{color:var(--sig)}
-
-/* batidas do tempo */
-.beat{display:flex;gap:.95rem;padding:.85rem 0;border-bottom:1px solid var(--hair);position:relative}
-.beat .t{flex:none;width:3.1rem;font-size:.78rem;font-weight:600;color:var(--faint);
-         font-variant-numeric:tabular-nums;padding-top:.16rem}
-.beat b{display:block;font-weight:600;margin-bottom:.12rem}
-.beat p{margin:0;color:var(--muted);font-size:.93rem}
-.beat.now{background:var(--panel);box-shadow:-1.2rem 0 0 var(--panel),1.2rem 0 0 var(--panel)}
-.beat.now .t{color:var(--sig)}
-
-/* fala */
-.speak{border-left:2px solid var(--sig);padding-left:1.05rem;margin:.9rem 0 1.5rem}
-.speak p{margin:0;font-size:1.16rem;line-height:1.45}
-.why{color:var(--muted);font-size:.95rem;margin:0 0 1.6rem;max-width:30rem}
-.react{margin-top:1.7rem;border-top:1px solid var(--hair);padding-top:1.1rem}
-.react h3{font-size:.8rem;font-weight:600;color:var(--faint);margin:0 0 .8rem;letter-spacing:.02em}
-.react dl{margin:0}
-.react dt{font-size:1rem;margin-top:1.1rem}
-.react dd{margin:.35rem 0 0;padding-left:1rem;border-left:1px solid var(--hair);color:var(--muted);font-size:.98rem}
-
-/* destino */
-.dest{display:block;width:100%;text-align:left;background:var(--panel);border:0;border-left:3px solid var(--sig);
-      padding:1rem 1.1rem;font:inherit;color:var(--ink);cursor:pointer}
-.dest:active{background:var(--sunk)}
-.dest .k{display:block;font-size:.74rem;font-weight:600;color:var(--sig);letter-spacing:.03em;margin-bottom:.3rem}
-.dest strong{display:block;font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.2rem;letter-spacing:-.005em}
-.dest .p{display:block;color:var(--muted);font-size:.88rem;margin-top:.25rem}
-ol.steps{margin:1.1rem 0 0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.65rem}
-ol.steps::marker{color:var(--sig);font-weight:600}
-.crit{margin-top:1.7rem;border-top:1px solid var(--hair);padding-top:1.1rem}
-.crit h3{font-size:.8rem;font-weight:600;color:var(--faint);margin:0 0 .35rem}
-.crit p{margin:0}
-.ask{margin-top:2.2rem;border-top:2px solid var(--sig);padding-top:1.1rem}
-.ask h3{font-size:.8rem;font-weight:600;color:var(--sig);margin:0 0 .6rem}
-.ask p{margin:0;font-size:1.1rem;line-height:1.45}
-
-/* referência */
-.brief h3{font-size:.78rem;font-weight:700;letter-spacing:.03em;color:var(--sig);margin:1.7rem 0 .45rem}
-.brief h3:first-child{margin-top:0}
-.brief p{margin:0}
-.brief ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem}
-.seat{padding:1.3rem 0;border-bottom:1px solid var(--hair)}
-.seat h3{margin:0 0 .65rem;font-size:.95rem;color:var(--sig);font-weight:700}
-.seat ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.65rem;font-size:.95rem;color:var(--muted)}
-.seat p.none{margin:0;color:var(--faint);font-size:.92rem}
-.seat.mine ol{color:var(--ink)}
-
-
-/* HERO: a abertura */
-.hero{background:var(--ink);color:var(--paper);margin:0 -1.2rem;padding:1.5rem 1.2rem 1.5rem;
-      width:calc(100% + 2.4rem)}
-.hero .top-line{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
-.hero .name{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:1.5rem;letter-spacing:-.01em;line-height:1.1}
-.hero .state{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
-.hero .sub{font-size:.9rem;opacity:.6;margin-top:.35rem;display:block;max-width:26rem;line-height:1.4}
-.hero .open{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.45;
-            margin:1.1rem 0 0;padding-left:.95rem;border-left:2px solid var(--sig)}
-.hero .ticks{display:flex;gap:.9rem;margin-top:1.2rem;flex-wrap:wrap}
-.hero .ticks span{font-size:.76rem;font-weight:600;opacity:.55;letter-spacing:.02em}
-.hero .ticks span b{font-weight:700;opacity:1;color:var(--sig);margin-right:.28rem}
-
-/* cartoes de pergunta */
-.qcard{display:block;width:100%;text-align:left;background:var(--panel);border:0;
-       border-top:3px solid var(--sig);padding:1.1rem 1.15rem 1.2rem;margin:0 0 .7rem;
-       font:inherit;color:var(--ink);cursor:pointer}
-.qcard:active{background:var(--sunk)}
-.qcard:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
-.qcard .lbl{display:flex;justify-content:space-between;align-items:center;
-            font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-            color:var(--sig);margin-bottom:.55rem}
-.qcard .lbl span:last-child{color:var(--hair);font-size:1.2rem;letter-spacing:0}
-.qcard p{margin:0;font-family:Newsreader,Georgia,serif;font-size:1.14rem;line-height:1.34}
-
-/* faixa de destinos */
-.chips{display:flex;gap:.5rem;overflow-x:auto;padding:.15rem .15rem .5rem;margin:0 -1.2rem;
-       padding-left:1.2rem;padding-right:1.2rem;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;background:none;border:1px solid var(--hair);border-left:3px solid var(--sig);
-      padding:.6rem .8rem;font:inherit;color:var(--ink);cursor:pointer;text-align:left;max-width:12rem}
-.chip:active{background:var(--sunk)}
-.chip b{display:block;font-weight:600;font-size:.92rem;line-height:1.25}
-.chip span{display:block;color:var(--faint);font-size:.76rem;margin-top:.18rem}
-.chip.key{border-color:var(--sig);background:var(--sig);color:var(--paper)}
-.chip.key span{color:var(--paper);opacity:.75}
-
-/* rodape de consulta */
-.look{display:flex;gap:1.4rem;padding:.2rem 0 0;flex-wrap:wrap}
-.look button{background:none;border:0;padding:.5rem 0;font:inherit;font-size:.92rem;font-weight:600;
-             color:var(--muted);cursor:pointer;border-bottom:1px solid var(--hair)}
-.look button:active{color:var(--ink)}
-
-/* barra inferior */
-.bottom{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);
-        border-top:1px solid var(--hair);padding-bottom:env(safe-area-inset-bottom)}
-.bottom .shell{display:flex;align-items:center;gap:.9rem;height:3.9rem}
-.bottom button{background:none;border:0;font:inherit;color:var(--ink);cursor:pointer;font-weight:600;
-               font-size:.95rem;padding:.55rem 0}
-.bottom button[disabled]{color:var(--hair);cursor:default}
-.bottom .crumb{flex:1;min-width:0;color:var(--faint);font-size:.78rem;text-align:center;
-               overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bottom button:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
+}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
 </style>
 </head>
 <body>
-
-<header class="top">
-  <div class="shell" role="tablist" aria-label="Aconselhado">
-    <button class="who" role="tab" data-go="n" aria-selected="true"><span class="h">9h · arquitetura</span><span class="m">Naindry</span></button>
-    <button class="who" role="tab" data-go="u" aria-selected="false"><span class="h">10h30 · farma</span><span class="m">Leandro</span></button>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
   </div>
-</header>
-
-<main class="shell" id="view"></main>
-
-<nav class="bottom">
-  <div class="shell">
-    <button id="back" disabled>&larr; Voltar</button>
-    <span class="crumb" id="crumb"></span>
-    <button id="home">Início</button>
+  <h1>Mesa de Conselho</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
   </div>
-</nav>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
 
+<script type="application/json" id="cofre">{"v":2,"grupo":"interno","nonce":"K8dTn32nIhy43wLk","dados":"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"}</script>
 <script>
-const DATA = {
-n: {
-  nome: "Naindry", hora: "9h", cor: "moss",
-  sub: "Arquitetura de natureza. Quer virar ecossistema sem recriar a dependência dela.",
-  plano: [
-    ["0–1", "Enquadra", "“Vou ficar num ponto só, que é da minha cadeira: o estado dos seus ativos de marca e de dado. Tudo que os outros propuseram aqui depende disso funcionar.”"],
-    ["1–4", "Devolve pelo número da 2", "Ela já é a plataforma que quer construir. Só que roda no celular dela, sem registro e de graça."],
-    ["4–8", "Aponta o destino", "Um ou dois destinos, nunca os quatro. O que a resposta dela pedir."],
-    ["8–10", "Pede uma coisa só", "O pedido de 30 dias. Se o tempo apertar, corta o resto e mantém isso."]
-  ],
-  pedido: "“Registrar todo pedido de indicação num lugar só, por 30 dias. Não muda nada na sua rotina, e em três meses você chega com o número que responde a pergunta principal que trouxe hoje. Sem esse dado, qualquer modelo que a gente desenhar aqui é palpite.”",
-  destinos: {
-    d1: { nome: "Tirar a rede do celular", prazo: "30 dias",
-      passos: ["Uma base única da empresa, num CRM simples. A ferramenta é a parte fácil e a última.",
-               "Importar contatos de WhatsApp, e-mail e Instagram.",
-               "Classificar em seis grupos: marca, fabricante, fornecedor, profissional, investidor, cliente.",
-               "Um responsável que não é ela, com quatro horas por semana."],
-      criterio: "Se ela sumir 60 dias, alguém consegue ativar a rede." },
-    d2: { nome: "Registrar toda indicação", prazo: "90 dias, custo zero",
-      passos: ["Seis campos numa planilha: data, quem pediu, o que precisava, quem foi indicado, fechou ou não, quanto.",
-               "Nada de sistema. Planilha e disciplina.",
-               "Revisar o acumulado uma vez por mês."],
-      criterio: "Em 90 dias ela sabe quanto vale a indicação dela — que é a resposta da pergunta do Adilson, com número em vez de intuição." },
-    d3: { nome: "Cobrar de cinco parceiros", prazo: "90 dias",
-      passos: ["Cinco parceiros com quem ela já tem intimidade. Cinco conversas, não cinquenta.",
-               "Testar uma contrapartida real: selo, listagem, indicação qualificada, acesso à base.",
-               "Condição de fundador para os cinco primeiros e ajuste pela reação.",
-               "Versão manual da plataforma: uma página com o critério, um formulário, conexão feita na mão."],
-      criterio: "Se em 90 dias houver gente pagando, aí sim vale construir software — e ela vai construir sabendo o que ele precisa fazer." },
-    d4: { nome: "Catalogar o acervo e ir por formação", prazo: "rota alternativa",
-      passos: ["Vale quando o volume de conexões for baixo demais para sustentar plataforma.",
-               "Catalogar antes de produzir: acervo, critérios de projeto, método.",
-               "Formação e produto se apoiam nesse acervo, não em ela gravar tudo do zero."],
-      criterio: "O ativo aqui deixa de ser a rede e passa a ser a autoridade e o conhecimento." }
-  },
-  perguntas: [
-    { tag: "o ativo",
-      texto: "Se um concorrente comprasse sua empresa amanhã e você não fosse junto no pacote, o que ele estaria comprando exatamente?",
-      respostas: [
-        { r: "“Levaria a equipe e os projetos. Os contatos estão comigo, no WhatsApp e no Instagram.”",
-          nota: "o mais provável",
-          diz: "“Então hoje o maior ativo da empresa não é da empresa, é seu. E isso limita tudo o que a gente discutiu aqui: não dá para delegar, não dá para trazer sócio, não dá para vender, e não dá para construir ecossistema em cima de uma agenda de celular.”",
-          porque: "Ela abriu o material dizendo que a rede vale mais que o escritório. Acabou de admitir que essa rede não pertence à empresa. É a contradição que sustenta os seus dez minutos.",
-          dest: "d1",
-          reacoes: [["“Mas eu conheço todo mundo, isso não se transfere.”", "“Conhecimento que mora numa cabeça não vira patrimônio nem sucessão. O que a gente quer registrar não é a relação, é o mapa dela.”"],
-                    ["“Não tenho tempo pra isso.”", "“E não é pra ser você. É alguém do time, quatro horas por semana. Se depender de você, já nasce com o problema que a gente está tentando resolver.”"]] },
-        { r: "“Tenho uma planilha, mas está desatualizada.”",
-          diz: "“Então o problema já não é criar, é manter. E manter é sempre problema de dono, não de ferramenta. Quem é o dono dessa planilha hoje?”",
-          porque: "Se a resposta for ninguém, o próximo passo é nomear alguém e definir a rotina, não escolher sistema. Você economiza dinheiro dela na frente da mesa.",
-          dest: "d1",
-          reacoes: [["“Ninguém, é todo mundo um pouco.”", "“Todo mundo é ninguém. Um nome, quatro horas por semana, e a base para de morrer.”"]] },
-        { r: "“Tenho 40 mil seguidores, minha audiência é grande.”",
-          diz: "“Audiência em rede social é terreno alugado. Se a conta cair amanhã, some, e você não tem como avisar ninguém. Quantos desses viraram contato que você aciona direto, sem depender de algoritmo?”",
-          porque: "Separa alcance de ativo. Alcance é emprestado; base é patrimônio. O ecossistema precisa da segunda coisa.",
-          dest: "d1",
-          reacoes: [["“Mas o Instagram funciona muito bem pra mim.”", "“Funciona pra atrair. Não funciona pra convocar. Ecossistema depende de convocar, e isso pede base própria.”"]] },
-        { r: "“Já uso um CRM.”",
-          diz: "“Ótimo, então a gente pula o diagnóstico. Qual foi a última vez que essa base foi acionada de propósito, qual foi a taxa de resposta, e quem opera isso no dia a dia?”",
-          porque: "CRM sem uso é planilha cara. Se ninguém aciona, o assunto vira rotina de ativação, uma comunicação por mês para cada grupo, com responsável e meta.",
-          dest: "d1",
-          reacoes: [["“A gente usa só pros clientes de projeto.”", "“Então metade do ecossistema está fora da base: fabricante, fornecedor, investidor e aluno. São eles que vão pagar a conta depois.”"]] },
-        { r: "“Minha equipe conhece todo mundo, não depende só de mim.”",
-          diz: "“Isso é bom e é frágil ao mesmo tempo. Conhecimento que mora nas pessoas sai pela porta junto com elas. Se três pessoas do time saíssem hoje, o que ficaria registrado?”",
-          porque: "Mesmo destino, outro argumento: risco de perda em vez de dependência da fundadora. Funciona melhor com quem se incomoda de ouvir que tudo depende dela.",
-          dest: "d1", reacoes: [] },
-        { r: "Ela trava, não sabe responder.",
-          diz: "“Vou facilitar. Pensa só nos fornecedores e fabricantes com quem você já trabalhou. Chuta: são 50, 200, 500? E onde essa lista está hoje?”",
-          porque: "Quebrar a pergunta grande em uma categoria só destrava quase sempre. Depois de um número, os outros vêm sozinhos.",
-          dest: "d1", reacoes: [] }
-      ] },
-    { tag: "a demanda",
-      texto: "Você fala que a rede e a autoridade valem mais que o próprio escritório. Nos últimos 12 meses, quanto de negócio isso gerou pros outros, indicando e conectando de graça? E quanto gerou pra você?",
-      respostas: [
-        { r: "“Muito. Deve dar umas 15 por mês. Nunca cobrei e nem sei se fecharam.”",
-          nota: "o mais provável",
-          diz: "“São cerca de 180 conexões por ano passando pela sua mão. Você já é a plataforma de conexão que quer construir. Ela só não tem registro, não tem contrapartida e não tem receita. O problema é que a plataforma é você, funciona no seu celular e trabalha de graça.”",
-          porque: "É o momento mais forte da sua participação inteira. Não é opinião: é a conta dela, dita em voz alta. Deixe o silêncio depois do número.",
-          dest: "d2",
-          reacoes: [["“Nunca tinha pensado assim.”", "“Então o próximo passo é o mais barato que existe: registrar. Sem inventar nada, só anotar o que já acontece.”"],
-                    ["“Mas isso é relacionamento, não é negócio.”", "“Relacionamento é o insumo. Negócio é o que acontece com ele. Hoje o negócio acontece, só que na conta dos outros.”"]] },
-        { r: "“Não sei quantas, nunca contei.”",
-          diz: "“Vamos estimar juntos agora. Numa semana comum, quantas pessoas te pedem indicação? Três? Então são mais de 150 por ano. Se metade fecha, e o ticket de uma obra é o que você falou, quanto de negócio passou pela sua mão?”",
-          porque: "Faça a conta na mesa, com ela. O número calculado por ela vale mais que qualquer argumento seu.",
-          dest: "d2", reacoes: [] },
-        { r: "“Acho que cobrar por indicação pega mal.”",
-          diz: "“Existe um mercado inteiro que já resolveu isso. Em casamentos, algumas cerimonialistas cobram percentual do fornecedor e outras se recusam. Quem cobra está vendendo indicação. Quem recusa está vendendo isenção, e cobra mais caro pelo próprio trabalho porque a curadoria é o produto. Você precisa escolher qual das duas você é, e isso é posicionamento, não dinheiro.”",
-          porque: "Transforma objeção moral em decisão de posicionamento — que é a sua cadeira. A saída que junta as duas é homologação transparente.",
-          dest: "d3",
-          reacoes: [["“Prefiro não cobrar, é generosidade.”", "“Não estou sugerindo cobrar de quem pede ajuda. Estou sugerindo que quem lucra com a sua indicação participe do custo de manter isso. A generosidade continua com as pessoas; a conta vai para as empresas.”"]] },
-        { r: "“Já tentei cobrar e não deu certo.”",
-          diz: "“O que exatamente você ofereceu em troca?”",
-          porque: "Quase sempre o problema foi contrapartida vaga, não preço alto. Ninguém paga por um selo; paga por demanda qualificada.",
-          dest: "d3", reacoes: [] },
-        { r: "“São poucas, umas duas por mês.”",
-          diz: "“Então eu mudo minha recomendação aqui na mesa. Se o volume é esse, plataforma de conexão não é a prioridade e construir isso agora seria queimar tempo. Seu ativo mais forte passa a ser a autoridade e o acervo.”",
-          porque: "Mudar de opinião publicamente com base no dado dela é o que separa conselheiro de vendedor. Ganha a mesa inteira, inclusive o Renato.",
-          dest: "d4", reacoes: [] },
-        { r: "“Já cobro de alguns.”",
-          diz: "“Então existe prova de que o mercado paga. Quantos, quanto, e por que os outros ainda não pagam?”",
-          porque: "Deixa de ser validação e vira escala: padronizar o que hoje é caso a caso, com critério, preço e contrapartida iguais para todos.",
-          dest: "d3", reacoes: [] }
-      ] },
-    { tag: "a plataforma",
-      texto: "Nessa plataforma de conexão que você quer construir, tem alguma parte que já poderia rodar amanhã sem software nenhum, só com processo e uma pessoa cuidando?",
-      respostas: [
-        { r: "“Imagino uma plataforma onde a pessoa entra e encontra profissionais homologados, fornecedores, cursos, tudo integrado.”",
-          nota: "o mais provável",
-          diz: "“Isso é um projeto de dezoito meses e algumas centenas de milhares de reais. É exatamente o tipo de coisa que recria a operação complexa e dependente de você que você disse que quer evitar. E o pior: você só descobre se as pessoas pagam depois de gastar tudo isso.”",
-          porque: "Ela pediu ao conselho para não recriar complexidade. Você está mostrando que a ideia favorita dela é justamente onde a complexidade voltaria.",
-          dest: "d3",
-          reacoes: [["“Mas todo mundo tem plataforma hoje.”", "“Plataforma é a consequência de um processo que já funciona. Quando é o começo, vira custo com esperança.”"]] },
-        { r: "“Já tenho alguém desenvolvendo.”",
-          diz: "“Quanto já foi investido e quantos usuários pagantes existem hoje?”",
-          porque: "Se a resposta for zero pagantes, o conselho não é parar, é cortar escopo: entregar a menor parte que já pode ser cobrada, no ar em 30 dias.",
-          dest: "d3", reacoes: [] },
-        { r: "“Mas sem sistema não escala.”",
-          diz: "“Concordo. Sistema escala processo que existe. Automatizar processo que ninguém validou é multiplicar erro mais rápido, e mais caro.”",
-          porque: "Repita a ordem — processo, depois dado, software por último. É a frase que ela vai lembrar depois.",
-          dest: "d2", reacoes: [] },
-        { r: "“Qual ferramenta eu uso?”",
-          diz: "“Essa é a escolha mais fácil e a última. Decidir ferramenta antes de saber o que ela faz é o erro clássico, e é caro. Com 90 dias de operação manual registrada, a ferramenta se escolhe quase sozinha.”",
-          porque: "Recusar a pergunta te posiciona como quem já viu o filme, e não como fornecedor tentando emplacar solução.",
-          dest: "d2", reacoes: [] },
-        { r: "“Quero começar pela formação, pelo curso.”",
-          diz: "“Faz sentido, e fatura mais rápido. Mas curso se apoia em acervo e método organizados. O que você tem hoje catalogado que sustentaria uma turma sem você gravar tudo do zero?”",
-          porque: "Conecta com o acervo, que é a matéria-prima de tudo, e te dá uma segunda direção concreta: catalogar antes de produzir.",
-          dest: "d4", reacoes: [] },
-        { r: "“Quero fazer tudo junto, tudo se conecta.”",
-          diz: "“Tudo se conecta na visão, mas não na execução. Você já disse que sofre com dispersão. Se escolher três frentes agora, a chance é grande de nenhuma sair do lugar. Qual delas já tem alguém disposto a pagar hoje?”",
-          porque: "Devolve o critério de escolha — demanda comprovada — sem invadir a cadeira de Estratégia, que vai falar de priorização.",
-          dest: "d2", reacoes: [] }
-      ] }
-  ]
-},
-u: {
-  nome: "Leandro", hora: "10h30", cor: "steel",
-  sub: "United Labs. R$ 1 mi/mês hoje, quer R$ 10 mi em um ano, via nutracêuticos e enxofre.",
-  plano: [
-    ["0–1", "Enquadra", "“Dos quatro desafios que vocês trouxeram, três já foram bem cobertos aqui. Vou num ponto que não apareceu no material em nenhum momento: de onde vêm os compradores.”"],
-    ["1–4", "Devolve pelo número da 2", "A aquisição deles é uma pessoa, não um sistema. Cresce na velocidade em que se contrata e treina vendedor."],
-    ["4–8", "Aponta o destino", "Um ou dois destinos, nunca os quatro. O que a resposta dele pedir."],
-    ["8–10", "Pede uma coisa só", "A conta de clientes, antes de comprar estoque. Se o tempo apertar, corta o resto e mantém isso."]
-  ],
-  pedido: "“Meu pedido é de planilha, não de investimento: quebrar os nove milhões adicionais em número de clientes e contratos por linha, e nomear os compradores-alvo das frentes novas. Se ao fazer essa conta o número por mês for maior do que o time consegue atender, vocês descobrem agora, e não depois de ter comprado estoque.”",
-  destinos: {
-    d1: { nome: "Traduzir a meta em clientes", prazo: "1 semana, custo de planilha",
-      passos: ["Quebrar os nove milhões adicionais em número de clientes e contratos, por linha de produto.",
-               "Separar o que vem de cliente novo, do que vem de recompra e do que vem de ticket maior.",
-               "Comparar com a capacidade real de atendimento do time atual."],
-      criterio: "Ou a meta vira operável, ou eles descobrem agora que não cabe — antes de comprometer capital." },
-    d2: { nome: "Nomear os compradores", prazo: "30 dias",
-      passos: ["Em enxofre e insumo industrial o universo é finito: escrever a lista de quem compra esse volume no Brasil.",
-               "Para cada um: quem decide, de quem compra hoje, quem atende.",
-               "Definir o dono da abertura de mercado novo, separado de quem atende carteira."],
-      criterio: "Deixa de ser “gerar demanda” e vira plano de acesso, um a um. Sem campanha, sem funil." },
-    d3: { nome: "Carteira vira patrimônio", prazo: "60 dias",
-      passos: ["Registro mínimo por cliente: o que compra, com que frequência, o que parou de comprar, margem por item.",
-               "Uma regra simples: pedido só entra depois de o contato estar registrado.",
-               "Relatório semanal de queda de recompra, que chega no vendedor antes de ele ligar.",
-               "Um responsável pela base que não é vendedor."],
-      criterio: "Um vendedor novo assume uma carteira e sabe o que perguntar sem ninguém contar a história pra ele." },
-    d4: { nome: "Eixo de defesa além do preço", prazo: "antes de comprar estoque",
-      passos: ["Escolher: fornecimento garantido, documentação regulatória, rastreabilidade, prazo, estoque local ou exclusividade de fabricante.",
-               "Transformar o eixo em prova. Em insumo, prova é documento e histórico, não é discurso.",
-               "Testar com cinco compradores antes do contêiner."],
-      criterio: "A importação direta vira margem e previsibilidade de entrega, e não desconto." }
-  },
-  perguntas: [
-    { tag: "o ativo",
-      texto: "Se os seus dois melhores vendedores saíssem amanhã, o que a United ainda saberia sobre os clientes deles?",
-      respostas: [
-        { r: "“O relacionamento tá muito no WhatsApp deles. Aqui fica o histórico de pedido no sistema.”",
-          nota: "o mais provável",
-          diz: "“Então a carteira não é patrimônio da empresa, é do vendedor, e ela anda com as pernas dele. Isso já é risco hoje com doze pessoas. Vocês vão contratar para crescer dez vezes, e cada contratação multiplica esse risco.”",
-          porque: "E tem consequência direta no desafio número um deles: não se transforma tirador de pedido em consultor com treinamento. Consultor é quem chega sabendo o que o cliente parou de comprar. Isso é informação, não é postura.",
-          dest: "d3",
-          reacoes: [["“Mas meu time é fiel, estão comigo há anos.”", "“Fidelidade não é o ponto. Se um deles adoecer por dois meses, quem assume e com base em quê?”"],
-                    ["“Isso vai burocratizar a venda.”", "“Só se o sistema cobrar sem devolver nada. Se ele devolver quem sumiu e o que oferecer, o vendedor passa a usar por interesse próprio.”"]] },
-        { r: "“Temos ERP, está tudo lançado lá.”",
-          diz: "“ERP registra transação, não relacionamento. Ele te diz o que foi faturado. Ele te diz quem parou de comprar nos últimos noventa dias?”",
-          porque: "Quase sempre a resposta é não, ou é sim e ninguém olha. A direção não é trocar sistema, é criar um relatório e uma rotina em cima do que já existe.",
-          dest: "d3", reacoes: [] },
-        { r: "“Temos CRM, mas o pessoal não usa direito.”",
-          diz: "“CRM que ninguém usa é planilha cara. E o motivo costuma ser o mesmo: o vendedor sente que alimenta o sistema para o chefe olhar, e não recebe nada de volta. O que o seu CRM devolve para ele hoje?”",
-          porque: "Inverte a lógica. O sistema entrega antes de cobrar — lista de quem sumiu, o que oferecer, margem por item. Adoção vira consequência, não campanha interna.",
-          dest: "d3", reacoes: [] },
-        { r: "“O cliente é fiel à empresa, não ao vendedor.”",
-          diz: "“Espero que sim, e dá para testar: dos clientes que o seu melhor vendedor atende, quantos já compravam antes de ele entrar?”",
-          porque: "Se a maioria chegou com ele, a fidelidade é dele. Se já compravam antes, o risco é outro: dependência de poucos clientes grandes. Os dois caminhos rendem.",
-          dest: "d3", reacoes: [] },
-        { r: "“Já aconteceu, já perdi vendedor e cliente junto.”",
-          diz: "“Então o custo já foi medido na prática. Quanto de faturamento anual foi embora naquela vez?”",
-          porque: "Melhor cenário possível. Um número real de perda passada convence mais que qualquer argumento de risco futuro, e encerra a objeção de burocracia.",
-          dest: "d3", reacoes: [] },
-        { r: "Ele se sai bem, está tudo registrado.",
-          diz: "“Melhor do que eu esperava. Então a pergunta sobe: esse dado gera ação? Quem recebe um alerta quando um cliente cai trinta por cento na recompra, e em quanto tempo alguém liga?”",
-          porque: "A diferença entre ter dado e operar por dado. A direção vira rotina de leitura, o que é recomendação mais avançada e te mantém útil.",
-          dest: "d3", reacoes: [] }
-      ] },
-    { tag: "o motor",
-      texto: "Vocês faturam 1 milhão por mês e querem chegar a 10. Isso só pode vir de três lugares: mais clientes, os mesmos comprando mais vezes, ou ticket maior. Qual o peso de cada um? E se boa parte for cliente novo, por onde eles vão saber que a United existe?",
-      respostas: [
-        { r: "“Vem dos produtos novos. Cliente novo chega por indicação e pelo relacionamento dos vendedores. Marketing a gente não faz.”",
-          nota: "o mais provável",
-          diz: "“Então a aquisição de vocês é uma pessoa, não um sistema. Aquisição por pessoa cresce na velocidade em que se contrata e treina pessoa. Para crescer dez vezes assim, seriam quase dez vezes mais vendedores, e o plano é justamente manter a operação enxuta. Esses dois objetivos não cabem no mesmo ano.”",
-          porque: "É o furo central do plano deles, e ninguém mais na mesa vai apontar. Se ele não dividir os três caminhos, divida na mesa: “dos nove milhões, quanto é cliente novo?”",
-          dest: "d1",
-          reacoes: [["“A gente vai crescer com os clientes que já tem.”", "“Então vamos olhar: os clientes atuais somados comprariam dez vezes mais? Se não, a diferença é cliente novo, e ela precisa de caminho.”"],
-                    ["“Indicação sempre funcionou pra gente.”", "“Funcionou pra um milhão. Indicação não escala por decisão sua — ela depende dos outros lembrarem de você.”"]] },
-        { r: "“Vem de poucos contratos grandes de enxofre.”",
-          diz: "“Então muda tudo, e para melhor. Se nove milhões vêm de oito ou dez contratos, vocês não têm um problema de marketing, têm um problema de lista. Quantas empresas no Brasil compram esse volume, e vocês conseguem nomeá-las?”",
-          porque: "Muda completamente a recomendação: nada de funil, nada de campanha. Mapeamento nominal e plano de acesso. Se ele não souber o tamanho do universo, esse é o trabalho da semana.",
-          dest: "d2",
-          reacoes: [["“Não sei quantas empresas são.”", "“Esse é o primeiro trabalho, e é de uma semana. Não dá para planejar nove milhões sem saber quantos compradores existem.”"]] },
-        { r: "“Vamos contratar mais vendedores.”",
-          diz: "“Quanto tempo um vendedor novo leva hoje para dar resultado, do primeiro dia até a primeira venda relevante?”",
-          porque: "Multiplique na frente dele. Se são seis meses e ele precisa de dez, a conta não cabe em doze meses — e ele acabou de ver isso sozinho, o que é melhor do que você afirmar.",
-          dest: "d1", reacoes: [] },
-        { r: "“Nosso mercado não é de marketing.”",
-          diz: "“Concordo que não é anúncio. Insumo não se vende por campanha. Mas alguém precisa ser dono de fazer o comprador certo saber que vocês existem, seja por feira, associação, conteúdo técnico ou prospecção. Hoje isso é responsabilidade de quem?”",
-          porque: "Concordar com a premissa antes de discordar da conclusão desarma. Tira do falso debate sobre digital e coloca em função e dono.",
-          dest: "d2", reacoes: [] },
-        { r: "“Já temos um plano de marketing digital.”",
-          diz: "“Qual é o ciclo de venda de vocês, do primeiro contato até o primeiro pedido? Se for longo, anúncio gera cadastro e não gera pedido, e o time vai concluir que marketing não funciona quando na verdade faltou o meio do caminho.”",
-          porque: "Em ciclo longo o que sustenta é acompanhamento, não volume de contato. Volta ao registro e à rotina, por outro caminho.",
-          dest: "d3", reacoes: [] },
-        { r: "Ele não tem o número na mão.",
-          diz: "“Vamos fazer junto agora. Quantos clientes ativos vocês têm hoje? Qual o pedido médio? Então, para dez vezes, são quantos clientes ou quantas vezes o pedido médio?”",
-          porque: "Momento mais forte da sua participação. A conta feita em voz alta por ele vale mais que qualquer argumento seu. Deixe o silêncio depois do número.",
-          dest: "d1", reacoes: [] }
-      ] },
-    { tag: "a defesa",
-      texto: "A importação direta melhora a margem, isso tá claro. Agora, se semana que vem um concorrente igualar seu preço no nutracêutico, por que o cliente continua comprando de vocês?",
-      respostas: [
-        { r: "“Nossa vantagem é a importação direta, chegamos com preço melhor.”",
-          nota: "o mais provável",
-          diz: "“A porta que deixou vocês entrarem em nutracêutico não fecha atrás de vocês. Suplemento tem barreira regulatória baixa e fabricação terceirizada resolvida, então entra muita gente. Se a vantagem é chegar mais barato, ela tem prazo de validade, e o prazo é o tempo que o concorrente leva para importar direto também.”",
-          porque: "O risco concreto: financiar compra, frete, desembaraço e estoque — o capital de giro que o Adilson levantou — para ocupar uma posição que se copia. E preço é o único motivo de compra que o cliente troca sem culpa.",
-          dest: "d4",
-          reacoes: [["“Mas nossa margem permite segurar preço baixo.”", "“Margem permite aguentar a briga. Não impede a briga. A pergunta é o que faz o cliente não abrir cotação com o concorrente.”"],
-                    ["“A concorrência tem vantagem tributária, precisamos competir.”", "“Competir sim, mas o preço equaliza a conversa; ele não fecha a venda. Precisa de um segundo motivo.”"]] },
-        { r: "“Qualidade e atendimento.”",
-          diz: "“Todo concorrente diz exatamente essa frase. O que muda o jogo é o que você entrega que o outro não entrega. Qual documento, qual prazo, qual garantia?”",
-          porque: "Força a tradução de adjetivo em prova. Se ele não conseguir traduzir, a vantagem ainda não existe — e essa é a conclusão a levar da mesa.",
-          dest: "d4", reacoes: [] },
-        { r: "“Temos exclusividade com um fabricante.”",
-          diz: "“Esse é o ativo mais forte que apareceu até agora. É contrato ou é combinado? Por quanto tempo, e para qual território?”",
-          porque: "Se for contrato firme, é isso que deve ocupar o centro da comunicação, não o preço. Se for verbal, a prioridade é formalizar — e aí a Priscila entra melhor que você.",
-          dest: "d4", reacoes: [] },
-        { r: "“Regulatório, laudo, rastreabilidade.”",
-          diz: "“É o eixo mais defensável que existe nesse mercado, porque tira o comprador do risco pessoal. Isso está comunicado ou está só acontecendo dentro da operação?”",
-          porque: "Quase sempre existe e ninguém conta. Direção barata e rápida: transformar o que já é feito em material de venda, com documento na mão do vendedor.",
-          dest: "d4", reacoes: [] },
-        { r: "“Vamos lançar marca própria de suplemento.”",
-          diz: "“Aí é outro negócio, não é extensão desse. Insumo se vende para comprador técnico com prova. Marca se vende para consumidor com verba de mídia contínua e prateleira. Isso está dentro da conta de capital apresentada aqui?”",
-          porque: "Conecta direto com a pergunta do Adilson sobre capital por linha. Se a resposta for não, você acabou de encontrar o maior furo do plano.",
-          dest: "d4", reacoes: [] },
-        { r: "“Ainda não definimos como vamos entrar.”",
-          diz: "“Então essa é a decisão mais urgente da lista, porque ela define preço, perfil de vendedor e quanto capital fica parado. Comprar estoque antes de decidir isso é o caminho mais caro.”",
-          porque: "Sequência é a sua contribuição mais valiosa: decidir posicionamento antes de comprometer capital. Não precisa decidir na mesa, precisa decidir antes da compra.",
-          dest: "d4", reacoes: [] }
-      ] }
-  ]
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
+
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
 }
-};
-
-var REF = {"n": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Arquiteta especializada em projetos integrados à natureza, cabanas e empreendimentos de hospitalidade. O escritório ganhou escala na pandemia e passou a atender Brasil e exterior. O crescimento foi mais rápido que a estrutura administrativa, financeira e operacional, gerando operação muito dependente da fundadora.</p>\n<h3>O ativo real</h3>\n<p>Maior que o próprio escritório: rede de relacionamentos, conhecimento de mercado, conexão com marcas, fabricantes, fornecedores, investidores e profissionais, e autoridade consolidada no segmento.</p>\n<h3>Principais desafios</h3>\n<ul>\n<li><b>Desordem operacional:</b> crescimento sem estrutura proporcional, dependência da fundadora.</li>\n<li><b>Sobrecarga e dispersão:</b> arquitetura, construção, produtos, parcerias, conteúdo, educação e novas oportunidades ao mesmo tempo.</li>\n<li><b>Falta de clareza do modelo central:</b> muitas frentes com potencial, sem definição de quais são o ecossistema principal.</li>\n<li><b>Dependência da fundadora:</b> oportunidades, decisões, criação, relacionamento e posicionamento passam por ela.</li>\n<li><b>Dificuldade de selecionar oportunidades:</b> interessantes isoladamente, mas nem todas constroem o longo prazo.</li>\n</ul>\n<h3>Sonho grande</h3>\n<p>Ecossistema de referência em arquitetura de natureza, hospitalidade e construção industrializada, conectando marcas, profissionais, fabricantes, fornecedores, investidores, conhecimento e negócios. Uma plataforma de conexão com rede homologada, podendo ter educação, metodologia própria, mentorias, capacitação, parcerias e produtos. O escritório vira atelier autoral, exclusivo e seletivo, fonte de autoridade e posicionamento, sem crescer em volume.</p>\n<h3>Pergunta principal ao conselho</h3>\n<p>Como transformar esse ecossistema em modelo sólido, rentável e escalável, aproveitando autoridade, rede e oportunidades já existentes, sem criar de novo uma operação complexa e dependente dela?</p>\n<h3>Pontos que ela quer discutir</h3>\n<ul>\n<li>Qual o modelo central de geração de receita.</li>\n<li>Como transformar a rede em ativo real de negócio.</li>\n<li>Quais frentes priorizar primeiro.</li>\n<li>Como estruturar sem criar muitas operações paralelas.</li>\n<li>Qual o papel do escritório na nova estrutura.</li>\n<li>Como criar receita recorrente sem perder o posicionamento premium.</li>\n<li>Como transformar autoridade pessoal em marca e plataforma que cresçam além dela.</li>\n</ul>\n</div>", "seats": "<div class=\"seat\"><h3>Finanças · Adilson</h3><ol><li>Motor de crescimento: se daqui a três anos esse ecossistema estiver funcionando muito bem, de onde virão 70% do lucro e da geração de caixa: projetos de arquitetura, educação, produtos, construção, parcerias e comissões, rede de fornecedores ou outro modelo?</li><li>Recursos: entre todas as oportunidades que estão surgindo, se você tivesse apenas R$ 100 mil e 100 horas suas, onde colocaria para gerar o maior valor econômico nos próximos três anos, e o que deixaria de fazer?</li><li>Monetização dos ativos: qual ativo que você já possui hoje (marca, metodologia, audiência, fornecedores, fabricantes, profissionais, conhecimento, geração de negócios) continuaria produzindo receita mesmo se você reduzisse sua participação operacional em 50%?</li></ol></div><div class=\"seat\"><h3>Processos · Suelen</h3><ol><li>Estrutura atual: quais frentes do negócio já funcionam de forma estruturada e quais ainda dependem de você para acontecer?</li><li>Capacidade de virar operação: quais novas frentes você já tentou colocar em prática nos últimos anos e o que aconteceu com elas depois da ideia inicial?</li><li>Gargalos: qual é a principal área que você gostaria que deixasse de depender de você?</li><li>Metodologia própria: o seu jeito de trabalhar e decidir está documentado em alguma metodologia que possa ser ensinada e replicada pela equipe?</li></ol></div><div class=\"seat\"><h3>Jurídico · Priscila</h3><ol><li>Responsabilidade da rede: ao homologar um fabricante ou fornecedor e ele falhar com o cliente final, quem o cliente vai procurar, o fornecedor ou a sua marca? E até onde você está disposta a responder por isso?</li><li>Seleção de parceiros: a escolha passa por algum critério ou é experiência e confiança? Você analisa os sócios e as estruturas ligadas a esses fornecedores (processos criminais, trabalhistas, consumidor, outras sociedades)?</li><li>Receita recorrente: a ideia é um produto ou serviço remunerado mensalmente? Se sim, o que você conseguiria entregar de forma contínua que continuaria acontecendo num mês em que você estivesse totalmente fora? Se não, o que você entende por recorrência e escala?</li><li>Conexão com investidores: você imagina apresentar oportunidades e ser remunerada pela conexão, ou apenas aproximar as pessoas e sair da relação?</li></ol></div><div class=\"seat\"><h3>Vendas · Ricardo</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat mine\"><h3>Marketing e Tecnologia · você</h3><ol><li>Se um concorrente comprasse sua empresa amanhã e você não fosse junto no pacote, o que ele estaria comprando exatamente?</li><li>Você fala que a rede e a autoridade valem mais que o próprio escritório. Nos últimos 12 meses, quanto de negócio isso gerou pros outros, indicando e conectando de graça? E quanto gerou pra você?</li><li>Nessa plataforma de conexão que você quer construir, tem alguma parte que já poderia rodar amanhã sem software nenhum, só com processo e uma pessoa cuidando?</li></ol></div>"}, "u": {"brief": "<div class=\"brief\">\n<h3>Quem é</h3>\n<p>Fundada em 2014 em Belo Horizonte. Depois de atuar no setor acadêmico e enfrentar crises, pivotou para a indústria farmacêutica e superou dificuldades financeiras em 2020 trabalhando no fuso europeu. Em 2023 abriu a United America nos EUA para importar direto e eliminar intermediários.</p>\n<h3>Estado atual</h3>\n<p>Cerca de R$ 1 milhão por mês, 12 colaboradores. Atua em farma e expande para nutracêuticos e enxofre, buscando importação direta para eliminar intermediários, ganhar competitividade frente à concorrência tributária e melhorar margem, mantendo a operação enxuta.</p>\n<h3>Sonho grande</h3>\n<p>R$ 10 milhões de faturamento por mês no próximo ano, através da penetração nos mercados de nutracêuticos e enxofre.</p>\n<h3>Principais desafios</h3>\n<ul>\n<li><b>Equipe comercial:</b> evoluir o time de “tiradores de pedido” para consultores ativos e engajados.</li>\n<li><b>Precificação e margem:</b> reduzir a dependência de intermediários financeiros e logísticos.</li>\n<li><b>Tributação:</b> entender a complexidade fiscal, sobretudo na transição para suplementos.</li>\n<li><b>Previsibilidade:</b> validar viabilidade operacional e financeira nos novos mercados, sem histórico de importação direta.</li>\n</ul>\n</div>", "seats": "<div class=\"seat\"><h3>Finanças · Adilson</h3><ol><li>Para sair de R$ 1 milhão para R$ 10 milhões por mês, quanto capital de giro adicional a empresa precisará colocar na operação antes de receber dos clientes, considerando compra, importação, estoque em trânsito, desembaraço, tributos, estoque local e prazo de recebimento?</li><li>Dos R$ 9 milhões mensais de receita adicional, quanto virá de cada linha ou família de produto, e qual margem de contribuição, ciclo de caixa e capital empregado cada frente deverá gerar?</li></ol></div><div class=\"seat\"><h3>Processos · Suelen</h3><ol><li>Equipe comercial: como está estruturado hoje o processo comercial? Quais etapas estão padronizadas e quais dependem da atuação de cada vendedor?</li><li>Equipe comercial: como um vendedor identifica uma oportunidade além da demanda inicial do cliente? Existe processo definido para investigar necessidades, apresentar soluções e desenvolver novas oportunidades?</li><li>Intermediários: em quais etapas de compra, importação e comercialização vocês dependem de intermediários, e qual função cada um desempenha?</li><li>Intermediários: dessas etapas, quais a empresa já teria condições de assumir internamente e quais exigiriam mudanças na operação?</li></ol></div><div class=\"seat\"><h3>Jurídico · Priscila</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat\"><h3>Vendas · Ricardo</h3><p class=\"none\">Não enviou perguntas.</p></div><div class=\"seat mine\"><h3>Marketing e Tecnologia · você</h3><ol><li>Se os seus dois melhores vendedores saíssem amanhã, o que a United ainda saberia sobre os clientes deles?</li><li>Vocês faturam 1 milhão por mês e querem chegar a 10. Isso só pode vir de três lugares: mais clientes, os mesmos clientes comprando mais vezes, ou ticket maior. Qual o peso de cada um nesse plano? E se boa parte for cliente novo, por onde eles vão ficar sabendo que a United existe?</li><li>A importação direta melhora a margem, isso tá claro. Agora, se semana que vem um concorrente igualar seu preço no nutracêutico, por que o cliente continua comprando de vocês?</li></ol></div>"}};
-
-var adv='n', stack=[], view=document.getElementById('view'),
-    back=document.getElementById('back'), crumb=document.getElementById('crumb'),
-    homeBtn=document.getElementById('home');
-
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function d(){return DATA[adv]}
-
-function render(){
-  var s=stack.length?stack[stack.length-1]:{t:'home'};
-  document.body.dataset.adv=adv;
-  view.innerHTML='<div class="screen">'+SCREEN[s.t](s)+'</div>';
-  back.disabled=stack.length===0;
-  crumb.textContent=stack.length?(s.crumb||''):'';
-  window.scrollTo({top:0,behavior:'instant'});
-  [].forEach.call(view.querySelectorAll('[data-nav]'),function(el){
-    el.addEventListener('click',function(){ push(JSON.parse(el.dataset.nav)) });
-  });
-}
-function push(s){stack.push(s);render()}
-function pop(){stack.pop();render()}
-function home(){stack=[];render()}
-
-function row(kicker,label,sub,nav){
-  return '<button class="row" data-nav=\''+JSON.stringify(nav)+'\'><span class="b">'+
-    (kicker?'<span class="k">'+esc(kicker)+'</span>':'')+label+
-    (sub?'<span class="s">'+esc(sub)+'</span>':'')+'</span><span class="go">&rsaquo;</span></button>';
-}
-
-var SCREEN={
-  home:function(){
-    var x=d(),h='';
-    h+='<div class="hero">'+
-       '<span class="top-line"><span class="name">'+esc(x.nome)+'</span>'+
-       '<span class="state">'+esc(x.hora)+' &middot; 10 minutos</span></span>'+
-       '<span class="sub">'+esc(x.sub)+'</span>'+
-       '<p class="open">'+esc(x.plano[0][2])+'</p>'+
-       '<span class="ticks">'+x.plano.map(function(b){return '<span><b>'+b[0]+'</b>'+esc(b[1])+'</span>'}).join('')+'</span>'+
-       '</div>';
-    h+='<div class="sect"><h3>O que veio como resposta? Entre pela pergunta</h3><div style="margin-top:.9rem">';
-    x.perguntas.forEach(function(q,i){
-      h+='<button class="qcard" data-nav=\''+JSON.stringify({t:'q',i:i,crumb:q.tag})+'\'>'+
-         '<span class="lbl"><span>'+esc(q.tag)+'</span><span>&rsaquo;</span></span>'+
-         '<p>'+esc(q.texto)+'</p></button>';
-    });
-    h+='</div></div>';
-    h+='<div class="sect"><h3>Para onde toda conversa converge</h3><div class="chips" style="margin-top:.9rem">';
-    Object.keys(x.destinos).forEach(function(k){
-      var dd=x.destinos[k];
-      h+='<button class="chip" data-nav=\''+JSON.stringify({t:'d',k:k,crumb:dd.nome})+'\'>'+
-         '<b>'+esc(dd.nome)+'</b><span>'+esc(dd.prazo)+'</span></button>';
-    });
-    h+='<button class="chip key" data-nav=\''+JSON.stringify({t:'ask',crumb:'Pedido final'})+'\'>'+
-       '<b>O pedido final</b><span>dos 8 aos 10</span></button>';
-    h+='</div></div>';
-    h+='<div class="sect"><h3>Como gastar os 10 minutos</h3>';
-    x.plano.forEach(function(b){
-      h+='<div class="beat"><span class="t">'+b[0]+'</span><div><b>'+esc(b[1])+'</b><p>'+esc(b[2])+'</p></div></div>';
-    });
-    h+='</div>';
-    h+='<div class="sect"><h3>Consulta</h3><div class="look">';
-    h+='<button data-nav=\''+JSON.stringify({t:'brief',crumb:'Briefing'})+'\'>Briefing que eles mandaram</button>';
-    h+='<button data-nav=\''+JSON.stringify({t:'seats',crumb:'Cadeiras'})+'\'>Perguntas de todas as cadeiras</button>';
-    h+='</div></div>';
-    return h;
-  },
-  q:function(s){
-    var q=d().perguntas[s.i],h='';
-    h+='<span class="eyebrow">Sua pergunta sobre '+esc(q.tag)+'</span>';
-    h+='<h2>'+esc(q.texto)+'</h2>';
-    h+='<div class="sect"><h3>O que veio como resposta</h3>';
-    q.respostas.forEach(function(r,j){
-      h+=row('','<span class="voice">'+esc(r.r)+'</span>',r.nota||'',{t:'r',i:s.i,j:j,crumb:q.tag});
-    });
-    h+='</div>';
-    return h;
-  },
-  r:function(s){
-    var q=d().perguntas[s.i],r=q.respostas[s.j],x=d(),h='';
-    h+='<span class="eyebrow">Respondeu</span>';
-    h+='<h2 class="voice">'+esc(r.r)+'</h2>';
-    h+='<div class="sect"><h3>Você diz</h3></div>';
-    h+='<div class="speak"><p class="voice">'+esc(r.diz)+'</p></div>';
-    h+='<p class="why">'+esc(r.porque)+'</p>';
-    var dd=x.destinos[r.dest];
-    h+='<button class="dest" data-nav=\''+JSON.stringify({t:'d',k:r.dest,crumb:dd.nome})+'\'>'+
-       '<span class="k">Isso leva para</span><strong>'+esc(dd.nome)+'</strong>'+
-       '<span class="p">'+esc(dd.prazo)+' &nbsp;&rarr;</span></button>';
-    if(r.reacoes&&r.reacoes.length){
-      h+='<div class="react"><h3>Se reagir assim</h3><dl>';
-      r.reacoes.forEach(function(p){
-        h+='<dt class="voice">'+esc(p[0])+'</dt><dd class="voice">'+esc(p[1])+'</dd>';
-      });
-      h+='</dl></div>';
-    }
-    return h;
-  },
-  d:function(s){
-    var dd=d().destinos[s.k],h='';
-    h+='<span class="eyebrow">Destino &middot; '+esc(dd.prazo)+'</span><h1>'+esc(dd.nome)+'</h1>';
-    h+='<ol class="steps">';
-    dd.passos.forEach(function(p){h+='<li>'+esc(p)+'</li>'});
-    h+='</ol>';
-    h+='<div class="crit"><h3>Critério de sucesso</h3><p>'+esc(dd.criterio)+'</p></div>';
-    h+='<div class="ask"><h3>E fecha com o pedido</h3><p class="voice">'+esc(d().pedido)+'</p></div>';
-    return h;
-  },
-  ask:function(){
-    return '<span class="eyebrow">Dos 8 aos 10 minutos</span><h1>O pedido final</h1>'+
-      '<div class="speak" style="margin-top:1.3rem"><p class="voice">'+esc(d().pedido)+'</p></div>'+
-      '<p class="why">É a única coisa que não pode ficar de fora. Se o tempo apertar, corte recomendação e mantenha o pedido: um passo barato, reversível e com prazo.</p>';
-  },
-  brief:function(){return '<h1>Briefing</h1><div class="brief" style="margin-top:1.5rem">'+REF[adv].brief+'</div>'},
-  seats:function(){return '<h1>As outras cadeiras</h1><div style="margin-top:1.3rem">'+REF[adv].seats+'</div>'}
-};
-
-[].forEach.call(document.querySelectorAll('.who'),function(b){
-  b.addEventListener('click',function(){
-    adv=b.dataset.go;
-    [].forEach.call(document.querySelectorAll('.who'),function(t){
-      t.setAttribute('aria-selected',String(t.dataset.go===adv));
-    });
-    try{localStorage.setItem('clubm',adv)}catch(e){}
-    home();
-  });
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
 });
-back.addEventListener('click',pop);
-homeBtn.addEventListener('click',home);
-try{ if(localStorage.getItem('clubm')==='u'){document.querySelector('.who[data-go=u]').click()} }catch(e){}
-render();
-</script>
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
 
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
+
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
+    }
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
+
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
+})();
+</script>
 <script defer src="https://deck.k2ia.app/track.js"></script>
 </body>
 </html>
