@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modelo de termo de confidencialidade · Estoque Farma</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+/* Porta do deck: a página de verdade vem cifrada logo abaixo e só abre com a senha.
+   Gerada por _cadeado/trancar.mjs. Não editar à mão. */
+:root{
+  --bg:#f2f3f5;--card:#ffffff;--ink:#0d1117;--ink-2:#55606b;
+  --line:rgba(13,17,23,.14);--line-soft:rgba(13,17,23,.07);--marca:#0d1117;--erro:#c4372b;
+  --sombra:0 .5px 1px rgba(13,17,23,.06),0 2px 6px rgba(13,17,23,.06),0 10px 28px rgba(13,17,23,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+    --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+    --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090b0e;--card:#161a20;--ink:#f1f4f7;--ink-2:#9aa5b0;
+  --line:rgba(255,255,255,.16);--line-soft:rgba(255,255,255,.07);--marca:#f1f4f7;--erro:#f07a6c;
+  --sombra:0 .5px 1px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+@media (prefers-contrast: more){
+  :root{--line:rgba(13,17,23,.5);--ink-2:#2b333b}
+  @media (prefers-color-scheme: dark){:root{--line:rgba(255,255,255,.55);--ink-2:#d0d7de}}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:100%/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  display:grid;place-items:center;padding:clamp(1rem,4vw,2.5rem);
+  -webkit-tap-highlight-color:transparent;
+}
+.porta{width:min(21rem,100%);text-align:center}
+.selo{
+  width:3.5rem;height:3.5rem;margin:0 auto 1.5rem;border-radius:1.1rem;display:grid;place-items:center;
+  background:var(--marca);color:var(--bg);box-shadow:var(--sombra);
+}
+.selo svg{width:1.6rem;height:1.6rem}
+h1{font-size:1.375rem;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+.sub{margin-top:.5rem;font-size:.9375rem;color:var(--ink-2);letter-spacing:-.005em}
+.dots{display:flex;gap:.875rem;justify-content:center;margin:1.75rem 0 2.25rem}
+.dots i{width:.75rem;height:.75rem;border-radius:50%;border:1.5px solid var(--line);display:block;will-change:transform}
+.dots i.on{background:var(--marca);border-color:var(--marca)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:15rem;margin:0 auto}
+.key{
+  aspect-ratio:1;border-radius:50%;background:var(--card);border:1px solid var(--line-soft);color:var(--ink);
+  font:inherit;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;will-change:transform;
+  -webkit-user-select:none;user-select:none;box-shadow:var(--sombra);touch-action:manipulation;
+}
+.key.ghost{background:none;border-color:transparent;box-shadow:none;font-size:.875rem;color:var(--ink-2)}
+.key:focus-visible{outline:2px solid var(--marca);outline-offset:3px}
+.msg{min-height:1.25rem;margin-top:1.5rem;font-size:.8125rem;color:var(--ink-2)}
+.msg.err{color:var(--erro)}
+@media (prefers-contrast: more){.key{border-color:var(--line)}}
+@media (prefers-reduced-transparency: reduce){.key{box-shadow:none;border-color:var(--line)}}
+</style>
+</head>
+<body>
+<main class="porta" id="porta">
+  <div class="selo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+  </div>
+  <h1>Modelo de termo de confidencialidade · Estoque Farma</h1>
+  <p class="sub">Digite a senha de 4 dígitos para abrir.</p>
+  <div class="dots" id="dots" aria-label="Quatro dígitos"><i></i><i></i><i></i><i></i></div>
+  <div class="keys" id="keys">
+    <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+    <span></span><button class="key" data-k="0">0</button>
+    <button class="key ghost" data-k="del" aria-label="Apagar">apagar</button>
+  </div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
+
+<script type="application/json" id="cofre">{"v":2,"grupo":"farma","nonce":"3dDaWjalzvKvDS3J","dados":"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"}</script>
+<script>
+(function(){
+const C = JSON.parse(document.getElementById('cofre').textContent);
+const REDUZIR = matchMedia('(prefers-reduced-motion: reduce)');
+const LEMBRA = 'cadeado:' + C.grupo;
+const dots = document.getElementById('dots'), msg = document.getElementById('msg');
+let pin = '', ocupado = false;
+
+/* Mola crítica: parte do valor que está na tela e pode ser redirecionada no meio. */
+const molas = new WeakMap();
+function mola(el, alvo, {damping = 1, response = .3, eixo = 'scale'} = {}){
+  const st0 = molas.get(el);
+  if (st0) cancelAnimationFrame(st0.raf);
+  let valor = st0 ? st0.valor : (eixo === 'scale' ? 1 : 0), v = st0 ? st0.v : 0;
+  const pintar = (x) => { el.style.transform = eixo === 'x' ? `translateX(${x}px)` : `scale(${x})`; };
+  if (REDUZIR.matches){ el.style.transform = ''; molas.set(el, {valor: alvo, v: 0, raf: 0}); return; }
+  const w = 2 * Math.PI / response, z = damping;
+  let t0 = performance.now();
+  const st = {valor, v, raf: 0};
+  molas.set(el, st);
+  const passo = (t) => {
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    v += (-w * w * (valor - alvo) - 2 * z * w * v) * dt;
+    valor += v * dt;
+    pintar(valor); st.valor = valor; st.v = v;
+    if (Math.abs(valor - alvo) < .0006 && Math.abs(v) < .005){ el.style.transform = ''; st.valor = alvo; st.v = 0; st.raf = 0; return; }
+    st.raf = requestAnimationFrame(passo);
+  };
+  st.raf = requestAnimationFrame(passo);
+}
+/* Resposta no toque, não na soltura. */
+const keys = document.getElementById('keys');
+keys.addEventListener('pointerdown', (e) => {
+  const k = e.target.closest('.key');
+  if (!k) return;
+  k.setPointerCapture?.(e.pointerId);
+  mola(k, .9, {response: .22});
+  const solta = () => { mola(k, 1, {damping: .8, response: .32}); k.removeEventListener('pointerup', solta); k.removeEventListener('pointercancel', solta); };
+  k.addEventListener('pointerup', solta); k.addEventListener('pointercancel', solta);
+}, {passive: true});
+keys.addEventListener('click', (e) => {
+  const b = e.target.closest('.key');
+  if (!b || ocupado) return;
+  if (b.dataset.k === 'del') pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += b.dataset.k;
+  pintaDots();
+  if (pin.length === 4) tentar(pin);
+});
+addEventListener('keydown', (e) => {
+  if (ocupado) return;
+  if (/^[0-9]$/.test(e.key) && pin.length < 4){ pin += e.key; pintaDots(); if (pin.length === 4) tentar(pin); }
+  else if (e.key === 'Backspace'){ pin = pin.slice(0, -1); pintaDots(); }
+});
+function pintaDots(){
+  [...dots.children].forEach((d, i) => {
+    const cheio = i < pin.length;
+    d.classList.toggle('on', cheio);
+    if (cheio && i === pin.length - 1){ mola(d, 1.25, {damping: .75, response: .26}); setTimeout(() => mola(d, 1, {damping: .8, response: .3}), 90); }
+  });
+}
+
+const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const SERVIDOR = 'https://deck-track.k2ia.workers.dev/abre';
+
+/* O PIN vai ao servidor, que confere, limita os erros e devolve a chave da página.
+   O servidor também registra no Radar quem destravou. */
+async function pedeChave(senha){
+  const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
+    method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
+  if (r.status === 429) throw new Error('espera');
+  if (!r.ok) return null;
+  return (await r.json()).chave;
+}
+async function abre(chave){
+  const k = await crypto.subtle.importKey('raw', b64(chave), 'AES-GCM', false, ['decrypt']);
+  const gz = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(C.nonce)}, k, b64(C.dados));
+  const ds = new DecompressionStream('gzip');
+  const w = ds.writable.getWriter(); w.write(new Uint8Array(gz)); w.close();
+  return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+}
+function mostra(html){ document.open(); document.write(html); document.close(); }
+
+async function tentar(senha){
+  ocupado = true;
+  msg.classList.remove('err');
+  msg.textContent = 'Abrindo…';
+  let erro = 'Senha incorreta. Tente de novo.';
+  try {
+    const chave = await pedeChave(senha);
+    if (chave){
+      const html = await abre(chave);
+      try { sessionStorage.setItem(LEMBRA, chave); } catch (e) {}
+      mostra(html);
+      return;
+    }
+  } catch (e) {
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+  }
+  ocupado = false; pin = ''; pintaDots();
+  msg.classList.add('err');
+  msg.textContent = erro;
+  const p = document.getElementById('porta');
+  if (!REDUZIR.matches){ molas.set(p, {valor: -14, v: 0, raf: 0}); mola(p, 0, {damping: .3, response: .28, eixo: 'x'}); }
+}
+
+/* Na mesma aba, quem já abriu uma página deste cliente não digita de novo. */
+let lembrada = null;
+try { lembrada = sessionStorage.getItem(LEMBRA); } catch (e) {}
+if (lembrada) abre(lembrada).then(mostra).catch(() => { try { sessionStorage.removeItem(LEMBRA); } catch (e) {} });
+})();
+</script>
+<script defer src="https://deck.k2ia.app/track.js"></script>
+</body>
+</html>
