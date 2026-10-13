@@ -17,3 +17,8 @@ O repositório é público. Nenhuma página vai ao ar em texto aberto.
 - Exceção: `cristofolini/index.html` (Gerador) tem cofre próprio por consultor, gerado por
   `_Agents/CRISTOFOLINI/gerar-dados.py`. As ferramentas antigas `desafio/_build.mjs` e
   `desafio/_gate.html` não valem mais: o Desafio passa pelo cadeado como as outras.
+
+## farma/: fonte mora em `_Agents/FARMA`
+
+As páginas em `_fonte/farma/` são cópias geradas por `_Agents/FARMA/publicar.sh`. Edite lá e rode o
+script; ele copia, tranca e faz push do deck.
