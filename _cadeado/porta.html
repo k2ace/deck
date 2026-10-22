@@ -156,6 +156,7 @@ async function pedeChave(senha){
   const r = await fetch(SERVIDOR + '?p=' + encodeURIComponent(location.pathname), {
     method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({g: C.grupo, pin: senha})});
   if (r.status === 429) throw new Error('espera');
+  if (r.status === 410) throw new Error('expirada');
   if (!r.ok) return null;
   return (await r.json()).chave;
 }
@@ -182,7 +183,9 @@ async function tentar(senha){
       return;
     }
   } catch (e) {
-    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.' : 'Sem conexão. Tente de novo.';
+    erro = e.message === 'espera' ? 'Muitas tentativas. Aguarde 15 minutos.'
+      : e.message === 'expirada' ? 'Esta proposta expirou. Para uma nova condição, fale com a K2ACE.'
+      : 'Sem conexão. Tente de novo.';
   }
   ocupado = false; pin = ''; pintaDots();
   msg.classList.add('err');

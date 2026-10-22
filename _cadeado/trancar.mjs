@@ -75,13 +75,27 @@ const chaves = existsSync(arqChaves) ? JSON.parse(readFileSync(arqChaves, 'utf8'
 const porta = readFileSync(join(RAIZ, '_cadeado', 'porta.html'), 'utf8');
 const so = process.argv[2];
 
+// Proposta vale 15 dias: grupo com "proposta": true e sem "expira" ganha a data
+// (hoje + 15, horário de Brasília) na primeira vez que é trancado. Depois dela, o
+// Worker recusa o PIN do cliente; o mestre continua abrindo. Para estender, edite "expira".
+const VALIDADE = 15;
+const diaBR = (ms) => new Date(ms - 3 * 3600e3).toISOString().slice(0, 10);
+let mudouCfg = false;
+for (const [grupo, g] of Object.entries(cfg)){
+  if (grupo === '_mestre' || !g.proposta || g.expira || (so && so !== grupo)) continue;
+  g.expira = diaBR(Date.now() + VALIDADE * 864e5);
+  mudouCfg = true;
+}
+if (mudouCfg) writeFileSync(join(FONTE, 'cadeados.json'), JSON.stringify(cfg, null, 2) + '\n');
+
 if (!so && cfg._mestre){ gravaKV('cad:_mestre', {pessoas: pessoasComHash(cfg._mestre.pessoas)}); console.log('mestre    atualizado'); }
-for (const [grupo, {paginas, pessoas}] of Object.entries(cfg)){
+for (const [grupo, {paginas, pessoas, expira}] of Object.entries(cfg)){
   if (grupo === '_mestre' || (so && so !== grupo)) continue;
   // a chave do grupo é estável: rodar de novo não invalida página já publicada
   chaves[grupo] ||= b64(sorteia(32));
   writeFileSync(arqChaves, JSON.stringify(chaves, null, 2));
-  gravaKV('cad:' + grupo, {chave: chaves[grupo], pessoas: pessoasComHash(pessoas || {})});
-  console.log(`grupo     ${grupo}  (${Object.keys(pessoas || {}).join(', ') || 'só mestre'})`);
+  gravaKV('cad:' + grupo, {chave: chaves[grupo], pessoas: pessoasComHash(pessoas || {}), ...(expira ? {expira} : {})});
+  const venceu = expira && diaBR(Date.now()) > expira;
+  console.log(`grupo     ${grupo}  (${Object.keys(pessoas || {}).join(', ') || 'só mestre'})${expira ? (venceu ? `  EXPIRADA em ${expira}` : `  vale até ${expira}`) : ''}`);
   for (const p of paginas) await tranca(grupo, Buffer.from(chaves[grupo], 'base64'), p, porta);
 }

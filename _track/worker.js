@@ -154,6 +154,11 @@ export default {
       }
       if (!quem) return json({ erro: "pin", resta: reservas[0].resta }, 401);
       ctx.waitUntil(devolve());   // acerto não conta como erro
+      // Proposta vencida: o PIN do cliente não abre mais (vale até o dia "expira",
+      // no horário de Brasília). O PIN mestre continua abrindo.
+      const ehMestre = ((mestre && mestre.pessoas) || []).some((p) => p.nome === quem);
+      const hoje = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+      if (cad.expira && hoje > cad.expira && !ehMestre) return json({ erro: "expirada" }, 410);
       const chave = cad.chave;
 
       const cf = req.cf || {};
